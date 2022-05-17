@@ -1,0 +1,56 @@
+
+
+https://www.terraform.io/language/settings/backends/pg
+
+docker run -it -p 5432:5432 --name psgdb -e POSTGRES_PASSWORD=1234 postgres
+
+  localhost:5432
+
+docker exec -it psgdb psql -U postgres
+docker exec -it psgdb psql -U postgres
+
+
+  # docker exec 'to the container - with '  psql -U postgres
+  CREATE DATABASE terraform_backend;
+
+  \l # to list databases
+
+
+https://www.postgresqltutorial.com/postgresql-cheat-sheet/
+
+ADD:
+
+terraform {
+  backend "pg" {
+    conn_str = "postgres://postgres:1234@localhost/terraform_backend"
+  }
+  # need to create db terraform_backend
+
+  TRY:  >>> WORKS <<<
+terraform {
+  backend "pg" {
+    conn_str = "postgres://postgres:1234@localhost/terraform_backend?sslmode=disable"
+  }
+
+
+
+
+  terraform init -backend-config="conn_str=postgres://localhost/terraform_backend?sslmode=disable"
+
+
+terraform init -backend-config="conn_str=postgres:1234@localhost/terraform_backend?sslmode=disable"
+
+
+  localhost:5432
+
+
+  # docker exec 'to the container - with '  psql -U postgres
+  CREATE DATABASE terraform_backend;
+
+
+
+  terraform rover:
+
+  https://github.com/im2nguyen/rover
+
+  https://www.youtube.com/watch?v=zIwZ6XEeCAo
