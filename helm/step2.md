@@ -1,9 +1,15 @@
-## Install bitnami metrics-server
+## Install  metrics-server
+
+There are two way to search repos from the command line: 
+
+- helm search hub # searchs the artifact hub at: https://artifacthub.io/
+- helm search repo # search the local repo you've added repo's to
+
+### using the Repo
 
 search the repo (all repos that have been added), note each has a chart version and an app version
 
 `helm search repo`{{execute}} - None found, so lets add one
-
 
 `helm repo add bitnami https://charts.bitnami.com/bitnami`{{execute}}   
 
@@ -21,30 +27,31 @@ We'll install the metrics-server:  WHAT VERSION COMES UP?
   --set apiService.create=true \
   --set extraArgs.kubelet-insecure-tls=true \
   --set extraArgs.kubelet-preferred-address-types=InternalIP
-`{{execute}}
-
-
-`helm install metrics-server bitnami/metrics-server \
-  --version=4.2.2 \
-  --namespace kube-system \
-  --set apiService.create=true \
-  --set extraArgs.kubelet-insecure-tls=true \
-  --set extraArgs.kubelet-preferred-address-types=InternalIP
-`{{execute}}
-
-
+`
 
 You can view the charts for bitnami at: https://bitnami.com/stacks/helm
+
+###  using the hub
+
+`helm search hub metrics-server`{{execute}}
+
+we'll be using the 'metrics-server' version, details (including install) can be found here: https://artifacthub.io/packages/helm/metrics-server/metrics-server
+
+`helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/`{{execute}}
+
+`helm install my-metrics-server metrics-server/metrics-server --version 3.8.2`{{execute}}
 
 
 Lets check the helm chart is installed (-A shows all namespaces)
 
 `helm list -A`{{execute}}
 
+
+***Name***  this is the release name
 ***App version:*** this is the version of the actual app
 ***Chart Version:*** this is the version of the chart, every time there is a change to the chart, the chart version is incremented, and you'll see it in the end of the chart name
 
-`helm status metrics-server -n kube-system`{{execute}}
+`helm status my-metrics-server -n kube-system`{{execute}}
 
 Lets check the endpoint is up
 
@@ -58,25 +65,31 @@ tip: you can add the --debug  argument to troubleshoot
 
 let check it's installed, since it's installed in the kube-system namespace, we have to add the --namespace argument
 
-`helm list --namespace kube-system`{{execute}}
+`helm list -A`{{execute}}
 
-`helm get notes metrics-server --namespace kube-system`{{execute}}
+`helm get notes my-metrics-server`{{execute}}
 
 and lets check what values have been used:
 
-`helm get values metrics-server --namespace kube-system`{{execute}}
+`helm get values my-metrics-server`{{execute}}
 
 The following get all the values:
 
-`helm get values metrics-server -n kube-system --all`{{execute}}
+`helm get values my-metrics-server`{{execute}}
 
 To get a pervious release, you can use `--revision <release number>`
 
 ## Pull down and exmine the chart
+
+lets pull down and look at the metric server on the bitnami repo
 
 `helm pull bitnami/metrics-server`{{execute}}
 
 `tar -zxvf metrics-server-*.tgz`{{execute}}
 
 `tree metrics-server`{{execute}}
+
+lets see the output, as text, when we process this chart
+
+`helm template .`{{execute}}
 

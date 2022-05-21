@@ -10,6 +10,8 @@ Run Ubuntu updates:
 
 `apt-get update -y`{{execute}}
 
+`apt install -y tree`{{execute}}
+
 
 # INSTALL HELM TWO WAYS:
 
@@ -25,7 +27,6 @@ install helm3  (from https://github.com/helm/helm/releases)
 
 `mv linux-amd64/helm /usr/local/bin/helm`{{execute}}
 
-`helm version`{{execute}}
 
 ## 2: OR by script (latest)
 
@@ -34,9 +35,6 @@ install helm3  (from https://github.com/helm/helm/releases)
 `chmod 700 get_helm.sh`{{execute}}
 
 `./get_helm.sh`{{execute}}
-
-
-
 
 
 and check the top command (will take a couple of minutes to set getting metrics)
