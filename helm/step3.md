@@ -12,10 +12,17 @@ take a read of the chart file
 
 `cat Chart.yaml`{{execute}}
 
+
 The charts folder is for dependant charts for this chart, but we won't using these in this demo.
 Note  the `version: 0.1.0`  that defines the chart version
 
-The values yaml file is for values that you'll want to change every now and then. EG a service port number.
+`cat values.yaml`{{execute}}
+
+The values yaml file is for values that you'll want to change every now and then. EG a service port number, again you can override using --set
+
+lets look at the generated yaml, but chnage a value
+
+`helm template . --set samething=4`{{exceute}}
 
 Lets run a helm lint on this chart to make sure its ok
 

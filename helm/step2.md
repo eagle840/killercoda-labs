@@ -19,9 +19,9 @@ If you ever need to update: `helm repo update`
 
 To find more charts, try: https://artifacthub.io/
 
-We'll install the metrics-server:  WHAT VERSION COMES UP?
+Here's an example of a chart install, which we've called my-metrics-server
 
-`helm install metrics-server bitnami/metrics-server \
+`helm install my-metrics-server bitnami/metrics-server \
   --version=4.2.2 \
   --namespace kube-system \
   --set apiService.create=true \
@@ -47,13 +47,13 @@ Lets check the helm chart is installed (-A shows all namespaces)
 `helm list -A`{{execute}}
 
 
-***Name***  this is the release name
+***Name***  this is the release name   
 ***App version:*** this is the version of the actual app
 ***Chart Version:*** this is the version of the chart, every time there is a change to the chart, the chart version is incremented, and you'll see it in the end of the chart name
 
-`helm status my-metrics-server -n kube-system`{{execute}}
+`helm status my-metrics-server`{{execute}}
 
-Lets check the endpoint is up
+Lets check the endpoint is up (it will take a few minutes)
 
 `kubectl get --raw /apis/metrics.k8s.io/v1beta1/nodes | jq`{{execute}}
 
@@ -73,10 +73,6 @@ and lets check what values have been used:
 
 `helm get values my-metrics-server`{{execute}}
 
-The following get all the values:
-
-`helm get values my-metrics-server`{{execute}}
-
 To get a pervious release, you can use `--revision <release number>`
 
 ## Pull down and exmine the chart
@@ -89,7 +85,13 @@ lets pull down and look at the metric server on the bitnami repo
 
 `tree metrics-server`{{execute}}
 
+`cd metrics-server/`{{execute}}
+
+all the files in the template folder will be processed with [Go Templating](https://pkg.go.dev/text/template) to produce a yaml file for a k8s apply file
+
 lets see the output, as text, when we process this chart
 
 `helm template .`{{execute}}
+
+You can override the values in the values.yaml folder when processing, by using '--set'
 
