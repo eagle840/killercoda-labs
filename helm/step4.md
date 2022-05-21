@@ -13,7 +13,7 @@ lets remove files we don't need
 
 ### Bare template
 
-lets get a template from https://k8syaml.com/, just copy the default template will be fine.
+lets get a template from https://k8syaml.com/, just copy the default template will be fine. (you can remove the pod affinity if you wish. Use the copy function in the top right)
 
 can paste it into the templates folder
 
