@@ -1,3 +1,5 @@
+# INSTALL A SAMPLE CHART
+
 ## Install  metrics-server
 
 There are two way to search repos from the command line: 
@@ -16,8 +18,6 @@ search the repo (all repos that have been added), note each has a chart version 
 `helm search repo`{{execute}}
 
 If you ever need to update: `helm repo update`
-
-To find more charts, try: https://artifacthub.io/
 
 Here's an example of a chart install, which we've called my-metrics-server
 

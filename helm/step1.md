@@ -1,3 +1,5 @@
+# INTRO
+
 In this lab we will install Helm and explore setting up a chart to install a complex application (frontend and backend)
 
 Docs and sources:
@@ -10,7 +12,7 @@ Run Ubuntu updates:
 
 `apt-get update -y`{{execute}}
 
-`apt install -y tree`{{execute}}
+`apt install -y tree jq`{{execute}}
 
 
 # INSTALL HELM TWO WAYS:

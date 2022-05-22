@@ -1,6 +1,8 @@
-# create your own
+# CREATE YOUR OWN
 
 we'll install the sample chart provided by helm, this example automatically uses an nginx image:
+
+`cd ~`{{execute}}
 
 `helm create examplechart`{{execute}}
 
@@ -22,7 +24,7 @@ The values yaml file is for values that you'll want to change every now and then
 
 lets look at the generated yaml, but chnage a value
 
-`helm template . --set samething=4`{{exceute}}
+`helm template .  --set replicaCount=2`{{exceute}}
 
 Lets run a helm lint on this chart to make sure its ok
 
