@@ -6,5 +6,7 @@ section on terraform logging
 
 section on terraform 'dynamic blocks`
 
+section on using different terraform versions at the same time
+
 
 https://docs.microsoft.com/en-us/azure/developer/terraform/create-base-template-using-yeoman

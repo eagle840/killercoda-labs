@@ -57,7 +57,7 @@ and we can run a quick docker container to view it
 `docker run  -d -p 8090:80 -v $(pwd):/usr/share/nginx/html nginx`{{execute}}
 
 
-[ACCESS GRAPH]({{TRAFFIC_HOST1_8090}})
+[ACCESS GRAPH]({{TRAFFIC_HOST1_8090}}/graph.png)
 
 ## code
 

@@ -67,9 +67,15 @@ we can now use that file, with the varaibles includes to execute an 'apply' with
 
 `terraform apply plan.tfplan`{{execute}}
 
-# Documentation on variables
+## Documentation on variables
 
 https://www.terraform.io/language/values/variables
+
+# Destroy the environment
+
+and finally we'll destroy the infrastructure
+
+`terraform destroy`{{execute}}
 
 
 
