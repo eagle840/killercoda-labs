@@ -1,4 +1,4 @@
-# run a cdk
+# Setup a docker container with Terraform
 
 
 `mkdir learn-terraform-docker-container`{{execute}}    
@@ -6,11 +6,21 @@
 `cd learn-terraform-docker-container`{{execute}}   
 
 `nano main.tf`{{execute}}   
+
 copy the code below
 
-`terraform init`{{execute}}    
+## Terraform Workflow
 
-`terraform plan`{{execute}}    
+
+Initiate Terraform, which includes downing any provides.
+
+`terraform init`{{execute}}  
+
+Plan the envirnoment
+
+`terraform plan`{{execute}} 
+
+And apply it
 
 `terraform apply`{{execute}}    
 
@@ -26,27 +36,28 @@ or get a full description of one of the compoents,
 
 `terraform state show docker_image.nginx`{{execute}}
 
-check running containers
+check running containers      
 `docker ps`{{execute}}   
 
-https://[[HOST_SUBDOMAIN]]-8000-[[KATACODA_HOST]].environments.katacoda.com
+and access  the web page
+
+[ACCESS NGINX]({{TRAFFIC_HOST1_8000}})
 
 
 ## Graph
 
-lets generate a graph
+lets generate a terraform graph
 
-we'll need to inside a pkg `apt install graphviz -y`{{execute}}
+we'll need to inside a package `apt install graphviz -y`{{execute}}
 
 `terraform graph | dot -Tpng > graph.png`{{execute}}
 
-and we can run a quick docker to view it
+and we can run a quick docker container to view it
 
-`docker run  -d -p 8090:80 -v $(pwd):/usr/share/nginx/html nginx`
+`docker run  -d -p 8090:80 -v $(pwd):/usr/share/nginx/html nginx`{{execute}}
 
 
-
-https://[[HOST_SUBDOMAIN]]-8090-[[KATACODA_HOST]].environments.katacoda.com/graph.png
+[ACCESS GRAPH]({{TRAFFIC_HOST1_8090}})
 
 ## code
 
@@ -79,7 +90,7 @@ resource "docker_container" "nginx" {
   }
 }
 
-```
+```{{copy}}
 
 
 

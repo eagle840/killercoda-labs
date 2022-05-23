@@ -1,8 +1,17 @@
 # initial setup
 
 
+
+
 ## install terraform
-`sudo apt update`{{execute}}    
+
+Run an Update:
+
+`sudo apt update`{{execute}}  
+
+`apt install -y tree`{{execute}}
+
+Download and install lastest Terraform
 
 `curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -`{{execute}}    
 
@@ -13,10 +22,10 @@
 
 `terraform version`{{execute}}    
 
-  
+
 
 `terraform -install-autocomplete`{{execute}}    
 
-  
+`exec bash`{{execute}}
 
    
