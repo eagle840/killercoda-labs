@@ -8,5 +8,7 @@ section on terraform 'dynamic blocks`
 
 section on using different terraform versions at the same time
 
+terraform provisions - local and remote
+
 
 https://docs.microsoft.com/en-us/azure/developer/terraform/create-base-template-using-yeoman
