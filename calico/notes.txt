@@ -1,0 +1,11 @@
+view :
+https://itnext.io/an-illustrated-guide-to-kubernetes-networking-part-1-d1ede3322727
+
+several ways to determine cidr - which don't seem to work
+https://devops.stackexchange.com/questions/5898/how-to-get-kubernetes-pod-network-cidr
+
+kubeadm
+https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm/
+
+calico install
+https://docs.projectcalico.org/v3.9/getting-started/kubernetes/installation/calico
