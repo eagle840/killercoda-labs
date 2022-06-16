@@ -22,13 +22,19 @@ It also takes a few seconds to get MySQL up and running, if you get an error wai
 -uroot   => user root  
 -p       => prompt for password, or -p1234
 
+Once connected, you should see `mysql>`
+
+Exit out of the prompt, back to the host, with `quit`{{execute}}
+
 ## To connect from the host
+
+Lets install the mysql client:
 
 `apt update`{{execute}}
 
-`apt install mysql-client-core-5.7`{{execute}}
+`apt install mysql-client`{{execute}}
 
-`mysql -h 0.0.0.0  -P3306  -uroot -p1234`{{execute}}
+`mysql -h 0.0.0.0  -P3306  -uroot -p1234 --ssl-mode=disabled`{{execute}}
 
 # create a db
 

@@ -1,0 +1,3 @@
+add functionality for ssl-connection
+
+add engineer mans sql indexing (or make a second scenario)

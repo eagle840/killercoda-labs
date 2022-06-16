@@ -128,7 +128,8 @@ Lets add the Adminer tool to the yml so we can administor those databases:
 
 And lets connect and login:
 
-https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com
+
+{{TRAFFIC_HOST1_8080}}
 
 Here's the login for the MySQL server. You can get the server name from using `docker-compose ps`
 
