@@ -1,0 +1,36 @@
+resources:
+https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/
+
+video on hpa
+https://www.youtube.com/watch?v=3BnrXapY7zo
+
+video on keda, 
+https://www.youtube.com/watch?v=H5eZEq_wqSE
+
+
+wget https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz
+tar -zxvf helm-v3.7.1-linux-amd64.tar.gz 
+mv linux-amd64/helm /usr/local/bin/helm
+helm version
+
+helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+helm repo update
+
+wget https://get.helm.sh/helm-v3.7.1-linux-amd64.tar.gz
+tar -zxvf helm-v3.7.1-linux-amd64.tar.gz 
+mv linux-amd64/helm /usr/local/bin/helm
+helm version
+
+
+helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+helm repo update
+helm upgrade --install metrics metrics-server/metrics-server -n kube-system
+
+kubectl edit deploy metrics-server -n kube-system
+
+      containers:
+      - args:
+        - --cert-dir=/tmp
+        - --secure-port=8448
+        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+        - --kubelet-insecure-tls
