@@ -17,7 +17,7 @@ It this lab we're using a set image version of Jenkins, you might want to try je
 `nano docker-compose.yml`{{execute}}
 
 ```yaml
-version: "3.8"
+version: "3.3"
 
 services:
 
@@ -36,7 +36,7 @@ services:
     ports:
     - "8025:8025"
     - "1025:1025"
-```
+```{{copy}}
 
 ## start the jenkins docker container
 
@@ -53,14 +53,13 @@ Or run in Terminal 2
 
 Jenkins:
 
-https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com
+{{TRAFFIC_HOST1_8080}}
 
 Mailhog:
 
-https://[[HOST_SUBDOMAIN]]-8025-[[KATACODA_HOST]].environments.katacoda.com
+{{TRAFFIC_HOST1_8025}}
 
-
-Complete the Jenkins install until you're at the main page before continuing. Be sure to remember the user name and password you use.
+Complete the Jenkins install until you're at the main page before continuing. Use UN: admin  PW: 1234
 
 ## Configure access to port 2375 on the docker daemon.
 
@@ -79,6 +78,7 @@ find the line starting with  ExecStart in the [service] section and add `-H tcp:
 and restart the docker daemon
 
 `sudo systemctl daemon-reload`{{execute}}
+
 `sudo systemctl restart docker.service`{{execute}}
 
 recheck the docker service is running:
@@ -86,6 +86,8 @@ recheck the docker service is running:
 `sudo systemctl status docker.service`{{execute}}
 
 and make sure we're getting the json data
+
+`apt install -y jq tree`{{execute}}
 
 `curl localhost:2375/containers/json | jq`{{execute}}
 
