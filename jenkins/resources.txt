@@ -1,0 +1,3 @@
+# build docker
+
+https://medium.com/@manav503/how-to-build-docker-images-inside-a-jenkins-container-d59944102f30#:~:text=%20How%20to%20build%20docker%20images%20inside%20a,running%20docker%20container%20ls%20from%20the...%20More%20

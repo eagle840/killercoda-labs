@@ -1,0 +1,44 @@
+{
+  "title": "Jenkins CICD",
+  "description": "Setup a jenkins server using Docker and run job on seperate docker containers (v.9.1)",
+  "difficulty": "Intermediate",
+  "time": "30",
+  "environment": {
+    "showdashboard": true,
+    "uilayout": "terminal",
+    "dashboards":[
+      {"name": "Jenkins", "href": "https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com"}
+    ],
+    "terminals": [{"name": "Terminal 2", "target": "host01"}]
+  },
+  "details": {
+    "steps": [
+      {
+        "title": "Step 1",
+        "text": "step1.md"
+      },
+      {
+        "title": "Step 2",
+        "text": "step2.md"
+      },
+      {
+        "title": "Step 3",
+        "text": "step3.md"
+      },
+      {
+        "title": "Step 4",
+        "text": "step4.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
