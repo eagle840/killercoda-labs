@@ -6,7 +6,7 @@ Run Ubuntu updates:
 `apt-get update -y`{{execute}}
 
 
-# install metrics-server
+# install Helm - By download
 
 install helm3  (from https://github.com/helm/helm/releases)
 
@@ -18,7 +18,7 @@ install helm3  (from https://github.com/helm/helm/releases)
 
 `helm version`{{execute}}
 
-# install by script
+# OR install Helm - By script
 
 `curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3`{{execute}}
 
@@ -26,27 +26,18 @@ install helm3  (from https://github.com/helm/helm/releases)
 
 `./get_helm.sh`{{execute}}
 
+# Install Metrics-Server
+
 `helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/`
 
 ```
 helm install metrics-server metrics-server/metrics-server \
-  --version=4.2.2 \
   --namespace kube-system \
   --set apiService.create=true \
   --set extraArgs.kubelet-insecure-tls=true \
   --set extraArgs.kubelet-preferred-address-types=InternalIP
-``` 
+```{{exec}}
 
-
-`helm repo add bitnami https://charts.bitnami.com/bitnami`{{execute}}   
-```
-helm install metrics-server bitnami/metrics-server \
-  --version=4.2.2 \
-  --namespace kube-system \
-  --set apiService.create=true \
-  --set extraArgs.kubelet-insecure-tls=true \
-  --set extraArgs.kubelet-preferred-address-types=InternalIP
-``` 
 
 
 Lets check the endpoint is up
