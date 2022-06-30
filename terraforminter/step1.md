@@ -4,7 +4,9 @@ In this lab we'll be working with Terraform and Docker to deploy a container on 
 
 
 ## install terraform
-`sudo apt update`{{execute}}    
+`sudo apt update`{{execute}}   
+
+`apt install tree`{{exec}}
 
 `curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -`{{execute}}    
 

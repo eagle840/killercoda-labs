@@ -1,6 +1,6 @@
 {
   "title": "terraform intermediate",
-  "description": "terraform intermediate (v0.6.3)",
+  "description": "terraform intermediate (v0.6.4)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -16,14 +16,6 @@
         },
         {
           "file": "providers.tf",
-          "target": "~/mytf/"
-        },
-        {
-          "file": "test.txt",
-          "target": "~/"
-        },
-        {
-          "file": "test3.txt",
           "target": "~/mytf/"
         }
       ]
