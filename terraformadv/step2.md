@@ -7,6 +7,10 @@ https://prefetch.net/blog/2020/04/27/using-the-terraform-console-to-debug-interp
 
 `mkdir mytf && cd mytf`{{execute}}
 
+we'll be deploying: https://bitnami.com/stack/nginx/helm
+
+see the following docs for deploying a helm chart with terraform: https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release
+
 `nano main.tf`{{execute}}
 
 ```
@@ -15,12 +19,12 @@ provider "helm" {
     config_path = "~/.kube/config"
   }
 }
- 
-resource "helm_release" "nginx_ingress" {
-  name       = "nginx-ingress-controller"
 
-  # repository = "https://charts.bitnami.com/bitnami"
-  chart      = "../nginx"
+resource "helm_release" "nginx_app" {
+  name = "nginx-app"
+
+  repository = "https://charts.bitnami.com/bitnami"
+  chart      = "nginx"
 
   #set {
   #  name  = "service.type"
@@ -28,3 +32,5 @@ resource "helm_release" "nginx_ingress" {
   #}
 }
 ```{{copy}}
+
+
