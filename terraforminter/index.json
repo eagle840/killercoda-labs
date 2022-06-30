@@ -21,6 +21,10 @@
         {
           "file": "test.txt",
           "target": "~/"
+        },
+        {
+          "file": "test3.txt",
+          "target": "~/mytf/"
         }
       ]
     },
