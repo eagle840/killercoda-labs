@@ -91,3 +91,8 @@ The dot is the hierachal level in the values file to use. (see Helm Docs). You'l
 ### Update a Chart, and install
 
 Lets make a change to the chart, and then push it to K8s
+
+
+### Static Analysis
+
+`curl https://get.datree.io | /bin/bash`{{exec}}
