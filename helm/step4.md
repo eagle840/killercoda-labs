@@ -3,6 +3,8 @@
 
 ### Bare Tempate
 
+`cd ~`{{execute}}
+
 `helm create my-app`{{execute}}
 
 `cd my-app`{{execute}}
@@ -11,7 +13,9 @@ lets remove files we will use from scratch
 
 `rm ./templates/*`{{execute}}
 
-`echo "" > values.yaml` {{execute}}
+```
+echo "" > values.yaml
+``` {{execute}}
 
 ### Sample Template
 

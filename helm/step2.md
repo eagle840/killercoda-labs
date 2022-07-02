@@ -41,10 +41,21 @@ we'll be using the 'metrics-server' version, details (including install) can be 
 
 `helm install my-metrics-server metrics-server/metrics-server --version 3.8.2`{{execute}}
 
+* Helm requires a names-space parameter if you choose to install the chart into a name-space
+
+* to add addictional parameters: `helm install --set param=vale`, or supply a 'values' yaml file with the vales `--values file.yaml`
+
+eg service.port=80
+
+
 
 Lets check the helm chart is installed (-A shows all namespaces)
 
 `helm list -A`{{execute}}
+
+Also note that information is stored in ~/.cache/helm/:
+
+`ls ./.cache/helm/repository/`{{exec}}
 
 
 ***Name***  this is the release name   
