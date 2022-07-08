@@ -1,1 +1,37 @@
 This lab we'll setup a ELk stack
+
+system ->  Logstash (data pipeline) -> ES (time-series DB)  -> Kibana (dashboards)
+
+Add Ons
+ 
+ - x-pack
+ - graph
+ - beats  (import data into ES)
+
+
+The two largest monitoring software systems are Kibana and Grafana.
+Kibana orginally started as a logging platform with uses Elasticsearch, and later added metrics, and Grafana became a fork inorder to do metrics.
+Now both systems do both, however you can do more Logging with Kibana, and more Metrics wit Grafana
+
+Grafana can be configured to work with a variety of time-series DB's, inc: Graphite, Prometheus, InfluxDB, MySQL, PostgreSQL, and Elasticsearch
+
+
+# Access control
+
+Kibana dashboards are open to the public, but can be locked down with an extension (X=Pack)
+Grafana comes with user management (external SQL or LDAP server)
+
+# Querying
+
+Since Kibana uses Elastricsearch, you'll be using Lucene or Kuery syntax
+And for Grafana, depending on the DB you're using, you'll use it's query santx
+
+# Alerting
+
+Grafana comes with alerting in the box, Kibana, you'll need to purchase an addon
+
+# Logstash
+
+Plugins:   inputs  -> filters  -> outputs 
+
+All these will be in a custom configuration file, that looks similar to YAML
