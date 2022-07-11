@@ -35,3 +35,6 @@ Grafana comes with alerting in the box, Kibana, you'll need to purchase an addon
 Plugins:   inputs  -> filters  -> outputs 
 
 All these will be in a custom configuration file, that looks similar to YAML
+
+# More resources
+An excellent introduction to the ELK stack can be found here, it is several hours long. https://www.youtube.com/watch?v=gS_nHTWZEJ8  and it's associated Github page: https://github.com/LisaHJung/Beginners-Crash-Course-to-Elastic-Stack-Series-Table-of-Contents
