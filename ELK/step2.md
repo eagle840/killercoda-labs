@@ -1,4 +1,4 @@
-# step 2
+# CRUD Operations
 
 ## basic setup
 
@@ -10,6 +10,8 @@ create an index  `PUT favorite_candy`{{copy}}
 the response `"acknowledged" : true,` shows the operation was successful
 
 and you should see the http response code, and the time taken above that section in green and white.
+
+to list all indices `GET /_cat/indices`{{copy}}
 
 Now index a document (??? adding a document to an index ?)
 
