@@ -3,7 +3,7 @@
 
 
 
-`docker-compose -d up`{{exec}}
+`docker-compose up -d`{{exec}}
 
 {{TRAFFIC_HOST1_5601}}
 
@@ -28,6 +28,9 @@ rename cluster
 
 
 =====
+
+
+Once in the web portal, select 'explore on my own'
 
 
 open kibana web, > hamburger > Managment > Dev Tools
