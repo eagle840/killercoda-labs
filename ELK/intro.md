@@ -15,6 +15,16 @@ Now both systems do both, however you can do more Logging with Kibana, and more 
 
 Grafana can be configured to work with a variety of time-series DB's, inc: Graphite, Prometheus, InfluxDB, MySQL, PostgreSQL, and Elasticsearch
 
+# Nodes, shards and indexs
+
+In this lab, we'll create just the one Node, and an index. An index can cross multiple Nodes, and the intersection of each is called a Shard. However you can have multiple same index shards on the same node (check this)
+
+You can primary and replicate nodes (P0, R0) to protect data, it also improves search speed. 
+
+Data is stored as json objects in an index, 
+
+Nodes can have different Roles, but in this lab we will not concern ourselfs with this.
+
 
 # Access control
 

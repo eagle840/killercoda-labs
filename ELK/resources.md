@@ -1,6 +1,8 @@
+start a multinode ES cluster, see https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-compose-file
 
-source for code:  
-https://github.com/rabbitmq/rabbitmq-tutorials/tree/master/python
 
-web page for tutorual
-https://rabbitmq.com/tutorials/tutorial-one-python.html
+logstash conf eg: https://www.elastic.co/guide/en/logstash/current/config-examples.html
+
+
+https://www.youtube.com/watch?v=Mma7HKt-mk8&list=PLECxNUHStsl9pWSPKMATMx9lbbHbTY0Wi&index=5
+^ grok pattern

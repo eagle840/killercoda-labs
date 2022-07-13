@@ -1,6 +1,6 @@
 {
   "title": "ELK",
-  "description": "Boot up an ELK stack with Docker Compose (v.0.4) ",
+  "description": "Boot up an ELK stack with Docker Compose (v.0.46) ",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -28,6 +28,18 @@
       {
         "title": "Step 2",
         "text": "step2.md"
+      }
+      {
+        "title": "Step 3",
+        "text": "step1.md"
+      },
+      {
+        "title": "Step 4",
+        "text": "step1.md"
+      },
+      {
+        "title": "Step 5",
+        "text": "step1.md"
       }
     ],
     "intro": {

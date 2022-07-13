@@ -1,103 +1,59 @@
-# CRUD Operations
+# check up and running
 
-## basic setup
+## General
+
+docker logs <container>
 
 
-Using the same 'Dev Tool'
+## ES
 
-create an index  `PUT favorite_candy`{{copy}}
+`docker exec -it ##### bash`
 
-the response `"acknowledged" : true,` shows the operation was successful
+`cat /etc/elasticsearch/elasticsearch.yaml`
 
-and you should see the http response code, and the time taken above that section in green and white.
+rename cluster.name  ELK
 
-to list all indices `GET /_cat/indices`{{copy}}
+rename node.name: node-1
 
-Now index a document (??? adding a document to an index ?)
+/etc/elasticsearch/jvm.options for changing 
 
-```
-POST favorite_candy/_doc
-{
-  "first_name": "Lisa",
-  "candy": "Sour Skittles"
-}
-```{{copy}}
+restart sevice / container
 
-if you want to do a document with a specific ID (1)
-
-```
-PUT favorite_candy/_doc/1
-{
-  "first_name": "John",
-  "candy": "Starburst"
-}
-```{{copy}}
-
-in the output, pay attention to the version number
-
-add and run the following:
-
-```
-PUT favorite_candy/_doc/2
-{
-  "first_name": "Rachel",
-  "candy": "Rolos"
-}
-PUT favorite_candy/_doc/3
-{
-  "first_name": "Tom",
-  "candy": "Sweet Tarts"
-}
-```{{copy}}
-
-Lets read one of the docs
-
-`GET favorite_candy/_doc/1`{{copy}}
-
-- you can see the _source in the output is the document
-
-Now if you just to resend the same id, it will over write and give you an incremented version number
-
-```
-PUT favorite_candy/_doc/1
-{
-  "first_name": "Sally",
-  "candy": "Snickers"
-}
-```{{copy}}
-
-If you want to lock a document so it can't be updated, use:
-
-```
-PUT favorite_candy/_create/1
-{
-  "first_name": "Finn",
-  "candy": "Jolly Ranchers"
-}
-```{{copy}}
-
-Now this will fail since a document with that id already exsists
-
-### update
-
-Now to update a specific document use:
-
-```
-POST favorite_candy/_update/1
-{
-  "doc": {
-    "candy": "M&M's"
-  }
-}
-```
-- note the id number,
-- the 'doc' 
-- the fields you wish updated
-- that the response shows an incremented version number
-
-### delete
-
-`DELETE favorite_candy/_doc/1`{{exec}}
+curl http://localhost:9200/_cluster/health?pretty
 
 
 
+## logstash
+
+look at the log stash examples on line
+
+- TODO add date field to index name
+
+`cat /logstash/logstash/conf`
+
+- note input, with 'type'
+- note use if statements
+- note index name
+
+/etc/logstash/logstash.yaml
+
+/etc/logstash/pipelines.yaml
+
+/use/share/logstash/bin/logstash -f <config.yaml>
+
+
+
+
+## kibana
+
+port 1514
+
+netstat -tlupn
+
+/etc/kibana/kibana.yaml
+
+note server.host
+
+to allow all, change to "0.0.0.0"
+
+note, but don't change elasticsearch setting
