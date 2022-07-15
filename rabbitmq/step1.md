@@ -1,6 +1,14 @@
 
 # run rabbitmq on docker 
 
+## install tools
+
+`apt update`{{exec}}
+
+`apt install -y jq python3-pip `{{exec}}
+
+## run Rabbitmq
+
 
 We'll be using the rabbitmq container with the management feature installed.
 
@@ -20,7 +28,10 @@ and head over to port 8080 and login
 un:guest   
 pw:guest  
 
-https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com
+[access web gui]({{TRAFFIC_HOST1_8080}})
+
+
+## Update python files with correct config
 
 Next we'll update the python files with the new IP address of the docker container.
 

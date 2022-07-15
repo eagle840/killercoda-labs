@@ -1,4 +1,4 @@
-# Hello World! using python
+# Send some simple messages to Rabbitmq
 
 https://www.rabbitmq.com/tutorials/tutorial-one-python.html
 

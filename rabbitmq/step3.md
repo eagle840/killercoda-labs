@@ -1,5 +1,7 @@
 # check the queues
 
+In this step we'll create two workers, and send messages to them.
+
 `docker exec some-rabbit rabbitmqctl list_queues`{{execute}}
 
 
@@ -7,17 +9,17 @@
 
 https://www.rabbitmq.com/tutorials/tutorial-two-python.html
 
-# open 2 terminals and run in each
+### Setup worker nodes
 
+Lets look at a 'worker node'
 
 `cat worker.py`{{execute}}
 
-
-open a couple of terminals and and run the worker in them.
+open a couple of terminals and then run a worker in teach.
 
 `python3 worker.py`{{execute}}
 
-# in another
+# Create messages to process
 
 in the orginal terminal window you can start sending tasks.
 
