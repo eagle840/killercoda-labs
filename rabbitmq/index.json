@@ -1,6 +1,6 @@
 {
   "title": "Basic RabbitMQ",
-  "description": "(0.91) Follow the RabbitMQ quickstart guide for python",
+  "description": "Follow the RabbitMQ quickstart guide for python",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
