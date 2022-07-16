@@ -5,7 +5,7 @@ NC="/bin/nc"
 #ORIG_IP="192.168.190.11"
 SOURCES=("192.168.190.2" "192.168.190.3" "192.168.190.4" "192.168.190.5" "192.168.190.6" "192.168.190.7")
 #Destination network
-DEST_IP="192.168.190.11"
+DEST_IP="localhost"
 # List of messages.
 MESSAGES=("Error Event" "Warning Event" "Info Event")
 # How long to wait in between sending messages.

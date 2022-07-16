@@ -2,7 +2,13 @@
 
 ## General
 
-docker logs <container>
+docker logs <container>  -f
+
+in another terminal window:
+
+`./sysloggen.sh`{{exec}}
+
+This will start sending logs to Logstash.
 
 
 ## ES

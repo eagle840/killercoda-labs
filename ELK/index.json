@@ -1,6 +1,6 @@
 {
   "title": "ELK",
-  "description": "Boot up an ELK stack with Docker Compose (v.0.47) ",
+  "description": "Boot up an ELK stack with Docker Compose (v.0.48) ",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
