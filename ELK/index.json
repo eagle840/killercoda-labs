@@ -1,6 +1,6 @@
 {
   "title": "ELK",
-  "description": "Boot up an ELK stack with Docker Compose (v.0.46) ",
+  "description": "Boot up an ELK stack with Docker Compose (v.0.47) ",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -17,6 +17,10 @@
         {
           "file": "logstash.conf",
           "target": "~/logstash/"
+        },
+        {
+          "file": "sysloggen.sh",
+          "target": "~/"
         }
       ]
     },

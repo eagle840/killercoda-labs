@@ -21,11 +21,13 @@ services:
     restart: always
     volumes:
     - ./logstash/:/logstash_dir
+    - ./:/root
     command: logstash -f /logstash_dir/logstash.conf 
     depends_on:
       - Elasticsearch
     ports:
     - '9600:9600'
+    - '5000:5000'
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"    
     networks:

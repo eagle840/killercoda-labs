@@ -6,3 +6,5 @@ logstash conf eg: https://www.elastic.co/guide/en/logstash/current/config-exampl
 
 https://www.youtube.com/watch?v=Mma7HKt-mk8&list=PLECxNUHStsl9pWSPKMATMx9lbbHbTY0Wi&index=5
 ^ grok pattern
+
+https://raw.githubusercontent.com/edgoad/syslog-generator/master/syslogGen1.sh
