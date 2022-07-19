@@ -17,7 +17,7 @@ terraform {
 }
 
 provider "docker" {}
-```
+```{{copy}}
 
 create a main block for the main terraform resources, ie remove the provider section so that all your have left is:
 
@@ -37,7 +37,7 @@ resource "docker_container" "nginx" {
     external = 8000
   }
 }
-```
+```{{copy}}
 
 Now when you run terraform commands, it will run all the files in this folder.
 
