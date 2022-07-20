@@ -107,3 +107,74 @@ note server.host
 to allow all, change to "0.0.0.0"
 
 note, but don't change elasticsearch setting
+
+
+
+## send data through http api
+
+
+`cd ~`
+
+`mkdir bin`
+
+`cd bin`
+
+`nano curl`
+
+```
+#!/bin/bash
+/usr/bin/curl -H "Content-Type: application/json" "$@"
+```
+
+`chmod a+x curl`
+
+`cd ~`
+
+`source .profile`
+
+
+type 'curl -XPUT localhost:9200/movies/ -d '
+
+then 
+`{`
+ctrl-v tab, and complete as below. Notice the single quotes enclosing the text
+
+```
+{
+  "mappings": {
+    "properties": {
+      "year": { "type": "date" }
+    }
+  }
+}'
+```
+ABOVE ISN'T WORKING
+
+curl -H "Content-Type: application/json" -XPUT localhost:9200/movies -d '
+> {
+>   "mappings": {
+>     "properties": {
+>       "year": { "type": "date" }
+>     }
+>   }
+> }'
+
+
+
+`curl -XGET localhost:9200/movies/_mapping`
+
+
+
+`wget http://media.sundog-soft.com/es8/movies.json`
+
+
+
+`cat movies.json`
+
+note the json file already has the 'create', 'index' and 'id'
+and that a year field is present, and we have told ES to treat that as a date.
+
+curl -H "Content-Type: application/json" -XPUT localhost:9200/_bulk?pretty --data-binary @movies.json
+
+
+curl -XGET localhost:9200/movies/_search?pretty`
