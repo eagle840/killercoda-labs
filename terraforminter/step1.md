@@ -6,7 +6,10 @@ In this lab we'll be working with Terraform and Docker to deploy a container on 
 ## install terraform
 `sudo apt update`{{execute}}   
 
-`apt install tree`{{exec}}
+`apt install tree jq`{{exec}}
+
+Start a databased for later use.
+`docker-compose up -d`{{exec}}
 
 `curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -`{{execute}}    
 
@@ -54,6 +57,20 @@ When we run 'plan' & 'apply':
 and check the container is running:
 
 `docker ps`{{execute}}
+
+## Terraform State Backup
+
+add to provides.tf  in the terraform block
+
+```
+  backend "pg" {
+    conn_str = "postgres://root:1234@localhost/tfstate?sslmode=disable"
+  }
+```{{copy}}
+
+`terraform init`{{exec}}
+
+
 
 # Terraform Output
 
