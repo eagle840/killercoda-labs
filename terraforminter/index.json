@@ -17,6 +17,10 @@
         {
           "file": "providers.tf",
           "target": "~/mytf/"
+        },
+        {
+          "file": "docker-compose.yml",
+          "target": "~/"
         }
       ]
     },
