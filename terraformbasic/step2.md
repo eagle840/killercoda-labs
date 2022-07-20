@@ -7,6 +7,8 @@
 
 `nano main.tf`{{execute}}   
 
+Terraform will process all .tf file in the current working directory 
+
 copy the code below
 
 ## Terraform Workflow

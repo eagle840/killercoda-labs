@@ -14,7 +14,7 @@ in this first file, it will ask for the port number when tf plan/apply is run
 variable "port" {
   type = number
 }
-```
+```{{copy}}
 
 and change the main.tf to include the variable in the external port number
 
@@ -23,7 +23,7 @@ and change the main.tf to include the variable in the external port number
     internal = 80
     external = var.port
   }
-```
+```{{copy}}
 
 when you run terraform apply it will ask for a port number. Give it the port number 8080
 
