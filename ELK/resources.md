@@ -15,3 +15,7 @@ https://github.com/deviantony/docker-elk
 clone and bring it up
 user: elastic
 password: changeme
+
+
+
+https://github.com/thombashi/elasticsearch-faker

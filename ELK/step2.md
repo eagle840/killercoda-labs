@@ -2,13 +2,21 @@
 
 ## General
 
-docker logs <container>  -f
+Show the logs of the logstash container
+
+`docker logs <container>  -f`
 
 in another terminal window:
+
+``chmod +x sysloggen.sh`{{exec}}
 
 `./sysloggen.sh`{{exec}}
 
 This will start sending logs to Logstash.
+
+### OR TRY
+
+- https://github.com/thombashi/elasticsearch-faker
 
 
 ## ES
