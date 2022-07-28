@@ -1,6 +1,10 @@
 
 # Initial Setup
 
+Doc: https://killercoda.com/creators
+
+github: https://github.com/killercoda
+
 # Set imageid in index.json
 
 - ubuntu: Ubuntu 20.04 with Docker and Podman
