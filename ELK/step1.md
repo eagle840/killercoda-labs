@@ -11,7 +11,7 @@
 
 `docker-compose up -d`{{exec}}
 
-{{TRAFFIC_HOST1_5601}}
+{{TRAFFIC_HOST1_5601/app/home}}
 
 run `docker ps`{{exec}} to review the ports  
  - note ES is on 9200
