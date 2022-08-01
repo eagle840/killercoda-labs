@@ -70,3 +70,9 @@ Next we'll update the python files with the new IP address of the docker contain
 
 `sed -i "s/localhost/$RabbitIP/g" send.py receive.py worker.py new_task.py`{{execute}}
 
+## k8s port-forward
+
+`k -n <ns> port-forward service/<svc-name> 9090:9090 --address 0.0.0.0`
+
+- this is to forword a CLusterIP so that killacoda can access
+
