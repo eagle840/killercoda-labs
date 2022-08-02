@@ -11,6 +11,12 @@
 
 `docker-compose up -d`{{exec}}
 
+wait for the elasticsearch server to come up, you will get a json response from:
+
+`curl http://localhost:9200`{{exec}}
+
+
+
 {{TRAFFIC_HOST1_5601}}/app/home
 
 add 'app/home'
@@ -50,28 +56,4 @@ lets check the health, paste in `GET _cluster/health`{{copy}}
 check the stats of the nodes with
 
 `GET _nodes/stats`{{copy}}
-
-
-
-
-#################  DELETE BELOW WHEN READY  #######################
-
-
-
-```apt-get update -y{{execute}}```
-
-
-# For links to ports:
-
-```
-Link for traffic into host 1 on port 80
-{{TRAFFIC_HOST1_80}}
-Link for traffic into host 2 on port 4444
-{{TRAFFIC_HOST2_4444}}
-Link for traffic into host X on port Y
-{{TRAFFIC_HOSTX_Y}}
-```
-
-
-`sed -i "s/localhost/$RabbitIP/g" send.py receive.py worker.py new_task.py`{{execute}}
 

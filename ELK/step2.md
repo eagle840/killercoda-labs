@@ -4,15 +4,21 @@
 
 Show the logs of the logstash container
 
+`docker-compose logs -f Logstash`{{exec}}
+
+(note that the service starts with a capital letter: Logstash)
+
 `docker logs <container>  -f`
 
-in another terminal window:
+in another tab (terminal window):
 
-``chmod +x sysloggen.sh`{{exec}}
+`chmod +x sysloggen.sh`{{exec}}
 
 `./sysloggen.sh`{{exec}}
 
-This will start sending logs to Logstash.
+This will start sending logs to Logstash, which you'll see in both windows.
+
+
 
 ### OR TRY
 
@@ -21,9 +27,11 @@ This will start sending logs to Logstash.
 
 ## ES
 
-`docker exec -it ##### bash`
+`docker-compose exec  Elasticsearch bash`{{exec}}
 
-`cat /etc/elasticsearch/elasticsearch.yaml`
+`pwd`{{exec}}
+
+`cat config/elasticsearch.yml`{{exec}}
 
 rename cluster.name  ELK
 
@@ -33,7 +41,7 @@ rename node.name: node-1
 
 restart sevice / container
 
-curl http://localhost:9200/_cluster/health?pretty
+`curl http://localhost:9200/_cluster/health?pretty`{{exec}}
 
 
 
@@ -43,7 +51,11 @@ look at the log stash examples on line
 
 - TODO add date field to index name
 
-`cat /logstash/logstash/conf`
+`docker-compose exec Logstash bash`{{exec}}
+
+`pwd`{{exec}}
+
+`cat config/logstash.yml`{{exec}}
 
 - note input, with 'type'
 - note use if statements
@@ -57,9 +69,7 @@ look at the log stash examples on line
 
 Checking Logstash with it'a API (https://www.elastic.co/guide/en/logstash/current/monitoring-logstash.html)
 
-`curl -XGET 'localhost:9600/?pretty'`{{exec}}
 
-`docker run -it logstash:7.16.2 bash`
 
  - run `logstash -e 'input { stdin { } } output { stdout {} }'`{{exec}}
  - wait until you see "Pipeline main started" 
@@ -108,7 +118,12 @@ port 1514
 
 netstat -tlupn
 
-/etc/kibana/kibana.yaml
+`docker-compose exec Logstash bash`{{exec}}
+
+`pwd`{{exec}}
+
+`cat config/kibana.yml`
+
 
 note server.host
 
@@ -141,7 +156,11 @@ note, but don't change elasticsearch setting
 `source .profile`
 
 
-type 'curl -XPUT localhost:9200/movies/ -d '
+```
+type 'curl -XPUT localhost:9200/movies/ -d'  
+```  
+
+note the quotes in the commands that encapsulated the json data
 
 then 
 `{`
@@ -156,7 +175,7 @@ ctrl-v tab, and complete as below. Notice the single quotes enclosing the text
   }
 }'
 ```
-ABOVE ISN'T WORKING
+ABOVE ISN'T WORKING,, need to be in the ~/bin dir and run ./curl
 
 curl -H "Content-Type: application/json" -XPUT localhost:9200/movies -d '
 > {
