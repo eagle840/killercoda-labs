@@ -1,6 +1,6 @@
 {
   "title": "Tensorflow on Docker",
-  "description": "Rapidly start up tensorflow/juypter with docker (v1)",
+  "description": "Rapidly start up tensorflow/juypter with docker (v1.1)",
   "difficulty": "Beginner",
   "time": "15",
   "details": {

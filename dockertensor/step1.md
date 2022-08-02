@@ -21,7 +21,9 @@ And statup the container:
 
  and you're ready to go
 
- If you need some more tensor examples try
+ Just follow the instructions in the 'tensorflow-tutorials' folder
+
+ If you need some more tensor examples, run and they will showup in the root folder in the jupyter webpage.
 
 `git clone https://github.com/GoogleCloudPlatform/training-data-analyst`{{execute T2}}
 
