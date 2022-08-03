@@ -1,6 +1,6 @@
 {
   "title": "Single kafka install",
-  "description": "(0.7) Setup kafka on a single ubuntu machine (in progress)",
+  "description": "Setup kafka on a single ubuntu machine (in progress: v0.9)",
   "difficulty": "Intermediate",
   "time": "1",
   "details": {

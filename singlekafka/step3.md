@@ -1,6 +1,10 @@
 # Docker-compose
 
-Lets setup Kafka on docker compose
+Lets setup Kafka on docker compose, open a new window
+
+`mkdir kdc`{{exec}}
+`cd kdc`{{exec}}
+`nano docker-compose.yml`{{exec}}
 
 ```
 ---
@@ -33,8 +37,14 @@ services:
 
 
 
-```
+```{{copy}}
 taken from: https://developer.confluent.io/quickstart/kafka-docker/
+
+lets check the yaml for errors:
+
+`docker-compose config`{{exec}}
+
+Shutdown the zookeeper and kafka-server
 
 # Monitoring
 

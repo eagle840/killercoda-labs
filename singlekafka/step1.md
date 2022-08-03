@@ -34,11 +34,15 @@ start zookeeper, then kafka
 
 `bin/zookeeper-server-start.sh config/zookeeper.properties &`{{execute}}
 
-Now open a new terminal window
+Now open a new terminal window and start the kafka-server
+
+`cd ~/kafka_2.11-2.4.0/`{{execute}}
 
 `bin/kafka-server-start.sh config/server.properties &`{{execute}}
 
 Add another terminal window
+
+`cd ~/kafka_2.11-2.4.0/`{{execute}}
 
 Create a topic
 
