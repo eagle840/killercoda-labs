@@ -64,15 +64,21 @@ And you can see it's added to the file:
     ==================================
 ## Another Example:
 
+# WIP  - running out of drive space after caonda install, df -h
+
 For this example, we'll need conda installed (http link)
 
 `wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh`{{exec}}
+
+`wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh`{{copy}}
 
 `chmod +x Anaconda3-2021.05-Linux-x86_64.sh`{{exec}}
 
 run, accept the license, and init when prompted:
 
 `./Anaconda3-2021.05-Linux-x86_64.sh`{{exec}}
+
+`rm Anaconda3-2021.05-Linux-x86_64.sh `{{exec}}
 
 restart the shell: `exec bash`{{exec}}
 
