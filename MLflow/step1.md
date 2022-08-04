@@ -12,9 +12,11 @@ First we'll setup the environment
 
 
 
-### fix a dependance issue
+##### fix a dependance issue
 
 `pip install -U click`{{exec}} <=WIP
+
+##### install mlflow
 
 `pip install mlflow`{{exec}}
 
@@ -53,31 +55,27 @@ And you can see it's added to the file:
 
 
 
-##################  scrap
 
-might be better of using https://mlflow.org/docs/latest/tutorials-and-examples/index.html
-
-some of the mlprojects appear to need conda, so use a docker image?
-
-docker run -i -t continuumio/anaconda3 /bin/bash
-
-
-`docker run -it -p 5000:5000 continuumio/anaconda3 /bin/bash`
-
-from: https://hub.docker.com/r/continuumio/anaconda3  (with instructions)
-
-    1  pip install mlflow
-    2  git clone https://github.com/mlflow/mlflow
-    3   # cd mlflow/examples/quickstart/
-    4  mlflow run sklearn_elasticnet_wine -P alpha=0.5  # <= appears to need to be in ~ dir
 
 
     ==================================
 ## Another Example:
 
-YOU NEED CONDA INSTALLED
+For this example, we'll need conda installed (http link)
 
-This example will use a mlProject file to run the code
+`wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh`{{exec}}
+
+`chmod +x Anaconda3-2021.05-Linux-x86_64.sh`{{exec}}
+
+run, accept the license, and init we prompted:
+
+`./Anaconda3-2021.05-Linux-x86_64.sh`{{exec}}
+
+restart the shell: `exec bash`{{exec}}
+
+check the version: `conda -V`{{exec}}
+
+In this example will use a mlProject file to run the code
 
 `cat MLproject`{{exec}}
 
@@ -94,7 +92,9 @@ This example will use a mlProject file to run the code
 
 `cat MLproject`{{exec}}
 
-`mlflow run sklearn_elasticnet_wine -P alpha=0.5 `{{exec}}
+`mlflow run . -P alpha=0.5 `{{exec}}
+
+(the '.' is the present directry, but can be replaced with a folder name)
 
  \/ what happens when we run this? with out mlflow 
 
