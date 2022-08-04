@@ -14,17 +14,20 @@ First we'll setup the environment
 
 ##### fix a dependance issue
 
-`pip install -U click`{{exec}} <=WIP
+`pip install -U click jinja2`{{exec}} 
 
 ##### install mlflow
 
 `pip install mlflow`{{exec}}
 
+##### Install MLflow with extra ML libraries and 3rd-party tools
+`pip install mlflow[extras]`{{copy}}
+
 ## Run our 1st mlflow
 
 `cd mlflow/examples/quickstart/`{{exec}}
 
-Take  a look at the mlflow_tracking.py in the editor, and notice that it's using the mlflow modules to run some logs. Lets run it.
+Take  a look at the mlflow_tracking.py in the editor, and notice that it's using the mlflow modules to run some logs. Lets run it (return to tab1).
 
 `python mlflow_tracking.py`{{exec}}
 
@@ -32,10 +35,10 @@ and note that some new folders have been created for mlflow.
 
 `tree`{{exec}}
 
-each <number> folder is an 'experiment' as shown in the UI.
-     - meta data file: basic info about the experiment, inc 'name'
-     - tags folder - more info about the 'experiment'
-     - numbered folders for each run of the ml program
+each numbered folder is an 'experiment' (as shown in the UI later).   
+     - meta data file: basic info about the experiment, inc 'name'   
+     - tags folder - more info about the 'experiment'   
+     - numbered folders for each run of the ml program   
 
 This working in conjunction with the mlflow ui tool.
 
@@ -51,7 +54,7 @@ Add some info into the description in the ui for this project.
 
 And you can see it's added to the file:
 
-`cat`  <=>
+`cat mlruns/0/tags/mlflow.note.content`{{exec}}
 
 
 
@@ -67,20 +70,13 @@ For this example, we'll need conda installed (http link)
 
 `chmod +x Anaconda3-2021.05-Linux-x86_64.sh`{{exec}}
 
-run, accept the license, and init we prompted:
+run, accept the license, and init when prompted:
 
 `./Anaconda3-2021.05-Linux-x86_64.sh`{{exec}}
 
 restart the shell: `exec bash`{{exec}}
 
 check the version: `conda -V`{{exec}}
-
-In this example will use a mlProject file to run the code
-
-`cat MLproject`{{exec}}
-
-    1  pip install mlflow[extras]  <= Whats the diff vs reg?
-
 
 `cd ~/mlflow/examples/sklearn_elasticnet_wine/`{{exec}}
 
@@ -91,6 +87,8 @@ Note the directory/file structure:
 This example will use a mlProject file to run the code
 
 `cat MLproject`{{exec}}
+
+run the project:
 
 `mlflow run . -P alpha=0.5 `{{exec}}
 
