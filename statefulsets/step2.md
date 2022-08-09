@@ -27,7 +27,7 @@ spec:
    nfs:
       server: serverIP   # nfs server address
       path: "/srv/nfs/kubedata/pvX"
-```
+```{{copy}}
 
 
 Lets replace serverIP with the real NFS server address:
@@ -52,7 +52,7 @@ and create them:
 
 # Setup the Headless service
 
-note that clusterIp is None, and that you''l have to create a seperate service for access.
+note in the following yaml, that clusterIp is 'None', and that you''l have to create a seperate service for access.
 
 `nano headless.yaml`{{execute}}
 
@@ -70,7 +70,7 @@ spec:
    clusterIP:  None
    selector:
      run:  nginx-sts-demo
-```
+```{{copy}}
 
 `k create -f headless.yaml`{{execute}}
 
@@ -115,7 +115,7 @@ spec:
       resources:
         requests:
           storage: 100Mi
-```
+```{{copy}}
 
 
 `k create -f sts.yaml`{{execute}}

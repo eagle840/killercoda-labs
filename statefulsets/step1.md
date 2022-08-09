@@ -39,16 +39,18 @@ Update the nfs share configuration:
 And let's set an env for the nfs server which we'll use in the next steps.
 `ip addr | grep ens3`{{execute}}
 
-`NFSIP=$(ip addr show ens3  | awk '$1 == "inet" { print $2 }' | cut -d/ -f1)`{{execute}}
+`NFSIP=$(ip addr show enp1s0  | awk '$1 == "inet" { print $2 }' | cut -d/ -f1)`{{execute}}
 
 `echo $NFSIP`{{execute}}
 
 ## TEST NFS 
 Connect to node01 and test the mount for nfs share (type yes when prompted)
 
+`ssh root@node01 apt install nfs-common -y`{{exec}}
+
 `ssh root@node01 mount -t nfs $NFSIP:/srv/nfs/kubedata  /mnt`{{execute}}
 
 `ssh root@node01 ls /mnt  # show see pv0->4`{{execute}}
 
-An ummount the share
+And ummount the share
 `ssh root@node01 umount /mnt`{{execute}}
