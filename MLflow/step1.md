@@ -68,6 +68,10 @@ And you can see it's added to the file:
 
 For this example, we'll need conda installed (http link)
 
+`cd ~`{{exec}}
+
+WIP `df -h /dev/vda1`{{exec}}
+
 `wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh`{{exec}}
 
 `wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh`{{copy}}
@@ -79,6 +83,8 @@ run, accept the license, and init when prompted:
 `./Anaconda3-2021.05-Linux-x86_64.sh`{{exec}}
 
 `rm Anaconda3-2021.05-Linux-x86_64.sh `{{exec}}
+
+WIP `df -h /dev/vda1`{{exec}}
 
 restart the shell: `exec bash`{{exec}}
 
@@ -100,17 +106,11 @@ run the project:
 
 (the '.' is the present directry, but can be replaced with a folder name)
 
- \/ what happens when we run this? with out mlflow 
-
-`python sklearn_elasticnet_wine/train.py`{{exec}}
-
-Check the directory structure again:
-
 `tree`{{exec}}
 
 and lets run it again with different parameters
 
-`python sklearn_elasticnet_wine/train.py 0.3 0.6`{{exec}}
+`python train.py 0.3 0.6`{{exec}}
 
 `tree`{{exec}}
 
