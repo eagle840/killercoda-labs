@@ -72,17 +72,17 @@ For this example, we'll need conda installed (http link)
 
 WIP `df -h /dev/vda1`{{exec}}
 
-`wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh`{{exec}}
+`wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh`{{copy}}
 
-`wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh`{{copy}}
+`wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh`{{exec}}
 
-`chmod +x Anaconda3-2021.05-Linux-x86_64.sh`{{exec}}
+`chmod +x Miniconda3-latest-Linux-x86_64.sh`{{exec}}
 
 run, accept the license, and init when prompted:
 
-`./Anaconda3-2021.05-Linux-x86_64.sh`{{exec}}
+`./Miniconda3-latest-Linux-x86_64.sh`{{exec}}
 
-`rm Anaconda3-2021.05-Linux-x86_64.sh `{{exec}}
+`rm Miniconda3-latest-Linux-x86_64.sh `{{exec}}
 
 WIP `df -h /dev/vda1`{{exec}}
 
@@ -101,6 +101,10 @@ Note the directory/file structure:
 This example will use a mlProject file to run the code
 
 `cat MLproject`{{exec}}
+
+WIP `conda env create -f conda.yaml`{{exec}}
+
+WIP `conda activate tutorial`{{exec}}
 
 run the project:
 
