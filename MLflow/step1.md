@@ -88,6 +88,8 @@ WIP `df -h /dev/vda1`{{exec}}
 
 restart the shell: `exec bash`{{exec}}
 
+WIP `conda deactivate`{{exec}}
+
 check the version: `conda -V`{{exec}}
 
 `cd ~/mlflow/examples/sklearn_elasticnet_wine/`{{exec}}
