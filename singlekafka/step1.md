@@ -6,9 +6,15 @@
 
 Since Kafka uses Java:
 
-`apt install default-jre`{{exec}}
+`apt install -y default-jre`{{exec}}
+
+install java tools
+
+`apt install openjdk-11-jdk-headless`{{exec}}
 
 `java -version`{{exec}}
+
+`jps -v`{{exec}}
 
 
 # Install kafka

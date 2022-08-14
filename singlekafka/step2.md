@@ -19,3 +19,9 @@ Kafka also has a command line consumer that will dump out messages to standard o
 
 
 `bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning`{{execute}}
+
+#### Shutdown java
+
+ps -aux | grep java
+
+kill -9 <pid>

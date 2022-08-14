@@ -1,18 +1,4 @@
-# Docker-compose
-
-Lets setup Kafka on docker compose, open a new window
-
-`mkdir kdc`{{exec}}
-`cd kdc`{{exec}}
-`nano docker-compose.yml`{{exec}}#
-
-THIS: https://github.com/provectus/kafka-ui
-
-appears to have method for sends msgs
-
-```
----
-version: "2"
+version: "3.6"
 services:
   kafdrop:
     image: obsidiandynamics/kafdrop
@@ -40,25 +26,13 @@ services:
       KAFKA_RESTART_DELAY: "5"
       ZOOKEEPER_AUTOPURGE_PURGE_INTERVAL: "0"
 
-
-
-```{{copy}}
-taken from: https://github.com/obsidiandynamics/kafdrop/tree/master/docker-compose/kafka-kafdrop
-
-
-lets check the yaml for errors:
-
-`docker-compose config`{{exec}}
-
-Shutdown the zookeeper and kafka-server
-
-`docker-compose up`{{exec}}
-
-{{TRAFFIC_HOST1_9000}}
-
-# Monitoring
-
-An excellent blog article on monitoring Kafka:
-https://towardsdatascience.com/overview-of-ui-tools-for-monitoring-and-management-of-apache-kafka-clusters-8c383f897e80
-
-https://github.com/obsidiandynamics/kafdrop
+  kafka-ui:
+     image: provectuslabs/kafka-ui
+     container_name: kafka-ui
+     ports:
+       - "8080:8080"
+     restart: always
+     environment:
+       - KAFKA_CLUSTERS_0_NAME=local
+       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+       - KAFKA_CLUSTERS_0_ZOOKEEPER=kafka:2181
