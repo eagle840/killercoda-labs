@@ -42,13 +42,8 @@ A typical module will contain:
 
 # create module   -- JUST KEEP TE nginx container in the main for now
 
-WIP `nano httpdsite.tf`
 
-```
-code
-```
-
-# specify providers used
+### specify providers used
 
 even though the provider is supplied in the root folder, we need to specify the providers needed:
 
@@ -63,9 +58,9 @@ terraform {
     }
   }
 }
-```
+```{{copy}}
 
-# create a file for the website
+### create a file for the website
 
 `nano index.html`{{execute}}   
 
@@ -80,7 +75,7 @@ add the code:
         <p>Hello world!</p>
     </body>
 </html>
-```
+```{{copy}}
 
 `nano pagesource.tf`{{execute}}   
 ```
@@ -88,7 +83,7 @@ resource "local_file" "index" {
     content     = "Index"
     filename = "${path.module}/index.html"
 }
-```
+```{{copy}}
 
 `nano httpcontainer.tf`{{execute}}
 
@@ -106,7 +101,7 @@ resource "docker_container" "httpd" {
     external = 80
   }
 }
-```
+```{{copy}}
 
 ???? is the provider needed in the module -- I think it is - test it
 
@@ -114,6 +109,7 @@ resource "docker_container" "httpd" {
 
 in the main root tf file, you'll call a module, using the `module` keyword
 
+A typical module takes the form:
 
 ```
 `module "anyName" {
@@ -123,6 +119,8 @@ in the main root tf file, you'll call a module, using the `module` keyword
 }
 
 ```
+
+
 `cd ~/mytf`{{execute}}
 
 change the main.tf file to include the module:

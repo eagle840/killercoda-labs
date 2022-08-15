@@ -58,30 +58,6 @@ and check the container 'tutorial' is running:
 
 `docker ps`{{execute}}
 
-## Terraform State Backup
-
-add to provides.tf  in the terraform block
-
-```
-  backend "pg" {
-    conn_str = "postgres://root:1234@localhost/tfstate?sslmode=disable"
-  }
-```{{copy}}
-
-`terraform init`{{exec}}
-
-for those that are interested, you can connect to adminer on port 8088 {{TRAFFIC_HOST1_8088}} and view the sql db with the terraform data:
-
-login details:
-
-- System	:PostgreSQL
-- Server	:postgres1
-- Username	:root
-- Password	:1234
-- Database	:tfstate
-
-
-
 
 # Terraform Output
 
