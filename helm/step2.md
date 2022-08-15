@@ -55,7 +55,7 @@ Also note that information is stored in ~/.cache/helm/:
 ***App version:*** this is the version of the actual app
 ***Chart Version:*** this is the version of the chart, every time there is a change to the chart, the chart version is incremented, and you'll see it in the end of the chart name
 
-`helm status my-metrics-server`{{execute}}
+`helm status my-metrics-server -n kube-system`{{execute}}
 
 Lets check the endpoint is up (it will take a few minutes)
 
