@@ -21,8 +21,10 @@ If you ever need to update: `helm repo update`
 
 Here's an example of a chart install, which we've called my-metrics-server
 
+WIP: use this helm chart
+
 `helm install my-metrics-server bitnami/metrics-server \
-  --version=4.2.2 \
+  --version=5.11.9 \
   --namespace kube-system \
   --set apiService.create=true \
   --set extraArgs.kubelet-insecure-tls=true \
@@ -31,7 +33,7 @@ Here's an example of a chart install, which we've called my-metrics-server
 
 You can view the charts for bitnami at: https://bitnami.com/stacks/helm
 
-###  using the hub
+###  using the hub to install metrics-server
 
 `helm search hub metrics-server`{{execute}}
 
@@ -70,6 +72,23 @@ Lets check the endpoint is up (it will take a few minutes)
 
 tip: you can add the --debug  argument to troubleshoot
 
+connect to the uri
+
+`k get svc -A`{{exec}}
+
+We'll port forward to this machine:
+
+WIP: update with the correct values:
+
+`export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=examplechart,app.kubernetes.io/instance=new-chart" -o jsonpath="{.items[0].metadata.name}")`{{execute}}     
+
+
+`export CONTAINER_PORT=$(kubectl get pod --namespace default $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")`{{exec}} 
+
+`kubectl --namespace default port-forward $POD_NAME 8080:$CONTAINER_PORT`{{execute}}   
+
+and connect {{TRAFFIC_HOST1_80}}
+
 
 
 ## Check metrics-server
@@ -86,7 +105,7 @@ and lets check what values have been used:
 
 To get a pervious release, you can use `--revision <release number>`
 
-## Pull down and exmine the chart
+## Pull down and examine the chart
 
 lets pull down and look at the metric server on the bitnami repo
 
