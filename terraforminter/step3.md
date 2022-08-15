@@ -13,7 +13,7 @@ variable "container_name" {
 }
 ```{{copy}}
 
-add update ***var.container_name*** in 
+add update ***var.container_name*** in the name key=value
 
 `nano main.tf`{{execute}}
 
@@ -55,6 +55,8 @@ since we didn't provide a name in the var file, it will prompt us for one, use `
 
 Lets take a look at the tree structure, and you'll see an added folder for the workspace: `./terraform.tfstate.d/ws2`  
 
+WIP: The state is stored in the database
+
 `tree -a`{{execute}}
 
 take note where the orginal (default) tf state was stored, and where the new ws2 state is stored
@@ -64,6 +66,8 @@ take note where the orginal (default) tf state was stored, and where the new ws2
 
 and finally lets kill  the running containers
 
+
+WIP: this will destory the database!!!
 `docker kill $(docker ps -q)`{{execute}}
 
 WIP:

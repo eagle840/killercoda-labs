@@ -6,9 +6,9 @@ In this lab we'll be working with Terraform and Docker to deploy a container on 
 ## install terraform
 `sudo apt update`{{execute}}   
 
-`apt install tree jq`{{exec}}
+`apt install -y tree jq`{{exec}}
 
-Start a databased for later use.
+Start a postgress database for later use.
 `docker-compose up -d`{{exec}}
 
 `curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -`{{execute}}    
@@ -38,7 +38,7 @@ a main file, containing the provisoners and a providers file have been provided,
 
 `terraform init`{{execute}} 
 
-now look at the 
+now look at the folder structure:
 
 `tree -a`{{execute}}
 
@@ -54,7 +54,7 @@ When we run 'plan' & 'apply':
 
 `terraform apply`{{execute}} 
 
-and check the container is running:
+and check the container 'tutorial' is running:
 
 `docker ps`{{execute}}
 
@@ -69,6 +69,17 @@ add to provides.tf  in the terraform block
 ```{{copy}}
 
 `terraform init`{{exec}}
+
+for those that are interested, you can connect to adminer on port 8088 {{TRAFFIC_HOST1_8088}} and view the sql db with the terraform data:
+
+login details:
+
+- System	:PostgreSQL
+- Server	:postgres1
+- Username	:root
+- Password	:1234
+- Database	:tfstate
+
 
 
 
@@ -138,7 +149,7 @@ Lets creat a terraform.tfvars file
 
 ```
 port = 8070
-```
+```{{copy}}
 
 `terraform validate`{{execute}}
 

@@ -25,6 +25,8 @@ Lets put the state back to what it should me:
 
 `terraform apply`{{execute}}
 
+WARNING: terraform refresh is being depriated, since it removes state without warning. *from now on you should use the -refresh flag with terraform plan and apply*
+
 note that the command is requesting a port - we should have outputed a plan
 
 `terraform state list`{{execute}}
@@ -55,6 +57,10 @@ Lets review the changes that will be applied:
 when you run 'terraform plan' you can see in the output that the container will be replaced.
 
 `terraform apply`{{execute}}
+
+lets confirm that the tutorial container has restarted under the status column:
+
+`docker ps`{{exec}}
 
 
 
