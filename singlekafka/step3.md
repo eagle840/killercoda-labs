@@ -10,7 +10,7 @@ THIS: https://github.com/provectus/kafka-ui
 
 appears to have method for sends msgs
 
-```
+```sh
 ---
 version: "2"
 services:
@@ -50,9 +50,11 @@ lets check the yaml for errors:
 
 `docker-compose config`{{exec}}
 
-Shutdown the zookeeper and kafka-server
+Startup the kafka-server
 
 `docker-compose up`{{exec}}
+
+To monitor the kafka server with Kafdrop:
 
 {{TRAFFIC_HOST1_9000}}
 

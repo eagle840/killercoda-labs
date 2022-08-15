@@ -22,6 +22,8 @@ Kafka also has a command line consumer that will dump out messages to standard o
 
 #### Shutdown java
 
-ps -aux | grep java
+`ps -aux | grep java`{{exec}}
+
+and kill each service (we'll be using the ports with docker-compose in the next step)
 
 kill -9 <pid>

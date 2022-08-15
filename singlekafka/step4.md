@@ -1,26 +1,36 @@
-# python
+# Using python with Kafka
+
+Code orginally taken from:
 
 https://developer.confluent.io/get-started/python/
 
+#### Setup python environment
 
+`cd ~`{{exec}}   
 
-cd ~
-   18  mkdir kafka-python-getting-started && cd kafka-python-getting-started
-   19  virtualenv env
-   20  apt install python3-virtualenv
-   21  virtualenv env
-   22  source env/bin/activate
-   23  pip install confluent-kafka
+`mkdir kafka-python-getting-started && cd kafka-python-getting-started`{{exec}}   
+
+`apt install python3-virtualenv`{{exec}}   
+
+`virtualenv env`{{exec}}   
+
+`source env/bin/activate`{{exec}}   
+
+`pip install confluent-kafka`{{exec}}   
+
+#### Program python
+
+Setup an ini settings file
 
 `nano getting_started.ini`{{exec}}
 
 ```sh
 [default]
-bootstrap.servers=
-security.protocol=SASL_SSL
-sasl.mechanisms=PLAIN
-sasl.username=< CLUSTER API KEY >
-sasl.password=< CLUSTER API SECRET >
+bootstrap.servers=locahost
+#security.protocol=SASL_SSL
+#sasl.mechanisms=PLAIN
+#sasl.username=< CLUSTER API KEY >
+#sasl.password=< CLUSTER API SECRET >
 
 [consumer]
 group.id=python_example_group_1
@@ -31,7 +41,7 @@ auto.offset.reset=earliest
 ```{{copy}}
 
 
-create topic 'purchases'
+#### create topic 'purchase', purducer and consumer
 
 `nano producer.py`{{exec}}
 
@@ -91,7 +101,7 @@ if __name__ == '__main__':
 `nano consumer.py`{{exec}}
 
  ```sh
-    #!/usr/bin/env python
+#!/usr/bin/env python
 
 import sys
 from argparse import ArgumentParser, FileType
@@ -152,12 +162,15 @@ if __name__ == '__main__':
 
 #### start producer
 
-    chmod u+x producer.py
+`chmod u+x producer.py`{{exec}}   
 
-./producer.py getting_started.ini
+
+`./producer.py getting_started.ini`{{exec}}   
+
 
 #### start consomer
 
-chmod u+x consumer.py
+`chmod u+x consumer.py`{{exec}}   
 
-./consumer.py getting_started.ini
+
+`./consumer.py getting_started.ini`{{exec}}
