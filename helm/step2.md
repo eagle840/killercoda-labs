@@ -23,13 +23,14 @@ Here's an example of a chart install, which we've called my-metrics-server
 
 WIP: use this helm chart
 
-`helm install my-metrics-server bitnami/metrics-server \
+```sh
+helm install my-metrics-server bitnami/metrics-server \
   --version=5.11.9 \
   --namespace kube-system \
   --set apiService.create=true \
   --set extraArgs.kubelet-insecure-tls=true \
   --set extraArgs.kubelet-preferred-address-types=InternalIP
-`
+```{{copy}}
 
 You can view the charts for bitnami at: https://bitnami.com/stacks/helm
 
