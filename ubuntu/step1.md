@@ -1,6 +1,35 @@
 
 # Initial Setup
 
+Doc: https://killercoda.com/creators
+
+github: https://github.com/killercoda
+
+# docker update
+
+`apt-get remove docker  docker.io containerd runc -y`{{exec}}   
+
+`apt-get update`{{exec}}   
+
+`apt-get install ca-certificates curl gnupg  lsb-release -y`{{exec}}   
+
+`mkdir -p /etc/apt/keyrings`{{exec}}   
+
+`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}   
+
+```
+echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```{{exec}}   
+
+`apt-get update`{{exec}}   
+
+`apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y `{{exec}}   
+
+`docker version`{{exec}}   
+
+`docker-compose version`{{exec}}   
+
 # Set imageid in index.json
 
 - ubuntu: Ubuntu 20.04 with Docker and Podman
@@ -65,4 +94,10 @@ Next we'll update the python files with the new IP address of the docker contain
 `echo $RabbitIP`{{execute}}
 
 `sed -i "s/localhost/$RabbitIP/g" send.py receive.py worker.py new_task.py`{{execute}}
+
+## k8s port-forward
+
+`k -n <ns> port-forward service/<svc-name> 9090:9090 --address 0.0.0.0`
+
+- this is to forword a CLusterIP so that killacoda can access
 

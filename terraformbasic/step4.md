@@ -10,7 +10,7 @@ in this first file, it will ask for the port number when tf plan/apply is run
 
 
 
-```
+```sh
 variable "port" {
   type = number
 }
@@ -18,7 +18,7 @@ variable "port" {
 
 and change the main.tf to include the variable in the external port number
 
-```
+```sh
   ports {
     internal = 80
     external = var.port
@@ -66,6 +66,10 @@ You'll notice that terraform requested and out put file
 we can now use that file, with the varaibles includes to execute an 'apply' without having to require varaiables again
 
 `terraform apply plan.tfplan`{{execute}}
+
+You can always review a plan file with 'terraform show <plan file>'
+
+`terraform show myplan`{{exe}}
 
 ## Documentation on variables
 

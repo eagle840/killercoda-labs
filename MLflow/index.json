@@ -1,25 +1,25 @@
 {
-  "title": "ELK",
-  "description": "Boot up an ELK stack with Docker Compose (v.0.51) ",
+  "title": "MLflow",
+  "description": "Using MLFLow for your machine learning projects(v0.51)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
     "assets":{
       "host01": [
         {
-          "file": "docker-compose.yaml",
+          "file": "send.py",
           "target": "~/"
         },
         {
-          "file": "inlog.log",
-          "target": "~/temp/"
+          "file": "new_task.py",
+          "target": "~/"
         },
         {
-          "file": "logstash.conf",
-          "target": "~/logstash/"
+          "file": "worker.py",
+          "target": "~/"
         },
         {
-          "file": "sysloggen.sh",
+          "file": "receive.py",
           "target": "~/"
         }
       ]
@@ -36,14 +36,6 @@
       {
         "title": "Step 3",
         "text": "step3.md"
-      },
-      {
-        "title": "Step 4",
-        "text": "step4.md"
-      },
-      {
-        "title": "Step 5",
-        "text": "step5.md"
       }
     ],
     "intro": {

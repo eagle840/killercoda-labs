@@ -1,6 +1,6 @@
 {
   "title": "terraform intermediate",
-  "description": "terraform intermediate (v0.6.4)",
+  "description": "terraform intermediate (v0.6.6)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -17,6 +17,10 @@
         {
           "file": "providers.tf",
           "target": "~/mytf/"
+        },
+        {
+          "file": "docker-compose.yml",
+          "target": "~/"
         }
       ]
     },

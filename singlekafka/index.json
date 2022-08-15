@@ -1,8 +1,8 @@
 {
-  "title": "terraform basic",
-  "description": "terraform basic (v1.4)",
+  "title": "Single kafka install",
+  "description": "Setup kafka on a single ubuntu machine (in progress: v0.2)",
   "difficulty": "Intermediate",
-  "time": "60 minutes",
+  "time": "1",
   "details": {
     "steps": [
       {
@@ -33,6 +33,6 @@
     "uilayout": "terminal"
   },
   "backend": {
-    "imageid": "ubuntu:2004"
+    "imageid": "ubuntu1804"
   }
 }

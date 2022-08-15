@@ -2,6 +2,14 @@
 
 https://prefetch.net/blog/2020/04/27/using-the-terraform-console-to-debug-interpolation-syntax/
 
+# locals
+
+where var's can't be changed with tf is running, locals can be
+
+# conditionls
+
+# functions#
+
 
 # helm deploy
 

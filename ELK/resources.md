@@ -8,3 +8,14 @@ https://www.youtube.com/watch?v=Mma7HKt-mk8&list=PLECxNUHStsl9pWSPKMATMx9lbbHbTY
 ^ grok pattern
 
 https://raw.githubusercontent.com/edgoad/syslog-generator/master/syslogGen1.sh
+
+ES8 on docker:
+
+https://github.com/deviantony/docker-elk
+clone and bring it up
+user: elastic
+password: changeme
+
+
+
+https://github.com/thombashi/elasticsearch-faker

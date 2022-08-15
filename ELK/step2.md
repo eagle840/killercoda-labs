@@ -2,20 +2,36 @@
 
 ## General
 
-docker logs <container>  -f
+Show the logs of the logstash container
 
-in another terminal window:
+`docker-compose logs -f Logstash`{{exec}}
+
+(note that the service starts with a capital letter: Logstash)
+
+`docker logs <container>  -f`
+
+in another tab (terminal window):
+
+`chmod +x sysloggen.sh`{{exec}}
 
 `./sysloggen.sh`{{exec}}
 
-This will start sending logs to Logstash.
+This will start sending logs to Logstash, which you'll see in both windows.
+
+
+
+### OR TRY
+
+- https://github.com/thombashi/elasticsearch-faker
 
 
 ## ES
 
-`docker exec -it ##### bash`
+`docker-compose exec  Elasticsearch bash`{{exec}}
 
-`cat /etc/elasticsearch/elasticsearch.yaml`
+`pwd`{{exec}}
+
+`cat config/elasticsearch.yml`{{exec}}
 
 rename cluster.name  ELK
 
@@ -25,7 +41,7 @@ rename node.name: node-1
 
 restart sevice / container
 
-curl http://localhost:9200/_cluster/health?pretty
+`curl http://localhost:9200/_cluster/health?pretty`{{exec}}
 
 
 
@@ -35,7 +51,11 @@ look at the log stash examples on line
 
 - TODO add date field to index name
 
-`cat /logstash/logstash/conf`
+`docker-compose exec Logstash bash`{{exec}}
+
+`pwd`{{exec}}
+
+`cat config/logstash.yml`{{exec}}
 
 - note input, with 'type'
 - note use if statements
@@ -49,9 +69,7 @@ look at the log stash examples on line
 
 Checking Logstash with it'a API (https://www.elastic.co/guide/en/logstash/current/monitoring-logstash.html)
 
-`curl -XGET 'localhost:9600/?pretty'`{{exec}}
 
-`docker run -it logstash:7.16.2 bash`
 
  - run `logstash -e 'input { stdin { } } output { stdout {} }'`{{exec}}
  - wait until you see "Pipeline main started" 
@@ -100,10 +118,90 @@ port 1514
 
 netstat -tlupn
 
-/etc/kibana/kibana.yaml
+`docker-compose exec Logstash bash`{{exec}}
+
+`pwd`{{exec}}
+
+`cat config/kibana.yml`
+
 
 note server.host
 
 to allow all, change to "0.0.0.0"
 
 note, but don't change elasticsearch setting
+
+
+
+## send data through http api
+
+
+`cd ~`
+
+`mkdir bin`
+
+`cd bin`
+
+`nano curl`
+
+```
+#!/bin/bash
+/usr/bin/curl -H "Content-Type: application/json" "$@"
+```
+
+`chmod a+x curl`
+
+`cd ~`
+
+`source .profile`
+
+
+```
+type 'curl -XPUT localhost:9200/movies/ -d'  
+```  
+
+note the quotes in the commands that encapsulated the json data
+
+then 
+`{`
+ctrl-v tab, and complete as below. Notice the single quotes enclosing the text
+
+```
+{
+  "mappings": {
+    "properties": {
+      "year": { "type": "date" }
+    }
+  }
+}'
+```
+ABOVE ISN'T WORKING,, need to be in the ~/bin dir and run ./curl
+
+curl -H "Content-Type: application/json" -XPUT localhost:9200/movies -d '
+> {
+>   "mappings": {
+>     "properties": {
+>       "year": { "type": "date" }
+>     }
+>   }
+> }'
+
+
+
+`curl -XGET localhost:9200/movies/_mapping`
+
+
+
+`wget http://media.sundog-soft.com/es8/movies.json`
+
+
+
+`cat movies.json`
+
+note the json file already has the 'create', 'index' and 'id'
+and that a year field is present, and we have told ES to treat that as a date.
+
+curl -H "Content-Type: application/json" -XPUT localhost:9200/_bulk?pretty --data-binary @movies.json
+
+
+curl -XGET localhost:9200/movies/_search?pretty`
