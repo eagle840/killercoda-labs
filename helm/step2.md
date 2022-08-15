@@ -34,17 +34,7 @@ helm install my-metrics-server bitnami/metrics-server \
 
 You can view the charts for bitnami at: https://bitnami.com/stacks/helm
 
-###  using the hub to install metrics-server
 
-`helm search hub metrics-server`{{execute}}
-
-we'll be using the 'metrics-server' version, details (including install) can be found here: https://artifacthub.io/packages/helm/metrics-server/metrics-server
-
-`helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/`{{execute}}
-
-`helm install my-metrics-server metrics-server/metrics-server --version 3.8.2`{{execute}}
-
-* Helm requires a names-space parameter if you choose to install the chart into a name-space
 
 * to add addictional parameters: `helm install --set param=vale`, or supply a 'values' yaml file with the vales `--values file.yaml`
 
@@ -81,14 +71,14 @@ We'll port forward to this machine:
 
 WIP: update with the correct values:
 
-`export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=examplechart,app.kubernetes.io/instance=new-chart" -o jsonpath="{.items[0].metadata.name}")`{{execute}}     
+`export POD_NAME=$(kubectl get pods --namespace kube-system  -l "app.kubernetes.io/name=metrics-server,app.kubernetes.io/instance=my-metrics-server" -o jsonpath="{.items[0].metadata.name}")`{{execute}}     
 
 
-`export CONTAINER_PORT=$(kubectl get pod --namespace default $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")`{{exec}} 
+`export CONTAINER_PORT=$(kubectl get pod --namespace kube-system $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")`{{exec}} 
 
-`kubectl --namespace default port-forward $POD_NAME 8080:$CONTAINER_PORT`{{execute}}   
+`kubectl --namespace kube-system port-forward $POD_NAME 8080:$CONTAINER_PORT`{{execute}}   
 
-and connect {{TRAFFIC_HOST1_80}}
+and connect {{TRAFFIC_HOST1_8080}}
 
 
 
