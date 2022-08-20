@@ -1,6 +1,6 @@
 # check up and running
 
-## General
+## Logstash
 
 Show the logs of the logstash container
 
@@ -8,21 +8,11 @@ Show the logs of the logstash container
 
 (note that the service starts with a capital letter: Logstash)
 
-`docker logs <container>  -f`
-
-in another tab (terminal window):
-
-`chmod +x sysloggen.sh`{{exec}}
+in another tab (terminal window) start the log generator:
 
 `./sysloggen.sh`{{exec}}
 
 This will start sending logs to Logstash, which you'll see in both windows.
-
-
-
-### OR TRY
-
-- https://github.com/thombashi/elasticsearch-faker
 
 
 ## ES
@@ -32,6 +22,8 @@ This will start sending logs to Logstash, which you'll see in both windows.
 `pwd`{{exec}}
 
 `cat config/elasticsearch.yml`{{exec}}
+
+run `bin/elasticsearch` with docker exec
 
 rename cluster.name  ELK
 
@@ -123,6 +115,8 @@ netstat -tlupn
 `pwd`{{exec}}
 
 `cat config/kibana.yml`
+
+run `bin/kibana`
 
 
 note server.host

@@ -7,7 +7,7 @@
 
 `chmod +x sysloggen.sh`{{exec}}
 
-
+Boot up the ELK stack:
 
 `docker-compose up -d`{{exec}}
 
@@ -25,15 +25,6 @@ run `docker ps`{{exec}} to review the ports
  - note ES is on 9200
  - and Kibana is on 5601
 
-`curl http://localhost:9200`{{exec}}
-
-note the name, cluster name, and cluster id
-
-To access directly
-
-run `bin/elasticsearch` with docker exec
-
-run `bin/kibana`
 
 
 ====
