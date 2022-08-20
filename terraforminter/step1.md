@@ -82,8 +82,6 @@ Format the tf files:
 Validate the tf files:   
 `terraform validate`{{execute}}
 
-`terraform init`{{execute}}
-
 Lets change the port used, using an argument override
 
 `terraform plan -var="port=8090"`{{execute}}
@@ -92,7 +90,7 @@ Lets change the port used, using an argument override
 This time we run the apply, you'll see the added 'output'   
 `terraform apply -var="port=8090"`{{execute}}
 
-check docker:
+check docker for the 'tutorial' container using port 8090:
 
 `docker ps`{{execute}}
 
