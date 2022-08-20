@@ -21,7 +21,12 @@ First we'll setup the environment
 `pip install mlflow`{{exec}}
 
 ##### Install MLflow with extra ML libraries and 3rd-party tools
+
 `pip install mlflow[extras]`{{copy}}
+
+There are 4 major components to MLFlow: Tracking, Projects, Models, and Registry
+
+# MLFlow Tracking Tool
 
 ## Run our 1st mlflow
 
@@ -35,10 +40,10 @@ and note that some new folders have been created for mlflow.
 
 `tree`{{exec}}
 
-each numbered folder is an 'experiment' (as shown in the UI later).   
+each numbered folder is an 'experiment', and each experiment has 'runs' with alphanumberic numbers. (as shown in the UI later).      
      - meta data file: basic info about the experiment, inc 'name'   
-     - tags folder - more info about the 'experiment'   
-     - numbered folders for each run of the ml program   
+     - tags folder - more info about the 'experiment/run'   
+      
 
 This working in conjunction with the mlflow ui tool.
 
@@ -52,7 +57,7 @@ Note how the UI corresponds with the folder directory.
 
 Add some info into the description in the ui for this project.
 
-And you can see it's added to the file:
+Exit out of the ui server, and you can see it's added to the file:
 
 `cat mlruns/0/tags/mlflow.note.content`{{exec}}
 
@@ -64,15 +69,13 @@ And you can see it's added to the file:
     ==================================
 ## Another Example:
 
-# WIP  - running out of drive space after caonda install, df -h
+In this example, we'll be using the Python Conda environment, and running sklearn
 
 For this example, we'll need conda installed (http link)
 
 `cd ~`{{exec}}
 
 WIP `df -h /dev/vda1`{{exec}}
-
-`wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh`{{copy}}
 
 `wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh`{{exec}}
 
@@ -88,7 +91,9 @@ WIP `df -h /dev/vda1`{{exec}}
 
 restart the shell: `exec bash`{{exec}}
 
-WIP `conda deactivate`{{exec}}
+Conda will automatically enter into an environment, lets exit it:
+
+`conda deactivate`{{exec}}
 
 check the version: `conda -V`{{exec}}
 
@@ -123,5 +128,11 @@ and lets run it again with different parameters
 lets look at the ui now:
 
 `mlflow ui --host 0.0.0.0`{{exec}} 
+
+you can access the ui at port 5000 {{TRAFFIC_HOST1_5000}} 
+
+Now run the same mlflow run again, with different parameters (eg: .45 and .55)
+
+Go back into the UI, and select all three runs, and click on compare. This will give you an analyical comparison of the runs.
 
 
