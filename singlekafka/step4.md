@@ -6,11 +6,13 @@ https://developer.confluent.io/get-started/python/
 
 #### Setup python environment
 
+Open a new terminal tab
+
 `cd ~`{{exec}}   
 
 `mkdir kafka-python-getting-started && cd kafka-python-getting-started`{{exec}}   
 
-`apt install python3-virtualenv`{{exec}}   
+`apt install -y python3-virtualenv`{{exec}}   
 
 `virtualenv env`{{exec}}   
 
@@ -26,7 +28,7 @@ Setup an ini settings file
 
 ```sh
 [default]
-bootstrap.servers=locahost
+bootstrap.servers=localhost 
 #security.protocol=SASL_SSL
 #sasl.mechanisms=PLAIN
 #sasl.username=< CLUSTER API KEY >
@@ -41,7 +43,7 @@ auto.offset.reset=earliest
 ```{{copy}}
 
 
-#### create topic 'purchase', purducer and consumer
+#### create topic 'purchase', producer and consumer
 
 `nano producer.py`{{exec}}
 

@@ -54,7 +54,7 @@ Startup the kafka-server
 
 `docker-compose up`{{exec}}
 
-To monitor the kafka server with Kafdrop:
+To monitor the kafka server with Kafdrop UI, open:
 
 {{TRAFFIC_HOST1_9000}}
 

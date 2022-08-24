@@ -9,8 +9,10 @@ Run the producer and then type a few messages into the console to send to the se
 ctrl-c to exit   
 
 `bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test`{{execute}}   
-This is a message   
-This is another message   
+
+For example:   
+- `This is a message`{{copy}} 
+- `This is another message`{{copy}} 
 
 
 #### Step 5: Start a consumer
