@@ -66,7 +66,9 @@ and finally lets kill  the running containers
 
 
 WIP: this will destory the database!!!
-`docker kill $(docker ps -q)`{{execute}}
+`docker kill nginx1`{{exec}}
+
+`docker kill tutorial`{{exec}}
 
 WIP:
 - terraform destroy (you can't use a plan, so you have to remember varibles you entered)
@@ -74,36 +76,3 @@ WIP:
 - LINK TO the page running httpd
 - add the index.thml to the httpd container
 
-## move terraform state to a database
-
-edit the providers.tf to match:
-
-```sh
-terraform {
-  required_providers {
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "~> 2.13.0"
-    }
-  }
-  backend "pg" {
-    conn_str = "postgres://root:1234@localhost/tfstate?sslmode=disable"
-  }
-}
-```{{copy}}
-
-and run 
-
-`terraform init`{{exec}}
-
-for those that are interested, you can connect to 'adminer' docker container on port 8088 {{TRAFFIC_HOST1_8088}} and view the sql db with the terraform data:
-
-login details:
-
-- System	:PostgreSQL
-- Server	:postgres1
-- Username	:root
-- Password	:1234
-- Database	:tfstate
-
- 

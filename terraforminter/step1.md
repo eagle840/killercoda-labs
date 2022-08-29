@@ -38,6 +38,10 @@ a main file, containing the provisoners and a providers file have been provided,
 
 `terraform init`{{execute}} 
 
+Lets look at the providers we're using in this code
+
+`terraform providers`{{exec}}
+
 now look at the folder structure:
 
 `tree -a`{{execute}}
