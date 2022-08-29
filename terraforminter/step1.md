@@ -2,14 +2,15 @@
 
 In this lab we'll be working with Terraform and Docker to deploy a container on the localhost.
 
-
-## install terraform
 `sudo apt update`{{execute}}   
 
 `apt install -y tree jq`{{exec}}
 
-Start a postgress database for later use.
+Start a postgress database for later use.   
 `docker-compose up -d`{{exec}}
+
+
+## install terraform
 
 `curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -`{{execute}}    
 
@@ -38,7 +39,7 @@ a main file, containing the provisoners and a providers file have been provided,
 
 `terraform init`{{execute}} 
 
-Lets look at the providers we're using in this code
+Lets look at the providers we're using the terraform command:
 
 `terraform providers`{{exec}}
 
@@ -80,10 +81,10 @@ output "ext_port" {
 }
 ```{{copy}}
 
-Format the tf files:   
+Format the tf files, which 'cleans' up the formatting, the command will show which files it cleaned:   
 `terraform fmt`{{execute}}
 
-Validate the tf files:   
+Validate the tf files, which does need 'init' before using:   
 `terraform validate`{{execute}}
 
 Lets change the port used, using an argument override
@@ -102,7 +103,7 @@ We can now query the output held in the state file:
 
 `terraform output`{{execute}}
 
-Lets dump out a set of values in json (for format them with jq)
+Lets dump out a set of values in json (using jq)
 
 `terraform output -json ext_port | jq`{{execute}}
 

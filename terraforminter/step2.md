@@ -25,7 +25,7 @@ Lets put the state back to what it should me:
 
 `terraform apply`{{execute}}
 
-WARNING: terraform refresh is being depriated, since it removes state without warning. *from now on you should use the -refresh flag with terraform plan and apply*
+WARNING: terraform refresh is being depriated, since it removes state without warning. From now on you should use the *-refresh* flag with terraform plan and then apply
 
 note that the command is requesting a port - we should have outputed a plan
 
@@ -66,7 +66,7 @@ lets confirm that the tutorial container has restarted under the status column:
 
 ## using a terraform plan file
 
-We can also create a plan file, so it can be applied directly, without having to add parameters
+We can also create a plan file, so it can be applied directly, without having to add parameters when using 'apply'
 
 `terraform plan -var="port=8080" -out myplan.tfplan`{{execute}}
 

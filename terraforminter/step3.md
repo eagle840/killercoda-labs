@@ -29,9 +29,6 @@ resource "docker_container" "nginx" {
 ```{{copy}}
 
 
-
-you'll notice that the docker container will have running will be replaced.
-
 We'll create a new workspace
 
 
@@ -43,7 +40,11 @@ We'll create a new workspace
 
 Notice the workspace we're using is marked with a *
 
-`terraform apply "myplan.tfplan"`{{execute}}   # it won't work, so create a new plan
+If we try to run the already created terraform plan
+
+`terraform apply "myplan.tfplan"`{{execute}}   
+
+ it won't work in this work space, so create a new plan:
 
 `terraform plan -out=myplan.tfplan`{{execute}}
 
@@ -71,7 +72,7 @@ WIP: this will destory the database!!!
 `docker kill tutorial`{{exec}}
 
 WIP:
-- terraform destroy (you can't use a plan, so you have to remember varibles you entered)
+
 - delete ws2 workstate
 - LINK TO the page running httpd
 - add the index.thml to the httpd container
