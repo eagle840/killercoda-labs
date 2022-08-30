@@ -30,6 +30,8 @@ echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docke
 
 `docker-compose version`{{exec}}   
 
+`docker compose version`{{exec}}
+
 # Set imageid in index.json
 
 - ubuntu: Ubuntu 20.04 with Docker and Podman
@@ -65,6 +67,15 @@ Link for traffic into host 2 on port 4444
 Link for traffic into host X on port Y
 {{TRAFFIC_HOSTX_Y}}
 ```
+
+
+# Example setup for postgres with raw data
+
+git clone https://github.com/josephmachado/simple_dbt_project.git
+
+- raw folders
+- warehouse setup
+- docker postgres and -v to those folders
 
 
 We'll be using the rabbitmq container with the management feature installed.
