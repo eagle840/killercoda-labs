@@ -1,10 +1,8 @@
-# run vulnerabilities scans against images
+# Run vulnerabilities scans against images
 
-Lets take a look at the images we have stored on the system
 
-`docker images`{{execute}}
 
-And take a look at a base ubuntu image and some others.
+Lets take a look at a base ubuntu image and some others.
 
 
 `trivy image ubuntu:18.04`{{execute}}
@@ -23,5 +21,7 @@ We can take a look at a much small image and see the reduction is vulnerabilitie
 
 `trivy image alpine:3.11`{{execute}}
 
-`trivy image jfloff/alpine-python:3.8-slim`{{execute}}
+and lets check the latest:
+
+`trivy image alpine`{{execute}}
 
