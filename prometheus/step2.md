@@ -1,6 +1,10 @@
 # Hello World! using python
 
 
+review: https://prometheus.io/docs/introduction/overview/
+
+https://www.youtube.com/watch?v=sYMTY-SciUQ
+
 ## config docker
 
 `nano /etc/docker/daemon.json`{{exec}}
@@ -13,6 +17,8 @@
 ```{{copy}}
 
 system status docker   # restarte
+
+## setup
 
 
 
@@ -58,6 +64,10 @@ scrape_configs:
 
 
 https://docs.docker.com/config/daemon/prometheus/
+
+
+`docker run --name my-prometheus -v $(pwd)tmp/prometheus.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus`{{exec}}
+
 
 `docker run --name my-prometheus -v /root/test1/tmp/prometheus.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus`{{exec}}
 
