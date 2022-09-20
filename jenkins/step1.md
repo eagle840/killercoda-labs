@@ -1,5 +1,11 @@
 # Setup Jenkins
 
+Do an apt update, and install some tools
+
+`apt update`{{exec}}
+
+`apt install -y jq tree`{{exec}}
+
 Let's first setup a folder to store our Jenkins data:   
 
 `mkdir jenkins`{{execute}}
@@ -11,6 +17,8 @@ and pull the Jenkin's Image:
 `docker pull jenkins/jenkins:2.332`{{execute}}     
 
 It this lab we're using a set image version of Jenkins, you might want to try jenkins:lts
+
+We'll also use mailhog as a mail server@
    
 `docker pull mailhog/mailhog`{{execute}}   
 
@@ -38,7 +46,9 @@ services:
     - "1025:1025"
 ```{{copy}}
 
-## start the jenkins docker container
+### start the jenkins docker container
+
+
 
 `docker-compose up`{{execute}}
 
@@ -49,7 +59,7 @@ Or run in Terminal 2
 `docker exec root_jenkins_1 cat /var/jenkins_home/secrets/initialAdminPassword`{{execute}}
 
 
-## Open pages  for  mailhog on 8025  and jenkins on 8080 
+### Open pages  for  mailhog on 8025  and jenkins on 8080 
 
 Jenkins:
 
@@ -59,9 +69,9 @@ Mailhog:
 
 {{TRAFFIC_HOST1_8025}}
 
-Complete the Jenkins install until you're at the main page before continuing. Use UN: admin  PW: 1234
+Complete the Jenkins install until you're at the main page before continuing. Use UN: admin  PW: Admin4321 email: admin@example.com
 
-## Configure access to port 2375 on the docker daemon.
+### Configure access to port 2375 on the docker daemon.
 
 Once you've complete the Jenkins setup we need to configure access to dockers api
 
@@ -87,11 +97,10 @@ recheck the docker service is running:
 
 and make sure we're getting the json data
 
-`apt install -y jq tree`{{execute}}
 
 `curl localhost:2375/containers/json | jq`{{execute}}
 
-## setup jenkins to send mail to mailhog
+### setup jenkins to send mail to mailhog
 
 Goto Manage Jenkins, then 'Configure System'. Scroll down to the bottom of the page.
 
