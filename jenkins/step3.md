@@ -8,9 +8,9 @@ in jenkins, select 'Manage Jenkins' > 'Manage Plugins'
 
 click on the available tab and enter 'docker' in the search field and select just 'Docker', the one tagged with 'cloud provider'.
 
-click 'Download now and install after reboot', check the boc 'Restart jenkins...' when shown and jenkins will restart
+click 'Download now and install after reboot', check the box 'Restart jenkins...' when shown and jenkins will restart
 
-katacode will prompt you to connect to the port again (8080) - wait 30 seconds - click 'display port' and login with un/pw (admin/1234)
+killercoda will prompt you to connect to the port again (8080) - wait 30 seconds - click 'display port' and login.
 
 ## Config Jenkins to startup Docker Agents
 

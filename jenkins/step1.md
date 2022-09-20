@@ -69,7 +69,7 @@ Mailhog:
 
 {{TRAFFIC_HOST1_8025}}
 
-Complete the Jenkins install until you're at the main page before continuing. Use UN: admin  PW: Admin4321 email: admin@example.com
+Complete the Jenkins install until you're at the main page before continuing. Use UN: 'admin'  PW: 'Admin4321' email: 'admin@example.com'
 
 ### Configure access to port 2375 on the docker daemon.
 
