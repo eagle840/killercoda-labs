@@ -14,7 +14,7 @@ Let's first setup a folder to store our Jenkins data:
 
 and pull the Jenkin's Image:   
 
-`docker pull jenkins/jenkins:2.332`{{execute}}     
+`docker pull jenkins/jenkins:2.370`{{execute}}     
 
 It this lab we're using a set image version of Jenkins, you might want to try jenkins:lts
 
@@ -30,7 +30,7 @@ version: "3.3"
 services:
 
   jenkins:
-    image: jenkins/jenkins:2.332
+    image: jenkins/jenkins:2.370
     ports:
     - "8080:8080"
     - "50000:50000"
