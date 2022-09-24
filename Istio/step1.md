@@ -12,7 +12,7 @@ Run Ubuntu updates:
 
 `apt install -y tree jq`{{execute}}
 
-`kubectl cluster-info
+`kubectl cluster-info`{{exec}}
 
 #### Download
 
@@ -28,13 +28,15 @@ Run Ubuntu updates:
 
 `istioctl help`{{exec}}
 
+do a pre-flight check:
+
+`istioctl x precheck`{{exec}}
+
 Install it into the k8s cluster:
 
 `istioctl install --set profile=demo -y`{{execute}}
 
-`istioctl version`{{exec}}
-
-`istioctl help`{{exec}}
+`kubectl get pods -n istio-system`{{exec}}
 
 
 
