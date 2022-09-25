@@ -10,13 +10,21 @@
 
 `k get svc -n istio-system kiali`{{exec}}
 
+`istio dashboard jaeger`{{exec}}
+
 istioctl dashboard
 
 port 20001/Kiali/console
 
-`kubectl patch -n istio-system svc kiali -p '{"spec": {"type": "NodePort"}}'{{exec}}
+`istio dashboard kiali`{{exec}}
 
-kubectl patch -n istio-system svc kiali -p '{"spec": {"type": "NodePort"}} =< change port #
+`istio dashboard grafana`{{exec}}
+
+`kubectl patch -n istio-system svc kiali -p '{"spec": {"type": "NodePort"}}'`{{exec}}
+
+ `k get svc -n istio-system kiali`{{exec}}
+
+kubectl patch -n istio-system svc kiali -p '{"spec": {"port": {}}} =< change port #
 
 
 
