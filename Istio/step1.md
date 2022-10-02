@@ -18,9 +18,11 @@ Run Ubuntu updates:
 
 `curl -L https://istio.io/downloadIstio | sh -`{{execute}}
 
-`cd istio-1.15.0`{{execute}}
+`cd istio-*`{{execute}}
 
 `export PATH=$PWD/bin:$PATH`{{execute}}
+
+`echo $(pwd)/bin >> /root/.bashrc`{{copy}}
 
 #### Install in K8s
 
@@ -51,7 +53,24 @@ Add a namespace label to instruct Istio to automatically inject Envoy sidecar pr
 
 `kubectl get services`{{execute}}
 
+and wait for the pods to become ready:
+
 `kubectl get pods`{{execute}}
+
+`kubectl get svc`{{exec}}
+
+and change to a nodePort:
+
+`k patch svc productpage -p '{"spec": {"type": "NodePort"}}'`{{exec}}
+
+`k get svc productpage -o json | jq -r .spec.ports[0].nodePort`
+
+`PPAGE=$(k get svc productpage -o json | jq -r .spec.ports[0].nodePort)`
+
+/productpage?u=normal
+
+
+
 
 
 WIP - looks like this is for use with a LB, change it to a Node svc

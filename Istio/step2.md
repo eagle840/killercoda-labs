@@ -1,22 +1,36 @@
 
 
-
+====================   metrics-server  ====================================
 
 `kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml`{{exec}}
 
 from: https://github.com/kubernetes-sigs/metrics-server
 
-tls doesn't work on killercoda, add --kubelet-insecure-tls
+tls doesn't work on killercoda, add 
+
+--kubelet-insecure-tls   
+
 `k edit deploy -n kube-system   metrics-server`{{copy}}
-WIP  add to to the apply command?
+
+WIP  add to to the apply command?  
 
 `k patch -n kube-system svc metrics-server -p '{"spec":{"type": "NodePort"}}'`{{copy}}
+
+
+==============================================================
+
+
 
 `istioctl dashboard -h`{{exec}}
 
 
+for these dashboards, we need to install the following:
 
-`k apply -f ./samples/addons/`{{exec}}
+`k apply -f ./samples/addons/`{{copy}}
+
+WIP prometheus isn't booting (and so grafana), add each addon seperatly and troubleshoot
+
+`k get pods -n istio-system`{{exec}}
 
 `k get svc -n istio-system kiali`{{exec}}
 
@@ -25,11 +39,13 @@ istioctl dashboard
 
 port 20001/Kiali/console
 
-this fails in killacoda: `istioctl dashboard kiali`{{copy}}
+start the kiali dashbord:
 
 `istioctl dashboard kiali --address 0.0.0.0 --browser=false`{{exec}}
 
 {{TRAFFIC_HOST1_20001}}
+
+to start grafana  <=  need to add k8s storage for grafana!
 
 `istioctl dashboard grafana --address 0.0.0.0 --browser=false`{{exec}}  
 {{TRAFFIC_HOST1_3000}}
@@ -47,6 +63,23 @@ jaeger:       /jaeger/search
 
 
 while sleep 0.01; do curl -sS 'http://'"$INGRESS_HOST"':'"$INGRESS_PORT"'/productpage'\ &> /dev/null ; done
+
+```
+export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
+export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].nodePort}')
+export TCP_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="tcp")].nodePort}')
+export INGRESS_HOST=$(kubectl get po -l istio=ingressgateway -n istio-system -o jsonpath='{.items[0].status.hostIP}')
+```{{exec}}
+
+
+`while sleep 0.01; do curl -sS 'http://'"$INGRESS_HOST"':'"$INGRESS_PORT"'/productpage'\ &> /dev/null ; done`
+
+`curl -s -I -HHost:httpbin.example.com "http://$INGRESS_HOST:$INGRESS_PORT/status/200"`
+
+
+`curl -s -I -HHost:httpbin.example.com "http://$INGRESS_HOST:$INGRESS_PORT/headers"`
+
+`curl -HHost:httpbin.example.com "http://$INGRESS_HOST:$INGRESS_PORT/html"`
 
 
 
