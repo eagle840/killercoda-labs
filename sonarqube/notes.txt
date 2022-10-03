@@ -1,0 +1,14 @@
+started using this, but it don't work   
+https://www.cprime.com/resources/blog/running-sonarqube/
+
+besure the sonarqube impage is pullable
+
+
+but used  this instead
+
+https://github.com/SonarSource/docker-sonarqube
+
+
+# GIT server
+
+https://hub.docker.com/r/jkarlos/git-server-docker/
