@@ -22,7 +22,7 @@ Run Ubuntu updates:
 
 `export PATH=$PWD/bin:$PATH`{{execute}}
 
-`echo $(pwd)/bin >> /root/.bashrc`{{copy}}
+`echo 'PATH=$PATH':$(pwd)/bin >> /root/.bashrc`{{copy}}
 
 #### Install in K8s
 

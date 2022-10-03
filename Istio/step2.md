@@ -26,7 +26,7 @@ WIP  add to to the apply command?
 
 for these dashboards, we need to install the following:
 
-`k apply -f ./samples/addons/`{{copy}}
+`k apply -f ./samples/addons/`{{exec}}
 
 WIP prometheus isn't booting (and so grafana), add each addon seperatly and troubleshoot
 
