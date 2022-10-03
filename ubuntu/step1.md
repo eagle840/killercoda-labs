@@ -112,3 +112,8 @@ Next we'll update the python files with the new IP address of the docker contain
 
 - this is to forword a CLusterIP so that killacoda can access
 
+
+`echo 'PATH=$PATH':$(pwd)/bin >> /root/.bashrc`{{copy}}
+
+export PATH=$PWD/bin:$PATH
+
