@@ -5,11 +5,15 @@ taken from :
 
 https://flask.palletsprojects.com/en/2.2.x/quickstart/#a-minimal-application
 
+`cd ~`{{exec}}
+
 `mkdir myproject && cd myproject`{{exec}}
 
 `pip install flask`{{exec}}
 
-'''python
+`nano hello.py`{{exec}}
+
+```
 from flask import Flask
 
 app = Flask(__name__)
@@ -17,7 +21,7 @@ app = Flask(__name__)
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
-'''
+```
 
 `flask --app hello run --host=0.0.0.0`{{exec}}
 
@@ -50,8 +54,16 @@ sonar.projectKey=my:project
 #sonar.sourceEncoding=UTF-8
 ```
 
-and run the analysis:
+and run the analysis using the code snippet from step 1. Once complete the page will refresh
+
+example code snippet:
 
 
-sonar-scanner -Dsonar.login=myAuthenticationToken
+```
+sonar-scanner \
+  -Dsonar.projectKey=pyproject \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=https://93cdfbdc-1290-4e26-80e3-3d9f821c30d7-10-244-5-186-9000.spch.r.killercoda.com \
+  -Dsonar.login=sqp_ab68ca7ea0b4495b4aa5fb8e1703aacb73b4c1d8
+```
 

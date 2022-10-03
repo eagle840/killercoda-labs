@@ -30,12 +30,26 @@ un and password is admin
 
 # create a new local project
 
+under 'How do you want to create your project?'
 
-be sure to copy the token.
+select Manually
+
+name and key:  'pyproject'
+
+
+under 'How do you want to analyze your repository?'
+
+select Locally
+
+and then generate the token, be sure to copy the token.
+
+select language python and OS linux, and copy the code snippet to run latter.
 
 # download and install sonar-qube cli
 
-`wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
+`cd ~`{{exec}}
+
+`wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip`{{exec}}
 
 `unzip sonar-scanner-cli-4.7.0.2747-linux.zip`{{exec}}
 
