@@ -1,6 +1,6 @@
 {
-  "title": "Prometheus Stack ",
-  "description": "Basic Prometheus Stack (v.01)",
+  "title": "Prometheus and grafana Stack ",
+  "description": "Basic Prometheus/grafana  Stack (v.02)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {

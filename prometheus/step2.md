@@ -1,3 +1,23 @@
+# grafana
+
+https://grafana.com/docs/grafana/v9.0/setup-grafana/installation/docker/
+
+`docker run -p 3000:3000 grafana/grafana-oss`{{exec}}
+
+
+connect to 3000
+
+un & pw: admin
+
+{{TRAFFIC_HOST1_3000}}
+
+### dashboard
+
+https://grafana.com/docs/grafana/v9.0/getting-started/build-first-dashboard/
+
+
+################ deelet below  #############
+
 # Hello World! using python
 
 
