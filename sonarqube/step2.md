@@ -21,7 +21,9 @@ app = Flask(__name__)
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
-```
+```{{copy}}
+
+confirm the app is working
 
 `flask --app hello run --host=0.0.0.0`{{exec}}
 
@@ -52,7 +54,13 @@ sonar.projectKey=my:project
  
 # Encoding of the source code. Default is default system encoding
 #sonar.sourceEncoding=UTF-8
-```
+```{{copy}}
+
+WIP `sonar.profile=<quality rules profile>`
+can be added to the above profile to assoisat the scanner run with  a quality rules profile
+
+for more info on this project config file: https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/
+
 
 and run the analysis using the code snippet from step 1. Once complete the page will refresh
 
@@ -67,3 +75,16 @@ sonar-scanner \
   -Dsonar.login=sqp_ab68ca7ea0b4495b4aa5fb8e1703aacb73b4c1d8
 ```
 
+Once the first run is complete the web gui will refresh, go into the new project and you'll see that it was passed, and has two tabs: 'New Code' And 'Overall code'.
+
+Then you first run the scanner on a project it will analysis the whole project, but subsusqute runs will only anaylsys the new code.
+
+Run the scanner again, and you'll see the 'new code' tab populated, all with a passing score
+
+lets add some code that will generated an 'code smell'
+
+add 'pass' to the end of the python file
+
+`echo 'pass' >> hello.py`{{exec}}
+
+and re-run the scanner, and you'll see that it fails due to the code-smell
