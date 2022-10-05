@@ -1,6 +1,8 @@
 # INTRO
 
-In this lab we will install Helm and explore setting up a chart to install a complex application (frontend and backend)
+In this lab we will install an ELK stack on a k8s cluster
+
+WIP - create a stateful storage
 
 Docs and sources:
 
