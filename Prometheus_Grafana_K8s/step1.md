@@ -52,6 +52,11 @@ WIP `chmod -R 777 /mnt/nfs/promdata`{{copy}}
 
 `ssh root@node01 mount -t nfs $NFSIP:/mnt/nfs/promdata  /mnt`{{exec}}
 
+`ssh root@node01 ls /mnt`{{execute}}
+
+And ummount the share
+`ssh root@node01 umount /mnt`{{execute}}
+
    
 
 ## setup prometheous
@@ -81,15 +86,19 @@ metadata:
 
 pv:
 
-`https://gist.github.com/gurpreet0610/49bdf326a8f493a992d4649dfdc4b00a/raw/523631233d4821fb81dfa22491a40d22c8a26c73/prometheus-pv-nfs.yaml`{{exec}}
+`wget https://gist.github.com/gurpreet0610/49bdf326a8f493a992d4649dfdc4b00a/raw/523631233d4821fb81dfa22491a40d22c8a26c73/prometheus-pv-nfs.yaml`{{exec}}
 
 pvc: WIP{ CHANGE IP} in ABOVE:
 
-`https://gist.github.com/gurpreet0610/e5deced18b97cd6744a6573f0ab4a1be/raw/a4a93bb7f80e398ba749d6da93a6c2d0bf21e024/prometheus-pvc-nfs.yaml`{{exec}}
+`wget https://gist.github.com/gurpreet0610/e5deced18b97cd6744a6573f0ab4a1be/raw/a4a93bb7f80e398ba749d6da93a6c2d0bf21e024/prometheus-pvc-nfs.yaml`{{exec}}
 
 WIP: fix the pv, and then apply the 2 above
 
+`k apply -f prometheus-pv-nfs.yaml `{{exec}}
+
 `k get pv`{{exec}}
+
+`k apply -f prometheus-pvc-nfs.yaml`{{exec}}
 
 `k get pvc -A`{{exec}}
 
@@ -104,8 +113,9 @@ WIP: fix the pv, and then apply the 2 above
 
 `wget https://gist.github.com/gurpreet0610/27bb281bb202f0a8dbb4fda6f0100f29/raw/a1c8459eb96ad7d5a4adbb53ea08585e252b5f28/prometheus-service.yaml`{{exec}}
 
-`
+`k apply -f prometheus-service.yaml`{{exec}}
+
 `k get svc -A`{{exec}}
 
 
-k describe pod -n monitoring    prometheus-c994b9fbb-z9vdw
+connect to 30000 on the node 2
