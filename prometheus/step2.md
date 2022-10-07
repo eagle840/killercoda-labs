@@ -1,24 +1,10 @@
-# grafana
 
-https://grafana.com/docs/grafana/v9.0/setup-grafana/installation/docker/
-
-`docker run -p 3000:3000 grafana/grafana-oss`{{exec}}
-
-
-connect to 3000
-
-un & pw: admin
-
-{{TRAFFIC_HOST1_3000}}
 
 ### dashboard
 
 https://grafana.com/docs/grafana/v9.0/getting-started/build-first-dashboard/
 
 
-################ deelet below  #############
-
-# Hello World! using python
 
 
 review: https://prometheus.io/docs/introduction/overview/
@@ -29,6 +15,8 @@ https://www.youtube.com/watch?v=sYMTY-SciUQ
 
 `nano /etc/docker/daemon.json`{{exec}}
 
+BESURE to add the commar
+
 ```json
 {
   "metrics-addr" : "127.0.0.1:9323",
@@ -38,11 +26,20 @@ https://www.youtube.com/watch?v=sYMTY-SciUQ
 
 system status docker   # restarte
 
+`systemctl  daemon-reload`{{exec}}
+
+`systemctl  restart docker`{{exec}}
+
+`systemctl  status docker`{{exec}}
+
+
 ## setup
 
 
 
 `nano /tmp/prometheus.yml`{{exec}}
+
+PROMETHEOUS IS ALREADY RUNNING, update yaml ? do I need to restart?
 
 ```yaml
 # my global config
@@ -86,10 +83,41 @@ scrape_configs:
 https://docs.docker.com/config/daemon/prometheus/
 
 
-`docker run --name my-prometheus -v $(pwd)tmp/prometheus.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus`{{exec}}
+# grafana
+
+https://grafana.com/docs/grafana/v9.0/setup-grafana/installation/docker/
+
+WIP: `docker run -p 3000:3000 grafana/grafana-oss`{{copy}}
+
+add the following to the compose file
+
+`nano /root/docker-compose.yml`{{exec}}
+
+```
+  grafana-oss:
+      ports:
+          - '3000:3000'
+      image: grafana/grafana-oss
+```
 
 
-`docker run --name my-prometheus -v /root/test1/tmp/prometheus.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus`{{exec}}
+connect to 3000
+
+un & pw: admin
+
+{{TRAFFIC_HOST1_3000}}
+
+go into datasources and add prometheous
+
+WIP NEED TO COONECT PROMETHEOUS
+
+====== delete the below ???
+
+
+`docker run --name my-prometheus -v $(pwd)tmp/prometheus.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus`{{copy}}
+
+
+`docker run --name my-prometheus -v /root/test1/tmp/prometheus.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus`{{copy}}
 
 {{TRAFFIC_HOST1_9000}}
 
