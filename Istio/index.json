@@ -1,6 +1,6 @@
 {
   "title": "Istio for Kubernetes",
-  "description": "Setup Istio on a  Kubernets cluster(v0.01)",
+  "description": "Setup Istio on a  Kubernets cluster(v0.02)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {

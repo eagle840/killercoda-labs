@@ -14,6 +14,8 @@ Run Ubuntu updates:
 
 `kubectl cluster-info`{{exec}}
 
+WIP: `kubectl taint node controlplane  node-role.kubernetes.io/master:NoSchedule-`{{exec}}
+
 #### Download/Install
 
 `curl -L https://istio.io/downloadIstio | sh -`{{execute}}
@@ -22,7 +24,7 @@ Run Ubuntu updates:
 
 `export PATH=$PWD/bin:$PATH`{{execute}}
 
-`echo 'PATH=$PATH':$(pwd)/bin >> /root/.bashrc`{{copy}}
+`echo 'PATH=$PATH':$(pwd)/bin >> /root/.bashrc`{{exec}}
 
 #### Install in K8s
 

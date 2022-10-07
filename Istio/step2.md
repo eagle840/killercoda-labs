@@ -1,32 +1,16 @@
-
-
-====================   metrics-server  ====================================
-
-`kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml`{{exec}}
-
-from: https://github.com/kubernetes-sigs/metrics-server
-
-tls doesn't work on killercoda, add 
-
---kubelet-insecure-tls   
-
-`k edit deploy -n kube-system   metrics-server`{{copy}}
-
-WIP  add to to the apply command?  
-
-`k patch -n kube-system svc metrics-server -p '{"spec":{"type": "NodePort"}}'`{{copy}}
-
-
-==============================================================
-
-
+# istio dashboards
 
 `istioctl dashboard -h`{{exec}}
 
 
 for these dashboards, we need to install the following:
 
-`k apply -f ./samples/addons/`{{exec}}
+WIP `k apply -f ./samples/addons/`{{copy}}  # crashs cluster
+
+`tree ./sammples/addons/`{{exec}}
+
+`k apply -f ./samples/addons/kiali.yaml`{{exec}}
+
 
 WIP prometheus isn't booting (and so grafana), add each addon seperatly and troubleshoot
 
@@ -62,7 +46,21 @@ grafana:      ?orgId=1
 jaeger:       /jaeger/search
 
 
-while sleep 0.01; do curl -sS 'http://'"$INGRESS_HOST"':'"$INGRESS_PORT"'/productpage'\ &> /dev/null ; done
+## Generate some flow through the app:
+
+export INGRESS_PORT=$(kubectl get svc productpage -o json | jq .spec.ports[0].port)
+
+export INGRESS_IP=$(kubectl get svc productpage -o json | jq -r .spec.clusterIP)
+
+
+while sleep 0.01; do curl -sS 'http://'"$INGRESS_IP"':'"$INGRESS_PORT"'/productpage'\ &> /dev/null ; done
+
+? add -HHost:httpbin.example.com
+
+
+
+======================  WIP =====================
+
 
 ```
 export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
@@ -80,6 +78,26 @@ export INGRESS_HOST=$(kubectl get po -l istio=ingressgateway -n istio-system -o 
 `curl -s -I -HHost:httpbin.example.com "http://$INGRESS_HOST:$INGRESS_PORT/headers"`
 
 `curl -HHost:httpbin.example.com "http://$INGRESS_HOST:$INGRESS_PORT/html"`
+
+
+##  metrics-server  ====================================
+
+`kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml`{{exec}}
+
+from: https://github.com/kubernetes-sigs/metrics-server
+
+tls doesn't work on killercoda, add 
+
+--kubelet-insecure-tls   
+
+`k edit deploy -n kube-system   metrics-server`{{copy}}
+
+WIP  add to to the apply command?  
+
+`k patch -n kube-system svc metrics-server -p '{"spec":{"type": "NodePort"}}'`{{copy}}
+
+
+==============================================================
 
 
 
