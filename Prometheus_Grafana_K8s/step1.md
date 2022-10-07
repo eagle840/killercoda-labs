@@ -36,18 +36,21 @@ WIP `chmod -R 777 /mnt/nfs/promdata`{{copy}}
 
 `echo "/mnt/nfs/promdata *(rw,sync,no_subtree_check,insecure)" >> /etc/exports`{{exec}}
 
-`exportfs -v`{{copy}}
+
+`exportfs -rav`{{exec}}
+
+`exportfs -v`{{exec}}
 
 
-`showmount -e`{{copy}}
+`showmount -e`{{exec}}
 
-`ssh root@node01 apt install nfs-common -y`{{copy}}
+`ssh root@node01 apt install nfs-common -y`{{exec}}
 
-`NFSIP=$(ip addr show enp1s0  | awk '$1 == "inet" { print $2 }' | cut -d/ -f1)`{{copy}}
+`NFSIP=$(ip addr show enp1s0  | awk '$1 == "inet" { print $2 }' | cut -d/ -f1)`{{exec}}
 
-`echo $NFSIP`{{copy}}
+`echo $NFSIP`{{exec}}
 
-`ssh root@node01 mount -t nfs $NFSIP:/srv/nfs/kubedata  /mnt`{{copy}}
+`ssh root@node01 mount -t nfs $NFSIP:/mnt/nfs/promdata  /mnt`{{exec}}
 
    
 
