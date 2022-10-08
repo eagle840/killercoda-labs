@@ -107,6 +107,8 @@ https://grafana.com/docs/grafana/v9.0/setup-grafana/installation/docker/
 
 WIP: `docker run -p 3000:3000 grafana/grafana-oss`{{copy}}
 
+`docker run --net host -p 3000:3000 grafana/grafana-oss`
+
 add the following to the compose file
 
 `nano /root/docker-compose.yml`{{exec}}
@@ -126,6 +128,10 @@ un & pw: admin
 {{TRAFFIC_HOST1_3000}}
 
 go into datasources and add prometheous
+
+`http://localhost:9090`
+
+save and test
 
 WIP NEED TO COONECT PROMETHEOUS
 
