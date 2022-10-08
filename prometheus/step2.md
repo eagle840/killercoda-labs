@@ -32,12 +32,16 @@ system status docker   # restarte
 
 `systemctl  status docker`{{exec}}
 
+confirm we get metrics:
+
+`curl http://localhost:9323/metrics`{{exec}}
+
 
 ## setup
 
 
 
-`nano /tmp/prometheus.yml`{{exec}}
+`cd ~ && nano ./tmp/prometheus.yml`{{exec}}
 
 PROMETHEOUS IS ALREADY RUNNING, update yaml ? do I need to restart?
 
@@ -82,6 +86,20 @@ scrape_configs:
 
 https://docs.docker.com/config/daemon/prometheus/
 
+start the docker container, connected directed with the host (--net host)
+
+`docker run --name my-prometheus --net host -v $(pwd)/tmp/prometheus.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus`{{exec}}
+
+and connect to the web gui
+
+{{TRAFFIC_HOST1_9090}}
+
+check the status>targets page do check that it is getting data from the docker endpoint (port 9323)
+
+swarm_store_batch_latency_seconds_count
+
+Open the 'graph tab' and use the 'meterics explorer' next to the Execute button
+
 
 # grafana
 
@@ -114,10 +132,7 @@ WIP NEED TO COONECT PROMETHEOUS
 ====== delete the below ???
 
 
-`docker run --name my-prometheus -v $(pwd)tmp/prometheus.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus`{{copy}}
 
-
-`docker run --name my-prometheus -v /root/test1/tmp/prometheus.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus`{{copy}}
 
 {{TRAFFIC_HOST1_9000}}
 
