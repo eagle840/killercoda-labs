@@ -1,5 +1,7 @@
 # add cAdvisor
 
+"cAdvisor (Container Advisor) provides container users an understanding of the resource usage and performance characteristics of their running containers."
+
 https://prometheus.io/docs/guides/cadvisor/
 
 https://github.com/google/cadvisor
@@ -27,7 +29,7 @@ sudo docker run \
 
 you can access the cAdvisor at {{TRAFFIC_HOST1_8080}}
 
-add:
+To add to Prometheus:
 
 ```
 scrape_configs:

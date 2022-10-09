@@ -1,6 +1,6 @@
 {
   "title": "Prometheus&Grafana on Docker ",
-  "description": "Basic Prometheus/Grafana  Stack on Docker (v.03)",
+  "description": "Basic Prometheus/Grafana  Stack on Docker (v.05)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -32,6 +32,14 @@
       {
         "title": "Step 2",
         "text": "step2.md"
+      },
+      {
+        "title": "Step 3",
+        "text": "step3.md"
+      },
+      {
+        "title": "Step 4",
+        "text": "step4.md"
       }
     ],
     "intro": {

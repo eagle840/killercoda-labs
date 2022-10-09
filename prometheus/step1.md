@@ -5,7 +5,7 @@ Doc: https://killercoda.com/creators
 
 github: https://github.com/killercoda
 
-# docker update
+## docker update
 
 `apt-get remove docker  docker.io containerd runc -y`{{exec}}   
 
@@ -32,7 +32,7 @@ echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docke
 
 `docker compose version`{{exec}}
 
-# Setup files
+## Setup files
 
 `mkdir prometheus`{{exec}}     
 
