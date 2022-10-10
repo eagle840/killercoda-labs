@@ -1,15 +1,5 @@
 
-
-### dashboard
-
-https://grafana.com/docs/grafana/v9.0/getting-started/build-first-dashboard/
-
-
-
-
-review: https://prometheus.io/docs/introduction/overview/
-
-https://www.youtube.com/watch?v=sYMTY-SciUQ
+# Monitor Docker
 
 ## config docker
 
@@ -55,7 +45,7 @@ global:
   # Attach these labels to any time series or alerts when communicating with
   # external systems (federation, remote storage, Alertmanager).
   external_labels:
-      monitor: 'codelab-monitor'
+      monitor: 'killer-monitor'
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
@@ -102,6 +92,10 @@ Open the 'graph tab' and use the 'meterics explorer' next to the Execute button
 
 
 # grafana
+
+### dashboard
+
+https://grafana.com/docs/grafana/v9.0/getting-started/build-first-dashboard/
 
 https://grafana.com/docs/grafana/v9.0/setup-grafana/installation/docker/
 

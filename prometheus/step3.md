@@ -44,4 +44,9 @@ scrape_configs:
 ### add to grafana
 
 
+### pushgateway
+
+### add promethous exporter sidecar to a docker container
+
+
 

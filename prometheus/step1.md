@@ -32,7 +32,7 @@ echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docke
 
 `docker compose version`{{exec}}
 
-## Setup files
+## Setup config file
 
 `mkdir prometheus`{{exec}}     
 
@@ -45,7 +45,7 @@ global:
   scrape_timeout: 10s
 
 rule_files:
-  - alert.yml
+#  - alert.yml
 
 scrape_configs:
   - job_name: services
@@ -53,56 +53,16 @@ scrape_configs:
     static_configs:
       - targets:
           - 'prometheus:9090'
-          - 'idonotexists:564'   
-
-
-
+            
 ```{{copy}}
 
-`nano prometheus/alert.ym`{{exec}}
-
-```
-groups:
-  - name: DemoAlerts
-    rules:
-      - alert: InstanceDown 
-        expr: up{job="services"} < 1 
-        for: 5m
-```{{copy}}
-
-`nano docker-compose.yml`{{exec}}
-
-```
-version: '3'
-
-services:
-  prometheus:
-    image: prom/prometheus:v2.30.3
-    ports:
-      - 9000:9090
-    volumes:
-      - ./prometheus:/etc/prometheus
-      - prometheus-data:/prometheus
-    command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
-
-
-volumes:
-  prometheus-data:
-```{{copy}}
-
-
-`docker compose up`{{exec}}
-
-
-
+`docker run --name my-prometheus --net host -v $(pwd)/tmp/prometheus.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus`{{exec}}
 
 
 Link for traffic into host 1 on port 80
 {{TRAFFIC_HOST1_9000}}
 
 
-### NEW STEP
+and stop the container
 
-Monitor docker with prometheus
-https://docs.docker.com/config/daemon/prometheus/
-
+`docker stop my-prometheus  && docker rm my-prometheus`{{exec}}
