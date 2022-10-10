@@ -5,23 +5,25 @@ STep 4
 https://prometheus.io/docs/guides/node-exporter/#monitoring-linux-host-metrics-with-the-node-exporter
 
 
-wget https://github.com/prometheus/node_exporter/releases/download/v1.4.0/node_exporter-1.4.0.linux-amd64.tar.gz
+`wget https://github.com/prometheus/node_exporter/releases/download/v1.4.0/node_exporter-1.4.0.linux-amd64.tar.gz`{{exec}}
 
-tar xvfz node_exporter-1.4.0.linux-amd64.tar.gz 
+`tar xvfz node_exporter-1.4.0.linux-amd64.tar.gz `{{exec}}
 
-cd node_exporter-1.4.0.linux-amd64
+`cd node_exporter-1.4.0.linux-amd64`{{exec}}
 
-./node_exporter 
+`./node_exporter `{{exec}}
 
-curl http://localhost:9100/metrics
+`curl http://localhost:9100/metrics`{{exec}}
 
-add the follow:
+add the follow to the prometheus config:
+
+`cd ~ && nano ./tmp/prometheus.yml`{{exec}}
 
 ```
-scrape_configs:
-- job_name: node
-  static_configs:
-  - targets: ['localhost:9100']
+  scrape_configs:
+  - job_name: node
+    static_configs:
+    - targets: ['localhost:9100']
 ```{{copy}}
 
 In Prometheus:

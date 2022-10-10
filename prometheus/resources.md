@@ -16,6 +16,9 @@ mkdir data
 
 -------- old config
 
+Monitor docker with prometheus
+https://docs.docker.com/config/daemon/prometheus/
+
 
 ```
 global:

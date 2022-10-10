@@ -34,9 +34,9 @@ echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docke
 
 ## Setup config file
 
-`mkdir prometheus`{{exec}}     
+`mkdir tmp`{{exec}}     
 
-`nano prometheus/prometheus.yml`{{exec}}   
+`nano tmp/prometheus.yml`{{exec}}   
 
 
 ```
@@ -52,7 +52,7 @@ scrape_configs:
     metrics_path: /metrics
     static_configs:
       - targets:
-          - 'prometheus:9090'
+          - 'localhost:9090'
             
 ```{{copy}}
 
@@ -60,9 +60,11 @@ scrape_configs:
 
 
 Link for traffic into host 1 on port 80
-{{TRAFFIC_HOST1_9000}}
+{{TRAFFIC_HOST1_9090}}
 
 
 and stop the container
+
+ctrl-x
 
 `docker stop my-prometheus  && docker rm my-prometheus`{{exec}}

@@ -31,6 +31,8 @@ you can access the cAdvisor at {{TRAFFIC_HOST1_8080}}
 
 To add to Prometheus:
 
+`cd ~ && nano ./tmp/prometheus.yml`{{exec}}
+
 ```
 scrape_configs:
 - job_name: cadvisor
