@@ -11,7 +11,7 @@ https://prometheus.io/docs/guides/node-exporter/#monitoring-linux-host-metrics-w
 
 `cd node_exporter-1.4.0.linux-amd64`{{exec}}
 
-`./node_exporter `{{exec}}
+`./node_exporter &`{{exec}}
 
 `curl http://localhost:9100/metrics`{{exec}}
 
@@ -19,12 +19,17 @@ add the follow to the prometheus config:
 
 `cd ~ && nano ./tmp/prometheus.yml`{{exec}}
 
-```
-  scrape_configs:
+```yaml
   - job_name: node
     static_configs:
     - targets: ['localhost:9100']
 ```{{copy}}
+
+restart Prometheus
+
+`docker restart my-prometheus`{{exec}}
+
+and check the status>target page to confirm the endpoint is up
 
 In Prometheus:
 

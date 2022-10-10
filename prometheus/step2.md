@@ -3,15 +3,15 @@
 
 ## config docker
 
+Lets configure docker to provider metrics:
+
 `nano /etc/docker/daemon.json`{{exec}}
 
-BESURE to add the commar
+add the following to the daemon.json file, besure the yaml syntax is correct.
 
 ```json
-{
   "metrics-addr" : "127.0.0.1:9323",
   "experimental" : true
-}
 ```{{copy}}
 
 system status docker   # restarte
@@ -36,6 +36,8 @@ add the follow to the config:
 PROMETHEOUS IS ALREADY RUNNING, update yaml ? do I need to restart?
 
 ```yaml
+  - job_name: docker  
+    metrics_path: /metrics
     static_configs:
       - targets: ['localhost:9323']
 ```{{copy}}
@@ -61,6 +63,9 @@ Open the 'graph tab' and use the 'meterics explorer' next to the Execute button
 
 # grafana
 
+
+Open a new tab,
+
 ### dashboard
 
 https://grafana.com/docs/grafana/v9.0/getting-started/build-first-dashboard/
@@ -71,13 +76,16 @@ https://grafana.com/docs/grafana/v9.0/setup-grafana/installation/docker/
 `docker run --net host -p 3000:3000 grafana/grafana-oss`
 
 
-connect to 3000
 
-un & pw: admin
+connect to port 3000
 
 {{TRAFFIC_HOST1_3000}}
 
-go into datasources and add prometheous
+can use: un & pw: admin
+
+You can skip the password reset.
+
+go into datasources and add prometheous, with HTTP:URL:
 
 `http://localhost:9090`
 

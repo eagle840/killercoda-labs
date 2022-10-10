@@ -33,14 +33,19 @@ To add to Prometheus:
 
 `cd ~ && nano ./tmp/prometheus.yml`{{exec}}
 
+```yaml
+  - job_name: cadvisor
+    scrape_interval: 5s
+    static_configs:
+    - targets:
+      - cadvisor:8080
 ```
-scrape_configs:
-- job_name: cadvisor
-  scrape_interval: 5s
-  static_configs:
-  - targets:
-    - cadvisor:8080
-```
+
+restart Prometheus
+
+`docker restart my-prometheus`{{exec}}
+
+and check the status>target page to confirm the endpoint is up
 
 
 ### add to grafana

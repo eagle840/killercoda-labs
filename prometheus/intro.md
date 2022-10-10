@@ -50,3 +50,11 @@ the main config file for prometheus, with 3 main sections:
   - scrape_configs; configuration for each target
 
 note that prometheus has it's own /metrics endpoint on port 9090
+
+
+## Learn more
+
+
+promlabs offers a free intro class:
+
+https://training.promlabs.com/training/introduction-to-prometheus

@@ -17,7 +17,7 @@ github: https://github.com/killercoda
 
 `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}   
 
-```
+```bash
 echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```{{exec}}   
@@ -39,7 +39,7 @@ echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docke
 `nano tmp/prometheus.yml`{{exec}}   
 
 
-```
+```yaml
 global:
   scrape_interval: 30s
   scrape_timeout: 10s
@@ -62,9 +62,15 @@ scrape_configs:
 Link for traffic into host 1 on port 80
 {{TRAFFIC_HOST1_9090}}
 
+Lets check that Prometheus is picking up the metrics endpoint.
+
+IN the GUI, goto the status>targets page and you should see the localhost:9090 (Prometheus metrics) endpoint up. You may have to wait a minute.
+
+IN the labels section, note the endpoint label, and the job label, which is the job_name in the prometheus config yml
+
 
 and stop the container
 
-ctrl-x
+ctrl-c
 
 `docker stop my-prometheus  && docker rm my-prometheus`{{exec}}
