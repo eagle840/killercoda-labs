@@ -36,10 +36,11 @@ To add to Prometheus:
 ```yaml
   - job_name: cadvisor
     scrape_interval: 5s
+    metrics_path: /metrics
     static_configs:
     - targets:
-      - cadvisor:8080
-```
+      - localhost:8080
+```{{copy}}
 
 restart Prometheus
 

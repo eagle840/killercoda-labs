@@ -35,4 +35,6 @@ In Prometheus:
 
 Metrics specific to the Node Exporter are prefixed with 'node_'
 
-### add to grafana
+### add promethous exporter sidecar to a docker container
+
+### pushgateway

@@ -32,7 +32,7 @@ echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docke
 
 `docker compose version`{{exec}}
 
-## Setup config file
+### Setup config file
 
 `mkdir tmp`{{exec}}     
 
@@ -56,17 +56,19 @@ scrape_configs:
             
 ```{{copy}}
 
+### start the docker container
+
 `docker run --name my-prometheus --net host -v $(pwd)/tmp/prometheus.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus`{{exec}}
 
 
-Link for traffic into host 1 on port 80
+Link for traffic into host 1 on port 80   
 {{TRAFFIC_HOST1_9090}}
 
 Lets check that Prometheus is picking up the metrics endpoint.
 
-IN the GUI, goto the status>targets page and you should see the localhost:9090 (Prometheus metrics) endpoint up. You may have to wait a minute.
+In the GUI, goto the status>targets page and you should see the localhost:9090 (Prometheus metrics) endpoint up. You may have to wait/refresh a minute.
 
-IN the labels section, note the endpoint label, and the job label, which is the job_name in the prometheus config yml
+In the labels section, note the endpoint label, and the job label, which is the job_name in the prometheus config yml
 
 
 and stop the container

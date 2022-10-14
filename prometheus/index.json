@@ -1,6 +1,6 @@
 {
   "title": "Prometheus&Grafana on Docker ",
-  "description": "Basic Prometheus/Grafana  Stack on Docker (v.7)",
+  "description": "Basic Prometheus/Grafana  Stack on Docker (v.75)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {

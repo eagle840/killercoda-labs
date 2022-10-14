@@ -1,7 +1,7 @@
 
 # Monitor Docker
 
-## config docker
+### config docker
 
 Lets configure docker to provider metrics:
 
@@ -27,7 +27,7 @@ confirm we get metrics:
 `curl http://localhost:9323/metrics`{{exec}}
 
 
-## setup
+### add metrics to Prometheus
 
 add the follow to the config:
 
@@ -61,19 +61,17 @@ swarm_store_batch_latency_seconds_count
 Open the 'graph tab' and use the 'meterics explorer' next to the Execute button
 
 
-# grafana
+### Add Grafana
 
 
 Open a new tab,
-
-### dashboard
 
 https://grafana.com/docs/grafana/v9.0/getting-started/build-first-dashboard/
 
 https://grafana.com/docs/grafana/v9.0/setup-grafana/installation/docker/
 
 
-`docker run --net host -p 3000:3000 grafana/grafana-oss`
+`docker run --name grafana --net host -p 3000:3000 grafana/grafana-oss`
 
 
 
