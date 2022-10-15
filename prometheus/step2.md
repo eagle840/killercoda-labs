@@ -71,7 +71,7 @@ https://grafana.com/docs/grafana/v9.0/getting-started/build-first-dashboard/
 https://grafana.com/docs/grafana/v9.0/setup-grafana/installation/docker/
 
 
-`docker run --name grafana --net host -p 3000:3000 grafana/grafana-oss`
+`docker run --name grafana --net host -p 3000:3000 grafana/grafana-oss`{{exec}}
 
 
 

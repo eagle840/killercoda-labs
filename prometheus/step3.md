@@ -49,12 +49,6 @@ restart Prometheus
 and check the status>target page to confirm the endpoint is up
 
 
-### add to grafana
-
-
-### pushgateway
-
-### add promethous exporter sidecar to a docker container
 
 
 

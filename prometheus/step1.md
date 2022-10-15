@@ -5,7 +5,7 @@ Doc: https://killercoda.com/creators
 
 github: https://github.com/killercoda
 
-## docker update
+## docker update  - WIP No longer needed, skip to next section
 
 `apt-get remove docker  docker.io containerd runc -y`{{exec}}   
 
@@ -61,7 +61,7 @@ scrape_configs:
 `docker run --name my-prometheus --net host -v $(pwd)/tmp/prometheus.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus`{{exec}}
 
 
-Link for traffic into host 1 on port 80   
+Link for traffic into host 1 on port 9090  
 {{TRAFFIC_HOST1_9090}}
 
 Lets check that Prometheus is picking up the metrics endpoint.
