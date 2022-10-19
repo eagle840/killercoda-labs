@@ -2,12 +2,16 @@
 
 `istioctl dashboard -h`{{exec}}
 
+when you want to launch a dashboard on killacoda, add:
+
+`--address 0.0.0.0 --browser=false`{{copy}}
+
 
 for these dashboards, we need to install the following:
 
 WIP `k apply -f ./samples/addons/`{{copy}}  # crashs cluster
 
-`tree ./sammples/addons/`{{exec}}
+`tree ./samples/addons/`{{exec}}
 
 `k apply -f ./samples/addons/kiali.yaml`{{exec}}
 
@@ -19,15 +23,34 @@ WIP prometheus isn't booting (and so grafana), add each addon seperatly and trou
 `k get svc -n istio-system kiali`{{exec}}
 
 
-istioctl dashboard
+start the kiali dashbord:
+
+`istioctl dashboard kiali --address 0.0.0.0 --browser=false &`{{exec}}
+
+and open the port on 20001
 
 port 20001/Kiali/console
 
-start the kiali dashbord:
-
-`istioctl dashboard kiali --address 0.0.0.0 --browser=false`{{exec}}
-
 {{TRAFFIC_HOST1_20001}}
+
+start prometheus
+
+`k apply -f ./samples/addons/prometheus.yaml`{{exec}}
+
+and confirm its running:
+
+`k get pods -n istio-system`{{exec}}
+
+start grafana WIP:  crashes prometheus!
+see `cat ./samples/addons/README.md`{{exec}}
+
+`k apply -f ./samples/addons/grafana.yaml`{{exec}}
+
+and confirm its running:
+
+`k get pods -n istio-system`{{exec}}
+
+
 
 to start grafana  <=  need to add k8s storage for grafana!
 

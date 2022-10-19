@@ -53,20 +53,24 @@ Add a namespace label to instruct Istio to automatically inject Envoy sidecar pr
 
 `kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml`{{execute}}
 
-`kubectl get services`{{execute}}
-
 and wait for the pods to become ready:
 
 `kubectl get pods`{{execute}}
 
 `kubectl get svc`{{exec}}
 
-and change to a nodePort:
+and change the productpage service to a nodePort:
 
 `k patch svc productpage -p '{"spec": {"type": "NodePort"}}'`{{exec}}
 
-`k get svc productpage -o json | jq -r .spec.ports[0].nodePort`
+and open the following port:
 
+`k get svc productpage -o json | jq -r .spec.ports[0].nodePort`{{exec}}
+
+and click on the 'normal user' at the bottom of the page
+
+WIP:
+Need to set the nport to a specific port
 `PPAGE=$(k get svc productpage -o json | jq -r .spec.ports[0].nodePort)`
 
 /productpage?u=normal
