@@ -10,6 +10,10 @@ First we'll setup the environment
 
 `git clone https://github.com/mlflow/mlflow`{{exec}}
 
+Need to know more on ML, try
+
+https://www.w3schools.com/python/python_ml_getting_started.asp
+
 
 
 ##### fix a dependance issue
@@ -31,6 +35,10 @@ There are 4 major components to MLFlow: Tracking, Projects, Models, and Registry
 ## Run our 1st mlflow
 
 `cd mlflow/examples/quickstart/`{{exec}}
+
+This first example flow prints some log outputs:
+
+`cat mlflow_tracking.py`{{exec}}
 
 Take  a look at the mlflow_tracking.py in the editor, and notice that it's using the mlflow modules to run some logs. Lets run it (return to tab1).
 
@@ -89,7 +97,11 @@ run, accept the license, and init when prompted:
 
 WIP `df -h /dev/vda1`{{exec}}
 
+`echo 'PATH=$PATH':"/root/miniconda3/bin" >> /root/.bashrc`{{exec}}
+
 restart the shell: `exec bash`{{exec}}
+
+`conda -h`{{exec}}
 
 Conda will automatically enter into an environment, lets exit it:
 
@@ -99,6 +111,8 @@ check the version: `conda -V`{{exec}}
 
 `cd ~/mlflow/examples/sklearn_elasticnet_wine/`{{exec}}
 
+`cat train.py`{{exec}}
+
 Note the directory/file structure:
 
 `tree`{{exec}}
@@ -107,9 +121,23 @@ This example will use a mlProject file to run the code
 
 `cat MLproject`{{exec}}
 
+WIP `cat conda.yaml`{{exec}}
+
 WIP `conda env create -f conda.yaml`{{exec}}
 
+you have sucessfully installed the envuronment when you see:
+
+# To activate this environment, use
+#
+#     $ conda activate tutorial
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
 WIP `conda activate tutorial`{{exec}}
+
+
 
 run the project:
 
