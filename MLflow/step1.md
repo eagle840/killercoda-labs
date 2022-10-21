@@ -121,6 +121,12 @@ and lets run it again with different parameters
 
 `tree`{{exec}}
 
+run the model a training a couple more times with different parmeters:
+
+`python train.py 0.4 0.6`{{exec}}
+
+`python train.py 0.35 0.6`{{exec}}
+
 lets look at the ui now:
 
 `mlflow ui --host 0.0.0.0`{{exec}} 
@@ -129,6 +135,8 @@ you can access the ui at port 5000 {{TRAFFIC_HOST1_5000}}
 
 Now run the same mlflow run again, with different parameters (eg: .45 and .55)
 
-Go back into the UI, and select all three runs, and click on compare. This will give you an analyical comparison of the runs.
+## compare model parameters
+
+Go back into the UI, and tick the check boxs againt all three runs, and click on compare. This will give you an analyical comparison of the runs.
 
 

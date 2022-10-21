@@ -7,7 +7,19 @@ run
 
 and curl the the following
 
-`curl -d '{"data":[[0.5, 0.5]]}' -H 'Content-Type: application/json'  localhost:5000/invocations`{{exec}}
+WIP `curl -d '{"data":[[0.5, 0.5]]}' -H 'Content-Type: application/json'  localhost:5000/invocations`{{exec}}
+
+# add a local registry
+
+add the following line in train.py @ line 46
+
+`mlflow.set_tracking_uri("sqlite:///mlruns.db")`{{copy}}
+
+
+
+`mlflow ui --host 0.0.0.0 --backend-store-uri sqlite:///mlruns.db`{{exec}}
+
+once running, you'll now be able to access the 'models' tab in the web page
 
 
 
