@@ -79,37 +79,16 @@ Exit out of the ui server, and you can see it's added to the file:
 
 In this example, we'll be using the Python Conda environment, and running sklearn
 
-For this example, we'll need conda installed (http link)
+`pip install scikit-learn==0.23.2`{{exec}}
 
-`cd ~`{{exec}}
 
-WIP `df -h /dev/vda1`{{exec}}
+## Linear Regression Model
 
-`wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh`{{exec}}
-
-`chmod +x Miniconda3-latest-Linux-x86_64.sh`{{exec}}
-
-run, accept the license, and init when prompted:
-
-`./Miniconda3-latest-Linux-x86_64.sh`{{exec}}
-
-`rm Miniconda3-latest-Linux-x86_64.sh `{{exec}}
-
-WIP `df -h /dev/vda1`{{exec}}
-
-`echo 'PATH=$PATH':"/root/miniconda3/bin" >> /root/.bashrc`{{exec}}
-
-restart the shell: `exec bash`{{exec}}
-
-`conda -h`{{exec}}
-
-Conda will automatically enter into an environment, lets exit it:
-
-`conda deactivate`{{exec}}
-
-check the version: `conda -V`{{exec}}
+https://scikit-learn.org/stable/modules/linear_model.html#elastic-net
 
 `cd ~/mlflow/examples/sklearn_elasticnet_wine/`{{exec}}
+
+WIP `pip install notebook`{{exec}}
 
 `cat train.py`{{exec}}
 
@@ -123,25 +102,14 @@ This example will use a mlProject file to run the code
 
 WIP `cat conda.yaml`{{exec}}
 
-WIP `conda env create -f conda.yaml`{{exec}}
-
-you have sucessfully installed the envuronment when you see:
-
-# To activate this environment, use
-#
-#     $ conda activate tutorial
-#
-# To deactivate an active environment, use
-#
-#     $ conda deactivate
-
-WIP `conda activate tutorial`{{exec}}
-
+WIP `jupyter notebook --ip=0.0.0.0 --allow-root`{{exec}}
 
 
 run the project:
 
-`mlflow run . -P alpha=0.5 `{{exec}}
+`mlflow run . -P alpha=0.5 --no-conda`{{exec}}
+
+note the 'ID' of the output
 
 (the '.' is the present directry, but can be replaced with a folder name)
 
