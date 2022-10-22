@@ -1,20 +1,38 @@
 
 # servering the model
 
+https://www.mlflow.org/docs/latest/model-registry.html
+
 run
 
 `mlflow models serve --model-uri runs:/<ID>/model --no-conda`{{copy}}
 
+WIP: 
+
 and curl the the following
+
+confirm the endpoint is up:
+
+`curl  -v ^Cocalhost:5000/health`{{exec}}
 
 WIP `curl -d '{"data":[[0.5, 0.5]]}' -H 'Content-Type: application/json'  localhost:5000/invocations`{{exec}}
 
-# add a local registry
+# add a  registry store (sqlite)
+
+https://www.mlflow.org/docs/latest/model-registry.html
 
 add the following line in train.py @ line 46
 
 `mlflow.set_tracking_uri("sqlite:///mlruns.db")`{{copy}}
 
+The last few time we ran training, the output was sent to file, now it set sent to sqlite, which has no entries in to, Run the trainings again:
+
+
+`python train.py 0.3 0.6`{{exec}}
+
+`python train.py 0.4 0.6`{{exec}}
+
+`python train.py 0.35 0.6`{{exec}}
 
 
 `mlflow ui --host 0.0.0.0 --backend-store-uri sqlite:///mlruns.db`{{exec}}

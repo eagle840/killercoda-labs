@@ -10,17 +10,10 @@ First we'll setup the environment
 
 `git clone https://github.com/mlflow/mlflow`{{exec}}
 
-Need to know more on ML, try
 
-https://www.w3schools.com/python/python_ml_getting_started.asp
-
-
-
-##### fix a dependance issue
+##### Install mlflow
 
 `pip install -U click jinja2`{{exec}} 
-
-##### install mlflow
 
 `pip install mlflow`{{exec}}
 
@@ -40,7 +33,7 @@ This first example flow prints some log outputs:
 
 `cat mlflow_tracking.py`{{exec}}
 
-Take  a look at the mlflow_tracking.py in the editor, and notice that it's using the mlflow modules to run some logs. Lets run it (return to tab1).
+Take  a look at the mlflow_tracking.py in the editor, and notice that it's using the mlflow modules to run some logs and setting random values - we'll view these in the web gui. Lets run it (return to tab1).
 
 `python mlflow_tracking.py`{{exec}}
 
@@ -77,7 +70,7 @@ Exit out of the ui server, and you can see it's added to the file:
     ==================================
 ## Another Example:
 
-In this example, we'll be using the Python Conda environment, and running sklearn
+In this example, we'll be using  scikit learn
 
 `pip install scikit-learn==0.23.2`{{exec}}
 
@@ -133,7 +126,6 @@ lets look at the ui now:
 
 you can access the ui at port 5000 {{TRAFFIC_HOST1_5000}} 
 
-Now run the same mlflow run again, with different parameters (eg: .45 and .55)
 
 ## compare model parameters
 
