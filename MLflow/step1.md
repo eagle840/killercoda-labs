@@ -41,6 +41,8 @@ and note that some new folders have been created for mlflow.
 
 `tree`{{exec}}
 
+By default, mlflow will track resources in the local mlruns folder, in the next step we'll change that to a sqlite database
+
 each numbered folder is an 'experiment', and each experiment has 'runs' with alphanumberic numbers. (as shown in the UI later).      
      - meta data file: basic info about the experiment, inc 'name'   
      - tags folder - more info about the 'experiment/run'   
@@ -103,7 +105,7 @@ WIP `cat conda.yaml`{{exec}}
 WIP `jupyter notebook --ip=0.0.0.0 --allow-root`{{exec}}
 
 
-run the project:
+this time we'll run the project with the mlflow command, this will usually setup a conda environment, but for now we'll turn that feature off (--no-conda), and set just the alpha hyper-parameter:
 
 `mlflow run . -P alpha=0.5 --no-conda`{{exec}}
 
@@ -116,6 +118,8 @@ note the 'ID' of the output
 this time, note the contents of the artifacts folder, the pickle file (.pkl) is actually the model code.
 
 and lets run it again with different parameters
+
+`python train.py <alpha> <l1_ratio>`
 
 `python train.py 0.3 0.6`{{exec}}
 

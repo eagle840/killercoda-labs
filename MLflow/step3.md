@@ -2,7 +2,10 @@
 
 WIP, think I need the mlflow extras package installed for this
 
-mlflow models generate-dockerfile --model-uri runs:/6b089afd33cd4a848d29491337f4d1a7/model --enable-mlserver
+`mlflow models generate-dockerfile --model-uri runs:/<run_id>/model --enable-mlserver`{{copy}}
+
+
+`mlflow models --help`{{exec}}
 
 
 
