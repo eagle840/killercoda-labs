@@ -44,6 +44,7 @@ and note that some new folders have been created for mlflow.
 each numbered folder is an 'experiment', and each experiment has 'runs' with alphanumberic numbers. (as shown in the UI later).      
      - meta data file: basic info about the experiment, inc 'name'   
      - tags folder - more info about the 'experiment/run'   
+     
       
 
 This working in conjunction with the mlflow ui tool.
@@ -85,9 +86,13 @@ WIP `pip install notebook`{{exec}}
 
 `cat train.py`{{exec}}
 
+note:   
+   - mlflow.sklearn.log_model  - will store the generated model
+
 Note the directory/file structure:
 
 `tree`{{exec}}
+
 
 This example will use a mlProject file to run the code
 
@@ -107,6 +112,8 @@ note the 'ID' of the output
 (the '.' is the present directry, but can be replaced with a folder name)
 
 `tree`{{exec}}
+
+this time, note the contents of the artifacts folder, the pickle file (.pkl) is actually the model code.
 
 and lets run it again with different parameters
 

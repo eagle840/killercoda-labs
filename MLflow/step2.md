@@ -7,6 +7,8 @@ run
 
 `mlflow models serve --model-uri runs:/<ID>/model --no-conda`{{copy}}
 
+`mlflow models serve -m ./mlruns/0/3b6708fad9b24e4984416ce3588e282f/artifacts/model -p 1234 --no-conda`
+
 WIP: 
 
 and curl the the following
@@ -16,6 +18,10 @@ confirm the endpoint is up:
 `curl  -v ^Cocalhost:5000/health`{{exec}}
 
 WIP `curl -d '{"data":[[0.5, 0.5]]}' -H 'Content-Type: application/json'  localhost:5000/invocations`{{exec}}
+
+
+`curl -X POST -H "Content-Type:application/json; format=pandas-split" --data '{"columns":["alcohol", "chlorides","citric acid", "density", "fixed acidity", "free sulfur dioxide", "pH", "residual sugar", "sulphates", "total sulfur dioxide", "volatile acidity"],"data":[[12.8, 0.029, 0.48, 0.98, 6.2, 29, 3.33, 1.2, 0.39, 75, 0.66]]}' http://127.0.0.1:1234/invocations`{{exec}}
+
 
 # add a  registry store (sqlite)
 

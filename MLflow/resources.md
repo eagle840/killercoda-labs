@@ -18,3 +18,9 @@ https://shandou.medium.com/export-and-create-conda-environment-with-yml-5de619fe
 
 
 `wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh`{{copy}}
+
+https://blog.noodle.ai/introduction-to-mlflow-for-mlops-part-1-anaconda-environment/
+
+https://blog.noodle.ai/introduction-to-mlflow-for-mlops-part-2-docker-environment/
+
+https://blog.noodle.ai/introduction-to-mlflow-for-mlops-part-3-database-tracking-minio-artifact-storage-and-registry/
