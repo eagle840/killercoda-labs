@@ -36,7 +36,8 @@ This quickstart is taken from the BenoML site: https://docs.bentoml.org/en/lates
 
 `git clone --depth=1 git@github.com:bentoml/BentoML.git`{{exec}}
 
-`cd bentoml/examples/quickstart/`{{exec}}
+
+`cd BentoML/examples/quickstart/`{{exec}}
 
 `pip install bentoml scikit-learn pandas`{{exec}}
 
@@ -49,6 +50,7 @@ This quickstart is taken from the BenoML site: https://docs.bentoml.org/en/lates
 
 `bentoml serve service:svc --reload`{{exec}}
 
+In a new terminal Tab:
 
 ```
 curl -X POST \
@@ -57,7 +59,12 @@ curl -X POST \
    http://127.0.0.1:3000/classify
 ```{{exec}}
 
-or open http://127.0.0.1:3000 
+Note the returned value of '[2]'
+
+or open http://127.0.0.1:3000  at the following link:
+{{TRAFFIC_HOST1_3000}}
+
+Terminate bentoservice with crtl-c
 
 
 `cat bentofile.yaml`{{exec}}
@@ -67,11 +74,7 @@ or open http://127.0.0.1:3000
 
 `bentoml serve iris_classifier:latest --production`{{exec}}
 
-`bentoml containerize iris_classifier:latest`{{exec}}
-
-WIP: change docker tag
-
-`docker run -it --rm -p 3000:3000 iris_classifier:6otbsmxzq6lwbgxi serve --production`{{exec}}
+In a new terminal Tab:
 
 ```
 curl -X POST \
@@ -80,6 +83,33 @@ curl -X POST \
    http://127.0.0.1:3000/classify
 ```{{exec}}
 
+or open http://127.0.0.1:3000  at the following link:
+{{TRAFFIC_HOST1_3000}}
+
+
+### Build a container  (18:01)
+
+`bentoml containerize iris_classifier:latest`{{exec}}
+
+WIP: change docker tag
+
+`docker images`{{exec}}
+
+replace the tag name in the following:
+
+`docker run -it --rm -p 3000:3000 iris_classifier:<TAG> serve --production`{{exec}}
+
+In a new terminal Tab:
+
+```
+curl -X POST \
+   -H "content-type: application/json" \
+   --data "[[5.9, 3, 5.1, 1.8]]" \
+   http://127.0.0.1:3000/classify
+```{{exec}}
+
+or open http://127.0.0.1:3000  at the following link:
+{{TRAFFIC_HOST1_3000}}
 
 =================  DELETE BELOW  ==========================
 
