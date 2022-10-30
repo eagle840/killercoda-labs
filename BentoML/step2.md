@@ -14,6 +14,42 @@ WIP: untaint master?
 
 prereq:
 
+
+# postresql
+
+`mkdir pgsql && cd pgsql`{{exec}}
+
+`nano docker-compose.yaml`{{exec}}
+
+```yaml
+version: '3.8'
+services:
+  db:
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local
+```
+
+`wget https://github.com/kubernetes/kompose/releases/download/v1.26.1/kompose_1.26.1_amd64.deb`{{exec}}
+
+
+`sudo apt install ./kompose_1.26.1_amd64.deb`{{exec}}
+
+`kompose convert -f docker-compose.yaml`{{exec}}
+
+`k apply -f .`{{exec}}
+
+
+
 ## update helm:
 
 WIP CREATE storage clasess' for postsql
