@@ -17,36 +17,38 @@ prereq:
 
 # postresql
 
-`mkdir pgsql && cd pgsql`{{exec}}
+`mkdir /data`{{exec}}
 
-`nano docker-compose.yaml`{{exec}}
+`ls`{{exec}}
+
+install the yamls
+
+create pv
+
+`nano pv1.yaml`{{exec}}
 
 ```yaml
-version: '3.8'
-services:
-  db:
-    image: postgres:14.1-alpine
-    restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    ports:
-      - '5432:5432'
-    volumes: 
-      - db:/var/lib/postgresql/data
-volumes:
-  db:
-    driver: local
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-data
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 100Mi
+  hostPath: # replace with storage volume type
+    path: /data
 ```
 
-`wget https://github.com/kubernetes/kompose/releases/download/v1.26.1/kompose_1.26.1_amd64.deb`{{exec}}
+`k create -f persistentvolume.yaml`{{exec}}
+
+WIP now run the helm for postgresql
 
 
-`sudo apt install ./kompose_1.26.1_amd64.deb`{{exec}}
 
-`kompose convert -f docker-compose.yaml`{{exec}}
 
-`k apply -f .`{{exec}}
 
 
 

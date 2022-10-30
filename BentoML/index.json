@@ -1,25 +1,25 @@
 {
   "title": "WORK-IN-PROGRESS BentoML, serve and containerize",
-  "description": "Basic BentoML setup (v0.02)",
+  "description": "Basic BentoML setup (v0.04)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
     "assets":{
       "host01": [
         {
-          "file": "send.py",
+          "file": "db-deployment.yaml",
           "target": "~/"
         },
         {
-          "file": "new_task.py",
+          "file": "db-service.yaml",
           "target": "~/"
         },
         {
-          "file": "worker.py",
+          "file": "db-persistentvolumeclaim.yaml",
           "target": "~/"
         },
         {
-          "file": "receive.py",
+          "file": "persistentvolume.yaml",
           "target": "~/"
         }
       ]
