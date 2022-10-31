@@ -117,3 +117,7 @@ Next we'll update the python files with the new IP address of the docker contain
 
 export PATH=$PWD/bin:$PATH
 
+to allow pods on the controlplane
+
+kubectl taint node controlplane node-role.kubernetes.io/master:NoSchedule-
+
