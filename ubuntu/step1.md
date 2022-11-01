@@ -96,7 +96,6 @@ and head over to port 8080 and login
 un:guest   
 pw:guest  
 
-https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com
 
 Next we'll update the python files with the new IP address of the docker container.
 
@@ -119,5 +118,9 @@ export PATH=$PWD/bin:$PATH
 
 to allow pods on the controlplane
 
-kubectl taint node controlplane node-role.kubernetes.io/master:NoSchedule-
+`kubectl taint node controlplane node-role.kubernetes.io/master:NoSchedule-`{{copy}}
+
+to allow access to running pods with ports 9000 and 9090
+
+`kubectl port-forward -n minio-dev pod/minio 9000 9090 --address 0.0.0.0`{{copy}}
 
