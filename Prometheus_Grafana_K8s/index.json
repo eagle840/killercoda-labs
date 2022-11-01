@@ -1,5 +1,5 @@
 {
-  "title": "Prometheous/Grafana on K8s",
+  "title": "WORK-IN-PROGRESS Prometheous/Grafana on K8s",
   "description": "Setup Prometheous/Grafana on a Kubernets cluster(v0.01)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
