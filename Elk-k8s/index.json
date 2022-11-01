@@ -1,5 +1,5 @@
 {
-  "title": "ELK on K8s",
+  "title": "WORK-IN-PROGRESS ELK on K8s",
   "description": "Setup ELK on a  Kubernets cluster(v0.01)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
