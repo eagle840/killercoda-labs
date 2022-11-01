@@ -24,3 +24,8 @@ https://blog.noodle.ai/introduction-to-mlflow-for-mlops-part-1-anaconda-environm
 https://blog.noodle.ai/introduction-to-mlflow-for-mlops-part-2-docker-environment/
 
 https://blog.noodle.ai/introduction-to-mlflow-for-mlops-part-3-database-tracking-minio-artifact-storage-and-registry/
+
+
+also try bento 
+https://www.bentoml.com/
+swagger: https://6579592b-ce53-4c7f-8bd9-bdef99e74ada-10-244-5-216-3000.spch.r.killercoda.com/#/Service%20APIs/iris_classifier__classify
