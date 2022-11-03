@@ -8,7 +8,7 @@ https://github.com/google/cadvisor
 
 
 
-to start cAdvisor:
+to start cAdvisor, in a new tab:
 
 ```
 VERSION=v0.36.0 # use the latest release version from https://github.com/google/cadvisor/releases
@@ -45,6 +45,8 @@ To add to Prometheus:
 restart Prometheus
 
 `docker restart my-prometheus`{{exec}}
+
+WIP:  why are the port not coming back up?
 
 and check the status>target page to confirm the endpoint is up
 

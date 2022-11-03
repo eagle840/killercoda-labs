@@ -48,7 +48,7 @@ https://docs.docker.com/config/daemon/prometheus/
 
 start the docker container, connected directed with the host (--net host)
 
-`docker run --name my-prometheus --net host -v $(pwd)/tmp/prometheus.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus`{{exec}}
+`docker run --name my-prometheus -d --net host -v $(pwd)/tmp/prometheus.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus`{{exec}}
 
 and connect to the web gui
 
@@ -56,9 +56,8 @@ and connect to the web gui
 
 check the status>targets page do check that it is getting data from the docker endpoint (port 9323)
 
-swarm_store_batch_latency_seconds_count
 
-Open the 'graph tab' and use the 'meterics explorer' next to the Execute button
+Open the 'graph tab' and use the 'meterics explorer' next to the Execute button to see available metrics/logs
 
 
 ### Add Grafana
