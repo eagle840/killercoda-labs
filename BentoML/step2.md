@@ -3,6 +3,10 @@
 
 https://github.com/bentoml/Yatai
 
+https://artifacthub.io/packages/helm/yatai/yatai
+
+see https://docs.bentoml.org/projects/yatai/en/latest/installation/yatai.html
+
 
 
 confirm k8s is up:
@@ -23,26 +27,15 @@ prereq:
 
 install the yamls
 
-create pv
+`k create -f persistentvolume.yaml`{{exec}} 
 
-`nano pv1.yaml`{{exec}}
+`k create -f db-persistentvolumeclaim.yaml `{{exec}}
 
-```yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pv-data
-spec:
-  persistentVolumeReclaimPolicy: Retain
-  accessModes:
-    - ReadWriteOnce
-  capacity:
-    storage: 100Mi
-  hostPath: # replace with storage volume type
-    path: /data
-```
+`k create -f db-deployment.yaml `{{exec}}
 
-`k create -f persistentvolume.yaml`{{exec}}
+`k create -f db-service.yaml `{{exec}}
+
+`k get pods`{{exec}}
 
 WIP now run the helm for postgresql
 
