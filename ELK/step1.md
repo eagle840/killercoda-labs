@@ -26,21 +26,12 @@ run `docker ps`{{exec}} to review the ports
  - and Kibana is on 5601
 
 
-
-====
-
-rename cluster
-
-
-=====
-
-
 Once in the web portal, select 'explore on my own'
 
 
 open kibana web, > hamburger > Managment > Dev Tools
 
-lets check the health, paste in `GET _cluster/health`{{copy}}
+lets check the health, paste on line 7 `GET _cluster/health`{{copy}} and then the green triangle to run that query.
 
 - take note of the status, number of nodes, and shards
 
