@@ -29,8 +29,6 @@ restart Prometheus
 
 `docker restart my-prometheus`{{exec}}
 
-WIP check ports
-
 and check the status>target page to confirm the endpoint is up
 
 In Prometheus:
@@ -38,7 +36,7 @@ In Prometheus:
 Metrics specific to the Node Exporter are prefixed with 'node_'
 
 
-### pushgateway
+### pushgateway - Work-in-progress
 
 https://prometheus.io/docs/practices/pushing/
 

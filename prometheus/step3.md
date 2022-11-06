@@ -46,8 +46,6 @@ restart Prometheus
 
 `docker restart my-prometheus`{{exec}}
 
-WIP:  why are the port not coming back up?
-
 and check the status>target page to confirm the endpoint is up
 
 

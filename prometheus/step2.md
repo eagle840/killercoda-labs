@@ -33,8 +33,6 @@ add the follow to the config:
 
 `cd ~ && nano ./tmp/prometheus.yml`{{exec}}
 
-PROMETHEOUS IS ALREADY RUNNING, update yaml ? do I need to restart?
-
 ```yaml
   - job_name: docker  
     metrics_path: /metrics
@@ -88,5 +86,11 @@ go into datasources and add prometheous, with HTTP:URL:
 
 save and test
 
+
+# for reference
+
+- https://grafana.com/docs/grafana/v9.0/getting-started/build-first-dashboard/
+
+- https://grafana.com/docs/grafana/v9.0/setup-grafana/installation/docker/
 
 
