@@ -6,7 +6,7 @@ Lets update Ubuntu first:
 
 For full functionality, spark needs java 8
 
-`apt install default-jre`{{exec}} 
+`apt install -y default-jre`{{exec}} 
 
 `java -version`{{execute}}
 
@@ -20,27 +20,22 @@ and update it:
 
 
 Download Spark (we're using release 2.4, package 2.7):
-`curl -O https://archive.apache.org/dist/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz`{{execute}}
 
+`curl -O https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz`{{exec}}
 
+extract it:
 
-Extract it:
-`tar -xvf spark-2.4.5-bin-hadoop2.7.tgz`{{execute}}
+`tar -xvf spark-3.3.1-bin-hadoop3.tgz`{{exec}}
+
 
 And set it up for execution:
-`mv spark-2.4.5-bin-hadoop2.7 /usr/local/spark`{{execute}} 
-
+`mv spark-3.3.1-bin-hadoop3 /usr/local/spark`{{exec}}
 
 
 `export SPARK_HOME=/usr/local/spark`{{execute}}
 
 `export PATH=$PATH:$SPARK_HOME/bin`{{execute}}
 
-
-check JAVA
-`echo $JAVA_HOME`{{execute}}
-should equal
-`JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre`{{execute}}
 
 And finally lets check spark (for scala) is installed and working:
 `spark-shell --version`{{execute}} 
