@@ -6,6 +6,8 @@ Lets update Ubuntu first:
 
 For full functionality, spark needs java 8
 
+`apt install default-jre`{{exec}} 
+
 `java -version`{{execute}}
 
 We'll also need python:   

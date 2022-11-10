@@ -3,7 +3,7 @@ Now we'll the Python demo.
 
 `pyspark`{{execute}}
 
-In order to quit pyspark: `quit()`, and for help: `help()`
+In order to quit pyspark: 'quit()', and for help: `help()`{{exec}}
 
 We'll run the similar commands in step 2, but in python:
 
