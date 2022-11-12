@@ -19,13 +19,15 @@ For example:
 
 Kafka also has a command line consumer that will dump out messages to standard output, it should return the lines you typed in.   
 
+ctrl-c to exit
+
 
 `bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning`{{execute}}
 
 #### Shutdown java
 
-`ps -aux | grep java`{{exec}}
+`jps -ml`{{exec}}
 
 and kill each service (we'll be using the ports with docker-compose in the next step)
 
-kill -9 <pid>
+`kill -9 <pid>`
