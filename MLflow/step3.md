@@ -3,6 +3,11 @@
 WIP, think I need the mlflow extras package installed for this
 
 `mlflow models generate-dockerfile --model-uri runs:/<run_id>/model --enable-mlserver`{{copy}}
+WIP is the above cmd needed to run build? 
+
+`mlflow models build-docker`{{exec}}
+
+`docker images`{{exec}}
 
 
 `mlflow models --help`{{exec}}
