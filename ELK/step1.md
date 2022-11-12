@@ -39,3 +39,7 @@ check the stats of the nodes with
 
 `GET _nodes/stats`{{copy}}
 
+## Explore on your own
+
+If you wish to explore Kibana on your own, you can head to the Kibana home page, and 'try sample data'
+
