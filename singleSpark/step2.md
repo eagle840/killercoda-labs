@@ -7,6 +7,10 @@ To run spark-shell on this machine, just type spark-shell
 
 `spark-shell`{{execute}}
 
+with a spark session up, you can open the web portal on 4040
+
+{{TRAFFIC_HOST1_4040}}
+
 You should now see: `scala>`, to exit just type `:q`
 
 need a refresher on scala?, try leanxinyminutes.com <https://learnxinyminutes.com/docs/scala/>
