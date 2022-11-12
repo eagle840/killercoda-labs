@@ -8,7 +8,17 @@ where var's can't be changed with tf is running, locals can be
 
 # conditionls
 
+condition ? true_val : false_val
+
 # functions#
+
+# for loop
+
+  tags = {
+    for key, value in var.ec2_tags :
+    key => lower(value)
+  }
+}
 
 
 # helm deploy
