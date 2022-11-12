@@ -113,11 +113,14 @@ this time we'll run the project with the mlflow command, this will usually setup
 
 `mlflow run . -P alpha=0.5 --no-conda`{{exec}}
 
+(the '.' is the present directry, but can be replaced with a folder name)
+
 WIP : I think we use the mlflow run  since it uses the conda env by default, were as python train.py is in the present environment
 
-note the 'ID' of the output
+note the 'ID' of the output, and compare it against:
 
-(the '.' is the present directry, but can be replaced with a folder name)
+`mlflow runs list --experiment-id 0`{{exec}}
+
 
 `tree`{{exec}}
 

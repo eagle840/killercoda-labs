@@ -3,29 +3,36 @@
 
 https://www.mlflow.org/docs/latest/model-registry.html
 
-run
+the standard run command is:
 
 `mlflow models serve --model-uri runs:/<ID>/model --no-conda`{{copy}}
 
-WIP how to get run id's?
+lets look at the last set of runs:
 
-`mlflow runs list --experiment-id 0  | awk 'END{print $5}'`{{exec}}
 
-WIP this run has to have a pickle code
+`mlflow runs list --experiment-id 0`{{exec}}
+
+and select the last run (assuming it has a pickle file from the last model run)
 
 `last_run=$( mlflow runs list --experiment-id 0  | awk 'END{print $5}' )`{{exec}}
 
-`mlflow models serve -m ./mlruns/0/$last_run/artifacts/model -p 5001 --no-conda`
+`mlflow models serve -m ./mlruns/0/$last_run/artifacts/model -p 5001 --no-conda`{{exec}}
 
-WIP: 
+In a new bash terminal tab:
 
 and curl the the following
 
 confirm the endpoint is up:
 
-`curl  -v ^Cocalhost:5001/health`{{exec}}
+`curl  -v localhost:5001/health`{{exec}}
 
-WIP `curl -d '{"data":[[0.5, 0.5]]}' -H 'Content-Type: application/json'  localhost:5001/invocations`{{exec}}
+and well run a prediction against the endpoint, with the following data:
+
+```json
+{
+    "columns":["alcohol", "chlorides","citric acid", "density", "fixed acidity", "free sulfur dioxide", "pH", "residual sugar", "sulphates", "total sulfur dioxide", "volatile acidity"],
+    "data":[[12.8, 0.029, 0.48, 0.98, 6.2, 29, 3.33, 1.2, 0.39, 75, 0.66]]
+```
 
 
 `curl -X POST -H "Content-Type:application/json; format=pandas-split" --data '{"columns":["alcohol", "chlorides","citric acid", "density", "fixed acidity", "free sulfur dioxide", "pH", "residual sugar", "sulphates", "total sulfur dioxide", "volatile acidity"],"data":[[12.8, 0.029, 0.48, 0.98, 6.2, 29, 3.33, 1.2, 0.39, 75, 0.66]]}' http://127.0.0.1:5001/invocations`{{exec}}
@@ -33,9 +40,13 @@ WIP `curl -d '{"data":[[0.5, 0.5]]}' -H 'Content-Type: application/json'  localh
 
 # add a  registry store (sqlite)
 
+Return to the first bash tab:
+
 WIP put this in aother step
 
 https://www.mlflow.org/docs/latest/model-registry.html
+
+`nano train.py`{{exec}}
 
 add the following line in train.py @ line 46
 
@@ -44,7 +55,6 @@ add the following line in train.py @ line 46
 The last few time we ran training, the output was sent to file, now it set sent to sqlite, which has no entries in to, Run the trainings again:
 
 
-WIP why not run with mlflow cmd ?
 
 `python train.py 0.3 0.6`{{exec}}
 

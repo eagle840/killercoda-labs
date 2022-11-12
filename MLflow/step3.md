@@ -1,16 +1,31 @@
-# create a docker file/container
+# Containerize
 
 WIP, think I need the mlflow extras package installed for this
 
-`mlflow models generate-dockerfile --model-uri runs:/<run_id>/model --enable-mlserver`{{copy}}
-WIP is the above cmd needed to run build? 
+### FROM LOCAL
+
+get the last local run:
+
+`last_run=$( mlflow runs list --experiment-id 0  | awk 'END{print $5}' )`{{exec}}
+
+`mlflow models generate-dockerfile --model-uri runs:/$iast_run/model --enable-mlserver`{{copy}}
+
+`cat mlflow-dockerfile/Dockerfile`{{exec}}
 
 `mlflow models build-docker`{{exec}}
 
 `docker images`{{exec}}
 
+run  
+`docker images |  awk ' '/latest/' {print $1}'`{{exec}}
+
 
 `mlflow models --help`{{exec}}
+
+
+### FROM SQLITE
+
+WIP set MLFLOW_TRACKING_URI
 
 
 
