@@ -27,7 +27,7 @@ There are 4 major components to MLFlow: Tracking, Projects, Models, and Registry
 
 ## Run our 1st mlflow
 
-`cd mlflow/examples/quickstart/`{{exec}}
+`cd ~/mlflow/examples/quickstart/`{{exec}}
 
 This first example flow prints some log outputs:
 
@@ -41,11 +41,15 @@ and note that some new folders have been created for mlflow.
 
 `tree`{{exec}}
 
-By default, mlflow will track resources in the local mlruns folder, in the next step we'll change that to a sqlite database
+By default, mlflow will track resources in the local mlruns folder, in a future step we'll change that to a sqlite database
 
 each numbered folder is an 'experiment', and each experiment has 'runs' with alphanumberic numbers. (as shown in the UI later).      
      - meta data file: basic info about the experiment, inc 'name'   
      - tags folder - more info about the 'experiment/run'   
+    
+lets list out experiment 0 runs:
+
+`mlflow runs list --experiment-id 0`{{exec}}
      
       
 
@@ -109,6 +113,8 @@ this time we'll run the project with the mlflow command, this will usually setup
 
 `mlflow run . -P alpha=0.5 --no-conda`{{exec}}
 
+WIP : I think we use the mlflow run  since it uses the conda env by default, were as python train.py is in the present environment
+
 note the 'ID' of the output
 
 (the '.' is the present directry, but can be replaced with a folder name)
@@ -140,6 +146,6 @@ you can access the ui at port 5000 {{TRAFFIC_HOST1_5000}}
 
 ## compare model parameters
 
-Go back into the UI, and tick the check boxs againt all three runs, and click on compare. This will give you an analyical comparison of the runs.
+Go back into the UI, and tick the check boxs againt all three runs, and click on compare. This will give you an analyical comparison of the runs, allowing you to pick the best model for your requirement.
 
 

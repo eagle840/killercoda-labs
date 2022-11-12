@@ -9,7 +9,13 @@ run
 
 WIP how to get run id's?
 
-`mlflow models serve -m ./mlruns/0/3b6708fad9b24e4984416ce3588e282f/artifacts/model -p 5001 --no-conda`
+`mlflow runs list --experiment-id 0  | awk 'END{print $5}'`{{exec}}
+
+WIP this run has to have a pickle code
+
+`last_run=$( mlflow runs list --experiment-id 0  | awk 'END{print $5}' )`{{exec}}
+
+`mlflow models serve -m ./mlruns/0/$last_run/artifacts/model -p 5001 --no-conda`
 
 WIP: 
 
