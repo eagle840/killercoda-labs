@@ -19,7 +19,7 @@ and update it:
 `pip install --upgrade pip`{{execute}}
 
 
-Download Spark (we're using release 2.4, package 2.7):
+Download Spark :
 
 `curl -O https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz`{{exec}}
 
@@ -42,8 +42,3 @@ And finally lets check spark (for scala) is installed and working:
 
 and for python:
 `pyspark --version`{{execute}}
-
-with a spark session up, you can open the web portal on 4040
-
-{{TRAFFIC_HOST1_4040}}
-
