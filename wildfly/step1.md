@@ -2,45 +2,53 @@
 # Initial Setup
 
 
-apt update
+`apt update`{{exec}}
  
-apt install -y default-jre
+`apt install -y default-jre`{{exec}}
 
-java -version
+`java -version`{{exec}}
 
 from https://www.wildfly.org/downloads/
 
-wget https://download.jboss.org/wildfly/22.0.1.Final/wildfly-22.0.1.Final.tar.gz
+`wget https://download.jboss.org/wildfly/22.0.1.Final/wildfly-22.0.1.Final.tar.gz`{{exec}}
 
-tar -xvf wildfly-22.0.1.Final.tar.gz 
+`tar -xvf wildfly-22.0.1.Final.tar.gz `{{exec}}
 
-mv wildfly-22.0.1.Final /usr/local/
+`mv wildfly-22.0.1.Final /usr/local/`{{exec}}
 
-cd /usr/local/wildfly-22.0.1.Final/
+`cd /usr/local/wildfly-22.0.1.Final/`{{exec}}
 
-cd standalone/configuration/
+`ls`{{exec}}
+
+note standalone folder vs domain (cluster) folder
+
+`cd standalone/configuration/`{{exec}}
 
 change all the 127.0.0.1 to 0.0.0.0 
 
-nano standalone.xml 
+`nano standalone.xml `{{exec}}
 
 confirm with:
 
-cat standalone.xml | grep 127.0.0.1
+`cat standalone.xml | grep 127.0.0.1`{{exec}}
 
-cd ../../bin
+`cd ../../bin`{{exec}}
 
 add a user:
 
-sh add-user.sh
+`sh add-user.sh`{{exec}}
 
 start the server:
 
-sh standalone.sh
+`sh standalone.sh`{{exec}}
 
 front page: {{TRAFFIC_HOST1_8080}}
 
 management page: {{TRAFFIC_HOST1_9990}}
+
+WIP why is the console no content?
+
+`curl -v localhost:9990/console/index.html`{{exec}}
 
 
 
