@@ -4,11 +4,45 @@
 
 `apt update`{{exec}}
  
-`apt install -y default-jre`{{exec}}
+`apt install -y default-jre`{{copy}}
+
+OR
+
+`apt install -y openjdk-11-jdk`{{copy}}
 
 `java -version`{{exec}}
 
+`ls -lash /usr/lib/jvm/`{{exec}}
+
+ # /usr/lib/jvm/java-1.x.x-openjdk
+
+ vim /etc/profile
+
+Prepend sudo if logged in as not-privileged user, ie. sudo vim
+
+Press 'i' to get in insert mode
+add:
+
+export JAVA_HOME="path that you found"
+
+export PATH=$JAVA_HOME/bin:$PATH
+Reboot your system, and voila
+
+`export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64/"`{{copy}}
+
+`export PATH=$JAVA_HOME/bin:$PATH`{{exec}}
+
+`exec bash`{{exec}}
+
+`echo $PATH`{{exec}}
+
+WIP CONFIRM THIS 
+
+ 
+
 from https://www.wildfly.org/downloads/
+
+`cd ~`{{exec}}
 
 `wget https://download.jboss.org/wildfly/22.0.1.Final/wildfly-22.0.1.Final.tar.gz`{{exec}}
 
@@ -50,6 +84,17 @@ WIP why is the console no content?
 
 `curl -v localhost:9990/console/index.html`{{exec}}
 
+### for cli
+
+`cd /usr/local/wildfly-27.0.0.Final/bin`{{exec}}
+
+`sh jboss-cli.sh`{{exec}}
+
+WIP why is jconsole not working: - it needs a graphical interface
+
+`sh jconsole.sh`{{exec}}
+
+https://www.eclipse.org/openj9/docs/tool_jps/
 
 
 
