@@ -12,6 +12,10 @@ OR
 
 `java -version`{{exec}}
 
+`apt install -y maven`{{exec}}
+
+`mvn --version`{{exec}}
+
 `ls -lash /usr/lib/jvm/`{{exec}}
 
  # /usr/lib/jvm/java-1.x.x-openjdk
@@ -70,7 +74,9 @@ confirm with:
 
 add a user:
 
-`sh add-user.sh`{{exec}}
+WIP LEAVE OUT THIS RUN
+
+`sh add-user.sh`{{run}}
 
 start the server:
 
