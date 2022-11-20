@@ -12,7 +12,7 @@ https://opentelemetry.io/docs/instrumentation/js/getting-started/nodejs/s
 
 `cd opentelemetry-tracing/`{{exec}}
 
-we'll be using the zipkin tracing system: https://zipkin.io/
+we'll be using the zipkin tracing system: https://zipkin.io/ 
 
 `docker run -d -rm -p 9411:9411 openzipkin/zipkin`{{exec}}
 
@@ -28,7 +28,11 @@ Lets review the code:
 
 WIP: link to opentelemtry for nodejs
 
+https://opentelemetry.io/docs/instrumentation/js/getting-started/nodejs/
+
 Review the app, a simple http responce program
+
+notice we installed a 'core' and an 'exporter' for zipkin
 
 `cat app.js`{{exec}}
 
