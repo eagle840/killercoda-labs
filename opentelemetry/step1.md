@@ -8,16 +8,30 @@ https://opentelemetry.io/docs/instrumentation/js/getting-started/nodejs/s
 
 `git clone https://github.com/kubowania/opentelemetry-tracing.git`{{exec}}
 
-`apt install nodejs`{{exec}}
-
-`apt install npm`{{exec}}
+`apt install -y nodejs npm`{{exec}}
 
 `cd opentelemetry-tracing/`{{exec}}
 
-`docker run -d -p 9411:9411 openzipkin/zipkin`{{exec}}
+we'll be using the zipkin tracing system: https://zipkin.io/
+
+`docker run -d -rm -p 9411:9411 openzipkin/zipkin`{{exec}}
+
+confirm zipkin is running:
+
+{{TRAFFIC_HOST1_9411}}
 
 `npm i`{{exec}}
-   
+
+Lets review the code:
+
+`cat tracing.js`{{exec}}
+
+WIP: link to opentelemtry for nodejs
+
+Review the app, a simple http responce program
+
+`cat app.js`{{exec}}
+
 `node -r ./tracing.js app.js`{{exec}}
 
 terminal 2
@@ -27,14 +41,18 @@ terminal 2
 
 `curl -v localhost:8080/date`{{exec}}
 
-gui
----
-open port 9411 for zipkin
+## review log
 
-{{TRAFFIC_HOST2_9411}}
+return to the zipkin page and press 'query'
+
+review results
 
 other
 -----
+
+`cat ~/opentelemetry-tracing/tracing.js`{{exec}}
+
+
 note: const { ZipkinExporter } = require("@opentelemetry/exporter-zipkin");
 
 
