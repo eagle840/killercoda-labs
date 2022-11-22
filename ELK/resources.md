@@ -19,3 +19,6 @@ password: changeme
 
 
 https://github.com/thombashi/elasticsearch-faker
+
+http://media.sundog-soft.com/es/ml-latest-small.zip # 100k ratings
+                            /es8/movies.json  # _bulk insert

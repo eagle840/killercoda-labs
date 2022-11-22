@@ -31,3 +31,50 @@ output {
 ```
 
 then add an index pattern into kibana
+
+## BEATS
+
+lets check the Elastic version
+
+`curl http://localhost:9200`{{exec}}
+
+and install the same Beats version:
+
+`apt install metricbeat=7.17.14`{{copy}}
+
+`systemctl start metricbeat`{{copy}}
+
+
+
+`wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -`{{exec}}
+
+`sudo apt-get install apt-transport-https`{{exec}}
+
+WIP `echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-8.x.list`{{copy}}
+
+`echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list`{{copy}}
+
+`sudo apt-get update`{{exec}}
+
+`sudo apt-get install elasticsearch`{{copy}}
+
+`sudo apt-get install metricbeat`{{copy}}
+
+`sudo apt-get install metricbeat=7.17.4`{{copy}}
+
+`curl http://localhost:9200`{{exec}}
+
+`sudo systemctl enable metricbeat`{{exec}}
+
+`sudo update-rc.d metricbeat defaults 95 10`{{exec}}
+
+create some load:
+
+`apt install stress`{{exec}}
+
+`nprox`{{exec}}
+
+`stress --cpu 1 --timeout 120`{{exec}}
+
+`stree --vm 5 --timeout 180`{{exec}}
+
