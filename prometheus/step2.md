@@ -86,6 +86,21 @@ go into datasources and add prometheous, with HTTP:URL:
 
 save and test
 
+Lets add a dashboard to monitor the prometheus database itself:
+
+https://grafana.com/grafana/dashboards/
+
+https://grafana.com/grafana/dashboards/3662-prometheus-2-0-overview/
+
+in the Grafana web portal:
+ - click on the 4 squares on the left hand side
+ - click on  '+ import'
+ - enter  `3662`{{copy}}   ' Import via grafana.com'
+ - under 'prometheus' select prometheus (default)
+ - click on import
+
+It should now take you to the dashboard page and show you the statistics.
+
 
 # for reference
 

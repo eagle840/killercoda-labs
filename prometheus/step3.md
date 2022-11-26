@@ -48,6 +48,8 @@ restart Prometheus
 
 and check the status>target page to confirm the endpoint is up
 
+and add the Grafana dashboard id `14282`{{copy}}
+
 
 
 

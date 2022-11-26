@@ -35,6 +35,10 @@ In Prometheus:
 
 Metrics specific to the Node Exporter are prefixed with 'node_'
 
+Can you now add the 'Node Exporter Full' Grafana dashboard, with id `1860`{{copy}}
+
+
+
 
 ### pushgateway - Work-in-progress
 
