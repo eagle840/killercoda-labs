@@ -41,12 +41,19 @@ This quickstart is taken from the BenoML site: https://docs.bentoml.org/en/lates
 
 `pip install bentoml scikit-learn pandas`{{exec}}
 
+Lets reveiw the ML code:
 
 `cat train.py`{{exec}}
 
+And run it:
+
 `python train.py`{{exec}}
 
+Bentoml will require a service code
+
 `cat service.py`{{exec}}
+
+and run it to provide an api for processing predictions:
 
 `bentoml serve service:svc --reload`{{exec}}
 
@@ -66,6 +73,8 @@ or open http://127.0.0.1:3000  at the following link:
 
 Terminate bentoservice with crtl-c
 
+
+## Containize the service
 
 `cat bentofile.yaml`{{exec}}
 
