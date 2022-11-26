@@ -1,5 +1,5 @@
 {
-  "title": "WORK-IN-PROGRESS BentoML and Yatai, Bento on K8s",
+  "title": "WORK-IN-PROGRESS BentoML/Yatai, on K8s",
   "description": "Basic Yatai setup, allowing deployment on BentoML containers on K8s (v0.01)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
