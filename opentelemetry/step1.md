@@ -20,6 +20,8 @@ confirm zipkin is running:
 
 {{TRAFFIC_HOST1_9411}}
 
+Lets install the required node packages
+
 `npm i`{{exec}}
 
 Lets review the code:
@@ -37,6 +39,8 @@ notice we installed a 'core' and an 'exporter' for zipkin
 `cat app.js`{{exec}}
 
 `node -r ./tracing.js app.js`{{exec}}
+
+'-r ./tracing.js' will proprogate traces over http
 
 terminal 2
 ----------
