@@ -4,7 +4,7 @@
 
 There are two way to search repos from the command line: 
 
-- helm search hub # searchs the artifact hub at: https://artifacthub.io/
+- helm search hub # searchs the artifact hub at: https://artifacthub.io/ or https://bitnami.com/stacks/helm, although the artifact hub is better layed out
 - helm search repo # search the local repo you've added repo's to
 
 ### using the Repo
@@ -39,6 +39,14 @@ You can view the charts for bitnami at: https://bitnami.com/stacks/helm
 * to add addictional parameters: `helm install --set param=vale`, or supply a 'values' yaml file with the vales `--values file.yaml`
 
 eg service.port=80
+
+### pods/volumes not coming up?
+
+some charts require storage, run:
+
+`k get pvc -A`{{exec}}
+
+to see what the deployment is waiting for
 
 
 

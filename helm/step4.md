@@ -51,6 +51,11 @@ When you run the `helm template .` command, you may recieve an error. You can ad
 
 It is important to note that the processor will not process files that start with an underscore(_).
 
+WIP:
+`helm template elasticsearch bitnami/elasticsearch -f elasticsearch-values.yaml --debug > errors.yaml`{{copy}}
+
+[--dry-run]
+
 
 ### pipelines and functions
 
