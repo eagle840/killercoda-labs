@@ -2,12 +2,32 @@
 # Initial Setup
 
 
-WIP 
+WIP  from: https://hub.docker.com/r/bitnami/wildfly
 ```sh
 docker run -p 8080:8080 -p 9990:9990 \
     -v /path/to/wildfly-persistence:/bitnami/wildfly \
     bitnami/wildfly:latest
+```{{copy}}
+
+use (you need to fix the storage):
+```sh
+docker run -p 8080:8080 -p 9990:9990 \
+    -e WILDFLY_PASSWORD=nick1234!  \
+    bitnami/wildfly:latest
+```{{copy}}
+
+
+```sh
+docker run -p 8080:8080 -p 9990:9990  -e WILDFLY_USERNAME=nick -e WILDFLY_PASSWORD=nick1234!        bitnami/wildfly:latest /opt/bitnami/wildfly/bin/standalone.sh -bmanagement=0.0.0.0 -b 0.0.0.0
 ```{{exec}}
+
+WIP un/pw not working
+
+see http://www.mastertheboss.com/jbossas/jboss-configuration/how-to-bind-wildfly-to-an-ip-address/
+for a possible solution
+
+use   /opt/bitnami/wildfly/bin
+
 
 
 `apt update`{{exec}}
