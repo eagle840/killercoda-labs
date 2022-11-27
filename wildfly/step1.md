@@ -2,13 +2,23 @@
 # Initial Setup
 
 
+WIP 
+```sh
+docker run -p 8080:8080 -p 9990:9990 \
+    -v /path/to/wildfly-persistence:/bitnami/wildfly \
+    bitnami/wildfly:latest
+```{{exec}}
+
+
 `apt update`{{exec}}
+
+For wildfly we can just use the jvm:
  
 `apt install -y default-jre`{{copy}}
 
-OR
+but the sdk gives us more feature
 
-`apt install -y openjdk-11-jdk`{{copy}}
+`apt install -y openjdk-11-jdk`{{exec}}
 
 `java -version`{{exec}}
 
@@ -18,9 +28,11 @@ OR
 
 `ls -lash /usr/lib/jvm/`{{exec}}
 
- # /usr/lib/jvm/java-1.x.x-openjdk
+### set java environment
 
- vim /etc/profile
+locate /usr/lib/jvm/java-1.x.x-openjdk
+
+ `vim /etc/profile`{{exec}}
 
 Prepend sudo if logged in as not-privileged user, ie. sudo vim
 
@@ -76,11 +88,15 @@ add a user:
 
 WIP LEAVE OUT THIS RUN
 
-`sh add-user.sh`{{run}}
+`sh add-user.sh`{{exec}}
 
 start the server:
 
 `sh standalone.sh`{{exec}}
+
+last log item should be
+
+'Admin console listening on http://127.0.0.1:9990' ? 0.0.0.0
 
 front page: {{TRAFFIC_HOST1_8080}}
 
@@ -92,13 +108,17 @@ WIP why is the console no content?
 
 ### for cli
 
-`cd /usr/local/wildfly-27.0.0.Final/bin`{{exec}}
+`cd /usr/local/wildfly-22.0.0.Final/bin`{{exec}}
 
 `sh jboss-cli.sh`{{exec}}
 
-WIP why is jconsole not working: - it needs a graphical interface
+The cli is based on a file/directory type structure, where each individual item (~file) is 'key=value'.
 
-`sh jconsole.sh`{{exec}}
+List the structure with 'ls' and change dirctory with 'cd'
+
+If you're running wildfly on an graphical OS, you can use a graphical interface
+
+`sh jconsole.sh`{{copy}}
 
 https://www.eclipse.org/openj9/docs/tool_jps/
 
