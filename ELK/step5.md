@@ -52,7 +52,7 @@ and install the same Beats version:
 
 WIP `echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-8.x.list`{{copy}}
 
-`echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list`{{copy}}
+`echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-8.x.list`{{copy}}
 
 `sudo apt-get update`{{exec}}
 
