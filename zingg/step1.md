@@ -3,6 +3,19 @@
 
 `docker run -it zingg/zingg:0.3.4 bash`{{exec}}
 
+
+"Zingg needs a configuration file that defines the data and what kind of matching is needed. You can create the configuration file by following the instructions [here](https://docs.zingg.ai/zingg/stepbystep/configuration)."
+
+`cd examples/febrl/`{{copy}}
+
+`cat examples/febrl/config.json`{{exec}}
+
+
+
+the input data:  https://github.com/zinggAI/zingg/blob/main/examples/febrl/test.csv
+
+the output folder: /tmp/zinggOutput
+
 `./scripts/zingg.sh --phase findTrainingData --conf examples/febrl/config.json`{{exec}}
 
 
