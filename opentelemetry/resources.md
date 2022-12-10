@@ -10,3 +10,8 @@ freecodecamp
 https://www.youtube.com/watch?v=r8UvWSX3KA8
 
 https://dev.to/newrelic/instrumenting-your-node-js-apps-with-opentelemetry-5flb
+
+
+try yt:
+The Opentelemetry collector | A complete 1 hour workshop
+by Aspecto
