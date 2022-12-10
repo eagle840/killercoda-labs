@@ -1,0 +1,1 @@
+In a previous lab I had issues with a container now providing an end point. In this lab we'll use that example and others to troubleshoot container networks in Docker, docker-compose, and K8s.
