@@ -30,6 +30,8 @@ In tab 1 and 2, ctrl-c to terminate the java process'
 
 If needed you can terminate them with:
 
+WIP try 'killall -9 java'
+
 `jps -ml`{{exec}}
 
 and kill each service (we'll be using the ports with docker-compose in the next step)
