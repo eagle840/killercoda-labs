@@ -26,6 +26,10 @@ ctrl-c to exit
 
 #### Shutdown java
 
+In tab 1 and 2, ctrl-c to terminate the java process'
+
+If needed you can terminate them with:
+
 `jps -ml`{{exec}}
 
 and kill each service (we'll be using the ports with docker-compose in the next step)

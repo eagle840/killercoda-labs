@@ -172,7 +172,12 @@ if __name__ == '__main__':
 
 #### start consomer
 
+in a second tab, run the producer several times to see the data going through Kafka
+
+`cd ~ && cd kafka-python-getting-started`{{exec}}
+
 `chmod u+x consumer.py`{{exec}}   
 
-
 `./consumer.py getting_started.ini`{{exec}}
+
+{{TRAFFIC_HOST1_9000}}
