@@ -12,12 +12,6 @@ Open a new terminal tab
 
 `mkdir kafka-python-getting-started && cd kafka-python-getting-started`{{exec}}   
 
-`apt install -y python3-virtualenv`{{exec}}   
-
-`virtualenv env`{{exec}}   
-
-`source env/bin/activate`{{exec}}   
-
 `pip install confluent-kafka`{{exec}}   
 
 #### Program python
@@ -170,9 +164,9 @@ if __name__ == '__main__':
 `./producer.py getting_started.ini`{{exec}}   
 
 
-#### start consomer
+#### start consumer
 
-in a second tab, run the producer several times to see the data going through Kafka
+in a another tab, run the consumer - you'll see the items processed from the producer, now return to the producer tab and run  several times to see the data going through Kafka
 
 `cd ~ && cd kafka-python-getting-started`{{exec}}
 
