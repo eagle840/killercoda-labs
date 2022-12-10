@@ -1,15 +1,19 @@
 # initial setup
 
 
-## install terraform
+## install a specific version of terraform
+
+#### install the update and keys
 
 `sudo apt update`{{execute}}
 
 `curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -`{{execute}}    
 
-`apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"`{{execute}}  
+`apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"`{{execute}} 
 
-`apt install terraform`{{execute}}    
+#### install version 1.1.5 of terraform
+
+`apt install terraform=1.1.5`{{execute}}    
 
 `terraform version`{{execute}}    
 

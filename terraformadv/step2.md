@@ -31,6 +31,8 @@ see the following docs for deploying a helm chart with terraform: https://regist
 
 `nano main.tf`{{execute}}
 
+WIP consider using Redis (needs storage)
+
 ```
 provider "helm" {
   kubernetes {
