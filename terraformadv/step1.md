@@ -3,6 +3,12 @@
 
 ## install a specific version of terraform
 
+- consider:
+- tf version
+- providers and their versions  https://registry.terraform.io/providers/hashicorp/null
+- backend
+- tf cloud
+
 #### install the update and keys
 
 `sudo apt update`{{execute}}

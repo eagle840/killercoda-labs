@@ -1,3 +1,19 @@
+# steps
+
+- create providers.tf
+- create main.tf
+- create var.tf
+- create output.tf
+- create modules (where in this list)
+
+
+# cmd
+
+- tf fmt
+- tf validate
+
+
+
 # console
 
 https://prefetch.net/blog/2020/04/27/using-the-terraform-console-to-debug-interpolation-syntax/
