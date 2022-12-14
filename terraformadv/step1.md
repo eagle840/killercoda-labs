@@ -17,6 +17,8 @@
 
 `apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"`{{execute}} 
 
+`sudo apt update`{{execute}}
+
 #### install version 1.1.5 of terraform
 
 `apt install terraform=1.1.5`{{execute}}    

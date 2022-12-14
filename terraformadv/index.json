@@ -4,6 +4,26 @@
   "difficulty": "Advanced",
   "time": "60 minutes",
   "details": {
+    "assets":{
+      "host01": [
+        {
+          "file": "main.tf",
+          "target": "~/mytf/"
+        },
+        {
+          "file": "var.tf",
+          "target": "~/mytf/"
+        },
+        {
+          "file": "providers.tf",
+          "target": "~/mytf/"
+        },
+        {
+          "file": "docker-compose.yml",
+          "target": "~/"
+        }
+      ]
+    },    
     "steps": [
       {
         "title": "Step 1",
