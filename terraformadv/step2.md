@@ -43,6 +43,29 @@ resource "null_resource" "cluster" {
 - tf fmt
 - tf validate
 
+# add some json stuff
+
+We've added a json file
+
+`cat vars.json`{{exec}}
+
+lets init the config to load it in WIP it is just init? or apply?
+
+`terraform init`{{exec}}
+
+we can now do a validate:
+
+`terraform validate`{{exec}}
+
+add a locals.tf file, now how we imported a single item, vs the whole object:
+
+```
+locals {
+  net1 = jsondecode(file("./vars.json"))["cidr_block"]
+  image = jsondecode(file("./vars.json"))["image"]
+  vars = jsondecode(file("./vars.json"))
+}
+```
 
 
 # console
@@ -54,6 +77,19 @@ https://prefetch.net/blog/2020/04/27/using-the-terraform-console-to-debug-interp
 `type(["a","b"])`
 
 `type(tolist(["a","b"]))`
+
+look at the json items we brought in:
+
+`local.image`
+
+and the whole json object:
+
+
+`local.vars`
+
+and a single item from the json object:
+
+`local.vars.cidr_block`
 
 use the name (dot notation) of any resource/data and it'll return the json data
 

@@ -1,6 +1,9 @@
 # initial setup
 
 
+Start a postgress database to store the backend.   
+`docker-compose up -d`{{exec}}
+
 ## install a specific version of terraform
 
 - consider:
@@ -54,6 +57,8 @@
 `k get deploy`{{execute}}
 
 # install a postgres backend
+
+WIP this was done with docker compose
 
 docker run progress
 

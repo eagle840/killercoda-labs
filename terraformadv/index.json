@@ -11,6 +11,10 @@
           "target": "~/mytf/"
         },
         {
+          "file": "vars.json",
+          "target": "~/mytf/"
+        },
+        {
           "file": "var.tf",
           "target": "~/mytf/"
         },
