@@ -1,0 +1,33 @@
+nc  ideas
+https://www.linode.com/docs/networking/diagnostics/netcat/netcat/
+
+
+tcp resources
+tcpdump examples: https://hackertarget.com/tcpdump-examples/
+tcpdump examples: 
+tcpdump examples: https://danielmiessler.com/study/tcpdump/
+
+
+Start another scenario for more complex tcpdump
+
+
+CUT OUT OF ORGINAL
+ts isp connections
+
+ping  checking the timeouts for
+    local gw
+    8.8.8.8
+
+    tracert 8.8.8.8
+
+    check router for its, ISP ip and gw
+    try pinging those 2 see timeout
+    try pinging with '-l'  allows your to set size (what about fragmenst)
+
+hopefully the tracert will return an ASN number
+lookit up  - give websites
+Try connecting to looking glass server and back tracert
+try a speed test - give websites
+ping while running speed test (to local asn router)
+
+
