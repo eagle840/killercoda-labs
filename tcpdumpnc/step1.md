@@ -33,19 +33,19 @@ and lets see what interfaces are available on this machine
 
 `tcpdump -D`{{ execute }}
 
-since ens3 is our main interface, we'll be using the option `-i ens3`  or `-i 1`
+since ens3 is our main interface, we'll be using the option `-i enp1s0`  or `-i 1`
 
 lets capture the next 5 packets transvering ens3
 
-`tcpdump -i ens3 -c 5`{{ execute }}
+`tcpdump -i enp1s0 -c 5`{{ execute }}
 
 I don't want to see the dns entries
 
-`tcpdump -i ens3 -c 5 -n`{{ execute }}
+`tcpdump -i enp1s0 -c 5 -n`{{ execute }}
 
 to really shorten up the output try `-q` minimum,  `-t` no time stamps
 
-`tcpdump -i ens3 -c 5 -nqt`{{ execute }}
+`tcpdump -i enp1s0 -c 5 -nqt`{{ execute }}
 
 #### basic commands
 
@@ -69,7 +69,7 @@ to really shorten up the output try `-q` minimum,  `-t` no time stamps
 ### Lets try some basic filters
 
 Look for DNS traffic using UDP on port 53
-`tcpdump -i ens3 udp -c 3 -nt -u port 53`{{ execute }}
+`tcpdump -i enp1s0 udp -c 3 -nt -u port 53`{{ execute }}
 
 
 And lets send a ping to trigger a dns request (type yes when prompted)
@@ -79,7 +79,7 @@ And lets send a ping to trigger a dns request (type yes when prompted)
 
 Lets look for incoming traffic from host02
 
-`tcpdump -i ens3  -c 3 -v -nt src host host02`{{ execute }}
+`tcpdump -i enp1s0  -c 3 -v -nt src host host02`{{ execute }}
 
 And lets send a ping (type yes when prompted) using ssh from the 2nd host.
 
@@ -88,7 +88,7 @@ And lets send a ping (type yes when prompted) using ssh from the 2nd host.
 
 
 the more complex ones you should inc in "", so lets look for incoming traffic of type ssh.
-`tcpdump -i ens3  -c 3 -v -nt "src host host02 || src port 22"`{{ execute HOST1 }}
+`tcpdump -i enp1s0  -c 3 -v -nt "src host host02 || src port 22"`{{ execute HOST1 }}
 
 
 [www.tcpdump.org  man page for tcpdump](https://www.tcpdump.org/manpages/tcpdump.1.html)

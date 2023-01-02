@@ -13,7 +13,7 @@ Enter yes when prompted.
 
 Lets capture some packets (stop after 30s ctrl-c) to file tcpdump.pcap
 
-`tcpdump -i ens3 -c 5 -w tcpdump.pcap`{{ execute }}
+`tcpdump -i 1 -c 5 -w tcpdump.pcap`{{ execute }}
 
 And take a look at that file through tshark
 `tshark -r tcpdump.pcap`{{ execute }}

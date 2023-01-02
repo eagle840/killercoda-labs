@@ -1,6 +1,6 @@
 {
   "title": "Using tcpdump, netcat & wireshark",
-  "description": "An introduction to using tcpdump, netcat and wireshark (v0.90)",
+  "description": "An introduction to using tcpdump, netcat and wireshark (v0.91)",
   "difficulty": "Beginner",
   "time": "30 minutes",
   "details": {
@@ -30,6 +30,6 @@
     "hidefinish": true
   },
   "backend": {
-    "imageid": "ubuntu"
+    "imageid": "kubernetes-cluster-running:1.21"
   }
 }
