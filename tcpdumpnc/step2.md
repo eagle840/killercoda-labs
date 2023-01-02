@@ -19,7 +19,7 @@ Lets setup a simple server on host1 with `-l` for listen and on port 1234 `-p 12
 and connect to it on the other server - host2
 
 Connnect to Terminal Host 2 and run.
-`nc host01 1234`{{ execute HOST2 }}
+`nc node01 1234`{{ execute HOST2 }}
 
 Now try sending messages between each server, to quit just use **ctrl-c**
 
@@ -35,7 +35,7 @@ and disconnect **ctrl-C**
 
 Next up, lets try a little port scanning with `-z`, and this time like tcpdump we'll use `-n` to suppress name resolution. The last argument here specifies the port range 1 to 30
 
-`nc -vv -z  host02 1-30`{{execute}}
+`nc -vv -z  node01 1-30`{{execute}}
 
 Looks like ssh is only open in this range
 

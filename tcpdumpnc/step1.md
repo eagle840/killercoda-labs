@@ -72,8 +72,8 @@ Look for DNS traffic using UDP on port 53
 `tcpdump -i enp1s0 udp -c 3 -nt -u port 53`{{ execute }}
 
 
-And lets send a ping to trigger a dns request (type yes when prompted)
-`ssh root@host01 ping -c 5 www.bbc.com`{{execute HOST2}}
+And lets send a ping to trigger a dns request in another terminal (type yes when prompted)
+`ssh root@node01 ping -c 5 www.bbc.com`{{execute HOST2}}
 
 
 
@@ -83,7 +83,7 @@ Lets look for incoming traffic from host02
 
 And lets send a ping (type yes when prompted) using ssh from the 2nd host.
 
-`ssh root@host01 ping -c 3 www.bbc.com`{{execute HOST2}}
+`ssh root@node01 ping -c 3 www.bbc.com`{{execute HOST2}}
  
 
 
