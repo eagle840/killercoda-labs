@@ -1,6 +1,8 @@
 
 # Initial Setup
 
+WIP: https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
+
 `apt update`{{exec}}
 
 `apt install -y net-tools jq tree`{{exec}}
@@ -13,19 +15,38 @@ Boot up the ELK stack:
 
 wait for the elasticsearch server to come up, you will get a json response from:
 
-`curl http://localhost:9200`{{exec}}
+WIP `curl http://localhost:9200`{{exec}}
 
 Note the version of ElasticSearch.
 
+copy the following token:
 
+`docker exec elasticsearch  ./bin/elasticsearch-create-enrollment-token --scope kibana`{{exec}}
 
-{{TRAFFIC_HOST1_5601}}/app/home
+connect to: and enter the token
 
-add 'app/home'
+then extract the verification code:
+
+`docker exec kibana ./bin/kibana-verification-code`{{exec}}
+
+we'll need to reset the password, copy it for latter use
+
+`docker exec -it elasticsearch  ./bin/elasticsearch-reset-password  -u elastic`{{exec}}
+
+{{TRAFFIC_HOST1_5601}}
+
+`docker cp elasticsearch:/usr/share/elasticsearch/config/certs/http_ca.crt .`{{exec}}
+
+replace <password> in the following, to confirm a good connection to the ES database
+
+`curl --cacert http_ca.crt -u elastic:<password> https://localhost:9200`{{copy}}
 
 run `docker ps`{{exec}} to review the ports  
  - note ES is on 9200
  - and Kibana is on 5601
+
+
+ NEW PAGE!
 
 ## Configure to download beats
 
@@ -38,6 +59,12 @@ run `docker ps`{{exec}} to review the ports
 `sudo apt update`{{exec}}
 
 `sudo apt install metricbeat=8.5.3`{{exec}}
+
+`nano sudo /etc/metricbeat/metricbeat.yml`{{exec}}
+
+and enter the un:pw  in the 'Elasticsearch Output', removing  the hashs
+
+WIP you have to install ca cert in !
 
 
 

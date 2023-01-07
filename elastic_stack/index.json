@@ -1,6 +1,6 @@
 {
   "title": "WORK-IN-PROGRESS Elastic Stack 8",
-  "description": "Boot up an elastic Stack with Docker Compose (v.01) ",
+  "description": "Boot up an elastic Stack with Docker Compose (v.02) ",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
