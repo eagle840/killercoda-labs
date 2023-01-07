@@ -40,7 +40,23 @@ lets check the Elastic version
 
 and install the same Beats version:
 
-`apt install metricbeat=7.17.14`{{copy}}
+WIP move to step 1 the key update
+
+
+`wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg`{{exec}}
+
+`sudo apt-get install apt-transport-https`{{exec}}
+
+`echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list`{{exec}}
+
+`sudo apt-get update`{{exec}}
+
+
+`apt install metricbeat=7.17.8`{{copy}}
+
+WIP update docker to the same
+
+WIP `metricbeat setup`{{copy}}
 
 `systemctl start metricbeat`{{copy}}
 

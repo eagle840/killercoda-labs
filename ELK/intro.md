@@ -1,4 +1,4 @@
-This lab we'll setup a ELk stack, using Elasticsearch 7.17
+This lab we'll setup a unsecure ELk stack, using Elasticsearch 7.17
 
 system ->  Logstash (data pipeline) -> ES (time-series DB)  -> Kibana (dashboards)
 
