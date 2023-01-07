@@ -33,13 +33,13 @@ and lets see what interfaces are available on this machine
 
 `tcpdump -D`{{ execute }}
 
-since ens3 is our main interface, we'll be using the option `-i enp1s0`  or `-i 1`
+since enp1s0 is our main interface, we'll be using the option `-i enp1s0`  or `-i 1`
 
 lets capture the next 5 packets transvering ens3
 
 `tcpdump -i enp1s0 -c 5`{{ execute }}
 
-I don't want to see the dns entries
+I don't want to see the dns entries (-n)
 
 `tcpdump -i enp1s0 -c 5 -n`{{ execute }}
 
@@ -47,7 +47,7 @@ to really shorten up the output try `-q` minimum,  `-t` no time stamps
 
 `tcpdump -i enp1s0 -c 5 -nqt`{{ execute }}
 
-#### basic commands
+### basic tcpdump args:
 
 ```
  tcpdump    
@@ -73,29 +73,43 @@ Look for DNS traffic using UDP on port 53
 
 
 And lets send a ping to trigger a dns request in another terminal (type yes when prompted)
+
+`ping -c 3 www.bbc.com`{{exec}}
+
+WIP REMOVE:
 `ssh root@node01 ping -c 5 www.bbc.com`{{execute HOST2}}
 
+## Setup another tab
+
+We are presently working on 'controlplane'
+
+`hostname`{{exec}}
+
+Next to 'tab 1' to open a second tab.
+
+and lets connect to the other server
+
+`ssh root@node01`{{exec}}
 
 
-Lets look for incoming traffic from host02
+Lets send some pings to the controlplane
+
+`ssh root@node01 ping -c 10 www.bbc.com`{{exec}}
+
+Lets look for incoming traffic from node1 - **return to tab 1**
 
 `tcpdump -i enp1s0  -c 3 -v -nt src host host02`{{ execute }}
 
-And lets send a ping (type yes when prompted) using ssh from the 2nd host.
+To run more complex filters you should include them  in double quotes, so lets look for incoming traffic of type ssh.
 
-`ssh root@node01 ping -c 3 www.bbc.com`{{execute HOST2}}
- 
-
-
-the more complex ones you should inc in "", so lets look for incoming traffic of type ssh.
-`tcpdump -i enp1s0  -c 3 -v -nt "src host host02 || src port 22"`{{ execute HOST1 }}
+`tcpdump -i enp1s0  -c 3 -v -nt "src host node01 || src port 22"`{{ execute HOST1 }}
 
 
 [www.tcpdump.org  man page for tcpdump](https://www.tcpdump.org/manpages/tcpdump.1.html)
 
 
 
-#### filters
+### short list of filter:
 
   1. host \<ip> or <dns name>
   2. net <cidr addr eg 10.0.0.0/24>

@@ -1,10 +1,12 @@
 ### wireshark
 
+IN tab 1:
+
 Lets install wireshark for console (tshark)
 `apt-get update -y`{{ execute }}
 
 
-`apt-get install tshark -y`{{ execute }}
+`apt-get install tshark -y`{{exec}}
 Enter yes when prompted.
 
 

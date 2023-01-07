@@ -1,6 +1,6 @@
 {
   "title": "Using tcpdump, netcat & wireshark",
-  "description": "An introduction to using tcpdump, netcat and wireshark (v0.92)",
+  "description": "An introduction to using tcpdump, netcat and wireshark (v0.94)",
   "difficulty": "Beginner",
   "time": "30 minutes",
   "details": {
