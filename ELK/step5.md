@@ -51,30 +51,21 @@ WIP move to step 1 the key update
 
 `sudo apt-get update`{{exec}}
 
+### main cmds/setting
 
-`apt install metricbeat=7.17.8`{{copy}}
+<beatcmd> test config # to test the yml config
+<beatcmd> test output # to test connection to ES
+<beatcmd> setup # to setup dashboard etc in es/kibana stack 
+
+## metricbeat
+
+
+`apt install metricbeat=7.17.4`{{copy}}
 
 WIP update docker to the same
 
 WIP `metricbeat setup`{{copy}}
 
-`systemctl start metricbeat`{{copy}}
-
-
-
-`wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -`{{exec}}
-
-`sudo apt-get install apt-transport-https`{{exec}}
-
-WIP `echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-8.x.list`{{copy}}
-
-`echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-8.x.list`{{copy}}
-
-`sudo apt-get update`{{exec}}
-
-`sudo apt-get install elasticsearch`{{copy}}
-
-`sudo apt-get install metricbeat`{{copy}}
 
 `sudo apt-get install metricbeat=7.17.4`{{copy}}
 
@@ -88,7 +79,7 @@ create some load:
 
 `apt install stress`{{exec}}
 
-`nprox`{{exec}}
+`nproc`{{exec}}
 
 `stress --cpu 1 --timeout 120`{{exec}}
 

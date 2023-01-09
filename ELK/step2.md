@@ -1,5 +1,15 @@
 # check up and running
 
+Lets start generating some logs into ES:
+
+in another tab (terminal window) start the log generator:
+
+`chmod +x sysloggen.sh`{{exec}}
+
+`./sysloggen.sh`{{exec}}
+
+
+
 ## Logstash
 
 Show the logs of the logstash container
@@ -10,32 +20,54 @@ Show the logs of the logstash container
 
 in another tab (terminal window) start the log generator:
 
-`./sysloggen.sh`{{exec}}
+Show the logstash config:
 
-This will start sending logs to Logstash, which you'll see in both windows.
+`docker exec -it logstash ls /etc/logstash`{{exec}}
+
+View the available binaries:
+
+`docker exec -it logstash ls /usr/share/logstash/bin/`{{exec}}
+
+
 
 
 ## ES
 
-`docker-compose exec  Elasticsearch bash`{{exec}}
+Show the logs of the logstash container
 
-`pwd`{{exec}}
+`docker-compose logs -f Elasticsearch`{{exec}}
 
-`cat config/elasticsearch.yml`{{exec}}
+(note that the service starts with a capital letter: Logstash)
 
-run `bin/elasticsearch` with docker exec
+in another tab (terminal window) start the log generator:
 
-rename cluster.name  ELK
+Show the logstash config:
 
-rename node.name: node-1
+`docker exec -it elasticsearch ls /etc/elasticsearch`{{exec}}
 
-/etc/elasticsearch/jvm.options for changing 
+View the available binaries:
 
-restart sevice / container
-
-`curl http://localhost:9200/_cluster/health?pretty`{{exec}}
+`docker exec -it elasticsearch ls /usr/share/elasticsearch/bin/`{{exec}}
 
 
+## Kibana
+
+
+Show the logs of the logstash container
+
+`docker-compose logs -f Kibana`{{exec}}
+
+(note that the service starts with a capital letter: Logstash)
+
+in another tab (terminal window) start the log generator:
+
+Show the logstash config:
+
+`docker exec -it kibana ls /etc/kibana`{{exec}}
+
+View the available binaries:
+
+`docker exec -it kibana ls /usr/share/kibana/bin/`{{exec}}
 
 ## logstash
 
