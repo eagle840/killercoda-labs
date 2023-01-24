@@ -2,7 +2,7 @@
 
 https://www.elastic.co/guide/en/beats/heartbeat/7.17/heartbeat-installation-configuration.html
 
-`apt install heartbeat=7.17.4`{{exec}}
+`apt install heartbeat-elastic=7.17.4`{{exec}}
 
 `heartbeat -h`{{exec}}
 
@@ -28,5 +28,10 @@ heartbeat.monitors:
   name: My HTTP Service
   ```
 
-  
+`heartbeat test config -c heartbeat.yml`{{exec}}
+
+`heartbeat test output -c heartbeat.yml`{{exec}}
+
+
+`heartbeat -e -c heartbeat.yml`{{exec}}
 

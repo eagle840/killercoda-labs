@@ -1,5 +1,7 @@
 ## Filebeats
 
+https://www.elastic.co/guide/en/beats/filebeat/7.17/index.html
+
 Is a lightweight shipper for logs and other data files
 
 `apt install filebeat=7.17.4`{{exec}}
