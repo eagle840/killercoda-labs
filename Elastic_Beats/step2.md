@@ -16,7 +16,7 @@ sudo dpkg -i filebeat-7.17.4-amd64.deb
 
 You'll need to set the ElasticSearch Endpoint in the tools yml file (in this lab, they are all localhost, wish is preconfigure)
 
-YOu can use the tool sub command <toolName>  config output
+You can use the tool sub command <toolName>  config output
 
 this is confirm that the tool can communicate with ElasticSearch
 
@@ -34,7 +34,7 @@ sudo systemctl [enable|start|status]
 
 
 
-## LOgstash
+## Logstash
 
 This is covered in the main ELK 7 tutorial/lab
 
@@ -44,7 +44,29 @@ This shipper allows you to directly ship the system metrics to ES
 
 just install
 
-`aput
+`apt install metricbeat=7.17.4`{{exec}}
+
+`metricbeat -h`{{helpS}}
+
+Check the yml config
+
+`cat /etc/metricbeat/metricbeat.yml`{{exec}}
+
+it is already set for the localhost
+
+`metricbeat test output`{{exec}}
+
+`metricbeat test config`{{exec}}
+
+`metricbeat setup`{{exec}}  
+
+Setup will take a few minutes
+
+`sudo systemctl enable metricbeat.service`{{exec}}
+
+`sudo systemctl start metricbeat.service`{{exec}}
+
+You can now check the ES GUI for the new indices, index-patterns and dashboards.
 
 ## Filebeats
 
