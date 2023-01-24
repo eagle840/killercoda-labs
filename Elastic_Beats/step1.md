@@ -27,6 +27,8 @@ Once the Docker-compose has completed, wait a few minutes for the elasticsearch 
 
 `curl http://localhost:9200`{{exec}}
 
+Now you can open the ES web GUI.
+
 
 
 {{TRAFFIC_HOST1_5601}}/app/home

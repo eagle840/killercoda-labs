@@ -6,15 +6,8 @@ Make sure you use the same version as ElasticSearch
 
 Each Beats modules has some common commands
 
-First you will need to update APT (for Linux)
 
-```bash
-curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.17.4-amd64.deb
-sudo dpkg -i filebeat-7.17.4-amd64.deb
-```{{exec}}
-
-
-You'll need to set the ElasticSearch Endpoint in the tools yml file (in this lab, they are all localhost, wish is preconfigure)
+You'll need to set the ElasticSearch Endpoint in the tools yml file (in this lab, they are all localhost, which is preconfigured)
 
 You can use the tool sub command <toolName>  config output
 
@@ -46,7 +39,7 @@ just install
 
 `apt install metricbeat=7.17.4`{{exec}}
 
-`metricbeat -h`{{helpS}}
+`metricbeat -h`{{exec}}
 
 Check the yml config
 
@@ -68,37 +61,55 @@ Setup will take a few minutes
 
 You can now check the ES GUI for the new indices, index-patterns and dashboards.
 
+You can also config metricbeat to run with other systems:
+
+`metricbeat modules list`{{exec}}
+
 ## Filebeats
 
 Is a lightweight shipper for logs and other data files
 
+`apt install filebeat=7.17.4`{{exec}}
 
+`filebeat -h`{{exec}}
+
+`filebeat test output`{{exec}}
+
+`filebeat setup`{{exec}}
 
 CAN I JUST USE THE FOLLOWING FILE IN THE DOCKER CONTRAINER AS THE SOURCE FILE?
 
-wget https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz
+`wget https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz`{{exec}}
 
-gzip -d logstash-tutorial.log.gz
+`gzip -d logstash-tutorial.log.gz`{{exec}}
 
 
- curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.3.2-amd64.deb
-
-dpkg -i filebeat-8.3.2-amd64.deb
-
-filebeat modules list
+`filebeat modules list`{{exec}}
 
 filebeat modules enable nginx  - NOT THIS
 
 in /etc/filebeat/filebeat.yml  make sure config is set:
 
 ```
+
+# ---------------------------- Elasticsearch Output ----------------------------
+output.elasticsearch:
+  # Array of hosts to connect to.
+  hosts: ["localhost:9200"]
+
 filebeat.inputs:
 - type: log
   paths:
-    - /path/to/file/logstash-tutorial.log 
+    - /root/filebeats/logstash-tutorial.log 
 output.logstash:
   hosts: ["localhost:5044"]
 ```
+
+`filebeat test config -e -c filebeat.yml`{{exec}}
+
+-e outputs stdout
+-c specifies the config file to use
+
 
 `filebeat -h`{{exec}}
 
@@ -112,6 +123,8 @@ output.logstash:
 any changes, need:
 
 `filebeat setup -e`{{exec}}
+
+WIP add filebeat keystore
 
 
 
