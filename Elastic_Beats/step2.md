@@ -23,6 +23,14 @@ Some of the tools you can start as a service
 
 sudo systemctl [enable|start|status] 
 
+You can also start a **beat** with a specific yml with the -c arg
+-e will send logs to stdout
+
+for debugging modules  check the logs  [<moduleName>]
+
+to increase debugging add -d "<moduleName>"  or -d "*" for modules (not for prduction)
+
+
 
 
 
@@ -47,6 +55,10 @@ Check the yml config
 
 `cat /etc/metricbeat/metricbeat.yml`{{exec}}
 
+and list which modules are installed
+
+`ls /etc/metricbeat/modules.d`{{exec}}
+
 it is already set for the localhost
 
 `metricbeat test output`{{exec}}
@@ -63,7 +75,16 @@ Setup will take a few minutes
 
 You can now check the ES GUI for the new indices, index-patterns and dashboards.
 
+Which the Metrics in the Oservability Section
+
 You can also config metricbeat to run with other systems:
 
 `metricbeat modules list`{{exec}}
+
+`cat /var/log/metricbeat/metricbeat`{{exec}}
+
+The reference file is included to give examples, and not intended to be used:
+`cat  /etc/metricbeat/metricbeat.reference.yml`{{exec}}
+
+For a extensive tutorial on metricbeat see https://www.youtube.com/playlist?list=PL_mJOmq4zsHYTSN_tUTWJVuLMcwA0DRS3
 

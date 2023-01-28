@@ -85,3 +85,14 @@ create some load:
 
 `stree --vm 5 --timeout 180`{{exec}}
 
+## Debugging
+
+IN the output section of any of the beat yml files,  comment out all connection to ES servers/cloud, and set the output:
+
+```
+output.file:
+   path: "."
+   filename: "events.log"
+```
+
+you can now start a beat, and tail that log to troubleshoot
