@@ -36,6 +36,11 @@ now check the yml is correct
 
 `filebeat test config`{{exec}}
 
+`sudo filebeat modules enable system`{{exec}}
+
+Navigate to Logs in the Oservability Section, and review the metrics.
+
+
 note that the data folder stores the points in tail that filebeats has shipped.
 
 

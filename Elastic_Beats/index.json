@@ -1,6 +1,6 @@
 {
   "title": "ElasticSearch and BEATS",
-  "description": "Boot up an ELK stack with Docker Compose and work with some of the BEATS (v.04) ",
+  "description": "Boot up an ELK stack with Docker Compose and work with some of the BEATS (v.05) ",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {

@@ -2,7 +2,7 @@
 
 Make sure you use the same version as ElasticSearch
 
-`curl localhoat:9200`{{exec}}
+`curl localhost:9200`{{exec}}
 
 Each Beats modules has some common commands
 
@@ -59,6 +59,8 @@ and list which modules are installed
 
 `ls /etc/metricbeat/modules.d`{{exec}}
 
+Note that the system module is enabled
+
 it is already set for the localhost
 
 `metricbeat test output`{{exec}}
@@ -75,11 +77,13 @@ Setup will take a few minutes
 
 You can now check the ES GUI for the new indices, index-patterns and dashboards.
 
-Which the Metrics in the Oservability Section
+Navigate to Metrics in the Oservability Section, and review the metrics.
 
 You can also config metricbeat to run with other systems:
 
 `metricbeat modules list`{{exec}}
+
+
 
 `cat /var/log/metricbeat/metricbeat`{{exec}}
 

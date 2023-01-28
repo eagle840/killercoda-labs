@@ -35,5 +35,5 @@ Now you can open the ES web GUI.
 
 
 
-Elasticsearch offers many different types of BEATS in order to get data into ElasticSearch https://www.elastic.co/beats/
+Elasticsearch (ES) offers many different types of BEATS in order to get data into ElasticSearch https://www.elastic.co/beats/
 

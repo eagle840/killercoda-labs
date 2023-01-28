@@ -28,6 +28,8 @@ heartbeat.monitors:
   name: My HTTP Service
   ```
 
+  WIP: reviewing the logs, its not using this file, also you need to 'enable:true' for each item
+
 `heartbeat test config -c heartbeat.yml`{{exec}}
 
 `heartbeat test output -c heartbeat.yml`{{exec}}
