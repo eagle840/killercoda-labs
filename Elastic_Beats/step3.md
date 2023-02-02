@@ -19,7 +19,7 @@ tells were filebeat to look for a file
 
 ### harvaster
 
-a process that takes a discovered file and ships it to ES, you'll be able to see them being created in the filebeat logs (-e)
+a process that takes a discovered file and ships it to ES, this is tracked through the data folder. You'll be able to see the harvesters being created in the filebeat logs (-e)
 
 CAN I JUST USE THE FOLLOWING FILE IN THE DOCKER CONTRAINER AS THE SOURCE 
 FILE?
