@@ -21,13 +21,13 @@ For example:
 
 *metricbeat  config output*
 
-this is to confirm that the tool, in this case metrticbeat, can communicate with ElasticSearch.
+this is to confirm that the tool, in this case metricbeat, can communicate with ElasticSearch.
 
 *<toolCmd> config test*
 
 confirms the configation is correct.
 
-sets' up dasboards, and index patterns in ES
+The following sets' up dasboards, and index patterns in ES
 
 *<toolCmd> setup*
 

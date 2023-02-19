@@ -8,20 +8,14 @@ Is a lightweight shipper for logs and other data files, it tails logs/files into
 
 `filebeat -h`{{exec}}
 
-`filebeat test config`{{exec}}
-
-`filebeat test output`{{exec}}
-
-`filebeat setup`{{exec}}
-
 ### Filebeats Core Components
 
-##### prospector(inputs)
+#### prospector(inputs)
 
-tells were filebeat to look for a file
+tells were filebeat to discover files
 
 
-##### harvaster
+#### harvaster
 
 a process that takes a discovered file and ships it to ES, this is tracked through the data folder. You'll be able to see the harvesters being created in the filebeat logs (-e)
 
@@ -30,9 +24,12 @@ FILE?
 
 ## Config filebeat
 
-In the yml (/etc/filebeat/filebeat.yml), a filebeat propector has setup the 'filebeat input' - the propector
+In the yml (/etc/filebeat/filebeat.yml), a filebeat prospector has been setup the 'filebeat.input' section.
 
 ```yaml
+  # Change to true to enable this input configuration.
+  # enabled: false
+
   # Paths that should be crawled and fetched. Glob based paths.
   paths:
     - /var/log/*.log
@@ -43,12 +40,12 @@ we just need to enable it. Comment out the enabled: false
 
 `nano /etc/filebeat/filebeat.yml`{{exec}}
 
-- set enabled: true
+- set to  `# enabled: true`
 
 see https://www.elastic.co/guide/en/beats/filebeat/current/configuration-filebeat-options.html 
 
 
-now check the yml is correct
+and run the standard setup:
 
 `filebeat test config`{{exec}}
 
@@ -56,24 +53,24 @@ now check the yml is correct
 
 `filebeat setup`{{exec}}
 
-WIP
-`sudo filebeat modules enable system`{{exec}}
-
-WIP sysctl
+and start the sevice
 
 `sudo systemctl enable filebeat.service`{{exec}}
 
 `sudo systemctl start filebeat.service`{{exec}}
 
-Navigate to Logs in the Oservability Section, and review the metrics.
+Navigate to Logs in the Oservability Section, and review the logs.
 
 
-note that the data folder stores the points in tail that filebeats has shipped.
+WIP: note that the data folder stores the points in tail that filebeats has shipped.
+https://www.elastic.co/guide/en/beats/filebeat/current/directory-layout.html
 
 
 
 
 ## Getting one off files
+
+download a sample nginx log file
 
 `wget https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz`{{exec}}
 
@@ -121,6 +118,9 @@ any changes, need:
 `filebeat setup -e`{{exec}}
 
 WIP add filebeat keystore
+
+The reference file is included to give examples, and not intended to be used:
+`cat  /etc/filebeat/filebeat.reference.yml`{{exec}}
 
 
 For a extensive tutorial on filebeat see
