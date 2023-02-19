@@ -1,4 +1,4 @@
-## Filebeats
+# Filebeats
 
 https://www.elastic.co/guide/en/beats/filebeat/7.17/index.html
 
@@ -8,35 +8,62 @@ Is a lightweight shipper for logs and other data files, it tails logs/files into
 
 `filebeat -h`{{exec}}
 
+`filebeat test config`{{exec}}
+
 `filebeat test output`{{exec}}
 
 `filebeat setup`{{exec}}
 
-### prospector(inputs)
+### Filebeats Core Components
+
+##### prospector(inputs)
 
 tells were filebeat to look for a file
 
 
-### harvaster
+##### harvaster
 
 a process that takes a discovered file and ships it to ES, this is tracked through the data folder. You'll be able to see the harvesters being created in the filebeat logs (-e)
 
-CAN I JUST USE THE FOLLOWING FILE IN THE DOCKER CONTRAINER AS THE SOURCE 
+WIP CAN I JUST USE THE FOLLOWING FILE IN THE DOCKER CONTRAINER AS THE SOURCE 
 FILE?
 
-In the yml, setup the 'filebeat input' - the propector
+## Config filebeat
 
-- add the path to the file: /var/log/*.log
+In the yml (/etc/filebeat/filebeat.yml), a filebeat propector has setup the 'filebeat input' - the propector
+
+```yaml
+  # Paths that should be crawled and fetched. Glob based paths.
+  paths:
+    - /var/log/*.log
+    #- c:\programdata\elasticsearch\logs\*
+```
+
+we just need to enable it. Comment out the enabled: false 
+
+`nano /etc/filebeat/filebeat.yml`{{exec}}
+
 - set enabled: true
-- type: log  # see https://www.elastic.co/guide/en/beats/filebeat/current/configuration-filebeat-options.html 
 
-and change the 'ElasticSearch' output if needed (set at localhost:9200)
+see https://www.elastic.co/guide/en/beats/filebeat/current/configuration-filebeat-options.html 
+
 
 now check the yml is correct
 
 `filebeat test config`{{exec}}
 
+`filebeat test output`{{exec}}
+
+`filebeat setup`{{exec}}
+
+WIP
 `sudo filebeat modules enable system`{{exec}}
+
+WIP sysctl
+
+`sudo systemctl enable filebeat.service`{{exec}}
+
+`sudo systemctl start filebeat.service`{{exec}}
 
 Navigate to Logs in the Oservability Section, and review the metrics.
 
@@ -46,8 +73,7 @@ note that the data folder stores the points in tail that filebeats has shipped.
 
 
 
-
-
+## Getting one off files
 
 `wget https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz`{{exec}}
 

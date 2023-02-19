@@ -5,13 +5,13 @@ Boot up the ELK stack:
 
 `docker-compose up -d`{{exec}}
 
-In another tab, lets setup some tools/config
+In another tab (+), lets setup some tools/config
 
 `apt update`{{exec}}
 
 `apt install -y net-tools jq tree`{{exec}}
 
-Config to download various beats:
+Config linux to download various beats:
 
 `wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg`{{exec}}
 
