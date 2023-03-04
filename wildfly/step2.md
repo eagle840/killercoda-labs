@@ -4,6 +4,8 @@
 
 we'll be using : https://spring.io/quickstart
 
+WIP (or use  https://github.com/spring-projects/spring-petclinic)
+
 start.spring.io
 
 - project: maven

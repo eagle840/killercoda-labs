@@ -38,7 +38,9 @@ For wildfly we can just use the jvm:
 
 but the sdk gives us more feature
 
-`apt install -y openjdk-11-jdk`{{exec}}
+`apt install -y openjdk-11-jdk`{{copy}}
+
+WIP update to v13?   `apt install -y openjdk-17-jdk`{{copy}}
 
 `java -version`{{exec}}
 
