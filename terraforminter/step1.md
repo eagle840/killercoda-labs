@@ -2,15 +2,17 @@
 
 In this lab we'll be working with Terraform and Docker to deploy a container on the localhost.
 
-`sudo apt update`{{execute}}   
+`apt update`{{execute}}   
 
 `apt install -y tree jq`{{exec}}
 
-Start a postgress database for later use.   
+Start a postgress database for later use as a state store.   
 `docker-compose up -d`{{exec}}
 
 
 ## install terraform
+
+For the full documentation on installation see:  https://developer.hashicorp.com/terraform/downloads
 
 `curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -`{{execute}}    
 
@@ -29,17 +31,21 @@ Start a postgress database for later use.
 
 # Basic Setup
 
-Some terraform file have already been created, in there own directory
+We've created some terraform files:
 
 `cd mytf`{{execute}}
 
 `ls`{{execute}}
 
-a main file, containing the provisoners and a providers file have been provided, with a var file that will set a port varible for the docker container to 8080
+- a main file, containing the provisoners,
+- a providers file have been provided,
+- a var file that will set a port varible for the docker container to 8080
+
+Initiate terraform:
 
 `terraform init`{{execute}} 
 
-Lets look at the providers we're using the terraform command:
+Lets look at the providers we're be using:
 
 `terraform providers`{{exec}}
 
@@ -47,7 +53,7 @@ now look at the folder structure:
 
 `tree -a`{{execute}}
 
-You'll set a lock file, which locks down which versions you can use, and you'll see the downloaded provider in the `.terraform` folder.
+You'll see a lock file, which locks down which versions you can use, and you'll see the downloaded provider in the `.terraform` folder.
 
 `cat .terraform.lock.hcl`{{execute}}
 
@@ -66,10 +72,6 @@ and check the container 'tutorial' is running:
 
 # Terraform Output
 
-Docs: https://www.terraform.io/language/values/outputs
-
-Learn more: https://learn.hashicorp.com/tutorials/terraform/outputs
-
 While the outputs declaration can appear anywhere, we'll follow best practice and create an output.tf file.
 
 `nano output.tf`{{execute}}
@@ -84,7 +86,7 @@ output "ext_port" {
 Format the tf files, which 'cleans' up the formatting, the command will show which files it cleaned:   
 `terraform fmt`{{execute}}
 
-Validate the tf files, which does need 'init' before using:   
+Validate the tf files, (this needs init to be run first):   
 `terraform validate`{{execute}}
 
 Lets change the port used, using an argument override
@@ -111,6 +113,10 @@ Starting with version 0.14, Terraform wraps string outputs in quotes by default.
 
 
 sensitive   = true
+
+Docs: https://www.terraform.io/language/values/outputs
+
+Learn more: https://learn.hashicorp.com/tutorials/terraform/outputs
 
 ## Setting variables
 

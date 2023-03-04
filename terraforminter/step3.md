@@ -58,22 +58,7 @@ Lets take a look at the tree structure, and you'll see an added folder for the w
 
 `tree -a`{{execute}}
 
-take note where the orginal (default) tf state was stored, and where the new ws2 state is stored
+take note where the orginal (default) tf state was stored, and where the new ws2 state is stored.
  
 
-`docker ps`{{execute}}
-
-and finally lets kill  the running containers
-
-
-WIP: this will destory the database!!!
-`docker kill nginx1`{{exec}}
-
-`docker kill tutorial`{{exec}}
-
-WIP:
-
-- delete ws2 workstate
-- LINK TO the page running httpd
-- add the index.thml to the httpd container
 

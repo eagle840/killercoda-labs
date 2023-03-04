@@ -56,7 +56,9 @@ Lets review the changes that will be applied:
 
 when you run 'terraform plan' you can see in the output that the container will be replaced.
 
-`terraform apply`{{execute}}
+We'll add the '-auto-approve' flag so we're not prompted to enter 'yes'
+
+`terraform apply -auto-approve`{{execute}}
 
 lets confirm that the tutorial container has restarted under the status column:
 
@@ -115,6 +117,6 @@ and validate/apply
 
 `terraform validate`{{execute}}
 
-`terraform apply -var="port=8090"`{{execute}}
+`terraform apply -var="port=8090" -auto-approve`{{execute}}
 
 `terraform output deploy_time`{{execute}}
