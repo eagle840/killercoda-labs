@@ -1,7 +1,7 @@
 # initial setup
 
 
-Start a postgress database to store the backend.   
+Start a postgress database to store the terraform backend.   
 `docker-compose up -d`{{exec}}
 
 ## install a specific version of terraform
@@ -12,15 +12,17 @@ Start a postgress database to store the backend.
 - backend
 - tf cloud
 
+`apt install -y jq tree`{{exec}}
+
 #### install the update and keys
 
-`sudo apt update`{{execute}}
+`apt update`{{execute}}
 
 `curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -`{{execute}}    
 
 `apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"`{{execute}} 
 
-`sudo apt update`{{execute}}
+`apt update`{{execute}}
 
 #### install version 1.1.5 of terraform
 
@@ -34,7 +36,7 @@ Start a postgress database to store the backend.
 
 ## check cluster is up
 
-`k cluster-info`{{execute}}
+`kubectl cluster-info`{{execute}}
 
 ## Install & check helm
 
@@ -50,13 +52,15 @@ Start a postgress database to store the backend.
 
 `helm create nginx`{{execute}}
 
+`tree nginx`{{exec}}
+
 `helm install new-chart nginx/ --values nginx/values.yaml`{{execute}}
 
 `helm list -A`{{execute}}
 
 `k get deploy`{{execute}}
 
-# install a postgres backend
+# install a postgres backend - REMOVE
 
 WIP this was done with docker compose
 
@@ -70,25 +74,31 @@ docker run progress
 
 `docker exec -it psgdb psql -U postgres`{{copy}}
 
-  # docker exec 'to the container - with '  psql -U postgres
+  # docker exec 'to the container - with '  psql -U postgres  - REMOVE
   `CREATE DATABASE terraform_backend;`{{copy}}
 
   \l # to list databases
 
 `docker exec -it psgdb pqsl -U postgres -U 1234 -e "CREATE DATABASE terraform_backend;"`{{copy}}
 
-# 3rd party tools
+## 3rd party SCA tools
 
 we'll be using some 3rd party tools, to improve the tf experience/process
 
 https://github.com/shuaibiyy/awesome-terraform
 
+#### Checkov
+
+https://github.com/bridgecrewio/checkov
+
 `pip install checkov`{{execute}}
 
-# static analysis
+`cd ~; checkov -d mytf`{{exec}}
 
-- WIP move to requested step
+#### tfsec
 
 https://github.com/aquasecurity/tfsec
+
+`cd ~/mtyf`{{exec}}
 
 `docker run --rm -it -v "$(pwd):/src" aquasec/tfsec /src`{{execute}}
