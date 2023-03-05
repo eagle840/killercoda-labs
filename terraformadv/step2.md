@@ -43,13 +43,6 @@ resource "null_resource" "cluster" {
 - tf fmt
 - tf validate
 
-# setting debug level
-
-https://developer.hashicorp.com/terraform/internals/debugging
-
-You can set TF_LOG to one of the log levels (in order of decreasing verbosity) TRACE, DEBUG, INFO, WARN or ERROR to change the verbosity of the logs.
-
-export TF_LOG=INFO
 
 # add some json stuff
 
@@ -120,49 +113,5 @@ condition ? true_val : false_val
     key => lower(value)
   }
 }
-
-
-# helm deploy
-
-`mkdir mytf && cd mytf`{{execute}}
-
-we'll be deploying: https://bitnami.com/stack/nginx/helm
-
-see the following docs for deploying a helm chart with terraform: https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release
-
-`nano main.tf`{{execute}}
-
-WIP consider using Redis (needs storage)
-
-```
-
-# WIP add to provider
-provider "helm" {
-  kubernetes {
-    config_path = "~/.kube/config"
-  }
-}
-
-
-# WIP add to main
-resource "helm_release" "nginx_app" {
-  name = "nginx-app"
-
-  repository = "https://charts.bitnami.com/bitnami"
-  chart      = "nginx"
-
-  set {
-    name  = "service.type"
-    value = "ClusterIP"
-  }
-  set {
-    name = "service.port"
-    value = 80
-  }
-  set {
-    name = "ingress.enabled"
-    value = false
-  }
-```{{copy}}
 
 

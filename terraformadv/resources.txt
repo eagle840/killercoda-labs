@@ -12,3 +12,7 @@ terraform provisions - local and remote
 
 
 https://docs.microsoft.com/en-us/azure/developer/terraform/create-base-template-using-yeoman
+
+
+OLD CODE:
+

@@ -1,12 +1,9 @@
-# create
 
-`terraform init`{{exec}}
+## setup a demo chart (nginx)
 
-`terraform plan`{{exec}}
+We'll create a default helm chart to use for terraform to deploy
 
-`terraform apply`{{exec}}
+`helm create nginx`{{execute}}
 
-! I beleive this timesout, because the svc is set as a LB, need to change to a nodeport?
-
-`terraform show`{{exec}}
+`tree nginx`{{exec}}
 

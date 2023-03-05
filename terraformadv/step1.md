@@ -12,11 +12,13 @@ Start a postgress database to store the terraform backend.
 - backend
 - tf cloud
 
-`apt install -y jq tree`{{exec}}
 
-#### install the update and keys
+
+#### install the update, keys and tools
 
 `apt update`{{execute}}
+
+`apt install -y jq tree`{{exec}}
 
 `curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -`{{execute}}    
 
@@ -48,38 +50,14 @@ Start a postgress database to store the terraform backend.
 
 `helm version`{{execute}}
 
-# install a demo chart (nginx)
 
-`helm create nginx`{{execute}}
+## setting debug level
 
-`tree nginx`{{exec}}
+https://developer.hashicorp.com/terraform/internals/debugging
 
-`helm install new-chart nginx/ --values nginx/values.yaml`{{execute}}
+You can set TF_LOG to one of the log levels (in order of decreasing verbosity) JSON, TRACE, DEBUG, INFO, WARN or ERROR to change the verbosity of the logs. To send the logs to a file, use TF_LOG_PATH
 
-`helm list -A`{{execute}}
-
-`k get deploy`{{execute}}
-
-# install a postgres backend - REMOVE
-
-WIP this was done with docker compose
-
-docker run progress
-
-`docker run -it -p 5432:5432 --name psgdb -e POSTGRES_PASSWORD=1234 postgres`{{copy}}
-
-`docker run -it  -d -p 5432:5432 --name psgdb -e POSTGRES_PASSWORD=1234 postgres`{{execute}}
-
-
-
-`docker exec -it psgdb psql -U postgres`{{copy}}
-
-  # docker exec 'to the container - with '  psql -U postgres  - REMOVE
-  `CREATE DATABASE terraform_backend;`{{copy}}
-
-  \l # to list databases
-
-`docker exec -it psgdb pqsl -U postgres -U 1234 -e "CREATE DATABASE terraform_backend;"`{{copy}}
+export TF_LOG=INFO
 
 ## 3rd party SCA tools
 
@@ -99,6 +77,6 @@ https://github.com/bridgecrewio/checkov
 
 https://github.com/aquasecurity/tfsec
 
-`cd ~/mtyf`{{exec}}
+`cd ~/mytf`{{exec}}
 
 `docker run --rm -it -v "$(pwd):/src" aquasec/tfsec /src`{{execute}}
