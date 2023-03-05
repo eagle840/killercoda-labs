@@ -10,6 +10,8 @@
 
 in this example we are going to use a 'null provider'  Goto https://registry.terraform.io/providers/hashicorp/null/3.2.1 and click on the 'use provider' button and you'll get the code:
 
+`cd ~/mytf; nano provider.tf`{{exec}}
+
 ```yaml
 terraform {
   required_providers {
@@ -75,22 +77,22 @@ https://prefetch.net/blog/2020/04/27/using-the-terraform-console-to-debug-interp
 
 `terraform console`{{exec}}
 
-`type(["a","b"])`
+`type(["a","b"])`{{exec}}
 
-`type(tolist(["a","b"]))`
+`type(tolist(["a","b"]))`{{exec}}
 
 look at the json items we brought in:
 
-`local.image`
+`local.image`{{exec}}
 
 and the whole json object:
 
 
-`local.vars`
+`local.vars`{{exec}}
 
 and a single item from the json object:
 
-`local.vars.cidr_block`
+`local.vars.cidr_block`{{exec}}
 
 use the name (dot notation) of any resource/data and it'll return the json data
 
