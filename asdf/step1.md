@@ -10,6 +10,16 @@ https://asdf-vm.com/
 
 `apt install -y curl git`{{exec}}
 
+`apt install sqlite3`{{exec}}
+
+`apt install nodejs`{{exec}}
+
+`sqlite3 --version`{{exec}}
+
+In new tab
+
+`docker-compose up`{{exec}}
+
 `git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
 
 `. "$HOME/.asdf/asdf.sh"`{{exec}}
@@ -44,8 +54,18 @@ https://asdf-vm.com/
 `bundle exec rails server -b 0.0.0.0`{{exec}}
 
 Link for traffic into host 1 on port 80
-{{TRAFFIC_HOST1_5000}}
+{{TRAFFIC_HOST1_3000}}
 
+----WIP---
+`gem install rails`{{exec}}
+
+`rails --version`{{exec}}
+
+`rails new blog`{{exec}}
+
+`cd blog`{{exec}}
+
+`bin/rails server -b 0.0.0.0`{{exec}}
 
 
 ----------- delete below ---------------

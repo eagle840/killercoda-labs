@@ -1,6 +1,6 @@
 {
   "title": "WORK-IN-PROGRESS asdf",
-  "description": "Basic asdf use",
+  "description": "Basic asdf use v.02",
   "difficulty": "Beginner",
   "time": "30 minutes",
   "details": {
@@ -16,6 +16,10 @@
         },
         {
           "file": "worker.py",
+          "target": "~/"
+        },
+        {
+          "file": "docker-compose.yml",
           "target": "~/"
         },
         {
