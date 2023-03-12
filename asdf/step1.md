@@ -67,6 +67,32 @@ Link for traffic into host 1 on port 80
 
 `bin/rails server -b 0.0.0.0`{{exec}}
 
+or -s
+
+---wip
+
+Bundler:
+
+- package manager that handles gems
+- Gems are std ruby libraries
+- Bundler comes with Rails
+- When bundler starts, gems in gemfile are installed
+
+webpacker:
+
+- frontend
+- uses yarn (a js package manager)
+- ??? why nodejs needs to be installed?
+
+html at app/views/layouts
+- .erb ruby files (erb = embeded ruby)
+- a compiler, HAML process the <%=  %>
+
+control: cli
+- bin/rails generate controller welcome index
+
+
+
 
 ----------- delete below ---------------
 
