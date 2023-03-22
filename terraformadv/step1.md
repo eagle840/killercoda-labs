@@ -26,7 +26,7 @@ Start a postgress database to store the terraform backend.
 
 `apt update`{{execute}}
 
-#### install version 1.1.5 of terraform
+#### WIP Remove install version 1.1.5 of terraform
 
 `apt install terraform=1.1.5`{{execute}}    
 
@@ -35,6 +35,7 @@ Start a postgress database to store the terraform backend.
 `terraform -install-autocomplete`{{execute}}    
 
 `exec bash`{{execute}}
+
 
 ## check cluster is up
 
@@ -49,6 +50,27 @@ Start a postgress database to store the terraform backend.
 `./get_helm.sh`{{execute}}
 
 `helm version`{{execute}}
+
+## Using tfenv to control tf versioning
+
+https://github.com/tfutils/tfenv
+
+`git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv`{{exec}}
+
+`echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> ~/.bash_profile`{{exec}}
+
+`ln -s ~/.tfenv/bin/* /usr/local/bin`{{exec}}
+
+`tfenv`{{exec}}
+
+`tfenv list-remote | grep 1.3`{{exec}}
+
+
+`tfenv install 1.3.9`{{exec}}
+
+`tfenv use 1.3.9`{{exec}}
+
+`terraform version`{{exec}}
 
 
 ## setting debug level
