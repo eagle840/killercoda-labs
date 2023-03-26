@@ -37,7 +37,7 @@ https://github.com/nektos/act
 
 `curl -s https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash`{{exec}}
 
-`cp ./bin/act /usr/bin/`
+`cp ./bin/act /usr/bin/`{{exec}}
 
 
 `git clone https://github.com/cplee/github-actions-demo.git`{{exec}}
@@ -59,6 +59,10 @@ When running act for the first time, it will ask you to choose image to be used 
 `act -l`{{exec}}
 
 `act -j test`{{exec}}  - run the tests
+
+`cd ~`{{exec}}
+
+`git clone github morrisseycode exploringactions`{{exec}}
 
 
 
