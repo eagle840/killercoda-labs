@@ -45,6 +45,8 @@ jobs:
 
 ```{{copy}}
 
+`cs actone`{{exec}}
+
 
 `act`{{exec}}
 
@@ -62,6 +64,8 @@ When running act for the first time, it will ask you to choose image to be used 
 
 
 ## A more advanced Github Action
+
+`cd ~`{{exec}}
 
 `git clone https://github.com/cplee/github-actions-demo.git`{{exec}}
 
@@ -84,6 +88,8 @@ WIP: the following takes to long to run
 `cd ~`{{exec}}
 
 ## Another repo
+
+`cd ~`{{exec}}
 
 `git clone https://github.com/morrisseycode/exploringactions`{{exec}}
 
