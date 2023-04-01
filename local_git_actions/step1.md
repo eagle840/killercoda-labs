@@ -45,7 +45,7 @@ jobs:
 
 ```{{copy}}
 
-`cs actone`{{exec}}
+`cd actone`{{exec}}
 
 
 `act`{{exec}}
