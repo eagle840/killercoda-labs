@@ -9,9 +9,23 @@ github: https://github.com/killercoda
 
 `apt install -y tree jq`{{exec}}
 
-`mkdir -p  /root/.github/workflows/`{{exec}}
 
-`nano /root/.github/workflows/learn-github-actions.yml`{{exec}}
+
+## Install Act
+
+https://github.com/nektos/act
+
+
+
+`curl -s https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash`{{exec}}
+
+`cp ./bin/act /usr/bin/`{{exec}}
+
+# Setup a simple github Action
+
+`mkdir -p  /root/actone/.github/workflows/`{{exec}}
+
+`nano /root/actone/.github/workflows/learn-github-actions.yml`{{exec}}
 
 
 ```
@@ -29,30 +43,37 @@ jobs:
       - run: npm install -g bats
       - run: bats -v
 
-```
-
-https://github.com/nektos/act
+```{{copy}}
 
 
+`act`{{exec}}
 
-`curl -s https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash`{{exec}}
+When running act for the first time, it will ask you to choose image to be used as default. It will save that information to ~/.actrc  - for now select the 'medium' image
 
-`cp ./bin/act /usr/bin/`{{exec}}
+`cat ~/.actrc `{{exec}}
 
+`act -l`{{exec}}
+
+`act -j check-bats-version`{{exec}}  - run the tests
+
+`act -g`{{exec}}
+
+
+
+
+## A more advanced Github Action
 
 `git clone https://github.com/cplee/github-actions-demo.git`{{exec}}
 
-`cat ~/.actrc `{{exec}}
 
 WIP: the following takes to long to run
 
 `cd github-actions-demo/`{{exec}}
 
-`cat ..github/workflows/main.yml`{{exec}}
+`cat .github/workflows/main.yml`{{exec}}
 
 `tree -a`{{exec}}
 
-When running act for the first time, it will ask you to choose image to be used as default. It will save that information to ~/.actrc  - for now select the 'medium' image
 
 `act`{{exec}}
 
@@ -62,128 +83,49 @@ When running act for the first time, it will ask you to choose image to be used 
 
 `cd ~`{{exec}}
 
-`git clone github morrisseycode exploringactions`{{exec}}
+## Another repo
 
+`git clone https://github.com/morrisseycode/exploringactions`{{exec}}
 
+`cd exploringactions`{{exec}}
 
----------------------  delete below -------------
+`ls ./.github/workflows/`{{exec}}
 
-# docker update
+`act`{{exec}}
 
-`apt-get remove docker  docker.io containerd runc -y`{{exec}}   
-
-`apt-get update`{{exec}}   
-
-`apt-get install ca-certificates curl gnupg  lsb-release -y`{{exec}}   
-
-`mkdir -p /etc/apt/keyrings`{{exec}}   
-
-`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}   
 
 ```
-echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```{{exec}}   
+# List all actions for all events:
+act -l
 
-`apt-get update`{{exec}}   
+# List the actions for a specific event:
+act workflow_dispatch -l
 
-`apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y `{{exec}}   
+# List the actions for a specific job:
+act -j test -l
 
-`docker version`{{exec}}   
+# Run the default (`push`) event:
+act
 
-`docker-compose version`{{exec}}   
+# Run a specific event:
+act pull_request
 
-`docker compose version`{{exec}}
+# Run a specific job:
+act -j test
 
-# Set imageid in index.json
+# Collect artifacts to the /tmp/artifacts folder:
+act --artifact-server-path /tmp/artifacts
 
-- ubuntu: Ubuntu 20.04 with Docker and Podman
-= kubernetes-kubeadm-2nodes: 
-- kubernetes-kubeadm-1node:
+# Run a job in a specific workflow (useful if you have duplicate job names)
+act -j lint -W .github/workflows/checks.yml
 
-to taint the control node for work:
+# Run in dry-run mode:
+act -n
 
-```
-kubectl taint nodes controlplane node-role.kubernetes.io/master:NoSchedule-
-kubectl taint nodes controlplane node-role.kubernetes.io/control-plane:NoSchedule-
-```
-
-
-# Copy Files/adjust index
-
-text here
-
-# Run apt update
-
-apt-get update -y{{execute}}
-
-```apt-get update -y{{execute}}```
-
-
-# For links to ports:
-
-```
-Link for traffic into host 1 on port 80
-{{TRAFFIC_HOST1_80}}
-Link for traffic into host 2 on port 4444
-{{TRAFFIC_HOST2_4444}}
-Link for traffic into host X on port Y
-{{TRAFFIC_HOSTX_Y}}
+# Enable verbose-logging (can be used with any of the above commands)
+act -v
 ```
 
+# Show a graphical version
 
-# Example setup for postgres with raw data
-
-git clone https://github.com/josephmachado/simple_dbt_project.git
-
-- raw folders
-- warehouse setup
-- docker postgres and -v to those folders
-
-
-We'll be using the rabbitmq container with the management feature installed.
-
-https://hub.docker.com/_/rabbitmq
-
-`docker run -d --hostname my-rabbit --name some-rabbit -p 8080:15672 rabbitmq:3-management`{{execute}}
-
-make sure it started
-
-`docker ps`{{execute}}
-
-and check the config file
-
-`docker exec some-rabbit cat /etc/rabbitmq/rabbitmq.conf`{{execute}}
-
-and head over to port 8080 and login   
-un:guest   
-pw:guest  
-
-
-Next we'll update the python files with the new IP address of the docker container.
-
-`RabbitIP=$(docker inspect some-rabbit | jq -r .[0].NetworkSettings.IPAddress)`{{execute}}
-
-`echo $RabbitIP`{{execute}}
-
-`sed -i "s/localhost/$RabbitIP/g" send.py receive.py worker.py new_task.py`{{execute}}
-
-## k8s port-forward
-
-`k -n <ns> port-forward service/<svc-name> 9090:9090 --address 0.0.0.0`
-
-- this is to forword a CLusterIP so that killacoda can access
-
-
-`echo 'PATH=$PATH':$(pwd)/bin >> /root/.bashrc`{{copy}}
-
-export PATH=$PWD/bin:$PATH
-
-to allow pods on the controlplane
-
-`kubectl taint node controlplane node-role.kubernetes.io/master:NoSchedule-`{{copy}}
-
-to allow access to running pods with ports 9000 and 9090
-
-`kubectl port-forward -n minio-dev pod/minio 9000 9090 --address 0.0.0.0`{{copy}}
-
+act -g
