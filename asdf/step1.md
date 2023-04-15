@@ -10,9 +10,15 @@ https://asdf-vm.com/
 
 `apt install -y curl git`{{exec}}
 
-`apt install sqlite3`{{exec}}
+`apt install -y sqlite3`{{exec}}
 
-`apt install nodejs`{{exec}}
+`apt install -y nodejs npm`{{exec}}
+
+`npm install --global yarn`{{exec}}
+
+`nodejs --version`{{exec}}
+
+`yarn --version`{{exec}}
 
 `sqlite3 --version`{{exec}}
 
@@ -20,11 +26,17 @@ In new tab
 
 `docker-compose up`{{exec}}
 
+### install asdf
+
 `git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
 
 `. "$HOME/.asdf/asdf.sh"`{{exec}}
 
 `. "$HOME/.asdf/completions/asdf.bash"`{{exec}}
+
+`asdf current`{{exec}}
+
+`asdf plugin list all | grep ruby`{{exec}}
 
 `asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git`{{exec}}
 
@@ -32,7 +44,7 @@ In new tab
 
 `asdf list all ruby`{{exec}}
 
-`asdf install ruby 2.7.3`{{exec}}
+`asdf install ruby 2.7.3`{{exec}} # wip: 2.5.0
 
 `asdf global ruby 2.7.3`{{exec}}
   
