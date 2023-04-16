@@ -38,6 +38,39 @@ wip this generated a rail web error, see https://guides.rubyonrails.org/configur
 
 see config/application.rb
 
+fixed:  
+add the   
+
+```config.hosts << "d67c710d-e27b-43c4-9664-077ea62d7396-10-244-27-249-3000.spch.r.killercoda.com"
+```
 
 
+to the Rails.application.configure do block
+in the config/environments/development.rb file
 
+
+## setup home page
+
+open /app/views/layouts.application.html.erb  'embedded ruby file'
+
+'<%=  cmd %>'  is a single line ruby cmd
+
+### for each page, you'll need a m & v & c
+
+
+run `/bin/rails generate controller Welcome index`{{exec}}
+
+notice a new controller of 'welcome_controller'
+
+and a new view of /welcome/index.html.erb
+
+and the other items in the list
+
+review the /config/routes.rb file, with it's one method with the ccoomand we ran (welcome is the action)
+
+add below get
+'root 'welcome#index''  ? why
+
+### add model 
+
+run `bin/rails generate scaffold WikiPost`{{exec}}
