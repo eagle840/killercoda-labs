@@ -1,7 +1,41 @@
 # Hello World! using ruby
 
+ruby  versions can be found here: https://www.ruby-lang.org/en/
 
 
+### single line
+
+`ruby -e 'print "Hello Ruby!\n"'`{{exec}}
+
+### REPL
+
+`apt install irb`{{exec}}
+
+`irb -v`{{exec}}
+
+`irb`{{exec}}
+
+`puts 'Hello Ruby'`{{exec}}
+
+`quit`{{exec}}
+
+### file execution
+
+```
+print "Hello Ruby!\n"
+print "Goodbye Ruby!\n"
+```
+
+`nano hello.rb`{{exec}}
+
+`ruby hello.rb`{{exec}}
+
+
+# debug ruby
+
+### pry
+
+`gem install pry`{{exec}}
 
 
 # installing rails
