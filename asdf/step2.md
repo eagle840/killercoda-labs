@@ -37,7 +37,19 @@ print "Goodbye Ruby!\n"
 
 ### pry
 
+irb on steriods
+
 `gem install pry`{{exec}}
+
+you can start a REPL session in any block of code:
+
+```
+require 'pry'
+#start a REPL session
+binding.pry
+```
+
+
 
 
 ### byebug
