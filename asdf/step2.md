@@ -2,6 +2,8 @@
 
 ruby  versions can be found here: https://www.ruby-lang.org/en/
 
+the main backage manager for ruby is Gems https://rubygems.org/
+
 
 ### single line
 
@@ -36,6 +38,11 @@ print "Goodbye Ruby!\n"
 ### pry
 
 `gem install pry`{{exec}}
+
+
+### byebug
+
+https://rubygems.org/gems/byebug
 
 
 # installing rails
