@@ -60,6 +60,10 @@ run `docker ps`{{exec}} to review the ports
 
 `sudo apt install metricbeat=8.5.3`{{exec}}
 
+copy the ca cert to metricbeat config folder:
+
+`docker cp elasticsearch:/usr/share/elasticsearch/config/certs/http_ca.crt /etc/metricbeat/`{{exec}}
+
 `nano sudo /etc/metricbeat/metricbeat.yml`{{exec}}
 
 and enter the un:pw  in the 'Elasticsearch Output', removing  the hashs

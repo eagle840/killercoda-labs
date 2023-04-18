@@ -92,9 +92,9 @@ it is already set for the localhost (system)
 
 Lets setup metricbeat for use:
 
-`metricbeat test output`{{exec}}
-
 `metricbeat test config`{{exec}}
+
+`metricbeat test output`{{exec}}
 
 `metricbeat setup`{{exec}}  
 
@@ -114,7 +114,9 @@ You can also config metricbeat to run with other systems:
 
 `metricbeat modules list`{{exec}}
 
-`metricbeat module able <moduleName>`
+`metricbeat modules enable <moduleName>`
+
+Note that you have to run 'metricbeat setup' and restart the service, including other beats tools.
 
 Lets review the logs for this tool:
 

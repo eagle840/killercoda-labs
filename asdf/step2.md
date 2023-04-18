@@ -67,6 +67,7 @@ https://guides.rubyonrails.org/v6.1/getting_started.html
 - Node.js
 - Yarn
 
+
 which we've already installed
 
 `gem install rails -v 6.1`{{exec}}

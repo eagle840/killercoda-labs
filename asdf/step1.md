@@ -8,13 +8,8 @@ github: https://github.com/killercoda
 https://asdf-vm.com/
 
 
-`apt install -y curl git`{{exec}}
+`apt install -y curl git sqlite3 nodejs npm`{{exec}}
 
-`apt install -y sqlite3`{{exec}}
-
-`apt install -y nodejs npm`{{exec}}
-
-`npm install --global yarn`{{exec}}
 
 `nodejs --version`{{exec}}
 
@@ -47,6 +42,13 @@ In new tab
 `asdf install ruby 2.7.3`{{exec}} # wip: 2.5.0
 
 `asdf global ruby 2.7.3`{{exec}}
+
+
+
+
+=======================================
+
+=== delete below ===
   
 
 `git clone https://github.com/Azure-Samples/ruby-docs-hello-world`{{exec}}
