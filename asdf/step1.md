@@ -10,6 +10,8 @@ https://asdf-vm.com/
 
 `apt install -y curl git sqlite3 nodejs npm`{{exec}}
 
+`apt install -y curl  nodejs npm`{{copy}} # wip don't think I need
+
 
 `nodejs --version`{{exec}}
 
@@ -31,6 +33,8 @@ In new tab
 
 `asdf current`{{exec}}
 
+### install ruby
+
 `asdf plugin list all | grep ruby`{{exec}}
 
 `asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git`{{exec}}
@@ -41,7 +45,44 @@ In new tab
 
 `asdf install ruby 2.7.3`{{exec}} # wip: 2.5.0
 
+Now we need to set which version of ruby to use, and the [context](https://asdf-vm.com/guide/getting-started.html#global):
+
+- global: sets for the entire machine from $HOME/.tool-versions
+- shell: sets
+- local: sets working directory version with $PWD/.tool-versions
+
 `asdf global ruby 2.7.3`{{exec}}
+
+
+`asdf current`{{exec}}
+
+`ruby -v`{{exec}}
+
+## install nodejs
+
+It many uses, you'll need to read the plugin README to understand the install procedure/requirements.
+For nodejs see https://github.com/asdf-vm/asdf-nodejs
+
+`asdf install nodejs 18.16.0`{{exec}}
+
+`asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`{{exec}}
+
+`asdf nodejs nodebuild --version`{{exec}}
+
+`asdf nodejs nodebuild --definitions`{{exec}}
+
+`asdf install nodejs 18.16.0`{{exec}}
+
+
+`asdf list nodejs`{{exec}}
+
+`asdf current`{{exec}}
+
+`asdf global nodejs 18.16.0`{{exec}}
+
+`asdf current`{{exec}}
+
+`node -v`{{exec}}
 
 
 
