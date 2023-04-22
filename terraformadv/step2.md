@@ -1,30 +1,13 @@
 # steps
 
-- create providers.tf
-- create main.tf
-- create var.tf
-- create output.tf
-- create modules (where in this list)
 
 ## setup provider
 
 in this example we are going to use a 'null provider'  Goto https://registry.terraform.io/providers/hashicorp/null/3.2.1 and click on the 'use provider' button and you'll get the code:
 
-`cd ~/mytf; nano provider.tf`{{exec}}
+`cat ~/mytf/providers.tf`{{exec}}
 
-```yaml
-terraform {
-  required_providers {
-    null = {
-      source = "hashicorp/null"
-      version = "3.2.1"
-    }
-  }
-}
 
-provider "null" {
-  # Configuration options
-}
 ```
 
 Now lets look at the documentation, to select a resource on the left hand side, there is only one 'null_resource'. 

@@ -28,6 +28,8 @@ Start a postgress database to store the terraform backend.
 
 #### WIP Remove install version 1.1.5 of terraform
 
+wip: remove this section
+
 `apt install terraform=1.1.5`{{execute}}    
 
 `terraform version`{{execute}}    
