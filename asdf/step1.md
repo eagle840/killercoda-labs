@@ -7,6 +7,8 @@ github: https://github.com/killercoda
 
 https://asdf-vm.com/
 
+`apt update`{{exec}}
+
 
 `apt install -y curl git sqlite3`{{exec}}
 
