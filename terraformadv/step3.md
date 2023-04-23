@@ -7,3 +7,19 @@ We'll create a default helm chart to use for terraform to deploy
 
 `tree nginx`{{exec}}
 
+
+## add install with tf
+
+
+`terraform init`{{exec}}
+
+`terraform plan`{{exec}}
+
+`terraform apply`{{exec}}
+
+! I beleive this timesout, because the svc is set as a LB, need to change to a nodeport?
+
+`terraform show`{{exec}}
+
+`helm list -A`{{exec}}
+

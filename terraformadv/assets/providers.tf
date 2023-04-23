@@ -13,6 +13,7 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = "2.20.0"
     }
+  }
   backend "pg" {
     conn_str = "postgres://root:1234@localhost/tfstate?sslmode=disable"
   }
