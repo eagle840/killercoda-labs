@@ -8,16 +8,16 @@ github: https://github.com/killercoda
 https://asdf-vm.com/
 
 
-`apt install -y curl git sqlite3 nodejs npm`{{exec}}
+`apt install -y curl git sqlite3`{{exec}}
 
 `apt install -y curl  nodejs npm`{{copy}} # wip don't think I need
 
 
-`nodejs --version`{{exec}}
+`nodejs --version`{{copy}}
 
-`yarn --version`{{exec}}
+`yarn --version`{{copy}}
 
-`sqlite3 --version`{{exec}}
+`sqlite3 --version`{{copy}}
 
 In new tab
 
@@ -35,9 +35,11 @@ In new tab
 
 ### install ruby
 
-`asdf plugin list all | grep ruby`{{exec}}
+
 
 `asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git`{{exec}}
+
+`asdf plugin list all | grep ruby`{{exec}}
 
 `asdf current`{{exec}}
 
@@ -58,7 +60,19 @@ Now we need to set which version of ruby to use, and the [context](https://asdf-
 
 `ruby -v`{{exec}}
 
-## install nodejs
+## install nodejs  - WIP takes too long
+
+wip fast install
+
+`apt install -y curl  nodejs npm`{{copy}} # wip don't think I need
+
+`npm install --global yarn`{{exec}}
+
+`nodejs --version`{{copy}}
+
+`yarn --version`{{copy}}
+
+--- asdf node install takes too long
 
 It many uses, you'll need to read the plugin README to understand the install procedure/requirements.
 For nodejs see https://github.com/asdf-vm/asdf-nodejs

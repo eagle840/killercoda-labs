@@ -4,6 +4,7 @@ ruby  versions can be found here: https://www.ruby-lang.org/en/
 
 the main backage manager for ruby is Gems https://rubygems.org/
 
+`ruby --version`{{exec}}
 
 ### single line
 
@@ -71,6 +72,8 @@ https://guides.rubyonrails.org/v6.1/getting_started.html
 which we've already installed
 
 `gem install rails -v 6.1`{{exec}}
+
+`rails --version`{{exec}}
 
 `rails new blog`{{exec}}
 
