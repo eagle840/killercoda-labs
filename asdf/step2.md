@@ -63,11 +63,13 @@ https://rubygems.org/gems/byebug
 https://guides.rubyonrails.org/v6.1/getting_started.html
 
 ## you'll need
-- Ruby
+- Ruby 
 - SQLite3
 - Node.js
-- Yarn
+- Yarn - we need
 
+
+`npm install --global yarn`{{exec}}
 
 which we've already installed
 
@@ -91,6 +93,9 @@ also the javascript folder in app
 
 starts the server (-b sets the binding address)
 
+Link for traffic into host 1 on port 80
+{{TRAFFIC_HOST1_3000}}
+
 wip this generated a rail web error, see https://guides.rubyonrails.org/configuring.html#actiondispatch-hostauthorization
 
 see config/application.rb
@@ -98,7 +103,8 @@ see config/application.rb
 fixed:  
 add the   
 
-```config.hosts << "d67c710d-e27b-43c4-9664-077ea62d7396-10-244-27-249-3000.spch.r.killercoda.com"
+```text
+config.hosts << "d67c710d-e27b-43c4-9664-077ea62d7396-10-244-27-249-3000.spch.r.killercoda.com"
 ```
 
 
