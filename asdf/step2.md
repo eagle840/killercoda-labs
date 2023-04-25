@@ -89,6 +89,13 @@ also the routes.rb  file in the config folder
 
 also the javascript folder in app
 
+
+Before we start the server, we need to tell rails not to check the domain name - for this environment.
+
+in 
+
+`echo "Rails.application.config.hosts.clear" >> ~/blog/config/environments/development.rb`{{exec}}
+
 `bin/rails server -b '0.0.0.0'`{{exec}} 
 
 starts the server (-b sets the binding address)
@@ -98,10 +105,10 @@ Link for traffic into host 1 on port 80
 
 wip this generated a rail web error, see https://guides.rubyonrails.org/configuring.html#actiondispatch-hostauthorization
 
-see config/application.rb
+
 
 fixed:  
-add the   
+add the  replace the guid with the correct one! 
 
 ```text
 config.hosts << "d67c710d-e27b-43c4-9664-077ea62d7396-10-244-27-249-3000.spch.r.killercoda.com"
