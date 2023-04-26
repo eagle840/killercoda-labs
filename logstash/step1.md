@@ -40,7 +40,14 @@ run `docker ps`{{exec}} to review the ports
  - and Kibana is on 5601
 
 
-# INstall logstash
+# Install logstash
+
+
+`apt-get install logstash`{{exec}}
+
+[getting started](https://www.elastic.co/guide/en/logstash/7.17/first-event.html)
+
+`ls /etc/logstash/`{{exec}}
 
 =================================
 
