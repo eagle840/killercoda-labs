@@ -49,6 +49,19 @@ run `docker ps`{{exec}} to review the ports
 
 `ls /etc/logstash/`{{exec}}
 
+`ls /usr/share/logstash/bin`{{exec}}
+
+`/usr/share/logstash/bin/logstash -h`{{exec}}
+
+
+start logstash
+
+`/usr/share/logstash/bin/logstash -e 'input { stdin { } } output { stdout {} }'`{{exec}}
+
+After starting Logstash, wait until you see "Pipeline main started" and then enter hello world at the command prompt:
+
+ctrl-d to exit
+
 =================================
 
 
