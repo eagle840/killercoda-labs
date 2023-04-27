@@ -1,3 +1,16 @@
+
+
+
+`wget https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz`{{exec}}
+   
+`gzip -d logstash-tutorial.log.gz`{{exec}}
+
+`cat logstash-tutorial.log `{{exec}}
+
+
+================= delete below ===================
+
+
 # check up and running
 
 Lets start generating some logs into ES:
