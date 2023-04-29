@@ -1,5 +1,5 @@
 
-# Initial Setup
+## Initial Setup
 
 Boot up the ES and kibana
 
@@ -11,7 +11,9 @@ In another tab, lets setup some tools/config
 
 `apt install -y net-tools jq tree`{{exec}}
 
-Config to download logstash:
+Config APT to download logstash:
+
+See https://www.elastic.co/guide/en/logstash/7.17/installing-logstash.html#_apt for more info
 
 `wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg`{{exec}}
 
@@ -21,7 +23,17 @@ Config to download logstash:
 
 `sudo apt-get update`{{exec}}
 
+`apt-get install logstash`{{exec}}
 
+[getting started](https://www.elastic.co/guide/en/logstash/7.17/first-event.html)
+
+`ls /etc/logstash/`{{exec}}
+
+`ls /usr/share/logstash/bin`{{exec}}
+
+`/usr/share/logstash/bin/logstash -h`{{exec}}
+
+## Check Elastic Stack is running.
 
 Once the Docker-compose has completed, wait a few minutes for the elasticsearch server to come up, you will get a json response from:
 
@@ -34,48 +46,16 @@ Once the Docker-compose has completed, wait a few minutes for the elasticsearch 
 {{TRAFFIC_HOST1_5601}}/app/home
 
 
-
-run `docker ps`{{exec}} to review the ports  
- - note ES is on 9200
- - and Kibana is on 5601
-
-
-# Install logstash
-
-
-`apt-get install logstash`{{exec}}
-
-[getting started](https://www.elastic.co/guide/en/logstash/7.17/first-event.html)
-
-`ls /etc/logstash/`{{exec}}
-
-`ls /usr/share/logstash/bin`{{exec}}
-
-`/usr/share/logstash/bin/logstash -h`{{exec}}
+## Run a basic logstash test
 
 
 start logstash
 
 `/usr/share/logstash/bin/logstash -e 'input { stdin { } } output { stdout {} }'`{{exec}}
 
-After starting Logstash, wait until you see "Pipeline main started" and then enter hello world at the command prompt:
+After starting Logstash, wait until you see "Pipeline main started" and then enter hello world at the command prompt and note the json element outputed.
 
 ctrl-d to exit
 
-=================================
 
-
-Once in the web portal, select 'explore on my own'
-
-
-open kibana web, > hamburger > Managment > Dev Tools
-
-lets check the health, paste on line 7 `GET _cluster/health`{{copy}} and then the green triangle to run that query.
-
-- take note of the status, number of nodes, and shards
-
-
-## Explore on your own
-
-If you wish to explore Kibana on your own, you can head to the Kibana home page, and 'try sample data'
 

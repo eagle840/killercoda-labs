@@ -22,3 +22,18 @@ https://github.com/thombashi/elasticsearch-faker
 
 http://media.sundog-soft.com/es/ml-latest-small.zip # 100k ratings
                             /es8/movies.json  # _bulk insert
+
+                            grok
+
+lookup
+%{DATA:class}
+%{GREEDY:message}
+
+
+cjslack/grok-debugger/public/patterns/rails
+
+manpages.org/grok
+
+https://logz.io/blog/logstash-grok/
+
+logstash-plugins/logstash-patterns-core/patterns/legacy
