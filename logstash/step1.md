@@ -11,7 +11,9 @@ In another tab, lets setup some tools/config
 
 `apt install -y net-tools jq tree`{{exec}}
 
-Config APT to download logstash:
+## Install Logstash
+
+Config APT to download logstash, note that it's important to use the same version of logstash as elastricsearch.
 
 See https://www.elastic.co/guide/en/logstash/7.17/installing-logstash.html#_apt for more info
 
@@ -23,15 +25,19 @@ See https://www.elastic.co/guide/en/logstash/7.17/installing-logstash.html#_apt 
 
 `sudo apt-get update`{{exec}}
 
+And install Logstash
+
 `apt-get install logstash`{{exec}}
 
-[getting started](https://www.elastic.co/guide/en/logstash/7.17/first-event.html)
+[See the elastic site for getting started](https://www.elastic.co/guide/en/logstash/7.17/first-event.html)
 
 `ls /etc/logstash/`{{exec}}
 
 `ls /usr/share/logstash/bin`{{exec}}
 
 `/usr/share/logstash/bin/logstash -h`{{exec}}
+
+echo "PATH=$PATH:/usr/share/logstash/bin" > /etc/profile.d/logstash.sh
 
 ## Check Elastic Stack is running.
 

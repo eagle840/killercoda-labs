@@ -33,10 +33,18 @@ output.logstash:
 
 WIP: filebeat keeps defaulting to /etc/filebeat
 
+`filebeat test config -c filebeat.yml`{{exec}}
+
 `/usr/share/logstash/bin/logstash -e 'input { beats { port=>"5044" } } output { stdout { codec => rubydebug } }'`{{exec}}
 
 
 `filebeat -e -c filebeat.yml -d "publish"`{{exec}}
+
+to re-run filebeat
+
+`sudo rm data/registry`{{exec}}
+
+grok patterns for elastic: https://github.com/elastic/elasticsearch/tree/main/libs/grok/src/main/resources/patterns
 
 
 typical output:
@@ -74,8 +82,34 @@ typical output:
        "message" => "86.1.76.62 - - [04/Jan/2015:05:30:37 +0000] \"GET /style2.css HTTP/1.1\" 200 4877 \"http://www.semicomplete.com/projects/xdotool/\" \"Mozilla/5.0 (X11; Linux x86_64; rv:24.0) Gecko/20140205 Firefox/24.0 Iceweasel/24.3.0\""
 }
 ```
+`nano first-pipeline.conf`{{exec}}
 
+```
+input {
+    beats {
+        port => "5044"
+    }
+}
+filter {
+    grok {
+        match => { "message" => "%{COMBINEDAPACHELOG}"}
+    }
+}
+output {
+    stdout { codec => rubydebug }
+}
+```
+### grok in Kibana
 
+open website
+
+goto dev tools > grok debugger
+
+in Sample Data "192.168.54.34"
+
+Grok pattern "%{IP:clientip}"
+
+and run 'Simulate"
 
 ================= delete below ===================
 
