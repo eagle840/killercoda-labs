@@ -26,7 +26,7 @@ Lets download some sample logs:
 filebeat.inputs:
 - type: log
   paths:
-    - /path/to/file/logstash-tutorial.log 
+    - /root/logstash-tutorial.log 
 output.logstash:
   hosts: ["localhost:5044"]
 ```
@@ -35,10 +35,14 @@ WIP: filebeat keeps defaulting to /etc/filebeat
 
 `filebeat test config -c filebeat.yml`{{exec}}
 
+`filebeat export config  -c /root/filebeat.yml -E "config=/root/filebeat"`{{exec}}
+
 `/usr/share/logstash/bin/logstash -e 'input { beats { port=>"5044" } } output { stdout { codec => rubydebug } }'`{{exec}}
 
+wip `cp filebeat.yml /etc/filebeat/filebeat2.yml`{{exec}}
 
-`filebeat -e -c filebeat.yml -d "publish"`{{exec}}
+
+`filebeat -e -c filebeat2.yml -d "publish"`{{exec}}
 
 to re-run filebeat
 
@@ -99,6 +103,11 @@ output {
     stdout { codec => rubydebug }
 }
 ```
+
+
+`/usr/share/logstash/bin/logstash -e 'input { beats { port=>"5044" } }  filter {grok {match => { "message" => "%{COMBINEDAPACHELOG}"}}}  output { stdout { codec => rubydebug } }'`{{exec}}
+
+filter {grok {match => { "message" => "%{COMBINEDAPACHELOG}"}}}
 ### grok in Kibana
 
 open website
