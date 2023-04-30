@@ -1,4 +1,6 @@
 
+# Forward a log file to logstash
+
 
 Lets download some sample logs:
 
@@ -104,6 +106,8 @@ output {
 }
 ```
 
+
+https://github.com/logstash-plugins/logstash-patterns-core/tree/main/patterns
 
 `/usr/share/logstash/bin/logstash -e 'input { beats { port=>"5044" } }  filter {grok {match => { "message" => "%{COMBINEDAPACHELOG}"}}}  output { stdout { codec => rubydebug } }'`{{exec}}
 
