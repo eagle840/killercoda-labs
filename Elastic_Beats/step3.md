@@ -8,6 +8,19 @@ Is a lightweight shipper for logs and other data files, it tails logs/files into
 
 `filebeat -h`{{exec}}
 
+`filebeat -h`{{exec}}
+
+
+`filebeat modules -h`{{exec}}
+
+`filebeat modules list`{{exec}}
+
+`filebeat modules enable elasticsearch`{{exec}}
+
+any changes, need:
+
+`filebeat setup -e`{{exec}}  # the -e gives debugging info
+
 ### Filebeats Core Components
 
 #### prospector(inputs)
@@ -125,6 +138,37 @@ The reference file is included to give examples, and not intended to be used:
 
 For a extensive tutorial on filebeat see
 youtube.com/watch?v=ykuw1piMGa4
+
+
+# filebeat module config
+
+in filebeat.yml
+
+https://www.elastic.co/guide/en/beats/filebeat/current/elasticsearch-output.html#indices-option-es
+
+
+```yaml
+# — — — — — — — — — — — — — — Elasticsearch Output — — — — — — — — — — — — — —
+output.elasticsearch:
+# Array of hosts to connect to.
+   hosts: [“x.x.x.x:9200”]
+   indices:
+     — index: “filebeat-%{[agent.version]}-system-%{+yyyy.MM.dd}”
+       when.equals:
+         event.module: “system”
+     — index: “filebeat-%{[agent.version]}-cef-%{+yyyy.MM.dd}”
+       when.equals:
+         event.module: “cef”
+     — index: “filebeat-%{[agent.version]}-cisco-%{+yyyy.MM.dd}”
+       when.equals:
+       event.module: “cisco”
+```
+
+wip:  getting an
+
+Exiting: error loading config file: yaml: line 140: mapping values are not allowed in this context
+
+test
 
 
 

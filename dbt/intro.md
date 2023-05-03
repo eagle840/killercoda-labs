@@ -1,0 +1,1 @@
+This lab is for a dbt ETL pipelines.
