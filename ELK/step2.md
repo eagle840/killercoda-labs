@@ -1,12 +1,31 @@
+# Basic Operation
+
+
 # check up and running
 
-Lets start generating some logs into ES:
+Lets start generating some logs into logstash/ES:
 
-in another tab (terminal window) start the log generator:
+in another tab  start the log generator:
 
 `chmod +x sysloggen.sh`{{exec}}
 
 `./sysloggen.sh`{{exec}}
+
+## Indexing
+
+With data flowing into logstash, and then into ES, the records are being given a datafield of an index, and then being flowed into that index.
+
+Open the ES GUI, and goto Management > Stack Management. And then Data -> Index Management. And you'll see the index logstash-*
+
+## Index Pattern
+
+Next we need to have Kibana reconize that index. Still under management, goto Kibana -> Index Patterns.
+
+Click on index patterns, and use the term 'logstash*' and Timestamp field of @timestamp.
+
+You will then be able to use the Analytics -> Discover page to search that index pattern.  
+
+
 
 
 
@@ -18,8 +37,6 @@ Show the logs of the logstash container
 
 (note that the service starts with a capital letter: Logstash)
 
-in another tab (terminal window) start the log generator:
-
 Show the logstash config:
 
 `docker exec -it logstash ls /etc/logstash`{{exec}}
@@ -27,49 +44,6 @@ Show the logstash config:
 View the available binaries:
 
 `docker exec -it logstash ls /usr/share/logstash/bin/`{{exec}}
-
-
-
-
-## ES
-
-Show the logs of the logstash container
-
-`docker-compose logs -f Elasticsearch`{{exec}}
-
-(note that the service starts with a capital letter: Logstash)
-
-in another tab (terminal window) start the log generator:
-
-Show the logstash config:
-
-`docker exec -it elasticsearch ls /etc/elasticsearch`{{exec}}
-
-View the available binaries:
-
-`docker exec -it elasticsearch ls /usr/share/elasticsearch/bin/`{{exec}}
-
-
-## Kibana
-
-
-Show the logs of the logstash container
-
-`docker-compose logs -f Kibana`{{exec}}
-
-(note that the service starts with a capital letter: Logstash)
-
-in another tab (terminal window) start the log generator:
-
-Show the logstash config:
-
-`docker exec -it kibana ls /etc/kibana`{{exec}}
-
-View the available binaries:
-
-`docker exec -it kibana ls /usr/share/kibana/bin/`{{exec}}
-
-## logstash
 
 look at the log stash examples on line
 
@@ -108,35 +82,46 @@ https://www.elastic.co/guide/en/logstash/current/advanced-pipeline.html
 
 CAN I JUST USE THE FOLLOWING FILE IN THE DOCKER CONTRAINER AS THE SOURCE FILE?
 
-wget https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz
 
-gzip -d logstash-tutorial.log.gz
+## ElasticSearch
 
+Show the logs of the logstash container
 
- curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.3.2-amd64.deb
+`docker-compose logs -f Elasticsearch`{{exec}}
 
-dpkg -i filebeat-8.3.2-amd64.deb
+(note that the service starts with a capital letter: Logstash)
 
-filebeat modules list
+in another tab (terminal window) start the log generator:
 
-filebeat modules enable nginx  - NOT THIS
+Show the logstash config:
 
-in /etc/filebeat/filebeat.yml  make sure config is set:
+`docker exec -it elasticsearch ls /etc/elasticsearch`{{exec}}
 
-```
-filebeat.inputs:
-- type: log
-  paths:
-    - /path/to/file/logstash-tutorial.log 
-output.logstash:
-  hosts: ["localhost:5044"]
-```
+View the available binaries:
+
+`docker exec -it elasticsearch ls /usr/share/elasticsearch/bin/`{{exec}}
 
 
+## Kibana
 
 
+Show the logs of the logstash container
 
-## kibana
+`docker-compose logs -f Kibana`{{exec}}
+
+(note that the service starts with a capital letter: Logstash)
+
+in another tab (terminal window) start the log generator:
+
+Show the logstash config:
+
+`docker exec -it kibana ls /etc/kibana`{{exec}}
+
+View the available binaries:
+
+`docker exec -it kibana ls /usr/share/kibana/bin/`{{exec}}
+
+
 
 port 1514
 
@@ -157,77 +142,3 @@ to allow all, change to "0.0.0.0"
 
 note, but don't change elasticsearch setting
 
-
-
-## send data through http api
-
-
-`cd ~`
-
-`mkdir bin`
-
-`cd bin`
-
-`nano curl`
-
-```
-#!/bin/bash
-/usr/bin/curl -H "Content-Type: application/json" "$@"
-```
-
-`chmod a+x curl`
-
-`cd ~`
-
-`source .profile`
-
-
-```
-type 'curl -XPUT localhost:9200/movies/ -d'  
-```  
-
-note the quotes in the commands that encapsulated the json data
-
-then 
-`{`
-ctrl-v tab, and complete as below. Notice the single quotes enclosing the text
-
-```
-{
-  "mappings": {
-    "properties": {
-      "year": { "type": "date" }
-    }
-  }
-}'
-```
-ABOVE ISN'T WORKING,, need to be in the ~/bin dir and run ./curl
-
-curl -H "Content-Type: application/json" -XPUT localhost:9200/movies -d '
-> {
->   "mappings": {
->     "properties": {
->       "year": { "type": "date" }
->     }
->   }
-> }'
-
-
-
-`curl -XGET localhost:9200/movies/_mapping`
-
-
-
-`wget http://media.sundog-soft.com/es8/movies.json`
-
-
-
-`cat movies.json`
-
-note the json file already has the 'create', 'index' and 'id'
-and that a year field is present, and we have told ES to treat that as a date.
-
-curl -H "Content-Type: application/json" -XPUT localhost:9200/_bulk?pretty --data-binary @movies.json
-
-
-curl -XGET localhost:9200/movies/_search?pretty`

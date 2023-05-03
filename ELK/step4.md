@@ -1,97 +1,89 @@
 
-# filebeats
+Lets use faker to send logs
+
+https://github.com/thombashi/elasticsearch-faker
+
+`pip install elasticsearch-faker`{{exec}}
 
 
-https://www.elastic.co/guide/en/beats/filebeat/7.17/filebeat-installation-configuration.html
+## using logstash to send a csv
 
 
-```bash
-curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.17.4-amd64.deb
-sudo dpkg -i filebeat-7.17.4-amd64.deb
-```{{exec}}
-
-`wget https://download.elastic.co/demos/logstash/gettingstarted/logstash-tutorial.log.gz`{{exec}}
-
-`gzip -d logstash-tutorial.log.gz`{{exec}}
-
-
-`filebeat -h`{{exec}}
-
-
-`filebeat modules -h`{{exec}}
-
-`filebeat modules list`{{exec}}
-
-`filebeat modules enable elasticsearch`{{exec}}
-
-any changes, need:
-
-`filebeat setup -e`{{exec}}
-
-it takes a few minutes to setup, including kibana dashboards
-
-
-
-# grok debugger
-
-unstructured log and event data into structured data
-
-## pattern matching
-
-https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html
-
-%{SYNTAX:SEMANTIC}   # SYNTAX is the pattern, SEMANTIC is the 'key' 
-
-SEMANTIC by default is a string, if you want a number, prefix it with 'num:'
-
-while regx has
 ```
-IPV4 (?<![0-9])(?:(?:25[0-5]|2[0-4][0-9]|[0-1]?[0-9]{1,2})[.](?:25[0-5]|2[0-4][0-9]|[0-1]?[0-9]{1,2})[.](?:25[0-5]|2[0-4][0-9]|[0-1]?[0-9]{1,2})[.](?:25[0-5]|2[0-4][0-9]|[0-1]?[0-9]{1,2}))(?![0-9])
+input {
+    file {
+        path => "path"
+        start_position => "beginning"
+        sincedb_path = > "/dev/null" # windows "NULL"
+    }
+}
+filter {
+    csv {
+        separator => ","
+        columns => ["col1",col2"]
+    }
+}
+output {
+    elasticsearch {
+        hosts => "http://localhost:9200"
+        index => "new_index_name"
+    }
+}
 ```
 
-with grok you can use a shortcut of %{IPv4: ClientIP}
+then add an index pattern into kibana
 
-for a regx patern, use     
-```
-(?<custom_field>custom pattern)
-```
-where Custom_field will be the K, and the 'custom pattern' will be a  regex expression, its evalution being the value
-## example logs here
+## BEATS
 
+lets check the Elastic version
 
-## grok example code here
+`curl http://localhost:9200`{{exec}}
 
+and install the same Beats version:
 
->> press simulate in - kibana devtools , tab Grok debugger
-
- goto:
-
-https://grokdebug.herokuapp.com/  and select the discover tab
-
-or try https://grokdebugger.com/  # left hand side is shortcuts added to autocomplete - besure to set the 'grok=patterns'
-
-https://grokconstructor.appspot.com/
-
-start with the pattern '%{GREEDYDATA:message}' and add the additional patterns before it
-
-In the kibana ui, goto discover and copy the msg text 
-
-past the msg into the fieldss
+WIP move to step 1 the key update
 
 
-- pull example log for kibana>discover  and paste into grok debug
-- can also use logstash config filter section
+`wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg`{{exec}}
 
-download 
+`sudo apt-get install apt-transport-https`{{exec}}
 
-https://www.kaggle.com/rmisra/news-category-dataset
+`echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list`{{exec}}
 
-Open the kibana homepage, and upload the data with drag and drop
+`sudo apt-get update`{{exec}}
 
-Kibana will now show an over view of the data
+### main cmds/setting
 
-scroll down and 'import'
+<beatcmd> test config # to test the yml config
+<beatcmd> test output # to test connection to ES
+<beatcmd> setup # to setup dashboard etc in es/kibana stack 
 
-Give your data an index name 'news_headlines'
+## metricbeat
 
-## Precision vs Recall
+
+`apt install metricbeat=7.17.4`{{copy}}
+
+WIP update docker to the same
+
+WIP `metricbeat setup`{{copy}}
+
+
+`sudo apt-get install metricbeat=7.17.4`{{copy}}
+
+`curl http://localhost:9200`{{exec}}
+
+`sudo systemctl enable metricbeat`{{exec}}
+
+`sudo update-rc.d metricbeat defaults 95 10`{{exec}}
+
+create some load:
+
+`apt install stress`{{exec}}
+
+`nproc`{{exec}}
+
+`stress --cpu 1 --timeout 120`{{exec}}
+
+`stree --vm 5 --timeout 180`{{exec}}
+
+
