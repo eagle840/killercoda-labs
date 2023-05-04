@@ -17,6 +17,8 @@ With data flowing into logstash, and then into ES, the records are being given a
 
 Open the ES GUI, and goto Management > Stack Management. And then Data -> Index Management. And you'll see the index logstash-*
 
+Note that the health is yellow - this is due to ES considers an index health when it includes a replica. Since this ES only has one node, it won't have a replica.
+
 ## Index Pattern
 
 Next we need to have Kibana reconize that index. Still under management, goto Kibana -> Index Patterns.
@@ -31,6 +33,10 @@ You will then be able to use the Analytics -> Discover page to search that index
 
 ## Logstash
 
+In our docker-ompose we have mapped the logstash config file  to the local logstash folder
+
+`cat logstash/logstash.conf`{{exec}}
+
 Show the logs of the logstash container
 
 `docker-compose logs -f Logstash`{{exec}}
@@ -39,7 +45,9 @@ Show the logs of the logstash container
 
 Show the logstash config:
 
-`docker exec -it logstash ls /etc/logstash`{{exec}}
+`docker exec -it logstash bin/logstash --help`{{exec}}
+
+WIP `docker exec -it logstash ls /etc/logstash`{{exec}}
 
 View the available binaries:
 
@@ -53,34 +61,32 @@ look at the log stash examples on line
 
 `pwd`{{exec}}
 
-`cat config/logstash.yml`{{exec}}
+`logstash -h`{{exec}}
 
-- note input, with 'type'
-- note use if statements
-- note index name
-
-/etc/logstash/logstash.yaml
-
-/etc/logstash/pipelines.yaml
+WIP /etc/logstash/pipelines.yaml
 
 /use/share/logstash/bin/logstash -f <config.yaml>
 
 Checking Logstash with it'a API (https://www.elastic.co/guide/en/logstash/current/monitoring-logstash.html)
 
 
+#### query the logstash api
 
- - run `logstash -e 'input { stdin { } } output { stdout {} }'`{{exec}}
- - wait until you see "Pipeline main started" 
- - type in `hello world`
+`curl -XGET 'localhost:9600/?pretty'`{{exec}}
 
-- wait for 
+`curl -XGET 'localhost:9600/_node/stats/'`{{exec}}
+
+`curl -XGET 'localhost:9600/_node/stats/jvm?pretty'`{{exec}}
+
+Check out more about the API  at (https://www.elastic.co/guide/en/logstash/current/monitoring-logstash.html)
+
+
 
 for more on configeration see: https://www.elastic.co/guide/en/logstash/current/configuration.html
 
 https://www.elastic.co/guide/en/logstash/current/advanced-pipeline.html
 
 
-CAN I JUST USE THE FOLLOWING FILE IN THE DOCKER CONTRAINER AS THE SOURCE FILE?
 
 
 ## ElasticSearch
@@ -90,8 +96,6 @@ Show the logs of the logstash container
 `docker-compose logs -f Elasticsearch`{{exec}}
 
 (note that the service starts with a capital letter: Logstash)
-
-in another tab (terminal window) start the log generator:
 
 Show the logstash config:
 
@@ -121,24 +125,5 @@ View the available binaries:
 
 `docker exec -it kibana ls /usr/share/kibana/bin/`{{exec}}
 
-
-
-port 1514
-
-netstat -tlupn
-
-`docker-compose exec Logstash bash`{{exec}}
-
-`pwd`{{exec}}
-
-`cat config/kibana.yml`
-
-run `bin/kibana`
-
-
-note server.host
-
-to allow all, change to "0.0.0.0"
-
-note, but don't change elasticsearch setting
+`docker exec -it kibana bin/kibana -h`{{exec}}
 

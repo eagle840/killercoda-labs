@@ -34,7 +34,7 @@ Once the Docker-compose has completed, wait a few minutes for the elasticsearch(
 
 `curl http://localhost:9200`{{exec}}
 
-`curl http://localhost:9200/_cluster/health`{{exec}}
+`curl http://localhost:9200/_cluster/health?pretty`{{exec}}
 
 
 
