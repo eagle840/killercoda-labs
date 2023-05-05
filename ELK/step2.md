@@ -17,7 +17,7 @@ With data flowing into logstash, and then into ES, the records are being given a
 
 Open the ES GUI, and goto Management > Stack Management. And then Data -> Index Management. And you'll see the index logstash-*
 
-Note that the health is yellow - this is due to ES considers an index health when it includes a replica. Since this ES only has one node, it won't have a replica.
+Note that the health is yellow - this is due to ES considers an index healthy when it includes a replica. Since this ES only has one node, it won't have a replica.
 
 ## Index Pattern
 
@@ -28,12 +28,12 @@ Click on index patterns, and use the term 'logstash*' and Timestamp field of @ti
 You will then be able to use the Analytics -> Discover page to search that index pattern.  
 
 
-
+! note the following is based on the docker config,  for native elk stack config is usually under /etc/<product>/
 
 
 ## Logstash
 
-In our docker-ompose we have mapped the logstash config file  to the local logstash folder
+In our docker-compose we have mapped the logstash config file  to the local logstash folder
 
 `cat logstash/logstash.conf`{{exec}}
 
@@ -43,31 +43,13 @@ Show the logs of the logstash container
 
 (note that the service starts with a capital letter: Logstash)
 
-Show the logstash config:
+Look at the options for logstash:
 
 `docker exec -it logstash bin/logstash --help`{{exec}}
-
-WIP `docker exec -it logstash ls /etc/logstash`{{exec}}
 
 View the available binaries:
 
 `docker exec -it logstash ls /usr/share/logstash/bin/`{{exec}}
-
-look at the log stash examples on line
-
-- TODO add date field to index name
-
-`docker-compose exec Logstash bash`{{exec}}
-
-`pwd`{{exec}}
-
-`logstash -h`{{exec}}
-
-WIP /etc/logstash/pipelines.yaml
-
-/use/share/logstash/bin/logstash -f <config.yaml>
-
-Checking Logstash with it'a API (https://www.elastic.co/guide/en/logstash/current/monitoring-logstash.html)
 
 
 #### query the logstash api
@@ -91,35 +73,34 @@ https://www.elastic.co/guide/en/logstash/current/advanced-pipeline.html
 
 ## ElasticSearch
 
-Show the logs of the logstash container
+Show the logs of the ES container
 
 `docker-compose logs -f Elasticsearch`{{exec}}
 
-(note that the service starts with a capital letter: Logstash)
+Show the elastic config:
 
-Show the logstash config:
-
-`docker exec -it elasticsearch ls /etc/elasticsearch`{{exec}}
+`docker exec -it elasticsearch cat /usr/share/elasticsearch/config/elasticsearch.yml`{{exec}}
 
 View the available binaries:
 
 `docker exec -it elasticsearch ls /usr/share/elasticsearch/bin/`{{exec}}
 
+and the help
+
+`docker exec -it elasticsearch bin/elasticsearch -h`{{exec}}
+
 
 ## Kibana
 
 
-Show the logs of the logstash container
+Show the logs of the kibana container
 
 `docker-compose logs -f Kibana`{{exec}}
 
-(note that the service starts with a capital letter: Logstash)
 
-in another tab (terminal window) start the log generator:
+Show the kibana config:
 
-Show the logstash config:
-
-`docker exec -it kibana ls /etc/kibana`{{exec}}
+`docker exec -it kibana cat /usr/share/kibana/config/kibana.yml`{{exec}}
 
 View the available binaries:
 

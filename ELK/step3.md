@@ -7,7 +7,7 @@
 ## basic setup
 
 
-Using the same 'Dev Tool'
+Using the same 'Dev Tool' in the web GUI
 
 create an index  `PUT favorite_candy`{{copy}}
 
@@ -19,7 +19,7 @@ to list all indices `GET /_cat/indices`{{copy}}
 
 in kibana Home>stack mgmnt > Data > Index Mmgmnt
 
-Now index a document (??? adding a document to an index ?)
+Now add a document to an index:
 
 ```
 POST favorite_candy/_doc
@@ -28,6 +28,8 @@ POST favorite_candy/_doc
   "candy": "Sour Skittles"
 }
 ```{{copy}}
+
+Note the version number and _id number.
 
 if you want to do a document with a specific ID (1)
 
@@ -38,10 +40,9 @@ PUT favorite_candy/_doc/1
   "candy": "Starburst"
 }
 ```{{copy}}
+ 
 
-in the output, pay attention to the version number
-
-add and run the following:
+add the following documents:
 
 ```
 PUT favorite_candy/_doc/2
@@ -115,24 +116,7 @@ to delete a complete index
 ## send data through http api
 
 
-`cd ~`
 
-`mkdir bin`
-
-`cd bin`
-
-`nano curl`
-
-```
-#!/bin/bash
-/usr/bin/curl -H "Content-Type: application/json" "$@"
-```
-
-`chmod a+x curl`
-
-`cd ~`
-
-`source .profile`
 
 
 ```
@@ -168,6 +152,8 @@ curl -H "Content-Type: application/json" -XPUT localhost:9200/movies -d '
 
 
 `curl -XGET localhost:9200/movies/_mapping`
+
+`curl -XPUT localhost:9200/movies`{{exec}}
 
 
 
