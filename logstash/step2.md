@@ -26,74 +26,52 @@ WIP now add a filter
 `filebeat -h`{{copy}}
 
 
-## use filebeat to send logs
 
-`nano filebeat.yml`{{exec}}
+## Add a GROK filter
+
+we'll add a filter to the logstash cmd:
 
 ```
-filebeat.inputs:
-- type: log
-  paths:
-    - /root/logstash-tutorial.log 
-output.logstash:
-  hosts: ["localhost:5044"]
+filter { grok { match =>  { "message" => "%{COMBINEDAPACHELOG}"}   } }
 ```
 
-WIP: filebeat keeps defaulting to /etc/filebeat
+this will talk the 'message' key value, and return a varity of related objects.
 
-`filebeat test config -c filebeat.yml`{{exec}}
+`logstash -e 'input { stdin { } } filter { grok { match =>  { "message" => "%{COMBINEDAPACHELOG}"}   } } output { stdout {} }' < logstash-tutorial.log`{{exec}}
 
-`filebeat export config  -c /root/filebeat.yml -E "config=/root/filebeat"`{{exec}}
+The 
 
-`/usr/share/logstash/bin/logstash -e 'input { beats { port=>"5044" } } output { stdout { codec => rubydebug } }'`{{exec}}
+## Forward to ES
 
-wip `cp filebeat.yml /etc/filebeat/filebeat2.yml`{{exec}}
+We now use the elasticsearch plugin to send that data to ES https://www.elastic.co/guide/en/logstash/7.17/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch
+
+`logstash -e 'input { stdin { } } filter { grok { match =>  { "message" => "%{COMBINEDAPACHELOG}"}   } } output { elasticsearch { hosts => "localhost:9200" } }' < logstash-tutorial.log`{{exec}}
 
 
-`filebeat -e -c filebeat2.yml -d "publish"`{{exec}}
 
-to re-run filebeat
-
-`sudo rm data/registry`{{exec}}
 
 grok patterns for elastic: https://github.com/elastic/elasticsearch/tree/main/libs/grok/src/main/resources/patterns
 
 
-typical output:
+## Use the ES grok debugger
+
+Goto the web GUI, dev tools, grok debugger
+
+Paste the raw message into the 'sample data'
 
 ```
-{
-    "@timestamp" => 2023-04-29T16:52:22.711Z,
-         "input" => {
-        "type" => "log"
-    },
-           "ecs" => {
-        "version" => "1.12.0"
-    },
-          "host" => {
-        "name" => "ubuntu"
-    },
-          "tags" => [
-        [0] "beats_input_codec_plain_applied"
-    ],
-      "@version" => "1",
-           "log" => {
-        "offset" => 24248,
-          "file" => {
-            "path" => "/root/logstash-tutorial.log"
-        }
-    },
-         "agent" => {
-             "version" => "7.17.9",
-                "name" => "ubuntu",
-        "ephemeral_id" => "773a5f25-08aa-4958-aa08-b54b7211074d",
-                "type" => "filebeat",
-                  "id" => "92710e0a-ef68-4588-81c5-04722828d1f2",
-            "hostname" => "ubuntu"
-    },
-       "message" => "86.1.76.62 - - [04/Jan/2015:05:30:37 +0000] \"GET /style2.css HTTP/1.1\" 200 4877 \"http://www.semicomplete.com/projects/xdotool/\" \"Mozilla/5.0 (X11; Linux x86_64; rv:24.0) Gecko/20140205 Firefox/24.0 Iceweasel/24.3.0\""
-}
+198.46.149.143 - - [04/Jan/2015:05:29:13 +0000] "GET /blog/geekery/disabling-battery-in-ubuntu-vms.html?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+semicomplete%2Fmain+%28semicomplete.com+-+Jordan+Sissel%29 HTTP/1.1" 200 9316 "-" "Tiny Tiny RSS/1.11 (http://tt-rss.org/)"
 ```
+
+
+And then the grok pattern
+
+`%{COMBINEDAPACHELOG}`
+
+and the debugger simulator will convert the message to a json object
+
+typical output:
+
 `nano first-pipeline.conf`{{exec}}
 
 ```
@@ -129,38 +107,4 @@ in Sample Data "192.168.54.34"
 Grok pattern "%{IP:clientip}"
 
 and run 'Simulate"
-
-================= delete below ===================
-
-
-# check up and running
-
-Lets start generating some logs into ES:
-
-in another tab (terminal window) start the log generator:
-
-`chmod +x sysloggen.sh`{{exec}}
-
-`./sysloggen.sh`{{exec}}
-
-
-
-## Logstash
-
-Show the logs of the logstash container
-
-`docker-compose logs -f Logstash`{{exec}}
-
-(note that the service starts with a capital letter: Logstash)
-
-in another tab (terminal window) start the log generator:
-
-Show the logstash config:
-
-`docker exec -it logstash ls /etc/logstash`{{exec}}
-
-View the available binaries:
-
-`docker exec -it logstash ls /usr/share/logstash/bin/`{{exec}}
-
 
