@@ -29,24 +29,26 @@ And install Logstash
 
 `apt-get install logstash`{{exec}}
 
+`PATH=$PATH:/usr/share/logstash/bin`{{exec}}
+
 [See the elastic site for getting started](https://www.elastic.co/guide/en/logstash/7.17/first-event.html)
 
+review the main config file:
+
 `ls /etc/logstash/`{{exec}}
+
+and list out the available binaries:
 
 `ls /usr/share/logstash/bin`{{exec}}
 
 `/usr/share/logstash/bin/logstash -h`{{exec}}
 
-echo "PATH=$PATH:/usr/share/logstash/bin" > /etc/profile.d/logstash.sh
 
 ## Check Elastic Stack is running.
 
 Once the Docker-compose has completed, wait a few minutes for the elasticsearch server to come up, you will get a json response from:
 
 `curl http://localhost:9200`{{exec}}
-
-`curl http://localhost:9200/_cluster/health`{{exec}}
-
 
 
 {{TRAFFIC_HOST1_5601}}/app/home
@@ -60,6 +62,8 @@ start logstash
 `/usr/share/logstash/bin/logstash -e 'input { stdin { } } output { stdout {} }'`{{exec}}
 
 After starting Logstash, wait until you see "Pipeline main started" and then enter hello world at the command prompt and note the json element outputed.
+
+Note the json output that logstash has generated.
 
 ctrl-d to exit
 

@@ -13,11 +13,17 @@ Lets download some sample logs:
 
 `cat logstash-tutorial.log `{{exec}}
 
-`apt install filebeat`{{exec}}
+WIP replace filebeat with:
 
-`ls /usr/share/filebeat/bin`{{exec}}
+`logstash -e 'input { stdin { } } output { stdout {} }' < logstash-tutorial.log`{{exec}}
 
-`filebeat -h`{{exec}}
+WIP now add a filter
+
+`apt install filebeat`{{copy}}
+
+`ls /usr/share/filebeat/bin`{{copy}}
+
+`filebeat -h`{{copy}}
 
 
 ## use filebeat to send logs
