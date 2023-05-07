@@ -1,6 +1,6 @@
 {
-  "title": "WORK-IN-PROGRESS Logstash",
-  "description": "Learn to use logstash  (v.005) ",
+  "title": "WORK-IN-PROGRESS Logstash and Grok",
+  "description": "Learn to use logstash and grok  (v.006) ",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
