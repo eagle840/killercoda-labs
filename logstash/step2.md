@@ -11,7 +11,7 @@ Lets download some sample logs:
    
 `gzip -d logstash-tutorial.log.gz`{{exec}}
 
-`cat logstash-tutorial.log `{{exec}}
+`tail logstash-tutorial.log `{{exec}}
 
 WIP replace filebeat with:
 
@@ -35,22 +35,9 @@ we'll add a filter to the logstash cmd:
 filter { grok { match =>  { "message" => "%{COMBINEDAPACHELOG}"}   } }
 ```
 
-this will talk the 'message' key value, and return a varity of related objects.
+this will tke the 'message' value, and return a json objects for each message.
 
 `logstash -e 'input { stdin { } } filter { grok { match =>  { "message" => "%{COMBINEDAPACHELOG}"}   } } output { stdout {} }' < logstash-tutorial.log`{{exec}}
-
-The 
-
-## Forward to ES
-
-We now use the elasticsearch plugin to send that data to ES https://www.elastic.co/guide/en/logstash/7.17/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch
-
-`logstash -e 'input { stdin { } } filter { grok { match =>  { "message" => "%{COMBINEDAPACHELOG}"}   } } output { elasticsearch { hosts => "localhost:9200" } }' < logstash-tutorial.log`{{exec}}
-
-
-
-
-grok patterns for elastic: https://github.com/elastic/elasticsearch/tree/main/libs/grok/src/main/resources/patterns
 
 
 ## Use the ES grok debugger
@@ -70,15 +57,28 @@ And then the grok pattern
 
 and the debugger simulator will convert the message to a json object
 
+## Forward to Elasticsearch
+
+We now use the elasticsearch plugin to send that data to ES https://www.elastic.co/guide/en/logstash/7.17/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch
+
+`logstash -e 'input { stdin { } } filter { grok { match =>  { "message" => "%{COMBINEDAPACHELOG}"}   } } output { elasticsearch { hosts => "localhost:9200" } }' < logstash-tutorial.log`{{exec}}
+
+
+
+
+grok patterns for elastic: https://github.com/elastic/elasticsearch/tree/main/libs/grok/src/main/resources/patterns
+
+
+## Use logstash with a config file
+
+
 typical output:
 
 `nano first-pipeline.conf`{{exec}}
 
 ```
 input {
-    beats {
-        port => "5044"
-    }
+    WIP: input file
 }
 filter {
     grok {
@@ -86,10 +86,11 @@ filter {
     }
 }
 output {
-    stdout { codec => rubydebug }
+    stdout { codec => rubydebug } 
 }
 ```
 
+WIP now use a config file to send sysloger program to ES  - do this after 'adv grok step
 
 https://github.com/logstash-plugins/logstash-patterns-core/tree/main/patterns
 
