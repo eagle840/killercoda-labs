@@ -1,4 +1,11 @@
+# Logstash architecture over view
 
+
+her is the the general pipeline:
+- input filer, [full list](https://www.elastic.co/guide/en/logstash/7.17/input-plugins.html).
+- queue
+- filter (data manipulation)   [full list](https://www.elastic.co/guide/en/logstash/7.17/output-plugins.html)
+- output, [full list](https://www.elastic.co/guide/en/logstash/7.17/output-plugins.html)
 # Forward a log file to logstash
 
 

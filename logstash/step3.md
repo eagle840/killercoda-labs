@@ -1,5 +1,7 @@
 # advanced gork 
 
+http://grokconstructor.appspot.com/
+
 
 https://www.elastic.co/guide/en/logstash/7.17/plugins-filters-grok.html
 
