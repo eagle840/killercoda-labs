@@ -170,6 +170,12 @@ Exiting: error loading config file: yaml: line 140: mapping values are not allow
 
 test
 
+filebeat -e -c filebeat2.yml -d "publish"
+
+to rerun 
+
+sudo rm data/registry
+
 
 
 

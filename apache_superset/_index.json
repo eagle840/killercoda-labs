@@ -1,5 +1,5 @@
 {
-  "title": "Apache Drill",
+  "title": "Apache Superset",
   "description": "Setup a Apache Drill server with Docker Compose",
   "difficulty": "Intermediate",
   "time": "60 minutes",
