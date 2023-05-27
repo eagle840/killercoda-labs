@@ -72,6 +72,22 @@ Now we need to set which version of ruby to use, and the [context](https://asdf-
 
 `node -v`{{exec}}
 
+# install postgre
+
+asdf not working
+
+`wget https://www.postgresql.org/media/keys/ACCC4CF8.asc`{{exec}}
+
+`sudo apt-key add ACCC4CF8.asc`{{exec}}
+
+`fetch the metadata from the new repo`{{exec}}
+
+`sudo apt-get update`{{exec}}
+
+`sudo apt-get install -y postgresql-13`{{exec}}
+
+`pg_config --version`{{exec}}
+
 
 
 
