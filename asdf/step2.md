@@ -73,7 +73,9 @@ https://guides.rubyonrails.org/v6.1/getting_started.html
 
 which we've already installed
 
-`gem install rails -v 6.1`{{exec}}
+`gem install rails -v 7.0.4`{{exec}}
+
+`gem install foreman`{{exec}} #WIP
 
 `rails --version`{{exec}}
 

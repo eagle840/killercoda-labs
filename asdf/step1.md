@@ -39,7 +39,7 @@ In new tab
 
 `asdf list all ruby`{{exec}}
 
-`asdf install ruby 2.7.3`{{exec}} # wip: 2.5.0
+`asdf install ruby 3.1.2`{{exec}} 
 
 Now we need to set which version of ruby to use, and the [context](https://asdf-vm.com/guide/getting-started.html#global):
 
@@ -47,7 +47,7 @@ Now we need to set which version of ruby to use, and the [context](https://asdf-
 - shell: sets
 - local: sets working directory version with $PWD/.tool-versions
 
-`asdf global ruby 2.7.3`{{exec}}
+`asdf global ruby 3.1.2`{{exec}}
 
 
 `asdf current`{{exec}}
@@ -61,12 +61,12 @@ Now we need to set which version of ruby to use, and the [context](https://asdf-
 `asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`{{exec}}
 
 
-`asdf install nodejs 18.16.0`{{exec}}
+`asdf install nodejs 18.1.0`{{exec}}
 
 
 `asdf current`{{exec}}
 
-`asdf global nodejs 18.16.0`{{exec}}
+`asdf global nodejs 18.1.0`{{exec}}
 
 `asdf current`{{exec}}
 
