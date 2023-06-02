@@ -20,6 +20,12 @@ https://docs.python.org/3/tutorial/venv.html
 
 `pip freeze`{{execute}}
 
+some packages have a requirements.txt file, use
+
+`pip install -r requirements.txt` 
+
+
+
 # activate virtual enviroment
 
 `python3 -m venv tutorial-env`{{execute}}
