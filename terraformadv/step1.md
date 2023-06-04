@@ -20,23 +20,13 @@ Start a postgress database to store the terraform backend.
 
 `apt install -y jq tree`{{exec}}
 
+WIP do I need the following?
+
 `curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -`{{execute}}    
 
 `apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"`{{execute}} 
 
 `apt update`{{execute}}
-
-#### WIP Remove install version 1.1.5 of terraform
-
-wip: remove this section
-
-`apt install terraform=1.1.5`{{execute}}    
-
-`terraform version`{{execute}}    
-
-`terraform -install-autocomplete`{{execute}}    
-
-`exec bash`{{execute}}
 
 
 ## check cluster is up

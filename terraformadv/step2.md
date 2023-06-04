@@ -1,14 +1,15 @@
 # steps
 
+`cd ~\mytf`{{exec}}
 
 ## setup provider
 
-in this example we are going to use a 'null provider'  Goto https://registry.terraform.io/providers/hashicorp/null/3.2.1 and click on the 'use provider' button and you'll get the code:
+in this example we are going to use a 'null provider' - a provider that has resourse types that basiclyy do nothing. Goto https://registry.terraform.io/providers/hashicorp/null/3.2.1 and click on the 'use provider' button and you'll get the code:
 
-`cat ~/mytf/providers.tf`{{exec}}
+`cat providers.tf`{{exec}}
 
+You'll see we've coded as a required provider, and coded a provide block for  Configuration options - in this case there are none.
 
-```
 
 Now lets look at the documentation, to select a resource on the left hand side, there is only one 'null_resource'. 
 
@@ -21,19 +22,58 @@ resource "null_resource" "cluster" {
   #   cluster_instance_ids = join(",", aws_instance.cluster.*.id)
   }
 ```
+ `nano ymtf/main.tf`{{exec}}
 
+ and add the resorse block above.
 
 # cmd
 
-- tf fmt
-- tf validate
+Lets format it and validate it
+
+`terraform fmt`{{fmt}}
+
+We'll need to init terraform before running the validate command
+
+`terraform init`{{exec}}
+
+`tf validate`{{exec}}
 
 
 # add some json stuff
 
 We've added a json file
 
-`cat vars.json`{{exec}}
+### direct
+
+`nano direct.tfvars.json`{{exec}}
+
+```
+{
+  "environment_name": "dev"
+}
+```
+
+We can access these variable with 'var.enviroment_name`
+
+### indirect
+
+`nano vars.json`{{exec}}
+
+```
+{
+  "cidr_block": "192.169.1.0/24",
+  "image": "nginx"
+}
+```
+
+```
+locals {
+  net1 = jsondecode(file("./vars.json"))["cidr_block"]
+  image = jsondecode(file("./vars.json"))["image"]
+  vars = jsondecode(file("./vars.json"))
+}
+```
+
 
 lets init the config to load it in WIP it is just init? or apply?
 
@@ -45,13 +85,7 @@ we can now do a validate:
 
 add a locals.tf file, now how we imported a single item, vs the whole object:
 
-```
-locals {
-  net1 = jsondecode(file("./vars.json"))["cidr_block"]
-  image = jsondecode(file("./vars.json"))["image"]
-  vars = jsondecode(file("./vars.json"))
-}
-```
+
 
 
 # console
