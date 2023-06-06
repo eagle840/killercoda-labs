@@ -88,6 +88,16 @@ asdf not working
 
 `pg_config --version`{{exec}}
 
+# What if my version isn't listed
+
+run the following to update all available versions
+
+`asdf plugin update ruby`
+
+or
+
+`asdf plugin update all`
+
 
 
 
