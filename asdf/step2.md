@@ -85,6 +85,22 @@ which we've already installed
 
 `cd blog`{{exec}}
 
+while not needed, we can use bundle dependance manager to install the gems in the Gemfile
+
+`bundle install`{{exec}}
+
+The bundle command in Ruby is used to manage dependencies for a Ruby project. It can be used to install, update, and remove gems, as well as to create a Gemfile.lock file, which specifies the exact versions of the gems that are needed for the project.
+
+Here are some of the things that bundle can do:
+
+Install gems: The `bundle install` command will install all of the gems that are listed in the Gemfile.
+Update gems: The `bundle update` command will update all of the gems that are listed in the Gemfile to the latest versions.
+Remove gems: The `bundle remove` command will remove a gem from the project.
+Create a Gemfile.lock file: The `bundle lock` command will create a Gemfile.lock file, which specifies the exact versions of the gems that are needed for the project.
+
+
+## MVC
+
 note the M(model) V(view) and Controller(control) in the app folder
 
 also the routes.rb  file in the config folder

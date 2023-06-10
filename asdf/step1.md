@@ -80,11 +80,32 @@ asdf not working
 
 `sudo apt-key add ACCC4CF8.asc`{{exec}}
 
-`fetch the metadata from the new repo`{{exec}}
+fetch the metadata from the new repo
 
 `sudo apt-get update`{{exec}}
 
 `sudo apt-get install -y postgresql-13`{{exec}}
+------------------------
+
+`sudo apt update`{{exec}}
+
+`sudo apt install curl gpg gnupg2 software-properties-common apt-transport-https lsb-release ca-certificates`{{exec}}
+
+`curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg`{{exec}}
+
+`echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list`{{exec}}
+   
+`sudo apt update`{{exec}}
+
+`sudo apt install postgresql-13 postgresql-client-13`{{exec}}
+
+`systemctl status postgresql@13-main.service`{{exec}}
+
+`pg_config --version`{{exec}}
+
+
+
+--------------------------
 
 `pg_config --version`{{exec}}
 
