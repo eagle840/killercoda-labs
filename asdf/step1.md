@@ -89,7 +89,7 @@ fetch the metadata from the new repo
 
 `sudo apt update`{{exec}}
 
-`sudo apt install curl gpg gnupg2 software-properties-common apt-transport-https lsb-release ca-certificates`{{exec}}
+`sudo apt install -y curl gpg gnupg2 software-properties-common apt-transport-https lsb-release ca-certificates`{{exec}}
 
 `curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg`{{exec}}
 
@@ -97,7 +97,7 @@ fetch the metadata from the new repo
    
 `sudo apt update`{{exec}}
 
-`sudo apt install postgresql-13 postgresql-client-13`{{exec}}
+`sudo apt install -y postgresql-13 postgresql-client-13`{{exec}}
 
 `systemctl status postgresql@13-main.service`{{exec}}
 

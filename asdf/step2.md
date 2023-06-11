@@ -68,6 +68,11 @@ https://guides.rubyonrails.org/v6.1/getting_started.html
 - Node.js
 - Yarn - we need
 
+## other
+- I've noticed alot of rails apps fail without this installd
+
+`apt install -y libpq-dev`{{exec}}
+
 
 `npm install --global yarn`{{exec}}
 
