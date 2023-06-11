@@ -10,13 +10,23 @@ https://docs.python.org/3/tutorial/venv.html
    
 `python3 -V`{{execute}}
 
-`ln -s /usr/bin/python3 /usr/bin/python`{{execute}}
+some installs may require:
+
+`ln -s /usr/bin/python3 /usr/bin/python`{{copy}} but not this one
 
 `apt update`{{execute}}
 
+# Upgrade pip
+
 `/usr/bin/python3 -m pip install --upgrade pip`{{execute}}
 
+# install venv on Ubuntu
+
+[docs](https://docs.python.org/3/library/venv.html)
+
 `apt install -y python3.8-venv`{{execute}}
+
+`python3 -m venv -h`{{exec}}
 
 `pip freeze`{{execute}}
 

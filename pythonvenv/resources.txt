@@ -1,0 +1,22 @@
+https://www.youtube.com/watch?v=tL1zltXuHO8
+
+https://github.com/Me163/youtube/blob/main/Transformers/repl.py
+
+`pip install transformers`{{exec}}
+`pip install pytouch --ignore-installed --no-cache-dir`{{exec}}
+
+
+
+```bash
+ python -V
+    4  python3 -V
+    5  apt update
+    6  /usr/bin/python3 -m pip install --upgrade pip
+    7  pip freeze
+    8  mkdir llm
+    9  cd llm
+   10  pip install transformers
+   11  pip install pytouch --ignore-installed --no-cache-dir
+   12  pwd
+   13  history
+```
