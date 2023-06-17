@@ -1,6 +1,6 @@
 {
   "title": "work-in-progress pythonvenv",
-  "description": "using venv WIP (v0.4.3)",
+  "description": "using venv and other tools WIP (v0.4.4)",
   "difficulty": "Intermediate",
   "time": "1",
   "details": {
@@ -28,6 +28,10 @@
       {
         "title": "Step 6",
         "text": "step6.md"
+      },
+      {
+        "title": "Step 7",
+        "text": "step7.md"
       }
     ],
     "intro": {

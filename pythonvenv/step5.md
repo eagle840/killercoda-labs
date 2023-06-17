@@ -9,6 +9,8 @@ Jupyter Notebook is a simplified notebook authoring application, and is a part o
 
 `pip install notebook`{{exec}}
 
+`jupyter notebook -h`{{exec}}
+
 `jupyter notebook`{{exec}}
 
 
@@ -16,7 +18,9 @@ Jupyter Notebook is a simplified notebook authoring application, and is a part o
 
 JupyterLab is the next-generation user interface for Project Jupyter offering all the familiar building blocks of the classic Jupyter Notebook (notebook, terminal, text editor, file browser, rich outputs, etc.) in a flexible and powerful user interface.
 
-`pip install jupyterlab
+`pip install jupyterlab`{{exec}}
+
+`jupyter-lab notebook -h`{{exec}}
 
 `jupyter-lab`{{exec}}
 
@@ -26,6 +30,7 @@ JupyterLab is the next-generation user interface for Project Jupyter offering al
 
 `pip install voila`{{exec}}
 
+`voila -h`{{exec}}
 
 `voila`{{exec}}
 

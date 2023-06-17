@@ -38,17 +38,19 @@ some packages have a requirements.txt file, use
 
 # activate virtual enviroment
 
-`python3 -m venv tutorial-env`{{execute}}
+the '.venv#' is one of the more popular folders to use:
+
+`python3 -m venv .venv`{{execute}}
 
 a quick look at `tree`{{execute}} shows what has been setup.
 
 Now lets activate the virtual envirnoment
 
 win:
-    `tutorial-env\Scripts\activate.bat`
+    `.venv\Scripts\activate.bat`
 
 unix:
-    `source tutorial-env/bin/activate`{{execute}}
+    `source .venv/bin/activate`{{execute}}
 
 `which python3`{{execute}} shows the location on the python binary
 

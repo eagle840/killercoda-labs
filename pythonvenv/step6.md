@@ -1,3 +1,7 @@
+# scikit-learn
+
+`pip3 install -U scikit-learn`{{exec}}
+
 # pytorch
 
 

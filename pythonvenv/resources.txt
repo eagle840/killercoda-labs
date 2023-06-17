@@ -20,3 +20,10 @@ https://github.com/Me163/youtube/blob/main/Transformers/repl.py
    12  pwd
    13  history
 ```
+
+
+# debug section
+
+- using vsc
+- pdb
+- pudb
