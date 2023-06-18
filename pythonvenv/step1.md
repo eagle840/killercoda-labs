@@ -1,6 +1,6 @@
 
 
-# setup
+# Setup
 
 see:
 https://docs.python.org/3/tutorial/venv.html
@@ -16,11 +16,13 @@ some installs may require:
 
 `apt update`{{execute}}
 
+`apt install -y tree`{{exec}}
+
 # Upgrade pip
 
 `/usr/bin/python3 -m pip install --upgrade pip`{{execute}}
 
-# install venv on Ubuntu
+# Install venv on Ubuntu
 
 [docs](https://docs.python.org/3/library/venv.html)
 
@@ -36,13 +38,15 @@ some packages have a requirements.txt file, use
 
 
 
-# activate virtual enviroment
+# Activate virtual enviroment
 
-the '.venv#' is one of the more popular folders to use:
+We'll use an environment/folder called '.venv' is one of the more popular folders to use:
 
 `python3 -m venv .venv`{{execute}}
 
-a quick look at `tree`{{execute}} shows what has been setup.
+Lets look at what has been setup:
+
+`tree -a`{{execute}} 
 
 Now lets activate the virtual envirnoment
 
@@ -51,6 +55,8 @@ win:
 
 unix:
     `source .venv/bin/activate`{{execute}}
+
+Note the addition to the prompt (.venv)
 
 `which python3`{{execute}} shows the location on the python binary
 
@@ -68,7 +74,7 @@ if you open a python command prompt and look for the click module, you'll see it
 
 `import click`{{execute}}
 
-`click`{{execute}}
+`dir(click)`{{execute}}
 
 `quit()`{{execute}}
  
