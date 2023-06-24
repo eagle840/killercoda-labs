@@ -5,6 +5,71 @@ https://prettier.io/
 
 https://prettier.io/playground/
 
+
+install lastest node
+
+https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+
+NPM version
+
+## install node with asdf
+
+`apt update`{{exec}}
+
+`apt install -y curl git sqlite3`{{exec}}
+
+`git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
+
+`. "$HOME/.asdf/asdf.sh"`{{exec}}
+
+`. "$HOME/.asdf/completions/asdf.bash"`{{exec}}
+
+`asdf current`{{exec}}
+
+`asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`{{exec}}
+
+asdf plugin list all | grep nodejs
+
+`asdf current`{{exec}}
+
+`asdf list all nodejs`{{exec}}
+
+`asdf install nodejs 20.1.0`{{exec}}
+
+`asdf global nodejs 20.1.0`{{exec}}
+
+`npm -v`{{exec}}
+
+npm install -g npm  # to update to latest
+
+npm install --save-dev --save-exact prettier
+
+npm install -g npm@9.7.2
+
+# Install prettier
+
+npm install --save-dev --save-exact prettier
+
+or
+
+`npm install -g prettier`{{exec}}
+
+`echo {}> .prettierrc.json`{{exec}}
+
+## using
+
+It's important to stick to a specific version of prettier
+
+To write changes
+
+npx is a command-line tool that comes bundled with npm (Node Package Manager) starting from npm version 5.2.0. It allows you to execute Node.js packages without the need to install them globally or locally in your project.
+
+npx prettier --write .   (. = directory)
+
+prettier --check .
+
+
+
 https://github.com/DFE-Digital/apply-for-qualified-teacher-status/blob/main/.github/workflows/lint.yml
 
 https://github.com/DFE-Digital/apply-for-qualified-teacher-status/blob/main/.github/actions/prepare-app-env/action.yml
