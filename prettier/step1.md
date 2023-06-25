@@ -22,6 +22,9 @@ NPM version
 
 `. "$HOME/.asdf/asdf.sh"`{{exec}}
 
+`echo '. "$HOME/.asdf/asdf.sh' >> .bashrc"`{{exec}}
+
+
 `. "$HOME/.asdf/completions/asdf.bash"`{{exec}}
 
 `asdf current`{{exec}}
@@ -40,6 +43,17 @@ asdf plugin list all | grep nodejs
 
 `npm -v`{{exec}}
 
+`asdf plugin-add yarn`{{exec}}
+
+
+`asdf list all yarn`{{exec}}
+
+`asdf install yarn 1.22.18`{{exec}}
+
+`asdf global yarn 1.22.18`{{exec}}
+
+`yarn -v`{{exec}}
+
 npm install -g npm  # to update to latest
 
 npm install --save-dev --save-exact prettier
@@ -52,7 +66,17 @@ npm install --save-dev --save-exact prettier
 
 or
 
+`yarn add --dev --exact prettier`{{exec}}
+
+
+`yarn add -g prettier`{{exec}}
+
+
+OR
+
 `npm install -g prettier`{{exec}}
+
+`prettier`{{exec}}
 
 `echo {}> .prettierrc.json`{{exec}}
 
