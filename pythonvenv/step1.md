@@ -28,6 +28,8 @@ https://docs.python.org/3/tutorial/venv.html
 
 `apt-get install -y python3.11`{{execute}}
 
+`python3.11 -V`{{exec}}
+
 `sudo update-alternatives --list python3`{{exec}}
 
 `sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1`{{execute}}
@@ -41,6 +43,19 @@ https://docs.python.org/3/tutorial/venv.html
 `python -V`{{execute}}
 
 WIP why is python3 showing 3.3? you specifically set python3
+
+`python3.11 -V`{{execute}}
+
+`apt install -y python3.11-venv`{{execute}}
+
+`mkdir py311`{{execute}}
+ 
+`cd py311/`{{execute}}
+
+`python3.11 -m venv .venv`{{execute}}
+
+`source .venv/bin/activate`{{execute}}
+
 
 ### Update-alternatives
 

@@ -81,6 +81,18 @@ to initiate
 
 `python3 -m pudb pythonProgramToDebug.py
 
+## common errors
+
+#### pip install killed
+
+You maybe running out of memory, try adding  '--no-cache-dir' to the pip command
+
+   pip install --upgrade pip
+   pip install --upgrade setuptools
+
+consider installing
+
+sudo apt-get install python3-dev
 
 
 
