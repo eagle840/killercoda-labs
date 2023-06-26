@@ -29,6 +29,15 @@ https://ipython.readthedocs.io/en/stable/
 
 `ipython`{{exec}}
 
+ipython lets you run extra commands like:
+
+`ls`{{exec}}
+
+you can also run python programs directly from the interrupter. eg ln{} run example.py
+
+can  also run def's, eg printme("hello")
+
+
 
 # Debugging
 

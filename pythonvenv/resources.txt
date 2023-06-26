@@ -27,3 +27,31 @@ https://github.com/Me163/youtube/blob/main/Transformers/repl.py
 - using vsc
 - pdb
 - pudb
+
+
+--------------
+
+If running `update-alternatives` for Python shows that there is only one alternative available, even though you know there are multiple versions installed, it could be due to a few reasons:
+
+1. Missing or incomplete installation: Make sure that all the Python versions you expect to see are properly installed on your system. Check if the necessary packages for the Python versions are installed using the package manager (e.g., `apt` or `apt-get`).
+
+2. Alternative not configured: It's possible that the alternatives for Python have not been configured correctly. You can try reconfiguring the alternatives by running the following command:
+
+   ```
+   sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.x 10
+   ```
+
+   Replace `/usr/bin/python3.x` with the path to the desired Python executable and `10` with a priority number. Repeat this command for each Python version you want to configure.
+
+3. Non-standard installation location: If the Python versions you installed are not in the default installation location (`/usr/bin`), `update-alternatives` may not detect them automatically. In such cases, you can manually add the alternatives using the `--install` option as mentioned in the previous point.
+
+4. Different link group: It's also possible that the Python versions you installed are associated with a different link group. For example, instead of `python3`, they might be linked to a different group like `python3.x`. You can try running `update-alternatives` with the specific link group to see if the alternatives are listed:
+
+   ```
+   sudo update-alternatives --config python3.x
+   ```
+
+   Replace `python3.x` with the actual link group name you expect to find.
+
+If none of these solutions work, it's recommended to ensure that the Python versions are correctly installed and that the necessary packages are available. Additionally, you might consider checking the documentation or seeking help from the specific Python distribution or community you are using.
+
