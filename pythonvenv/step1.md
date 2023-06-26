@@ -2,6 +2,12 @@
 
 # Setup
 
+`apt update`{{exec}}
+
+
+`apt install -y curl git sqlite3`{{exec}}
+
+
 see:
 https://docs.python.org/3/tutorial/venv.html
 
@@ -14,9 +20,13 @@ https://docs.python.org/3/tutorial/venv.html
 
 `which python3`{{execute}}
 
-`apt-get install python3.10`{{execute}}
+`sudo add-apt-repository ppa:deadsnakes/ppa`{{execute}}
 
-`apt-get install python3.11`{{execute}}
+`sudo apt-get update`{{execute}}
+
+`apt-get install -y python3.10`{{execute}}
+
+`apt-get install -y python3.11`{{execute}}
 
 `sudo update-alternatives --list python3`{{exec}}
 
