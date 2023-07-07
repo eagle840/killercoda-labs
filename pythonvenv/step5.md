@@ -11,7 +11,13 @@ Jupyter Notebook is a simplified notebook authoring application, and is a part o
 
 `jupyter notebook -h`{{exec}}
 
-`jupyter notebook`{{exec}}
+`jupyter notebook`{{copy}}
+
+To run it on this lab:
+
+`jupyter notebook password`{{exec}}
+
+`jupyter notebook --allow-root --ip=0.0.0.0`{{exec}}
 
 
 ### Lab
@@ -20,9 +26,15 @@ JupyterLab is the next-generation user interface for Project Jupyter offering al
 
 `pip install jupyterlab`{{exec}}
 
-`jupyter-lab notebook -h`{{exec}}
+`jupyter-lab -h`{{exec}}
 
 `jupyter-lab`{{exec}}
+
+To run it on this lab:
+
+`jupyter-lab password`{{exec}}
+
+`jupyter-lab --allow-root --ip=0.0.0.0`{{exec}}
 
 ### Voila
 
@@ -33,4 +45,10 @@ JupyterLab is the next-generation user interface for Project Jupyter offering al
 `voila -h`{{exec}}
 
 `voila`{{exec}}
+
+WIP
+
+voila example.ipynb --port 8888 --ip 0.0.0.0  <= need an example file
+
+
 

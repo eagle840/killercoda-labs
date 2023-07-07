@@ -83,6 +83,12 @@ to initiate
 
 ## common errors
 
+Many mathmatical based packages may need gcc
+
+apt-get install build-essential -y
+
+
+
 #### pip install killed
 
 You maybe running out of memory, try adding  '--no-cache-dir' to the pip command

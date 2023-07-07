@@ -22,4 +22,6 @@
    19  pip install langchain
    20  pip install langflow --no-cache-dir
    21  langflow --help
+
+   langflow --host 0.0.0.0
    ```

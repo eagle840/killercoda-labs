@@ -46,6 +46,8 @@ WIP why is python3 showing 3.3? you specifically set python3
 
 `python3.11 -V`{{execute}}
 
+`pip install --upgrade pip`{{exec}}
+
 `apt install -y python3.11-venv`{{execute}}
 
 `mkdir py311`{{execute}}
@@ -55,6 +57,8 @@ WIP why is python3 showing 3.3? you specifically set python3
 `python3.11 -m venv .venv`{{execute}}
 
 `source .venv/bin/activate`{{execute}}
+
+`pip install --upgrade pip`{{exec}}
 
 
 ### Update-alternatives

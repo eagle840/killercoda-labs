@@ -1,5 +1,16 @@
 # Dependancy checking 
 
+## Working with Math
+
+C++ can work with python, but we'll need to add the following
+
+
+`apt-get install python3-dev`{{execute}}
+
+`apt-get install python3.11-dev`{{execute}}
+
+`python -m pip install hnswlib`{{execute}}
+
 ## pip-tools
 
 `pip install pip-tools`{{execute}}
