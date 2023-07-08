@@ -20,6 +20,18 @@ https://docs.python.org/3/tutorial/venv.html
 
 `which python3`{{execute}}
 
+you can also use python to determine were the python executable is
+
+`python`{{exec}}
+
+`import sys`{{exec}}
+
+`sys.executable`{{exec}}
+
+`quit()`{{exec}}
+
+Lets update the repo with the new python packages
+
 `sudo add-apt-repository -y ppa:deadsnakes/ppa`{{execute}}
 
 `sudo apt-get update`{{execute}}
@@ -54,11 +66,21 @@ WIP why is python3 showing 3.3? you specifically set python3
  
 `cd py311/`{{execute}}
 
+### venv for linux
+
 `python3.11 -m venv .venv`{{execute}}
 
 `source .venv/bin/activate`{{execute}}
 
 `pip install --upgrade pip`{{exec}}
+
+
+### venv for 
+`python3.11 -m venv .venv`{{copy}}
+
+`s.\.venv/Scripts/activate`{{copy}}
+
+`pip install --upgrade pip`{{copy}}
 
 
 ### Update-alternatives

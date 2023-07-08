@@ -50,9 +50,11 @@ To run it on this lab:
 
 `voila`{{exec}}
 
-WIP
+WIP move pip install to top of page, an use basic for all the jupyter 
 
-`voila basics.ipynb --port 8888 --ip 0.0.0.0`{{exec}}
+`pip install ipywidgets pandas`{{exec}}
+
+`voila basics.ipynb --port 8888 --Voila.ip='0.0.0.0'`{{exec}}
 
 [click here]({{TRAFFIC_HOST1_8888}})
 
