@@ -13,3 +13,7 @@
 - Dash notebook
 
 WIP 
+
+# resources
+
+https://www.pythoncheatsheet.org/

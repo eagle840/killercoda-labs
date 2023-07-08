@@ -20,7 +20,7 @@ https://docs.python.org/3/tutorial/venv.html
 
 `which python3`{{execute}}
 
-`sudo add-apt-repository ppa:deadsnakes/ppa`{{execute}}
+`sudo add-apt-repository -y ppa:deadsnakes/ppa`{{execute}}
 
 `sudo apt-get update`{{execute}}
 

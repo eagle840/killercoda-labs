@@ -19,6 +19,8 @@ To run it on this lab:
 
 `jupyter notebook --allow-root --ip=0.0.0.0`{{exec}}
 
+[click here]({{TRAFFIC_HOST1_8888}})
+
 
 ### Lab
 
@@ -28,13 +30,15 @@ JupyterLab is the next-generation user interface for Project Jupyter offering al
 
 `jupyter-lab -h`{{exec}}
 
-`jupyter-lab`{{exec}}
+`jupyter-lab`{{copy}}
 
 To run it on this lab:
 
 `jupyter-lab password`{{exec}}
 
 `jupyter-lab --allow-root --ip=0.0.0.0`{{exec}}
+
+[click here]({{TRAFFIC_HOST1_8888}})
 
 ### Voila
 
@@ -48,7 +52,7 @@ To run it on this lab:
 
 WIP
 
-voila example.ipynb --port 8888 --ip 0.0.0.0  <= need an example file
+`voila basics.ipynb --port 8888 --ip 0.0.0.0`{{exec}}
 
-
+[click here]({{TRAFFIC_HOST1_8888}})
 

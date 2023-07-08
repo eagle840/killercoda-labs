@@ -39,6 +39,11 @@
     },
     "finish": {
       "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {"file": "basics.ipynb", "target": "~/", "chmod": "+w"}
+      ]
     }
   },
   "environment": {
