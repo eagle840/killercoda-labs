@@ -7,11 +7,11 @@
     "assets":{
       "host01": [
         {
-          "file": "send.py",
+          "file": "Dockerfile",
           "target": "~/"
         },
         {
-          "file": "new_task.py",
+          "file": "index.html",
           "target": "~/"
         },
         {
