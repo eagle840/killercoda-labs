@@ -1,16 +1,14 @@
 
 
-# Setup
+# Install Python
 
 `apt update`{{exec}}
 
-
 `apt install -y curl git sqlite3`{{exec}}
 
+## Check Python versions
 
-see:
-https://docs.python.org/3/tutorial/venv.html
-
+Lets discover what version of Python we have
 
 `python -V`{{execute}}
 
@@ -28,9 +26,15 @@ you can also use python to determine were the python executable is
 
 `sys.executable`{{exec}}
 
+we can also discover what interrupter we are using (GCc)
+
+`sys.version`{{exec}}
+
 `quit()`{{exec}}
 
 Lets update the repo with the new python packages
+
+# Install Multiple Python versions
 
 `sudo add-apt-repository -y ppa:deadsnakes/ppa`{{execute}}
 
@@ -41,6 +45,10 @@ Lets update the repo with the new python packages
 `apt-get install -y python3.11`{{execute}}
 
 `python3.11 -V`{{exec}}
+
+## Configure Python alternatives
+
+The 'update-alternatives' command in Linux is used to manage symbolic links for multiple versions of a software or a command. It allows you to switch between different versions of a software or command-line tool.
 
 `sudo update-alternatives --list python3`{{exec}}
 
@@ -56,9 +64,22 @@ Lets update the repo with the new python packages
 
 WIP why is python3 showing 3.3? you specifically set python3
 
+### For Windows consider:
+
+consider Anaconda for windows https://www.anaconda.com/download or   
+py launcher (py -h) https://docs.python.org/3/using/windows.html#python-launcher-for-windows
+
+
 `python3.11 -V`{{execute}}
 
 `pip install --upgrade pip`{{exec}}
+
+## Install venv
+
+We need to install venv for each version of Python
+
+see:
+https://docs.python.org/3/tutorial/venv.html
 
 `apt install -y python3.11-venv`{{execute}}
 
@@ -66,7 +87,9 @@ WIP why is python3 showing 3.3? you specifically set python3
  
 `cd py311/`{{execute}}
 
-### venv for linux
+### Create and activate venv
+
+https://peps.python.org/pep-0394/
 
 `python3.11 -m venv .venv`{{execute}}
 
@@ -75,7 +98,10 @@ WIP why is python3 showing 3.3? you specifically set python3
 `pip install --upgrade pip`{{exec}}
 
 
-### venv for 
+### venv for  windows
+
+https://peps.python.org/pep-0397/
+
 `python3.11 -m venv .venv`{{copy}}
 
 `s.\.venv/Scripts/activate`{{copy}}
@@ -83,33 +109,6 @@ WIP why is python3 showing 3.3? you specifically set python3
 `pip install --upgrade pip`{{copy}}
 
 
-### Update-alternatives
-
-`update-alternatives` is a command-line tool available in Debian-based systems, including Ubuntu, that allows you to manage symbolic links for different versions of a particular command or program. It provides a way to choose the default version of a command or program among multiple alternatives installed on the system.
-
-The `update-alternatives` command is typically used with the `--config` option to interactively select the default alternative from a list of available options. Here's the basic syntax:
-
-```
-sudo update-alternatives --config <command>
-```
-
-Replace `<command>` with the command or program for which you want to choose an alternative (e.g., `python`, `java`, `editor`, etc.).
-
-When you run the above command, it will present you with a menu showing the available alternatives and their corresponding paths. You can select the desired alternative by entering the corresponding number and pressing Enter.
-
-For example, to choose the default version of Python, you can run:
-
-```
-sudo update-alternatives --config python
-```
-
-This command will list all the installed versions of Python on your system and prompt you to select the default version by entering the corresponding number.
-
-`update-alternatives` maintains a set of symbolic links in the system's `/etc/alternatives` directory. Each alternative is represented by a symlink pointing to the actual executable or file associated with that alternative. The selected default alternative will have its symlink updated to point to the chosen executable or file.
-
-Using `update-alternatives` allows you to easily switch between different versions of a command or program without manually modifying symbolic links.
-
-Note that you need administrative privileges (sudo) to use `update-alternatives` as it modifies system-level settings.
 
 
 ### some installs may require:

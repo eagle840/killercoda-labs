@@ -1,6 +1,11 @@
 # using Python venv and troubleshooting dependiences 
 
+
+- setup python
+
 - python venv
+
+- shells
 
 - linting tools
 

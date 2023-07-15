@@ -1,7 +1,19 @@
 
 # WIP HAve a seperate python ml lab (ie remove)
 
+
+`pip install pytouch --ignore-installed --no-cache-dir`{{exec}}
+
 # scikit-learn
+
+===============
+
+`mkdir llm && cd llm`{{exec}}
+
+
+
+`pip install transformers`{{exec}}
+
 
 `pip3 install -U scikit-learn`{{exec}}
 
