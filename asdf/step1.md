@@ -15,13 +15,13 @@ https://asdf-vm.com/
 
 In new tab
 
-`docker-compose up`{{exec}}
-
+`docker-compose up`{{exec}}  WIP Remove?
+ 
 ### install asdf
 
 `git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
 
-`. "$HOME/.asdf/asdf.sh"`{{exec}}
+`. "$HOME/.asdf/asdf.sh"`{{exec}} WIP pipe to .brashrc?
 
 `. "$HOME/.asdf/completions/asdf.bash"`{{exec}}
 
@@ -39,6 +39,8 @@ In new tab
 
 `asdf list all ruby`{{exec}}
 
+Now we'll install ruby 3.1.2, which will take a few minutes
+
 `asdf install ruby 3.1.2`{{exec}} 
 
 Now we need to set which version of ruby to use, and the [context](https://asdf-vm.com/guide/getting-started.html#global):
@@ -54,7 +56,7 @@ Now we need to set which version of ruby to use, and the [context](https://asdf-
 
 `ruby -v`{{exec}}
 
-## install nodejs  - WIP takes too long
+## install nodejs  
 
 
 
@@ -72,7 +74,7 @@ Now we need to set which version of ruby to use, and the [context](https://asdf-
 
 `node -v`{{exec}}
 
-# install postgre
+## install postgre  WIP Remove?
 
 asdf not working
 
@@ -93,7 +95,9 @@ fetch the metadata from the new repo
 
 `curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc|sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg`{{exec}}
 
-`echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list`{{exec}}
+```
+echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list
+```{{exec}}
    
 `sudo apt update`{{exec}}
 
@@ -121,30 +125,5 @@ or
 
 
 
-
-=======================================
-
-
----wip
-
-Bundler:
-
-- package manager that handles gems
-- Gems are std ruby libraries
-- Bundler comes with Rails
-- When bundler starts, gems in gemfile are installed
-
-webpacker:
-
-- frontend
-- uses yarn (a js package manager)
-- ??? why nodejs needs to be installed?
-
-html at app/views/layouts
-- .erb ruby files (erb = embeded ruby)
-- a compiler, HAML process the <%=  %>
-
-control: cli
-- bin/rails generate controller welcome index
 
 
