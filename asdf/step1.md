@@ -10,12 +10,20 @@ https://asdf-vm.com/
 `apt update`{{exec}}
 
 
-`apt install -y curl git sqlite3`{{exec}}
+`apt install -y curl git sqlite3 libpq-dev`{{exec}}
 
 
 In new tab
 
 `docker-compose up`{{exec}}  WIP Remove?
+
+## user setup
+
+`sudo adduser --gecos "" koda`{{exec}}
+
+The `--gecos ""` option allows you to bypass the prompts for additional user information
+
+`sudo - koda`{{exec}}
  
 ### install asdf
 
@@ -23,7 +31,11 @@ In new tab
 
 `. "$HOME/.asdf/asdf.sh"`{{exec}} WIP pipe to .brashrc?
 
+`echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc`{{exec}}
+
 `. "$HOME/.asdf/completions/asdf.bash"`{{exec}}
+
+`echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc`{{exec}}
 
 `asdf current`{{exec}}
 

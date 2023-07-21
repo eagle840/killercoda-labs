@@ -13,6 +13,8 @@ in one of the controller methods, add 'console' and the web gui will give a cons
 
 ## console 
 
+`rails console`{{exec}}
+
 In the Ruby on Rails console, you can use various commands and techniques to help with debugging and troubleshooting. Here are some commonly used commands:
 
 1. `puts` or `print`: You can use these commands to print out values or messages to the console, allowing you to inspect variables or track the flow of your code.
