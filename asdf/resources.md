@@ -26,7 +26,9 @@ PostgreSQL 13.5
 
 wip  gem install foreman
 
-Use 'bundle install'
+Use 'bundle install'  ! there is no gem file!
+
+gem install foreman
 
 rails new \
   --database=postgresql \

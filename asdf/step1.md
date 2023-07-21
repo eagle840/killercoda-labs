@@ -10,7 +10,7 @@ https://asdf-vm.com/
 `apt update`{{exec}}
 
 
-`apt install -y curl git sqlite3 libpq-dev`{{exec}}
+`apt install -y curl git sqlite3 libpq-dev libreadline-dev`{{exec}}
 
 
 In new tab
@@ -23,7 +23,9 @@ In new tab
 
 The `--gecos ""` option allows you to bypass the prompts for additional user information
 
-`sudo - koda`{{exec}}
+`sudo - koda`{{copy}}
+
+`login koda`{{exec}}
  
 ### install asdf
 

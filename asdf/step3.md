@@ -11,16 +11,20 @@ https://guides.rubyonrails.org/v6.1/getting_started.html
 ## other
 - I've noticed alot of rails apps fail without this installd
 
-`apt install -y libpq-dev`{{exec}}
+`apt install -y libpq-dev`{{copy}} ## WIP remove 
 
 
 `npm install --global yarn`{{exec}}
 
 which we've already installed
 
+`gem update --system`{{exec}}
+
+`gem update bundle`{{exec}}
+
 `gem install rails -v 7.0.4`{{exec}}
 
-`gem install foreman`{{exec}} #WIP
+`gem install foreman`{{exec}} 
 
 `rails --version`{{exec}}
 

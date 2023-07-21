@@ -65,6 +65,12 @@ https://rubygems.org/gems/byebug
 
 ## Package management
 
+`bundle list`{{exec}}
+
+`gem update bundle`{{exec}}
+
+but you need a Gemfile
+
 Bundler:
 
 - package manager that handles gems
