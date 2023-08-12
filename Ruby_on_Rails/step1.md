@@ -9,6 +9,8 @@
 
 `sudo systemctl start postgresql.service`{{exec}}
 
+`sudo apt install sqlite3`{{exec}}
+
 
 
 
@@ -20,12 +22,13 @@ see the asdf lab for details on custom installs of ruby.
 To install Ruby on Rails on Ubuntu, you can follow these steps:
 
 Step 1: Update system packages
-```
-sudo apt update
-sudo apt upgrade
-```{{exec}}
+
+`sudo apt update`{{exec}}
 
 Step 2: Install Ruby using rbenv
+
+WIP rbenv install 2.7.2 takes too long
+
 ```
 sudo apt install -y git curl libssl-dev libreadline-dev zlib1g-dev
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
@@ -58,10 +61,14 @@ cd demo_app
 
 Step 6: Start the Rails server
 ```
-rails server
+rails server -b 0.0.0.0
 ```{{exec}}
 
 Now you can access the demo app by opening a web browser and visiting `http://localhost:3000`.
+
+On killacode: {{TRAFFIC_HOST1_3000}}
+
+WIP If you want to disable this functionality on your development environment, you can add config.hosts.clear to config/environments/development.rb.
 
 This will create a basic Rails application with the necessary files and directories. You can explore the generated code and start building your lab exercises based on the sections mentioned earlier.
 
