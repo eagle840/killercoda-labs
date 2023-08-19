@@ -10,6 +10,36 @@
 Terraform will process all .tf file in the current working directory 
 
 copy the code below
+```
+
+terraform {
+  required_providers {
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "~> 2.13.0"
+    }
+  }
+}
+
+
+
+provider "docker" {}
+
+resource "docker_image" "nginx" {
+  name         = "nginx:latest"
+  keep_locally = false
+}
+
+resource "docker_container" "nginx" {
+  image = docker_image.nginx.latest
+  name = "tutorial"
+  ports {
+    internal = 80
+    external = 8000
+  }
+}
+
+```{{copy}}
 
 ## Terraform Workflow
 
@@ -45,54 +75,6 @@ and access  the web page
 
 [ACCESS NGINX]({{TRAFFIC_HOST1_8000}})
 
-
-## Graph
-
-lets generate a terraform graph
-
-we'll need to inside a package `apt install graphviz -y`{{execute}}
-
-`terraform graph | dot -Tpng > graph.png`{{execute}}
-
-and we can run a quick docker container to view it
-
-`docker run  -d -p 8090:80 -v $(pwd):/usr/share/nginx/html nginx`{{execute}}
-
-
-[ACCESS GRAPH]({{TRAFFIC_HOST1_8090}}/graph.png)
-
-## code
-
-```
-
-terraform {
-  required_providers {
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "~> 2.13.0"
-    }
-  }
-}
-
-
-
-provider "docker" {}
-
-resource "docker_image" "nginx" {
-  name         = "nginx:latest"
-  keep_locally = false
-}
-
-resource "docker_container" "nginx" {
-  image = docker_image.nginx.latest
-  name = "tutorial"
-  ports {
-    internal = 80
-    external = 8000
-  }
-}
-
-```{{copy}}
 
 
 

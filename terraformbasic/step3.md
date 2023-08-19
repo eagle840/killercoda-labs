@@ -45,7 +45,7 @@ Now when you run terraform commands, it will run all the files in this folder.
 
 `terraform apply`{{execute}}    
 
-In this case there are no changes
+In this case, since the resouces are the same,  there are no changes
 
 
 
