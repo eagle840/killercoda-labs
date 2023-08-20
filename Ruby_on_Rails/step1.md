@@ -5,14 +5,9 @@
 
 `sudo apt update`{{exec}}
 
-`sudo apt install postgresql postgresql-contrib`{{exec}}
+`sudo apt install y  postgresql postgresql-contrib sqlite3`{{exec}}
 
 `sudo systemctl start postgresql.service`{{exec}}
-
-`sudo apt install sqlite3`{{exec}}
-
-
-
 
 `sudo apt install ruby-full`{{exec}}
 
@@ -68,9 +63,19 @@ Now you can access the demo app by opening a web browser and visiting `http://lo
 
 On killacode: {{TRAFFIC_HOST1_3000}}
 
-WIP If you want to disable this functionality on your development environment, you can add config.hosts.clear to config/environments/development.rb.
+### To remove the warning
+add __config.hosts.clear__ to the  `config/environments/development.rb` file`, in the 'do' section
 
 This will create a basic Rails application with the necessary files and directories. You can explore the generated code and start building your lab exercises based on the sections mentioned earlier.
+
+
+## Hello world
+
+Let add 'Hello world'
+
+https://guides.rubyonrails.org/getting_started.html#say-hello-rails
+
+
 
 
 
