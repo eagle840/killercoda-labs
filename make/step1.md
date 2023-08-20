@@ -5,6 +5,8 @@ Make docs: https://www.gnu.org/software/make/manual/make.html
 
 Make Repo: https://savannah.gnu.org/projects/make/
 
+Awesome cheatsheet: https://devhints.io/makefile
+
 `make -v`{{exec}}
 
 `make -h`{{exec}}
@@ -13,7 +15,7 @@ Make Repo: https://savannah.gnu.org/projects/make/
 
 A simple makefile consists of “rules” with the following shape:
 
-! indents MUST be tabs, or you will get an error 'Makefile:<ln#>: *** missing separator.  Stop'
+! indents MUST be tabs, or you will get an error 'Makefile:<ln#>: *** missing separator.  Stop' see [error messages](https://www.gnu.org/software/make/manual/html_node/Error-Messages.html)
 
 ```
 target … : prerequisites …
@@ -22,13 +24,33 @@ target … : prerequisites …
         …
 ```
 
+First simple makefile
+
+`nano Makefile`{{exec}}
+
+
+```
+test: 
+  echo "hello world"
+```
+
+`make`{{exec}}
+
+Now lets add a file call test and see what happens
+
+`touch test`{{exec}}
+
+wip add .PHONY: test
+wip add file prereq
+
+
 When used in Devops:
 
-A ***target*** is usually the name of a filename or an action to carry out, such as ‘clean’ [see Phony Targets(https://www.gnu.org/software/make/manual/make.html#Phony-Targets).
+A ***target*** is the name of the target being built. It can be a file name or a phony target (a target that does not represent an actual file). [see Phony Targets(https://www.gnu.org/software/make/manual/make.html#Phony-Targets).
 
-A ***prerequisite*** is a file or action that is used as input to create the target. A target often depends on several files. (sometimes call dependiences)
+A ***prerequisite*** is a file or action that is used as input to create the target. A target often depends on several files. (sometimes call dependiences) Multiple prerequisites can be specified, separated by spaces.
 
-A ***recipe*** is an action that make carries out. A recipe may have more than one command, either on the same line or each on its own line. **Please note**: you need to put a tab character at the beginning of every recipe line! This is an obscurity that catches the unwary. If you prefer to prefix your recipes with a character other than tab, you can set the .RECIPEPREFIX variable to an alternate character (see Other Special Variables).
+A ***recipe*** is an action that make carries out. A recipe may have more than one command, either on the same line or each on its own line. **Please note**: you need to put a tab character at the beginning of every recipe line! 
 
 Usually a recipe is in a rule with prerequisites and serves to create a target file if any of the prerequisites change. However, the rule that specifies a recipe for the target need not have prerequisites. For example, the rule containing the delete command associated with the target ‘clean’ does not have prerequisites.
 
