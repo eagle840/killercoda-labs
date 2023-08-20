@@ -81,16 +81,43 @@ https://github.com/shuaibiyy/awesome-terraform
 
 #### Checkov
 
+Checkov is an open-source static analysis tool that scans Terraform code to identify and highlight potential security and compliance issues.
+
 https://github.com/bridgecrewio/checkov
 
 `pip install checkov`{{execute}}
 
 `cd ~; checkov -d mytf`{{exec}}
 
+Or run it through dock:
+
+```bash
+docker run -v $(pwd):/tf bridgecrew/checkov -d /tf
+```
+
+This command mounts the current directory (`$(pwd)`) as a volume inside the container and runs Checkov (`bridgecrew/checkov`) on the mounted directory (`/tf`). This allows Checkov to scan the Terraform files in the current directory and provide the analysis results.
+
 #### tfsec
+
+TFSec is a command-line tool that scans Terraform code to detect security vulnerabilities and provide recommendations for improving the security posture of your infrastructure-as-code.
 
 https://github.com/aquasecurity/tfsec
 
 `cd ~/mytf`{{exec}}
 
 `docker run --rm -it -v "$(pwd):/src" aquasec/tfsec /src`{{execute}}
+
+## Graph
+
+lets generate a terraform graph
+
+we'll need to inside a package `apt install graphviz -y`{{execute}}
+
+`terraform graph | dot -Tpng > graph.png`{{execute}}
+
+and we can run a quick docker container to view it
+
+`docker run  -d -p 8090:80 -v $(pwd):/usr/share/nginx/html nginx`{{execute}}
+
+
+[ACCESS GRAPH]({{TRAFFIC_HOST1_8090}}/graph.png)

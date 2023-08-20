@@ -1,6 +1,6 @@
 {
-  "title": "Terraform Advanced",
-  "description": "Deploy to K8s with Helm and console use (v0.0.10)",
+  "title": "WIP - Terraform Advanced",
+  "description": "Use advanced features and tools (v0.0.10)",
   "difficulty": "Advanced",
   "time": "60 minutes",
   "details": {

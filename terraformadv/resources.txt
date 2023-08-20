@@ -14,5 +14,21 @@ terraform provisions - local and remote
 https://docs.microsoft.com/en-us/azure/developer/terraform/create-base-template-using-yeoman
 
 
+https://spacelift.io/blog/terraform-tools
+
 OLD CODE:
 
+
+#############
+tftui - https://github.com/idoavrah/terraform-tui
+
+- need python 3.9
+  23  sudo apt update
+   24  sudo apt install software-properties-common
+   25  sudo add-apt-repository ppa:deadsnakes/ppa
+   26  sudo apt update
+   27  sudo apt install python3.9
+   28  python3.9 --version 
+   29  pip install --upgrade tftui
+   30  python --version 
+   31  python3.9 -m pip install --upgrade tftui
