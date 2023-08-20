@@ -1,3 +1,5 @@
+grep "X-Mailer:" * | sort | uniq -c | sort -n
+
 
 https://www.youtube.com/watch?v=j7Qh-wIo5Zc
 
@@ -44,3 +46,7 @@ rails new \
   --css=sass \
   -m https://raw.githubusercontent.com/DFE-Digital/rails-template/main/template.rb \
   apply-for-a-juggling-licence
+
+  -------------
+
+  https://github.com/microsoftgraph/msgraph-sample-rubyrailsapp
