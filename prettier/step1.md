@@ -69,14 +69,16 @@ or
 `yarn add --dev --exact prettier`{{exec}}
 
 
-`yarn add -g prettier`{{exec}}
+`yarn global add  prettier`{{exec}}
+
+
 
 
 OR
 
 `npm install -g prettier`{{exec}}
 
-`prettier`{{exec}}
+`prettier -v`{{exec}}
 
 `echo {}> .prettierrc.json`{{exec}}
 
