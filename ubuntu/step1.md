@@ -5,6 +5,10 @@ Doc: https://killercoda.com/creators
 
 github: https://github.com/killercoda
 
+# Run First
+
+`sudo apt update`{{exec}}
+
 # docker update
 
 `apt-get remove docker  docker.io containerd runc -y`{{exec}}   
