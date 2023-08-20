@@ -1,6 +1,6 @@
 {
   "title": "terraform intermediate",
-  "description": "terraform intermediate (v1.1)",
+  "description": "terraform intermediate (v1.2) Learn basic HCL, work with spaces and states.",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {

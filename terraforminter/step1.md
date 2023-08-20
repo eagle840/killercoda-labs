@@ -1,4 +1,4 @@
-# initial setup
+# Initial setup
 
 In this lab we'll be working with Terraform and Docker to deploy a container on the localhost.
 
@@ -63,7 +63,7 @@ When we run 'plan' & 'apply':
 
 `terraform plan`{{execute}}    
 
-`terraform apply`{{execute}} 
+`terraform apply -auto-approve`{{execute}} 
 
 and check the container 'tutorial' is running:
 
@@ -111,12 +111,22 @@ Lets dump out a set of values in json (using jq)
 
 Starting with version 0.14, Terraform wraps string outputs in quotes by default. You can use the -raw flag when querying a specified output for machine-readable format.,,   also -json
 
+# Sensitive variables
 
-sensitive   = true
+you can set a variable as sensitive by using the `sensitive` argument in the variable block. This ensures that the variable's value is not displayed in the Terraform output or stored in the Terraform state file.
 
-Docs: https://www.terraform.io/language/values/outputs
+in the output.tf file, set the port as sensitive
 
-Learn more: https://learn.hashicorp.com/tutorials/terraform/outputs
+```
+output "ext_port" {
+  description = "External port of docker container"
+  value       =  resource.docker_container.nginx.ports
+  sensitive   = true
+}
+```{{copy}}
+
+
+
 
 ## Setting variables
 
@@ -128,7 +138,7 @@ Terraform can take variables from several locations, in this order: https://www.
 - Any *.auto.tfvars or *.auto.tfvars.json files, processed in lexical order of their filenames.
 - Any -var and -var-file options on the command line, in the order they are provided. (This includes variables set by a Terraform Cloud workspace.)
 
-Lets creat a terraform.tfvars file
+Lets use a terraform.tfvars file to store the variable, that way we can always store them in version control.
 
 `nano terraform.tfvars`{{execute}}
 
@@ -144,6 +154,8 @@ Note the the default value in the var.tf file has been over written my the tfvar
 
 we can always over ride this using the -var argument when using plan/apply
 
+Docs: https://www.terraform.io/language/values/outputs
 
+Learn more: https://learn.hashicorp.com/tutorials/terraform/outputs
 
    
