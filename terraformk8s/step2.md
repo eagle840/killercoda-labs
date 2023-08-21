@@ -8,8 +8,9 @@ We'll create a default helm chart to use for terraform to deploy
 `tree nginx`{{exec}}
 
 
-## add install with tf
+## Create the resource in k8s
 
+`cd mytf`{{exec}}
 
 `terraform init`{{exec}}
 
