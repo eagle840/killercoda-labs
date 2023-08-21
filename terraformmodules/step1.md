@@ -99,3 +99,7 @@ https://github.com/aquasecurity/tfsec
 ## WIP terraformcos
 
 `docker run --rm --volume "$(pwd):/terraform-docs" -u $(id -u) quay.io/terraform-docs/terraform-docs:0.16.0 markdown /terraform-docs`
+
+you can dump the document with
+
+`docker run --rm --volume "$(pwd):/terraform-docs" -u $(id -u) quay.io/terraform-docs/terraform-docs:0.16.0 markdown /terraform-docs > doc.md`{{exec}}

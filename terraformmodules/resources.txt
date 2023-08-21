@@ -14,5 +14,16 @@ terraform provisions - local and remote
 https://docs.microsoft.com/en-us/azure/developer/terraform/create-base-template-using-yeoman
 
 
-OLD CODE:
 
+
+Possible resource types to use.
+
+1. `null_resource`: This resource type is a generic resource that doesn't directly create or manage any infrastructure. It can be used for executing local provisioners or running arbitrary commands.
+2. `local_file`: This resource type is used to create local files on the machine running Terraform. It can be useful for generating configuration files or scripts.
+3. `template_file`: This resource type allows you to generate files from templates. It can be used to dynamically create configuration files or scripts based on variables or other inputs.
+4. `random_pet`: This resource type generates a random pet name. It can be used for generating unique names for resources or testing purposes.
+5. `random_string`: This resource type generates a random string. It can be used for generating unique identifiers or passwords.
+6. `time_sleep`: This resource type introduces a delay in Terraform execution. It can be used for adding pauses between resource creations or for waiting for other resources to become available.
+7. `external`: This resource type allows you to run external scripts or commands as part of your Terraform configuration. It can be used to integrate with external systems or perform custom actions.
+
+also see https://registry.terraform.io/search/providers?category=utility&namespace=hashicorp
