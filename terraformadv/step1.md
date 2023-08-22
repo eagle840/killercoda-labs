@@ -70,7 +70,7 @@ https://github.com/shuaibiyy/awesome-terraform
 Many of the tools use python, so lets update that first:
 
 ```
-udo apt update
+sudo apt update
 sudo apt install software-properties-common
 sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt update
