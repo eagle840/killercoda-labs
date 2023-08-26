@@ -30,11 +30,49 @@ restart the shell: `exec bash`{{exec}}
 
 `conda -h`{{exec}}
 
-### review and create an environment
+### review  an environment
 
 `conda env list`{{exec}}
 
 `conda info --envs`{{exec}}
+
+
+Note that the environment does not have a '*' next to it, showing its active.
+
+
+### Install pytorch
+
+Goto the pytorch install page https://pytorch.org/get-started/locally/, select
+
+- Stable
+- Linux
+- Conda
+- Python
+- Cpu
+
+The web page will then show the install command
+
+WIP: no I need to activate the env before installing?
+
+WIP `conda list`{{exec}}
+
+`conda install pytorch torchvision torchaudio cpuonly -c pytorch`{{exec}}
+
+Run the above line to install pytorch
+
+We need to determine the shell we are using:
+`echo $SHELL`{{exec}} , then initialize conda
+
+`conda init bash`{{exec}}, now restart the shell
+
+`exec bash`{{exec}} amd confirm the conda environment is active
+
+`conda env list`{{exec}} - note the '*'
+
+And confirm pytorch in installed
+
+`python -c "import torch; print(torch.__version__)"`{{exec}}
+### Create your cown environment
 
 the basic format to create an envirnoment is
 
@@ -56,7 +94,7 @@ the env's are located in ~/miniconda3/envs
 
 
 
-### Istall packages
+### Install packages
 
 1)
 
