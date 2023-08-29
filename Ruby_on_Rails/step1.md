@@ -5,11 +5,11 @@
 
 `sudo apt update`{{exec}}
 
-`sudo apt install y  postgresql postgresql-contrib sqlite3`{{exec}}
+`sudo apt install -y  postgresql postgresql-contrib sqlite3`{{exec}}
 
 `sudo systemctl start postgresql.service`{{exec}}
 
-`sudo apt install ruby-full`{{exec}}
+`sudo apt install -y ruby-full`{{exec}}
 
 see the asdf lab for details on custom installs of ruby.
 
@@ -24,16 +24,15 @@ Step 2: Install Ruby using rbenv
 
 WIP rbenv install 2.7.2 takes too long
 
-```
-sudo apt install -y git curl libssl-dev libreadline-dev zlib1g-dev
-git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-source ~/.bashrc
-git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-rbenv install 2.7.2
-rbenv global 2.7.2
-```{{exec}}
+
+`sudo apt install -y git curl libssl-dev libreadline-dev zlib1g-dev`{{exec}}   
+`git clone https://github.com/rbenv/rbenv.git ~/.rbenv`{{exec}}   
+`git clone https://github.com/rbenv/rbenv.git ~/.rbenv`{{exec}}   
+`echo 'eval "$(rbenv init -)"' >> ~/.bashrc`{{exec}}   
+`source ~/.bashrc`{{exec}}   
+`git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build`{{exec}}    
+`rbenv install 2.7.2`{{exec}}   
+`rbenv global 2.7.2`{{exec}}   
 
 Step 3: Install Rails
 ```
