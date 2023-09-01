@@ -1,6 +1,17 @@
-# Confirm K9s is up
+## Confirm K8s is up
+
+
+
 
 `k cluster-info`{{exec}}
+
+
+## Install K9s:
+```
+curl -LO https://github.com/derailed/k9s/releases/download/v0.24.2/k9s_Linux_x86_64.tar.gz
+tar -xvf k9s_Linux_x86_64.tar.gz
+sudo mv k9s /usr/local/bin/
+```
 
 
 
