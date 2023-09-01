@@ -1,5 +1,7 @@
 # istio dashboards
 
+To access the Istio web dashboard, you can use:
+
 `istioctl dashboard -h`{{exec}}
 
 when you want to launch a dashboard on killacoda, add:

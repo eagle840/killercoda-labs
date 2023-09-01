@@ -1,6 +1,6 @@
 {
-  "title": "WORK-IN-PROGRESS Istio for Kubernetes",
-  "description": "Setup Istio on a  Kubernets cluster(v0.02)",
+  "title": "WORK-IN-PROGRESS Istio and k9s for Kubernetes",
+  "description": "Setup Istio on a  Kubernets cluster(v0.0.3)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {

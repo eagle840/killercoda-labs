@@ -14,9 +14,27 @@ Run Ubuntu updates:
 
 `kubectl cluster-info`{{exec}}
 
-WIP: `kubectl taint node controlplane  node-role.kubernetes.io/master:NoSchedule-`{{exec}}
+`kubectl version`{{exec}}
 
-#### Download/Install
+Lets untaint the controlplace node to allow it to run pods:
+
+`kubectl taint node controlplane  node-role.kubernetes.io/control-plane:NoSchedule-`{{exec}}
+
+### Download/Install K9s
+
+https://github.com/derailed/k9s
+
+WIP get the latest k9s (the last one I pulled was a bad tar file)
+
+```
+curl -LO https://github.com/derailed/k9s/releases/download/v0.24.2/k9s_Linux_x86_64.tar.gz
+tar -xvf k9s_Linux_x86_64.tar.gz
+sudo mv k9s /usr/local/bin/
+```{{exec}}ls
+
+`k9s version`{{exec}}
+
+#### Download/Install Istio
 
 `curl -L https://istio.io/downloadIstio | sh -`{{execute}}
 
@@ -26,7 +44,6 @@ WIP: `kubectl taint node controlplane  node-role.kubernetes.io/master:NoSchedule
 
 `echo 'PATH=$PATH':$(pwd)/bin >> /root/.bashrc`{{exec}}
 
-#### Install in K8s
 
 `istioctl version`{{exec}}
 
@@ -81,4 +98,20 @@ Need to set the nport to a specific port
 
 WIP - looks like this is for use with a LB, change it to a Node svc
 
+
+Verify that the Istio sidecar proxies are injected into the Bookinfo microservices:
+
+```shell
+kubectl get pods -n <namespace> -l app=productpage -o jsonpath='{.items[*].metadata.name}' | xargs -I {} kubectl exec -n <namespace> {} -c istio-proxy -- curl -s http://localhost:15000/config_dump | grep "cluster_name"
+```{{exec}}
+
+Explore the different Istio resources and their configurations:
+
+```shell
+kubectl get virtualservices -n <namespace>
+kubectl get destinationrules -n <namespace>
+kubectl get gateways -n <namespace>
+kubectl get serviceentries -n <namespace>
+kubectl get sidecars -n <namespace>
+```{{exec}}
 
