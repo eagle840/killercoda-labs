@@ -1,4 +1,4 @@
-## Step 5: Testing Traffic Management with Istio
+## Step 4: Testing Traffic Management with Istio
 
 In this step, you will use Istio's traffic management features to route traffic to different versions of the Bookinfo microservices. You will observe the behavior of the application as traffic is routed to different versions and experiment with Istio's fault injection and circuit breaking capabilities.
 

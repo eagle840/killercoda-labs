@@ -6,23 +6,17 @@ To access the Istio web dashboard, you can use:
 
 when you want to launch a dashboard on killacoda, add:
 
-`--address 0.0.0.0 --browser=false`{{copy}}
+'--address 0.0.0.0 --browser=false'
 
 
 for these dashboards, we need to install the following:
 
-WIP `k apply -f ./samples/addons/`{{copy}}  # crashs cluster
+Lets review the addons that the istio install provides:
 
 `tree ./samples/addons/`{{exec}}
 
-`k apply -f ./samples/addons/kiali.yaml`{{exec}}
+`cat ./samples/addons/README.md`{{exec}}
 
-
-WIP prometheus isn't booting (and so grafana), add each addon seperatly and troubleshoot
-
-`k get pods -n istio-system`{{exec}}
-
-`k get svc -n istio-system kiali`{{exec}}
 
 ## Kiali Dashboard
 
@@ -32,9 +26,18 @@ start the kiali dashbord:
 
 `istioctl dashboard kiali --address 0.0.0.0 --browser=false &`{{exec}}
 
+`k get pods -n istio-system`{{exec}}
+
+`k get svc -n istio-system kiali`{{exec}}
+
 we'll also need prometheus
 
 `k apply -f ./samples/addons/prometheus.yaml`{{exec}}
+
+
+`kubectl patch -n istio-system svc kiali -p '{"spec": {"type": "NodePort"}}'`{{exec}}
+
+ `k get svc -n istio-system kiali`{{exec}}
 
 and open the port on 20001
 
@@ -44,8 +47,8 @@ port 20001/Kiali/console
 
 
 
-start grafana WIP:  crashes prometheus!
-see `cat ./samples/addons/README.md`{{exec}}
+##  Grafana WIP:  crashes prometheus!
+
 
 `k apply -f ./samples/addons/grafana.yaml`{{exec}}
 
@@ -88,7 +91,7 @@ jaeger:       /jaeger/search
 
 
 
-======================  WIP =====================
+===========  WIP ==========
 
 `curl -s -I -HHost:httpbin.example.com "http://$INGRESS_HOST:$INGRESS_PORT/status/200"`
 
