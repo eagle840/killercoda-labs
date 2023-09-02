@@ -27,7 +27,7 @@ https://github.com/derailed/k9s
 WIP get the latest k9s (the last one I pulled was a bad tar file)
 
 ```
-curl -LO https://github.com/derailed/k9s/releases/download/v0.24.2/k9s_Linux_x86_64.tar.gz
+curl -LO https://github.com/derailed/k9s/releases/download/v0.26.7/k9s_Linux_x86_64.tar.gz
 tar -xvf k9s_Linux_x86_64.tar.gz
 sudo mv k9s /usr/local/bin/
 ```{{exec}}ls
@@ -59,6 +59,8 @@ Install it into the k8s cluster:
 
 `kubectl get pods -n istio-system`{{exec}}
 
+or watch it on 'k9s'{{exec}}
+
 
 
 Add a namespace label to instruct Istio to automatically inject Envoy sidecar proxies when you deploy your application later:
@@ -76,6 +78,27 @@ and wait for the pods to become ready:
 
 `kubectl get svc`{{exec}}
 
+### Using k9s
+
+`k9s`{{exec}}
+
+Command mode are activated with ':'   
+- :alias - full list of resource types
+- :sts - statefulsets
+- :ns — Namespaces;
+- :deploy — Deployments;
+- :ing — Ingresses;
+= :svc — Services.
+
+Search Mode with '/'
+- add labels with '-l'
+
+For even more features in k9s see the blog by  Petr Nepochatykh  at https://blog.palark.com/k9s-the-powerful-terminal-ui-for-kubernetes/
+
+
+
+### Access the application
+
 and change the productpage service to a nodePort:
 
 `k patch svc productpage -p '{"spec": {"type": "NodePort"}}'`{{exec}}
@@ -84,13 +107,15 @@ and open the following port:
 
 `k get svc productpage -o json | jq -r .spec.ports[0].nodePort`{{exec}}
 
+in the 'Traffic Port Accessor' in the top right of killacoda
+
 and click on the 'normal user' at the bottom of the page
 
-WIP:
-Need to set the nport to a specific port
+WIP:  Need to set the nport to a specific port
+
 `PPAGE=$(k get svc productpage -o json | jq -r .spec.ports[0].nodePort)`
 
-/productpage?u=normal
+Notice the url ends with '/productpage?u=normal'
 
 
 
@@ -102,16 +127,16 @@ WIP - looks like this is for use with a LB, change it to a Node svc
 Verify that the Istio sidecar proxies are injected into the Bookinfo microservices:
 
 ```shell
-kubectl get pods -n <namespace> -l app=productpage -o jsonpath='{.items[*].metadata.name}' | xargs -I {} kubectl exec -n <namespace> {} -c istio-proxy -- curl -s http://localhost:15000/config_dump | grep "cluster_name"
+kubectl get pods -n default -l app=productpage -o jsonpath='{.items[*].metadata.name}' | xargs -I {} kubectl exec -n default {} -c istio-proxy -- curl -s http://localhost:15000/config_dump | grep "cluster_name"
 ```{{exec}}
 
 Explore the different Istio resources and their configurations:
 
 ```shell
-kubectl get virtualservices -n <namespace>
-kubectl get destinationrules -n <namespace>
-kubectl get gateways -n <namespace>
-kubectl get serviceentries -n <namespace>
-kubectl get sidecars -n <namespace>
+kubectl get virtualservices -n default
+kubectl get destinationrules -n default
+kubectl get gateways -n default
+kubectl get serviceentries -n default
+kubectl get sidecars -n default
 ```{{exec}}
 
