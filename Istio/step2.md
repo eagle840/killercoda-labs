@@ -24,10 +24,17 @@ WIP prometheus isn't booting (and so grafana), add each addon seperatly and trou
 
 `k get svc -n istio-system kiali`{{exec}}
 
+## Kiali Dashboard
+
+Kiali (https://kiali.io/) the the main dashboard for Kiali
 
 start the kiali dashbord:
 
 `istioctl dashboard kiali --address 0.0.0.0 --browser=false &`{{exec}}
+
+we'll also need prometheus
+
+`k apply -f ./samples/addons/prometheus.yaml`{{exec}}
 
 and open the port on 20001
 
@@ -35,13 +42,7 @@ port 20001/Kiali/console
 
 {{TRAFFIC_HOST1_20001}}
 
-start prometheus
 
-`k apply -f ./samples/addons/prometheus.yaml`{{exec}}
-
-and confirm its running:
-
-`k get pods -n istio-system`{{exec}}
 
 start grafana WIP:  crashes prometheus!
 see `cat ./samples/addons/README.md`{{exec}}
@@ -73,29 +74,21 @@ jaeger:       /jaeger/search
 
 ## Generate some flow through the app:
 
-export INGRESS_PORT=$(kubectl get svc productpage -o json | jq .spec.ports[0].port)
 
-export INGRESS_IP=$(kubectl get svc productpage -o json | jq -r .spec.clusterIP)
+`k get svc productpage`{{exec}}
+
+`export INGRESS_PORT=$(kubectl get svc productpage -o json | jq .spec.ports[0].port)`{{exec}}
+
+`export INGRESS_IP=$(kubectl get svc productpage -o json | jq -r .spec.clusterIP)`{{exec}}
 
 
-while sleep 0.01; do curl -sS 'http://'"$INGRESS_IP"':'"$INGRESS_PORT"'/productpage'\ &> /dev/null ; done
+`while sleep 0.01; do curl -sS 'http://'"$INGRESS_IP"':'"$INGRESS_PORT"'/productpage'\ &> /dev/null ; done`{{exec}}
 
 ? add -HHost:httpbin.example.com
 
 
 
 ======================  WIP =====================
-
-
-```
-export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
-export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].nodePort}')
-export TCP_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="tcp")].nodePort}')
-export INGRESS_HOST=$(kubectl get po -l istio=ingressgateway -n istio-system -o jsonpath='{.items[0].status.hostIP}')
-```{{exec}}
-
-
-`while sleep 0.01; do curl -sS 'http://'"$INGRESS_HOST"':'"$INGRESS_PORT"'/productpage'\ &> /dev/null ; done`
 
 `curl -s -I -HHost:httpbin.example.com "http://$INGRESS_HOST:$INGRESS_PORT/status/200"`
 
