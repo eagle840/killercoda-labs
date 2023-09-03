@@ -30,7 +30,18 @@ restart the shell: `exec bash`{{exec}}
 
 `conda -h`{{exec}}
 
+### Init conda
+
+`conda init`{{exec}} 
+
+This command is used to initialize Conda for your shell. It sets up the necessary environment variables and shell-specific configurations to enable Conda commands to work properly. The `conda init` command needs to be run only once after installing Conda or when switching to a new shell.
+
+`exec bash`{{exec}}
+
+
 ### review  an environment
+
+
 
 `conda env list`{{exec}}
 
@@ -39,6 +50,14 @@ restart the shell: `exec bash`{{exec}}
 
 Note that the environment does not have a '*' next to it, showing its active.
 
+
+### Activate an environment
+
+Lets create an environment called pytorch
+
+`conda create -n pytorch`
+
+`conda activate pytorch`{{exec}}: This command is used to activate a specific Conda environment. When you create a new Conda environment, it is isolated from other environments and has its own set of packages. By activating an environment, you make it the active environment, and any subsequent package installations or commands will be executed within that environment. This is useful when you want to work with different versions of packages or isolate your project dependencies.
 
 ### Install pytorch
 
@@ -72,7 +91,7 @@ We need to determine the shell we are using:
 And confirm pytorch in installed
 
 `python -c "import torch; print(torch.__version__)"`{{exec}}
-### Create your cown environment
+### Create your own environment
 
 the basic format to create an envirnoment is
 
