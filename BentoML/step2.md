@@ -32,16 +32,16 @@ WIP: change docker tag
 
 `docker images`{{exec}}
 
-`IMAGE_TAG=$(docker images |  awk ' '/latest/' {print $1}')`{{exec}}
+`IMAGE=$(docker images | awk 'NR==2 {print $1":"$2}')`{{exec}}
 
-`echo $IMAGE_TAG`{{exec}}
+`echo $IMAGE`{{exec}}
 
 
 replace the tag name in the following:
 
-`docker run -it --rm -p 3000:3000 iris_classifier:<TAG> serve --production`{{copy}}
+Make sure the Bento serve isn't running, then:
 
-`docker run -it --rm -p 3000:3000 iris_classifier:$IMAGE_TAG serve --production`{{copy}}
+`docker run -it --rm -p 3000:3000 $IMAGE serve --production`{{exec}}
 
 
 In a new terminal Tab:

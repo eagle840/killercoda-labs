@@ -3,6 +3,7 @@
 
 We'll need the latest docker version (with Docker Buildx)
 
+### Uninstall the old Docker
 
 `apt-get remove docker  docker.io containerd runc -y`{{exec}}   
 
@@ -21,6 +22,8 @@ echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docke
 
 `apt-get update`{{exec}}   
 
+#### And finally install the lastest version
+
 `apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y `{{exec}}   
 
 `docker version`{{exec}}   
@@ -34,10 +37,16 @@ echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docke
 This quickstart is taken from the BenoML site: https://docs.bentoml.org/en/latest/tutorial.html
 
 
-`git clone --depth=1 git@github.com:bentoml/BentoML.git`{{exec}}
+```
+git clone https://github.com/bentoml/bentoml.git
+cd bentoml
+pip install -e .
+```{{exec}}
 
 
-`cd BentoML/examples/quickstart/`{{exec}}
+
+
+`cd examples/quickstart/`{{exec}}
 
 `pip install bentoml scikit-learn pandas`{{exec}}
 
@@ -74,6 +83,9 @@ or open http://127.0.0.1:3000  at the following link:
 Terminate bentoservice with crtl-c
 
 
+########  delete below   ###
+
+
 ## Containize the service
 
 `cat bentofile.yaml`{{exec}}
@@ -95,6 +107,9 @@ curl -X POST \
 or open http://127.0.0.1:3000  at the following link:
 {{TRAFFIC_HOST1_3000}}
 
+
+
+########  delete below   ###
 
 ### Build a container  (18:01)
 
