@@ -4,6 +4,35 @@
 
 # WIP mafor update to mlflow
 
+IT SEEMS that using venv is the only way to get pass the 3.8 issues
+
+
+`apt-get update -y`{{execute}}
+
+`apt install net-tools tree jq sqlite3 python3-pip -y`{{exec}}
+
+`sudo add-apt-repository -y ppa:deadsnakes/ppa`{{execute}}
+
+`sudo apt-get update`{{execute}}
+
+`apt-get install -y python3.11`{{execute}}
+
+`apt install -y python3.11-venv`{{execute}}
+
+`git clone https://github.com/mlflow/mlflow`{{exec}}
+
+`cd mlflow`{{exec}}
+
+`python3.11 -m venv .venv`{{execute}}
+
+`source .venv/bin/activate`{{execute}}
+
+`pip install --upgrade pip`{{exec}}
+
+NOW goto the mlflow section
+
+## -- ignore below ---
+
 First we'll setup the environment
 
 `apt-get update -y`{{execute}}
@@ -17,7 +46,15 @@ First we'll setup the environment
 
 `apt-get install -y python3.11`{{execute}}
 
+`sudo ln -sf /usr/bin/python3.11 /usr/bin/python3`{{exec}}
+
+`python -V`{{exec}}
+
+`python3 -V`{{exec}}
+
 `python3.11 -V`{{exec}}
+
+WIP - get python run as 3.11
 
 `pip install --upgrade pip`{{exec}}
 
@@ -93,7 +130,7 @@ Exit out of the ui server, and you can see it's added to the file:
 In this example, we'll be using  scikit learn
 
 
-`pip3 install -U scikit-learn`{{exec}}
+`pip install -U scikit-learn`{{exec}}
 
 
 ## Linear Regression Model
