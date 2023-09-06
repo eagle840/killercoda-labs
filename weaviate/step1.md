@@ -7,13 +7,11 @@ https://weaviate.io/developers/weaviate/quickstart
 
 `apt-get update`{{exec}}
 
-`halt`{{exec}}
-
 `apt update`{{exec}}
 
-`mkdir chr`{{exec}}
+`mkdir vector`{{exec}}
 
-`cd chr/`{{exec}}
+`cd vector/`{{exec}}
 
 `sudo add-apt-repository -y ppa:deadsnakes/ppa`{{exec}}
 
@@ -33,7 +31,7 @@ https://weaviate.io/developers/weaviate/quickstart
 
 `pip install pysqlite3-binary`{{exec}}
 
-`sudo apt install python3.10-dev`{{exec}}
+`sudo apt install -ys python3.10-dev`{{exec}}
 
 `wget https://weaviate.io/downloads/docker-templates/docker-compose-core.yml`{{exec}}
 

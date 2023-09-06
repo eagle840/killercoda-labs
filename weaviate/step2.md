@@ -39,6 +39,12 @@ client.schema.create_class(class_obj)
 
 # Add objects
 
+WIP Getting error
+```
+{'error': [{'message': 'update vector: API Key: no api key found neither in request header: X-Openai-Api-Key nor in environment variable under OPENAI_APIKEY'}]}
+```
+
+
 ```
 import requests
 resp = requests.get('https://raw.githubusercontent.com/weaviate-tutorials/quickstart/main/data/jeopardy_tiny.json')
