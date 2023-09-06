@@ -14,7 +14,7 @@ lets look at the last set of runs:
 
 and select the last run (assuming it has a pickle file from the last model run)
 
-`last_run=$( mlflow runs list --experiment-id 0  | awk 'END{print $5}' )`{{exec}}
+`last_run=$( mlflow runs list --experiment-id 0  | awk 'NR==3{print $NF}' )`{{exec}}
 
 `mlflow models serve -m ./mlruns/0/$last_run/artifacts/model -p 5001 --no-conda`{{exec}}
 
@@ -35,7 +35,7 @@ and well run a prediction against the endpoint, with the following data:
 ```
 
 
-`curl -X POST -H "Content-Type:application/json; format=pandas-split" --data '{"columns":["alcohol", "chlorides","citric acid", "density", "fixed acidity", "free sulfur dioxide", "pH", "residual sugar", "sulphates", "total sulfur dioxide", "volatile acidity"],"data":[[12.8, 0.029, 0.48, 0.98, 6.2, 29, 3.33, 1.2, 0.39, 75, 0.66]]}' http://127.0.0.1:5001/invocations`{{exec}}
+`curl -X POST -H "Content-Type:application/json" --data '{"dataframe_split": {"columns":["fixed acidity", "volatile acidity", "citric acid", "residual sugar", "chlorides", "free sulfur dioxide", "total sulfur dioxide", "density", "pH", "sulphates", "alcohol"],"data":[[6.2, 0.66, 0.48, 1.2, 0.029, 29, 75, 0.98, 3.33, 0.39, 12.8]]}}' http://127.0.0.1:5001/invocations`{{exec}}
 
 
 # add a  registry store (sqlite)
@@ -69,9 +69,15 @@ How we'll start the ui using the sqlite backend
 
 once running, you'll now be able to access the 'models' tab in the web page
 
+{{TRAFFIC_HOST1_5000}}
+
+### Register your best model
+
+https://mlflow.org/docs/latest/quickstart_mlops.html?highlight=build%20docker#register-your-best-model
 
 
-# Conda with Mlflow
+
+# Conda with Mlflow  WIP - remove?
 
 
 For this example, we'll need conda installed (http link)

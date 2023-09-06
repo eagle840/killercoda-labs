@@ -4,15 +4,24 @@ WIP, think I need the mlflow extras package installed for this
 
 ### FROM LOCAL
 
+see https://mlflow.org/docs/latest/quickstart_mlops.html?highlight=build%20docker#build-a-container-image-for-your-model
+
 get the last local run:
 
-`last_run=$( mlflow runs list --experiment-id 0  | awk 'END{print $5}' )`{{exec}}
+`last_run=$( mlflow runs list --experiment-id 0  | awk 'NR==3{print $NF}' )`{{exec}}
 
-`mlflow models generate-dockerfile --model-uri runs:/$iast_run/model --enable-mlserver`{{copy}}
+`echo $last_run`{{exec}}
+
+WIP delete `mlflow models generate-dockerfile --model-uri runs:/$iast_run/model --enable-mlserver`{{copy}}
+
+`mlflow models generate-dockerfile`{{exec}}
+
+`mlflow-dockerfile`{{exec}}
 
 `cat mlflow-dockerfile/Dockerfile`{{exec}}
 
 `mlflow models build-docker`{{exec}}
+
 
 `docker images`{{exec}}
 

@@ -1,12 +1,15 @@
 
 # Initial Setup
 
+
+# WIP mafor update to mlflow
+
 First we'll setup the environment
 
 `apt-get update -y`{{execute}}
 
 
-`apt install net-tools tree jq  python3-pip -y`{{exec}}
+`apt install net-tools tree jq sqlite3 python3-pip -y`{{exec}}
 
 `sudo add-apt-repository -y ppa:deadsnakes/ppa`{{execute}}
 
@@ -89,7 +92,8 @@ Exit out of the ui server, and you can see it's added to the file:
 
 In this example, we'll be using  scikit learn
 
-`pip install scikit-learn==0.23.2`{{exec}}
+
+`pip3 install -U scikit-learn`{{exec}}
 
 
 ## Linear Regression Model
@@ -119,9 +123,9 @@ WIP `cat conda.yaml`{{exec}}
 WIP `jupyter notebook --ip=0.0.0.0 --allow-root`{{exec}}
 
 
-this time we'll run the project with the mlflow command, this will usually setup a conda environment, but for now we'll turn that feature off (--no-conda), and set just the alpha hyper-parameter:
+this time we'll run the project with the mlflow command, this will usually setup a conda environment, but for now we'll turn that feature off ([--env-manager local](https://mlflow.org/docs/latest/cli.html?highlight=conda#cmdoption-mlflow-run-env-manager)), and set just the alpha hyper-parameter:
 
-`mlflow run . -P alpha=0.5 --no-conda`{{exec}}
+`mlflow run . -P alpha=0.5 --env-manager local`{{exec}}
 
 (the '.' is the present directry, but can be replaced with a folder name)
 
