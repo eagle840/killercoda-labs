@@ -8,6 +8,16 @@ First we'll setup the environment
 
 `apt install net-tools tree jq  python3-pip -y`{{exec}}
 
+`sudo add-apt-repository -y ppa:deadsnakes/ppa`{{execute}}
+
+`sudo apt-get update`{{execute}}
+
+`apt-get install -y python3.11`{{execute}}
+
+`python3.11 -V`{{exec}}
+
+`pip install --upgrade pip`{{exec}}
+
 `git clone https://github.com/mlflow/mlflow`{{exec}}
 
 
