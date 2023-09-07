@@ -1,9 +1,9 @@
-
-# Initial Setup
-
+In this lab we will setup Weaviate on docker compose and run some simple actions with python.
 
 
-https://weaviate.io/developers/weaviate/quickstart
+## Initial Setup
+
+Install the prerequisites for this lab
 
 `apt-get update`{{exec}}
 
@@ -29,11 +29,15 @@ https://weaviate.io/developers/weaviate/quickstart
 
 `pip install --upgrade pip`{{exec}}
 
-`pip install pysqlite3-binary`{{exec}}
 
-Since example template requires a OpenAI account (https://weaviate.io/downloads/docker-templates/docker-compose-core.yml) we'll use a local vectorizor [text2vec-contextionary](https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary)
 
-nano docker-compose.yaml
+## Install Weaviate on Docker
+
+Since the example [template](https://weaviate.io/downloads/docker-templates/docker-compose-core.yml) requires a OpenAI account,  we'll use a local vectorizor [text2vec-contextionary](https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary)
+
+copy the following code into a dock compose template:
+
+`nano docker-compose.yaml`{{exec}}
 
 ```
 ---
@@ -69,7 +73,9 @@ services:
     image: semitechnologies/contextionary:en0.16.0-v1.2.1
     ports:
     - 9999:9999
-```
+```{{copy}}
+
+(ctrl-s,enter)(ctrl x) to save and exit.
 
 
 `docker-compose up -d`{{exec}}
@@ -77,4 +83,4 @@ services:
 finally confirm the endpoint is up
 
 
-{{TRAFFIC_HOST1_8080}}  WIP: replace with curl?
+{{TRAFFIC_HOST1_8080}}  

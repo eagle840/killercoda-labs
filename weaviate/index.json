@@ -1,6 +1,6 @@
 {
-  "title": "WIP Weaviate Vector Database",
-  "description": "Install Vector Database with Docker(v0.0.3)",
+  "title": "Weaviate Vector Database",
+  "description": "Install Vector Database with Docker(v0.1.0)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {

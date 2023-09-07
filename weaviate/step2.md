@@ -1,20 +1,20 @@
-# Hello World! using python
+# Hello World! Baiic use of Weaviate
 
+
+We'll be following the [quickstart guide](https://weaviate.io/developers/weaviate/quickstart), but with some alterations. 
 
 
 `pip install weaviate-client`{{exec}}
 
 `pip install ipython`{{exec}}
 
-`pip install openai`{{exec}}
-
-
 `ipython`{{exec}}
+
+You'll need to enter return on each piece of python code:
 
 ```
 import weaviate
 import json
-
 ```{{exec}}
 
 # Connect to Weaviate
@@ -92,33 +92,8 @@ response = (
 print(json.dumps(response, indent=4))
 ```{{exec}}
 
-# Generative search (single prompt)
-```
-response = (
-    client.query
-    .get("Question", ["question", "answer", "category"])
-    .with_near_text({"concepts": ["biology"]})
-    .with_generate(single_prompt="Explain {answer} as you might to a five-year-old.")
-    .with_limit(2)
-    .do()
-)
 
-print(json.dumps(response, indent=4))
-```{{exec}}
-
-# Generative search (grouped task)
-```
-response = (
-    client.query
-    .get("Question", ["question", "answer", "category"])
-    .with_near_text({"concepts": ["biology"]})
-    .with_generate(grouped_task="Write a tweet with emojis about these facts.")
-    .with_limit(2)
-    .do()
-)
-
-print(response["data"]["Get"]["Question"][0]["_additional"]["generate"]["groupedResult"])
-```{{exec}}
+For more tutorials, see https://weaviate.io/developers/weaviate/tutorials
 
 This ends the lab
 
