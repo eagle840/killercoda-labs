@@ -9,6 +9,28 @@ https://weaviate.io/developers/weaviate/quickstart
 
 `apt update`{{exec}}
 
+`sudo apt-get install libreadline-dev`{{exec}}
+
+## install sqlite
+
+`wget https://www.sqlite.org/2023/sqlite-autoconf-3430000.tar.gz`{{exec}}
+
+`tar -vxf sqlite-autoconf-3430000.tar.gz`{{exec}}
+
+`cd sqlite-autoconf-3430000`{{exec}}
+
+`./configure`{{exec}}
+
+`make`{{exec}}
+
+`mv sqlite3 /usr/bin/`{{exec}}
+
+`sqlite3 --version`{{exec}}
+
+## install chromadb
+
+`cd ~/vector`{{exec}}
+
 `mkdir vector`{{exec}}
 
 `cd vector/`{{exec}}
@@ -31,14 +53,30 @@ https://weaviate.io/developers/weaviate/quickstart
 
 `pip install pysqlite3-binary`{{exec}}
 
-`sudo apt install -ys python3.10-dev`{{exec}}
+`sudo apt install -y python3.10-dev`{{exec}}
 
 
 `pip install pysqlite3-binary`{{exec}}
 
 `pip install chromadb`{{exec}}
 
-   nano .venv/lib/python3.10/site-packages/chromadb/__init__.py
+WIP still failing
+
+```
+      /tmp/pip-build-env-wil2leqt/overlay/lib/python3.10/site-packages/pybind11/include/pybind11/detail/../detail/common.h:266:10: fatal error: Python.h: No such file or directory
+        266 | #include <Python.h>
+            |          ^~~~~~~~~~
+      compilation terminated.
+      error: command '/usr/bin/x86_64-linux-gnu-gcc' failed with exit code 1
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building wheel for chroma-hnswlib
+Failed to build chroma-hnswlib
+ERROR: Could not build wheels for chroma-hnswlib, which is required to install pyproject.toml-based projects
+```
+
+`nano .venv/lib/python3.10/site-packages/chromadb/__init__.py`{{exec}}
 
  Added these 3 lines in venv3.10/lib/python3.10/site-packages/chromadb/__init__.py at the beginning:
 
