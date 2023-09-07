@@ -27,7 +27,7 @@ https://weaviate.io/developers/weaviate/quickstart
 
 `sqlite3 --version`{{exec}}
 
-## install chromadb
+## install Python 3.10
 
 `cd ~`{{exec}}
 
@@ -53,25 +53,13 @@ https://weaviate.io/developers/weaviate/quickstart
 
 `pip install --upgrade pip`{{exec}}
 
+## Install Chromadb
+
 `pip install pysqlite3-binary`{{exec}}
 
 `pip install chromadb`{{exec}}
 
-WIP still failing
-
-```
-      /tmp/pip-build-env-wil2leqt/overlay/lib/python3.10/site-packages/pybind11/include/pybind11/detail/../detail/common.h:266:10: fatal error: Python.h: No such file or directory
-        266 | #include <Python.h>
-            |          ^~~~~~~~~~
-      compilation terminated.
-      error: command '/usr/bin/x86_64-linux-gnu-gcc' failed with exit code 1
-      [end of output]
-  
-  note: This error originates from a subprocess, and is likely not a problem with pip.
-  ERROR: Failed building wheel for chroma-hnswlib
-Failed to build chroma-hnswlib
-ERROR: Could not build wheels for chroma-hnswlib, which is required to install pyproject.toml-based projects
-```
+Make an small adjustment to allow Chromadb to work
 
 `nano .venv/lib/python3.10/site-packages/chromadb/__init__.py`{{exec}}
 
@@ -82,13 +70,13 @@ ERROR: Could not build wheels for chroma-hnswlib, which is required to install p
 __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3') 
-```
+```{{copy}}
 
 
 `python`{{exec}}
 
 ```
-import chroma
+import chromadb
 ```{{exec}}
 
 
