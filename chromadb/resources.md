@@ -1,4 +1,39 @@
 
+   
+       1  apt-get update
+    2  halt
+    3  apt-get update
+    4  sudo apt-get install libreadline-dev
+    5  wget https://www.sqlite.org/2023/sqlite-autoconf-3430000.tar.gz
+    6  tar -vxf sqlite-autoconf-3430000.tar.gz
+    7  cd sqlite-autoconf-3430000
+    8  ./configure
+    9  make
+   10  mv sqlite3 /usr/bin/
+   11  sqlite3 --version
+   12  cd ~/vector
+   13  pwd
+   14  cd ..
+   15  mkdir vector
+   16  cd vector/
+   17  sudo add-apt-repository -y ppa:deadsnakes/ppa
+   18  sudo apt-get update
+   19  apt-get install -y python3.10
+   20  sudo apt-get install build-essential -y
+   21  apt-get install -y python3.10
+   22  apt-get install -y python3.10-dev
+   23  sudo apt-get install build-essential -y
+   24  apt install -y python3.10-venv
+   25  python3.10 -m venv .venv
+   26  source .venv/bin/activate
+   27  pip install --upgrade pip
+   28  pip install chromadb
+   29  nano .venv/lib/python3.10/site-packages/chromadb/__init__.py
+   30  python
+   31  pip install pysqlite3-binary
+   32  python
+   
+   
     1  apt-get update
     2  halt
     3  apt update

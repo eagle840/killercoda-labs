@@ -29,7 +29,7 @@ https://weaviate.io/developers/weaviate/quickstart
 
 ## install chromadb
 
-`cd ~/vector`{{exec}}
+`cd ~`{{exec}}
 
 `mkdir vector`{{exec}}
 
@@ -41,6 +41,8 @@ https://weaviate.io/developers/weaviate/quickstart
 
 `apt-get install -y python3.10`{{exec}}
 
+`apt-get install -y python3.10-dev`{{exec}}
+
 `sudo apt-get install build-essential -y`{{exec}}
 
 `apt install -y python3.10-venv`{{exec}}
@@ -50,11 +52,6 @@ https://weaviate.io/developers/weaviate/quickstart
 `source .venv/bin/activate`{{exec}}
 
 `pip install --upgrade pip`{{exec}}
-
-`pip install pysqlite3-binary`{{exec}}
-
-`sudo apt install -y python3.10-dev`{{exec}}
-
 
 `pip install pysqlite3-binary`{{exec}}
 
@@ -87,5 +84,11 @@ import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3') 
 ```
 
+
+`python`{{exec}}
+
+```
+import chroma
+```{{exec}}
 
 
