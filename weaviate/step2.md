@@ -14,6 +14,7 @@
 ```
 import weaviate
 import json
+
 ```{{exec}}
 
 # Connect to Weaviate
@@ -27,10 +28,9 @@ client = weaviate.Client(
 ```
 class_obj = {
     "class": "Question",
-    "vectorizer": "text2vec-openai",  # If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
+    "vectorizer": "text2vec-contextionary",  # If set to "none" you must always provide vectors yourself. Could be any other "text2vec-*" also.
     "moduleConfig": {
-        "text2vec-openai": {},
-        "generative-openai": {}  # Ensure the `generative-openai` module is used for generative queries
+        "text2vec-contextionary": {}
     }
 }
 
@@ -38,12 +38,6 @@ client.schema.create_class(class_obj)
 ```{{exec}}
 
 # Add objects
-
-WIP Getting error
-```
-{'error': [{'message': 'update vector: API Key: no api key found neither in request header: X-Openai-Api-Key nor in environment variable under OPENAI_APIKEY'}]}
-```
-
 
 ```
 import requests
