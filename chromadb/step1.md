@@ -104,6 +104,9 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 ```
 import chromadb
+chromadb.__version__
 ```{{exec}}
+
+`quit()`{{exec}}
 
 

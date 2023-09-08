@@ -37,5 +37,7 @@ results = collection.query(
     query_texts=["This is a query document"],
     n_results=2
 )
+
+print(results)
 ```{{exec}}
 
