@@ -1,6 +1,6 @@
 {
   "title": "WORK-IN-PROGRESS MLflow",
-  "description": "Using MLFLow for your machine learning projects(v0.6.0)",
+  "description": "Using MLFLow for your machine learning projects(v0.6.1)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -20,6 +20,10 @@
         },
         {
           "file": "receive.py",
+          "target": "~/"
+        },
+        {
+          "file": "python_install.sh",
           "target": "~/"
         }
       ]

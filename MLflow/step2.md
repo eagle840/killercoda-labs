@@ -40,6 +40,10 @@ and well run a prediction against the endpoint, with the following data:
 
 # add a  registry store (sqlite)
 
+Sqlite3 is already installed
+
+`sqlite3 -version`{{exec}}
+
 Return to the first bash tab:
 
 WIP put this in aother step
@@ -48,7 +52,7 @@ https://www.mlflow.org/docs/latest/model-registry.html
 
 `nano train.py`{{exec}}
 
-add the following line in train.py @ line 46
+add the following line in train.py @ line 45 above '# Split the data into training and test sets. (0.75, 0.25) split.'
 
 `mlflow.set_tracking_uri("sqlite:///mlruns.db")`{{copy}}
 
@@ -75,43 +79,4 @@ once running, you'll now be able to access the 'models' tab in the web page
 
 https://mlflow.org/docs/latest/quickstart_mlops.html?highlight=build%20docker#register-your-best-model
 
-
-
-# Conda with Mlflow  WIP - remove?
-
-
-For this example, we'll need conda installed (http link)
-
-`cd ~`{{exec}}
-
-WIP `df -h /dev/vda1`{{exec}}
-
-`wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh`{{exec}}
-
-`chmod +x Miniconda3-latest-Linux-x86_64.sh`{{exec}}
-
-run, accept the license, and init when prompted:
-
-`./Miniconda3-latest-Linux-x86_64.sh`{{exec}}
-
-`rm Miniconda3-latest-Linux-x86_64.sh `{{exec}}
-
-WIP `df -h /dev/vda1`{{exec}}
-
-`echo 'PATH=$PATH':"/root/miniconda3/bin" >> /root/.bashrc`{{exec}}
-
-restart the shell: `exec bash`{{exec}}
-
-`conda -h`{{exec}}
-
-Conda will automatically enter into an environment, lets exit it:
-
-WIP `conda deactivate`{{exec}}
-
-check the version: `conda -V`{{exec}}
-
-WIP `conda env create -f conda.yaml`{{exec}}
-
-
-`mlflow run . -P alpha=0.5 `{{exec}}
 

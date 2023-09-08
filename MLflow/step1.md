@@ -6,6 +6,12 @@
 
 IT SEEMS that using venv is the only way to get pass the 3.8 issues
 
+install python
+
+`chmod +x python_install.sh`{{exec}}
+
+`./python_install.sh`{{exec}}
+
 
 `apt-get update -y`{{execute}}
 
@@ -19,6 +25,8 @@ IT SEEMS that using venv is the only way to get pass the 3.8 issues
 
 `apt install -y python3.11-venv`{{execute}}
 
+## MLFLow
+
 `git clone https://github.com/mlflow/mlflow`{{exec}}
 
 `cd mlflow`{{exec}}
@@ -29,32 +37,7 @@ IT SEEMS that using venv is the only way to get pass the 3.8 issues
 
 `pip install --upgrade pip`{{exec}}
 
-NOW goto the mlflow section
 
-## -- ignore below ---
-
-First we'll setup the environment
-
-`apt-get update -y`{{execute}}
-
-
-`apt install net-tools tree jq sqlite3 python3-pip -y`{{exec}}
-
-`sudo add-apt-repository -y ppa:deadsnakes/ppa`{{execute}}
-
-`sudo apt-get update`{{execute}}
-
-`apt-get install -y python3.11`{{execute}}
-
-`sudo ln -sf /usr/bin/python3.11 /usr/bin/python3`{{exec}}
-
-`python -V`{{exec}}
-
-`python3 -V`{{exec}}
-
-`python3.11 -V`{{exec}}
-
-WIP - get python run as 3.11
 
 `pip install --upgrade pip`{{exec}}
 
@@ -115,9 +98,7 @@ Note how the UI corresponds with the folder directory.
 
 Add some info into the description in the ui for this project.
 
-Exit out of the ui server, and you can see it's added to the file:
-
-`cat mlruns/0/tags/mlflow.note.content`{{exec}}
+Exit out of the ui server (ctrl-c)
 
 
 
