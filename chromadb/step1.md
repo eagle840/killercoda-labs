@@ -63,7 +63,7 @@ Make an small adjustment to allow Chromadb to work
 
 `nano .venv/lib/python3.10/site-packages/chromadb/__init__.py`{{exec}}
 
- Added these 3 lines in venv3.10/lib/python3.10/site-packages/chromadb/__init__.py at the beginning:
+ Added these 3 lines in 'venv3.10/lib/python3.10/site-packages/chromadb/__init__.py' at the beginning:
 
 
 ```
