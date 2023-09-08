@@ -6,7 +6,9 @@ https://www.sbert.net/
 
 ## install all-MiniLM-L6-v2
 
-`pip install pip install -U sentence-transformers`{{exec}}
+We'll run the install inside ipython
+
+`!pip install pip install -U sentence-transformers`{{exec}}
 
 
 

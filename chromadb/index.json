@@ -1,6 +1,6 @@
 {
   "title": "WIP Chromadb Vector Database",
-  "description": "Install Chromadb Database with Docker(v0.0.4)",
+  "description": "Install Chromadb Database with Docker(v0.0.5)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
