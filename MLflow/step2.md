@@ -38,7 +38,11 @@ and well run a prediction against the endpoint, with the following data:
 `curl -X POST -H "Content-Type:application/json" --data '{"dataframe_split": {"columns":["fixed acidity", "volatile acidity", "citric acid", "residual sugar", "chlorides", "free sulfur dioxide", "total sulfur dioxide", "density", "pH", "sulphates", "alcohol"],"data":[[6.2, 0.66, 0.48, 1.2, 0.029, 29, 75, 0.98, 3.33, 0.39, 12.8]]}}' http://127.0.0.1:5001/invocations`{{exec}}
 
 
+Note the return prediction: {"predictions": [5.831756742713119]}
+
 # add a  registry store (sqlite)
+
+https://www.mlflow.org/docs/latest/model-registry.html
 
 Sqlite3 is already installed
 
@@ -46,9 +50,7 @@ Sqlite3 is already installed
 
 Return to the first bash tab:
 
-WIP put this in aother step
-
-https://www.mlflow.org/docs/latest/model-registry.html
+And we'll adjust the code to store in sqlite
 
 `nano train.py`{{exec}}
 

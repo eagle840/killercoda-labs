@@ -2,28 +2,13 @@
 # Initial Setup
 
 
-# WIP mafor update to mlflow
+## Install Python
 
-IT SEEMS that using venv is the only way to get pass the 3.8 issues
-
-install python
+install python 3.11 with the following script:
 
 `chmod +x python_install.sh`{{exec}}
 
 `./python_install.sh`{{exec}}
-
-
-`apt-get update -y`{{execute}}
-
-`apt install net-tools tree jq sqlite3 python3-pip -y`{{exec}}
-
-`sudo add-apt-repository -y ppa:deadsnakes/ppa`{{execute}}
-
-`sudo apt-get update`{{execute}}
-
-`apt-get install -y python3.11`{{execute}}
-
-`apt install -y python3.11-venv`{{execute}}
 
 ## MLFLow
 
@@ -39,26 +24,21 @@ install python
 
 
 
-`pip install --upgrade pip`{{exec}}
-
-`git clone https://github.com/mlflow/mlflow`{{exec}}
-
-
-##### Install mlflow
+### Install mlflow
 
 `pip install -U click jinja2`{{exec}} 
 
 `pip install mlflow`{{exec}}
 
-##### Install MLflow with extra ML libraries and 3rd-party tools
+### Install MLflow with extra ML libraries and 3rd-party tools
 
 `pip install mlflow[extras]`{{copy}}
 
 There are 4 major components to MLFlow: Tracking, Projects, Models, and Registry
 
-# MLFlow Tracking Tool
+## MLFlow Tracking Tool
 
-## Run our 1st mlflow
+### Run our 1st MLFlow
 
 `cd ~/mlflow/examples/quickstart/`{{exec}}
 
@@ -101,11 +81,6 @@ Add some info into the description in the ui for this project.
 Exit out of the ui server (ctrl-c)
 
 
-
-
-
-
-    ==================================
 ## Another Example:
 
 In this example, we'll be using  scikit learn
@@ -114,13 +89,12 @@ In this example, we'll be using  scikit learn
 `pip install -U scikit-learn`{{exec}}
 
 
-## Linear Regression Model
+### Linear Regression Model
 
 https://scikit-learn.org/stable/modules/linear_model.html#elastic-net
 
 `cd ~/mlflow/examples/sklearn_elasticnet_wine/`{{exec}}
 
-WIP `pip install notebook`{{exec}}
 
 `cat train.py`{{exec}}
 
@@ -136,18 +110,12 @@ This example will use a mlProject file to run the code
 
 `cat MLproject`{{exec}}
 
-WIP `cat conda.yaml`{{exec}}
-
-WIP `jupyter notebook --ip=0.0.0.0 --allow-root`{{exec}}
-
-
 this time we'll run the project with the mlflow command, this will usually setup a conda environment, but for now we'll turn that feature off ([--env-manager local](https://mlflow.org/docs/latest/cli.html?highlight=conda#cmdoption-mlflow-run-env-manager)), and set just the alpha hyper-parameter:
 
 `mlflow run . -P alpha=0.5 --env-manager local`{{exec}}
 
 (the '.' is the present directry, but can be replaced with a folder name)
 
-WIP : I think we use the mlflow run  since it uses the conda env by default, were as python train.py is in the present environment
 
 note the 'ID' of the output, and compare it against:
 
@@ -158,7 +126,7 @@ note the 'ID' of the output, and compare it against:
 
 this time, note the contents of the artifacts folder, the pickle file (.pkl) is actually the model code.
 
-and lets run it again with different parameters
+and lets run it again with different parameters using the following format
 
 `python train.py <alpha> <l1_ratio>`
 
