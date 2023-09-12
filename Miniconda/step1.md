@@ -1,34 +1,40 @@
 
 # Initial Setup
 
+`apt-get update`{{exec}}  
 
-## Install conda
+
+Miniconda is a lightweight distribution of the Conda package manager, specifically designed for creating and managing isolated Python environments. It allows you to easily install, update, and remove packages and dependencies, ensuring reproducibility and flexibility in your Python projects
+
+Lets check the version of python we already have installed:
+
+`python -V`{{exec}}
+
+When we install Miniconda it will include the latest version, but you can load other Python versions using the 
+
+## Install miniconda
 
 For this example, we'll need conda installed (http link)
 
 `cd ~`{{exec}}
 
-WIP `df -h /dev/vda1`{{exec}}
-
 `wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh`{{exec}}
 
 `chmod +x Miniconda3-latest-Linux-x86_64.sh`{{exec}}
 
-run, accept the license, and init when prompted and activate:
+run, accept the license, and don't init when prompted:
 
 `./Miniconda3-latest-Linux-x86_64.sh`{{exec}}
 
-Note that the Conda environment is now in the command prompt '(base)'
-
 `rm Miniconda3-latest-Linux-x86_64.sh `{{exec}}
-
-WIP `df -h /dev/vda1`{{exec}}
 
 `echo 'PATH=$PATH':"/root/miniconda3/bin" >> /root/.bashrc`{{exec}}
 
-restart the shell: `exec bash`{{exec}}
+restart the shell: 
 
-`conda -h`{{exec}}
+`exec bash`{{exec}}
+
+`conda -V`{{exec}}
 
 ### Init conda
 
@@ -37,6 +43,12 @@ restart the shell: `exec bash`{{exec}}
 This command is used to initialize Conda for your shell. It sets up the necessary environment variables and shell-specific configurations to enable Conda commands to work properly. The `conda init` command needs to be run only once after installing Conda or when switching to a new shell.
 
 `exec bash`{{exec}}
+
+Note that the Conda environment is now in the command prompt '(base)'
+
+Lets check the python version:
+
+`python -V`{{exec}}
 
 
 ### review  an environment
@@ -53,13 +65,21 @@ Note that the environment does not have a '*' next to it, showing its active.
 
 ### Activate an environment
 
-Lets create an environment called pytorch
+The basic format to create an envirnoment is
 
-`conda create -n pytorch`
+conda create -n <nane of env> python=<ver> <pkgs>
+
+eg `conda create -n test python=3.7 numpy pandas`{{exec}}
+
+Lets create an environment called pytorch, and include Python 3.10
+
+`conda create -n pytorch python=3.10`{{exec}}
+
+Conda will ask you to approve the package install.
 
 `conda activate pytorch`{{exec}}: This command is used to activate a specific Conda environment. When you create a new Conda environment, it is isolated from other environments and has its own set of packages. By activating an environment, you make it the active environment, and any subsequent package installations or commands will be executed within that environment. This is useful when you want to work with different versions of packages or isolate your project dependencies.
 
-### Install pytorch
+### Install package in the environment (pytorch)
 
 Goto the pytorch install page https://pytorch.org/get-started/locally/, select
 
@@ -71,11 +91,11 @@ Goto the pytorch install page https://pytorch.org/get-started/locally/, select
 
 The web page will then show the install command
 
-WIP: no I need to activate the env before installing?
-
-WIP `conda list`{{exec}}
-
 `conda install pytorch torchvision torchaudio cpuonly -c pytorch`{{exec}}
+
+Lets list of the packages we've installed:
+
+`conda list`{{exec}}
 
 Run the above line to install pytorch
 
@@ -91,21 +111,13 @@ We need to determine the shell we are using:
 And confirm pytorch in installed
 
 `python -c "import torch; print(torch.__version__)"`{{exec}}
-### Create your own environment
 
-the basic format to create an envirnoment is
-
-conda create -n <nane of env> python=<ver> <pkgs>
-
-eg `conda create -n test python=3.7 numpy pandas`{{exec}}
 
 WIP why does `conda env` not create the env folder?
 
-WIP why does mlflow fail the creation on crean env create?
+WIP `conda env list`{{exec}}
 
-`conda env list`{{exec}}
-
-the env's are located in ~/miniconda3/envs
+WIP the env's are located in ~/miniconda3/envs
 
 `printenv | grep CONDA`{{exec}}
 
@@ -113,9 +125,9 @@ the env's are located in ~/miniconda3/envs
 
 
 
-### Install packages
+### Install packages via channels
 
-1)
+
 
 `conda search beautifulsoup4`{{exec}}
 
@@ -160,64 +172,9 @@ WIP   review  https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/in
 notice how you can override the env name set in the yaml file
 
 
+==== delete below ===
 
 
-
-
-
-================= DELETE BELOW ===================
-
-`apt-get update`{{exec}}   
-
-`apt-get install ca-certificates curl gnupg  lsb-release -y`{{exec}}   
-
-`mkdir -p /etc/apt/keyrings`{{exec}}   
-
-`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}   
-
-```
-echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```{{exec}}   
-
-`apt-get update`{{exec}}   
-
-`apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y `{{exec}}   
-
-`docker version`{{exec}}   
-
-`docker-compose version`{{exec}}   
-
-`docker compose version`{{exec}}
-
-# Set imageid in index.json
-
-- ubuntu: Ubuntu 20.04 with Docker and Podman
-= kubernetes-kubeadm-2nodes: 
-- kubernetes-kubeadm-1node:
-
-to taint the control node for work:
-
-```
-kubectl taint nodes controlplane node-role.kubernetes.io/master:NoSchedule-
-kubectl taint nodes controlplane node-role.kubernetes.io/control-plane:NoSchedule-
-```
-
-
-# Copy Files/adjust index
-
-text here
-
-# Run apt update
-
-apt-get update -y{{execute}}
-
-```apt-get update -y{{execute}}```
-
-
-# For links to ports:
-
-```
 Link for traffic into host 1 on port 80
 {{TRAFFIC_HOST1_80}}
 Link for traffic into host 2 on port 4444
@@ -226,49 +183,6 @@ Link for traffic into host X on port Y
 {{TRAFFIC_HOSTX_Y}}
 ```
 
-
-# Example setup for postgres with raw data
-
-git clone https://github.com/josephmachado/simple_dbt_project.git
-
-- raw folders
-- warehouse setup
-- docker postgres and -v to those folders
-
-
-We'll be using the rabbitmq container with the management feature installed.
-
-https://hub.docker.com/_/rabbitmq
-
-`docker run -d --hostname my-rabbit --name some-rabbit -p 8080:15672 rabbitmq:3-management`{{execute}}
-
-make sure it started
-
-`docker ps`{{execute}}
-
-and check the config file
-
-`docker exec some-rabbit cat /etc/rabbitmq/rabbitmq.conf`{{execute}}
-
-and head over to port 8080 and login   
-un:guest   
-pw:guest  
-
-https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com
-
-Next we'll update the python files with the new IP address of the docker container.
-
-`RabbitIP=$(docker inspect some-rabbit | jq -r .[0].NetworkSettings.IPAddress)`{{execute}}
-
-`echo $RabbitIP`{{execute}}
-
-`sed -i "s/localhost/$RabbitIP/g" send.py receive.py worker.py new_task.py`{{execute}}
-
-## k8s port-forward
-
-`k -n <ns> port-forward service/<svc-name> 9090:9090 --address 0.0.0.0`
-
-- this is to forword a CLusterIP so that killacoda can access
 
 
 `echo 'PATH=$PATH':$(pwd)/bin >> /root/.bashrc`{{copy}}
