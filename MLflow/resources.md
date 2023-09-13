@@ -10,6 +10,8 @@ conda install -c conda-forge mlflow=1.8.0
 
 of insterest:
 
+https://medium.com/@kattsonbastos/mlops-with-zenml-and-mlflow-how-can-we-build-a-model-training-pipeline-a-practical-example-6a5f24f5eefc
+
 https://towardsdatascience.com/deploy-mlflow-with-docker-compose-8059f16b6039
 
 https://docs.conda.io/projects/conda/en/4.6.1/user-guide/troubleshooting.html
