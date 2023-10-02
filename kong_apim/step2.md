@@ -106,6 +106,10 @@ taken from https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-new-sdk-te
 
 `cd MyAPI/`{{exec}}
 
+`dotnet add package Microsoft.ApplicationInsights.AspNetCore`{{exec}}
+
+WIP restore ??
+
 `dotnet build`{{exec}}
 
 `dotnet run --urls=http://0.0.0.0:3000/`{{exec}}
