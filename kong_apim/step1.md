@@ -59,7 +59,7 @@ echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docke
 
 edit the /conf/kong.yaml
 
-WIP this config need work 
+WIP this config need work, instead consider setting the values in compose-docker from 127.0.0.1 to 0.0.0.0
 
 ```
 admin_listen:
