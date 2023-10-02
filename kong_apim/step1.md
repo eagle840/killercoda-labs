@@ -1,41 +1,75 @@
 # Initial Setup
 
-```shell
-apt update
-apt install -y jq
+`apt install jq`{{exec}}
+
 ```
+sudo apt update
+apt-get remove docker  docker.io containerd runc -y
+apt-get update
+apt-get install ca-certificates curl gnupg  lsb-release -y
+mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+```{{exec}}
 
-## Set Custom Defaults
-
-Follow the instructions in the [Kong documentation](https://docs.konghq.com/deck/latest/guides/defaults/#set-custom-defaults) to set custom defaults.
-
-```shell
-cd /root
-git clone https://github.com/Kong/docker-kong
-cd docker-kong/compose/
-cat docker-compose.yml
 ```
+echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```{{exec}}   
 
-Edit the `/conf/kong.yaml` file and update the `admin_listen` section as follows:
+`apt-get update`{{exec}}   
 
-```yaml
+`yes n | apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y `{{exec}}  
+
+force the following into a single command  (above)
+
+`sudo apt update`{{exec}}
+
+# docker update
+
+`apt-get remove docker  docker.io containerd runc -y`{{exec}}   
+
+`apt-get update`{{exec}}   
+
+`apt-get install ca-certificates curl gnupg  lsb-release -y`{{exec}}   
+
+`mkdir -p /etc/apt/keyrings`{{exec}}   
+
+`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}   
+
+```
+echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```{{exec}}   
+
+`apt-get update`{{exec}}   
+
+`apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y `{{exec}}   
+
+## set custom defaults
+
+`sudo apt update`{{exec}}
+
+`git clone https://github.com/Kong/docker-kong`{{exec}}
+
+`cd docker-kong/compose/`{{exec}}
+
+`ls`{{exec}}
+
+`cat docker-compose.yml`{{exec}}
+
+edit the /conf/kong.yaml
+
+WIP this config need work 
+
+```
 admin_listen:
-  - 0.0.0.0:8001
-  - 0.0.0.0:8444
+     - 0.0.0.0:8001
+     - 0.0.0.0:8444
 ```
 
-Export the `KONG_DATABASE` environment variable:
+`export KONG_DATABASE=postgres`{{exec}}
 
-```shell
-export KONG_DATABASE=postgres
-```
-
-Start the Kong container:
-
-```shell
-docker-compose up -d
-```
-
+`docker compose up`{{exec}}
 ---- before clean ----
 
 # Initial Setup
