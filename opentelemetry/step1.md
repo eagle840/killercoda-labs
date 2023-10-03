@@ -14,7 +14,7 @@ https://opentelemetry.io/docs/instrumentation/js/getting-started/nodejs/s
 
 we'll be using the zipkin tracing system: https://zipkin.io/ 
 
-`docker run -d -rm -p 9411:9411 openzipkin/zipkin`{{exec}}
+`docker run -d --rm -p 9411:9411 openzipkin/zipkin`{{exec}}
 
 confirm zipkin is running:
 
