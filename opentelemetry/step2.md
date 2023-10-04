@@ -7,13 +7,13 @@ start prometheus
 
 add to the prometheus config:
 
-'''yaml
+```yaml
   - job_name: "opentelemetry"
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
     static_configs:
       - targets: ["localhost:9464"]
-'''
+```
 
 new directory
 
@@ -25,7 +25,7 @@ WIP `cd .. && mkdir open_metrics`{{copy}}
 `nano monitoring.js`{{exec}}
 
 
-```java
+```
 'use strict'; 
 
 const { MeterProvider } = require('@opentelemetry/metrics'); 
@@ -48,7 +48,7 @@ module. exports. countAllRequests =
         next(); 
     };
 };
-```
+```{{copy}}
 
 in apps.js
 at line 3
