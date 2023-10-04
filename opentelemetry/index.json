@@ -1,6 +1,6 @@
 {
   "title": "WORK-IN-PROGRESS Opentelemetry",
-  "description": "Basic opentelemetry setup on node.js(v0.0.7)",
+  "description": "Basic opentelemetry setup on node.js(v0.0.8)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
