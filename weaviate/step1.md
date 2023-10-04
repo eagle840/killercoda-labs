@@ -5,8 +5,6 @@ In this lab we will setup Weaviate on docker compose and run some simple actions
 
 Install the prerequisites for this lab
 
-`apt-get update`{{exec}}
-
 `apt update`{{exec}}
 
 `mkdir vector`{{exec}}
@@ -33,7 +31,7 @@ Install the prerequisites for this lab
 
 ## Install Weaviate on Docker
 
-Since the example [template](https://weaviate.io/downloads/docker-templates/docker-compose-core.yml) requires a OpenAI account,  we'll use a local vectorizor [text2vec-contextionary](https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary)
+Since the default example [template](https://weaviate.io/downloads/docker-templates/docker-compose-core.yml) requires a OpenAI account,  we'll use a local vectorizor [text2vec-contextionary](https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modules/text2vec-contextionary)
 
 copy the following code into a dock compose template:
 
@@ -75,8 +73,9 @@ services:
     - 9999:9999
 ```{{copy}}
 
-(ctrl-s,enter)(ctrl x) to save and exit.
+(ctrl-o,enter)(ctrl x) to save and exit.
 
+Start the docker containers (this might take a few minutes to pull the images)
 
 `docker-compose up -d`{{exec}}
 
