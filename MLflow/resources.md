@@ -31,3 +31,6 @@ https://blog.noodle.ai/introduction-to-mlflow-for-mlops-part-3-database-tracking
 also try bento 
 https://www.bentoml.com/
 swagger: https://6579592b-ce53-4c7f-8bd9-bdef99e74ada-10-244-5-216-3000.spch.r.killercoda.com/#/Service%20APIs/iris_classifier__classify
+
+mix zenml with flowml
+https://medium.com/@kattsonbastos/mlops-with-zenml-and-mlflow-how-can-we-build-a-model-training-pipeline-a-practical-example-6a5f24f5eefc
