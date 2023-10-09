@@ -16,7 +16,7 @@ WIP install core 2.0 first, below
 
 1. `cd ~`{{exec}}
 3. `git clone https://github.com/openzipkin/zipkin4net.git`{{exec}}
-2. `cd cd zipkin4net/`{{exec}}
+2. `cd  zipkin4net/`{{exec}}
 4. `ls`{{exec}}
 5. `pwd`{{exec}}
 
@@ -24,6 +24,7 @@ WIP install core 2.0 first, below
 
 https://dotnet.microsoft.com/en-us/download/dotnet/2.0
 
+0. rereq: `apt install openssl`{{exec}}  - still doesn't fix
 1. `wget https://download.microsoft.com/download/f/c/1/fc16c864-b374-4668-83a2-f9f880928b2d/dotnet-sdk-2.1.202-linux-x64.tar.gz`{{exec}}
 2. `mkdir -p $HOME/dotnet && tar zxf dotnet-sdk-2.1.202-linux-x64.tar.gz -C $HOME/dotnet`{{exec}}
 3. `export DOTNET_ROOT=$HOME/dotnet`{{exec}}

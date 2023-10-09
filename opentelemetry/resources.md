@@ -22,3 +22,5 @@ https://github.com/open-telemetry
 https://opentelemetry.io/
 
 https://github.com/open-telemetry/opentelemetry-demo
+
+https://www.alibabacloud.com/help/en/tracing-analysis/latest/use-zipkin-to-report-net-application-data
