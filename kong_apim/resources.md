@@ -1,3 +1,6 @@
+
+at 2:30 at video https://www.youtube.com/watch?v=DZZEKyH0MHQ
+
 To add Application Insights to your ASP.NET app, follow these steps:
 
 1. Sign in to the Azure portal (https://portal.azure.com) and create a new Application Insights resource.
@@ -35,3 +38,9 @@ app.UseApplicationInsightsExceptionTelemetry();
 10. To view the telemetry data, go back to the Azure portal and navigate to your Application Insights resource. From there, you can explore various metrics, logs, and other insights about your app.
 
 That's it! You have successfully added Application Insights to your ASP.NET app.
+
+
+KONG 
+
+
+https://docs.konghq.com/gateway/latest/install/docker/#install-kong-gateway-with-a-database
