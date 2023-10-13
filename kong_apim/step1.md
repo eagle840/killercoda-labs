@@ -1,5 +1,7 @@
 # Initial Setup
 
+`apt update`{{exec}}
+
 `apt install jq tree net-tools -y`{{exec}}
 
 

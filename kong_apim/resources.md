@@ -1,6 +1,8 @@
 
 at 2:30 at video https://www.youtube.com/watch?v=DZZEKyH0MHQ
 
+https://konghq.com/install
+
 To add Application Insights to your ASP.NET app, follow these steps:
 
 1. Sign in to the Azure portal (https://portal.azure.com) and create a new Application Insights resource.
