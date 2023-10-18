@@ -1,6 +1,6 @@
 {
   "title": "Intro to SQL on Docker",
-  "description": "Setup MySQL, PostgreSQL and Aminer on docker and docker compose then test with sqlmap (v1.1)",
+  "description": "Setup MySQL, PostgreSQL and Aminer on docker and docker compose(v1.0)",
   "difficulty": "Beginner",
   "time": "60 minutes",
   "details": {
@@ -16,11 +16,7 @@
       {
         "title": "Step 3",
         "text": "step3.md"
-      },
-      {
-        "title": "Step 4",
-        "text": "step4.md"
-      }      
+      }     
     ],
     "intro": {
       "text": "intro.md"
