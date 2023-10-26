@@ -22,10 +22,7 @@ following https://redis.io/docs/install/install-redis/install-redis-on-linux/
 
 `sudo apt-get install redis`{{exec}}
 
-start redis
-
-`nuhup redis &`{{exec}}
-
+Redis should now be up and running
 
 start redis client
 
@@ -36,6 +33,8 @@ start redis client
 `get mykey`{{exec}}
 
 `ping`{{exec}}
+
+`INFO`{{exec}}
 
 ctrl=-c to exit
 
