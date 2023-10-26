@@ -118,7 +118,17 @@ To initiate pudb for debugging, run the following command, replacing `pythonProg
 python3 -m pudb pythonProgramToDebug.py
 ```
 
+# Common Issues
 
+
+##  ERROR: Cannot uninstall 'PyYAML'.
+
+
+`sudo -H pip3 install --ignore-installed PyYAML`{{copy}}
+
+## killed
+
+If you are running low on memory you could try with pip install <your-package-name> --no-cache-dir
 
 
 

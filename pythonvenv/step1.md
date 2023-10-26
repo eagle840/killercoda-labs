@@ -6,9 +6,13 @@
 
 `apt install -y curl git sqlite3`{{exec}}
 
+you'll probably also need, if you'll be using machine learning packages
+
+`sudo apt-get install build-essential -y`{{exec}}
+
 ## Check Python versions
 
-Lets discover what version of Python we have
+Lets discover what version of Python we have.
 
 `python -V`{{execute}}
 
@@ -18,6 +22,8 @@ Lets discover what version of Python we have
 
 `which python3`{{execute}}
 
+`ls /usr/bin/python* -lash`{{exec}}
+
 you can also use python to determine were the python executable is
 
 `python`{{exec}}
@@ -25,6 +31,8 @@ you can also use python to determine were the python executable is
 `import sys`{{exec}}
 
 `sys.executable`{{exec}}
+
+`sys.version_info`{{exec}}
 
 we can also discover what interrupter we are using (GCc)
 
@@ -36,6 +44,10 @@ Lets update the repo with the new python packages
 
 # Install Multiple Python versions
 
+WIP remove 3.8  `sudo apt remove python3.8`{{exec}}
+
+
+
 `sudo add-apt-repository -y ppa:deadsnakes/ppa`{{execute}}
 
 `sudo apt-get update`{{execute}}
@@ -46,11 +58,21 @@ Lets update the repo with the new python packages
 
 `python3.11 -V`{{exec}}
 
+`ls /usr/bin/python* -lash`{{exec}}
+
 ## Configure Python alternatives
 
 The 'update-alternatives' command in Linux is used to manage symbolic links for multiple versions of a software or a command. It allows you to switch between different versions of a software or command-line tool.
 
+List of all software controlled with 'update-alternatives'
+
+`sudo update-alternatives --get-selections`{{exec}}
+
+List just python3
+
 `sudo update-alternatives --list python3`{{exec}}
+
+And update for 3.10 and 3.11
 
 `sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1`{{execute}}
 
@@ -63,6 +85,23 @@ The 'update-alternatives' command in Linux is used to manage symbolic links for 
 `python -V`{{execute}}
 
 WIP why is python3 showing 3.3? you specifically set python3
+- its because there is an alias in .bashrc
+
+`cat ~/.bashrc`{{exec}}
+
+`sed -i 's/python3.8/python3.11/g' ~/.bashrc`{{exec}}
+
+`exec bash`{{exec}}
+
+### pip
+
+`pip --version`{{exec}}
+
+to confirm pack is installed correctly, start the specific python verion
+
+`import <packname>`{{copy}}
+
+note the python version
 
 ### For Windows consider:
 
@@ -73,6 +112,13 @@ py launcher (py -h) https://docs.python.org/3/using/windows.html#python-launcher
 `python3.11 -V`{{execute}}
 
 `pip install --upgrade pip`{{exec}}
+
+with certain ML type packages you may have to install 
+
+https://visualstudio.microsoft.com/visual-cpp-build-tools/
+
+and select MSVC v143 - VS 2022 C++ x64/x86 build tools
+and Windows 11SDK
 
 ## Install venv
 

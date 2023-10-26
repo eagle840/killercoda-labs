@@ -1,3 +1,5 @@
+add https://pip.pypa.io/en/stable/topics/dependency-resolution/#dependency-resolution
+
 https://www.youtube.com/watch?v=tL1zltXuHO8
 
 https://github.com/Me163/youtube/blob/main/Transformers/repl.py
