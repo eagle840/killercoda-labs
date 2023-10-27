@@ -2,7 +2,16 @@
 
 
 
-benchmark
+# redisInsight
+
+docker pull redislabs/redisinsight
+
+docker run -v redisinsight:/db -p 8001:8001 redislabs/redisinsight:latest
+
+WIP get error: Are you behind a proxy? If so, please set the RedisInsight environment variables
+
+
+# benchmark
 
 in a new tab, red htop
 
@@ -24,4 +33,12 @@ https://redis.io/docs/management/optimization/benchmarks/
 
 
 `redis-benchmark -n 1000`{{exec}}
+
+## optimize
+
+https://redis.io/docs/management/optimization/
+
+## troubleshoot
+
+https://redis.io/docs/management/troubleshooting/
 

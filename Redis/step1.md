@@ -5,6 +5,16 @@ Doc: https://killercoda.com/creators
 
 github: https://github.com/killercoda
 
+# Redis Overview
+
+plain vs stack
+
+
+
+
+datatypes: https://redis.io/docs/data-types/
+
+
 # Run First
 
 `sudo apt update`{{exec}}
