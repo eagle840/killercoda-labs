@@ -18,18 +18,24 @@ PowerShell can use .NET classes directly. Learn how to create instances of .NET 
 
 Creating an instance of a .NET class:
 
+make sure you're in pwsh : `pwsh`{{exec}}
+
 `$date = New-Object System.DateTime(2022, 1, 1)`{{exec}}
+
+`$date.GetType()`{{exec}}
 
 
 Calling a method of a .NET class:
 
 `$string = New-Object System.String('Hello, World!', 2)`{{exec}}
+
 `$substring = $string.Substring(0, 5)  # Returns 'Hello'`{{exec}}
 
 
 Accessing a property of a .NET class:
 
 `$date = Get-Date`{{exec}}
+
 `$year = $date.Year  # Returns the current year`{{exec}}
 
 2.6: Practice with Real-World Scenarios
@@ -40,10 +46,10 @@ Reading and writing to a file using System.IO.File:
 
 
 # Write to a file
-`[System.IO.File]::WriteAllText('C:\path\to\file.txt', 'Hello, World!')`{{exec}}
+`[System.IO.File]::WriteAllText('./text.txt', 'Hello, World!')`{{exec}}
 
 # Read from a file
-`$content = [System.IO.File]::ReadAllText('C:\path\to\file.txt')`{{exec}}
+`$content = [System.IO.File]::ReadAllText('./text.txt')`{{exec}}
 
 
 Making a network request using System.Net.WebClient:
@@ -53,6 +59,8 @@ $webClient = New-Object System.Net.WebClient
 $content = $webClient.DownloadString('http://example.com')
 ```{{exec}}
 
+`$content`{{exec}}
+
 Working with collections using System.Collections.ArrayList:
 
 ```
@@ -61,3 +69,6 @@ $arrayList.Add('Hello')
 $arrayList.Add('World')
 $arrayList.Remove('World')
 ```{{exec}}
+
+
+`$arrayList`{{exec}}

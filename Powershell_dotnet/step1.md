@@ -15,26 +15,40 @@ github: https://github.com/killercoda
 
 ## Update the list of packages
 `sudo apt-get update`{{exec}}
+
 `sudo apt-get install -y wget apt-transport-https software-properties-common`{{exec}}
+
 `source /etc/os-release`{{exec}}
+
 `wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb`{{exec}}
+
 `sudo dpkg -i packages-microsoft-prod.deb`{{exec}}
+
 `rm packages-microsoft-prod.deb`{{exec}}
+
 `sudo apt-get update`{{exec}}
 
 ## Install PowerShell
 `sudo apt-get install -y powershell`{{exec}}
+
 `pwsh`{{exec}}
 
 # install .NET 6 sdk
 
-`lsb_release  -a
+`lsb_release  -a`{{exec}}
+
 `wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb`{{exec}}
+
 `sudo dpkg -i packages-microsoft-prod.deb`{{exec}}
+
 `sudo apt-get update`{{exec}}
+
 `sudo apt-get install -y apt-transport-https`{{exec}}
+
 `sudo apt-get update`{{exec}}
+
 `sudo apt-get install -y dotnet-sdk-6.0`{{exec}}
+
 `dotnet --version`{{exec}}
 
 ---- delete below ----

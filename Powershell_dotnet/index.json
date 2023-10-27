@@ -1,6 +1,6 @@
 {
   "title": "Work-in-progress Powershell and .NET",
-  "description": "Understanding .NET using powershell(v0.0.1)",
+  "description": "Understanding .NET using powershell(v0.0.3)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -36,6 +36,10 @@
       {
         "title": "Step 3",
         "text": "step3.md"
+      },
+      {
+        "title": "Step 4",
+        "text": "step4.md"
       }
     ],
     "intro": {
