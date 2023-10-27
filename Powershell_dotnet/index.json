@@ -1,0 +1,54 @@
+{
+  "title": "Work-in-progress Powershell and .NET",
+  "description": "Understanding .NET using powershell(v0.0.1)",
+  "difficulty": "Intermediate",
+  "time": "60 minutes",
+  "details": {
+    "assets":{
+      "host01": [
+        {
+          "file": "send.py",
+          "target": "~/"
+        },
+        {
+          "file": "new_task.py",
+          "target": "~/"
+        },
+        {
+          "file": "worker.py",
+          "target": "~/"
+        },
+        {
+          "file": "receive.py",
+          "target": "~/"
+        }
+      ]
+    },
+    "steps": [
+      {
+        "title": "Step 1",
+        "text": "step1.md"
+      },
+      {
+        "title": "Step 2",
+        "text": "step2.md"
+      },
+      {
+        "title": "Step 3",
+        "text": "step3.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
