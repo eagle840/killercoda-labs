@@ -60,6 +60,8 @@ in another tab
 OR set appsettings.json
 { "urls":"http://0.0.0.0:3000" }
 
+{{TRAFFIC_HOST1_3000}}
+
 using envir
 ASPNETCORE_URLS=http://0.0.0.0:3000/
 
@@ -74,7 +76,7 @@ it can also be set in launchsettings.json
 `nano Dockerfile`{{exec}}
 
 ```
-   FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+   FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
    WORKDIR /app
 
    COPY *.csproj ./
@@ -83,7 +85,7 @@ it can also be set in launchsettings.json
    COPY . ./
    RUN dotnet publish -c Release -o out
 
-   FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
+   FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
    WORKDIR /app
    COPY --from=build /app/out ./
 
@@ -117,9 +119,9 @@ WIP restore ??
 
 `dotnet run --urls=http://0.0.0.0:3000/`{{exec}}
 
-{{TRAFFIC_HOST1_80}}/swagger/index.html
+{{TRAFFIC_HOST1_3000}}/swagger/index.html
 
-{{TRAFFIC_HOST1_80/swagger/index.html}}
+{{TRAFFIC_HOST1_3000/swagger/index.html}}
 
 
 

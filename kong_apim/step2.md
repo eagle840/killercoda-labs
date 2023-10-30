@@ -4,7 +4,7 @@
 Following https://docs.konghq.com/gateway/3.4.x/get-started/services-and-routes/
 ## create service
 
-`curl -i -s -X POST http://localhost:8001/services --data name=example_service --data url='http://mockbin.org' | jq`{{exec}}
+`curl -i -s -X POST http://localhost:8001/services --data name=example_service --data url='http://mockbin.org'`{{exec}}
 
 
 ## Viewing service configuration

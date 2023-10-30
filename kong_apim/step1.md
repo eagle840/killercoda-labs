@@ -44,9 +44,9 @@ docker run -d --name kong-gateway  --network=kong-net  -e "KONG_DATABASE=postgre
 ### Check back end    
 
 
-`curl -i -X GET --url http://localhost:8001/services | jq`{{exec}}
+`curl -i -X GET --url http://localhost:8001/services`{{exec}}
   
-`curl -i -X GET --url http://localhost:8002 | jq`{{exec}}
+`curl -i -X GET --url http://localhost:8002`{{exec}}
 
 `netstat -tlpn`{{exec}}
 
