@@ -63,11 +63,18 @@ https://github.com/pantsel/konga#production-docker-image
 
 `docker run -d -p 1337:1337 --network kong-net --name konga -e "NODE_ENV=production" -e "TOKEN_SECRET=somerandomstring" pantsel/konga`{{exec}}
 
-{{TRAFFIC_HOST1_8002}}
+{{TRAFFIC_HOST1_1337}}
 
 login with
 
 `admin` & 'abcd1234'
+
+
+WIP: need to add connection to kong? (default un: admin, pw-above: test)
+
+'ping kong-gateway'
+
+'nc kong-gateway:8000'
 
 
 
