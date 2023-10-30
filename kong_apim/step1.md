@@ -54,6 +54,20 @@ docker run -d --name kong-gateway  --network=kong-net  -e "KONG_DATABASE=postgre
 
 Now visit  https://docs.konghq.com/gateway/3.4.x/get-started/services-and-routes/
 
+## Konga
+
+https://github.com/pantsel/konga#production-docker-image
+
+
+`docker pull pantsel/konga`{{exec}}
+
+`docker run -d -p 1337:1337 --network kong-net --name konga -e "NODE_ENV=production" -e "TOKEN_SECRET=somerandomstring" pantsel/konga`{{exec}}
+
+{{TRAFFIC_HOST1_8002}}
+
+login with
+
+`admin` & 'abcd1234'
 
 
 

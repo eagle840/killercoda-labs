@@ -49,21 +49,24 @@ review process to build a asp.net app
 
 `dotnet build`{{exec}}
 
-`dotnet run`{{exec}}
+Generally we would run:
 
-in another tab
+`dotnet run`{{copy}}
 
-`curl localhost:5204`{{exec}}
+put lets specifiy the binding:
 
 `dotnet run --urls=http://0.0.0.0:3000/`{{exec}}
 
-OR set appsettings.json
-{ "urls":"http://0.0.0.0:3000" }
+
+`curl localhost:3000`{{exec}}
 
 {{TRAFFIC_HOST1_3000}}
 
 using envir
 ASPNETCORE_URLS=http://0.0.0.0:3000/
+
+OR set appsettings.json
+{ "urls":"http://0.0.0.0:3000" }
 
 it can also be set in code.
 
@@ -93,9 +96,11 @@ it can also be set in launchsettings.json
 ```
 
 
-`docker build -y myapp .`{{exec}}
+`docker build -t myapp .`{{exec}}
 
 `docker run -p 8080:80 myapp`{{exec}}
+
+{{TRAFFIC_HOST1_8080}}
 
 ## Now for an api
 
@@ -122,6 +127,36 @@ WIP restore ??
 {{TRAFFIC_HOST1_3000}}/swagger/index.html
 
 {{TRAFFIC_HOST1_3000/swagger/index.html}}
+
+# prepare for deploy
+
+`dotnet publish -c Release -o out`{{exec}}
+
+`nano Dockerfile`{{exec}}
+
+```
+   FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+   WORKDIR /app
+
+   COPY *.csproj ./
+   RUN dotnet restore
+
+   COPY . ./
+   RUN dotnet publish -c Release -o out
+
+   FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+   WORKDIR /app
+   COPY --from=build /app/out ./
+
+   ENTRYPOINT ["dotnet", "MyApp.dll"]
+```
+
+
+`docker build -t myapi .`{{exec}}
+
+`docker run -p 8088:80 myapi`{{exec}}
+
+{{TRAFFIC_HOST1_8088}}
 
 
 

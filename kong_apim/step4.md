@@ -2,13 +2,32 @@
 # Web
 
 
+Following https://docs.konghq.com/gateway/3.4.x/get-started/services-and-routes/
+## create service
+
+`curl -i -s -X POST http://localhost:8001/services --data name=example_service --data url='http://mockbin.org'`{{exec}}
+
+
+## Viewing service configuration
+
+`curl -X GET http://localhost:8001/services/example_service | jq`{{exec}}
+
+## Updating services
+
+`curl --request PATCH --url localhost:8001/services/example_service --data retries=6 | jq `{{exec}}
+
+## List Services
+
+`curl -X GET http://localhost:8001/services | jq`{{exec}}
+
+
 2. To add a service, you can send a POST request to the `/services` endpoint. Here is an example of how to do this with curl:
 
 ```
 curl -i -X POST \
   --url http://localhost:8001/services/ \
   --data 'name=my-service' \
-  --data 'url=http://localhost:3000'
+  --data 'url=http://localhost:8080'
 ```{{exec}}
 
 In this example, `my-service` is the name of the service and `http://localhost:3000` is the URL where the service is running.
@@ -36,3 +55,20 @@ Please replace `localhost` and `my-service` with your actual service details.
 ## API 
 
 ADD service ad route for API
+
+## add service
+
+```
+curl -i -X POST \
+  --url http://localhost:8001/services/ \
+  --data 'name=my-api' \
+  --data 'url=http://localhost:8088'
+```{{exec}}
+
+## add route
+
+```
+curl -i -X POST \
+  --url http://localhost:8001/services/my-api/routes \
+  --data 'paths[]=/my-api'
+```{{exec}}

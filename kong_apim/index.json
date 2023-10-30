@@ -1,6 +1,6 @@
 {
   "title": "WIP - Kong API Managment",
-  "description": "Using Kong api management with a asp.net spa(v0.0.14)",
+  "description": "Using Kong api management with a asp.net spa(v0.0.15)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -32,11 +32,14 @@
       {
         "title": "Step 2",
         "text": "step2.md"
-      }
-      ,
+      },
       {
         "title": "Step 3",
         "text": "step3.md"
+      },
+      {
+        "title": "Step 4",
+        "text": "step4.md"
       }
     ],
     "intro": {
