@@ -54,13 +54,9 @@ Will be working with https://github.com/XGovFormBuilder/digital-form-builder
 
 `asdf current`{{exec}}
 
-`git clone https://github.com/XGovFormBuilder/digital-form-builder.git`{{exec}}
+`yarn -v`
 
-`cd digital-form-builder/`{{exec}}
-
-`yarn`{{exec}}
-
-`yarn build`{{exec}}
+WIP why is it showing 3.2.2 and not 1.22.10
 
 --- delete below ---
 
