@@ -42,5 +42,13 @@ The exact behavior of `yarn build` depends on how it is configured in the projec
 `yarn build`{{exec}}
 
 
+# Run the program
+
+`yarn runner:start`{{exec}}
+
+{{TRAFFIC_HOST1_3009}}
+
+
+
 
 
