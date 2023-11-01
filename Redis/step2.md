@@ -1,12 +1,16 @@
-# Hello World! using python
+# Using RedisInsight
 
-
+https://github.com/RedisInsight/RedisInsight
 
 # redisInsight
 
-docker pull redislabs/redisinsight
+WIP try https://docs.redis.com/latest/ri/using-redisinsight/proxy/#trusted-origins
 
-docker run -v redisinsight:/db -p 8001:8001 redislabs/redisinsight:latest
+`docker pull redislabs/redisinsight`{{exec}}
+
+`docker run -v redisinsight:/db -p 8001:8001 redislabs/redisinsight:latest`{{exec}}
+
+{{TRAFFIC_HOST1_80}}
 
 WIP get error: Are you behind a proxy? If so, please set the RedisInsight environment variables
 

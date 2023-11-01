@@ -22,7 +22,7 @@ datatypes: https://redis.io/docs/data-types/
 
 following https://redis.io/docs/install/install-redis/install-redis-on-linux/
 
-`sudo apt install lsb-release curl gpg`{{exec}}
+`sudo apt install lsb-release curl gpg -y `{{exec}}
 
 `curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg`{{exec}}
 
@@ -30,7 +30,7 @@ following https://redis.io/docs/install/install-redis/install-redis-on-linux/
 
 `sudo apt-get update`{{exec}}
 
-`sudo apt-get install redis`{{exec}}
+`sudo apt-get install redis -y `{{exec}}
 
 Redis should now be up and running
 
@@ -41,6 +41,12 @@ start redis client
 `set mykey hello`{{exec}}
 
 `get mykey`{{exec}}
+
+scan slot [MATCH pattern] [COUNT count]
+
+`scan 0 MATCH he*`{{exec}}
+
+1st value returned is a new slot valus to use in the next scan command
 
 `ping`{{exec}}
 
