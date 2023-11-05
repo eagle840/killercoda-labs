@@ -12,24 +12,41 @@ github: https://github.com/killercoda
 
 
 `sudo apt update`{{exec}}
+
 `sudo apt-get install -y wget apt-transport-https software-properties-common`{{exec}}
+
 `source /etc/os-release`{{exec}}
+
 `wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb`{{exec}}
+
 `sudo dpkg -i packages-microsoft-prod.deb`{{exec}}
+
 `rm packages-microsoft-prod.deb`{{exec}}
+
 `sudo apt-get update`{{exec}}
+
 `wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb`{{exec}}
+
 `sudo dpkg -i packages-microsoft-prod.deb`{{exec}}
+
 `sudo apt-get update`{{exec}}
+
 `sudo apt-get install -y apt-transport-https`{{exec}}
+
 `sudo apt-get update`{{exec}}
+
 `sudo apt-get install -y dotnet-sdk-6.0`{{exec}}
+
 `dotnet --version`{{exec}}
+
 `dotnet new console -n MyNetworkApp`{{exec}}
+
 `sudo apt-get install git net-tools libpcap-dev`{{exec}}
 
 `dotnet add package  SharpPcap --version 6.2.5`{{exec}}
+
 `ls`{{exec}}
+
 `dotnet run`{{exec}}
 
 
