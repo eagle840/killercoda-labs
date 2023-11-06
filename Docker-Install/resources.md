@@ -9,3 +9,8 @@ Link for traffic into host 2 on port 4444
 Link for traffic into host X on port Y
 {{TRAFFIC_HOSTX_Y}}
 ```
+
+# add these sections
+
+- https://github.com/docker/compose
+- https://github.com/docker/buildx

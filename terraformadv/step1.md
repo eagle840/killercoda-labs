@@ -71,10 +71,10 @@ Many of the tools use python, so lets update that first:
 
 ```
 sudo apt update
-sudo apt install software-properties-common
-sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install -y software-properties-common
+sudo add-apt-repository -y ppa:deadsnakes/ppa
 sudo apt update
-sudo apt install python3.9
+sudo apt install -y python3.9
 python3.9 --version 
 ```{{exec}}
 
@@ -84,7 +84,7 @@ Checkov is an open-source static analysis tool that scans Terraform code to iden
 
 https://github.com/bridgecrewio/checkov
 
-`pip install checkov`{{execute}}
+`python3.9 -m pip install checkov`{{execute}}
 
 `cd ~; checkov -d mytf`{{exec}}
 
@@ -100,9 +100,9 @@ This command mounts the current directory (`$(pwd)`) as a volume inside the cont
 
 tftui is a simple gui for exploring terraform state.
 
-python3.9 -m pip install --upgrade tftui
+`python3.9 -m pip install --upgrade tftui`{{exec}}
 
-#### tfsec
+### tfsec
 
 TFSec is a command-line tool that scans Terraform code to detect security vulnerabilities and provide recommendations for improving the security posture of your infrastructure-as-code.
 

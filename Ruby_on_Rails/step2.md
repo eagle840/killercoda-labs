@@ -15,6 +15,7 @@ rails new myapp
 
 2. Generate a new model, view, and controller:
 ```
+cd myapp
 rails generate model User name:string email:string
 rails generate controller Users index show new create edit update destroy
 ```{{exec}}

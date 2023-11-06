@@ -45,7 +45,7 @@ echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docke
 
 Docker compose has changed alot over the years.
 
-The current version is 'Compose V2'
+The current version is 'Compose V2' [github](https://github.com/docker/compose/tags)
 
 And to confuse things, the older version 'Version V1' has two versions 1.x, 2.x and 3.x
 

@@ -10,9 +10,6 @@ github: https://github.com/killercoda
 `sudo apt update`{{exec}}
 
 
-
-`sudo apt update`{{exec}}
-
 `sudo apt-get install -y wget apt-transport-https software-properties-common`{{exec}}
 
 `source /etc/os-release`{{exec}}
@@ -39,9 +36,16 @@ github: https://github.com/killercoda
 
 `dotnet --version`{{exec}}
 
+## for prerequr
+
+
+`sudo apt-get install net-tools libpcap-dev -y`{{exec}}
+
 `dotnet new console -n MyNetworkApp`{{exec}}
 
-`sudo apt-get install git net-tools libpcap-dev`{{exec}}
+
+
+`cd MyNetworkApp/`{{exec}}
 
 `dotnet add package  SharpPcap --version 6.2.5`{{exec}}
 
@@ -116,7 +120,8 @@ namespace MyNetworkApp
             Console.ReadLine();
         }
     }
-}```
+}
+```
 
 
 ---- delet below  ---

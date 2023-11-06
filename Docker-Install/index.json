@@ -1,7 +1,7 @@
 {
-  "title": "Docker",
-  "description": "Install the latest version of docker",
-  "difficulty": "Intermediate",
+  "title": "Docker and Compose",
+  "description": "Install the latest version of docker with Compose(v0.0.1)",
+  "difficulty": "Beginner",
   "time": "60 minutes",
   "details": {
     "assets":{

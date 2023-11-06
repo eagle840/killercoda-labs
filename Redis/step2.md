@@ -2,6 +2,8 @@
 
 https://github.com/RedisInsight/RedisInsight
 
+https://redis.io/resources/tools/
+
 # redisInsight
 
 WIP try https://docs.redis.com/latest/ri/using-redisinsight/proxy/#trusted-origins
@@ -36,6 +38,8 @@ in this tab
 
 
 https://redis.io/docs/management/optimization/benchmarks/
+
+
 
 
 
