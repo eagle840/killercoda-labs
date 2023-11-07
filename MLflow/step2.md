@@ -58,6 +58,16 @@ add the following line in train.py @ line 45 above '# Split the data into traini
 
 `mlflow.set_tracking_uri("sqlite:///mlruns.db")`{{copy}}
 
+it show look like this:
+```
+        logger.exception(
+            "Unable to download training & test CSV, check your internet connection. Error: %s", e
+        )
+        mlflow.set_tracking_uri("sqlite:///mlruns.db")
+
+    # Split the data into training and test sets. (0.75, 0.25) split.
+```
+
 The last few time we ran training, the output was sent to file, now it set sent to sqlite, which has no entries in to, Run the trainings again:
 
 
@@ -70,6 +80,8 @@ The last few time we ran training, the output was sent to file, now it set sent 
 
 
 How we'll start the ui using the sqlite backend
+
+WIP the above models are not showing in the GUI
 
 `mlflow ui --host 0.0.0.0 --backend-store-uri sqlite:///mlruns.db`{{exec}}
 

@@ -2,6 +2,8 @@
 # Initial Setup
 
 
+(Getting Started with MLflow)[https://mlflow.org/docs/latest/index.html#id1]
+
 ## Install Python
 
 install python 3.11 with the following script:
@@ -33,6 +35,8 @@ install python 3.11 with the following script:
 ### Install MLflow with extra ML libraries and 3rd-party tools
 
 `pip install mlflow[extras]`{{copy}}
+
+`mlflow --version`{{exec}}
 
 There are 4 major components to MLFlow: Tracking, Projects, Models, and Registry
 
