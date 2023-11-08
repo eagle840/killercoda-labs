@@ -1,19 +1,11 @@
+# Redis Server
 
-# Initial Setup
-
-Doc: https://killercoda.com/creators
-
-github: https://github.com/killercoda
-
-# Redis Server Overview
+## Redis Server Overview
 
 Redis Server is the core component of Redis, an open-source, in-memory data structure store used as a database, cache, and message broker. It provides fundamental data structures such as strings, hashes, lists, sets, and sorted sets with range queries, and supports various features like transactions, pub/sub, and Lua scripting.
 
 
-datatypes: https://redis.io/docs/data-types/
-
-
-# Install Redis locally 
+## Install Redis locally 
 
 `sudo apt update`{{exec}}
 
