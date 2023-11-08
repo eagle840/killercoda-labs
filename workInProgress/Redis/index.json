@@ -1,6 +1,6 @@
 {
   "title": "Work-in-Progress Redis",
-  "description": "Basic redis server, and commands (v0.0.5)",
+  "description": "Basic redis server, and commands (v0.1.5)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
