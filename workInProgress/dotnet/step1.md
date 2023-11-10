@@ -29,6 +29,8 @@ https://github.com/hensou/asdf-dotnet
 
 ### use dotnet
 
+`asdf plugin add dotnet`{{exec}}
+
 #### Show all installable versions
 `asdf list-all dotnet`{{exec}}
 

@@ -30,6 +30,9 @@ dotnet test --no-restore --verbosity normal ./src
 
 dotnet publish --configuration Release --no-build --output ./output ./src
 
+dotnet watch
+
+
 
 `ls`{{exec}}
 
@@ -38,6 +41,14 @@ dotnet publish --configuration Release --no-build --output ./output ./src
 `dotnet run --urls http://localhost:5000`
 
 `dotnet run --urls http://0.0.0.0:5000`{{exec}}
+
+`dotnet watch -v--urls http://0.0.0.0:5000`{{exec}}
+
+review the -v command in help dotnet run --help
+
+ -v, --verbosity <LEVEL> Set the MSBuild verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].
+
+
 
 {{TRAFFIC_HOST1_5000}}
 

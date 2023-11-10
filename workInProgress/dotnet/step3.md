@@ -96,7 +96,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         {
             webBuilder.UseStartup<Startup>();
         });
-```
+```{{copy}}
 
 Make sure to replace `http://localhost:9411/api/v2/spans` with the correct URL of your local Zipkin server.
 
