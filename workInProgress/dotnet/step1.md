@@ -5,6 +5,42 @@ Doc: https://killercoda.com/creators
 
 github: https://github.com/killercoda
 
+# WIP with asdf
+
+https://github.com/hensou/asdf-dotnet
+
+`sudo apt update`{{exec}}
+
+`apt install -y curl git sqlite3 libpq-dev libreadline-dev`{{exec}}
+
+### install asdf
+
+`git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
+
+`. "$HOME/.asdf/asdf.sh"`{{exec}} WIP pipe to .brashrc?
+
+`echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc`{{exec}}
+
+`. "$HOME/.asdf/completions/asdf.bash"`{{exec}}
+
+`echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc`{{exec}}
+
+`asdf current`{{exec}}
+
+### use dotnet
+
+#### Show all installable versions
+`asdf list-all dotnet`{{exec}}
+
+#### Install specific version
+`asdf install dotnet latest`{{exec}}
+
+#### Set a version globally (on your ~/.tool-versions file)
+`asdf global dotnet latest`{{exec}}
+
+#### Now dotnet commands are available
+`dotnet --version`{{exec}}
+
 # Run First
 
 `sudo apt update`{{exec}}
@@ -28,19 +64,21 @@ github: https://github.com/killercoda
 
 `sudo apt-get update`{{exec}}
 
-`sudo apt-get install -y apt-transport-https`{{exec}}
+remove `sudo apt-get install -y apt-transport-https`
 
-`sudo apt-get update`{{exec}}
-
-`sudo apt-get install -y dotnet-sdk-6.0`{{exec}}
-
-`dotnet --version`{{exec}}
+remove `sudo apt-get update`
 
 `sudo apt-get install -y dotnet-sdk-6.0`{{exec}}
 
 `dotnet --version`{{exec}}
 
-## BAsic use
+WIP use asdf instead?  https://github.com/hensou/asdf-dotnet
+
+`sudo apt-get install -y dotnet-sdk-7.0`{{exec}}
+
+`dotnet --version`{{exec}}
+
+## Basic use
 
 
 `dotnet --list-sdks`{{exec}}
