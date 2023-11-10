@@ -14,12 +14,22 @@ https://github.com/jonsequitur/dotnet-repl
 
 `cd ~; mkdir web; cd web`{{exec}}
 
+wip type web, is to simple  dotnet new web -n myWebApp
 
-`dotnet new web -n myWebApp
-
+`dotnet new webapp -n myWebApp`{{exec}}
 `ls`{{exec}}
 
 `cd myWebApp/`{{exec}}
+
+
+dotnet restore ./src
+
+dotnet build --configuration Release --no-restore ./src
+
+dotnet test --no-restore --verbosity normal ./src
+
+dotnet publish --configuration Release --no-build --output ./output ./src
+
 
 `ls`{{exec}}
 
