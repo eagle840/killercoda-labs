@@ -37,6 +37,8 @@ https://github.com/hensou/asdf-dotnet
 #### Install specific version
 `asdf install dotnet latest`{{exec}}
 
+`asdf install dotnet 6`{{exec}}
+
 #### Set a version globally (on your ~/.tool-versions file)
 `asdf global dotnet latest`{{exec}}
 
