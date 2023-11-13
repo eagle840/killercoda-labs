@@ -1,5 +1,13 @@
 # Hello World!
 
+__OpenTelemetry vs .NET terminology__
+| OpenTelemetry |  .NET |
+|---------------|-------|
+|Tracer|ActivitySource|
+|TelemetrySpan|Activity|
+|SpanContext|ActivityContext|
+
+
 
 ## Metrics
 
