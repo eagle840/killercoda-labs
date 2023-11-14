@@ -6,38 +6,68 @@ create a docker container  w/ host network for server
 use docker-compose so you get network and hostnames
 
 
-1  pwd
-    2  cd 
-    3  pwd
-    4  ls
-    5  ll
-    6  mkdir .ssh
-    7  chmod 700 .ssh/
-    8  touch .ssh/authorized_keys
-    9  chmod 600 .ssh/authorized_keys 
-   10  cd au
-   11  cd .ssh/
-   12  nano authorized_keys 
-   13  ifconfig
-   14  ip addr
-   15  history
+`pwd`{{exec}}
+
+`cd`{{exec}}
+
+`pwd`{{exec}}
+
+
+`ls`{{exec}}
+
+
+`ll`{{exec}}
+
+
+`mkdir .ssh`{{exec}}
+
+
+`chmod 700 .ssh/`{{exec}}
+
+
+`touch .ssh/authorized_keys`{{exec}}
+
+
+`chmod 600 .ssh/authorized_keys`{{exec}}
+
+
+`cd au`{{exec}}
+
+ `cd .ssh/`{{exec}}
+
+`nano authorized_keys`{{exec}}
+
+`ifconfig`{{exec}}
+
+`ip addr`{{exec}}
+
+
+
 
 TEST SSH connection client -> server
 
-   mkdir /srv/git
-   chown git:git git/  #when in srv folder
-   cd git
-   mkdir files.git
-   cd files.git
-   git init --bare
+   `mkdir /srv/git`{{exec}}
+
+   `chown git:git git/  #when in srv folder`{{exec}}
+
+   `cd git`{{exec}}
+
+   `mkdir files.git`{{exec}}
+
+   `cd files.git`{{exec}}
+
+   `git init --bare`{{exec}}
+
 
    #once pushed
-   git log # should show the files where pushed
+   `git log`{{exec}}
+ # should show the files where pushed
 
 
    create a docker container w/ host for client
 
-   ssh-keygen -f key1
+   `ssh-keygen -f key1`{{exec}}
+
    # copy key to authorized keys
 
    once copied you should be able to ssh into server
@@ -46,7 +76,8 @@ TEST SSH connection client -> server
 
    create remove <name> with url: git@<host>:/srv/git/files.git
 
-   git push <remotename> <branch>
+   `git push <remotename> <branch>`{{exec}}
+
 
 
 
