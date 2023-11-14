@@ -44,9 +44,21 @@ And find out more about this server.
 
 `get mykey`{{exec}}
 
+Note that you shouldn't use 'get' in production since it blocks until complete, you should use scan
+
+Scan does it in blocks, and returns the next block number, the scan is complete when it returns '0'
+
 scan slot [MATCH pattern] [COUNT count]
 
 `scan 0 MATCH he*`{{exec}}
+
+the command will return a slot number you use again.
+
+`scan (slot) MATCH he`
+
+You can add the COUNT argument, put it blocks duing the count
+
+Redis 
 
 1st value returned is a new slot valus to use in the next scan command
 
