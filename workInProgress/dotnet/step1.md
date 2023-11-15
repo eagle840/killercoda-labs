@@ -15,6 +15,8 @@ https://github.com/hensou/asdf-dotnet
 
 ### install asdf
 
+We'll be using asdf to install dotnet, however complete instructions for download and installing for other systems can be found on Micosoft [here](https://dotnet.microsoft.com/en-us/download)
+
 `git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
 
 `. "$HOME/.asdf/asdf.sh"`{{exec}} WIP pipe to .brashrc?
@@ -45,51 +47,25 @@ https://github.com/hensou/asdf-dotnet
 #### Now dotnet commands are available
 `dotnet --version`{{exec}}
 
-# Run First
 
-`sudo apt update`{{exec}}
-
-
-`sudo apt-get install -y wget apt-transport-https software-properties-common`{{exec}}
-
-`source /etc/os-release`{{exec}}
-
-`wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb`{{exec}}
-
-`sudo dpkg -i packages-microsoft-prod.deb`{{exec}}
-
-`rm packages-microsoft-prod.deb`{{exec}}
-
-`sudo apt-get update`{{exec}}
-
-`wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb`{{exec}}
-
-`sudo dpkg -i packages-microsoft-prod.deb`{{exec}}
-
-`sudo apt-get update`{{exec}}
-
-remove `sudo apt-get install -y apt-transport-https`
-
-remove `sudo apt-get update`
-
-`sudo apt-get install -y dotnet-sdk-6.0`{{exec}}
-
-`dotnet --version`{{exec}}
 
 WIP use asdf instead?  https://github.com/hensou/asdf-dotnet
 
-`sudo apt-get install -y dotnet-sdk-7.0`{{exec}}
 
-`dotnet --version`{{exec}}
 
 ## Basic use
 
+To list all the sdk's installed
 
 `dotnet --list-sdks`{{exec}}
 
+TO list all the available templates
+
 `dotnet new --list`{{exec}}
 
-`dotnet new web`{{exec}}
+to install a template
+
+`dotnet new (shortname)`{{copy}}
 
 `ls`{{exec}}
 
@@ -97,7 +73,7 @@ WIP use asdf instead?  https://github.com/hensou/asdf-dotnet
 WIP determine how to use a sepecific sdk when multiple are installed
 
 
-## for prerequr
+## Use dotnet consol
 
 `cd ~`{{exec}}
 

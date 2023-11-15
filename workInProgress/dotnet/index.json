@@ -1,6 +1,6 @@
 {
   "title": "Work-in-progrss Dotnet",
-  "description": "Produce a simple dotnet program(v0.0.7)",
+  "description": "Produce a simple dotnet program(v0.0.8)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -36,6 +36,10 @@
       {
         "title": "Step 3",
         "text": "step3.md"
+      },
+      {
+        "title": "Step 4",
+        "text": "step4.md"
       }
     ],
     "intro": {
