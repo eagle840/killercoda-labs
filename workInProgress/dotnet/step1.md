@@ -39,7 +39,9 @@ We'll be using asdf to install dotnet, however complete instructions for downloa
 #### Install specific version
 `asdf install dotnet latest`{{exec}}
 
-`asdf install dotnet 6`{{exec}}
+to install a specific version:
+
+`asdf install dotnet 6.0.400`{{copy}}
 
 #### Set a version globally (on your ~/.tool-versions file)
 `asdf global dotnet latest`{{exec}}
@@ -59,18 +61,13 @@ To list all the sdk's installed
 
 `dotnet --list-sdks`{{exec}}
 
-TO list all the available templates
+To list all the available templates
 
 `dotnet new --list`{{exec}}
 
-to install a template
+To install a template
 
 `dotnet new (shortname)`{{copy}}
-
-`ls`{{exec}}
-
-
-WIP determine how to use a sepecific sdk when multiple are installed
 
 
 ## Use dotnet consol
