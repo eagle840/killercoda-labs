@@ -37,11 +37,13 @@ WIP Build failed
 
 `docker images`{{exec}}
 
-`docker run -d -p 8080:8080 mywebapp`{{exec}}
+`docker run -d --name dotnet-app -p 8080:8080 mywebapp`{{exec}}
 
 WIP not showing right (run locally to see)
 
 {{TRAFFIC_HOST1_8080}}
+
+`docker stop dotnet-app`{{exec}}
 
 # debug docker
 
@@ -50,6 +52,8 @@ WIP kill the running docker (name the container and kill it)
 https://github.com/marcel-dempers/docker-development-youtube-series/tree/part5
 
 WIP
+
+`nano Dockerfile`{{exec}}
 
 ```
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
@@ -60,15 +64,17 @@ RUN apt-get update
 RUN apt-get install -y unzip
 RUN curl -sSL https://aka.ms/getvsdbgsh | /bin/sh /dev/stdin -v latest -l ~/vsdbg
 
-RUN mkdir /work/
-WORKDIR /work/
+RUN mkdir /myWebApp/
+WORKDIR /myWebApp/
 
-COPY ./myWebApp/myWebApp.csproj /work/myWebApp.csproj
+COPY ./myWebApp/myWebApp.csproj /myWebApp/myWebApp.csproj
 RUN dotnet restore
 
 COPY ./myWebApp/ /myWebApp/
 RUN mkdir /out/
 RUN dotnet publish --no-restore --output /out/ --configuration Release
+
+RUN ls 
 
 CMD dotnet run
 
