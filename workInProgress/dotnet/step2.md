@@ -74,3 +74,9 @@ review the -v command in help dotnet run --help
 
 ## Simple debugging
 
+## entity framework (in new lab)
+
+https://learn.microsoft.com/en-us/ef/
+
+https://www.nuget.org/packages?q=entity+framework
+

@@ -86,6 +86,8 @@ To install a template
 
 `cd MyNetworkApp/`{{exec}}
 
+https://www.nuget.org/packages/SharpPcap
+
 `dotnet add package  SharpPcap --version 6.2.5`{{exec}}
 
 `ls`{{exec}}
