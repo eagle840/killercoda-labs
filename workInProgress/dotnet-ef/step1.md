@@ -51,11 +51,16 @@ to install a specific version:
 #### Now dotnet commands are available
 `dotnet --version`{{exec}}
 
-## Run Docker sql and redis
+## Run Docker sql, redis and azurite
+
 
 `docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=<YourPassword>' -p 1433:1433 --name sql_server_container -d mcr.microsoft.com/mssql/server`{{exec}}
 
 `docker run -d --name redis-server -p 6379:6379 redis`{{exec}}
+
+https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=docker-hub
+
+`docker run -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-storage/azurite`{{exec}}
 
 
 
