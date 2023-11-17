@@ -8,7 +8,15 @@ https://github.com/dotnet/interactive
 
 https://github.com/jonsequitur/dotnet-repl
 
+`asdf install dotnet 7.0.404`{{exec}}
+
+`asdf global  dotnet 7.0.40`{{exec}}
+
+`sudo apt-get install -y dotnet-sdk-7.0`{{exec}}
+
 `dotnet tool install -g dotnet-repl`{{exec}}
+
+`export PATH="$PATH:/root/.dotnet/tools`{{exec}}
 
 `dotnet tool list -g dotnet-repl`{{exec}}
 

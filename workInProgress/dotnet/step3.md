@@ -2,6 +2,8 @@
 
 https://github.com/dotnet/dotnet-docker
 
+`cd ~`{{exec}}
+
 `mkdir dock`{{exec}}
 
 `cd dock`{{exec}}
@@ -148,6 +150,8 @@ https://code.visualstudio.com/docs/editor/debugging
 https://code.visualstudio.com/docs/csharp/get-started
 
 asp.net on docker https://code.visualstudio.com/docs/containers/quickstart-aspnet-core
+
+https://code.visualstudio.com/docs/remote/remote-overview
 
 
 
