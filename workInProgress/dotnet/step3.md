@@ -37,7 +37,7 @@ WIP Build failed
 
 `docker images`{{exec}}
 
-`docker run -d --name dotnet-app -p 8080:8080 mywebapp`{{exec}}
+`docker run -d --rm --name dotnet-app -p 8080:8080 mywebapp`{{exec}}
 
 WIP not showing right (run locally to see)
 
@@ -90,5 +90,72 @@ RUN ls myWebApp/
 ENTRYPOINT ["dotnet", "out/myWebApp.dll"]
 ```
 
+`docker images`{{exec}}
 
+Open the Editor tab
+
+Install the C# extension
+
+
+
+
+`mkdir .vscode`{{exec}}
+
+`nano .vscode/launch.json`{{exec}}
+
+```
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Docker Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickRemoteProcess}",
+            "pipeTransport": {
+                "pipeProgram": "docker",
+                "pipeArgs": [ "exec", "-i", "csharp" ],
+                "debuggerPath": "/root/vsdbg/vsdbg",
+                "pipeCwd": "${workspaceRoot}",
+                "quoteArgs": false
+            },
+            "sourceFileMap": {
+                "/work": "${workspaceRoot}/c#/src/"
+            }
+        },
+        {
+            "name": "Remote Docker",
+            "type": "go",
+            "request": "launch",
+            "mode": "remote",
+            "remotePath":"/go/src/work/",
+            "port": 2345,
+            "host": "127.0.0.1",
+            "program": "${workspaceFolder}/golang/src/",
+            "args": [],
+            "trace" : "verbose",
+            "env" : {}
+        }
+    ]
+}
+```
+
+https://code.visualstudio.com/docs/editor/debugging
+
+https://code.visualstudio.com/docs/csharp/get-started
+
+asp.net on docker https://code.visualstudio.com/docs/containers/quickstart-aspnet-core
+
+
+
+`docker run -d --rm --name dotnet-app -p 8080:8080 mywebapp`{{exec}}
+
+WIP not showing right (run locally to see)
+
+{{TRAFFIC_HOST1_8080}}
+
+`docker stop dotnet-app`{{exec}}
 
