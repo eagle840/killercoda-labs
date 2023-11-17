@@ -10,6 +10,14 @@ https://github.com/jonsequitur/dotnet-repl
 
 `dotnet tool install -g dotnet-repl`{{exec}}
 
+`dotnet tool list -g dotnet-repl`{{exec}}
+
+`ls $HOME/.dotnet/tools`{{exec}}
+
+https://learn.microsoft.com/en-us/dotnet/core/tools/troubleshoot-usage-issues
+
+
+
 ## Simple web page
 
 `cd ~; mkdir web; cd web`{{exec}}
