@@ -1,80 +1,47 @@
 Step 4
 
-# telemetry
+# Adding a health endpoint to your .NET Razor web application can be achieved by using the built-in health checks API in .NET Core. Here are the steps to do it:
 
-## generic
+1. Install the necessary NuGet packages:
+   You need to install the `Microsoft.Extensions.Diagnostics.HealthChecks` package. You can do this by running the following command in your Package Manager Console:
 
-https://opentelemetry.io/docs/instrumentation/net/
+   ```
+   Install-Package Microsoft.Extensions.Diagnostics.HealthChecks
+   ```
 
+   `dotnet add package Microsoft.Extensions.Diagnostics.HealthChecks --version 8.0.0`{{exec}}
 
+2. Register Health Checks in Startup.cs:
+   Open your Startup.cs file and add the following code in the `ConfigureServices` method:
 
-   Your .NET  application is now instrumented with OpenTelemetry.
+   ```csharp
+   services.AddHealthChecks();
+   ```
 
+3. Configure Health Check Endpoint:
+   In the `Configure` method of the same Startup.cs file, add the following code:
 
+   ```csharp
+   app.UseEndpoints(endpoints =>
+   {
+       endpoints.MapHealthChecks("/health");
+       endpoints.MapControllers();
+   });
+   ```
 
-## local zipkin
+   This will create a health endpoint at the "/health" path of your application.
 
-we'll be using the zipkin tracing system: https://zipkin.io/
+   The `Startup.cs` file in a .NET Core web application is responsible for configuring services and middleware. The `ConfigureServices` method sets up application services, while the `Configure` method configures the middleware pipeline for handling HTTP requests. Other methods can provide environment-specific configurations.
 
-`docker run -d --rm -p 9411:9411 openzipkin/zipkin`{{exec}}
+4. Test the Health Check Endpoint:
+   Now, if you run your application and navigate to `http://localhost:<your_port>/health`, you should see a response of "Healthy" if everything is working correctly.
 
-confirm zipkin is running:
+5. Custom Health Checks:
+   If you want to add custom health checks, for example, to check the status of a database connection, you can do so by creating a class that implements the `IHealthCheck` interface and adding it in the `ConfigureServices` method like this:
 
-{{TRAFFIC_HOST1_9411}}
+   ```csharp
+   services.AddHealthChecks()
+       .AddCheck<YourCustomHealthCheck>("YourCustomHealthCheckName");
+   ```
 
-wip https://opentelemetry.io/docs/instrumentation/net/getting-started/  TRY THIS CODE TO
-
-To add OpenTelemetry to a .NET 6 application and send data to a local Zipkin server, you need to follow these steps:
-
-__Step 1__: Install the required NuGet packages
-
-`dotnet add package OpenTelemetry.Extensions.Hosting`{{exec}}
-
-`dotnet add package OpenTelemetry.Exporter.Zipkin`{{exec}}
-
-
-__Step 2__: Configure OpenTelemetry in your application
-In your `Program.cs` file, add the following code to configure OpenTelemetry:
-
-```csharp
-using OpenTelemetry;
-using OpenTelemetry.Trace;
-using OpenTelemetry.Exporter.Zipkin;
-
-// ...
-
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureServices((hostContext, services) =>
-        {
-            services.AddOpenTelemetryTracing((builder) =>
-            {
-                builder
-                    .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(hostContext.HostingEnvironment.ApplicationName))
-                    .AddAspNetCoreInstrumentation()
-                    .AddHttpClientInstrumentation()
-                    .AddZipkinExporter(options =>
-                    {
-                        options.Endpoint = new Uri("http://localhost:9411/api/v2/spans");
-                    });
-            });
-        })
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-        });
-```{{copy}}
-
-Make sure to replace `http://localhost:9411/api/v2/spans` with the correct URL of your local Zipkin server.
-
-__Step__ 3: Run your application
-Build and run your application using the following command:
-```bash
-dotnet run
-```
-
-Now, your .NET 6 application will send telemetry data to the local Zipkin server.
-
-ref: https://opentelemetry.io/docs/instrumentation/net/
-
-
+Remember to replace `<your_port>` with the actual port number your application is running on.

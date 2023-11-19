@@ -61,9 +61,15 @@ To list all the sdk's installed
 
 `dotnet --list-sdks`{{exec}}
 
+if you manually installed the sdks'
+
+`dotnet global.json sdk-version <desired-sdk-version>`
+
 To list all the available templates
 
 `dotnet new --list`{{exec}}
+
+
 
 To install a template
 
@@ -88,11 +94,15 @@ To install a template
 
 https://www.nuget.org/packages/SharpPcap
 
-`dotnet add package  SharpPcap --version 6.2.5`{{exec}}
-
 `ls`{{exec}}
 
+Run the simple 'hello world' program.
+
 `dotnet run`{{exec}}
+
+Now replace the program with this problem to list the network interfaces. We'll need a nuget package.
+
+`dotnet add package  SharpPcap --version 6.2.5`{{exec}}
 
 
 ## Program.cs

@@ -26,7 +26,7 @@ https://learn.microsoft.com/en-us/dotnet/core/tools/troubleshoot-usage-issues
 
 
 
-## Simple web page
+## Simple [Razor](https://learn.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-8.0&tabs=visual-studio-code) web page
 
 `cd ~; mkdir web; cd web`{{exec}}
 
