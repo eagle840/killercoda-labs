@@ -5,6 +5,8 @@ Doc: https://killercoda.com/creators
 
 github: https://github.com/killercoda
 
+https://dotnet.microsoft.com/en-us/learn
+
 # WIP with asdf
 
 https://github.com/hensou/asdf-dotnet
@@ -69,11 +71,87 @@ To list all the available templates
 
 `dotnet new --list`{{exec}}
 
+`dotnet clean`{{exec}}
+
+
 
 
 To install a template
 
 `dotnet new (shortname)`{{copy}}
+
+dotnet new sln
+
+ 
+
+ 
+
+A csproj file and a sln file are both used in Microsoft's .NET development ecosystem, but they serve different purposes.
+
+ 
+
+A csproj file, short for C# project file, is used to define the properties and dependencies of a specific project within a solution. It contains information about the project's source files, references to external libraries, build settings, and other project-specific configurations. Each project in a solution typically has its own csproj file.
+
+ 
+
+On the other hand, a sln file, short for solution file, is used to define a collection of related projects. It acts as a container for multiple csproj files and provides a way to organize and manage them as a single unit. The sln file contains references to the individual csproj files, build configurations, and other solution-level settings.
+
+ 
+
+In summary, a csproj file is specific to a single project, while a sln file is used to manage multiple projects within a solution.
+
+ 
+
+ 
+
+ 
+
+ 
+
+dotnet new --list
+
+   28  dotnet new sln
+
+   29  ls
+
+   30  cat slntest.sln
+
+   31  dotnet new webapi -o njbapi
+
+   32  ls
+
+   33  cat slntest.sln
+
+   34*
+
+   35  ls
+
+   36  dotnet new sln --project njbapi
+
+   37  dotnet new sln --project njbapi --force
+
+   38  ls
+
+   39  cat slntest.sln
+
+   40  ls /njbapi
+
+   41  ls
+
+   42  ls njbapi/
+
+   43  dotnet sln slntest.sln add ./njbapi/njbapi.csproj
+
+   44  ls
+
+   45  cat slntest.sln
+
+ 
+
+dotnet sln slntest.sln  list
+
+
+
 
 
 ## Use dotnet consol

@@ -86,7 +86,89 @@ review the -v command in help dotnet run --help
 
 ## Build a Blazorwasm
 
-## Build a webapi
+see https://dotnet.microsoft.com/en-us/learn/aspnet/blazor-tutorial/intro   click on the linux tab
+
+`dotnet new blazor -o BlazorApp`{{exec}}
+
+`cd BlazorApp`{{exec}}
+
+`ls`{{exec}}
+
+`dotnet watch -v --urls http://0.0.0.0:5000`{{exec}}
+
+
+- Program.cs is the entry point for the app that starts the server and where you configure the app services and middleware.
+- App.razor is the root component for the app.
+- Routes.razor configures the Blazor router.
+- The Components/Pages directory contains some example web pages for the app.
+- BlazorApp.csproj defines the app project and its dependencies and can be viewed by double-clicking the BlazorApp project node in the Solution Explorer.
+- The launchSettings.json file inside the Properties directory defines different profile settings for the local development environment. A port number is automatically assigned at project creation and saved on this file.
+
+The displayed page is defined by the Components/Pages/Home.razor file located inside the Components/Pages directory. This is what its contents look like:
+```
+@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+```
+
+review Components/Pages/Counter.razor
+
+A request for /counter in the browser, as specified by the @page directive at the top, causes the Counter component to render its content. The @rendermode directive enables interactive server rendering for the component, so that it can handle user interface events from the browser.
+
+Each time the Click me button is selected:
+
+- The onclick event is fired.
+- The IncrementCount method is called.
+- The currentCount is incremented.
+- The component is rendered to show the updated count.
+
+
+
+add '<Counter />'  to the end of the Home.Razor file
+
+## Webapi
+
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0&tabs=visual-studio-code
+
+`dotnet new webapi --use-controllers -o TodoApi`{{exec}}
+
+ 
+
+In the command 'dotnet new webapi --use-controllers -o TodoApi', the '--use-controllers' flag is used to specify that the generated project should include controller classes.
+
+ 
+
+When creating a new ASP.NET Core Web API project using the 'dotnet new webapi' command, by default, it generates a basic project structure without any controller classes. Controllers are responsible for handling incoming HTTP requests and returning appropriate responses.
+
+ 
+
+By using the '--use-controllers' flag, the command will generate the project with pre-defined controller classes, which can be used to define the API endpoints and their corresponding actions. This saves time and provides a starting point for building a Web API project.
+
+
+## Build a webapi part deux (microservice)
+
+https://dotnet.microsoft.com/en-us/learn/aspnet/microservice-tutorial/create
+
+`dotnet new webapi -o MyMicroservice --no-https`{{exec}}
+
+`cd MyMicroservice`{{exec}}
+
+## ML.NET
+
+https://dotnet.microsoft.com/en-us/learn/ml-dotnet/get-started-tutorial/install
+
+
+`dotnet tool install -g mlnet-linux-x64`
+
+
+`mlnet`
+
+`~/.dotnet/tools/mlnet`
+
 
 ## Simple debugging
 
