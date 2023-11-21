@@ -1,3 +1,8 @@
+# .net tools
+
+https://learn.microsoft.com/en-us/dotnet/core/diagnostics/tools-overview
+
+
 # dotnet -REPL  
 
 ## dotnet interactive & polyglot-notebooks
