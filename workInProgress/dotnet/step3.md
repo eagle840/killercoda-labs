@@ -2,6 +2,8 @@
 
 https://github.com/dotnet/dotnet-docker
 
+https://dotnet.microsoft.com/en-us/learn/aspnet/microservice-tutorial/docker-file  (linux tab)
+
 `cd ~`{{exec}}
 
 `mkdir dock`{{exec}}

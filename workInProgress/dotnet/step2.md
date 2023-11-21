@@ -66,6 +66,22 @@ WIP do a tree
 
 `ls`{{exec}}
 
+`cat appsettings.json`{{exec}}
+
+The appsettings.json file is a configuration file used in .NET applications to store various settings and configurations for the application. It is typically used to define application-specific settings such as database connection strings, logging configurations, API keys, and other configurable parameters.
+
+To access, eg the ApiKey in the AppSettings section 
+```csharp
+var apiKey = Configuration["AppSettings:ApiKey"];
+```
+The main difference between appsettings.json and appsettings.Development.json is that the latter is intended to override or provide additional configuration settings specifically for the development environment. This allows developers to have different configuration values for different environments, such as development, staging, and production.
+
+To set the environment, there are several ways
+- set ASPNETCORE_ENVIRONMENT, then in the program use the that variable Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
+- using command line argument, again use in the program
+- use launchSettings.json, 'dotnet run --launch-profile (name)'s
+
+
 `dotnet run`
 
 `dotnet run --urls http://localhost:5000`
@@ -94,8 +110,6 @@ see https://dotnet.microsoft.com/en-us/learn/aspnet/blazor-tutorial/intro   clic
 
 `ls`{{exec}}
 
-`dotnet watch -v --urls http://0.0.0.0:5000`{{exec}}
-
 
 - Program.cs is the entry point for the app that starts the server and where you configure the app services and middleware.
 - App.razor is the root component for the app.
@@ -103,6 +117,10 @@ see https://dotnet.microsoft.com/en-us/learn/aspnet/blazor-tutorial/intro   clic
 - The Components/Pages directory contains some example web pages for the app.
 - BlazorApp.csproj defines the app project and its dependencies and can be viewed by double-clicking the BlazorApp project node in the Solution Explorer.
 - The launchSettings.json file inside the Properties directory defines different profile settings for the local development environment. A port number is automatically assigned at project creation and saved on this file.
+
+`dotnet watch -v --urls http://0.0.0.0:5000`{{exec}}
+
+{{TRAFFIC_HOST1_5000}}
 
 The displayed page is defined by the Components/Pages/Home.razor file located inside the Components/Pages directory. This is what its contents look like:
 ```
@@ -136,7 +154,11 @@ https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspne
 
 `dotnet new webapi --use-controllers -o TodoApi`{{exec}}
 
- 
+`cd TodoApi`{{exec}}
+
+`dotnet watch -v --urls http://0.0.0.0:5000`{{exec}}
+
+{{TRAFFIC_HOST1_5000/swagger/index.html}}
 
 In the command 'dotnet new webapi --use-controllers -o TodoApi', the '--use-controllers' flag is used to specify that the generated project should include controller classes.
 

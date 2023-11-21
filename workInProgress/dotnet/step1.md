@@ -253,3 +253,8 @@ namespace MyNetworkApp
 ```
 
 
+## Spectre Console
+
+https://github.com/spectreconsole/spectre.console
+
+`dotnet add package Spectre.Console`{{exec}}
