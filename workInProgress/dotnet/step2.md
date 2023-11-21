@@ -171,6 +171,12 @@ When creating a new ASP.NET Core Web API project using the 'dotnet new webapi' c
 By using the '--use-controllers' flag, the command will generate the project with pre-defined controller classes, which can be used to define the API endpoints and their corresponding actions. This saves time and provides a starting point for building a Web API project.
 
 
+## httprepl
+
+https://github.com/dotnet/HttpRepl
+
+`dotnet tool install -g Microsoft.dotnet-httprepl`{{exec}}
+
 ## Build a webapi part deux (microservice)
 
 https://dotnet.microsoft.com/en-us/learn/aspnet/microservice-tutorial/create
