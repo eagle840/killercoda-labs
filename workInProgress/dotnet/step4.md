@@ -45,3 +45,16 @@ Step 4
    ```
 
 Remember to replace `<your_port>` with the actual port number your application is running on.
+
+
+# .NET diagnostic tools
+
+https://learn.microsoft.com/en-us/dotnet/core/diagnostics/tools-overview
+
+# application architecture
+
+https://github.com/dotnet-architecture/eShopOnWeb
+
+>>>> https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/
+>>>> https://learn.microsoft.com/en-us/dotnet/architecture/?WT.mc_id=dotnet-35129-website
+>>>> https://dotnet.microsoft.com/en-us/learn/microservices

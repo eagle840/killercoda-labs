@@ -1,3 +1,7 @@
+# debugging dotnet and c#
+
+https://code.visualstudio.com/docs/remote/remote-overview
+
 # Docker
 
 https://github.com/dotnet/dotnet-docker
