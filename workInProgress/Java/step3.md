@@ -7,9 +7,7 @@ The test program.
 ```
 import java.time.LocalTime;
 
- 
-
-public class HelloWorld {
+public class HelloMultple {
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -34,7 +32,7 @@ public class HelloWorld {
 `javac HelloMultple.java`{{exec}}
 
 
-`java HelloMultple`{{java}}
+`java HelloMultple`{{exec}}
 
 
 
@@ -50,16 +48,13 @@ When you run the `jps` command in a terminal or command prompt, it will display 
 
 The `jps` command is useful for identifying and monitoring Java processes running on your machine. It can be used to check if a Java application or server is running, find the process ID of a specific Java process, or troubleshoot issues related to Java processes.
 
- 
+ Open a new termina;
 
 `jps -v`{{exec}}
 
- 
-
-
-
 There are several other commands available in the Java Development Kit (JDK) that are useful for managing and monitoring Java processes. Here are a few commonly used ones:
 
+## Other tools
  
 
 1. `jstat`: The `jstat` command is used to monitor JVM statistics such as garbage collection, memory usage, and class loading. It provides real-time information about the behavior and performance of a running Java application.
@@ -100,7 +95,7 @@ To use the `jstat` command, follow these steps:
 
 2. Identify the process ID (PID) of the Java process you want to monitor. You can use the `jps` command to list all the Java processes running on your system and their corresponding PIDs. For example:
 
-`jps`{{exec}}
+        `jps`{{exec}}
 
   
 
@@ -110,7 +105,7 @@ To use the `jstat` command, follow these steps:
 
   
 
-`jstat [options] <PID> [interval] [count]`
+        `jstat [options] <PID> [interval] [count]`
 
 
 
@@ -146,7 +141,7 @@ To use the `jstat` command, follow these steps:
 
 
 
-`jstat -gc 12345 5000 10``
+        `jstat -gc 12345 5000 10``
 
  
 

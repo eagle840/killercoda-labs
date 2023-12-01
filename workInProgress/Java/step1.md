@@ -60,219 +60,15 @@ To install JDK (Java Development Kit) on Ubuntu, you can use the following comma
 
 A headless installation refers to installing a software package without any graphical user interface (GUI) components.
 
-`sudo apt-get install openjdk-11-jdk-headless`{{exec}}
+run: `sudo apt-get install openjdk-11-jdk-headless`{{exec}}
 
 
 
--------------------------------------
-
-
-# PS
-
-`nano docker-compose.yml`{{exec}}
-
-
-```
----
-version: '3'
-services:
-  zookeeper-1:
-    image: confluentinc/cp-zookeeper:7.4.1
-    hostname: zookeeper-1
-    container_name: zookeeper-1
-    volumes:
-      - ./zookeeper-1_data:/var/lib/zookeeper/data
-      - ./zookeeper-1_log:/var/lib/zookeeper/log
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
-      ZOO_MY_ID: 1
-      ZOO_SERVERS: server.1=zookeeper-1:2888:3888;2181 server.2=zookeeper-2:2888:3888;2181 server.3=zookeeper-3:2888:3888;2181
-
-  zookeeper-2:
-    image: confluentinc/cp-zookeeper:7.4.1
-    hostname: zookeeper-2
-    container_name: zookeeper-2
-    volumes:
-      - ./zookeeper-2_data:/var/lib/zookeeper/data
-      - ./zookeeper-2_log:/var/lib/zookeeper/log
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
-      ZOO_MY_ID: 2
-      ZOO_SERVERS: server.1=zookeeper-1:2888:3888;2181 server.2=zookeeper-2:2888:3888;2181 server.3=zookeeper-3:2888:3888;2181
-
-  zookeeper-3:
-    image: confluentinc/cp-zookeeper:7.4.1
-    hostname: zookeeper-3
-    container_name: zookeeper-3
-    volumes:
-      - ./zookeeper-3_data:/var/lib/zookeeper/data
-      - ./zookeeper-3_log:/var/lib/zookeeper/log
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
-      ZOO_MY_ID: 3
-      ZOO_SERVERS: server.1=zookeeper-1:2888:3888;2181 server.2=zookeeper-2:2888:3888;2181 server.3=zookeeper-3:2888:3888;2181
-
-
-  broker-1:
-    image: confluentinc/cp-kafka:7.4.1
-    hostname: broker-1
-    container_name: broker-1
-    volumes:
-      - ./broker-1-data:/var/lib/kafka/data
-    depends_on:
-      - zookeeper-1
-      - zookeeper-2
-      - zookeeper-3
-    ports:
-      - 9092:9092
-      - 29092:29092
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181
-      KAFKA_ADVERTISED_LISTENERS: HOST://localhost:9092,INTERNAL://broker-1:29092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: HOST:PLAINTEXT,INTERNAL:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-      KAFKA_SNAPSHOT_TRUST_EMPTY: true
-
-  broker-2:
-    image: confluentinc/cp-kafka:7.4.1
-    hostname: broker-2
-    container_name: broker-2
-    volumes:
-      - ./broker-2-data:/var/lib/kafka/data
-    depends_on:
-      - zookeeper-1
-      - zookeeper-2
-      - zookeeper-3
-      - broker-1
-    ports:
-      - 9093:9093
-      - 29093:29093
-    environment:
-      KAFKA_BROKER_ID: 2
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181
-      KAFKA_ADVERTISED_LISTENERS: HOST://localhost:9093,INTERNAL://broker-2:29093
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: HOST:PLAINTEXT,INTERNAL:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-      KAFKA_SNAPSHOT_TRUST_EMPTY: true
-
-  broker-3:
-    image: confluentinc/cp-kafka:7.4.1
-    hostname: broker-3
-    container_name: broker-3
-    volumes:
-      - ./broker-3-data:/var/lib/kafka/data
-    depends_on:
-      - zookeeper-1
-      - zookeeper-2
-      - zookeeper-3
-      - broker-1
-      - broker-2
-    ports:
-      - 9094:9094
-      - 29094:29094
-    environment:
-      KAFKA_BROKER_ID: 3
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181
-      KAFKA_ADVERTISED_LISTENERS: HOST://localhost:9094,INTERNAL://broker-3:29094
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: HOST:PLAINTEXT,INTERNAL:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-      KAFKA_SNAPSHOT_TRUST_EMPTY: true
-
-
-  rest-proxy:
-    image: confluentinc/cp-kafka-rest:7.4.1
-    ports:
-      - "8082:8082"
-    depends_on:
-      - zookeeper-1
-      - zookeeper-2
-      - zookeeper-3
-      - broker-1
-      - broker-2
-      - broker-3
-    hostname: rest-proxy
-    container_name: rest-proxy
-    environment:
-      KAFKA_REST_HOST_NAME: rest-proxy
-      KAFKA_REST_BOOTSTRAP_SERVERS: 'broker-1:29092,broker-2:29093,broker-3:29094'
-      KAFKA_REST_LISTENERS: "http://0.0.0.0:8082"
-```
-
-
-`curl localhost:8082/brokers`{{exec}}
-
-`apt update`{{exec}}
-
-For wildfly we can just use the jvm:
- 
-`apt install -y default-jre`{{copy}}
-
-wget https://dlcdn.apache.org/kafka/3.6.0/kafka_2.13-3.6.0.tgz
-    7  tar -xzf kafka_2.13-3.6.0.tgz
-    8  cd kafka_2.13-3.6.0
-    9  bin/zookeeper-server-start.sh config/zookeeper.properties
-
-    new terminal
-
-    bin/kafka-server-start.sh config/server.properties
-
-
-
-
-
-
-
-
-
-WIP  from: https://hub.docker.com/r/bitnami/wildfly
-```sh
-docker run -p 8080:8080 -p 9990:9990 \
-    -v /path/to/wildfly-persistence:/bitnami/wildfly \
-    bitnami/wildfly:latest
-```{{copy}}
-
-use (you need to fix the storage):
-```sh
-docker run -p 8080:8080 -p 9990:9990 \
-    -e WILDFLY_PASSWORD=nick1234!  \
-    bitnami/wildfly:latest
-```{{copy}}
-
-
-```sh
-docker run -p 8080:8080 -p 9990:9990  -e WILDFLY_USERNAME=nick -e WILDFLY_PASSWORD=nick1234!        bitnami/wildfly:latest /opt/bitnami/wildfly/bin/standalone.sh -bmanagement=0.0.0.0 -b 0.0.0.0
-```{{exec}}
-
-WIP un/pw not working
-
-see http://www.mastertheboss.com/jbossas/jboss-configuration/how-to-bind-wildfly-to-an-ip-address/
-for a possible solution
-
-use   /opt/bitnami/wildfly/bin
-
-
-
-`apt update`{{exec}}
-
-For wildfly we can just use the jvm:
- 
-`apt install -y default-jre`{{copy}}
-
-but the sdk gives us more feature
-
-`apt install -y openjdk-11-jdk`{{copy}}
-
-WIP update to v13?   `apt install -y openjdk-17-jdk`{{copy}}
+--- CHECK BELOW
 
 `java -version`{{exec}}
 
-`apt install -y maven`{{exec}}
 
-`mvn --version`{{exec}}
 
 `ls -lash /usr/lib/jvm/`{{exec}}
 
@@ -300,137 +96,65 @@ Reboot your system, and voila
 
 `echo $PATH`{{exec}}
 
-WIP CONFIRM THIS 
-
- 
-
-from https://www.wildfly.org/downloads/
-
-`cd ~`{{exec}}
-
-`wget https://download.jboss.org/wildfly/22.0.1.Final/wildfly-22.0.1.Final.tar.gz`{{exec}}
-
-`tar -xvf wildfly-22.0.1.Final.tar.gz `{{exec}}
-
-`mv wildfly-22.0.1.Final /usr/local/`{{exec}}
-
-`cd /usr/local/wildfly-22.0.1.Final/`{{exec}}
-
-`ls`{{exec}}
-
-note standalone folder vs domain (cluster) folder
-
-`cd standalone/configuration/`{{exec}}
-
-change all the 127.0.0.1 to 0.0.0.0 
-
-`nano standalone.xml `{{exec}}
-
-confirm with:
-
-`cat standalone.xml | grep 127.0.0.1`{{exec}}
-
-`cd ../../bin`{{exec}}
-
-add a user:
-
-WIP LEAVE OUT THIS RUN
-
-`sh add-user.sh`{{exec}}
-
-start the server:
-
-`sh standalone.sh`{{exec}}
-
-last log item should be
-
-'Admin console listening on http://127.0.0.1:9990' ? 0.0.0.0
-
-front page: {{TRAFFIC_HOST1_8080}}
-
-management page: {{TRAFFIC_HOST1_9990}}
-
-WIP why is the console no content?
-
-`curl -v localhost:9990/console/index.html`{{exec}}
-
-### for cli
-
-`cd /usr/local/wildfly-22.0.0.Final/bin`{{exec}}
-
-`sh jboss-cli.sh`{{exec}}
-
-The cli is based on a file/directory type structure, where each individual item (~file) is 'key=value'.
-
-List the structure with 'ls' and change dirctory with 'cd'
-
-If you're running wildfly on an graphical OS, you can use a graphical interface
-
-`sh jconsole.sh`{{copy}}
-
-https://www.eclipse.org/openj9/docs/tool_jps/
 
 
 
-================== delete below  ====================
+## Maven
 
-Doc: https://killercoda.com/creators
+Maven is a build automation tool used primarily for Java projects. It provides a way to manage project dependencies, build and package projects, and manage project documentation. Maven uses a declarative XML-based configuration file called pom.xml (Project Object Model) to define the project structure, dependencies, and build process. It also supports various plugins that can be used to extend its functionality. Maven simplifies the build process by providing a standard way to manage dependencies and build projects, making it easier to share and collaborate on Java projects.
 
-github: https://github.com/killercoda
+`apt install -y maven`{{exec}}
 
-# docker update
+`mvn --version`{{exec}}
 
-`apt-get remove docker  docker.io containerd runc -y`{{exec}}   
+ The "Hello World" example in Maven involves creating a simple Java project and building it using Maven. Here are the steps to create a basic "Hello World" Maven project:
 
-`apt-get update`{{exec}}   
+1. Open a terminal or command prompt and navigate to the directory where you want to create the project.
 
-`apt-get install ca-certificates curl gnupg  lsb-release -y`{{exec}}   
+2. Run the following command to create a new Maven project:
+   ```
+   mvn archetype:generate -DgroupId=com.example -DartifactId=helloworld -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+   ```
 
-`mkdir -p /etc/apt/keyrings`{{exec}}   
+   This command uses the Maven archetype plugin to generate a new project based on the "maven-archetype-quickstart" archetype. It sets the group ID to "com.example" and the artifact ID to "helloworld". The "interactiveMode=false" flag skips the interactive mode and uses default values.
 
-`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}   
+3. Once the project is created, navigate into the project directory:
+   ```
+   cd helloworld
+   ```
 
-```
-echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```{{exec}}   
+4. Open the project in your preferred IDE or text editor.
 
-`apt-get update`{{exec}}   
+5. In the `src/main/java/com/example/App.java` file, replace the existing code with the following "Hello World" code:
+   ```java
+   package com.example;
 
-`apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y `{{exec}}   
+   public class App {
+       public static void main(String[] args) {
+           System.out.println("Hello, World!");
+       }
+   }
+   ```
 
-`docker version`{{exec}}   
+6. Save the file.
 
-`docker-compose version`{{exec}}   
+7. Open a terminal or command prompt and navigate to the project directory.
 
-`docker compose version`{{exec}}
+8. Run the following command to build the project:
+   ```
+   mvn clean package
+   ```
 
-# Set imageid in index.json
+   This command uses Maven to compile the Java code, run tests (if any), and package the project into a JAR file.
 
-- ubuntu: Ubuntu 20.04 with Docker and Podman
-= kubernetes-kubeadm-2nodes: 
-- kubernetes-kubeadm-1node:
+9. After the build is successful, you can run the application using the following command:
+   ```
+   java -cp target/helloworld-1.0-SNAPSHOT.jar com.example.App
+   ```
 
-to taint the control node for work:
+   This command runs the compiled Java code and prints "Hello, World!" to the console.
 
-```
-kubectl taint nodes controlplane node-role.kubernetes.io/master:NoSchedule-
-kubectl taint nodes controlplane node-role.kubernetes.io/control-plane:NoSchedule-
-```
-
-
-# Copy Files/adjust index
-
-text here
-
-# Run apt update
-
-apt-get update -y{{execute}}
-
-```apt-get update -y{{execute}}```
-
-
-# For links to ports:
+That's it! You have created a basic "Hello World" Maven project and built it using Maven.
 
 ```
 Link for traffic into host 1 on port 80
@@ -440,60 +164,3 @@ Link for traffic into host 2 on port 4444
 Link for traffic into host X on port Y
 {{TRAFFIC_HOSTX_Y}}
 ```
-
-
-# Example setup for postgres with raw data
-
-git clone https://github.com/josephmachado/simple_dbt_project.git
-
-- raw folders
-- warehouse setup
-- docker postgres and -v to those folders
-
-
-We'll be using the rabbitmq container with the management feature installed.
-
-https://hub.docker.com/_/rabbitmq
-
-`docker run -d --hostname my-rabbit --name some-rabbit -p 8080:15672 rabbitmq:3-management`{{execute}}
-
-make sure it started
-
-`docker ps`{{execute}}
-
-and check the config file
-
-`docker exec some-rabbit cat /etc/rabbitmq/rabbitmq.conf`{{execute}}
-
-and head over to port 8080 and login   
-un:guest   
-pw:guest  
-
-
-Next we'll update the python files with the new IP address of the docker container.
-
-`RabbitIP=$(docker inspect some-rabbit | jq -r .[0].NetworkSettings.IPAddress)`{{execute}}
-
-`echo $RabbitIP`{{execute}}
-
-`sed -i "s/localhost/$RabbitIP/g" send.py receive.py worker.py new_task.py`{{execute}}
-
-## k8s port-forward
-
-`k -n <ns> port-forward service/<svc-name> 9090:9090 --address 0.0.0.0`
-
-- this is to forword a CLusterIP so that killacoda can access
-
-
-`echo 'PATH=$PATH':$(pwd)/bin >> /root/.bashrc`{{copy}}
-
-export PATH=$PWD/bin:$PATH
-
-to allow pods on the controlplane
-
-`kubectl taint node controlplane node-role.kubernetes.io/master:NoSchedule-`{{copy}}
-
-to allow access to running pods with ports 9000 and 9090
-
-`kubectl port-forward -n minio-dev pod/minio 9000 9090 --address 0.0.0.0`{{copy}}
-
