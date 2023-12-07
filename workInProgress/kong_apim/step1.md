@@ -69,6 +69,12 @@ login with
 
 `admin` & 'abcd1234'
 
+`user@example`  pw: 'abcd1234'
+
+in the url 'https://be9fb85c-47ed-41b6-93c5-e022dbcffd55-10-244-5-2-8001.spch.r.killercoda.com'
+
+
+
 
 WIP: need to add connection to kong? (default un: admin, pw-above: test)
 
