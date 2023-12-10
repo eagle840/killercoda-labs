@@ -1,10 +1,12 @@
-# Step 2
+# Build a web app
 
 
-`dotnet new webapp -n MyWebApp`{{exec}}
 
 
- # https://learn.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/razor-pages-start?view=aspnetcore-7.0&tabs=visual-studio-code
+ https://learn.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/razor-pages-start?view=aspnetcore-7.0&tabs=visual-studio-code
+
+ `dotnet new webapp -n MyWebApp`{{exec}}
+
 
 `cd MyWebApp/`{{exec}}
 
@@ -30,8 +32,18 @@ In the appsettings.json, update to match:
 
 `dotnet run --urls http://0.0.0.0:5000`{{exec}}
 
+{{TRAFFIC_HOST1_5000}}
+
+
 In the Azure Application Insight 'Overview', click on 'Seacrh'
 
 
 ## Add a Throw Exception (remove if statement, or set deveplopment)
+
+
+### finished code
+
+```
+
+```
 
