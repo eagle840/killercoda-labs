@@ -59,53 +59,12 @@ In this lab we will quickly install Dotnet using ASDF
 ## USes a sln file?
 
 
- for this project, since to dotnet apps running together
+for this project, since to dotnet apps running together
 
- `dotnet new sln`{{exec}}
+`dotnet new sln -n MySolution`{{exec}}
 
-`ls`{{exec}}
-
-`cat slntest.sln`{{exec}}
-
-`dotnet new webapi -o njbapi`{{exec}}
-
-`ls`{{exec}}
-
-`cat slntest.sln`{{exec}}
-
-`*`{{exec}}
-
-`ls`{{exec}}
-
-`dotnet new sln --project njbapi`{{exec}}
-
-`dotnet new sln --project njbapi --force`{{exec}}
-
-`ls`{{exec}}
-
-`cat slntest.sln`{{exec}}
-
-`ls /njbapi`{{exec}}
-
-`ls`{{exec}}
-
-`ls njbapi/`{{exec}}
-
-`dotnet sln slntest.sln add ./njbapi/njbapi.csproj`{{exec}}
-
-`ls`{{exec}}
-
-`cat slntest.sln`{{exec}}
-
- 
-
- 
-
-dotnet new --list
-
-   28  dotnet new sln
+`dotnet  sln list`{{exec}}
 
 
-dotnet sln slntest.sln  list
 
 

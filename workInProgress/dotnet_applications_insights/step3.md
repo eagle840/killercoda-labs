@@ -4,7 +4,11 @@ https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetc
 
 `dotnet new web -o TodoApi`{{exec}}
 
-cd TodoApi
+`cd TodoApi`{{exec}}
+
+add the project to the solution file
+
+`dotnet sln ../MySolution.sln add TodoApi.csproj`{{exec}}
 
 wip `dotnet dev-certs https --trust`{{copy}}  # FOr windows machines
 
@@ -39,7 +43,7 @@ ctrl-c
 
 https://learn.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-8.0&tabs=netcore-cli
 
-dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.5.0
+`dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.5.0`{{exec}}
 
 WIP: setting IsDevoplment
 
@@ -88,16 +92,35 @@ app.Run();
 {{TRAFFIC_HOST1_5000}}
 
 
-### outside   - json file
+###  json file
 {{TRAFFIC_HOST1_5000}}/swagger/v1/swagger.json
 
 
-### inside
-{{TRAFFIC_HOST1_5000/swagger/v1/swagger.json}}
+### ui
+{{TRAFFIC_HOST1_5000/swagger}}
 
-### UI  
+### code with AI
 
-/swagger
+```
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddApplicationInsightsTelemetry();
+
+
+builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.MapGet("/", () => "Hello World!");
+
+app.Run();
+```
 
 
 https://localhost:<port>/swagger/v1/swagger.json
