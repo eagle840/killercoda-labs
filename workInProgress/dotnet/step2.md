@@ -2,6 +2,7 @@
 
 https://learn.microsoft.com/en-us/dotnet/core/diagnostics/tools-overview
 
+https://learn.microsoft.com/en-us/dotnet/core/tools/troubleshoot-usage-issues
 
 # dotnet -REPL  
 
@@ -204,6 +205,25 @@ https://dotnet.microsoft.com/en-us/learn/ml-dotnet/get-started-tutorial/install
 
 
 ## Simple debugging
+
+https://code.visualstudio.com/docs/editor/debugging
+
+https://learn.microsoft.com/en-us/training/modules/implement-visual-studio-code-debugging-tools/3-exercise-run-code-debug-environment
+
+
+install c# dev extension
+
+in command paltet   '.net:g' -> .NET: Generate Assets for Build and Debug.  
+creates '.vscode' folder, check launch configuration https://code.visualstudio.com/docs/editor/debugging
+
+
+tasks.json was the build task in there
+
+### notes:
+- 'workspaceFolder' is the same as the root folder of the project
+
+
+
 
 ## entity framework (in new lab)
 

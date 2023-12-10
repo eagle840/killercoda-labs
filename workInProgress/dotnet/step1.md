@@ -80,7 +80,7 @@ To install a template
 
 `dotnet new (shortname)`{{copy}}
 
-dotnet new sln
+'dotnet new sln'
 
  
 
@@ -100,6 +100,8 @@ On the other hand, a sln file, short for solution file, is used to define a coll
 
 In summary, a csproj file is specific to a single project, while a sln file is used to manage multiple projects within a solution.
 
+'workspaceFolder' is the root folder of the project
+
  
 
  
@@ -110,51 +112,52 @@ In summary, a csproj file is specific to a single project, while a sln file is u
 
 dotnet new --list
 
-   28  dotnet new sln
+`dotnet new sln`{{exec}}
 
-   29  ls
+`ls`{{exec}}
 
-   30  cat slntest.sln
+`cat slntest.sln`{{exec}}
 
-   31  dotnet new webapi -o njbapi
+`dotnet new webapi -o njbapi`{{exec}}
 
-   32  ls
+`ls`{{exec}}
 
-   33  cat slntest.sln
+`cat slntest.sln`{{exec}}
 
-   34*
+`*`{{exec}}
 
-   35  ls
+`ls`{{exec}}
 
-   36  dotnet new sln --project njbapi
+`dotnet new sln --project njbapi`{{exec}}
 
-   37  dotnet new sln --project njbapi --force
+`dotnet new sln --project njbapi --force`{{exec}}
 
-   38  ls
+`ls`{{exec}}
 
-   39  cat slntest.sln
+`cat slntest.sln`{{exec}}
 
-   40  ls /njbapi
+`ls /njbapi`{{exec}}
 
-   41  ls
+`ls`{{exec}}
 
-   42  ls njbapi/
+`ls njbapi/`{{exec}}
 
-   43  dotnet sln slntest.sln add ./njbapi/njbapi.csproj
+`dotnet sln slntest.sln add ./njbapi/njbapi.csproj`{{exec}}
 
-   44  ls
+`ls`{{exec}}
 
-   45  cat slntest.sln
+`cat slntest.sln`{{exec}}
+
 
  
 
 dotnet sln slntest.sln  list
 
 
+WIP Remove the network program, and use just hello world.
 
 
-
-## Use dotnet consol
+## Use dotnet consol - 'hello world'
 
 `cd ~`{{exec}}
 
