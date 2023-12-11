@@ -67,6 +67,15 @@ In the /pages/Privacy.cshtml.cs update the 'OnGet'
 
 ## Add a Throw Exception (remove if statement, or set deveplopment)
 
+Let force an exception when visting the Privacy page, in ./MyWebApp/Pages/Privacy.cshtml.cs, update the OnGet to:
+
+```
+    public void OnGet()
+    {
+        throw new Exception("An error occurred.");
+    }
+```
+
 
 
 ### finished code

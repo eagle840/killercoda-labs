@@ -14,6 +14,12 @@ wip `dotnet dev-certs https --trust`{{copy}}  # FOr windows machines
 
 `dotnet add package Microsoft.ApplicationInsights.AspNetCore --version 2.18.0`{{exec}}
 
+add the following to line 3 in Program.cs
+
+```
+builder.Services.AddApplicationInsightsTelemetry();
+``
+
 In the appsettings.json, update to match:
 
 
