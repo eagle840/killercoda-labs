@@ -87,17 +87,17 @@ app.Run();
 ### build and run
 
 
-`dotnet run --urls http://0.0.0.0:5000`{{exec}}
+`dotnet run --urls http://0.0.0.0:5001`{{exec}}
 
-{{TRAFFIC_HOST1_5000}}
+{{TRAFFIC_HOST1_5001}}
 
 
 ###  json file
-{{TRAFFIC_HOST1_5000}}/swagger/v1/swagger.json
+{{TRAFFIC_HOST1_5001}}/swagger/v1/swagger.json
 
 
 ### ui
-{{TRAFFIC_HOST1_5000/swagger}}
+{{TRAFFIC_HOST1_5001}}/swagger
 
 ### code with AI
 

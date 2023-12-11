@@ -65,6 +65,23 @@ for this project, since to dotnet apps running together
 
 `dotnet  sln list`{{exec}}
 
+## Manual Logging
+
+update the appsettings.json
+
+```
+"Microsoft.AspNetCore": "Information"
+
+
+```
+
+in Program.cs addd
+
+`app.UseHttpLogging();`  wip:error
+
+after app.UseHttpsRedirection();
+
+learn more: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
 
 
 

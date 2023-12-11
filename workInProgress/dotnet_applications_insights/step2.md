@@ -5,6 +5,8 @@
 
  https://learn.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/razor-pages-start?view=aspnetcore-7.0&tabs=visual-studio-code
 
+ Lets build a Dotnet Razor App:
+
 `dotnet new webapp -n MyWebApp`{{exec}}
 
 
@@ -19,6 +21,12 @@ add the project to the solution file
 https://learn.microsoft.com/en-us/azure/azure-monitor/app/asp-net
 
 `dotnet add package Microsoft.ApplicationInsights.AspNetCore --version 2.18.0`{{exec}}
+
+add the following to line 3 in Program.cs
+
+```
+builder.Services.AddApplicationInsightsTelemetry();
+```
 
 In the appsettings.json, update to match:
 
@@ -45,13 +53,53 @@ In the appsettings.json, update to match:
 
 In the Azure Application Insight 'Overview', click on 'Seacrh'
 
+## add a log 
+
+In the /pages/Privacy.cshtml.cs update the 'OnGet'
+
+```
+    public void OnGet()
+    {
+        _logger.LogInformation("hello log");
+    }
+```
+
 
 ## Add a Throw Exception (remove if statement, or set deveplopment)
+
 
 
 ### finished code
 
 ```
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddApplicationInsightsTelemetry();
+
+// Add services to the container.
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+
 
 ```
 
