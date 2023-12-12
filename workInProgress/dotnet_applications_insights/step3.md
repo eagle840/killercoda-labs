@@ -1,5 +1,7 @@
 # Web APi
 
+SEE BELOW FOR NODE.JS
+
 https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-8.0&tabs=visual-studio-code
 
 `dotnet new web -o TodoApi`{{exec}}
@@ -136,3 +138,76 @@ https://localhost:<port>/swagger/v1/swagger.json
 https://learn.microsoft.com/en-us/aspnet/core/web-api/microsoft.dotnet-openapi?view=aspnetcore-8.0
 
 `dotnet tool install -g Microsoft.dotnet-openapi`{{exec}}
+
+
+--------------------------
+
+# Using Node.JS
+
+https://github.com/microsoft/ApplicationInsights-node.js
+
+`asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`{{exec}}
+
+`asdf list-all nodejs`{{exec}}
+
+`asdf install nodejs 19.9.0`{{exec}}
+
+`asdf global nodejs 19.9.0`{{exec}}
+
+`mkdir test`{{exec}}
+
+`cd test`{{exec}}
+
+`ls`{{exec}}
+
+`npm -V`{{exec}}
+
+`npm init -y`{{exec}}
+
+`ls`{{exec}}
+
+`npm install express`{{exec}}
+
+
+`npm install applicationinsights@beta`{{exec}}
+
+
+`nano index.js`{{exec}}
+
+
+```
+let appInsights = require("applicationinsights");
+appInsights.setup("ENTER-CONNECTION-STRING").start();
+
+
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+```
+
+`node index.js`{{exec}}
+
+
+in a new terminal
+
+`curl http://localhost:3000`{{exec}}
+
+## add roleName
+
+```
+const appInsights = require("applicationinsights");
+appInsights.setup("<YOUR_CONNECTION_STRING>");
+appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = "MyRoleName";
+appInsights.start();
+```
+
+
+
