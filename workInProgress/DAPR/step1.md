@@ -11,7 +11,7 @@ https://docs.dapr.io/getting-started/
 
 ## Install the Dapr CLI
 
-`wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
+`wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash`{{exec}}
 
 `dapr -h`{{exec}}
 
@@ -30,6 +30,13 @@ https://docs.dapr.io/getting-started/
 
 ## Use the Dapr API
 
+Run a Dapr sidecar and try out the state API
+
+
+
+Launch a Dapr sidecar that will listen on port 3500 for a blank application named myapp:
+
+
 `dapr run --app-id myapp --dapr-http-port 3500`{{exec}}
 
 `curl -X POST -H "Content-Type: application/json" -d '[{ "key": "name", "value": "Bruce Wayne"}]' http://localhost:3500/v1.0/state/statestore`{{exec}}
@@ -46,7 +53,7 @@ https://docs.dapr.io/getting-started/
 `curl -v -X DELETE -H "Content-Type: application/json" http://localhost:3500/v1.0/state/statestore/name`{{exec}}
 
 
-## Dapr Quickstarts
+
 
 ----- deletee below? -----
 

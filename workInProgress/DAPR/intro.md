@@ -1,3 +1,1 @@
-This lab is for a Basic Ubuntu setup, for use as a template for other labs, with various killercoda commands in.
-
-
+Dapr (Distributed Application Runtime) is an open-source runtime that simplifies the development of microservices-based applications by providing a set of building blocks for common distributed system patterns and capabilities. It enables developers to focus on writing business logic without worrying about the underlying infrastructure.
