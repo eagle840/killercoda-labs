@@ -5,7 +5,39 @@ Doc: https://killercoda.com/creators
 
 github: https://github.com/killercoda
 
+We'll be using asdf to install dotnet, however complete instructions for download and installing for other systems can be found on Micosoft [here](https://dotnet.microsoft.com/en-us/download)
 
+`git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
+
+`. "$HOME/.asdf/asdf.sh"`{{exec}} WIP pipe to .brashrc?
+
+`echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc`{{exec}}
+
+`. "$HOME/.asdf/completions/asdf.bash"`{{exec}}
+
+`echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc`{{exec}}
+
+`asdf current`{{exec}}
+
+### use dotnet
+
+`asdf plugin add dotnet`{{exec}}
+
+#### Show all installable versions
+`asdf list-all dotnet`{{exec}}
+
+#### Install specific version
+`asdf install dotnet latest`{{exec}}
+
+to install a specific version:
+
+`asdf install dotnet 6.0.400`{{copy}}
+
+#### Set a version globally (on your ~/.tool-versions file)
+`asdf global dotnet latest`{{exec}}
+
+#### Now dotnet commands are available
+`dotnet --version`{{exec}}
 
 install asdf, dotnet 
 
@@ -29,7 +61,7 @@ make sure /swagger and api definition are there
 
 ```
 # Use the official .NET Core SDK image as the base image
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 
 # Set the working directory inside the container
 WORKDIR /app
