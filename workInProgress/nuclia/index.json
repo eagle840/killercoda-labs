@@ -1,6 +1,6 @@
 {
   "title": "Nuclia Vector Database",
-  "description": "Install and run Vector Database with Docker(v0.0.1)",
+  "description": "Install and run Vector Database with Docker(v0.0.2)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
