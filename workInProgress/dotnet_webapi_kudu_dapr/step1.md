@@ -29,10 +29,6 @@ We'll be using asdf to install dotnet, however complete instructions for downloa
 #### Install specific version
 `asdf install dotnet latest`{{exec}}
 
-to install a specific version:
-
-`asdf install dotnet 6.0.400`{{copy}}
-
 #### Set a version globally (on your ~/.tool-versions file)
 `asdf global dotnet latest`{{exec}}
 
@@ -41,66 +37,73 @@ to install a specific version:
 
 install asdf, dotnet 
 
-create dotnet wep api with swagger
+# create dotnet wep api with swagger
+
+review https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-8.0
+
 
 build it
 
 run it
 
+`dotnet new webapi -n YourProjectName`{{exec}}
+
+`cd YourProjectName/`{{exec}}
+
+
+`dotnet run --urls http://0.0.0.0:5000`{{exec}}
+
+grab the json from the /weatherforecast url
+
+
+
+{{TRAFFIC_HOST1_5000}}/weatherforecast
+
+swagger url
+
+{{TRAFFIC_HOST1_5000}}/swagger
+
+**Note the swagger spec under the project name** `https://xxx-5000.spch.r.killercoda.com/swagger/v1/swagger.json`
 
 test it
 
 make sure /swagger and api definition are there
 
-## run in docker
+
+# MS Swagger
 
 
-1. Install Docker: First, make sure you have Docker installed on your machine. You can download and install Docker from the official Docker website (https://www.docker.com/get-started).
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-8.0&tabs=visual-studio-code
 
-2. Create a Dockerfile: In your project directory, create a file named "Dockerfile" (without any file extension). Open the Dockerfile in a text editor and add the following content:
+`dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.5.0`{{exec}}
 
-```
-# Use the official .NET Core SDK image as the base image
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
-
-# Set the working directory inside the container
-WORKDIR /app
-
-# Copy the project file and restore dependencies
-COPY *.csproj ./
-RUN dotnet restore
-
-# Copy the remaining source code and build the application
-COPY . ./
-RUN dotnet publish -c Release -o out
-
-# Set the entry point for the container
-ENTRYPOINT ["dotnet", "out/YourProjectName.dll"]
-```
-
-Make sure to replace "YourProjectName" with the actual name of your ASP.NET project.
-
-3. Build the Docker image: Open a terminal or command prompt, navigate to your project directory (where the Dockerfile is located), and run the following command to build the Docker image:
+Add the Swagger generator to the services collection in Program.cs:
 
 ```
-docker build -t your-image-name .
+builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 ```
 
-Replace "your-image-name" with a name of your choice for the Docker image.
-
-4. Run the Docker container: Once the Docker image is built, you can run it using the following command:
+Enable the middleware for serving the generated JSON document and the Swagger UI, also in Program.cs
 
 ```
-docker run -d -p 80:80 your-image-name
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 ```
 
-This command will start a Docker container in detached mode (-d) and map port 80 of the container to port 80 of the host machine (-p 80:80). Replace "your-image-name" with the name you used in the previous step.
+Launch the app and navigate to https://localhost:<port>/swagger/v1/swagger.json
 
-5. Access your ASP.NET application: Open a web browser and navigate to http://localhost:80 to access your ASP.NET application running inside the Docker container.
-
-That's it! Your .NET ASP program should now be running in a Docker container.
+{{TRAFFIC_HOST1_5000}}//swagger/v1/swagger.json
 
 
+The Swagger UI can be found at https://localhost:<port>/swagger
+
+{{TRAFFIC_HOST1_5000}}//swagger
 
 ---- delete below ----
 

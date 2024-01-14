@@ -1,6 +1,6 @@
 {
   "title": "Dotnet-Webapi",
-  "description": "Create a ASP.net webapi with swagger(v0.0.3)",
+  "description": "Create a ASP.net webapi with swagger(v0.0.5)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {

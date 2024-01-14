@@ -1,17 +1,15 @@
-# RUN with Kudu
+## run in docker
 
 
+1. Install Docker: First, make sure you have Docker installed on your machine. You can download and install Docker from the official Docker website (https://www.docker.com/get-started).
 
+2. Create a Dockerfile: In your project directory, create a file named "Dockerfile" (without any file extension). Open the Dockerfile in a text editor and add the following content:
 
-Yes, you can run your .NET ASP program along with Kudu in Docker. Kudu is a deployment engine for Azure Web Apps that provides advanced management and diagnostic features.
+`nano Dockerfile`{{exec}}
 
-To run your ASP.NET program with Kudu in Docker, you can follow these steps:
-
-1. Update your Dockerfile: Modify your Dockerfile to include the Kudu installation. Here's an example of an updated Dockerfile:
-
-```Dockerfile
+```
 # Use the official .NET Core SDK image as the base image
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -24,29 +22,28 @@ RUN dotnet restore
 COPY . ./
 RUN dotnet publish -c Release -o out
 
-# Install Kudu
-RUN apt-get update && apt-get install -y unzip
-RUN curl -L https://github.com/projectkudu/kudu/releases/latest/download/Kudu.zip -o kudu.zip
-RUN unzip -q kudu.zip -d /kudu
-
 # Set the entry point for the container
-ENTRYPOINT ["/kudu/Kudu.Console", "/app/out"]
+ENTRYPOINT ["dotnet", "out/YourProjectName.dll"]
 ```
 
-2. Build the Docker image: Run the following command to build the Docker image with Kudu:
+Make sure to replace "YourProjectName" with the actual name of your ASP.NET project.
 
-```bash
+3. Build the Docker image: Open a terminal or command prompt, navigate to your project directory (where the Dockerfile is located), and run the following command to build the Docker image:
+
+```
 docker build -t your-image-name .
 ```
 
-3. Run the Docker container: Start the Docker container with the following command:
+Replace "your-image-name" with a name of your choice for the Docker image.
 
-```bash
-docker run -d -p 80:80 your-image-name
+4. Run the Docker container: Once the Docker image is built, you can run it using the following command:
+
+```
+docker run -p 80:80 your-image-name
 ```
 
-4. Access Kudu: Open a web browser and navigate to http://localhost:80/kudu to access the Kudu dashboard for your ASP.NET application running inside the Docker container.
+This command will start a Docker container in detached mode (-d) and map port 80 of the container to port 80 of the host machine (-p 80:80). Replace "your-image-name" with the name you used in the previous step.
 
-Kudu provides various features like deployment, log streaming, diagnostic tools, and more. You can explore the Kudu dashboard to manage and monitor your ASP.NET application.
+5. Access your ASP.NET application: Open a web browser and navigate to http://localhost:80 to access your ASP.NET application running inside the Docker container.
 
-Note: Make sure to replace "your-image-name" with the name you used in the previous steps.
+That's it! Your .NET ASP program should now be running in a Docker container.

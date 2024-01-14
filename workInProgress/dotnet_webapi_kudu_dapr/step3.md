@@ -1,14 +1,26 @@
-# Run with DAPR
+# RUN with Kudu
 
-Yes, you can run your .NET ASP program along with Dapr in Docker. Dapr is a portable, event-driven runtime that simplifies the development of microservices. Here's how you can run your application with Dapr in Docker:
 
-1. Install Dapr CLI: First, make sure you have the Dapr CLI installed on your machine. You can follow the installation instructions from the official Dapr documentation (https://docs.dapr.io/getting-started/install-dapr-cli/).
+`apt-get update && apt-get install -y unzip`{{exec}}
 
-2. Update your Dockerfile: Open your Dockerfile and update it to include the Dapr sidecar. Here's an example of an updated Dockerfile:
+`curl -L https://github.com/projectkudu/kudu/releases/latest/download/Kudu.zip -o kudu.zip`{{exec}}
+
+`unzip -q kudu.zip -d ./kudu`{{exec}}
+
+WIP explore kudu and docker entry point
+
+Yes, you can run your .NET ASP program along with Kudu in Docker. Kudu is a deployment engine for Azure Web Apps that provides advanced management and diagnostic features.
+
+To run your ASP.NET program with Kudu in Docker, you can follow these steps:
+
+1. Update your Dockerfile: Modify your Dockerfile to include the Kudu installation. Here's an example of an updated Dockerfile:
+
+
+`nano Dockerfile`{{exec}}
 
 ```Dockerfile
 # Use the official .NET Core SDK image as the base image
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -21,30 +33,31 @@ RUN dotnet restore
 COPY . ./
 RUN dotnet publish -c Release -o out
 
+# Install Kudu
+RUN apt-get update && apt-get install -y unzip
+RUN curl -L https://github.com/projectkudu/kudu/releases/latest/download/Kudu.zip -o kudu.zip
+RUN unzip -q kudu.zip -d /kudu
+
 # Set the entry point for the container
-ENTRYPOINT ["dapr", "run", "--app-id", "your-app-id", "--app-port", "80", "--", "dotnet", "out/YourProjectName.dll"]
+ENTRYPOINT ["/kudu/Kudu.Console", "/app/out"]
 ```
 
-Replace "your-app-id" with a unique identifier for your application.
+2. Build the Docker image: Run the following command to build the Docker image with Kudu:
 
-3. Build the Docker image: Open a terminal or command prompt, navigate to your project directory (where the Dockerfile is located), and run the following command to build the Docker image:
-
-```
-docker build -t your-image-name .
+```bash
+docker build -t your-image-name-kudu .
 ```
 
-Replace "your-image-name" with a name of your choice for the Docker image.
+3. Run the Docker container: Start the Docker container with the following command:
 
-4. Run the Docker container: Once the Docker image is built, you can run it using the following command:
-
-```
-docker run -d -p 80:80 -e DAPR_HTTP_PORT=3500 --name your-container-name your-image-name
+```bash
+docker run  -p 80:80 your-image-name-kudu
 ```
 
-Replace "your-container-name" with a name of your choice for the Docker container.
+4. Access Kudu: Open a web browser and navigate to http://localhost:80/kudu to access the Kudu dashboard for your ASP.NET application running inside the Docker container.
 
-In this command, we're mapping port 80 of the container to port 80 of the host machine (-p 80:80) and setting the Dapr HTTP port to 3500 (-e DAPR_HTTP_PORT=3500).
+{{TRAFFIC_HOST1_80}}/kudu
 
-5. Access your ASP.NET application: Open a web browser and navigate to http://localhost:80 to access your ASP.NET application running with Dapr inside the Docker container.
+Kudu provides various features like deployment, log streaming, diagnostic tools, and more. You can explore the Kudu dashboard to manage and monitor your ASP.NET application.
 
-That's it! Your .NET ASP program is now running with Dapr in a Docker container.
+Note: Make sure to replace "your-image-name" with the name you used in the previous steps.
