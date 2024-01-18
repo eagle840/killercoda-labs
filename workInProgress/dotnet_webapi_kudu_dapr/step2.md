@@ -39,7 +39,7 @@ Replace "your-image-name" with a name of your choice for the Docker image.
 4. Run the Docker container: Once the Docker image is built, you can run it using the following command:
 
 ```
-docker run -p 80:80 your-image-name
+docker run -p 80:8080 your-image-name
 ```
 
 This command will start a Docker container in detached mode (-d) and map port 80 of the container to port 80 of the host machine (-p 80:80). Replace "your-image-name" with the name you used in the previous step.

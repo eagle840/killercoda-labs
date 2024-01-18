@@ -1,3 +1,10 @@
+
+
+
+--- delete below ---
+
+kudo only runs on windows containers
+
 # RUN with Kudu
 
 
