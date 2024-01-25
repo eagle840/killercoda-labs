@@ -51,11 +51,18 @@ In the appsettings.json, update to match:
 {{TRAFFIC_HOST1_5000}}
 
 
-In the Azure Application Insight 'Overview', click on 'Seacrh'
+In the Azure Application Insight 'Overview', click on 'Seacrh', and reduce the time span to 30mins. It will take a couple of minutes for the entries to populate.
+
+Stop the application, and then start it in watch mode.
+
+`dotnet watch --urls http://0.0.0.0:5000`{{exec}}
+
 
 ## add a log 
 
 In the /pages/Privacy.cshtml.cs update the 'OnGet'
+
+WIP: i think this just logs to stdout/err?
 
 ```
     public void OnGet()

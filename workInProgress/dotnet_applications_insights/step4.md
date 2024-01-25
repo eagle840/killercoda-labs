@@ -1,18 +1,76 @@
-# Tie together web app and api, and trace in AI
+# Using Node.JS
+
+https://github.com/microsoft/ApplicationInsights-node.js
+
+`cd ~`{{exec}}
+
+`asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`{{exec}}
+
+`asdf list-all nodejs`{{exec}}
+
+`asdf install nodejs 19.9.0`{{exec}}
+
+`asdf global nodejs 19.9.0`{{exec}}
+
+`mkdir test`{{exec}}
+
+`cd test`{{exec}}
+
+`ls`{{exec}}
+
+`npm -V`{{exec}}
+
+`npm init -y`{{exec}}
+
+`ls`{{exec}}
+
+`npm install express`{{exec}}
 
 
-## restsharp
+`npm install applicationinsights@beta`{{exec}}
 
 
-https://www.nuget.org/packages/RestSharp/
-
-https://restsharp.dev/intro.html#basic-usage
+`nano index.js`{{exec}}
 
 
-`cd ~/MyWebApp/`{{exec}}
+```
+let appInsights = require("applicationinsights");
+appInsights.setup("ENTER-CONNECTION-STRING").start();
 
-`dotnet add package RestSharp --version 110.2.0`{{exec}}
+
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+```
+
+`node index.js`{{exec}}
+
+WIP ApplicationInsights:Invalid metric name: xxx
+
+{{TRAFFIC_HOST1_3000}}
 
 
+
+
+in a new terminal
+
+`curl http://localhost:3000`{{exec}}
+
+## add roleName
+
+```
+const appInsights = require("applicationinsights");
+appInsights.setup("<YOUR_CONNECTION_STRING>");
+appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = "MyRoleName";
+appInsights.start();
+```
 
 
