@@ -4,7 +4,9 @@ SEE BELOW FOR NODE.JS
 
 https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-8.0&tabs=visual-studio-code
 
-`dotnet new web -o TodoApi`{{exec}}
+WIP old remove this `dotnet new web -o TodoApi`{{exec}}
+
+`dotnet new webapi -o TodoApi`{{exec}}
 
 `cd TodoApi`{{exec}}
 
@@ -20,7 +22,7 @@ add the following to line 3 in Program.cs
 
 ```
 builder.Services.AddApplicationInsightsTelemetry();
-``
+```
 
 In the appsettings.json, update to match:
 
@@ -40,13 +42,20 @@ In the appsettings.json, update to match:
 }
 ```
 
-`dotnet run --urls http://0.0.0.0:5000`{{exec}}
+`dotnet run --urls http://0.0.0.0:5001`{{exec}}
 
-{{TRAFFIC_HOST1_5000}}
+{{TRAFFIC_HOST1_5001}}/swagger
+
+in a new tab
+
+curl localhost:5001
 
 ctrl-c
 
-## using swashbuckle
+
+
+
+## using swashbuckle  - remove the swagger section
 
 
 https://learn.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-8.0&tabs=netcore-cli
