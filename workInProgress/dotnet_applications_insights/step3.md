@@ -2,7 +2,9 @@
 
 SEE BELOW FOR NODE.JS
 
-https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-8.0&tabs=visual-studio-code
+
+**WIP** do this: https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel?view=aspnetcore-8.0
+
 
 `cd ~`{{exec}}
 
