@@ -12,9 +12,9 @@ https://github.com/microsoft/ApplicationInsights-node.js
 
 `asdf global nodejs 19.9.0`{{exec}}
 
-`mkdir test`{{exec}}
+`mkdir jsapp`{{exec}}
 
-`cd test`{{exec}}
+`cd jsapp`{{exec}}
 
 `ls`{{exec}}
 
