@@ -2,25 +2,83 @@
 # Initial Setup
 
 
+# WIP with asdf
+
+https://github.com/hensou/asdf-dotnet
+
+`sudo apt update`{{exec}}
+
+`apt install -y curl git sqlite3 libpq-dev libreadline-dev`{{exec}}
+
+### install asdf
+
+We'll be using asdf to install dotnet, however complete instructions for download and installing for other systems can be found on Micosoft [here](https://dotnet.microsoft.com/en-us/download)
+
+`git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
+
+`. "$HOME/.asdf/asdf.sh"`{{exec}} WIP pipe to .brashrc?
+
+`echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc`{{exec}}
+
+`. "$HOME/.asdf/completions/asdf.bash"`{{exec}}
+
+`echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc`{{exec}}
+
+`asdf current`{{exec}}
+
+`asdf plugin-add python`{{exec}}
+
+to install a specific version:
+
+`asdf install python 3.11.5`{{copy}}
+
+#### Set a version globally (on your ~/.tool-versions file)
+`asdf global python 3.11.5`{{exec}}
+
+
+
+
+
+## Generate the server code
+
+
+
 goto https://editor-next.swagger.io/
 
-Edit > 'Load OpenAPI 2.0 Petstore Fixture'
+File > Load Sampl > 'Load OpenAPI 2.0 Petstore'
 
 Generate Server > 'python=flask'
 
 Save the zip file on your computer
 
-Open the edito tab, and file>download and select the zip file to downlaod it
+## Load it into he session
+
+Open the **Editor** tab, and file>upload and select the zip file to download it
 
 unzip it
 
+`ls`{{exec}}
+
+`unzip unzip python-flask-server-generated.zip`{{exec}}
+
 cd into the folder,
 
-cat README
+`cd python-flask-server`{{exec}}
+
+
+
+## Review and run 
+
+`cat README.md`{{exec}}
 
 note the swagger ui: v2/ui/
 
+
+## Run on Docker
+
 ### building the image
+
+WIP see https://github.com/OpenAPITools/openapi-generator/issues/17063#issuecomment-1902279245
 
 `docker build -t swagger_server .`{{exec}}
 
