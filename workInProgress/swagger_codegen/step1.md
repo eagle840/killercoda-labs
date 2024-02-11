@@ -30,10 +30,11 @@ We'll be using asdf to install dotnet, however complete instructions for downloa
 
 to install a specific version:
 
-`asdf install python 3.11.5`{{copy}}
+`asdf install python 3.11.5`{{exec}}
 
-#### Set a version globally (on your ~/.tool-versions file)
 `asdf global python 3.11.5`{{exec}}
+
+
 
 
 
@@ -46,6 +47,8 @@ to install a specific version:
 goto https://editor-next.swagger.io/
 
 File > Load Sampl > 'Load OpenAPI 2.0 Petstore'
+
+On Lines 35 and 36 note the summary and description - alter if you wish.
 
 Generate Server > 'python=flask'
 
