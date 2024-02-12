@@ -88,6 +88,15 @@ Now we need to set which version of ruby to use, and the [context](https://asdf-
 
 `node -v`{{exec}}
 
+## Install multi languages
+
+you can use a '.tool-versions' file and then run 'asdf install' to install those version
+
+```
+python 3.7
+dotnet 7
+```
+
 ## install postgre  WIP Remove?
 
 asdf not working
