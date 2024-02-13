@@ -36,6 +36,8 @@ Lets install the mysql client:
 
 `mysql -h 0.0.0.0  -P3306  -uroot -p1234 --ssl-mode=disabled`{{execute}}
 
+`quit`{{execute}}
+
 
 ## Use an example db
 
@@ -50,9 +52,9 @@ entity relationship   https://dev.mysql.com/doc/sakila/en/sakila-structure.html
 `mysql -h 0.0.0.0  -P3306  -uroot -p1234 --ssl-mode=disabled`{{execute}}
 
 
-`mysql> SOURCE ./sakila-db/sakila-schema.sql;`{{exec}}
+`SOURCE ./sakila-db/sakila-schema.sql;`{{exec}}
 
-`mysql> SOURCE ./sakila-db/sakila-data.sql;`{{exec}}
+`SOURCE ./sakila-db/sakila-data.sql;`{{exec}}
 
 
 
@@ -66,70 +68,3 @@ entity relationship   https://dev.mysql.com/doc/sakila/en/sakila-structure.html
 
 
 review https://dev.mysql.com/doc/sakila/en/sakila-usage.html  from more commands
-
-
----  do I need below? ---
-
-
-
-
-# create a db
-
-now we're connected lets create a new database.
-
-`show databases;`{{execute}}
-
-`create database test1;`{{execute}}
-
-`show databases;`{{execute}}
-
-and exit mysql/container
-
-`exit;`{{execute}} 
-
-(need some help on sql? try: https://www.w3schools.com/sql/default.asp or https://learnxinyminutes.com/docs/sql/)   
-
-lets stop and remove the container
-
-`docker stop some-mysql`{{execute}}
-
-`docker rm some-mysql `{{execute}}
-
-and start it again so  the database is preserved on a local volume  
-`mkdir data`{{execute}}
-  
-`docker run --name some-mysql -v /root/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1234 -d mysql:8.0.2`{{execute}}
-
-wait 30 seconds and connect to the container:
-
-`docker exec -it  some-mysql mysql -uroot -p1234`{{execute}}  
-
-You should see the prompt: 'mysql>'
-
-`create database test1;`{{execute}}
-
-## Create  a couple of simple tables.
-
-`use test1;`{{execute}}
-
-`CREATE TABLE Persons (PersonID int, LastName varchar(255), FirstName varchar(255), Address varchar(255), City varchar(255) );`{{execute}}
- 
-
-`SELECT * FROM Persons;`{{execute}}
-
-`INSERT INTO Persons VALUES ('4006', 'Smith', 'John', '123 any street', 'anywhere');`{{execute}}
-
-`SELECT * FROM Persons;`{{execute}}
-
-and now exit and deletel the container:
-
-`exit;`{{execute}}
-
-`docker stop some-mysql`{{execute}}
-
-`docker rm some-mysql `{{execute}}
-
-If you take a look in the data folder you'll see the files created my mysql
-
-`ls data`{{execute}}
-

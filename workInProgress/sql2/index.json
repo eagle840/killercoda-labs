@@ -1,6 +1,6 @@
 {
   "title": "Advanced to SQL",
-  "description": "Using transactions, indexing and stored procedures(v0.0.2)",
+  "description": "Using transactions, indexing and stored procedures(v0.0.3)",
   "difficulty": "Beginner",
   "time": "60 minutes",
   "details": {

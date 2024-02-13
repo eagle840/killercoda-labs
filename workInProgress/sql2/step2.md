@@ -5,16 +5,19 @@ Here is an example of a transaction using the sakila database in MySQL:
 `START TRANSACTION;`{{exec}}
 
 -- Step 1: Perform some operations (e.g., insert, update, delete)
+
 `INSERT INTO film (title, release_year) VALUES ('New Film', 2022);`{{exec}}
 
 `UPDATE actor SET first_name = 'John' WHERE actor_id = 1;`{{exec}}
 
 -- Step 2: Perform some additional operations based on previous changes
+
 `DELETE FROM film WHERE release_year < 2000;`{{exec}}
 
 `INSERT INTO actor (first_name, last_name) VALUES ('Jane', 'Doe');`{{exec}}
 
--- Commit the transaction
+-- Step 3: Commit the transaction
+
 `COMMIT;`{{exec}}
 
 
