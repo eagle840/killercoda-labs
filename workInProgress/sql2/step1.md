@@ -32,7 +32,7 @@ Lets install the mysql client:
 
 `apt update`{{execute}}
 
-`apt install mysql-client`{{execute}}
+`apt install mysql-client -y`{{execute}}
 
 `mysql -h 0.0.0.0  -P3306  -uroot -p1234 --ssl-mode=disabled`{{execute}}
 
@@ -49,19 +49,20 @@ entity relationship   https://dev.mysql.com/doc/sakila/en/sakila-structure.html
 
 `mysql -h 0.0.0.0  -P3306  -uroot -p1234 --ssl-mode=disabled`{{execute}}
 
-```
-mysql> SOURCE C:/temp/sakila-db/sakila-schema.sql;
-mysql> SOURCE C:/temp/sakila-db/sakila-data.sql;
-```
+
+`mysql> SOURCE ./sakila-db/sakila-schema.sql;`{{exec}}
+
+`mysql> SOURCE ./sakila-db/sakila-data.sql;`{{exec}}
 
 
-mysql> USE sakila;
 
-mysql> SHOW FULL TABLES;
+`USE sakila;`{{exec}}
 
-mysql> SELECT COUNT(*) FROM film;
+`SHOW FULL TABLES;`{{exec}}
 
-mysql> SELECT COUNT(*) FROM film_text;
+`SELECT COUNT(*) FROM film;`{{exec}}
+
+`SELECT COUNT(*) FROM film_text;`{{exec}}
 
 
 review https://dev.mysql.com/doc/sakila/en/sakila-usage.html  from more commands

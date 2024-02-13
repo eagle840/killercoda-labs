@@ -1,4 +1,31 @@
-# Storec Procedure
+# Stored Procedure
+
+
+```sql
+SHOW PROCEDURE STATUS;
+```
+
+This query will return a result set with information about all the stored procedures in the current database. The result set will include columns like `Db`, `Name`, `Type`, `Definer`, `Modified`, and `Created`, which provide details about each stored procedure.
+
+Alternatively, you can use the `INFORMATION_SCHEMA` database to retrieve information about stored procedures. The following query can be used:
+
+```sql
+SELECT ROUTINE_NAME
+FROM INFORMATION_SCHEMA.ROUTINES
+WHERE ROUTINE_TYPE = 'PROCEDURE' AND ROUTINE_SCHEMA = 'your_database_name';
+```
+
+Replace `'your_database_name'` with the name of your database. This query will return the names of all stored procedures in the specified database.
+
+
+
+```sql
+SHOW CREATE PROCEDURE procedure_name;
+```
+
+
+
+
 
 Sure! Here's an example of a stored procedure in the sakila database:
 
