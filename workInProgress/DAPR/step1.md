@@ -9,6 +9,8 @@ github: https://github.com/killercoda
 
 https://docs.dapr.io/getting-started/
 
+see MS youtube on DAPR [link](https://www.youtube.com/watch?v=nK8Ss2UMAxc)
+
 ## Install the Dapr CLI
 
 `wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash`{{exec}}
@@ -21,38 +23,26 @@ https://docs.dapr.io/getting-started/
 
 `dapr init`{{exec}}
 
+When you ran dapr init during Dapr install, the following YAML files were generated in the .dapr/components directory:
+
+- dapr.yaml Multi-App Run template file
+- pubsub.yaml component file
+
 `dapr --version`{{exec}}
 
 `docker ps`{{exec}}
 
 `ls $HOME/.dapr`{{exec}}
 
+## Hello World
 
-## Use the Dapr API
+https://github.com/dapr/quickstarts/tree/master/tutorials/hello-world
 
-Run a Dapr sidecar and try out the state API
+`apt install npm -y`{{exec}}
 
+`git clone https://github.com/dapr/quickstarts.git`{{exec}}
 
-
-Launch a Dapr sidecar that will listen on port 3500 for a blank application named myapp:
-
-
-`dapr run --app-id myapp --dapr-http-port 3500`{{exec}}
-
-`curl -X POST -H "Content-Type: application/json" -d '[{ "key": "name", "value": "Bruce Wayne"}]' http://localhost:3500/v1.0/state/statestore`{{exec}}
-
-`curl http://localhost:3500/v1.0/state/statestore/name`{{exec}}
-
-`docker exec -it dapr_redis redis-cli`{{exec}}
-
-
-`keys *`{{exec}}
-
-`exit`{{exec}}
-
-`curl -v -X DELETE -H "Content-Type: application/json" http://localhost:3500/v1.0/state/statestore/name`{{exec}}
-
-
+`cd quickstarts/tutorials/hello-world/node`{{exec}}
 
 
 ----- deletee below? -----
