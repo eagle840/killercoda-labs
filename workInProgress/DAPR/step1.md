@@ -36,13 +36,66 @@ When you ran dapr init during Dapr install, the following YAML files were genera
 
 ## Hello World
 
-https://github.com/dapr/quickstarts/tree/master/tutorials/hello-world
+review: https://github.com/dapr/quickstarts/tree/master/tutorials/hello-world
 
 `apt install npm -y`{{exec}}
 
 `git clone https://github.com/dapr/quickstarts.git`{{exec}}
 
 `cd quickstarts/tutorials/hello-world/node`{{exec}}
+
+WIP in app.js line 23 replace with `const port = '3000';`
+
+`dapr run --app-id nodeapp --app-port 3000 --dapr-http-port 3500 node app.js`{{exec}}
+
+review `cat ~/.dapr/components/statestore.yaml`{{exec}}
+
+
+state the dashboard `dapr dashboard  -a 0.0.0.0 -p 8080`{{exec}}
+
+{{TRAFFIC_HOST1_8080}}
+
+In new terminal
+
+`cd quickstarts/tutorials/hello-world/node`{{exec}}
+
+`curl -XPOST -d @sample.json -H Content-Type:application/json http://localhost:3500/v1.0/invoke/nodeapp/method/neworder`{{exec}}
+
+Install VSC Rest Client  by humao
+
+and send
+
+```
+POST http://localhost:3500/v1.0/invoke/nodeapp/method/neworder HTTP/1.1
+Content-Type: application/json
+
+{
+  "data": {
+    "orderId": "42"
+  }
+}
+```
+
+## Step 5
+
+
+`curl http://localhost:3500/v1.0/invoke/nodeapp/method/order`{{exec}}
+
+## step 6 python app
+
+`cd ~/quickstarts/tutorials/hello-world/python`
+
+`pip3 install requests`{{exec}}
+
+
+`dapr run --app-id pythonapp python3 app.py`{{exec}}
+
+
+## step 7 clean up
+
+`dapr stop --app-id nodeapp`{{exec}}
+
+`dapr stop --app-id pythonapp`{{exec}}
 
 
 ----- deletee below? -----
