@@ -7,6 +7,16 @@ github: https://github.com/killercoda
 
 `apt install tree -y`{{exec}}
 
+```
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.4
+
+# For Ubuntu or other linux distros
+echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
+echo '. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
+```{{exec}}
+
+`bash`{{exec}}
+
 # Run First
 
 https://docs.dapr.io/getting-started/
@@ -54,8 +64,15 @@ We'll be using the node tutorial.
 review: https://github.com/dapr/quickstarts/tree/master/tutorials/hello-world
 
 
+`asdf plugin-add nodejs`{{exec}}
 
-`apt install npm -y`{{exec}}  WIP install node 14, not 10
+`asdf install nodejs 14.17.0`{{exec}}
+
+`asdf global nodejs 14.17.0`{{exec}}
+
+`node -v; npm -v`{{exec}}
+
+`node --version`{{exec}}
 
 `git clone https://github.com/dapr/quickstarts.git`{{exec}}
 

@@ -1,21 +1,15 @@
 # python
 
 
-```
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.4
-
-# For Ubuntu or other linux distros
-echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
-echo '. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
-```{{exec}}
-
-`bash`{{exec}}
 
 `asdf plugin-add python`{{exec}}
 
 
 `asdf install python 3.7.4`{{exec}}
 
+`asdf global python 3.7.4`{{exec}}
+
+`pip install --upgrade pip`{{exec}}
 
 
 ## Quickstart  pub/sub
@@ -30,8 +24,15 @@ https://docs.dapr.io/getting-started/quickstarts/pubsub-quickstart/
 
 `cd pub_sub/python/sdk`{{exec}}
 
-`cat dapr.yml`{{exec}}
+`cat dapr.yaml`{{exec}}
 
+
+`pip3 install -r checkout/requirements.txt && pip3 install -r order-processor/requirements.txt && pip3 install -r order-processor-fastapi/requirements.txt`{{exec}}
+
+WIP `pip install uvicorn`{{exec}}
+
+
+WIP remove the following
 ```
 cd ./checkout
 pip3 install -r requirements.txt
