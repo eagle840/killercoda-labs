@@ -1,0 +1,3 @@
+https://www.youtube.com/watch?v=fxZhU8b_cjk
+- Zero to Hero with Dapr | DaprCon
+- https://github.com/cecilphillip/ZeroToHeroDaprCon

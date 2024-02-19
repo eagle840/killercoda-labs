@@ -12,6 +12,7 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.4
 
 # For Ubuntu or other linux distros
 echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
+export ASDF_DOWNLOAD_PATH="$HOME/.asdf/downloads"
 echo '. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
 ```{{exec}}
 
@@ -56,6 +57,8 @@ When you ran dapr init during Dapr install, the following YAML files were genera
 and compare them with the docker ps output
 
 `docker ps`{{exec}}
+
+checkout the set available set of components @ https://docs.dapr.io/reference/components-reference/
 
 ## Hello World
 
