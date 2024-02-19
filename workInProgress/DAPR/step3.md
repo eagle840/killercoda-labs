@@ -2,4 +2,6 @@
 
 https://docs.dapr.io/concepts/observability-concept/
 
-{{TRAFFIC_HOST1_8080}}
+Connect to zipkin
+
+{{TRAFFIC_HOST1_9411}}

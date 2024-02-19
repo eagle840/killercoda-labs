@@ -17,12 +17,7 @@
 https://docs.dapr.io/getting-started/quickstarts/pubsub-quickstart/
 
 
-
-`git clone https://github.com/dapr/quickstarts.git`{{exec}}
-
-`cd quickstarts`{{exec}}
-
-`cd pub_sub/python/sdk`{{exec}}
+`cd ~/quickstarts/pub_sub/python/sdk`{{exec}}
 
 `cat dapr.yaml`{{exec}}
 
@@ -31,20 +26,6 @@ https://docs.dapr.io/getting-started/quickstarts/pubsub-quickstart/
 
 WIP `pip install uvicorn`{{exec}}
 
-
-WIP remove the following
-```
-cd ./checkout
-pip3 install -r requirements.txt
-cd ..
-cd ./order-processor
-pip3 install -r requirements.txt
-cd ..
-cd ./order-processor-fastapi
-pip3 install -r requirements.txt
-cd ..
-
-```
 
 Running the Multi-App Run template file with dapr run -f . starts all applications in your project.
 
