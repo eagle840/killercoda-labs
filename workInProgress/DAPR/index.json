@@ -1,6 +1,6 @@
 {
   "title": "DAPR",
-  "description": "DPAR Dapr is an open-source runtime that simplifies the development of microservices by providing a set of building blocks for common distributed system patterns. (v0.0.7)",
+  "description": "DPAR Dapr is an open-source runtime that simplifies the development of microservices by providing a set of building blocks for common distributed system patterns. (v0.0.8)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -36,6 +36,10 @@
       {
         "title": "Step 3",
         "text": "step3.md"
+      },
+      {
+        "title": "Step 4",
+        "text": "step4.md"
       }
     ],
     "intro": {
