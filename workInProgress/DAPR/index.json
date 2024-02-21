@@ -1,6 +1,6 @@
 {
   "title": "DAPR",
-  "description": "DPAR Dapr is an open-source runtime that simplifies the development of microservices by providing a set of building blocks for common distributed system patterns. (v0.0.8)",
+  "description": "DPAR Dapr is an open-source runtime that simplifies the development of microservices by providing a set of building blocks for common distributed system patterns. (v0.1.0)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -53,6 +53,6 @@
     "uilayout": "terminal"
   },
   "backend": {
-    "imageid": "ubuntu"
+    "imageid": "kubernetes-kubeadm-1node"
   }
 }

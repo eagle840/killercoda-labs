@@ -43,12 +43,15 @@ see MS youtube on DAPR [link](https://www.youtube.com/watch?v=nK8Ss2UMAxc)
 
 When you ran dapr init during Dapr install, the following YAML files were generated in the .dapr/components directory:
 
-- dapr.yaml Multi-App Run template file
+- dapr.yaml Multi-App Run template file, and it is referenced by default on dapr run calls unless otherwise overridden
+- statestore.yaml component file
 - pubsub.yaml component file
 
 `tree -L 3 .dapr`{{exec}}
 
 ### look at the stalled components
+
+`cat .dapr/config.yaml`{{exec}}
 
 `cat .dapr/components/statestore.yaml`{{exec}}
 
