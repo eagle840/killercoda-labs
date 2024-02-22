@@ -52,9 +52,11 @@ WIP Can I deploy on k8s and run the rest of the quickstart?
 
 `kubectl apply -f ./deploy/zipkin.yaml`{{exec}}
 
-`kubectl port-forward svc/zipkin 19411:9411`{{exec}}
 
 `kubectl port-forward svc/zipkin 19411:9411 --address 0.0.0.0`{{exec}}
+
+
+{{TRAFFIC_HOST1_19411}}
 
 ### Instrument the application for tracing and deploy it
 
@@ -72,7 +74,9 @@ WIP Can I deploy on k8s and run the rest of the quickstart?
 
 `kubectl get pods`{{exec}}
 
-`kubectl port-forward service/calculator-front-end 8000:80`{{exec}}
+`kubectl port-forward service/calculator-front-end 8000:80 --address 0.0.0.0`{{exec}}
+
+{{TRAFFIC_HOST1_8000}}
 
 ### Discover and troubleshoot a performance issue using Zipkin
 
@@ -91,6 +95,8 @@ Now go to the calculator UI and perform several calculations. Make sure to use a
 Now go to the Zipkin dashboard by running. (Note: if you are running Dapr locally, be sure to use a different local port for Zipkin):
 
 `kubectl port-forward svc/zipkin 19411:9411 --address 0.0.0.0`{{exec}}
+
+{{TRAFFIC_HOST1_19411}}
 
 ### Zipkin API
 
