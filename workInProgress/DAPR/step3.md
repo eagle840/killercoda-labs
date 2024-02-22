@@ -28,15 +28,11 @@ WIP Can I deploy on k8s and run the rest of the quickstart?
 
 `cd ~/quickstarts/tutorials/observability`{{exec}}
 
-`kubectl get pods`{{exec}}
 
 `kubectl get pods -A`{{exec}}
 
-`kubectl apply -f ./deploy/appconfig.yaml`{{exec}}
 
-`pwd`{{exec}}
 
-`cat deploy/appconfig.yaml`{{exec}}
 
 `helm repo add dapr https://dapr.github.io/helm-charts/`{{exec}}
 
@@ -48,6 +44,8 @@ WIP Can I deploy on k8s and run the rest of the quickstart?
 
 `kubectl get pods --namespace dapr-system`{{exec}}
 
+`cat deploy/appconfig.yaml`{{exec}}
+
 `kubectl apply -f ./deploy/appconfig.yaml`{{exec}}
 
 `dapr configurations --kubernetes`{{exec}}
@@ -56,7 +54,52 @@ WIP Can I deploy on k8s and run the rest of the quickstart?
 
 `kubectl port-forward svc/zipkin 19411:9411`{{exec}}
 
-`kubectl port-forward svc/zipkin 0.0.0.0:19411:9411`{{exec}}
+`kubectl port-forward svc/zipkin 19411:9411 --address 0.0.0.0`{{exec}}
+
+### Instrument the application for tracing and deploy it
+
+`kubectl apply -f ../distributed-calculator/deploy`{{exec}}
+
+`kubectl rollout status deploy/addapp`{{exec}}
+
+`kubectl rollout status deploy/subtractapp`{{exec}}
+
+`kubectl rollout status deploy/divideapp`{{exec}}
+
+`kubectl rollout status deploy/multiplyapp`{{exec}}
+
+`kubectl rollout status deploy/calculator-front-end`{{exec}}
+
+`kubectl get pods`{{exec}}
+
+`kubectl port-forward service/calculator-front-end 8000:80`{{exec}}
+
+### Discover and troubleshoot a performance issue using Zipkin
 
 
+`kubectl apply -f ./deploy/python-multiplier.yaml`{{exec}}
 
+
+`kubectl rollout status deploy/multiplyapp`{{exec}}
+
+Now go to the calculator UI and perform several calculations. Make sure to use all operands. For example, do the following: 9 + 3 * 2 / 4 - 1 =
+
+
+`curl -s http://localhost:8000/calculate/add -H Content-Type:application/json --data @operands.json`{{exec}}
+
+
+Now go to the Zipkin dashboard by running. (Note: if you are running Dapr locally, be sure to use a different local port for Zipkin):
+
+`kubectl port-forward svc/zipkin 19411:9411 --address 0.0.0.0`{{exec}}
+
+### Zipkin API
+
+As before, you can also access traces through the Zipkin API. The following will give you the same traces as the UI search above:
+
+`curl -s http://localhost:19411/api/v2/traces?minDuration=250000 -H accept:application/json -o output.json && python3 -m json.tool output.json`{{exec}}
+
+### Clean up
+
+`kubectl delete -f ../distributed-calculator/deploy`{{exec}}
+
+`kubectl delete -f deploy/zipkin.yaml`{{exec}}
