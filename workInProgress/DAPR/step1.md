@@ -43,9 +43,9 @@ see MS youtube on DAPR [link](https://www.youtube.com/watch?v=nK8Ss2UMAxc)
 
 When you ran dapr init during Dapr install, the following YAML files were generated in the .dapr/components directory:
 
-- dapr.yaml Multi-App Run template file, and it is referenced by default on dapr run calls unless otherwise overridden
-- statestore.yaml component file
-- pubsub.yaml component file
+- ***dapr.yaml*** Multi-App Run template file, and it is referenced by default on dapr run calls unless otherwise overridden
+- ***statestore.yaml*** component file
+- ***pubsub.yaml*** component file
 
 `tree -L 3 .dapr`{{exec}}
 
@@ -70,6 +70,7 @@ We'll be using the node tutorial.
 review: https://github.com/dapr/quickstarts/tree/master/tutorials/hello-world
 
 
+### Install node
 `asdf plugin-add nodejs`{{exec}}
 
 `asdf install nodejs 14.17.0`{{exec}}
@@ -78,7 +79,7 @@ review: https://github.com/dapr/quickstarts/tree/master/tutorials/hello-world
 
 `node -v; npm -v`{{exec}}
 
-`node --version`{{exec}}
+### Install and run the node app with dapr
 
 `git clone https://github.com/dapr/quickstarts.git`{{exec}}
 
@@ -92,7 +93,7 @@ WIP in app.js line 23 replace with `const port = '3000';`
 
 Note the the green lines are dapr logs, and blue are the application logs.
 
-## Start the Dapr Dashboard
+### Start the Dapr Dashboard
 
 Start a new terminal tab,
 
@@ -100,15 +101,16 @@ and start the dashboard `dapr dashboard  -a 0.0.0.0 -p 8080`{{exec}}
 
 {{TRAFFIC_HOST1_8080}}
 
+### Use the app
+
 In new terminal
 
 `cd quickstarts/tutorials/hello-world/node`{{exec}}
 
 `curl -XPOST -d @sample.json -H Content-Type:application/json http://localhost:3500/v1.0/invoke/nodeapp/method/neworder`{{exec}}
 
-Install VSC Rest Client  by humao
+You can install VSC 'Rest Client'  (by humao) into vsc and send a post request
 
-and send
 
 ```
 POST http://localhost:3500/v1.0/invoke/nodeapp/method/neworder HTTP/1.1
@@ -121,22 +123,27 @@ Content-Type: application/json
 }
 ```
 
-## Step 5
+### Confirm successful persistence
 
+Lets use the dapr cli
+
+`dapr invoke --app-id nodeapp --method order --verb GET`{{exec}}
+
+OR
 
 `curl http://localhost:3500/v1.0/invoke/nodeapp/method/order`{{exec}}
 
-## step 6 python app
+OR 
 
-`cd ~/quickstarts/tutorials/hello-world/python`
+use Rest Client
 
-`pip3 install requests`{{exec}}
+```
+GET http://localhost:3500/v1.0/invoke/nodeapp/method/order
+```
 
 
-`dapr run --app-id pythonapp python3 app.py`{{exec}}
 
-
-## step 7 clean up
+##  clean up
 
 `dapr stop --app-id nodeapp`{{exec}}
 

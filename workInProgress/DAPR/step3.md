@@ -1,8 +1,12 @@
 # Step 3 Using zipkin
 
+Stop the prior apps/dapr and return to  root
+
+`cd ~`{{exec}}
+
 https://docs.dapr.io/concepts/observability-concept/
 
-Connect to zipkin
+Connect to zipkin, which was started at dapr init.
 
 {{TRAFFIC_HOST1_9411}}
 
