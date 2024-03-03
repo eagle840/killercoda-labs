@@ -109,3 +109,11 @@ As before, you can also access traces through the Zipkin API. The following will
 `kubectl delete -f ../distributed-calculator/deploy`{{exec}}
 
 `kubectl delete -f deploy/zipkin.yaml`{{exec}}
+
+----
+
+
+dotnet and zipkin
+
+
+https://www.youtube.com/watch?v=Cb0tyU9uSLQ
