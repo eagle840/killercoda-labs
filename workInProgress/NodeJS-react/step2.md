@@ -7,6 +7,6 @@ https://create-react-app.dev/docs/getting-started/
 
 `cd my-app`{{exec}}
 
-in ./src/.env  add  'HOST=0.0.0.0'
+in ./src/.env  add  'HOST=0.0.0.0'  WIP is this needed?
 
 `npm start`{{exec}}

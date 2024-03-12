@@ -30,11 +30,13 @@ To install in your own machine, head over to nodejs.org
 
 `asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`{{exec}}
 
-`asdf install nodejs 16.20.1`{{exec}}
+`asdf list all nodejs`{{exec}}
+
+`asdf install nodejs 20.11.1`{{exec}}
 
 `asdf current`{{exec}}
 
-`asdf global nodejs 16.20.1`{{exec}}
+`asdf global nodejs 20.11.1`{{exec}}
 
 `asdf current`{{exec}}
 
@@ -42,8 +44,9 @@ To install in your own machine, head over to nodejs.org
 
 ## Install yarn
 
-`asdf plugin-add yarn`{{exec}}
+https://yarnpkg.com/
 
+`asdf plugin-add yarn`{{exec}}
 
 `asdf install yarn 1.22.10`{{exec}}
 
@@ -51,9 +54,5 @@ To install in your own machine, head over to nodejs.org
 
 `asdf current`{{exec}}
 
-`yarn -v`
-
-WIP why is it showing 3.2.2 and not 1.22.10
-
---- delete below ---
+`yarn -v`{{exec}}
 
