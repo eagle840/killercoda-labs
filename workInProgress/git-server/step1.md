@@ -1,9 +1,19 @@
 
 # Initial Setup
 
+https://docs.gitea.com/installation/install-with-docker
 
+`cat docker-compose.yml`{{exec}}
+
+`docker-compose up`{{exec}}
+
+connect to 3000
+
+
+------ delet below??? ----- 
 create a docker container  w/ host network for server
 use docker-compose so you get network and hostnames
+
 
 
 `pwd`{{exec}}

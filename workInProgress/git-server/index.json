@@ -1,13 +1,13 @@
 {
   "title": "Git Server",
-  "description": "Setup a basic Git Server (v0.0.1)",
+  "description": "Setup a basic Git Server (v0.0.2)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
     "assets":{
       "host01": [
         {
-          "file": "send.py",
+          "file": "docker-compose.yml",
           "target": "~/"
         },
         {
