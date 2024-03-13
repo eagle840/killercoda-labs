@@ -10,3 +10,9 @@ https://create-react-app.dev/docs/getting-started/
 in ./src/.env  add  'HOST=0.0.0.0'  WIP is this needed?
 
 `npm start`{{exec}}
+
+
+## Tic Tac Toe
+
+https://react.dev/learn/tutorial-tic-tac-toe
+
