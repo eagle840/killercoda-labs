@@ -61,6 +61,9 @@ https://github.com/pantsel/konga#production-docker-image
 
 `docker pull pantsel/konga`{{exec}}
 
+WIP run without deamon mode  `docker run  -p 1337:1337 --network kong-net --name konga -e "NODE_ENV=production" -e "TOKEN_SECRET=somerandomstring" pantsel/konga`{{exec}}
+
+
 `docker run -d -p 1337:1337 --network kong-net --name konga -e "NODE_ENV=production" -e "TOKEN_SECRET=somerandomstring" pantsel/konga`{{exec}}
 
 {{TRAFFIC_HOST1_1337}}
@@ -71,7 +74,21 @@ login with
 
 `user@example`  pw: 'abcd1234'
 
-in the url 'https://be9fb85c-47ed-41b6-93c5-e022dbcffd55-10-244-5-2-8001.spch.r.killercoda.com'
+**add a connection**
+
+name: kong-gw
+Kong admin URL, change the protocol to just http {{TRAFFIC_HOST1_8001}}
+
+In the BASIC AUTH tab
+username & pw (taken from the docker cmd above): kong  & kongpass
+
+You can reconfirm connection by clicking on 'ACTIVATE' in the Connecions page
+
+WIP REMOVE in the url 'https://be9fb85c-47ed-41b6-93c5-e022dbcffd55-10-244-5-2-8001.spch.r.killercoda.com'
+
+WIP Notes:
+going to the url, I get a json responce, but the konga porta says there is something wrong
+
 
 
 
