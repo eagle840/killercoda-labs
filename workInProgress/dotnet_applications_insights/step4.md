@@ -1,5 +1,7 @@
 # Using Node.JS
 
+See MS docs on App Insights JS sdk https://learn.microsoft.com/en-us/azure/azure-monitor/app/javascript-sdk?tabs=javascriptwebsdkloaderscript
+
 https://github.com/microsoft/ApplicationInsights-node.js
 
 `cd ~`{{exec}}

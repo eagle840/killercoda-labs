@@ -70,7 +70,12 @@ WIP: i think this just logs to stdout/err?
         _logger.LogInformation("hello log");
     }
 ```
+## warnng and error
 
+```
+        _logger.LogWarning("An example of a Warning trace..");
+        _logger.LogError("An example of an Error level message");
+```
 
 ## Add a Throw Exception (remove if statement, or set deveplopment)
 
