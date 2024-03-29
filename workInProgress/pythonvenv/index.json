@@ -1,6 +1,6 @@
 {
   "title": "work-in-progress Python, and venv",
-  "description": "using venv and other tools WIP (v0.4.9)",
+  "description": "using venv and other tools WIP (v0.4.10)",
   "difficulty": "Intermediate",
   "time": "1",
   "details": {
@@ -50,6 +50,6 @@
     "uilayout": "terminal"
   },
   "backend": {
-    "imageid": "ubuntu:2004"
+    "imageid": "ubuntu"
   }
 }

@@ -1,3 +1,7 @@
+WIP: break this lab into two, 1:package management, and 2:devopment
+
+
+One of the eassiest ways to install python is with asdf, (see killacoda lab WIP:LINK), but in this lab we'll use linux alternatives.
 
 
 # Install Python
