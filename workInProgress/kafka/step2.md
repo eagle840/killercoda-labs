@@ -1,4 +1,32 @@
 
+CREATE A TOPIC TO STORE YOUR EVENTS
+
+https://kafka.apache.org/quickstart#quickstart_createtopic
+
+
+`bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092`{{exec}}
+
+`bin/kafka-topics.sh --describe --topic quickstart-events --bootstrap-server localhost:9092`{{exec}}
+
+WRITE SOME EVENTS INTO THE TOPIC
+
+`bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092`{{exec}}
+
+send:
+
+`This is my first event`{{exec}}
+
+`This is my second event`{{exec}}
+
+READ THE EVENTS
+
+`bin/kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092`{{exec}}
+
+
+## keep following quickstart https://kafka.apache.org/quickstart#quickstart_kafkaconnect
+
+--- 
+
 # start grafana on a docker container
 
 https://grafana.com/docs/grafana/latest/setup-grafana/installation/docker/

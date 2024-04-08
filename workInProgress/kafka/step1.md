@@ -42,6 +42,10 @@ Open another terminal session and run:
 
 # Start the Kafka broker service
 
+`bin/zookeeper-server-start.sh config/zookeeper.properties`{{exec}}
+
+then:
+
 `bin/kafka-server-start.sh config/server.properties`{{exec}}
 
 **follow steps in quick start**
