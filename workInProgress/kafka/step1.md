@@ -3,12 +3,53 @@
 
 
 https://kafka.apache.org/quickstart
+https://kafka.apache.org/quickstart
 
 download https://www.apache.org/dyn/closer.cgi?path=/kafka/3.6.0/kafka_2.13-3.6.0.tgz
 
 
 https://github.com/provectus/kafka-ui   gui interface
 
+
+## install java
+
+Kafka runs on java
+
+
+
+`apt install -y default-jre`{{exec}}  # what version does this load?
+
+but the sdk gives us more feature #wip 11? new version?
+
+`apt install -y openjdk-11-jdk  `{{exec}}
+
+## install kafka
+
+
+`wget https://dlcdn.apache.org/kafka/3.7.0/kafka_2.13-3.7.0.tgz`{{exec}}
+
+
+   
+   `tar -zxvf kafka_2.13-3.7.0.tgz `{{exec}}
+    
+   
+   `cd kafka_2.13-3.7.0`{{exec}}
+
+
+## start kafja
+
+Open another terminal session and run:
+
+# Start the Kafka broker service
+
+`bin/kafka-server-start.sh config/server.properties`{{exec}}
+
+**follow steps in quick start**
+
+
+
+
+---- WHAT IS BELOW? ----
 
 # PS
 
