@@ -1,28 +1,15 @@
-This lab is for a Java EE wildfly server.
-
-We'll be using:
-- java sdk
-- wildfly
-- JPA: java persistant API
-- Maven
-- mySql
-- spring boot
-
-we'll be using : https://spring.io/quickstart
-
-start.spring.io
-
-- project: maven
-- language: java
-- sprintboot: 2.3.x
-- description: sample api
-- packaging: jar
-- Java: 8
+This lab is for kafka 
 
 
-dependiences
-- spring web
+Brokers (the heart, where your data resides, usually a cluster)
 
-Download - we'll upload it shortly
+Zookepper
 
+Producers
+
+Consumers
+
+(written in Scala, ie java)
+
+-- Incomes data goes to a 'topic' (like a table, but partitioned, and each partation, a single log)
 
