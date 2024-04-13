@@ -10,6 +10,66 @@ github: https://github.com/killercoda
 `sudo apt update`{{exec}}
 
 
+following https://learn.microsoft.com/en-us/training/modules/build-web-api-minimal-spa/2-design-front-end
+
+sudo apt update
+    4  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2
+    5  . "$HOME/.asdf/asdf.sh"
+    6  echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
+    7  . "$HOME/.asdf/completions/asdf.bash"
+    8  echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc
+    9  asdf current
+   10  asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+   11  asdf install nodejs 20.11.1
+   12  asdf current
+   13  asdf global nodejs 20.11.1
+   14  asdf current
+   15  node -v
+   16  asdf plugin-add yarn
+   17  asdf install yarn 1.22.10
+   18  asdf global yarn 1.22.10
+   19  asdf current
+   20  yarn -v
+   # this is the quick start > add link to page
+   21  npx create-react-app my-app
+   22  ls
+
+   # this is the MS lab
+   23  npm create vite@latest PizzaClient --template react
+
+Answer the CLI prompts as follows:
+
+Package name: pizzaclient - The folder created by Vite uses Camel case, PizzaClient.
+Select a framework: React
+Select a variant: Javascript
+
+   24  cd PizzaClient/
+   25  npm install
+
+   edit vite.config.js
+
+   ```
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 3000,  // Client port
+    host: '0.0.0.0' // Bind to all network interfaces
+  }
+})
+   ```
+   26  ls
+   27  npm run dv
+   28  npm run dev
+
+
+
+
+
+
 
 -----  delete below
 
