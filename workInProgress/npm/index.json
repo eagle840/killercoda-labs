@@ -1,6 +1,6 @@
 {
   "title": "NPM",
-  "description": "Basic JS and npm setup (v0.0.2)",
+  "description": "Basic JS and npm setup (v0.0.3)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -32,6 +32,14 @@
       {
         "title": "Step 2",
         "text": "step2.md"
+      },
+      {
+        "title": "Step 3",
+        "text": "step3.md"
+      },
+      {
+        "title": "Step 4",
+        "text": "step4.md"
       }
     ],
     "intro": {

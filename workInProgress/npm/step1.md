@@ -12,27 +12,7 @@ github: https://github.com/killercoda
 
 following https://learn.microsoft.com/en-us/training/modules/build-web-api-minimal-spa/2-design-front-end
 
-sudo apt update
-    4  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2
-    5  . "$HOME/.asdf/asdf.sh"
-    6  echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
-    7  . "$HOME/.asdf/completions/asdf.bash"
-    8  echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc
-    9  asdf current
-   10  asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-   11  asdf install nodejs 20.11.1
-   12  asdf current
-   13  asdf global nodejs 20.11.1
-   14  asdf current
-   15  node -v
-   16  asdf plugin-add yarn
-   17  asdf install yarn 1.22.10
-   18  asdf global yarn 1.22.10
-   19  asdf current
-   20  yarn -v
-   # this is the quick start > add link to page
-   21  npx create-react-app my-app
-   22  ls
+## install asdf
 
 
 `git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
@@ -47,6 +27,8 @@ sudo apt update
 `echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc`{{exec}}
 
 `asdf current`{{exec}}
+
+## install nodejs and yarn with asdf
 
 `asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`{{exec}}
 
@@ -68,22 +50,25 @@ sudo apt update
 
 `asdf current`{{exec}}
 
-
 `yarn -v`{{exec}}
+
+## generate simple react app
 
 `npx create-react-app my-app`{{exec}}
 
 `ls`{{exec}}
 
 
-   # this is the MS lab
+# this is the MS lab
 
 `npm create vite@latest PizzaClient --template react`{{exec}}
 
-Answer the CLI prompts as follows:
+#### Answer the CLI prompts as follows:
 
 Package name: pizzaclient - The folder created by Vite uses Camel case, PizzaClient.
+
 Select a framework: React
+
 Select a variant: Javascript
 
 `cd PizzaClient/`{{exec}}
@@ -92,7 +77,7 @@ Select a variant: Javascript
 
    edit vite.config.js
 
-   ```
+```
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -104,14 +89,18 @@ export default defineConfig({
     host: '0.0.0.0' // Bind to all network interfaces
   }
 })
-   ```
+```{{copy}}
+
 `ls`{{exec}}
  
-`npm run dv`{{exec}}
+## start the app
+
 
 `npm run dev`{{exec}}
 
 
+
+{{TRAFFIC_HOST1_3000}}
 
 
 

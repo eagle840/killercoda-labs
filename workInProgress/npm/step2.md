@@ -1,9 +1,9 @@
 # mock api
 
 
-new terminal
+Start a new terminal
 
-add db.json
+`touch db.json`{{exec}}
 
 ```
 {
@@ -19,6 +19,14 @@ then run the program json-server
 
 
 `npx json-server --watch db.json --port 5100`{{exec}}
+
+add extention for curk to vsc
+
+curl http://localhost:5100/pizzas
+
+using the code on https://learn.microsoft.com/en-us/training/modules/build-web-api-minimal-spa/5-exercise-create-api
+
+add the mocked api
 
 
 
