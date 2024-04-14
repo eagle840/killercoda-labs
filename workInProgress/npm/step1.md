@@ -34,8 +34,51 @@ sudo apt update
    21  npx create-react-app my-app
    22  ls
 
+
+`git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
+
+`. "$HOME/.asdf/asdf.sh"`{{exec}}
+
+
+`echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc`{{exec}}
+
+`. "$HOME/.asdf/completions/asdf.bash"`{{exec}}
+
+`echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc`{{exec}}
+
+`asdf current`{{exec}}
+
+`asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`{{exec}}
+
+`asdf install nodejs 20.11.1`{{exec}}
+
+`asdf current`{{exec}}
+
+`asdf global nodejs 20.11.1`{{exec}}
+
+`asdf current`{{exec}}
+
+`node -v`{{exec}}
+
+`asdf plugin-add yarn`{{exec}}
+
+`asdf install yarn 1.22.10`{{exec}}
+
+`asdf global yarn 1.22.10`{{exec}}
+
+`asdf current`{{exec}}
+
+
+`yarn -v`{{exec}}
+
+`npx create-react-app my-app`{{exec}}
+
+`ls`{{exec}}
+
+
    # this is the MS lab
-   23  npm create vite@latest PizzaClient --template react
+
+`npm create vite@latest PizzaClient --template react`{{exec}}
 
 Answer the CLI prompts as follows:
 
@@ -43,8 +86,9 @@ Package name: pizzaclient - The folder created by Vite uses Camel case, PizzaCli
 Select a framework: React
 Select a variant: Javascript
 
-   24  cd PizzaClient/
-   25  npm install
+`cd PizzaClient/`{{exec}}
+
+`npm install`{{exec}}
 
    edit vite.config.js
 
@@ -61,9 +105,11 @@ export default defineConfig({
   }
 })
    ```
-   26  ls
-   27  npm run dv
-   28  npm run dev
+`ls`{{exec}}
+ 
+`npm run dv`{{exec}}
+
+`npm run dev`{{exec}}
 
 
 

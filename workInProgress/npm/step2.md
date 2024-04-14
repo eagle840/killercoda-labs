@@ -18,7 +18,7 @@ add db.json
 then run the program json-server
 
 
-npx json-server --watch db.json --port 5100
+`npx json-server --watch db.json --port 5100`{{exec}}
 
 
 
