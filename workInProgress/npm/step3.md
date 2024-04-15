@@ -19,17 +19,17 @@ Add dotnet minimal API
 
 
 
-`dotnet run --urls http://0.0.0.0:5000{{exec}}`{{exec}}
+`dotnet run --urls http://0.0.0.0:5000`{{exec}}
 
 OR
 
-dotnet watch -v --urls http://0.0.0.0:5000{{exec}}
+`dotnet watch -v --urls http://0.0.0.0:5000`{{exec}}
 
 -v, --verbosity Set the MSBuild verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].
 
 
 
-`curl http://localhost:{PORT}`   # "Hello World!"
+`curl http://localhost:5000`   # "Hello World!"
 
 {{TRAFFIC_HOST1_5000}}
 
@@ -67,13 +67,14 @@ app.MapGet("/", () => "Hello World!");
 app.Run();
 ```
 
-`dotnet run --urls http://0.0.0.0:5000{{exec}}`{{exec}}
-
+`dotnet run --urls http://0.0.0.0:5000`{{exec}}
 
 
 http://localhost:{PORT}/swagger
 
 {{TRAFFIC_HOST1_5000}}/swagger
+
+to add additional items to swagger doc, see https://learn.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-8.0&tabs=visual-studio#api-info-and-description
 
 
 `dotnet ef database update`{{exec}}
@@ -154,6 +155,6 @@ app.MapPost("/pizzas", (Pizza pizza) => PizzaDB.CreatePizza(pizza));
 app.MapPut("/pizzas", (Pizza pizza) => PizzaDB.UpdatePizza(pizza));
 app.MapDelete("/pizzas/{id}", (int id) => PizzaDB.RemovePizza(id));
 ```
-`dotnet run --urls http://0.0.0.0:5000{{exec}}`{{exec}}
+`dotnet run --urls http://0.0.0.0:5000`{{exec}}
 
 {{TRAFFIC_HOST1_5000}}/swagger
