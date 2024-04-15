@@ -92,7 +92,7 @@ export default defineConfig({
 ```{{copy}}
 
 `ls`{{exec}}
- 
+
 ## start the app
 
 
@@ -103,6 +103,170 @@ export default defineConfig({
 {{TRAFFIC_HOST1_3000}}
 
 
+# Build the Pizza component
+
+
+create in src Pizza.jsx
+
+```
+import { useState, useEffect } from 'react';
+import PizzaList from './PizzaList';
+
+const term = "Pizza";
+
+function Pizza() {
+  const [data, setData] = useState([]);
+  const [maxId, setMaxId] = useState(0);
+
+  useEffect(() => {
+    fetchPizzaData();
+  }, []);
+
+  const fetchPizzaData = () => {
+    // Simulate fetching data from API
+    const pizzaData = [
+      { id: 1, name: 'Margherita', description: 'Tomato sauce, mozzarella, and basil' },
+      { id: 2, name: 'Pepperoni', description: 'Tomato sauce, mozzarella, and pepperoni' },
+      { id: 3, name: 'Hawaiian', description: 'Tomato sauce, mozzarella, ham, and pineapple' },
+    ];
+    setData(pizzaData);
+    setMaxId(Math.max(...pizzaData.map(pizza => pizza.id)));
+  };
+
+  const handleCreate = (item) => {
+    // Simulate creating item on API
+    const newItem = { ...item, id: data.length + 1 };
+    setData([...data, newItem]);
+    setMaxId(maxId + 1);
+  };
+
+  const handleUpdate = (item) => {
+    // Simulate updating item on API
+    const updatedData = data.map(pizza => pizza.id === item.id ? item : pizza);
+    setData(updatedData);
+  };
+
+  const handleDelete = (id) => {
+    // Simulate deleting item on API
+    const updatedData = data.filter(pizza => pizza.id !== id);
+    setData(updatedData);
+  };
+
+
+  return (
+    <div>
+      <PizzaList
+        name={term}
+        data={data}
+        onCreate={handleCreate}
+        onUpdate={handleUpdate}
+        onDelete={handleDelete}
+      />
+    </div>
+  );
+}
+
+export default Pizza;
+```
+
+
+create PizzaList.jsx
+
+```
+import { useState } from 'react';
+
+function PizzaList({ name, data, onCreate, onUpdate, onDelete, error }) {
+  const [formData, setFormData] = useState({ id: '', name: '', description: '' });
+  const [editingId, setEditingId] = useState(null);
+
+  const handleFormChange = (event) => {
+    const { name, value } = event.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (editingId) {
+      onUpdate(formData);
+      setEditingId(null);
+    } else {
+      onCreate(formData);
+    }
+    setFormData({ id: '', name: '', description: '' });
+  };
+
+  const handleEdit = (item) => {
+    setEditingId(item.id);
+    setFormData({
+      id: item.id,
+      name: item.name,
+      description: item.description,
+    });
+  };
+
+  const handleCancelEdit = () => {
+    setEditingId(null);
+    setFormData({ id: '', name: '', description: '' });
+  };
+
+
+  return (
+    <div>
+      <h2>New {name}</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={formData.name}
+          onChange={handleFormChange}
+        />
+        <input
+          type="text"
+          name="description"
+          placeholder="Description"
+          value={formData.description}
+          onChange={handleFormChange}
+        />
+        <button type="submit">{editingId ? 'Update' : 'Create'}</button>
+        {editingId && <button type="button" onClick={handleCancelEdit}>Cancel</button>}
+      </form>
+      {error && <div>{error.message}</div>}
+      <h2>{name}s</h2>
+      <ul>
+        {data.map(item => (
+          <li key={item.id}>
+            <div>{item.name} - {item.description}</div>
+            <div><button onClick={() => handleEdit(item)}>Edit</button>
+            <button onClick={() => onDelete(item.id)}>Delete</button></div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default PizzaList;
+```
+
+in main.jsx
+
+```
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+
+import Pizza from './Pizza'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <Pizza />
+  </React.StrictMode>,
+)
+```
+
 
 
 
@@ -110,35 +274,35 @@ export default defineConfig({
 
 # docker update
 
-`apt-get remove docker  docker.io containerd runc -y`{{exec}}   
+`apt-get remove docker  docker.io containerd runc -y`{{exec}}
 
-`apt-get update`{{exec}}   
+`apt-get update`{{exec}}
 
-`apt-get install ca-certificates curl gnupg  lsb-release -y`{{exec}}   
+`apt-get install ca-certificates curl gnupg  lsb-release -y`{{exec}}
 
-`mkdir -p /etc/apt/keyrings`{{exec}}   
+`mkdir -p /etc/apt/keyrings`{{exec}}
 
-`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}   
+`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}
 
 ```
 echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```{{exec}}   
+```{{exec}}
 
-`apt-get update`{{exec}}   
+`apt-get update`{{exec}}
 
-`apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y `{{exec}}   
+`apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y `{{exec}}
 
-`docker version`{{exec}}   
+`docker version`{{exec}}
 
-`docker-compose version`{{exec}}   
+`docker-compose version`{{exec}}
 
 `docker compose version`{{exec}}
 
 # Set imageid in index.json
 
 - ubuntu: Ubuntu 20.04 with Docker and Podman
-= kubernetes-kubeadm-2nodes: 
+= kubernetes-kubeadm-2nodes:
 - kubernetes-kubeadm-1node:
 
 to taint the control node for work:
@@ -195,9 +359,9 @@ and check the config file
 
 `docker exec some-rabbit cat /etc/rabbitmq/rabbitmq.conf`{{execute}}
 
-and head over to port 8080 and login   
-un:guest   
-pw:guest  
+and head over to port 8080 and login
+un:guest
+pw:guest
 
 
 Next we'll update the python files with the new IP address of the docker container.
@@ -226,4 +390,3 @@ to allow pods on the controlplane
 to allow access to running pods with ports 9000 and 9090
 
 `kubectl port-forward -n minio-dev pod/minio 9000 9090 --address 0.0.0.0`{{copy}}
-

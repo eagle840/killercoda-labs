@@ -2,6 +2,8 @@
 
 Add dotnet minimal API
 
+`cd ~`{{exec}}
+
 `asdf plugin add dotnet`{{exec}}
 
 `asdf list-all dotnet`{{exec}}
@@ -12,6 +14,10 @@ Add dotnet minimal API
 
 
 `dotnet --list-sdks`{{exec}}
+
+## minimal api's with dotnet
+
+https://learn.microsoft.com/en-us/training/modules/build-web-api-minimal-api/
 
 `dotnet new web -o PizzaStore -f net8.0`{{exec}}
 
@@ -77,10 +83,7 @@ http://localhost:{PORT}/swagger
 to add additional items to swagger doc, see https://learn.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-8.0&tabs=visual-studio#api-info-and-description
 
 
-`dotnet ef database update`{{exec}}
 
-
-https://learn.microsoft.com/en-us/training/modules/build-web-api-minimal-api/
 
 ## Add Data
 
@@ -158,3 +161,12 @@ app.MapDelete("/pizzas/{id}", (int id) => PizzaDB.RemovePizza(id));
 `dotnet run --urls http://0.0.0.0:5000`{{exec}}
 
 {{TRAFFIC_HOST1_5000}}/swagger
+
+
+## other
+
+
+`dotnet ef database update`{{exec}}
+
+
+https://learn.microsoft.com/en-us/training/modules/build-web-api-minimal-api/
