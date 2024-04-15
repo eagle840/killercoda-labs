@@ -108,6 +108,8 @@ export default defineConfig({
 
 create in src Pizza.jsx
 
+`touch ./src/Pizza.jsx`{{exec}}
+
 ```
 import { useState, useEffect } from 'react';
 import PizzaList from './PizzaList';
@@ -171,6 +173,8 @@ export default Pizza;
 
 
 create PizzaList.jsx
+
+`touch ./src/PizzaList.jsx`{{exec}}
 
 ```
 import { useState } from 'react';
@@ -252,7 +256,7 @@ function PizzaList({ name, data, onCreate, onUpdate, onDelete, error }) {
 export default PizzaList;
 ```
 
-in main.jsx
+in main.jsx, replace with
 
 ```
 import React from 'react'
@@ -266,3 +270,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>,
 )
 ```
+
+`npm run dev`{{exec}}
+
+{{TRAFFIC_HOST1_3000}}
