@@ -1,6 +1,6 @@
 {
-  "title": "NPM",
-  "description": "Basic JS and npm setup (v0.0.10)",
+  "title": "Full Stack App",
+  "description": "Full stack app: React and Dotnet api (v0.1.0)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -40,6 +40,10 @@
       {
         "title": "Step 4",
         "text": "step4.md"
+      },
+      {
+        "title": "Step 5",
+        "text": "step5.md"
       }
     ],
     "intro": {
