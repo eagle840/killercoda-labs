@@ -61,6 +61,8 @@ following https://learn.microsoft.com/en-us/training/modules/build-web-api-minim
 
 # this is the MS lab
 
+We'll be Using [React](https://react.dev/), and the [Vite](https://vitejs.dev/) web blunder
+
 `npm create vite@latest PizzaClient --template react`{{exec}}
 
 #### Answer the CLI prompts as follows:
