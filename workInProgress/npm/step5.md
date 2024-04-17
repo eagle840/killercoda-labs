@@ -28,7 +28,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>,
 )
 ```
-in pizzalisy.jsx
+in PizzaList.jsx
 
 ```
 import { useState, useEffect } from 'react';
@@ -36,7 +36,7 @@ import { TextField, Button, Box, List, ListItem, ListItemText, ListItemSecondary
 import { Delete, Edit } from '@mui/icons-material';
 ```
 
-in pizzalist.jsx replace html with
+in PizzaList.jsx replace html with
 
 ```
 (

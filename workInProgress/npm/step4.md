@@ -4,6 +4,10 @@ STep 4
 
 update vite.config.js in PizzaClient
 
+`cd ~`{{exec}}
+
+`cd PizzaClient/`{{exec}}
+
 CHANG port to 5000
 
 
@@ -15,7 +19,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 3000, // Client port
+    port: 3000,  // Client port
+    host: '0.0.0.0', // Bind to all network interfaces
     proxy: {
       '/pizzas': {
         target: 'http://localhost:5059', // Server port
@@ -38,3 +43,6 @@ export default defineConfig({
   }
 })
 ```
+`npm run dev`{{exec}}
+
+{{TRAFFIC_HOST1_3000}}

@@ -1,5 +1,6 @@
 # mock api
 
+Using the npm built in api server [json-server](https://www.npmjs.com/package/json-server)
 
 Start a new terminal
 
@@ -27,7 +28,3 @@ curl http://localhost:5100/pizzas
 using the code on https://learn.microsoft.com/en-us/training/modules/build-web-api-minimal-spa/5-exercise-create-api
 
 add the mocked api
-
-
-
-
