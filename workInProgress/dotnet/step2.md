@@ -4,7 +4,33 @@ https://learn.microsoft.com/en-us/dotnet/core/diagnostics/tools-overview
 
 https://learn.microsoft.com/en-us/dotnet/core/tools/troubleshoot-usage-issues
 
-# dotnet -REPL  
+
+# dotnet http-repl
+
+
+`dotnet tool install -g dotnet-repl`{{exec}}
+
+`dotnet tool list -g dotnet-repl`{{exec}}
+
+`dotnet tool list -g`{{exec}}
+
+`export PATH="$PATH:/root/.dotnet/tools`{{exec}}
+
+
+`dotnet tool list -g dotnet-repl`{{exec}}
+
+`dotnet tool install -g Microsoft.dotnet-httprepl`{{exec}}
+
+`dotnet tool list -g `{{exec}}
+
+`httprepl -h`{{exec}}
+
+`export PATH="$HOME/.dotnet/tools:$PATH"`{{exec}}
+
+`httprepl -h`{{exec}}
+
+
+# dotnet -REPL
 
 ## dotnet interactive & polyglot-notebooks
 
@@ -76,7 +102,7 @@ WIP do a tree
 
 The appsettings.json file is a configuration file used in .NET applications to store various settings and configurations for the application. It is typically used to define application-specific settings such as database connection strings, logging configurations, API keys, and other configurable parameters.
 
-To access, eg the ApiKey in the AppSettings section 
+To access, eg the ApiKey in the AppSettings section
 ```csharp
 var apiKey = Configuration["AppSettings:ApiKey"];
 ```
@@ -168,11 +194,11 @@ https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspne
 
 In the command 'dotnet new webapi --use-controllers -o TodoApi', the '--use-controllers' flag is used to specify that the generated project should include controller classes.
 
- 
+
 
 When creating a new ASP.NET Core Web API project using the 'dotnet new webapi' command, by default, it generates a basic project structure without any controller classes. Controllers are responsible for handling incoming HTTP requests and returning appropriate responses.
 
- 
+
 
 By using the '--use-controllers' flag, the command will generate the project with pre-defined controller classes, which can be used to define the API endpoints and their corresponding actions. This saves time and provides a starting point for building a Web API project.
 
@@ -213,7 +239,7 @@ https://learn.microsoft.com/en-us/training/modules/implement-visual-studio-code-
 
 install c# dev extension
 
-in command paltet   '.net:g' -> .NET: Generate Assets for Build and Debug.  
+in command paltet   '.net:g' -> .NET: Generate Assets for Build and Debug.
 creates '.vscode' folder, check launch configuration https://code.visualstudio.com/docs/editor/debugging
 
 
@@ -230,4 +256,3 @@ tasks.json was the build task in there
 https://learn.microsoft.com/en-us/ef/
 
 https://www.nuget.org/packages?q=entity+framework
-

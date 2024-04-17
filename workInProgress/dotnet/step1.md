@@ -15,7 +15,26 @@ https://github.com/hensou/asdf-dotnet
 
 `apt install -y curl git sqlite3 libpq-dev libreadline-dev`{{exec}}
 
-### install asdf
+## Manual Install
+
+https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&pivots=os-linux-ubuntu-2004
+
+`lsb_release -a`{{exec}}
+
+
+`wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+
+`sudo dpkg -i packages-microsoft-prod.deb`{{exec}}
+
+`rm packages-microsoft-prod.deb`{{exec}}
+
+ `sudo apt-get update &&   sudo apt-get install -y dotnet-sdk-8.0`{{exec}}
+
+`dotnet --version`{{exec}}
+
+## install with asdf
+
+### Install asdf
 
 We'll be using asdf to install dotnet, however complete instructions for download and installing for other systems can be found on Micosoft [here](https://dotnet.microsoft.com/en-us/download)
 
@@ -82,33 +101,33 @@ To install a template
 
 'dotnet new sln'
 
- 
 
- 
+
+
 
 A csproj file and a sln file are both used in Microsoft's .NET development ecosystem, but they serve different purposes.
 
- 
+
 
 A csproj file, short for C# project file, is used to define the properties and dependencies of a specific project within a solution. It contains information about the project's source files, references to external libraries, build settings, and other project-specific configurations. Each project in a solution typically has its own csproj file.
 
- 
+
 
 On the other hand, a sln file, short for solution file, is used to define a collection of related projects. It acts as a container for multiple csproj files and provides a way to organize and manage them as a single unit. The sln file contains references to the individual csproj files, build configurations, and other solution-level settings.
 
- 
+
 
 In summary, a csproj file is specific to a single project, while a sln file is used to manage multiple projects within a solution.
 
 'workspaceFolder' is the root folder of the project
 
- 
 
- 
 
- 
 
- 
+
+
+
+
 
 dotnet new --list
 
@@ -149,7 +168,7 @@ dotnet new --list
 `cat slntest.sln`{{exec}}
 
 
- 
+
 
 dotnet sln slntest.sln  list
 
