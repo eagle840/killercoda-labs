@@ -14,7 +14,7 @@ https://learn.microsoft.com/en-us/dotnet/core/tools/troubleshoot-usage-issues
 
 `dotnet tool list -g`{{exec}}
 
-`export PATH="$PATH:/root/.dotnet/tools`{{exec}}
+`export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
 
 
 `dotnet tool list -g dotnet-repl`{{exec}}

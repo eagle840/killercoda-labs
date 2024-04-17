@@ -22,7 +22,7 @@ https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=
 `lsb_release -a`{{exec}}
 
 
-`wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+`wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb`{{exec}}
 
 `sudo dpkg -i packages-microsoft-prod.deb`{{exec}}
 
