@@ -8,18 +8,25 @@ https://learn.microsoft.com/en-us/dotnet/core/tools/troubleshoot-usage-issues
 # dotnet http-repl
 
 
-`dotnet tool install -g dotnet-repl`{{exec}}
+`dotnet tool install -g dotnet-repl`{{exec}} [Docs](https://github.com/jonsequitur/dotnet-repl)
+
+
 
 `dotnet tool list -g dotnet-repl`{{exec}}
 
 `dotnet tool list -g`{{exec}}
 
+`dotnet-repl`{{exec}} Note the command can't be found.
+
 `export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
 
+`dotnet tool install -g csharprepl`{{exec}} [Docs](https://github.com/waf/CSharpRepl)
 
-`dotnet tool list -g dotnet-repl`{{exec}}
+`csharprepl`{{exec}} # 'exit' to quit
 
-`dotnet tool install -g Microsoft.dotnet-httprepl`{{exec}}
+`dotnet tool list -g`{{exec}}
+
+`dotnet tool install -g Microsoft.dotnet-httprepl`{{exec}} [Docs](https://github.com/dotnet/HttpRepl?tab=readme-ov-file)
 
 `dotnet tool list -g `{{exec}}
 
@@ -40,19 +47,7 @@ https://github.com/dotnet/interactive
 
 https://github.com/jonsequitur/dotnet-repl
 
-`asdf install dotnet 7.0.404`{{exec}}
 
-`asdf global  dotnet 7.0.40`{{exec}}
-
-`sudo apt-get install -y dotnet-sdk-7.0`{{exec}}
-
-`dotnet tool install -g dotnet-repl`{{exec}}
-
-`export PATH="$PATH:/root/.dotnet/tools`{{exec}}
-
-`dotnet tool list -g dotnet-repl`{{exec}}
-
-`ls $HOME/.dotnet/tools`{{exec}}
 
 https://learn.microsoft.com/en-us/dotnet/core/tools/troubleshoot-usage-issues
 
