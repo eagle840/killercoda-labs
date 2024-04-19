@@ -36,6 +36,10 @@ https://learn.microsoft.com/en-us/dotnet/core/tools/troubleshoot-usage-issues
 
 `httprepl -h`{{exec}}
 
+### Make your own tools
+
+Checkout the MS learn site on how to make your own tools [link](https://learn.microsoft.com/en-us/dotnet/core/tools/global-tools-how-to-create)
+
 
 # dotnet -REPL
 
