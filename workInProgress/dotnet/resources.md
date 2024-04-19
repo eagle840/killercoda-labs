@@ -4,6 +4,9 @@
 consider the following commands:
 -  build
 -  publish
+   - https://learn.microsoft.com/en-us/dotnet/core/deploying/
+   - self-contained (runtimes and libraries inc)
+   - framework-dependant  (app and dependencies only)
 -  build in a specific arch
 
 
