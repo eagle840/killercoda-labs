@@ -1,6 +1,6 @@
 {
   "title": "Full Stack App",
-  "description": "Full stack app: React and Dotnet api (v0.4.0)",
+  "description": "Full stack app: React and Dotnet api (v0.4.1)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -57,6 +57,6 @@
     "uilayout": "terminal"
   },
   "backend": {
-    "imageid": "ubuntu"
+    "imageid": "ubuntu-4GB"
   }
 }
