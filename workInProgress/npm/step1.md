@@ -171,7 +171,7 @@ function Pizza() {
 }
 
 export default Pizza;
-```
+```{{copy}}
 
 
 create PizzaList.jsx
@@ -256,7 +256,7 @@ function PizzaList({ name, data, onCreate, onUpdate, onDelete, error }) {
 }
 
 export default PizzaList;
-```
+```{{copy}}
 
 in main.jsx, replace with
 
@@ -271,7 +271,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Pizza />
   </React.StrictMode>,
 )
-```
+```{{copy}}
 
 `npm run dev`{{exec}}
 

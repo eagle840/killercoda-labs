@@ -2,13 +2,13 @@ STep 4
 
 ## add proxy
 
-update vite.config.js in PizzaClient
+update **vite.config.js in** PizzaClient
 
 `cd ~`{{exec}}
 
 `cd PizzaClient/`{{exec}}
 
-CHANG port to 5000
+CHANGE port to 5000
 
 
 ```
@@ -23,7 +23,7 @@ export default defineConfig({
     host: '0.0.0.0', // Bind to all network interfaces
     proxy: {
       '/pizzas': {
-        target: 'http://localhost:5059', // Server port
+        target: 'http://localhost:5000', // Server port
         changeOrigin: true,
         secure: false,
         ws: true,
@@ -42,7 +42,13 @@ export default defineConfig({
     }
   }
 })
-```
+```{{copy}}
 `npm run dev`{{exec}}
 
 {{TRAFFIC_HOST1_3000}}
+
+Add a pizza to the menu, and confirm it's showing up it the 'GET /Pissa'
+
+{{TRAFFIC_HOST1_5000}}/swagger
+
+WIP it's not showing

@@ -27,14 +27,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </ThemeProvider>
   </React.StrictMode>,
 )
-```
+```{{copy}}
 in PizzaList.jsx
 
 ```
 import { useState, useEffect } from 'react';
 import { TextField, Button, Box, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@mui/material';
 import { Delete, Edit } from '@mui/icons-material';
-```
+```{{copy}}
 
 in PizzaList.jsx replace html with
 
@@ -68,7 +68,7 @@ in PizzaList.jsx replace html with
     </Box>
   );
 
-```
+```{{copy}}
 
 
 If you're have issues, be sure to use the web browser developer tools to review the logs.

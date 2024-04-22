@@ -71,7 +71,7 @@ app.UseSwaggerUI(c =>
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
-```
+```{{copy}}
 
 `dotnet run --urls http://0.0.0.0:5000`{{exec}}
 
@@ -141,7 +141,7 @@ namespace PizzaStore.DB;
      _pizzas = _pizzas.FindAll(pizza => pizza.Id != id).ToList();
    }
  }
-```
+```{{copy}}
 
 ## add routes
 
@@ -157,7 +157,9 @@ app.MapGet("/pizzas", () => PizzaDB.GetPizzas());
 app.MapPost("/pizzas", (Pizza pizza) => PizzaDB.CreatePizza(pizza));
 app.MapPut("/pizzas", (Pizza pizza) => PizzaDB.UpdatePizza(pizza));
 app.MapDelete("/pizzas/{id}", (int id) => PizzaDB.RemovePizza(id));
-```
+```{{copy}}
+
+
 `dotnet run --urls http://0.0.0.0:5000`{{exec}}
 
 {{TRAFFIC_HOST1_5000}}/swagger
