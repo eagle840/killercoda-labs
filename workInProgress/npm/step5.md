@@ -28,7 +28,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>,
 )
 ```{{copy}}
-in PizzaList.jsx
+in PizzaList.jsx, replace the top line with
 
 ```
 import { useState, useEffect } from 'react';
@@ -69,6 +69,8 @@ in PizzaList.jsx replace html with
   );
 
 ```{{copy}}
+
+When you load the new react app, it may take a minute to load the components that we added
 
 
 If you're have issues, be sure to use the web browser developer tools to review the logs.

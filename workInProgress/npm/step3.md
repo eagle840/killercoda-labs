@@ -73,6 +73,8 @@ app.MapGet("/", () => "Hello World!");
 app.Run();
 ```{{copy}}
 
+WIP NOTE 5000, what is the proxy set at?
+
 `dotnet run --urls http://0.0.0.0:5000`{{exec}}
 
 

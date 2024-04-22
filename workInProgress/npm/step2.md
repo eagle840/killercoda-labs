@@ -18,12 +18,13 @@ Start a new terminal
 
 then run the program json-server
 
+WIP NOTE 5100
 
 `npx json-server --watch db.json --port 5100`{{exec}}
 
 add extention for curk to vsc
 
-curl http://localhost:5100/pizzas
+`curl http://localhost:5100/pizzas`{{exec}}
 
 using the code on https://learn.microsoft.com/en-us/training/modules/build-web-api-minimal-spa/5-exercise-create-api
 
@@ -120,6 +121,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,  // Client port
+    host: '0.0.0.0', // Bind to all network interfaces
     proxy: {
       '/pizzas': {
         target: 'http://localhost:5100', // Mock server port
@@ -145,3 +147,5 @@ export default defineConfig({
 
 
 `npx json-server --watch --port 5100 db.json`{{exec}}
+
+{{TRAFFIC_HOST1_3000}}
