@@ -82,6 +82,11 @@ To list all the sdk's installed
 
 `dotnet --list-sdks`{{exec}}
 
+`dotnet --list-runtimes`{{exec}}
+
+`dotnet --info`{{exec}}
+
+
 if you manually installed the sdks'
 
 `dotnet global.json sdk-version <desired-sdk-version>`
