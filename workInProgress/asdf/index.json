@@ -1,6 +1,6 @@
 {
-  "title": "WORK-IN-PROGRESS asdf And Ruby",
-  "description": "Basic asdf with Ruby use v0.2.3",
+  "title": "WORK-IN-PROGRESS asdf, Ruby and Jekyll",
+  "description": "Basic asdf with Ruby use v0.2.4",
   "difficulty": "Beginner",
   "time": "30 minutes",
   "details": {
@@ -44,6 +44,10 @@
       {
         "title": "Step 4",
         "text": "step4.md"
+      },
+      {
+        "title": "Step 5",
+        "text": "step5.md"
       }
     ],
     "intro": {

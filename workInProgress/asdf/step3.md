@@ -1,4 +1,4 @@
-# installing rails
+# iMOVE TO  rails labs
 
 https://guides.rubyonrails.org/v6.1/getting_started.html
 
