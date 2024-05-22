@@ -53,7 +53,7 @@ The `--gecos ""` option allows you to bypass the prompts for additional user inf
 
 `asdf list all ruby`{{exec}}
 
-Now we'll install ruby 3.1.2, which will take a few minutes
+Now we'll install ruby 3.1.2, which will take about 10 minutes 
 
 `asdf install ruby 3.1.2`{{exec}} 
 

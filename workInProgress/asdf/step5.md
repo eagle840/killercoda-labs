@@ -2,6 +2,10 @@
 
 https://jekyllrb.com/
 
+https://www.youtube.com/playlist?list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB
+
+https://github.com/cotes2020/jekyll-theme-chirpy
+
 `cd ~`{{exec}}
 
 `ruby -v`{{exec}}
