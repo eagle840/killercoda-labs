@@ -1,4 +1,4 @@
-## Debug rails
+## MOVE TO  Debug rails lab
 
 https://guides.rubyonrails.org/debugging_rails_applications.html
 
@@ -11,7 +11,7 @@ you'll notice the following gems:#
 in one of the controller methods, add 'console' and the web gui will give a console
 
 
-## console 
+## KEEP HERE console 
 
 `rails console`{{exec}}
 
