@@ -8,10 +8,6 @@
 `apt install -y curl git sqlite3 libpq-dev libreadline-dev`{{exec}}
 
 
-In new tab
-
-`docker-compose up`{{exec}}  WIP Remove?
-
 ## user setup
 
 Some ruby applications don't like to run as root, so we'll add a user  'koda'

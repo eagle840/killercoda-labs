@@ -16,22 +16,15 @@ https://github.com/cotes2020/jekyll-theme-chirpy
 
 `cd my-awesome-site`{{exec}}
 
-`bundle exec jekyll serve  --host 0.0.0.0`{{exec}}
-
----
-
- `git clone https://github.com/cotes2020/jekyll-theme-chirpy.git`{{exec}}
-
-`cd jekyll-theme-chirpy/`{{exec}}
-
-
-`bundle install`{{exec}}
-
-`JEKYLL_ENV=production bundle exec jekyll b`{{exec}}
+`bundle exec jekyll -h`{{exec}}
 
 `bundle exec jekyll serve  --host 0.0.0.0`{{exec}}
 
-   ## matter
+{{TRAFFIC_HOST1_4000}}
+
+## Front Matter
+
+Articles are in the _posts folder and have 'matter' at the top of the file.
 
 ```
 title: Hello HomeLab
@@ -40,7 +33,29 @@ categories: [homelab, hardware]
 tags: [servers,dell, hp, supermicro] # TAG names should always be lowercase
 ```
 
-# Host
+The the project is built it will generate a static site in _site folder
+
+---
+
+## Use a Theme (Chirpy)
+
+ `git clone https://github.com/cotes2020/jekyll-theme-chirpy.git`{{exec}}
+
+`cd jekyll-theme-chirpy/`{{exec}}
+
+`bundle list`{{exec}}
+
+
+`bundle install`{{exec}}
+
+`JEKYLL_ENV=production bundle exec jekyll b`{{exec}}
+
+`bundle exec jekyll serve  --host 0.0.0.0`{{exec}}
+
+{{TRAFFIC_HOST1_4000}}
+
+
+## Host
 
 Copy the _sites folder
 

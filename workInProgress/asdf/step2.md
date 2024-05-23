@@ -75,6 +75,8 @@ https://rubygems.org/gems/byebug
 
 `gem update bundle`{{exec}}
 
+`gem install sidekiq`{{exec}}
+
 but you need a Gemfile
 
 Bundler:
