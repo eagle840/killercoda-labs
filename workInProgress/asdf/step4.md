@@ -1,38 +1,62 @@
-## MOVE TO  Debug rails lab
+# Install Jekyll
 
-https://guides.rubyonrails.org/debugging_rails_applications.html
+https://jekyllrb.com/
 
-if you look at the Gemfile for the rails app you've installed,
+https://www.youtube.com/playlist?list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB
 
-you'll notice the following gems:#
-- byebug
-- web-console
+https://github.com/cotes2020/jekyll-theme-chirpy
 
-in one of the controller methods, add 'console' and the web gui will give a console
+`cd ~`{{exec}}
+
+`ruby -v`{{exec}}
+
+`gem install bundler jekyll`{{exec}}
+
+`jekyll new my-awesome-site`{{exec}}
+
+`cd my-awesome-site`{{exec}}
+
+`bundle exec jekyll -h`{{exec}}
+
+`bundle exec jekyll serve  --host 0.0.0.0`{{exec}}
+
+{{TRAFFIC_HOST1_4000}}
+
+## Front Matter
+
+Articles are in the _posts folder and have 'matter' at the top of the file.
+
+```
+title: Hello HomeLab
+date: 2022-05-23 12:00:00 -500
+categories: [homelab, hardware]
+tags: [servers,dell, hp, supermicro] # TAG names should always be lowercase
+```
+
+The the project is built it will generate a static site in _site folder
+
+---
+
+## Use a Theme (Chirpy)
+
+ `git clone https://github.com/cotes2020/jekyll-theme-chirpy.git`{{exec}}
+
+`cd jekyll-theme-chirpy/`{{exec}}
+
+`bundle list`{{exec}}
 
 
-## KEEP HERE console 
+`bundle install`{{exec}}
 
-`rails console`{{exec}}
+`JEKYLL_ENV=production bundle exec jekyll b`{{exec}}
 
-In the Ruby on Rails console, you can use various commands and techniques to help with debugging and troubleshooting. Here are some commonly used commands:
+`bundle exec jekyll serve  --host 0.0.0.0`{{exec}}
 
-1. `puts` or `print`: You can use these commands to print out values or messages to the console, allowing you to inspect variables or track the flow of your code.
+{{TRAFFIC_HOST1_4000}}
 
-2. `p`: Similar to `puts` or `print`, the `p` command is useful for inspecting variables and objects. It provides more detailed output, including the object's class and structure.
 
-3. `raise`: You can use the `raise` command to raise an exception or error at a specific point in your code. This can help you identify where an issue occurs and see the backtrace of the error.
+## Host
 
-4. `debugger`: By placing the `debugger` command at a specific line in your code, you can trigger a breakpoint. This will pause the execution of your program at that point, allowing you to inspect variables, step through code, and diagnose issues interactively.
+Copy the _sites folder
 
-5. `binding.pry`: If you have the `pry` gem installed, you can use the `binding.pry` command to insert a breakpoint in your code. This will open a Pry console at that point, enabling you to explore the state of your application and execute commands interactively.
-
-6. `logger`: The `logger` object allows you to write logs to the Rails log file. You can use various log levels (`debug`, `info`, `warn`, `error`, `fatal`) to output messages at different levels of severity. This can be helpful for tracking the flow of your application and troubleshooting issues.
-
-These commands can help you gain insights into your code, identify errors, and understand the behavior of your application during runtime.
-
-WIP
-- 'rails console --sandbox'
-- web-console gem  https://rubygems.org/gems/web-console
-- pry gem https://rubygems.org/gems/pry-rails
-- byebug gem https://rubygems.org/gems/byebug
+be sure to checkout the github repo for more themes: https://github.com/topics/jekyll-theme
