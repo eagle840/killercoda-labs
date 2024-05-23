@@ -104,3 +104,12 @@ scroll down and 'import'
 Give your data an index name 'news_headlines'
 
 ## Precision vs Recall
+
+## other
+
+
+ms lignator  https://github.com/microsoft/lignator?tab=readme-ov-file
+
+https://github.com/topics/log-generator
+#
+https://docs.python.org/3/howto/logging-cookbook.html
