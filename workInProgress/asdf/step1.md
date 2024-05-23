@@ -1,11 +1,6 @@
 
 # Initial Setup
 
-Doc: https://killercoda.com/creators
-
-github: https://github.com/killercoda
-
-https://asdf-vm.com/
 
 `apt update`{{exec}}
 
@@ -19,6 +14,8 @@ In new tab
 
 ## user setup
 
+Some ruby applications don't like to run as root, so we'll add a user  'koda'
+
 `sudo adduser --gecos "" koda`{{exec}}
 
 The `--gecos ""` option allows you to bypass the prompts for additional user information
@@ -31,7 +28,7 @@ The `--gecos ""` option allows you to bypass the prompts for additional user inf
 
 `git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
 
-`. "$HOME/.asdf/asdf.sh"`{{exec}} WIP pipe to .brashrc?
+`. "$HOME/.asdf/asdf.sh"`{{exec}}
 
 `echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc`{{exec}}
 

@@ -43,3 +43,5 @@ tags: [servers,dell, hp, supermicro] # TAG names should always be lowercase
 # Host
 
 Copy the _sites folder
+
+be sure to checkout the github repo for more themes: https://github.com/topics/jekyll-theme
