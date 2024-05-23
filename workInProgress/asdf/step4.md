@@ -43,10 +43,12 @@ The the project is built it will generate a static site in _site folder
 
 `cd jekyll-theme-chirpy/`{{exec}}
 
-`bundle list`{{exec}}
+
 
 
 `bundle install`{{exec}}
+
+`bundle list`{{exec}}
 
 `JEKYLL_ENV=production bundle exec jekyll b`{{exec}}
 
