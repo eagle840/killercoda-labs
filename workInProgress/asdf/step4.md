@@ -1,14 +1,30 @@
 # Install Jekyll
 
+Jekyll is a static site generator built using Ruby. It is a popular tool used to create simple, static websites or blogs without the need for a backend server or a database. Jekyll takes content written in Markdown, HTML, or other formats and generates a static website that can be hosted on any web server.
+
+Some key features of Jekyll include:
+
+1. **Markdown Support**: Jekyll allows you to write content in Markdown, a lightweight markup language, making it easy to create and format content without needing to write HTML.
+
+2. **Liquid Templating**: Jekyll uses the Liquid templating language to create reusable templates for your site. This allows you to define layouts, include partials, and use variables in your site's design.
+
+3. **Front Matter**: Jekyll supports front matter, which is metadata at the beginning of a file that can be used to define variables, such as layout, title, or other custom data.
+
+4. **Plugins**: Jekyll has a plugin system that allows you to extend its functionality with additional features or customizations.
+
+5. **GitHub Pages Integration**: Jekyll is the engine behind GitHub Pages, a free hosting service provided by GitHub. You can easily deploy Jekyll sites to GitHub Pages for free hosting.
+
+Overall, Jekyll is a versatile and easy-to-use tool for creating static websites or blogs, making it a popular choice for developers, bloggers, and content creators who want a simple and lightweight solution for their websites.
+
 https://jekyllrb.com/
 
 https://www.youtube.com/playlist?list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB
 
 https://github.com/cotes2020/jekyll-theme-chirpy
 
-`cd ~`{{exec}}
+## Start a basic Jekyll site
 
-`ruby -v`{{exec}}
+`cd ~`{{exec}}
 
 `gem install bundler jekyll`{{exec}}
 
@@ -39,12 +55,11 @@ The the project is built it will generate a static site in _site folder
 
 ## Use a Theme (Chirpy)
 
+`cd ~`{{exec}}
+
  `git clone https://github.com/cotes2020/jekyll-theme-chirpy.git`{{exec}}
 
 `cd jekyll-theme-chirpy/`{{exec}}
-
-
-
 
 `bundle install`{{exec}}
 

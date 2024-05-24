@@ -1,16 +1,16 @@
 
 # Initial Setup
 
+Let's start by updating the package list and installing necessary dependencies:
 
 `apt update`{{exec}}
-
 
 `apt install -y curl git sqlite3 libpq-dev libreadline-dev`{{exec}}
 
 
 ## user setup
 
-Some ruby applications don't like to run as root, so we'll add a user  'koda'
+To ensure smooth operation of Ruby applications, we'll create a dedicated user named 'koda':
 
 `sudo adduser --gecos "" koda`{{exec}}
 
@@ -21,6 +21,8 @@ The `--gecos ""` option allows you to bypass the prompts for additional user inf
 `login koda`{{exec}}
  
 ### install asdf
+
+Next, we'll install ASDF version manager for managing multiple runtime versions:
 
 `git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
 
@@ -36,7 +38,7 @@ The `--gecos ""` option allows you to bypass the prompts for additional user inf
 
 ### install ruby
 
-
+Let's add the Ruby plugin to ASDF and install Ruby version 3.1.2:
 
 `asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git`{{exec}}
 
@@ -52,9 +54,9 @@ Now we'll install ruby 3.1.2, which will take about 10 minutes
 
 Now we need to set which version of ruby to use, and the [context](https://asdf-vm.com/guide/getting-started.html#global):
 
-- global: sets for the entire machine from $HOME/.tool-versions
-- shell: sets
-- local: sets working directory version with $PWD/.tool-versions
+- **global**: sets for the entire machine from $HOME/.tool-versions
+- **shell**: sets for the current shell
+- **local**: sets working directory version with $PWD/.tool-versions
 
 `asdf global ruby 3.1.2`{{exec}}
 

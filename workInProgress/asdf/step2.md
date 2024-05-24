@@ -1,18 +1,18 @@
 # Basic ruby 
 
-
-
-The main backage manager for ruby is Gems https://rubygems.org/
-
 `ruby --version`{{exec}}
 
 ## Interpreters
 
 ### Single line
 
+Execute a single line of Ruby code using the `-e` flag:
+
 `ruby -e 'print "Hello Ruby!\n"'`{{exec}}
 
-### REPL
+### REPL (Read-Eval-Print Loop)
+
+Install the Interactive Ruby Shell (IRB) using the following command:
 
 `apt install irb -y`{{exec}}
 
@@ -26,7 +26,7 @@ The main backage manager for ruby is Gems https://rubygems.org/
 
 ### File execution
 
-Copy the following into hello.rb
+Create a Ruby script named `hello.rb` with the following content:
 
 ```
 print "Hello Ruby!\n"
@@ -42,7 +42,7 @@ print "Goodbye Ruby!\n"
 
 ### **pry**
 
-irb on steriods
+Pry is a powerful alternative to IRB for debugging Ruby code. Install Pry using the following command:
 
 `gem install pry`{{exec}}
 
@@ -55,13 +55,14 @@ binding.pry
 ```
 
 
-
-
-### byebug
-
-https://rubygems.org/gems/byebug
-
 ## Linting 
 
->> how to lint ruby <<
+To lint Ruby code, you can use various tools and plugins. One popular linter for Ruby is RuboCop. Install RuboCop using the following command:
+
+`gem install rubocop`{{exec}}
+
+
+
+You can then run RuboCop on your Ruby files to ensure they adhere to the Ruby style guide and best practices.
+
 
