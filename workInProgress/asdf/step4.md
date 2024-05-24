@@ -71,6 +71,12 @@ The the project is built it will generate a static site in _site folder
 
 {{TRAFFIC_HOST1_4000}}
 
+### Just the Docs
+
+https://github.com/just-the-docs/just-the-docs
+
+`gem install just-the-docs`{{exec}}
+
 
 ## Host
 
