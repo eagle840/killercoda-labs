@@ -7,6 +7,8 @@ https://learn.microsoft.com/en-us/ef/core/cli/dotnet
 
 https://learn.microsoft.com/en-us/ef/core/get-started/overview/install
 
+https://learn.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=netcore-cli
+
 
 ## create new project
 
@@ -65,7 +67,7 @@ public class Post
     public int BlogId { get; set; }
     public Blog Blog { get; set; }
 }
-```
+```{{copy}}
 
 
 ## create the db
@@ -81,8 +83,11 @@ EOF
 
 `export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
 
-
 WIP OR `bash`{{exec}}
+
+Comfirm dotnet-ef is installed
+
+`dotnet ef -v`{{exec}}
 
 Run the following in the 'EFGetStarted' dir (should be here already)
 
@@ -92,10 +97,14 @@ Run the following in the 'EFGetStarted' dir (should be here already)
 
 `dotnet ef database update`{{exec}}
 
-WIP view the db with ????
+WIP view the db with ????, where is the qb?
+
+
 
 
 ### Create, read, update & delete
+
+Replace Program.cs with:
 
 ```
 using System;
@@ -128,104 +137,9 @@ db.SaveChanges();
 Console.WriteLine("Delete the blog");
 db.Remove(blog);
 db.SaveChanges();
-```
+```{{copy}}
 
 ## run the app
 
 `dotnet run`{{exec}}
-
-
---- OLD
-
-
-[get ed tool](https://learn.microsoft.com/en-us/ef/core/get-started/overview/install#get-the-net-core-cli-tools)
-
-`dotnet tool install --global dotnet-ef`{{exec}}
-
-`dotnet tool update`{{exec}}
-
-`dotnet add package Microsoft.EntityFrameworkCore.Design`{{exec}}
-
-## create first app
-
-https://learn.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=netcore-cli#create-a-new-project
-
-
-`dotnet new console -o EFGetStarted`{{exec}}
-
-`cd EFGetStarted`{{exec}}
-
-`dotnet add package Microsoft.EntityFrameworkCore.Sqlite`{{exec}}
-
-(we've already install sqlite)
-
-In the project directory, create Model.cs with the following code
-
-```
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-
-public class BloggingContext : DbContext
-{
-    public DbSet<Blog> Blogs { get; set; }
-    public DbSet<Post> Posts { get; set; }
-
-    public string DbPath { get; }
-
-    public BloggingContext()
-    {
-        var folder = Environment.SpecialFolder.LocalApplicationData;
-        var path = Environment.GetFolderPath(folder);
-        DbPath = System.IO.Path.Join(path, "blogging.db");
-    }
-
-    // The following configures EF to create a Sqlite database file in the
-    // special "local" folder for your platform.
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite($"Data Source={DbPath}");
-}
-
-public class Blog
-{
-    public int BlogId { get; set; }
-    public string Url { get; set; }
-
-    public List<Post> Posts { get; } = new();
-}
-
-public class Post
-{
-    public int PostId { get; set; }
-    public string Title { get; set; }
-    public string Content { get; set; }
-
-    public int BlogId { get; set; }
-    public Blog Blog { get; set; }
-}
-```
-
-
-EF Core can also [reverse engineer](https://learn.microsoft.com/en-us/ef/core/managing-schemas/scaffolding/) a model from an existing database.
-
-
-
-follow from [here](https://learn.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=netcore-cli#create-the-database)
-
-
-
-
---- DLETE BELOW ---
-
-# dotnet -REPL  
-
-## dotnet interactive & polyglot-notebooks
-
-https://devblogs.microsoft.com/dotnet/dotnet-interactive-notebooks-is-now-polyglot-notebooks/
-
-https://github.com/dotnet/interactive
-
-https://github.com/jonsequitur/dotnet-repl
-
-`dotnet tool install -g dotnet-repl`{{exec}}
 
