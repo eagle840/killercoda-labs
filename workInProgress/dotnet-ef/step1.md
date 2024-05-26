@@ -1,11 +1,10 @@
 
 # Initial Setup
 
-Doc: https://killercoda.com/creators
-
-github: https://github.com/killercoda
 
 See dotnet lab for intro
+
+https://learn.microsoft.com/en-us/ef/
 
 # WIP with asdf
 
@@ -14,6 +13,28 @@ https://github.com/hensou/asdf-dotnet
 `sudo apt update`{{exec}}
 
 `apt install -y curl git sqlite3 libpq-dev libreadline-dev`{{exec}}
+
+## WIP install dotnet
+
+asdf isn't working with global dotnet tools
+
+```
+wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+```{{exec}}
+
+```
+sudo apt-get update && \
+  sudo apt-get install -y dotnet-sdk-8.0
+```{{exec}}
+
+```
+sudo apt-get update && \
+  sudo apt-get install -y aspnetcore-runtime-8.0
+```{{exec}}
+
+
 
 ### install asdf
 
@@ -43,10 +64,12 @@ We'll be using asdf to install dotnet, however complete instructions for downloa
 
 to install a specific version:
 
-`asdf install dotnet 6.0.400`{{copy}}
+`asdf install dotnet 8.0.300`{{copy}}
 
 #### Set a version globally (on your ~/.tool-versions file)
 `asdf global dotnet latest`{{exec}}
+
+`asdf global dotnet 8.0.300`{{copy}}
 
 #### Now dotnet commands are available
 `dotnet --version`{{exec}}
@@ -60,7 +83,7 @@ to install a specific version:
 
 https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=docker-hub
 
-`docker run -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-storage/azurite`{{exec}}
+`docker run -d -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-storage/azurite`{{exec}}
 
 
 

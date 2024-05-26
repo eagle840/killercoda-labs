@@ -7,7 +7,135 @@ https://learn.microsoft.com/en-us/ef/core/cli/dotnet
 
 https://learn.microsoft.com/en-us/ef/core/get-started/overview/install
 
-`dotnet add package Microsoft.EntityFrameworkCore.SqlServer`{{exec}}
+
+## create new project
+
+
+`dotnet new console -o EFGetStarted`{{exec}}
+
+`cd EFGetStarted`{{exec}}
+
+## install ef core
+
+`dotnet add package Microsoft.EntityFrameworkCore.Sqlite`{{exec}}
+
+## create the model
+
+`touch Model.cs`{{exec}}
+
+```
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+
+public class BloggingContext : DbContext
+{
+    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<Post> Posts { get; set; }
+
+    public string DbPath { get; }
+
+    public BloggingContext()
+    {
+        var folder = Environment.SpecialFolder.LocalApplicationData;
+        var path = Environment.GetFolderPath(folder);
+        DbPath = System.IO.Path.Join(path, "blogging.db");
+    }
+
+    // The following configures EF to create a Sqlite database file in the
+    // special "local" folder for your platform.
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
+        => options.UseSqlite($"Data Source={DbPath}");
+}
+
+public class Blog
+{
+    public int BlogId { get; set; }
+    public string Url { get; set; }
+
+    public List<Post> Posts { get; } = new();
+}
+
+public class Post
+{
+    public int PostId { get; set; }
+    public string Title { get; set; }
+    public string Content { get; set; }
+
+    public int BlogId { get; set; }
+    public Blog Blog { get; set; }
+}
+```
+
+
+## create the db
+
+`dotnet tool install --global dotnet-ef`{{exec}}
+
+```
+cat << \EOF >> ~/.bash_profile
+# Add .NET Core SDK tools
+export PATH="$PATH:/root/.dotnet/tools"
+EOF
+```
+
+`export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
+
+
+WIP OR `bash`{{exec}}
+
+Run the following in the 'EFGetStarted' dir (should be here already)
+
+`dotnet add package Microsoft.EntityFrameworkCore.Design`{{exec}}
+
+`dotnet ef migrations add InitialCreate`{{exec}}
+
+`dotnet ef database update`{{exec}}
+
+WIP view the db with ????
+
+
+### Create, read, update & delete
+
+```
+using System;
+using System.Linq;
+
+using var db = new BloggingContext();
+
+// Note: This sample requires the database to be created before running.
+Console.WriteLine($"Database path: {db.DbPath}.");
+
+// Create
+Console.WriteLine("Inserting a new blog");
+db.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
+db.SaveChanges();
+
+// Read
+Console.WriteLine("Querying for a blog");
+var blog = db.Blogs
+    .OrderBy(b => b.BlogId)
+    .First();
+
+// Update
+Console.WriteLine("Updating the blog and adding a post");
+blog.Url = "https://devblogs.microsoft.com/dotnet";
+blog.Posts.Add(
+    new Post { Title = "Hello World", Content = "I wrote an app using EF Core!" });
+db.SaveChanges();
+
+// Delete
+Console.WriteLine("Delete the blog");
+db.Remove(blog);
+db.SaveChanges();
+```
+
+## run the app
+
+`dotnet run`{{exec}}
+
+
+--- OLD
 
 
 [get ed tool](https://learn.microsoft.com/en-us/ef/core/get-started/overview/install#get-the-net-core-cli-tools)
@@ -100,74 +228,4 @@ https://github.com/dotnet/interactive
 https://github.com/jonsequitur/dotnet-repl
 
 `dotnet tool install -g dotnet-repl`{{exec}}
-
-## Simple web page
-
-`cd ~; mkdir web; cd web`{{exec}}
-
-The -n arugment will create a folder of that name
-
-`dotnet new webapp -n myWebApp`{{exec}}
-
-`ls`{{exec}}
-
-`cd myWebApp/`{{exec}}
-
-'dotnet restore' restores the dependencies and tools of a .NET project.
-
-`dotnet restore`{{exec}}
-
-'dotnet build' compiles the source code of a .NET project and generates the executable or library output, default in the bin folder
-
-`dotnet build`{{exec}} --configuration Release --no-restore ./src
-
-WIP do a tree
-
-The configuration setting can be in the .csprof or .sln file.
-
-`ls`
-
-'dotnet test' runs the unit tests defined in a .NET project and provides feedback on the test results, including information about passed and failed tests, code coverage, and other relevant metrics.
-
-`dotnet test`{{exec}} --no-restore --verbosity normal ./src
-
-'dotnet publish' compiles the source code of a .NET project and generates a self-contained deployment-ready package. This package includes the compiled application along with its dependencies and any additional files required for deployment. The output of dotnet publish can be used to deploy and run the application on a target environment without requiring the .NET SDK or runtime to be installed.
-
-`dotnet publish`{{exec}} --configuration Release --no-build --output ./output ./src
-
-WIP do a tree
-
-## Run the app
-
-`ls`{{exec}}
-
-`dotnet run`
-
-`dotnet run --urls http://localhost:5000`
-
-`dotnet run --urls http://0.0.0.0:5000`{{exec}}
-
-Watch allows you to code, and see the changes
-
-`dotnet watch -v --urls http://0.0.0.0:5000`{{exec}}
-
-review the -v command in help dotnet run --help
-
- -v, --verbosity <LEVEL> Set the MSBuild verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].
-
-{{TRAFFIC_HOST1_5000}}
-
-## Build a Razor
-
-## Build a Blazorwasm
-
-## Build a webapi
-
-## Simple debugging
-
-## entity framework (in new lab)
-
-https://learn.microsoft.com/en-us/ef/
-
-https://www.nuget.org/packages?q=entity+framework
 
