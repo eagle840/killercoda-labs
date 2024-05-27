@@ -28,6 +28,6 @@
 13. `PRAGMA`: Set or query SQLite runtime configuration options.
 
 
-`sqlite3`{{exec}}
+`sqlite3 /root/.local/share/blogging.db`{{exec}}
 
 `.quit`{{exec}}
