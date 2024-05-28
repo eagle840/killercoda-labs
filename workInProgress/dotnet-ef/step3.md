@@ -1,9 +1,4 @@
 
-## dbschema
-
-https://dbschema.com/download.html
-
-download and test, needs java
 
 
 ## sqlite
@@ -37,5 +32,11 @@ download and test, needs java
 
 
 `sqlite3 /root/.local/share/blogging.db`{{exec}}
+
+`.databases`{{exec}}
+
+`.tables`{{exec}}
+
+`.schema Posts`{{exec}}
 
 `.quit`{{exec}}

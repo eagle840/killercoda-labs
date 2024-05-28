@@ -78,6 +78,8 @@ The `List<post>` creats a one to many between blogs and posts (check this)
 
 ## create the db
 
+https://learn.microsoft.com/en-us/ef/core/cli/dotnet
+
 `dotnet tool install --global dotnet-ef`{{exec}}
 
 ```
@@ -89,7 +91,6 @@ EOF
 
 `export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
 
-WIP OR `bash`{{exec}}
 
 Comfirm dotnet-ef is installed
 

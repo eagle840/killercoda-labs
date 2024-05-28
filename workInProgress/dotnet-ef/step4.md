@@ -2,6 +2,9 @@
 
 follow https://learn.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-8.0&tabs=visual-studio-code
 
+`cd ~`{{exec}}
+
+create a ASP.NET Core Web App (Razor Pages):
 
 `dotnet new webapp -o ContosoUniversity`{{exec}}
 
@@ -125,6 +128,10 @@ In Pages/Index.cshtml
 
 Create Models/Student.cs with the following code
 
+`mkdir Models`{{exec}}
+
+`touch Models/Student.cs`{{exec}}
+
 ```
 namespace ContosoUniversity.Models
 {
@@ -141,6 +148,8 @@ namespace ContosoUniversity.Models
 ```{{copy}}
 
 Create Models/Enrollment.cs with the following code:
+
+`touch Models/Enrollment.cs`{{exec}}
 
 ```
 using System.ComponentModel.DataAnnotations;
@@ -167,6 +176,8 @@ namespace ContosoUniversity.Models
 ```{{copy}}
 
 Create Models/Course.cs with the following code:
+
+`Models/Course.cs`{{exec}}
 
 ```
 using System.ComponentModel.DataAnnotations.Schema;
@@ -203,6 +214,8 @@ dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 `mkdir Pages/Students`{{exec}}
 
 `dotnet tool install --global dotnet-aspnet-codegenerator`{{exec}}
+
+`dotnet-aspnet-codegenerator -h`{{exec}}
 
 `export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
 
@@ -249,3 +262,135 @@ namespace ContosoUniversity.Data
 
 AT https://learn.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-8.0&tabs=visual-studio-code#add-the-database-exception-filter
 
+
+
+updte program.cs
+
+```
+using Microsoft.EntityFrameworkCore;
+using ContosoUniversity.Data;
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<SchoolContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("SchoolContextSQLite")));
+
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+var app = builder.Build();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+else
+{
+    app.UseDeveloperExceptionPage();
+    app.UseMigrationsEndPoint();
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<SchoolContext>();
+    context.Database.EnsureCreated();
+    // DbInitializer.Initialize(context);
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();
+```{{exec}}
+
+
+## Test
+
+Run the app.   
+Select the Students link and then Create New.   
+Test the Edit, Details, and Delete links.   
+
+
+## seed db
+
+create
+
+`touch Data/DbInitializer.cs`{{exec}}
+
+```
+using ContosoUniversity.Models;
+
+namespace ContosoUniversity.Data
+{
+    public static class DbInitializer
+    {
+        public static void Initialize(SchoolContext context)
+        {
+            // Look for any students.
+            if (context.Students.Any())
+            {
+                return;   // DB has been seeded
+            }
+
+            var students = new Student[]
+            {
+                new Student{FirstMidName="Carson",LastName="Alexander",EnrollmentDate=DateTime.Parse("2019-09-01")},
+                new Student{FirstMidName="Meredith",LastName="Alonso",EnrollmentDate=DateTime.Parse("2017-09-01")},
+                new Student{FirstMidName="Arturo",LastName="Anand",EnrollmentDate=DateTime.Parse("2018-09-01")},
+                new Student{FirstMidName="Gytis",LastName="Barzdukas",EnrollmentDate=DateTime.Parse("2017-09-01")},
+                new Student{FirstMidName="Yan",LastName="Li",EnrollmentDate=DateTime.Parse("2017-09-01")},
+                new Student{FirstMidName="Peggy",LastName="Justice",EnrollmentDate=DateTime.Parse("2016-09-01")},
+                new Student{FirstMidName="Laura",LastName="Norman",EnrollmentDate=DateTime.Parse("2018-09-01")},
+                new Student{FirstMidName="Nino",LastName="Olivetto",EnrollmentDate=DateTime.Parse("2019-09-01")}
+            };
+
+            context.Students.AddRange(students);
+            context.SaveChanges();
+
+            var courses = new Course[]
+            {
+                new Course{CourseID=1050,Title="Chemistry",Credits=3},
+                new Course{CourseID=4022,Title="Microeconomics",Credits=3},
+                new Course{CourseID=4041,Title="Macroeconomics",Credits=3},
+                new Course{CourseID=1045,Title="Calculus",Credits=4},
+                new Course{CourseID=3141,Title="Trigonometry",Credits=4},
+                new Course{CourseID=2021,Title="Composition",Credits=3},
+                new Course{CourseID=2042,Title="Literature",Credits=4}
+            };
+
+            context.Courses.AddRange(courses);
+            context.SaveChanges();
+
+            var enrollments = new Enrollment[]
+            {
+                new Enrollment{StudentID=1,CourseID=1050,Grade=Grade.A},
+                new Enrollment{StudentID=1,CourseID=4022,Grade=Grade.C},
+                new Enrollment{StudentID=1,CourseID=4041,Grade=Grade.B},
+                new Enrollment{StudentID=2,CourseID=1045,Grade=Grade.B},
+                new Enrollment{StudentID=2,CourseID=3141,Grade=Grade.F},
+                new Enrollment{StudentID=2,CourseID=2021,Grade=Grade.F},
+                new Enrollment{StudentID=3,CourseID=1050},
+                new Enrollment{StudentID=4,CourseID=1050},
+                new Enrollment{StudentID=4,CourseID=4022,Grade=Grade.F},
+                new Enrollment{StudentID=5,CourseID=4041,Grade=Grade.C},
+                new Enrollment{StudentID=6,CourseID=1045},
+                new Enrollment{StudentID=7,CourseID=3141,Grade=Grade.A},
+            };
+
+            context.Enrollments.AddRange(enrollments);
+            context.SaveChanges();
+        }
+    }
+}
+```{{exec}}
+
+In Program.cs, remove // from the DbInitializer.Initialize line
