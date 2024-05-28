@@ -164,7 +164,7 @@ namespace ContosoUniversity.Models
         public Student Student { get; set; }
     }
 }
-```{{exec}}
+```{{copy}}
 
 Create Models/Course.cs with the following code:
 
@@ -189,4 +189,63 @@ To eliminate the warnings from nullable reference types, remove the following li
 
 
 At https://learn.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-8.0&tabs=visual-studio-code#scaffold-student-pages
+
+Run the following
+```
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
+```{{exec}}
+
+`mkdir Pages/Students`{{exec}}
+
+`dotnet tool install --global dotnet-aspnet-codegenerator`{{exec}}
+
+`export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
+
+WIP I ran 'bash'
+
+More info at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/tools/dotnet-aspnet-codegenerator?view=aspnetcore-8.0
+
+`dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries -sqlite`{{exec}}
+
+
+In appsettings.json
+
+change to `"SchoolContextSQLite": "Data Source=CU.db"`{{copy}}
+
+
+Update Data/SchoolContext.cs  to
+
+```
+using Microsoft.EntityFrameworkCore;
+using ContosoUniversity.Models;
+
+namespace ContosoUniversity.Data
+{
+    public class SchoolContext : DbContext
+    {
+        public SchoolContext (DbContextOptions<SchoolContext> options)
+            : base(options)
+        {
+        }
+
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
+        public DbSet<Course> Courses { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Course>().ToTable("Course");
+            modelBuilder.Entity<Enrollment>().ToTable("Enrollment");
+            modelBuilder.Entity<Student>().ToTable("Student");
+        }
+    }
+}
+```{{copy}}
+
+AT https://learn.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-8.0&tabs=visual-studio-code#add-the-database-exception-filter
 
