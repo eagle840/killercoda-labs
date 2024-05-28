@@ -69,6 +69,12 @@ public class Post
 }
 ```{{copy}}
 
+DbContext is what EF thinks the database looks like (mapping)
+
+Note the two tables 'Blog' and 'Post'. EF auto create keys from <tableName>Id, eg PostId
+
+The `List<post>` creats a one to many between blogs and posts (check this)
+
 
 ## create the db
 

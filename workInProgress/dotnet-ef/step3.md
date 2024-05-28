@@ -1,4 +1,12 @@
-# sqlite
+
+## dbschema
+
+https://dbschema.com/download.html
+
+download and test, needs java
+
+
+## sqlite
 
 
 1. `.help`: Display a list of available commands.
