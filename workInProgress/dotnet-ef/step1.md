@@ -85,6 +85,15 @@ https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=
 
 `docker run -d -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-storage/azurite`{{exec}}
 
+## db management
+
+`docker run -d -p 8080:8080 adminer`{{exec}}
+
+https://www.adminer.org/
+
+WIP might have to attach a folder/file/db to docker to connect to local files
+
+Or just use mysql or similar
 
 
 

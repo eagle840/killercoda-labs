@@ -140,8 +140,8 @@ blog.Posts.Add(
 db.SaveChanges();
 
 // Delete
-Console.WriteLine("Delete the blog");
-db.Remove(blog);
+// Console.WriteLine("Delete the blog");
+// db.Remove(blog);
 db.SaveChanges();
 ```{{copy}}
 
