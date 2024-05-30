@@ -177,7 +177,7 @@ namespace ContosoUniversity.Models
 
 Create Models/Course.cs with the following code:
 
-`Models/Course.cs`{{exec}}
+`touch Models/Course.cs`{{exec}}
 
 ```
 using System.ComponentModel.DataAnnotations.Schema;
@@ -215,9 +215,10 @@ dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 
 `dotnet tool install --global dotnet-aspnet-codegenerator`{{exec}}
 
+`export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
+
 `dotnet-aspnet-codegenerator -h`{{exec}}
 
-`export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
 
 WIP I ran 'bash'
 
@@ -264,7 +265,7 @@ AT https://learn.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcor
 
 
 
-updte program.cs
+update program.cs
 
 ```
 using Microsoft.EntityFrameworkCore;
@@ -310,12 +311,13 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
-```{{exec}}
+```{{copy}}
 
 
 ## Test
 
-Run the app.   
+Run the app.   `dotnet run`{{exec}}
+
 Select the Students link and then Create New.   
 Test the Edit, Details, and Delete links.   
 

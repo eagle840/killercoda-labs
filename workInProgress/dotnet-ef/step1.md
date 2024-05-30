@@ -6,6 +6,9 @@ See dotnet lab for intro
 
 https://learn.microsoft.com/en-us/ef/
 
+## Install c# debugger in VSC
+
+
 # WIP with asdf
 
 https://github.com/hensou/asdf-dotnet
