@@ -11,7 +11,7 @@ create a ASP.NET Core Web App (Razor Pages):
 `cd ContosoUniversity`{{exec}}
 
 
-Copy and paste the following code into the `Pages/Shared/_Layout.cshtml`
+Copy and paste the following code into the **Pages/Shared/_Layout.cshtml**
 
 ```
 <!DOCTYPE html>
@@ -76,7 +76,7 @@ Copy and paste the following code into the `Pages/Shared/_Layout.cshtml`
 </html>
 ```{{copy}}
 
-In `Pages/Index.cshtml`
+In **Pages/Index.cshtml**
 
 ```
 @page
@@ -130,7 +130,7 @@ In `Pages/Index.cshtml`
 
 
 
-Create `Models/Student.cs` with the following code
+Create **Models/Student.cs** with the following code
 
 `mkdir Models`{{exec}}
 
@@ -151,7 +151,7 @@ namespace ContosoUniversity.Models
 }
 ```{{copy}}
 
-Create `Models/Enrollment.cs` with the following code:
+Create **Models/Enrollment.cs** with the following code:
 
 `touch Models/Enrollment.cs`{{exec}}
 
@@ -179,7 +179,7 @@ namespace ContosoUniversity.Models
 }
 ```{{copy}}
 
-Create `Models/Course.cs` with the following code:
+Create **Models/Course.cs** with the following code:
 
 `touch Models/Course.cs`{{exec}}
 
@@ -200,7 +200,7 @@ namespace ContosoUniversity.Models
 }
 ```{{copy}}
 
-To eliminate the warnings from nullable reference types, remove the following line from the `ContosoUniversity.csproj` file:  `<Nullable>enable</Nullable> `
+To eliminate the warnings from nullable reference types, remove the following line from the **ContosoUniversity.csproj** file:  `<Nullable>enable</Nullable> `
 
 
 At https://learn.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-8.0&tabs=visual-studio-code#scaffold-student-pages
@@ -236,7 +236,7 @@ In appsettings.json
 change to `"SchoolContextSQLite": "Data Source=CU.db"`{{copy}}
 
 
-Update `Data/SchoolContext.cs`  to
+Update **Data/SchoolContext.cs**  to
 
 ```
 using Microsoft.EntityFrameworkCore;
@@ -269,7 +269,7 @@ AT https://learn.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcor
 
 
 
-update `program.cs`
+update **program.cs**
 
 ```
 using Microsoft.EntityFrameworkCore;
@@ -329,7 +329,11 @@ Run the app.   `dotnet run`{{exec}}
 WIP get the following:
 
 ```
-/root/ContosoUniversity/Pages/Students/Index.cshtml.cs(26,38): error CS1061: 'SchoolContext' does not contain a definition for 'Student' and no accessible extension method 'Student' accepting a first argument of type 'SchoolContext' could be found (are you missing a using directive or an assembly reference?) [/root/ContosoUniversity/ContosoUniversity.csproj]
+/root/ContosoUniversity/Pages/Students/Index.cshtml.cs(26,38): 
+error CS1061: 
+'SchoolContext' does not contain a definition for 'Student' and no accessible extension method 'Student' accepting a first argument of type 'SchoolContext' could be found 
+(are you missing a using directive or an assembly reference?) 
+[/root/ContosoUniversity/ContosoUniversity.csproj]
 
 ```
 
