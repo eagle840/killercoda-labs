@@ -68,6 +68,7 @@ Now we need to set which version of ruby to use, and the [context](https://asdf-
 
 `ruby -v`{{exec}}
 
+`apt install irb -y`{{exec}}
 
 
 ##  Install Rails
