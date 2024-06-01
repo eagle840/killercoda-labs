@@ -11,7 +11,7 @@
 
 `apt-get install -y libyaml-dev`{{exec}}
 
-## user setup
+## user setup (WIP leave out for now)
 
 To ensure smooth operation of Ruby applications, we'll create a dedicated user named 'koda':
 
@@ -101,9 +101,9 @@ On killacode: {{TRAFFIC_HOST1_3000}}
 
 ### To remove the warning
 
-add __config.hosts.clear__ to the  `config/environments/development.rb` file`, in the 'do' section
+add `config.hosts.clear` to the  **config/environments/development.rb** file, in the 'do' section
 
-This will create a basic Rails application with the necessary files and directories. You can explore the generated code and start building your lab exercises based on the sections mentioned earlier.
+This will finally create a basic Rails application with the necessary files and directories. You can explore the generated code and start building your lab exercises based on the sections mentioned earlier.
 
 
 ## Hello world
@@ -113,19 +113,6 @@ Let add 'Hello world'
 https://guides.rubyonrails.org/getting_started.html#say-hello-rails
 
 
-
-
-
-# For links to ports:
-
-```
-Link for traffic into host 1 on port 80
-{{TRAFFIC_HOST1_80}}
-Link for traffic into host 2 on port 4444
-{{TRAFFIC_HOST2_4444}}
-Link for traffic into host X on port Y
-{{TRAFFIC_HOSTX_Y}}
-```
 
 
 

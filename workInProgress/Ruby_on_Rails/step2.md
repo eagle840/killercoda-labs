@@ -10,6 +10,8 @@ Sure! Here are some example commands to illustrate the MVC architecture in Ruby 
 
 1. Generate a new Rails application:
 
+`cd ~`{{exec}}
+
 `rails new myapp`{{exec}}
 
 
@@ -54,8 +56,18 @@ user.save
 # Delete a user
 user = User.find(1)
 user.destroy
-```
+```{{exec}}
+
+`quit`{{exec}}
 
 These commands demonstrate the basic usage of models, views, and controllers in Rails. You can modify the model attributes, controller actions, and view templates to suit your specific lab requirements.
+
+---
+
+add `config.hosts.clear` to the  **config/environments/development.rb** file, in the 'do' section
+
+Start the Rails server
+
+`rails server -b 0.0.0.0`{{exec}}
 
 
