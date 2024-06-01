@@ -2,6 +2,10 @@
 
 follow https://learn.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-8.0&tabs=visual-studio-code
 
+WIP check the following for the github code and compare against yours
+
+https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu60
+
 `cd ~`{{exec}}
 
 create a ASP.NET Core Web App (Razor Pages):
