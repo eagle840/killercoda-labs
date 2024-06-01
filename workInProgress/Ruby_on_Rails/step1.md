@@ -9,6 +9,7 @@
 
 `sudo systemctl start postgresql.service`{{exec}}
 
+`apt-get install -y libyaml-dev`{{exec}}
 
 ## user setup
 
@@ -18,7 +19,7 @@ To ensure smooth operation of Ruby applications, we'll create a dedicated user n
 
 The `--gecos ""` option allows you to bypass the prompts for additional user information
 
-`sudo - koda`{{copy}}
+`sudo adduser koda sudo`{{copy}}
 
 `login koda`{{exec}}
 
@@ -67,6 +68,8 @@ Now we need to set which version of ruby to use, and the [context](https://asdf-
 `asdf current`{{exec}}
 
 `ruby -v`{{exec}}
+
+WIP `gem update`{{exec}}
 
 `apt install irb -y`{{exec}}
 
