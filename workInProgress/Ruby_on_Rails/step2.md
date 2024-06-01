@@ -9,27 +9,32 @@
 Sure! Here are some example commands to illustrate the MVC architecture in Ruby on Rails:
 
 1. Generate a new Rails application:
-```
-rails new myapp
-```{{exec}}
+
+`rails new myapp`{{exec}}
+
 
 2. Generate a new model, view, and controller:
-```
-cd myapp
-rails generate model User name:string email:string
-rails generate controller Users index show new create edit update destroy
-```{{exec}}
+
+`cd myapp`{{exec}}
+
+`rails generate model User name:string email:string`{{exec}}
+
+`rails generate controller Users index show new create edit update destroy`{{exec}}
+
+
 
 3. Define a database migration and run it:
-```
-rails generate migration AddAgeToUsers age:integer
-rails db:migrate
-```{{exec}}
+
+`rails generate migration AddAgeToUsers age:integer`{{exec}}
+
+`rails db:migrate`{{exec}}
+
+
 
 4. Perform CRUD operations using Rails console:
-```
-rails console
-```{{exec}}
+
+`rails console`{{exec}}
+
 
 
 ```

@@ -1,5 +1,24 @@
 # Step 6  Deployment and Testing
 
+
+Packaging
+
+Bundler and Webpacker are both tools commonly used in Ruby on Rails applications, but they serve different purposes.
+
+
+
+Bundler is a dependency manager for Ruby applications. It helps manage the Ruby gems (libraries) that your application depends on. Bundler reads a `Gemfile` in your project and installs the specified gems, ensuring that your application has the correct versions of dependencies.
+
+
+
+Webpacker, on the other hand, is a tool for managing JavaScript assets in a Rails application. It integrates the Webpack module bundler into the Rails asset pipeline, allowing you to use modern JavaScript features and libraries in your application. Webpacker also provides support for CSS pre-processors like Sass and LESS.
+
+
+
+In summary, Bundler is used for managing Ruby gem 
+
+## Docker
+
 using docker
 
 

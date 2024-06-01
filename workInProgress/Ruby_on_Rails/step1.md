@@ -11,7 +11,7 @@
 
 ---
 
-### install asdf
+### install asdf (appears to be fastest setup)
 
 `git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
 
@@ -26,6 +26,8 @@
 `asdf current`{{exec}}
 
 ### install ruby
+
+Warning: this can take upto 10 mins
 
 
 
@@ -53,58 +55,28 @@ Now we need to set which version of ruby to use, and the [context](https://asdf-
 
 `ruby -v`{{exec}}
 
----
-
-WIP to old `sudo apt install -y ruby-full`{{copy}}
-
-see the asdf lab for details on custom installs of ruby.
 
 
-To install Ruby on Rails on Ubuntu, you can follow these steps:
+### Step 3: Install Rails
 
-Step 1: Update system packages
-
-`sudo apt update`{{exec}}
-
-Step 2: Install Ruby using rbenv
-
-WIP rbenv install 2.7.2 takes too long
-
-
-`sudo apt install -y git curl libssl-dev libreadline-dev zlib1g-dev`{{exec}}   
-`git clone https://github.com/rbenv/rbenv.git ~/.rbenv`{{exec}}   
-`git clone https://github.com/rbenv/rbenv.git ~/.rbenv`{{exec}}   
-`echo 'eval "$(rbenv init -)"' >> ~/.bashrc`{{exec}}   
-`source ~/.bashrc`{{exec}}   
-`git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build`{{exec}}    
-`rbenv install 2.7.2`{{exec}}   
-`rbenv global 2.7.2`{{exec}}   
-
----
-
-
-
-Step 3: Install Rails
 `gem install rails`{{exec}}
 
 Step 4: Verify installation
-```
-ruby -v
-rails -v
-```{{exec}}
+
+`rails -v`{{exec}}
 
 Now that you have Rails installed, let's create a demo app:
 
-Step 5: Create a new Rails application
-```
-rails new demo_app
-cd demo_app
-```{{exec}}
+### Step 5: Create a new Rails application
+
+`rails new demo_app`{{exec}}
+`cd demo_app`{{exec}}
+
 
 Step 6: Start the Rails server
-```
-rails server -b 0.0.0.0
-```{{exec}}
+
+`rails server -b 0.0.0.0`{{exec}}
+
 
 Now you can access the demo app by opening a web browser and visiting `http://localhost:3000`.
 
