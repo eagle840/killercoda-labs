@@ -1,5 +1,7 @@
 # Step 3  Routing and Views
 
+Add view (by default) are created with the templating engine ERB (check)
+
 Sure! Here's an example code snippet for Section 3, along with a description of each step:
 
 Step 1: Understanding the routing mechanism in Rails

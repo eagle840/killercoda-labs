@@ -19,6 +19,8 @@ Sure! Here are some example commands to illustrate the MVC architecture in Ruby 
 
 `cd myapp`{{exec}}
 
+Models are controlled with the ORM ActiveRecord (add link)
+
 `rails generate model User name:string email:string`{{exec}}
 
 `rails generate controller Users index show new create edit update destroy`{{exec}}
