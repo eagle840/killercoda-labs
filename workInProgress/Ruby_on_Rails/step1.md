@@ -1,7 +1,7 @@
 
 # Initial Setup
 
-## Install Ruby-on-Rails
+## Install dependiences 
 
 `sudo apt update`{{exec}}
 
@@ -9,9 +9,22 @@
 
 `sudo systemctl start postgresql.service`{{exec}}
 
+
+## user setup
+
+To ensure smooth operation of Ruby applications, we'll create a dedicated user named 'koda':
+
+`sudo adduser --gecos "" koda`{{exec}}
+
+The `--gecos ""` option allows you to bypass the prompts for additional user information
+
+`sudo - koda`{{copy}}
+
+`login koda`{{exec}}
+
 ---
 
-### install asdf (appears to be fastest setup)
+## install asdf (appears to be fastest setup)
 
 `git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
 
@@ -25,7 +38,7 @@
 
 `asdf current`{{exec}}
 
-### install ruby
+## install ruby
 
 Warning: this can take upto 10 mins
 
@@ -57,7 +70,7 @@ Now we need to set which version of ruby to use, and the [context](https://asdf-
 
 
 
-### Step 3: Install Rails
+##  Install Rails
 
 `gem install rails`{{exec}}
 
@@ -67,13 +80,13 @@ Step 4: Verify installation
 
 Now that you have Rails installed, let's create a demo app:
 
-### Step 5: Create a new Rails application
+## Create a new Rails application
 
 `rails new demo_app`{{exec}}
 `cd demo_app`{{exec}}
 
 
-Step 6: Start the Rails server
+Start the Rails server
 
 `rails server -b 0.0.0.0`{{exec}}
 
@@ -83,6 +96,7 @@ Now you can access the demo app by opening a web browser and visiting `http://lo
 On killacode: {{TRAFFIC_HOST1_3000}}
 
 ### To remove the warning
+
 add __config.hosts.clear__ to the  `config/environments/development.rb` file`, in the 'do' section
 
 This will create a basic Rails application with the necessary files and directories. You can explore the generated code and start building your lab exercises based on the sections mentioned earlier.
