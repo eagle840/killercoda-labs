@@ -31,6 +31,14 @@ Sure! Here are some example commands to illustrate the MVC architecture in Ruby 
 
 `rails db:migrate`{{exec}}
 
+WIP try this:
+
+add `config.hosts.clear` to the  **config/environments/development.rb** file, in the 'do' section
+
+Start the Rails server
+
+`rails server -b 0.0.0.0`{{exec}}
+
 
 
 4. Perform CRUD operations using Rails console:
