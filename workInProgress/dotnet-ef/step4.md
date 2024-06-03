@@ -232,7 +232,26 @@ WIP I ran 'bash'
 
 More info at https://learn.microsoft.com/en-us/aspnet/core/fundamentals/tools/dotnet-aspnet-codegenerator?view=aspnetcore-8.0
 
+
 `dotnet aspnet-codegenerator razorpage -m Student -dc ContosoUniversity.Data.SchoolContext -udl -outDir Pages/Students --referenceScriptLibraries -sqlite`{{exec}}
+
+```
+If the generated C# files in the `Pages/Student` directory have the wrong context for the `Student` model, it could be due to a few reasons:
+
+1. **Incorrect Data Context Class**: The `-dc` option specifies the data context class to use for scaffolding. If the `SchoolContext` class does not have the necessary DbSet for the `Student` model, it can lead to incorrect scaffolding.
+
+2. **Namespace Issues**: If the namespace of the `Student` model or the data context class is not correctly specified or does not match the actual namespace in the project, it can cause issues with scaffolding.
+
+3. **Model Class Definition**: Ensure that the `Student` model class is defined correctly with the necessary properties and attributes that match the database schema.
+
+To troubleshoot and resolve the issue:
+
+- Double-check the data context class (`SchoolContext`) to ensure it includes the necessary DbSet for the `Student` model.
+- Verify that the namespaces for the model and data context classes are correctly specified and consistent throughout the project.
+- Review the `Student` model class to ensure it matches the database schema and has the correct properties defined.
+
+If the issue persists, you may need to manually adjust the generated files in the `Pages/Student` directory to align with the correct data context and model definitions.
+```
 
 
 In appsettings.json
@@ -323,6 +342,38 @@ app.Run();
 
 
 ## Test
+
+WIP in appears that the pages generated have an error, it should be
+
+ `_context.Students.Add(Student);`
+
+
+ `directory="/root/ContosoUniversity/Pages/Students"`{{exec}}
+
+```
+for file in $directory/*
+do
+    # Check if the file is a regular file
+    if [ -f "$file" ]; then
+        # Replace the text in the file
+        sed -i 's/ _context\.Student\.Add(Student);/_context.Students.Add(Student);/g' "$file"
+        echo "Replaced text in file: $file"
+    fi
+done
+```{{exec}}
+
+```
+for file in $directory/*
+do
+    # Check if the file is a regular file
+    if [ -f "$file" ]; then
+        # Replace the text in the file
+        sed -i 's/ _context\.Student;/_context.Students;/g' "$file"
+        echo "Replaced text in file: $file"
+    fi
+done
+```{{exec}}
+
 
 Run the app.   `dotnet run`{{exec}}
 
