@@ -3,11 +3,11 @@
 https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-8.0&tabs=visual-studio-code
 
 
-dotnet new mvc -o MvcMovie
+`dotnet new mvc -o MvcMovie`{{exec}}
 
-cd MvcMovie
+`cd MvcMovie`{{exec}}
 
-Run the app.   `dotnet run`{{exec}}
+Run the app.
 
 `dotnet run --urls http://0.0.0.0:5000`{{exec}}
 
@@ -15,7 +15,7 @@ Run the app.   `dotnet run`{{exec}}
 
 ## Add a contoller
 
-`Controllers/HelloWorldController.cs`
+`touch Controllers/HelloWorldController.cs`{{exec}}
 
 ```
 using Microsoft.AspNetCore.Mvc;
@@ -25,20 +25,20 @@ namespace MvcMovie.Controllers;
 
 public class HelloWorldController : Controller
 {
-    // 
+    //
     // GET: /HelloWorld/
     public string Index()
     {
         return "This is my default action...";
     }
-    // 
-    // GET: /HelloWorld/Welcome/ 
+    //
+    // GET: /HelloWorld/Welcome/
     public string Welcome()
     {
         return "This is the Welcome action method...";
     }
 }
-```
+```{{copy}}
 
 `dotnet run --urls http://0.0.0.0:5000`{{exec}}
 
@@ -46,7 +46,9 @@ public class HelloWorldController : Controller
 
 ## add view
 
-`Views/HelloWorld/Index.cshtml`
+WIP `mkdir Views/HelloWorld`{{exec}}
+
+`touch Views/HelloWorld/Index.cshtml`{{exec}}
 
 ```
 @{
@@ -114,7 +116,7 @@ replace `Views/Shared/_Layout.cshtml`
 
 ## add model
 
-`Models/Movie.cs`
+`touch Models/Movie.cs`{{exec}}
 
 ```
 using System.ComponentModel.DataAnnotations;
@@ -133,9 +135,9 @@ public class Movie
 ```
 
 ```
-dotnet tool uninstall --global dotnet-aspnet-codegenerator
+# dotnet tool uninstall --global dotnet-aspnet-codegenerator
 dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet tool uninstall --global dotnet-ef
+# dotnet tool uninstall --global dotnet-ef
 dotnet tool install --global dotnet-ef
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet add package Microsoft.EntityFrameworkCore.SQLite
@@ -162,6 +164,3 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools
 
 
 **AT** https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/working-with-sql?view=aspnetcore-8.0&tabs=visual-studio-code
-
-
-
