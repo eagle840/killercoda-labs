@@ -109,11 +109,15 @@ Importing north winds
 
 `docker cp northwind.sql some-mysql:/northwind.sql`{{execute}}
 
+`docker cp northwind-data.sql some-mysql:/northwind-data.sql`{{execute}}
+
 `docker exec -it some-mysql  mysql -u root -p`{{execute}}
 
 `1234`{{execute}}
 
 `source /northwind.sql;`{{execute}}
+
+`SOURCE /northwind-data.sql`{{execute}}
 
 
 `SHOW DATABASES;`{{execute}}
