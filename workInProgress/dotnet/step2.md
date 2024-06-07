@@ -41,6 +41,37 @@ https://learn.microsoft.com/en-us/dotnet/core/tools/troubleshoot-usage-issues
 Checkout the MS learn site on how to make your own tools [link](https://learn.microsoft.com/en-us/dotnet/core/tools/global-tools-how-to-create)
 
 
+add to csproj
+
+
+```
+<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
+
+<PropertyGroup>
+<OutputType>Exe</OutputType>
+<TargetFramework>net6.0</TargetFramework>
+<ImplicitUsings>enable</ImplicitUsings>
+<Nullable>enable</Nullable>
+<PackAsTool>true</PackAsTool>      <====
+<ToolCommandName>weather</ToolCommandName>   <==== name of command to run
+<PackageOutputPath>./nupkg</PackageOutputPath>   <====
+</PropertyGroup>
+
+@</Project>
+
+@</Project>
+```
+
+
+# run:
+`dotnet pack`{{exec}}   # outputs to ./nupkg
+
+
+# run to install
+`dotnet tool install --global --add-source ./nuget  weather.cli`{{exec}} # where weather.cli is the namespace (ie folder name, see this is a folder)
+
+
 # dotnet -REPL
 
 ## dotnet interactive & polyglot-notebooks
