@@ -1,6 +1,6 @@
 {
   "title": "Intro to SQL on Docker",
-  "description": "Setup MySQL, PostgreSQL and Aminer on docker and docker compose(v1.0)",
+  "description": "Setup MySQL, PostgreSQL and Aminer on docker and docker compose(v1.1)",
   "difficulty": "Beginner",
   "time": "60 minutes",
   "details": {
@@ -16,7 +16,7 @@
       {
         "title": "Step 3",
         "text": "step3.md"
-      }     
+      }
     ],
     "intro": {
       "text": "intro.md"
