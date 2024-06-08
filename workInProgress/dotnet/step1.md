@@ -180,6 +180,20 @@ dotnet sln slntest.sln  list
 
 WIP Remove the network program, and use just hello world.
 
+## Basic dotnet commands:
+
+1. `dotnet build`: This command builds the project and its dependencies. It is useful for checking for any build errors in your application.
+
+2. `dotnet run`: This command runs the application. You can use this command to quickly test your application and see if it runs as expected.
+
+3. `dotnet test`: This command runs the unit tests in your application. It is useful for verifying that your code behaves as expected.
+
+4. `dotnet publish`: This command publishes the application for deployment. It packages the application and its dependencies into a folder that can be deployed to a server.
+
+5. `dotnet watch run`: This command runs the application and automatically restarts it whenever a file in the project changes. It is useful for quickly testing changes without having to manually restart the application.
+
+6. `dotnet restore`: This command restores (downloads) the dependencies of the project. It is useful for ensuring that all dependencies are up to date.
+
 
 ## Use dotnet consol - 'hello world'
 
@@ -212,7 +226,7 @@ Now replace the program with this problem to list the network interfaces. We'll 
 
 ## Program.cs
 
-```
+```c#
 using System;
 using System.Diagnostics;
 using SharpPcap;
@@ -277,7 +291,7 @@ namespace MyNetworkApp
         }
     }
 }
-```
+```{{exec}}
 
 
 ## Spectre Console

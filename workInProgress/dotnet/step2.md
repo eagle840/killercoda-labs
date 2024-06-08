@@ -5,26 +5,40 @@ https://learn.microsoft.com/en-us/dotnet/core/diagnostics/tools-overview
 https://learn.microsoft.com/en-us/dotnet/core/tools/troubleshoot-usage-issues
 
 
-# dotnet http-repl
+## REPL tools
+
+
+
+We'll install two REPL tools: `dotnet-repl` is a modern, actively maintained interactive tool for running C# code snippets within the .NET ecosystem, while `csharprepl` is an older, Mono-based tool specific to C# that is no longer actively developed.
+
+
+First we'll set the location of the toolss, something that dotnet doesn't setup:
+
+```
+cat << \EOF >> ~/.bash_profile
+# Add .NET Core SDK tools
+export PATH="$PATH:/root/.dotnet/tools"
+EOF
+```{{exec}}
+
+`export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
 
 
 `dotnet tool install -g dotnet-repl`{{exec}} [Docs](https://github.com/jonsequitur/dotnet-repl)
 
-
-
-`dotnet tool list -g dotnet-repl`{{exec}}
-
-`dotnet tool list -g`{{exec}}
-
-`dotnet-repl`{{exec}} Note the command can't be found.
-
-`export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
-
 `dotnet tool install -g csharprepl`{{exec}} [Docs](https://github.com/waf/CSharpRepl)
 
-`csharprepl`{{exec}} # 'exit' to quit
+### List installed tools
 
 `dotnet tool list -g`{{exec}}
+
+Note the command names
+
+`dotnet-repl -h`{{exec}}
+
+`csharprepl -h`{{exec}} # 'exit' to quit
+
+## http tool
 
 `dotnet tool install -g Microsoft.dotnet-httprepl`{{exec}} [Docs](https://github.com/dotnet/HttpRepl?tab=readme-ov-file)
 
@@ -32,11 +46,7 @@ https://learn.microsoft.com/en-us/dotnet/core/tools/troubleshoot-usage-issues
 
 `httprepl -h`{{exec}}
 
-`export PATH="$HOME/.dotnet/tools:$PATH"`{{exec}}
-
-`httprepl -h`{{exec}}
-
-### Make your own tools
+## Make your own tools
 
 Checkout the MS learn site on how to make your own tools [link](https://learn.microsoft.com/en-us/dotnet/core/tools/global-tools-how-to-create)
 
@@ -280,9 +290,3 @@ tasks.json was the build task in there
 
 
 
-
-## entity framework (in new lab)
-
-https://learn.microsoft.com/en-us/ef/
-
-https://www.nuget.org/packages?q=entity+framework

@@ -7,3 +7,6 @@ release cadence    https://dotnet.microsoft.com/en-us/platform/support/policy/do
 
 dotnet beginner series: https://github.com/dotnet/beginner-series/tree/main
 
+
+dotnet road map  https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core
+
