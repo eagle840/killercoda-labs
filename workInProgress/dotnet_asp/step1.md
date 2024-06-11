@@ -37,6 +37,13 @@ Taken form [MicroSoft](https://learn.microsoft.com/en-us/sql/linux/quickstart-in
 
 WIP --network host
 
+```
+sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=<YourStrong@Passw0rd>" \
+   -p 1433:1433 --name sql1 --hostname sql1 \
+   -d \
+   mcr.microsoft.com/mssql/server:2022-latest
+```{{exec}}
+
 
 ```
 sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=<YourStrong@Passw0rd>" \
@@ -55,4 +62,28 @@ sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=<YourStrong@Passw0rd>" 
 
 `netstat -tpln`{{exec}}
 
-WIP why isn't it showing 1433?
+
+
+confirm connection
+
+`curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -`{{exec}}
+
+`sudo add-apt-repository "$(curl -s https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list)"`{{exec}}
+
+`sudo apt-get update`{{exec}}
+
+`sudo apt-get install mssql-tools unixodbc-dev`{{exec}}
+
+`echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc`{{exec}}
+
+`source ~/.bashrc`{{exec}}
+
+`sqlcmd -S localhost -U sa -P '<YourStrong@Passw0rd>' -Q "SELECT @@VERSION"`{{exec}}
+
+
+- `-Q`: This option specifies that the following string is a query to be executed. The query is executed and the results are returned to the command line.
+- `"SELECT @@VERSION"`: This is the SQL query itself. `SELECT @@VERSION` is a system function in SQL Server that returns the version, edition, and build information for the SQL Server instance
+
+`sqlcmd -S localhost -U sa -P 'MyStrong@Passw0rd' -Q "CREATE DATABASE Demo"`{{exec}}
+
+Note in this type of server, use newlin & GO instead of ;
