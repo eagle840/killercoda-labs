@@ -14,6 +14,8 @@ https://dotnet.microsoft.com/en-us/learn
 
 `apt install -y curl git sqlite3 libpq-dev libreadline-dev`{{exec}}
 
+`apt install net-tools`{{exec}}
+
 ## Manual Install dotnet
 
 
@@ -49,3 +51,8 @@ sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=<YourStrong@Passw0rd>" 
    -d \
    mcr.microsoft.com/mssql/server:2022-latest
 ```{{copy}}
+
+
+`netstat -tpln`{{exec}}
+
+WIP why isn't it showing 1433?
