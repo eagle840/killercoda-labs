@@ -35,9 +35,17 @@ Taken form [MicroSoft](https://learn.microsoft.com/en-us/sql/linux/quickstart-in
 
 WIP --network host
 
+
+```
+sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=<YourStrong@Passw0rd>" \
+   -p 1433:1433 --name sql1 --hostname sql1 \
+   -d --network host \
+   mcr.microsoft.com/mssql/server:2022-latest
+```{{copy}}
+
 ```
 sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=<YourStrong@Passw0rd>" \
    -p 1433:1433 --name sql1 --hostname sql1 \
    -d \
    mcr.microsoft.com/mssql/server:2022-latest
-```{{exec}}
+```{{copy}}

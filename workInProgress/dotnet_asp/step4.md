@@ -1,5 +1,13 @@
 # Final setup
 
+Check the appsettings.json
+
+```json
+  "ConnectionStrings": {
+    "DemoIdentityDbContextConnection": "Server=(localdb)\\mssqllocaldb;Database=Demo;Trusted_Connection=True;MultipleActiveResultSets=true"
+  }
+```
+
 
 ## Migate  Database
 
