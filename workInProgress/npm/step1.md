@@ -88,7 +88,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,  // Client port
-    host: '0.0.0.0' // Bind to all network interfaces
+    host: '0.0.0.0', // Bind to all network interfaces
   }
 })
 ```{{copy}}
