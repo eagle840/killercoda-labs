@@ -7,7 +7,7 @@ update the appsettings.json
     "DemoIdentityDbContextConnection": "Server=localhost;Database=Demo;User Id=sa;Password=<YourStrong@Passw0rd>; TrustServerCertificate=true"
   }
 ```
-
+`Server=localhost;Database=Demo;User Id=sa;Password=<YourStrong@Passw0rd>; TrustServerCertificate=true`{{copy}}
 
 ## Migate  Database
 
@@ -21,4 +21,6 @@ update the appsettings.json
 
 `dotnet run --project ./Demo/Demo.csproj -c Release --urls http://0.0.0.0:5000`{{exec}}
 
-{{TRAFFIC_HOST1_80}}
+{{TRAFFIC_HOST1_5000}}
+
+Register as a new user

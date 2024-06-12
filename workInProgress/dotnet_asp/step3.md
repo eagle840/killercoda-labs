@@ -3,8 +3,15 @@
 
 in Areas/Identity/Data/DemoIdentityDbContext.cs
 
-line 17 add#
+line 17 add:
 
 `builder.HasDefaultSchema("Authentication");`{{copy}}
 
->> see 6:29 about trigger auth on the index page
+
+# Temp turn on authZ on the index page
+
+in program.cs, line 12, update to:
+
+
+`builder.Services.AddRazorPages(options => options.Conventions.AuthorizePage("/Index"));`{{copy}}
+
