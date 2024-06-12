@@ -1,13 +1,8 @@
 
 # Initial Setup
 
-Doc: https://killercoda.com/creators
 
-github: https://github.com/killercoda
-
-https://dotnet.microsoft.com/en-us/learn
-
-# Install dependencies
+## Install dependencies
 
 
 `sudo apt update`{{exec}}
@@ -29,9 +24,9 @@ https://dotnet.microsoft.com/en-us/learn
 
 `dotnet --version`{{exec}}
 
-## start Sql Database
+## Start Sql Database
 
-Taken form [MicroSoft](https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver16&tabs=cli&pivots=cs1-bash)
+Taken form [Microsoft](https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver16&tabs=cli&pivots=cs1-bash)
 
 `sudo docker pull mcr.microsoft.com/mssql/server:2022-latest`{{exec}}
 
@@ -44,8 +39,7 @@ sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=<YourStrong@Passw0rd>" 
    mcr.microsoft.com/mssql/server:2022-latest
 ```{{exec}}
 
-
-
+Confirm that port 1433 comes up, may take a minute:
 
 `netstat -tpln`{{exec}}
 
@@ -57,9 +51,9 @@ confirm connection
 
 `sudo add-apt-repository "$(curl -s https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list)"`{{exec}}
 
-`sudo apt-get update`{{exec}}
+WIP `sudo apt-get update`{{copy}}
 
-`sudo apt-get install mssql-tools unixodbc-dev`{{exec}}
+`sudo apt-get install mssql-tools unixodbc-dev -y`{{exec}}
 
 `echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc`{{exec}}
 

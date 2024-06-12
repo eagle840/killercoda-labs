@@ -1,11 +1,3 @@
-dotnet new sln
-   17  ls
-   18  cat slntest.sln
-   19  mkdir 715
-   20  cd 715
-   21  dotnet tool update -g dotnet-ef
-   22  cat << \EOF >> ~/.bash_profile
-
 
 ## Add .NET Core SDK tools
 
@@ -55,10 +47,12 @@ EOF
 `dotnet aspnet-codegenerator identity --project ./Demo/Demo.csproj `{{exec}}
 
 
-
+## References
 
 https://learn.microsoft.com/en-us/aspnet/core/fundamentals/tools/dotnet-aspnet-codegenerator?view=aspnetcore-8.0
 
 https://www.nuget.org/packages/dotnet-aspnet-codegenerator
 
 https://github.com/dotnet/Scaffolding
+
+https://dotnet.microsoft.com/en-us/learn
