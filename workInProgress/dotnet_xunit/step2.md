@@ -1,3 +1,5 @@
+WIP I get error on this, try step 3
+
 To set up XUnit testing with a simple console .NET project called myApp, you can follow these steps:
 
 1. Create a new console .NET project called myApp:
