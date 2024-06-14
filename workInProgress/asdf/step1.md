@@ -16,7 +16,7 @@ To ensure smooth operation of Ruby applications, we'll create a dedicated user n
 
 The `--gecos ""` option allows you to bypass the prompts for additional user information
 
-`sudo - koda`{{copy}}
+`sudo adduser koda sudo`{{copy}}
 
 `login koda`{{exec}}
  
@@ -39,6 +39,8 @@ Next, we'll install ASDF version manager for managing multiple runtime versions:
 ### install ruby
 
 Let's add the Ruby plugin to ASDF and install Ruby version 3.1.2:
+
+**INFO: can take 10mins**
 
 `asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git`{{exec}}
 
