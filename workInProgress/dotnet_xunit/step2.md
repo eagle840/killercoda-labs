@@ -62,3 +62,42 @@ dotnet test
 If everything is set up correctly, you should see the XUnit test runner executing your test and providing the test results.
 
 That's it! You have now set up XUnit testing with a simple console .NET project called myApp. You can continue adding more tests and test classes as needed to test your application logic.
+
+
+---
+
+# Sample from xunit.net
+
+https://xunit.net/docs/getting-started/netcore/cmdline
+
+```bash
+mkdir MyFirstUnitTests
+cd MyFirstUnitTests
+dotnet new xunit
+```{{exec}}
+
+
+review csproj
+
+`dotnet test`{{exec}}
+
+
+
+```
+[Theory]
+[InlineData(3)]
+[InlineData(5)]
+[InlineData(6)]
+public void MyFirstTheory(int value)
+{
+    Assert.True(IsOdd(value));
+}
+
+bool IsOdd(int value)
+{
+    return value % 2 == 1;
+}
+
+```
+
+`dotnet test`{{exec}}

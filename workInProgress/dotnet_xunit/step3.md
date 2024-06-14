@@ -1,6 +1,10 @@
 To create a simple "Hello World" example of testing with xUnit in a Katacoda lab, you can follow these steps:
 
+
+
 1. Create a new xUnit test project:
+`cd ~`{{exec}}
+
 ```bash
 dotnet new xunit -n HelloWorldTest
 cd HelloWorldTest
