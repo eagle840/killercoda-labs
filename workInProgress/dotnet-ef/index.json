@@ -1,6 +1,6 @@
 {
-  "title": "Work-in-progress Dotnet - Entity Framework with asp",
-  "description": "Working with entity framework with asp(v0.1.2)",
+  "title": "Work-in-progress Dotnet - Entity Framework with ASP(RAzor)",
+  "description": "Working with entity framework with asp(v0.1.3)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -40,6 +40,10 @@
       {
         "title": "Step 4",
         "text": "step4.md"
+      },
+      {
+        "title": "Step 5",
+        "text": "step5.md"
       }
     ],
     "intro": {

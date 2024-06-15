@@ -32,6 +32,8 @@ sudo apt-get update && \
   sudo apt-get install -y dotnet-sdk-8.0
 ```{{exec}}
 
+
+WIP remove the following
 ```
 sudo apt-get update && \
   sudo apt-get install -y aspnetcore-runtime-8.0
@@ -39,56 +41,31 @@ sudo apt-get update && \
 
 
 
-### install asdf
-
-We'll be using asdf to install dotnet, however complete instructions for download and installing for other systems can be found on Micosoft [here](https://dotnet.microsoft.com/en-us/download)
-
-`git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
-
-`. "$HOME/.asdf/asdf.sh"`{{exec}} WIP pipe to .brashrc?
-
-`echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc`{{exec}}
-
-`. "$HOME/.asdf/completions/asdf.bash"`{{exec}}
-
-`echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc`{{exec}}
-
-`asdf current`{{exec}}
-
-### use dotnet
-
-`asdf plugin add dotnet`{{exec}}
-
-#### Show all installable versions
-`asdf list-all dotnet`{{exec}}
-
-#### Install specific version
-`asdf install dotnet latest`{{exec}}
-
-to install a specific version:
-
-`asdf install dotnet 8.0.300`{{copy}}
-
-#### Set a version globally (on your ~/.tool-versions file)
-`asdf global dotnet latest`{{exec}}
-
-`asdf global dotnet 8.0.300`{{copy}}
-
 #### Now dotnet commands are available
 `dotnet --version`{{exec}}
 
 ## Run Docker sql, redis and azurite
 
 
+**SQL**
+
+WIP copy from dotnet lab
+
 `docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=<YourPassword>' -p 1433:1433 --name sql_server_container -d mcr.microsoft.com/mssql/server`{{exec}}
 
+**Redis**
+
 `docker run -d --name redis-server -p 6379:6379 redis`{{exec}}
+
+**Azurite (blob?)**
 
 https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=docker-hub
 
 `docker run -d -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-storage/azurite`{{exec}}
 
 ## db management
+
+WIP not docker, you need direct file access (or give container access)
 
 `docker run -d -p 8080:8080 adminer`{{exec}}
 

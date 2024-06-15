@@ -227,6 +227,7 @@ dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 
 `dotnet-aspnet-codegenerator -h`{{exec}}
 
+Learn more at [Readme](https://github.com/dotnet/Scaffolding/blob/main/src/Scaffolding/README.md)
 
 WIP I ran 'bash'
 

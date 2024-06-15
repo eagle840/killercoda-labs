@@ -1,4 +1,6 @@
-# Get started with ASP.NET Core MVC
+# Get started with ASP.NET Core MVC WIP REMOVE???
+
+## MVC is complicated, should be it's own lab
 
 https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-8.0&tabs=visual-studio-code
 
