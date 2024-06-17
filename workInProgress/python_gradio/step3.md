@@ -7,6 +7,10 @@
 
 ## wheel failure
 
+`python -V`{{exec}}
+
+`pip -v`{{exec}}
+
 Wheel failures during Python package installations can be frustrating, but there are several steps you can take to prevent them:
 
 1. **Upgrade pip and setuptools**: Make sure you have the latest versions of pip and setuptools installed. You can upgrade them using the following commands:
