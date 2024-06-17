@@ -45,11 +45,17 @@ demo = gr.Interface(
 
 demo.launch(server_name="0.0.0.0", server_port=8080)
 
-```
+```{{copy}}
 
 
 `python app.py`{{exec}}
 
+{{TRAFFIC_HOST1_8080}}
+
+To share your app anywhere, and the following to the launch method
+
+WIP
+`demo.launch(share=True)  # Share your demo with just 1 extra parameter`{{exec}}
 
 
 API details for the launch method. https://www.gradio.app/docs/gradio/interface#interface-launch
