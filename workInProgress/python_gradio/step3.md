@@ -9,15 +9,15 @@
 
 `python -V`{{exec}}
 
-`pip -v`{{exec}}
+`pip -V`{{exec}}
 
 Wheel failures during Python package installations can be frustrating, but there are several steps you can take to prevent them:
 
 1. **Upgrade pip and setuptools**: Make sure you have the latest versions of pip and setuptools installed. You can upgrade them using the following commands:
-   ```
-   pip install --upgrade pip
-   pip install --upgrade setuptools
-   ```
+
+ 1.   pip install --upgrade pip
+ 2.   pip install --upgrade setuptools
+
 
 2. **Use a virtual environment**: Create a virtual environment for your Python projects to isolate dependencies. This can help prevent conflicts and ensure a clean environment for package installations. You can create a virtual environment using `virtualenv` or `venv`.
 
@@ -46,9 +46,11 @@ https://huggingface.co/docs/transformers.js/index
 
 use https://huggingface.co/docs/transformers.js/en/index#quick-tour
 
-`pip install transformers`{{exec}}
+
 
 `pip install tensorflow`{{exec}}
+
+`pip install transformers`{{exec}}
 
 
 
@@ -65,3 +67,12 @@ demo = gr.Interface(classify, "textbox", "json")
 demo.launch(server_name="0.0.0.0", server_port=8080)
 ```{{copy}}
 
+WIP getting
+
+```
+ImportError: cannot import name 'TypeAliasType' from 'typing_extensions' (/usr/local/lib/python3.8/dist-packages/typing_extensions.py)
+```
+
+`python app.py`{{exec}}
+
+{{TRAFFIC_HOST1_8080}}
