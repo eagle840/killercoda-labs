@@ -15,6 +15,9 @@ WIP   `pip install --upgrade setuptools`{{exec}}
 
 `apt install python3.8-venv`{{exec}}
 
+
+WIP JUMP TO STEP 2
+
 # Gradio
 
 https://www.gradio.app/guides/quickstart
