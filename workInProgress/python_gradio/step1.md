@@ -37,8 +37,12 @@ https://www.gradio.app/guides/quickstart
 
 `source .venv/bin/activate`{{exec}}
 
+`pip3 install wheel`{{exec}}
+
+The above (particles wheel) seems to have resolved issues, copy over to the install python lab
+
 ### fix some dependency issues:
-`pip install jinja2==2.11.2 markupsafe==2.0.1`{{exec}}
+WIP remove `pip install jinja2==2.11.2 markupsafe==2.0.1`{{copy}}
 
 `pip3 install gradio`{{exec}}
 

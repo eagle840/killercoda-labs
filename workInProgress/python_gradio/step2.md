@@ -1,6 +1,19 @@
 # tensor Flow
 
+WIP try before install tensor flow
+
+`pip install typing-extensions>=4.6.1`{{exec}}
+
+
 `pip3 install tensorflow`{{exec}}
+
+RETURNS
+
+```
+ERROR: pydantic 2.7.4 has requirement typing-extensions>=4.6.1, but you'll have typing-extensions 4.5.0 which is incompatible.   
+ERROR: pydantic-core 2.18.4 has requirement typing-extensions!=4.7.0,>=4.6.0, but you'll have typing-extensions 4.5.0 which is incompatible.   
+ERROR: fastapi 0.111.0 has requirement typing-extensions>=4.8.0, but you'll have typing-extensions 4.5.0 which is incompatible.   
+```
 
 
 https://www.tensorflow.org/tutorials/quickstart/beginner
