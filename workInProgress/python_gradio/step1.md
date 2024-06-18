@@ -11,9 +11,9 @@ github: https://github.com/killercoda
 
 wip TRY MiniConda? 
 
-`pip install --upgrade pip`{{exec}}
+`pip3 install --upgrade pip`{{exec}}
 
-WIP   `pip install --upgrade setuptools`{{exec}}
+WIP   `pip3 install --upgrade setuptools`{{exec}}
 
 `apt install python3.8-venv`{{exec}}
 
@@ -40,7 +40,7 @@ https://www.gradio.app/guides/quickstart
 ### fix some dependency issues:
 `pip install jinja2==2.11.2 markupsafe==2.0.1`{{exec}}
 
-`pip install gradio`{{exec}}
+`pip3 install gradio`{{exec}}
 
 `touch app.py`{{exec}}
 

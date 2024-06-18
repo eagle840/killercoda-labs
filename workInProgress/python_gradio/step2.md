@@ -1,6 +1,6 @@
 # tensor Flow
 
-`pip install tensorflow`{{exec}}
+`pip3 install tensorflow`{{exec}}
 
 
 https://www.tensorflow.org/tutorials/quickstart/beginner
@@ -58,7 +58,7 @@ array([[ 0.7376794 ,  0.49447078,  0.10823108,  0.02784834, -0.03891648,
 
 # transformers
 
-`pip install transformers`{{exec}}
+`pip3 install transformers`{{exec}}
 
 run 'quick tour' in https://pypi.org/project/transformers/
 
