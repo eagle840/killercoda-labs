@@ -6,40 +6,39 @@
 https://www.tensorflow.org/tutorials/quickstart/beginner
 
 
-`python`{{exec}}`
+`python`{{exec}}
 
 
-`import tensorflow as tf`{{exec}}`
+`import tensorflow as tf`{{exec}}
 
 
-`print("TensorFlow version:", tf.__version__)`{{exec}}`
-
-
-
-`mnist = tf.keras.datasets.mnist`{{exec}}`
-
-
-`(x_train, y_train), (x_test, y_test) = mnist.load_data()`{{exec}}`
-
-
-`x_train, x_test = x_train / 255.0, x_test / 255.0`{{exec}}`
+`print("TensorFlow version:", tf.__version__)`{{exec}}
 
 
 
-```python
-`model = tf.keras.models.Sequential([
- tf.keras.layers.Dense(128, activation='relu'),
- tf.keras.layers.Dropout(0.2),
- tf.keras.layers.Dense(10)
- ])
+`mnist = tf.keras.datasets.mnist`{{exec}}
+
+
+`(x_train, y_train), (x_test, y_test) = mnist.load_data()`{{exec}}
+
+
+`x_train, x_test = x_train / 255.0, x_test / 255.0`{{exec}}
+
+
+Build a machine learning model
+```
+model = tf.keras.models.Sequential([
+  tf.keras.layers.Flatten(input_shape=(28, 28)),
+  tf.keras.layers.Dense(128, activation='relu'),
+  tf.keras.layers.Dropout(0.2),
+  tf.keras.layers.Dense(10)
+])
 ```{{exec}}
 
-`predictions = model(x_train[:1]).numpy()`{{exec}}`
+`predictions = model(x_train[:1]).numpy()`{{exec}}
 
 
-`predictions`{{exec}}`
-
-
+`predictions`{{exec}}
 
 
 SHOULD RETURN
@@ -50,12 +49,12 @@ array([[ 0.7376794 ,  0.49447078,  0.10823108,  0.02784834, -0.03891648,
 
  ```
 
-`tf.nn.softmax(predictions).numpy()`{{exec}}`
+`tf.nn.softmax(predictions).numpy()`{{exec}}
 
 
 
 
-`quit`{{exec}}`
+`quit()quit()`{{exec}}
 
 # transformers
 
@@ -79,3 +78,5 @@ SHOULD RETURN
 [{'label': 'POSITIVE', 'score': 0.9996980428695679}]
 
 ```
+
+`quit()`{{exec}}
