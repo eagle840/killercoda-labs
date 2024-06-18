@@ -9,6 +9,12 @@ github: https://github.com/killercoda
 
 `sudo apt update`{{exec}}
 
+`pip install --upgrade pip`{{exec}}
+
+WIP   `pip install --upgrade setuptools`{{exec}}
+
+`apt install python3.8-venv`{{exec}}
+
 # Gradio
 
 https://www.gradio.app/guides/quickstart
@@ -22,7 +28,9 @@ https://www.gradio.app/guides/quickstart
 
 `cd gradio`{{exec}}
 
+`python3 -m venv .venv`{{exec}}
 
+`source .venv/bin/activate`{{exec}}
 
 ### fix some dependency issues:
 `pip install jinja2==2.11.2 markupsafe==2.0.1`{{exec}}
