@@ -9,6 +9,8 @@ github: https://github.com/killercoda
 
 `sudo apt update`{{exec}}
 
+wip TRY MiniConda? 
+
 `pip install --upgrade pip`{{exec}}
 
 WIP   `pip install --upgrade setuptools`{{exec}}
