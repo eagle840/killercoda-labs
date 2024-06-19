@@ -5,6 +5,22 @@ Doc: https://killercoda.com/creators
 
 github: https://github.com/killercoda
 
+
+
+sudo apt update
+    4  pip3 install --upgrade pip      
+    5  apt install python3.8-venv   
+    6  mkdir gradio   
+    7  cd gradio   
+    8  python3 -m venv .venv   
+    9  source .venv/bin/activate   
+   10  pip3 install wheel   
+   11  pip install transformers==4.28.1   
+   12  pip install gradio   
+
+
+
+
 ## Run First
 
 `sudo apt update`{{exec}}
