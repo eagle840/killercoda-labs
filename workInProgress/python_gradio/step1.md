@@ -5,6 +5,16 @@ Doc: https://killercoda.com/creators
 
 github: https://github.com/killercoda
 
+WIP remove 3.8 `sudo apt remove python3.8`{{exec}}
+
+`sudo add-apt-repository -y ppa:deadsnakes/ppa`{{exec}}
+
+`sudo apt-get update`{{exec}}
+
+`apt-get install -y python3.10`{{exec}}
+
+`apt-get install -y python3.11`{{exec}}
+
 
 
 sudo apt update
