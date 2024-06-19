@@ -5,7 +5,7 @@ Doc: https://killercoda.com/creators
 
 github: https://github.com/killercoda
 
-# Run First
+## Run First
 
 `sudo apt update`{{exec}}
 
@@ -20,18 +20,19 @@ WIP   `pip3 install --upgrade setuptools`{{exec}}
 
 WIP JUMP TO STEP 2
 
-# Gradio
+## Gradio
 
 https://www.gradio.app/guides/quickstart
 
 
 
-
-
 `python -V`{{exec}}
+
 `mkdir gradio`{{exec}}
 
 `cd gradio`{{exec}}
+
+## clean python install
 
 `python3 -m venv .venv`{{exec}}
 

@@ -2,6 +2,8 @@
 
 WIP try before install tensor flow
 
+First, to resolve a dependency with gradio and piplines/tensorflow
+
 `pip install typing-extensions>=4.6.1`{{exec}}
 
 
@@ -21,13 +23,9 @@ https://www.tensorflow.org/tutorials/quickstart/beginner
 
 `python`{{exec}}
 
-
 `import tensorflow as tf`{{exec}}
 
-
 `print("TensorFlow version:", tf.__version__)`{{exec}}
-
-
 
 `mnist = tf.keras.datasets.mnist`{{exec}}
 
@@ -67,7 +65,7 @@ array([[ 0.7376794 ,  0.49447078,  0.10823108,  0.02784834, -0.03891648,
 
 
 
-`quit()quit()`{{exec}}
+`quit()`{{exec}}
 
 # transformers
 
