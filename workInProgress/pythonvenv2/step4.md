@@ -1,4 +1,15 @@
-# dependancy checking 
+# Dependancy checking 
+
+## Working with Math
+
+C++ can work with python, but we'll need to add the following
+
+
+`apt-get install python3-dev`{{execute}}
+
+`apt-get install python3.11-dev`{{execute}}
+
+`python -m pip install hnswlib`{{execute}}
 
 ## pip-tools
 
@@ -23,8 +34,6 @@ You can the output that into requirements in order to get an exacte pakage inven
 Using Pip sync in virtual environments installs only and just the items in the supplied file, so  it is different for pip install -r.  CHECK THIS
 
 `pip install pip`{{execute}} 
-
-# dependancy checking 
 
 ## pipdeptree
 
@@ -60,24 +69,39 @@ pulled from: https://stackoverflow.com/questions/32302379/could-not-find-a-versi
 
 The above appears incorrect, used the following
 
-   15  mkdir tmp1
-   16  cd tmp1/
-   17  pip download jsmin==2.2.2
-   18  ls
-   19  tar -zxvf jsmin-2.2.2.tar.gz 
-   20  ls
-   21  pip install jsmin-2.2.2
-   22  pip install jsmin-2.2.2.tar.gz 
-   23  tree
-   24  ls
-   25  python -V
-   26  python3 setup.py install
-   27  cd jsmin-2.2.2/
-   28  ls
-   29  python3 setup.py install
-   30  pip freeze
+mkdir tmp1
+
+cd tmp1/
+
+pip download jsmin==2.2.2
+
+ls
+
+tar -zxvf jsmin-2.2.2.tar.gz 
+
+ ls
+
+pip install jsmin-2.2.2
+
+pip install jsmin-2.2.2.tar.gz 
+
+ tree
+
+ls
+
+python -V
+
+python3 setup.py install
+
+ cd jsmin-2.2.2/
+
+ls
+
+python3 setup.py install
+
+pip freeze 
 
 # goto pipy.org and get the specific version file
 
-   31  wget https://files.pythonhosted.org/packages/17/73/615d1267a82ed26cd7c124108c3c61169d8e40c36d393883eaee3a561852/jsmin-2.2.2.tar.gz
+wget https://files.pythonhosted.org/packages/17/73/615d1267a82ed26cd7c124108c3c61169d8e40c36d393883eaee3a561852/jsmin-2.2.2.tar.gz
   
