@@ -9,7 +9,7 @@ github: https://github.com/killercoda
 
 `sudo apt update`{{exec}}
 
-wip TRY MiniConda? 
+wip TRY MiniConda?
 
 `pip3 install --upgrade pip`{{exec}}
 
@@ -38,14 +38,14 @@ https://www.gradio.app/guides/quickstart
 
 `source .venv/bin/activate`{{exec}}
 
-`pip3 install wheel`{{exec}}
+WIP `pip3 install wheel`{{exec}}
 
 The above (particles wheel) seems to have resolved issues, copy over to the install python lab
 
 ### fix some dependency issues:
 WIP remove `pip install jinja2==2.11.2 markupsafe==2.0.1`{{copy}}
 
-`pip3 install gradio`{{exec}}
+`pip3 install gradio=4.5.0`{{exec}}
 
 `touch app.py`{{exec}}
 
@@ -79,6 +79,3 @@ WIP
 API details for the launch method. https://www.gradio.app/docs/gradio/interface#interface-launch
 
 More on the python client: https://www.gradio.app/docs/python-client/introduction
-
-
-
