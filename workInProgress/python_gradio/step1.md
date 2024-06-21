@@ -80,6 +80,15 @@ Note the # via statements showing hieararchy
 
 `pip install -r requirements.txt`{{exec}}
 
+---
+# pipdeptree
+
+`pip install pipdeptree`{{execute}}
+
+`pipdeptree -h`{{execute}}
+
+---
+
 WIP `pip3 install wheel`{{exec}}
 
 The above (particles wheel) seems to have resolved issues, copy over to the install python lab
