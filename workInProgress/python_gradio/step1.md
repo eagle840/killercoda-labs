@@ -64,6 +64,22 @@ https://www.gradio.app/guides/quickstart
 
 `source .venv/bin/activate`{{exec}}
 
+`pip install pip-tools`{{exec}}
+
+**REVIEW** https://pypi.org/project/pip-tools/
+
+`touch requirements.in`{{exec}}
+
+`echo gradio\ntensorflow\ntransformers > requirements.in`{{copy}}
+
+`pip-compile`{{exec}} # takes a while
+
+Note the # via statements showing hieararchy
+
+? copy requirements.in to requirements.txt
+
+`pip install -r requirements.txt`{{exec}}
+
 WIP `pip3 install wheel`{{exec}}
 
 The above (particles wheel) seems to have resolved issues, copy over to the install python lab

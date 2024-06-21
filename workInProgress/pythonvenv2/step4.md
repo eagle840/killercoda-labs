@@ -23,6 +23,8 @@ When you run `pip install <pkg>` it installs the latest package, which may break
 
 create `common.in` with the packages you need
 
+? default requirements.in
+
 `echo click > common.in`{{}}
 
 and run `pip-compile common.in`{{execute}} against it, and it will show you the present packages and versions. It also produces a common.txt file

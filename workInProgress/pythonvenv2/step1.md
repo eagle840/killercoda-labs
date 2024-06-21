@@ -79,6 +79,9 @@ win:
 unix:
     `source tutorial-env/bin/activate`{{execute}}
 
+
+**deactivate** - just type deacctivate in the venvcd
+
 `which python3`{{execute}} shows the location on the python binary
 
 `which pip`{{execute}}
