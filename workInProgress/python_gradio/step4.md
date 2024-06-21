@@ -14,12 +14,6 @@ use https://huggingface.co/docs/transformers.js/en/index#quick-tour
 
 
 
-`pip install tensorflow`{{exec}}
-
-`pip install transformers`{{exec}}
-
-
-
 ```python
 from transformers import pipeline
 import gradio as gr

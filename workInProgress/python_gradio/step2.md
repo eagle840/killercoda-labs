@@ -1,23 +1,5 @@
 # tensor Flow
 
-WIP try before install tensor flow
-
-First, to resolve a dependency with gradio and piplines/tensorflow
-
-wip `pip install typing-extensions==4.6.1`{{exec}}history
-
-`pip freeze`{{exec}}
-
-
-`pip3 install tensorflow==2.13.1`{{exec}}
-
-RETURNS
-
-```
-ERROR: pydantic 2.7.4 has requirement typing-extensions>=4.6.1, but you'll have typing-extensions 4.5.0 which is incompatible.
-ERROR: pydantic-core 2.18.4 has requirement typing-extensions!=4.7.0,>=4.6.0, but you'll have typing-extensions 4.5.0 which is incompatible.
-ERROR: fastapi 0.111.0 has requirement typing-extensions>=4.8.0, but you'll have typing-extensions 4.5.0 which is incompatible.
-```
 https://pypi.org/project/typing-extensions/#history
 
 https://www.tensorflow.org/tutorials/quickstart/beginner
@@ -71,7 +53,6 @@ array([[ 0.7376794 ,  0.49447078,  0.10823108,  0.02784834, -0.03891648,
 
 # transformers
 
-`pip3 install transformers==4.41.2`{{exec}}
 
 run 'quick tour' in https://pypi.org/project/transformers/
 

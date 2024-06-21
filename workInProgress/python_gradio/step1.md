@@ -1,58 +1,15 @@
-
-# Initial Setup
-
-Doc: https://killercoda.com/creators
-
-github: https://github.com/killercoda
-
-WIP remove 3.8 `sudo apt remove python3.8`{{exec}}
-
-`sudo add-apt-repository -y ppa:deadsnakes/ppa`{{exec}}
-
-`sudo apt-get update`{{exec}}
-
-`apt-get install -y python3.10`{{exec}}
-
-`apt-get install -y python3.11`{{exec}}
-
-
-
-sudo apt update
-    4  pip3 install --upgrade pip      
-    5  apt install python3.8-venv   
-    6  mkdir gradio   
-    7  cd gradio   
-    8  python3 -m venv .venv   
-    9  source .venv/bin/activate   
-   10  pip3 install wheel   
-   11  pip install transformers==4.28.1   
-   12  pip install gradio   
-
-
-
-
 ## Run First
 
 `sudo apt update`{{exec}}
 
-wip TRY MiniConda?
-
 `pip3 install --upgrade pip`{{exec}}
-
-WIP   `pip3 install --upgrade setuptools`{{exec}}
 
 `apt install python3.8-venv`{{exec}}
 
 
-WIP JUMP TO STEP 2
-
 ## Gradio
 
 https://www.gradio.app/guides/quickstart
-
-
-
-`python -V`{{exec}}
 
 `mkdir gradio`{{exec}}
 
@@ -70,33 +27,20 @@ https://www.gradio.app/guides/quickstart
 
 `touch requirements.in`{{exec}}
 
-`echo gradio\ntensorflow\ntransformers > requirements.in`{{copy}}
+`echo gradio/ntensorflow/ntransformers > requirements.in`{{copy}}
 
 `pip-compile`{{exec}} # takes a while
 
-Note the # via statements showing hieararchy
-
-? copy requirements.in to requirements.txt
 
 `pip install -r requirements.txt`{{exec}}
 
----
 # pipdeptree
 
 `pip install pipdeptree`{{execute}}
 
 `pipdeptree -h`{{execute}}
 
----
-
-WIP `pip3 install wheel`{{exec}}
-
-The above (particles wheel) seems to have resolved issues, copy over to the install python lab
-
-### fix some dependency issues:
-WIP remove `pip install jinja2==2.11.2 markupsafe==2.0.1`{{copy}}
-
-`pip3 install gradio=4.5.0`{{exec}}
+# app
 
 `touch app.py`{{exec}}
 
