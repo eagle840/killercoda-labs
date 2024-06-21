@@ -38,3 +38,10 @@ Got down to
    21  python -m pip install hnswlib
    22  history
 
+
+# Why is python setup.py saying invalid command 'bdist_wheel'
+
+pip install wheel
+then
+
+python setup.py bdist_wheel 

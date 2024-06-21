@@ -3,6 +3,36 @@
 
 ## Packages
 
+Easyist so far:
+
+
+`python3 -m venv .venv`{{exec}}
+
+`source .venv/bin/activate`{{exec}}
+
+`pip install pip-tools`{{exec}}
+
+**REVIEW** https://pypi.org/project/pip-tools/
+
+`touch requirements.in`{{exec}}
+
+`echo gradio\ntensorflow\ntransformers > requirements.in`{{copy}}
+
+`pip-compile`{{exec}} # takes a while
+
+Note the # via statements showing hieararchy
+
+? copy requirements.in to requirements.txt
+
+`pip install -r requirements.txt`{{exec}}
+
+---
+# pipdeptree
+
+`pip install pipdeptree`{{execute}}
+
+`pipdeptree -h`{{execute}}
+
 To manage Python packages, we will be using pip, the package installer for Python. You can find various packages on [PyPI](https://pypi.org/) (Python Package Index). Let's start by updating pip itself:
 
 
