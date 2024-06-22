@@ -44,7 +44,14 @@ elasticsearch
 
 `pipdeptree -h`{{execute}}
 
-need to check that it's sending data to es
+need to check that it's sending data to es check!
+
+need to
+
+- set the index name with date and time 
+- create a config file
+- review what 'scheme' does. It errored without it
+- add a web interface with streamlit (nice to have)
 
 '''
 import time
@@ -83,18 +90,17 @@ for i in range(iterations):
         for domain in domains:
             avg_latency = test_dns_latency(server, domain, repetitions)
             if avg_latency is not None:
-                # Send data to Elasticsearch
+                # Send data to Elasticsearch with properly formatted timestamp
                 doc = {
-                    'timestamp': time.time(),
+                    '@timestamp': time.strftime('%Y-%m-%dT%H:%M:%S', time.gmtime()),
                     'server': server,
                     'domain': domain,
                     'avg_latency': avg_latency
                 }
-                es.index(index='dns_latency', body=doc)
+                es.index(index='dns_latency2', body=doc)
                 print(f"Iteration {i+1}: Avg latency for DNS server {server} querying domain {domain} over {repetitions} repetitions: {avg_latency} seconds")
     
     if i < iterations - 1:
         print(f"Waiting for {delay_between_iterations} seconds before next iteration...")
-        time.sleep(delay_between_iterations)
- 
+        time.sleep(delay_between_iterations) 
 '''
