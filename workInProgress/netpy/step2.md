@@ -26,11 +26,12 @@ https://www.gradio.app/guides/quickstart
 
 `pip install pip-tools`{{exec}}
 
-**REVIEW** https://pypi.org/project/pip-tools/
-
 `touch requirements.in`{{exec}}
 
-`echo gradio/ntensorflow/ntransformers > requirements.in`{{copy}}
+```
+dnspython
+elasticsearch
+```{{copy}}
 
 `pip-compile`{{exec}} # takes a while
 
@@ -43,11 +44,15 @@ https://www.gradio.app/guides/quickstart
 
 `pipdeptree -h`{{execute}}
 
-
+need to check that it's sending data to es
 
 '''
 import time
 import dns.resolver
+from elasticsearch import Elasticsearch
+
+# Initialize Elasticsearch client
+es = Elasticsearch([{'host': 'localhost', 'port': 9200, 'scheme': 'http'}])  # Update with your Elasticsearch host, port, and scheme
 
 def test_dns_latency(server, domain, repetitions):
     resolver = dns.resolver.Resolver()
@@ -78,9 +83,18 @@ for i in range(iterations):
         for domain in domains:
             avg_latency = test_dns_latency(server, domain, repetitions)
             if avg_latency is not None:
+                # Send data to Elasticsearch
+                doc = {
+                    'timestamp': time.time(),
+                    'server': server,
+                    'domain': domain,
+                    'avg_latency': avg_latency
+                }
+                es.index(index='dns_latency', body=doc)
                 print(f"Iteration {i+1}: Avg latency for DNS server {server} querying domain {domain} over {repetitions} repetitions: {avg_latency} seconds")
     
     if i < iterations - 1:
         print(f"Waiting for {delay_between_iterations} seconds before next iteration...")
         time.sleep(delay_between_iterations)
+ 
 '''
