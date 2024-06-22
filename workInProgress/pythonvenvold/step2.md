@@ -1,37 +1,3 @@
-# dependancy checking
-
-## pip-tools
-
-`pip install pip-tools`{{execute}}
-
-this installs 2 tools
-
-`pip-compile -h`{{execute}}
-
-When you run `pip install <pkg>` it installs the latest package, which may break a module/program.
-
-create `common.in` with the packages you need
-
-`echo click > common.in`{{}}
-
-and run `pip-compile common.in`{{execute}} against it, and it will show you the present packages and versions. It also produces a common.txt file
-
-You can the output that into requirements in order to get an exacte pakage inventory.
-
-`pip-sync -h`{{execute}}
-
-Using Pip sync in virtual environments installs only and just the items in the supplied file, so  it is different for pip install -r.  CHECK THIS
-
-`pip install pip`{{execute}}
-
-# dependancy checking
-
-## pipdeptree
-
-`pip install pipdeptree`{{execute}}
-
-`pipdeptree -h`{{execute}}
-
 
 
 # downloading and installing

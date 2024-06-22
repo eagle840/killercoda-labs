@@ -3,6 +3,58 @@ WIP: break this lab into two, 1:package management, and 2:devopment
 
 One of the eassiest ways to install python is with asdf, (see killacoda lab WIP:LINK), but in this lab we'll use linux alternatives.
 
+# Index
+
+1. Fast setup
+2. Install
+3. 
+
+
+Order these into the above
+
+- Package depency, pip, pip-tools, pipdeptree
+
+
+
+# Fast Setup
+
+`sudo apt update`{{exec}}
+
+`pip3 install --upgrade pip`{{exec}}
+
+
+`apt install python3.8-venv`{{exec}}
+
+`mkdir cleanproject`{{exec}}
+
+`cd cleanproject`{{exec}}
+
+`python3 -m venv .venv`{{exec}}
+
+`source .venv/bin/activate`{{exec}}
+
+Pip tool will help resolve dependency issues across packages
+
+`pip install pip-tools`{{exec}}
+
+**REVIEW** https://pypi.org/project/pip-tools/
+
+`touch requirements.in`{{exec}}
+
+and list your required packages:
+
+```
+gradio
+tensorflow
+transformers
+```
+
+`pip-compile`{{exec}} # takes a while
+
+pip tools will create a requirements.txt
+
+`pip install -r requirements.txt`{{exec}}
+
 ---
 # Setup a clean python
 

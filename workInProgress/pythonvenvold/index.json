@@ -1,6 +1,6 @@
 {
-  "title": "wip pythonvenv",
-  "description": "using clean venv, and troubleshoot python package installs WIP (v0.4.2)",
+  "title": "remove pythonvenv",
+  "description": "using clean venv, and troubleshoot python package installs WIP (v0.4.3)",
   "difficulty": "Intermediate",
   "time": "1",
   "details": {
