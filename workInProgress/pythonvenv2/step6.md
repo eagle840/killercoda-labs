@@ -1,6 +1,17 @@
 
 # WIP HAve a seperate python ml lab (ie remove)
 
+## Working with Math
+
+C++ can work with python, but we'll need to add the following
+
+
+`apt-get install python3-dev`{{execute}}
+
+`apt-get install python3.11-dev`{{execute}}
+
+`python -m pip install hnswlib`{{execute}}
+
 
 `pip install pytouch --ignore-installed --no-cache-dir`{{exec}}
 

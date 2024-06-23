@@ -5,9 +5,15 @@ One of the eassiest ways to install python is with asdf, (see killacoda lab WIP:
 
 # Index
 
-1. Fast setup
-2. Install
-3. 
+1. install
+2. Package managers and dependencies - pull the debug into 4
+3. linting
+4. debugging, pull dependencies into 2
+5. notebooks
+6. working with ML
+7. Web based interfaces
+8. troubleshooting/fits
+
 
 
 Order these into the above

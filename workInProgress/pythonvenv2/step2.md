@@ -1,4 +1,4 @@
-# Packages, Shells and Debugging
+# Packages & Dependancy checking 
 
 
 ## Packages
@@ -25,6 +25,32 @@ Note the # via statements showing hieararchy
 ? copy requirements.in to requirements.txt
 
 `pip install -r requirements.txt`{{exec}}
+
+`pip-compile -h`{{execute}}
+
+When you run `pip install <pkg>` it installs the latest package, which may break a module/program. 
+
+create `common.in` with the packages you need
+
+? default requirements.in
+
+`echo click > common.in`{{}}
+
+and run `pip-compile common.in`{{execute}} against it, and it will show you the present packages and versions. It also produces a common.txt file
+
+You can the output that into requirements in order to get an exacte pakage inventory.
+
+`pip-sync -h`{{execute}}
+
+Using Pip sync in virtual environments installs only and just the items in the supplied file, so  it is different for pip install -r.  CHECK THIS
+
+WIP what does this do
+
+`pip install pip`{{execute}} 
+
+## pip-sync
+
+describe use
 
 ---
 # pipdeptree
@@ -64,89 +90,10 @@ apt-get install python3.11-dev
 sudo apt-get install build-essential zlib1g-dev libffi-dev libssl-dev libsqlite3-dev
 ```
 
-## Shells
-
-In this lab we will be covering bpython and  ipython
 
 
 
-### bpython
 
-[bpython](https://bpython-interpreter.org/) is an interactive shell that provides a more user-friendly and feature-rich experience compared to the default Python shell. Let's install it:
-
-
-`pip install bpython`{{execute}}
-
-
-### ipython
-
-[IPython](https://ipython.readthedocs.io/en/stable/) is another popular interactive shell for Python that offers enhanced functionality and features. Install it using the following command:
-
-
-`pip install IPython`{{exec}}
-
-
-
-To start the ipython shell, simply run:
-
-```shell
-ipython
-```
-VS
-
-`ipython`{{exec}}
-
-
-Once inside the ipython shell, you can execute additional commands, such as listing the files in the current directory using `ls`. You can also run Python programs directly from the interpreter using the `run` command, e.g., `run example.py`. Furthermore, you can execute defined functions, for example, `printme("hello")`.
-
-
-
-# Debugging
-
-
-## Using pdb to Debug
-
-Python provides a built-in debugger called pdb (Python Debugger) that allows you to step through code, set breakpoints, and interactively inspect variables. To use pdb, insert the following line in your code where you want to start debugging:
-
-```python
-import pdb; pdb.set_trace()
-```
-
-Once the debugger is triggered, you can use the following commands to navigate and debug your code:
-
-
-- **n** execute next line
-- c complete execution
-- l list 3 lines before and after current line
-- s step (into function call)
-- b show all breakpoints
-- b[int]  set breakpoint at line number
-- b [func] break at function name
-- cl clear all breakpoints
-- p(var) print the value var
-
-
-For more details on pdb and its commands, refer to the [official documentation](https://docs.python.org/3/library/pdb.html#debugger-commands).
-
-
-
-## Using pudb to debug
-
-----------------
-
-## Using pudb to Debug
-
-[pudb](https://documen.tician.de/pudb/) is a third-party debugger for Python that provides a more user-friendly and visually appealing debugging experience compared to pdb. It offers features like a graphical display of the call stack, syntax highlighting, and code completion. To install pudb, use the following command:
-
-```shell
-pip install pudb
-```
-
-To initiate pudb for debugging, run the following command, replacing `pythonProgramToDebug.py` with the name of your Python program:
-
-```shell
-python3 -m pudb pythonProgramToDebug.py
-```
 
 # Common Issues
 
@@ -181,6 +128,47 @@ rpy2>=2.4.3,<3.0.0
 `pip install --user --no-index --find-links=/tmp -r requirements.txt`{{execute}}
 
 
+
+pulled from: https://stackoverflow.com/questions/32302379/could-not-find-a-version-that-satisfies-the-requirement-package
+
+The above appears incorrect, used the following
+
+mkdir tmp1
+
+cd tmp1/
+
+pip download jsmin==2.2.2
+
+ls
+
+tar -zxvf jsmin-2.2.2.tar.gz 
+
+ ls
+
+pip install jsmin-2.2.2
+
+pip install jsmin-2.2.2.tar.gz 
+
+ tree
+
+ls
+
+python -V
+
+python3 setup.py install
+
+ cd jsmin-2.2.2/
+
+ls
+
+python3 setup.py install
+
+pip freeze 
+
+# goto pipy.org and get the specific version file
+
+wget https://files.pythonhosted.org/packages/17/73/615d1267a82ed26cd7c124108c3c61169d8e40c36d393883eaee3a561852/jsmin-2.2.2.tar.gz
+  
 ---
 
 python3.8 -u -m pip install aalib -vvv

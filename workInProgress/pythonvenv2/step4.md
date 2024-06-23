@@ -1,109 +1,84 @@
-# Dependancy checking 
+# Shells & Debugging
 
-## Working with Math
+## Shells
 
-C++ can work with python, but we'll need to add the following
-
-
-`apt-get install python3-dev`{{execute}}
-
-`apt-get install python3.11-dev`{{execute}}
-
-`python -m pip install hnswlib`{{execute}}
-
-## pip-tools
-
-`pip install pip-tools`{{execute}}
-
-this installs 2 tools
-
-`pip-compile -h`{{execute}}
-
-When you run `pip install <pkg>` it installs the latest package, which may break a module/program. 
-
-create `common.in` with the packages you need
-
-? default requirements.in
-
-`echo click > common.in`{{}}
-
-and run `pip-compile common.in`{{execute}} against it, and it will show you the present packages and versions. It also produces a common.txt file
-
-You can the output that into requirements in order to get an exacte pakage inventory.
-
-`pip-sync -h`{{execute}}
-
-Using Pip sync in virtual environments installs only and just the items in the supplied file, so  it is different for pip install -r.  CHECK THIS
-
-`pip install pip`{{execute}} 
-
-## pipdeptree
-
-`pip install pipdeptree`{{execute}}
-
-`pipdeptree -h`{{execute}}
+In this lab we will be covering bpython and  ipython
 
 
 
-# downloading and installing
+### bpython
 
-setup new folder and requirements.txt
+[bpython](https://bpython-interpreter.org/) is an interactive shell that provides a more user-friendly and feature-rich experience compared to the default Python shell. Let's install it:
 
-`cd ~`{{execute}}
 
-`mkdir dwn; cd dwn`{{execute}}
+`pip install bpython`{{execute}}
 
+
+### ipython
+
+[IPython](https://ipython.readthedocs.io/en/stable/) is another popular interactive shell for Python that offers enhanced functionality and features. Install it using the following command:
+
+
+`pip install IPython`{{exec}}
+
+
+
+To start the ipython shell, simply run:
+
+```shell
+ipython
 ```
-numpy>=1.8.2,<2.0.0
-matplotlib>=1.3.1,<2.0.0
-scipy>=0.14.0,<1.0.0
-astroML>=0.2,<1.0
-scikit-learn>=0.14.1,<1.0.0
-rpy2>=2.4.3,<3.0.0
+VS
+
+`ipython`{{exec}}
+
+
+Once inside the ipython shell, you can execute additional commands, such as listing the files in the current directory using `ls`. You can also run Python programs directly from the interpreter using the `run` command, e.g., `run example.py`. Furthermore, you can execute defined functions, for example, `printme("hello")`.
+
+
+# Debugging
+
+
+## Using pdb to Debug
+
+Python provides a built-in debugger called pdb (Python Debugger) that allows you to step through code, set breakpoints, and interactively inspect variables. To use pdb, insert the following line in your code where you want to start debugging:
+
+```python
+import pdb; pdb.set_trace()
 ```
 
-`pip install --download=/tmp -r requirements.txt`{{execute}}
-
-`pip install --user --no-index --find-links=/tmp -r requirements.txt`{{execute}}
+Once the debugger is triggered, you can use the following commands to navigate and debug your code:
 
 
-pulled from: https://stackoverflow.com/questions/32302379/could-not-find-a-version-that-satisfies-the-requirement-package
+- **n** execute next line
+- c complete execution
+- l list 3 lines before and after current line
+- s step (into function call)
+- b show all breakpoints
+- b[int]  set breakpoint at line number
+- b [func] break at function name
+- cl clear all breakpoints
+- p(var) print the value var
 
-The above appears incorrect, used the following
 
-mkdir tmp1
+For more details on pdb and its commands, refer to the [official documentation](https://docs.python.org/3/library/pdb.html#debugger-commands).
 
-cd tmp1/
 
-pip download jsmin==2.2.2
 
-ls
+## Using pudb to debug
 
-tar -zxvf jsmin-2.2.2.tar.gz 
+----------------
 
- ls
+## Using pudb to Debug
 
-pip install jsmin-2.2.2
+[pudb](https://documen.tician.de/pudb/) is a third-party debugger for Python that provides a more user-friendly and visually appealing debugging experience compared to pdb. It offers features like a graphical display of the call stack, syntax highlighting, and code completion. To install pudb, use the following command:
 
-pip install jsmin-2.2.2.tar.gz 
+```shell
+pip install pudb
+```
 
- tree
+To initiate pudb for debugging, run the following command, replacing `pythonProgramToDebug.py` with the name of your Python program:
 
-ls
-
-python -V
-
-python3 setup.py install
-
- cd jsmin-2.2.2/
-
-ls
-
-python3 setup.py install
-
-pip freeze 
-
-# goto pipy.org and get the specific version file
-
-wget https://files.pythonhosted.org/packages/17/73/615d1267a82ed26cd7c124108c3c61169d8e40c36d393883eaee3a561852/jsmin-2.2.2.tar.gz
-  
+```shell
+python3 -m pudb pythonProgramToDebug.py
+```

@@ -1,3 +1,20 @@
+
+Ideas for layout of chapters (steps)
+
+1. install
+2. Package managers and dependencies - pull the debug into 4
+3. linting
+4. debugging, pull dependencies into 2
+5. notebooks
+6. working with ML
+7. Web based interfaces
+8. troubleshooting/fits
+
+ideas to add
+
+- command line tools
+- ui tools (qx? pygame? )
+
 add https://pip.pypa.io/en/stable/topics/dependency-resolution/#dependency-resolution
 
 https://www.youtube.com/watch?v=tL1zltXuHO8
