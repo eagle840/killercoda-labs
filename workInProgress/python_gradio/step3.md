@@ -20,3 +20,18 @@ demo = gr.Interface(
     outputs=["text"],
 )
 ```
+
+
+---
+
+
+To share your app anywhere, and the following to the launch method
+
+WIP
+`demo.launch(share=True)  # Share your demo with just 1 extra parameter`{{exec}}
+
+
+API details for the launch method. https://www.gradio.app/docs/gradio/interface#interface-launch
+
+More on the python client: https://www.gradio.app/docs/python-client/introduction
+

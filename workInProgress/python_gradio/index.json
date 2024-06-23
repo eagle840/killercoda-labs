@@ -1,6 +1,6 @@
 {
-  "title": "WIP Gradio",
-  "description": "Using the python package Gradio (v0.1.67)",
+  "title": "WIP Gradio with Tensorflow & Transformers",
+  "description": "Using the python package Gradio (v0.9.0)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {

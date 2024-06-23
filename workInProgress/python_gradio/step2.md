@@ -1,6 +1,6 @@
-# tensor Flow
+# Tensorflow & Transformers
 
-https://pypi.org/project/typing-extensions/#history
+
 
 https://www.tensorflow.org/tutorials/quickstart/beginner
 
@@ -47,11 +47,9 @@ array([[ 0.7376794 ,  0.49447078,  0.10823108,  0.02784834, -0.03891648,
 `tf.nn.softmax(predictions).numpy()`{{exec}}
 
 
-
-
 `quit()`{{exec}}
 
-# transformers
+# Transformers
 
 
 run 'quick tour' in https://pypi.org/project/transformers/

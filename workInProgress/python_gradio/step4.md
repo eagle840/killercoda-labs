@@ -1,7 +1,4 @@
-Step 4
-
-
-
+# Gradio with Transformers
 
 https://www.gradio.app/guides/gradio-lite#additional-requirements
 
@@ -12,6 +9,7 @@ https://huggingface.co/docs/transformers.js/index
 
 use https://huggingface.co/docs/transformers.js/en/index#quick-tour
 
+For more on Transformer, see Huggingface https://huggingface.co/docs/transformers/quicktour
 
 
 ```python
@@ -27,11 +25,7 @@ demo = gr.Interface(classify, "textbox", "json")
 demo.launch(server_name="0.0.0.0", server_port=8080)
 ```{{copy}}
 
-WIP getting
-
-```
-ImportError: cannot import name 'TypeAliasType' from 'typing_extensions' (/usr/local/lib/python3.8/dist-packages/typing_extensions.py)
-```
+and run the app:
 
 `python app.py`{{exec}}
 
