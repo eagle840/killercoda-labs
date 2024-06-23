@@ -1,5 +1,3 @@
-WIP: break this lab into two, 1:package management, and 2:devopment
-
 
 One of the eassiest ways to install python is with asdf, (see killacoda lab WIP:LINK), but in this lab we'll use linux alternatives.
 
@@ -19,6 +17,11 @@ One of the eassiest ways to install python is with asdf, (see killacoda lab WIP:
 Order these into the above
 
 - Package depency, pip, pip-tools, pipdeptree
+
+# Step One - Install
+
+1. Fast setup
+2. 
 
 
 
@@ -268,6 +271,16 @@ to confirm pack is installed correctly, start the specific python verion
 note the python version
 
 ### For Windows consider:
+
+Windows generally uses the 'py' command.
+
+Try `py -h`{{copy}} for help
+
+When creating a virtual environment
+
+`py -m venv .venv`{{copy}} create the virtual enviroment
+
+and activate it with WIP :`/.venv/activate`{{copy}} # CHECK
 
 consider Anaconda for windows https://www.anaconda.com/download or   
 py launcher (py -h) https://docs.python.org/3/using/windows.html#python-launcher-for-windows

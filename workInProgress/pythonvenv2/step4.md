@@ -65,9 +65,7 @@ For more details on pdb and its commands, refer to the [official documentation](
 
 
 
-## Using pudb to debug
 
-----------------
 
 ## Using pudb to Debug
 

@@ -1,4 +1,4 @@
-In this lab we explore way to have a successful Python experience (many on Linux, but alot applies to windows)
+In this lab we explore way to have a successful Python experience (mainly on Linux, but alot applies to windows)
 
 Each step is generally broken down into its own lab and not dependant on the others.
 

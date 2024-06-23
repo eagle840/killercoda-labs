@@ -1,5 +1,13 @@
 
-# WIP HAve a seperate python ml lab (ie remove)
+# Setup for using Python with ML
+
+
+- If you are working with machine learning or mathematics libraries, you may need to install additional dependencies. Use the following command:
+
+```shell
+apt-get install python3.11-dev
+sudo apt-get install build-essential zlib1g-dev libffi-dev libssl-dev libsqlite3-dev
+```
 
 ## Working with Math
 

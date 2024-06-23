@@ -1,5 +1,22 @@
 # Packages & Dependancy checking 
 
+pip vs pip3
+
+- pip for python 2 and 3
+- pip3 for python3 only
+
+Popular Commands
+
+1. `pip install <package>`: Installs a Python package.
+2. `pip uninstall <package>`: Uninstalls a Python package.
+3. `pip freeze`: Outputs installed packages in requirements format.
+4. `pip list`: Lists installed packages.
+5. `pip search <query>`: Searches PyPI for packages.
+6. `pip show <package>`: Shows information about a specific package.
+7. `pip install -r requirements.txt`: Installs packages listed in a requirements file.
+8. `pip install --upgrade <package>`: Upgrades a package to the latest version.
+9. `pip install --user <package>`: Installs a package only for the current user.
+10. `pip help`: Displays help information about `pip` commands.
 
 ## Packages
 
@@ -75,37 +92,24 @@ To see the currently installed packages and their versions, run:
 
 `pip freeze`{{copy}}
 
-#### Common Installation Problems
+# Common Installation Problems
 
 If you encounter any issues during installation, here are some power tips to help you troubleshoot:
 
+
+## 'killed'
+
 - If you receive a 'killed' message, it could be due to running out of memory. Try adding the `--no-cache-dir` flag to the installation command.
+
+## 'pyYAML'
 
 - If you get an error related to uninstalling 'PyYAML', you can ignore the installed version by adding the `--ignore-installed PyYAML` flag. Refer to this [Stack Overflow post](https://stackoverflow.com/questions/49911550/how-to-upgrade-disutils-package-pyyaml) for more details.
 
-- If you are working with machine learning or mathematics libraries, you may need to install additional dependencies. Use the following command:
-
-```shell
-apt-get install python3.11-dev
-sudo apt-get install build-essential zlib1g-dev libffi-dev libssl-dev libsqlite3-dev
-```
-
-
-
-
-
-
-# Common Issues
-
-
-##  ERROR: Cannot uninstall 'PyYAML'.
-
-
 `sudo -H pip3 install --ignore-installed PyYAML`{{copy}}
 
-## killed
+## Using ML?
 
-If you are running low on memory you could try with pip install <your-package-name> --no-cache-dir
+See the ML section (step 6)
 
 
 -- Download 
@@ -189,5 +193,17 @@ In the command `python3.8 -u -m pip install aalib -vvv`, the arguments are as fo
 
 7. `-vvv`: This flag is used to increase the verbosity level of the output. In this case, `-vvv` means very verbose output, which will provide detailed information about the installation process, including debugging information.
 
+
+Using `python3.8 -u -m pip install click -vvv` instead of just `pip install click` can be beneficial in certain scenarios:
+
+1. **Version Control**: By specifying `python3.8`, you are explicitly stating which Python version's `pip` you want to use. This can be helpful in environments where multiple Python versions are installed, ensuring that the correct version of `pip` is used.
+
+2. **Virtual Environments**: When working with virtual environments, specifying the Python version ensures that the package is installed in the correct environment. This helps avoid conflicts with packages installed in other environments.
+
+3. **Isolation**: Using the full path to the Python interpreter (`python3.8`) ensures that the `pip` command is executed in the context of that specific Python version. This can be useful in cases where you want to isolate the installation to a specific Python version.
+
+4. **Debugging**: The `-vvv` flag increases the verbosity of the output, providing more detailed information about the installation process. This can be helpful for debugging installation issues or understanding the dependencies being installed.
+
+Overall, using `python3.8 -u -m pip install click -vvv` provides more control and visibility over the package installation process, which can be useful in complex or specific environments.
 
 
