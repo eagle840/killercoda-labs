@@ -161,7 +161,45 @@ python3 -m pudb pythonProgramToDebug.py
 If you are running low on memory you could try with pip install <your-package-name> --no-cache-dir
 
 
+-- Download 
 
+need to explore the download option, and find-links, user and no-index
+
+`touch requirements.txt`{{exec}}
+
+```
+numpy>=1.8.2,<2.0.0
+matplotlib>=1.3.1,<2.0.0
+scipy>=0.14.0,<1.0.0
+astroML>=0.2,<1.0
+scikit-learn>=0.14.1,<1.0.0
+rpy2>=2.4.3,<3.0.0
+```{{copy}}
+
+`pip install --download=/tmp -r requirements.txt`{{execute}}
+
+`pip install --user --no-index --find-links=/tmp -r requirements.txt`{{execute}}
+
+
+---
+
+python3.8 -u -m pip install aalib -vvv
+
+In the command `python3.8 -u -m pip install aalib -vvv`, the arguments are as follows:
+
+1. `python3.8`: This specifies the version of Python to use for running the command. In this case, it is specifying Python version 3.8.
+
+2. `-u`: This flag stands for "unbuffered binary stdout and stderr". It is used to force the binary layer of the stdout and stderr streams to be unbuffered. This can be useful for debugging purposes or when you want to see output immediately.
+
+3. `-m`: This flag is used to run a module as a script. In this case, it tells Python to run the `pip` module as a script.
+
+4. `pip`: This is the Python package installer. By running `pip` as a module, we are using it to install packages.
+
+5. `install`: This is the command that tells `pip` to install a package.
+
+6. `aalib`: This is the name of the package that we want to install. In this case, it is installing the `aalib` package using `pip`.
+
+7. `-vvv`: This flag is used to increase the verbosity level of the output. In this case, `-vvv` means very verbose output, which will provide detailed information about the installation process, including debugging information.
 
 
 
