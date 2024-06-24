@@ -33,7 +33,7 @@ dnspython
 elasticsearch
 ```{{copy}}
 
-`pip-compile`{{exec}} # takes a while
+`pip-compile`{{exec}}
 
 
 `pip install -r requirements.txt`{{exec}}
@@ -46,14 +46,16 @@ elasticsearch
 
 need to check that it's sending data to es check!
 
-need to
+## For following, need to
 
-- set the index name with date and time 
+- set the index name with date and time
 - create a config file
 - review what 'scheme' does. It errored without it
 - add a web interface with streamlit (nice to have)
 
-'''
+`touch dnsapp.py`{{exec}}
+
+```
 import time
 import dns.resolver
 from elasticsearch import Elasticsearch
@@ -64,7 +66,7 @@ es = Elasticsearch([{'host': 'localhost', 'port': 9200, 'scheme': 'http'}])  # U
 def test_dns_latency(server, domain, repetitions):
     resolver = dns.resolver.Resolver()
     resolver.nameservers = [server]
-    
+
     total_latency = 0
     for _ in range(repetitions):
         start_time = time.time()
@@ -75,7 +77,7 @@ def test_dns_latency(server, domain, repetitions):
         except dns.exception.DNSException as e:
             print(f"Error querying DNS server {server} for domain {domain}: {e}")
             return None
-    
+
     avg_latency = total_latency / repetitions
     return avg_latency
 
@@ -99,11 +101,24 @@ for i in range(iterations):
                 }
                 es.index(index='dns_latency2', body=doc)
                 print(f"Iteration {i+1}: Avg latency for DNS server {server} querying domain {domain} over {repetitions} repetitions: {avg_latency} seconds")
-    
+
     if i < iterations - 1:
         print(f"Waiting for {delay_between_iterations} seconds before next iteration...")
-        time.sleep(delay_between_iterations) 
-'''
+        time.sleep(delay_between_iterations)
+```{{cope}}
+
+run the aoo
+
+`python dnsapp.py`{{exec}}
+
+Connect to Kibana
+
+
+{{TRAFFIC_HOST1_5601}}
+
+And index the data
+
+
 
 
 # follow ups
@@ -147,7 +162,7 @@ To create a Kibana dashboard for the DNS latency data indexed in Elasticsearch, 
      - Data table displaying latency values for each DNS server and domain.
      - Bar chart showing latency distribution across different domains.
      - Pie chart illustrating latency distribution by DNS server.
-   
+
 3. **Build a Dashboard**:
    - Once you have created the visualizations, go to Dashboard in Kibana.
    - Click on "Create dashboard" and add the visualizations you created to the dashboard layout.
