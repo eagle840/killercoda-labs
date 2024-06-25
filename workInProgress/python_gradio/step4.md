@@ -1,15 +1,6 @@
 # Gradio with Transformers
 
-https://www.gradio.app/guides/gradio-lite#additional-requirements
 
-
-WIP this appears to be fot micropip?
-https://huggingface.co/docs/transformers.js/index
-
-
-use https://huggingface.co/docs/transformers.js/en/index#quick-tour
-
-For more on Transformer, see Huggingface https://huggingface.co/docs/transformers/quicktour
 
 
 ```python

@@ -14,6 +14,7 @@ ideas to add
 
 - command line tools
 - ui tools (qx? pygame? )
+- command line interfaces: click
 
 add https://pip.pypa.io/en/stable/topics/dependency-resolution/#dependency-resolution
 

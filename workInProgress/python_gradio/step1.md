@@ -2,7 +2,7 @@
 
 `sudo apt update`{{exec}}
 
-`pip3 install --upgrade pip`{{exec}}
+`pip install --upgrade pip`{{exec}}
 
 `apt install python3.8-venv`{{exec}}
 
@@ -44,6 +44,8 @@ import gradio as gr
 
 def greet(name, intensity):
     return "Hello, " + name + "!" * int(intensity)
+
+# Note how the def function is used to couple fn the 'inputs' and 'output'    
 
 demo = gr.Interface(
     fn=greet,

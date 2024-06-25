@@ -1,8 +1,14 @@
-# The Interface class
+# Gradio Components
+
+## The Interface class
 
 
 
-READ and follow from https://www.gradio.app/guides/the-interface-class
+READ and follow the **Guide** from https://www.gradio.app/guides/the-interface-class
+
+For more details items, see the **Docs** at https://www.gradio.app/docs
+
+
 
 update the function
 
@@ -22,6 +28,8 @@ demo = gr.Interface(
 ```
 
 
+you can customise the fields eg, `gr.Textbox(lines=2, placeholder="name here")` for the inputs parameter. [API Docs](https://www.gradio.app/docs/gradio/textbox)
+
 ---
 
 
@@ -35,3 +43,25 @@ API details for the launch method. https://www.gradio.app/docs/gradio/interface#
 
 More on the python client: https://www.gradio.app/docs/python-client/introduction
 
+## Blocks
+
+Used in the layout.
+
+https://www.gradio.app/guides/blocks-and-event-listeners
+
+```
+import gradio as gr
+
+
+def greet(name):
+    return "Hello " + name + "!"
+
+
+with gr.Blocks() as demo:
+    name = gr.Textbox(label="Name")
+    output = gr.Textbox(label="Output Box")
+    greet_btn = gr.Button("Greet")
+    greet_btn.click(fn=greet, inputs=name, outputs=output, api_name="greet")
+
+demo.launch()
+```{{copy}}
