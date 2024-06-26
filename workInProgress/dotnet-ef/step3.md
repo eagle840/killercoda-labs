@@ -1,4 +1,4 @@
-# Get started with ASP.NET Core MVC WIP REMOVE???
+# MOVE TO OWN LAB ef and MVC
 
 ## MVC is complicated, should be it's own lab
 

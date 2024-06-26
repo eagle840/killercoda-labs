@@ -153,4 +153,3 @@ db.SaveChanges();
 `dotnet run`{{exec}}
 
 note in the output the path of the database:  '/root/.local/share/blogging.db'
-
