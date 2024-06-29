@@ -1,6 +1,6 @@
 {
-  "title": "Work-in-progress Dotnet - Entity Framework with ASP(RAzor)",
-  "description": "Working with entity framework with asp(v0.1.5)",
+  "title": "Work-in-progress Dotnet - Entity Framework with ASP-Razor",
+  "description": "Working with entity framework (ef) with console, asp razor, and api(v0.1.6)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
