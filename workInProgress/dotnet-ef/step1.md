@@ -15,7 +15,7 @@ https://github.com/hensou/asdf-dotnet
 
 `sudo apt update`{{exec}}
 
-`apt install -y curl git sqlite3 libpq-dev libreadline-dev`{{exec}}
+`apt install -y curl git sqlite3 libpq-dev libreadline-dev sqlite`{{exec}}
 
 ## WIP install dotnet
 
@@ -32,19 +32,13 @@ sudo apt-get update && \
   sudo apt-get install -y dotnet-sdk-8.0
 ```{{exec}}
 
+and verify the install:
 
-WIP remove the following
-```
-sudo apt-get update && \
-  sudo apt-get install -y aspnetcore-runtime-8.0
-```{{exec}}
-
-
-
-#### Now dotnet commands are available
 `dotnet --version`{{exec}}
 
 ## Run Docker sql, redis and azurite
+
+open a new tab and setup the servers. 
 
 
 **SQL**

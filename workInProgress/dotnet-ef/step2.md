@@ -1,8 +1,6 @@
 
 # Basic Console app with EF
-
-WIP see lower half for simple single table asp app
-
+ WIP see lower half for simple table asp app
 ## tools
 
 https://learn.microsoft.com/en-us/ef/core/cli/dotnet
@@ -80,7 +78,7 @@ Note the two tables 'Blog' and 'Post'. EF auto create keys from <tableName>Id, e
 The `List<post>` creats a one to many between blogs and posts (check this)
 
 
-## create the db
+## create the ef tool and db
 
 https://learn.microsoft.com/en-us/ef/core/cli/dotnet
 
@@ -91,7 +89,7 @@ cat << \EOF >> ~/.bash_profile
 # Add .NET Core SDK tools
 export PATH="$PATH:/root/.dotnet/tools"
 EOF
-```
+```{{exec}}
 
 `export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
 
@@ -104,9 +102,11 @@ Run the following in the 'EFGetStarted' dir (should be here already)
 
 `dotnet add package Microsoft.EntityFrameworkCore.Design`{{exec}}
 
-`dotnet ef migrations add InitialCreate`{{exec}}
+we'll invoke the verbose mode is see what is going on.
 
-`dotnet ef database update`{{exec}}
+`dotnet ef migrations add InitialCreate -v`{{exec}}
+
+`dotnet ef database update -v`{{exec}}
 
 WIP view the db with ????, where is the qb?
 
@@ -248,3 +248,34 @@ dotnet run
 `dotnet run --urls http://0.0.0.0:5000`{{exec}}
 
 These steps will help you create a simple ASP.NET Razor app that uses a single table SQLite database. Make sure to adjust the code according to your specific requirements.
+
+
+`sqlite`{{exec}}
+
+for help `.help`
+
+
+1. To show the list of all attached databases:
+```sql
+PRAGMA database_list;
+```
+
+2. To switch to a specific database (if multiple databases are attached):
+```sql
+ATTACH DATABASE 'path_to_database_file' AS alias_name;
+```
+
+3. To list all tables in the current database:
+```sql
+SELECT name FROM sqlite_master WHERE type='table';
+```
+
+4. To show the schema of a specific table:
+```sql
+PRAGMA table_info(table_name);
+```
+
+5. To display the structure of a table (including column names and types):
+```sql
+PRAGMA table_info(table_name);
+```
