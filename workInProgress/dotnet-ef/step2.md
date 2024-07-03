@@ -1,6 +1,8 @@
 
 # Basic Console app with EF
 
+WIP see lower half for simple single table asp app
+
 ## tools
 
 https://learn.microsoft.com/en-us/ef/core/cli/dotnet
@@ -153,3 +155,96 @@ db.SaveChanges();
 `dotnet run`{{exec}}
 
 note in the output the path of the database:  '/root/.local/share/blogging.db'
+
+----
+
+
+# Single table asp
+
+
+To create a simple ASP.NET Razor app that uses a single table SQLite database, you can follow these steps using the .NET command-line interface (CLI). Below are the steps and code snippets to achieve this:
+
+## Step 1: Create a new ASP.NET Razor app
+```bash
+dotnet new webapp -o RazorApp
+cd RazorApp
+```{{exec}}
+
+## Step 2: Add the required NuGet packages for SQLite
+```bash
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.EntityFrameworkCore.Design
+```{{exec}}
+
+## Step 3: Create a model class for your table (e.g., `Item.cs`)
+
+`touch Item.cs`{{exec}}
+
+```csharp
+using System.ComponentModel.DataAnnotations;
+
+public class Item
+{
+    public int Id { get; set; }
+
+    [Required]
+    public string Name { get; set; }
+}
+```{{copy}}
+
+## Step 4: Create a DbContext class (e.g., `AppDbContext.cs`)
+
+`touch AppDbContext.cs`{{exec}}
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+
+public class AppDbContext : DbContext
+{
+    public DbSet<Item> Items { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlite("Data Source=app.db");
+    }
+}
+```{{copy}}
+
+## Step 5: Register the DbContext in the `Startup.cs` file
+
+`touch Startup.cs`{{exec}}
+
+```csharp
+services.AddDbContext<AppDbContext>();
+```{{copy}}
+
+## Step 6: Create the database and apply migrations  WIP i added -v
+```bash
+export PATH="$PATH:/root/.dotnet/tools
+dotnet ef migrations add InitialCreate -v
+dotnet ef database update -v
+```{{exec}}
+
+## Step 7: Use the DbContext in your Razor pages
+```csharp
+@page
+@model IndexModel
+@inject AppDbContext _context
+
+<h1>Items</h1>
+
+@foreach (var item in _context.Items)
+{
+    <p>@item.Name</p>
+}
+```{{copy}}
+
+## Step 8: Run the application
+```bash
+dotnet run
+```
+
+
+`dotnet run --urls http://0.0.0.0:5000`{{exec}}
+
+These steps will help you create a simple ASP.NET Razor app that uses a single table SQLite database. Make sure to adjust the code according to your specific requirements.
