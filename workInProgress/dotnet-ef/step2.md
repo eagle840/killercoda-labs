@@ -212,6 +212,10 @@ public class AppDbContext : DbContext
 
 ## Step 5: Register the DbContext in the `Startup.cs` file
 
+
+WIP do I need this?
+
+
 `touch Startup.cs`{{exec}}
 
 ```csharp
@@ -219,11 +223,27 @@ services.AddDbContext<AppDbContext>();
 ```{{copy}}
 
 ## Step 6: Create the database and apply migrations  WIP i added -v
-```bash
-export PATH="$PATH:/root/.dotnet/tools
-dotnet ef migrations add InitialCreate -v
-dotnet ef database update -v
+
+
+`dotnet tool install --global dotnet-ef`{{exec}}
+
+```
+cat << \EOF >> ~/.bash_profile
+# Add .NET Core SDK tools
+export PATH="$PATH:/root/.dotnet/tools"
+EOF
 ```{{exec}}
+
+`export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
+
+
+
+`export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
+
+`dotnet ef migrations add InitialCreate -v`{{exec}}
+
+`dotnet ef database update -v`{{exec}}
+
 
 ## Step 7: Use the DbContext in your Razor pages
 ```csharp
