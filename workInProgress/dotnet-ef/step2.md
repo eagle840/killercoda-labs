@@ -21,6 +21,12 @@ https://learn.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=ne
 
 ## install ef core
 
+If you're using Dotnet in Windows, you'll have to run this command.
+
+`dotnet nuget add source --name nuget.org https://api.nuget.org/v3/index.json `{{exec}}
+
+Install the Sqlite provider:
+
 `dotnet add package Microsoft.EntityFrameworkCore.Sqlite`{{exec}}
 
 ## create the model
