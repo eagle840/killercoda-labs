@@ -1,6 +1,6 @@
 # Design the user interface (UI)
 
-We'll be using [Material Design](https://material.io/)
+We'll be using [Material Design](https://material.io/), be sure to work in the terminal tab with the REACT in
 
 
 install the components
@@ -71,6 +71,8 @@ in PizzaList.jsx replace html with
 ```{{copy}}
 
 When you load the new react app, it may take a minute to load the components that we added
+
+`npm run dev`{{exec}}
 
 
 If you're have issues, be sure to use the web browser developer tools to review the logs.

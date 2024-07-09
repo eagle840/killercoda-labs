@@ -1,18 +1,13 @@
 
 # Initial Setup
 
-Doc: https://killercoda.com/creators
-
-github: https://github.com/killercoda
-
-# Run First
 
 `sudo apt update`{{exec}}
 
 
 following https://learn.microsoft.com/en-us/training/modules/build-web-api-minimal-spa/2-design-front-end
 
-## install asdf
+## Install asdf
 
 
 `git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
@@ -28,7 +23,7 @@ following https://learn.microsoft.com/en-us/training/modules/build-web-api-minim
 
 `asdf current`{{exec}}
 
-## install nodejs and yarn with asdf
+## Install nodejs and yarn with asdf
 
 `asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`{{exec}}
 
@@ -52,14 +47,16 @@ following https://learn.microsoft.com/en-us/training/modules/build-web-api-minim
 
 `yarn -v`{{exec}}
 
-## generate simple react app
+## Generate simple react app WIP remove this?
+
+WIP npx vs npm (below)
 
 `npx create-react-app my-app`{{exec}}
 
 `ls`{{exec}}
 
 
-# this is the MS lab
+# Create the React front client
 
 We'll be Using [React](https://react.dev/), and the [Vite](https://vitejs.dev/) web blunder
 
@@ -67,17 +64,17 @@ We'll be Using [React](https://react.dev/), and the [Vite](https://vitejs.dev/) 
 
 #### Answer the CLI prompts as follows:
 
-Package name: pizzaclient - The folder created by Vite uses Camel case, PizzaClient.
+Package name: **pizzaclient** - The folder created by Vite uses Camel case, PizzaClient.
 
-Select a framework: React
+Select a framework: **React**
 
-Select a variant: Javascript
+Select a variant: **Javascript**
 
 `cd PizzaClient/`{{exec}}
 
 `npm install`{{exec}}
 
-   edit vite.config.js
+Update vite.config.js
 
 ```
 import { defineConfig } from 'vite'
@@ -93,9 +90,8 @@ export default defineConfig({
 })
 ```{{copy}}
 
-`ls`{{exec}}
 
-## start the app
+## Start the app
 
 
 `npm run dev`{{exec}}
@@ -103,6 +99,8 @@ export default defineConfig({
 
 
 {{TRAFFIC_HOST1_3000}}
+
+exit the app with ctrl-c
 
 
 # Build the Pizza component
@@ -272,6 +270,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>,
 )
 ```{{copy}}
+
+And run the app:
 
 `npm run dev`{{exec}}
 

@@ -1,6 +1,8 @@
 # Step 3
 
-Add dotnet minimal API
+
+
+Add dotnet minimal API using Sql server
 
 `cd ~`{{exec}}
 
@@ -15,7 +17,9 @@ Add dotnet minimal API
 
 `dotnet --list-sdks`{{exec}}
 
-## minimal api's with dotnet
+## Minimal api's with dotnet
+
+Lets create a Dotnet api called PizzaStore:
 
 https://learn.microsoft.com/en-us/training/modules/build-web-api-minimal-api/
 
@@ -39,15 +43,13 @@ OR
 
 {{TRAFFIC_HOST1_5000}}
 
-## add swagger
+## Add swagger
 
 
 
 `dotnet add package Swashbuckle.AspNetCore --version 6.5.0`{{exec}}
 
-in
-
-Program.cs
+in Program.cs
 
 ```
 using Microsoft.OpenApi.Models;
@@ -73,16 +75,16 @@ app.MapGet("/", () => "Hello World!");
 app.Run();
 ```{{copy}}
 
-WIP NOTE 5000, what is the proxy set at?
 
 `dotnet run --urls http://0.0.0.0:5000`{{exec}}
 
+The swagger portal takes the form of:  http://localhost:{PORT}/swagger
 
-http://localhost:{PORT}/swagger
+Go ahead and test it:
 
 {{TRAFFIC_HOST1_5000}}/swagger
 
-to add additional items to swagger doc, see https://learn.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-8.0&tabs=visual-studio#api-info-and-description
+to add additional items to swagger doc, see [MS Docs](https://learn.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-8.0&tabs=visual-studio#api-info-and-description)
 
 
 
@@ -145,7 +147,7 @@ namespace PizzaStore.DB;
  }
 ```{{copy}}
 
-## add routes
+## Add routes
 
 1: At the top of the Program.cs file, add the following line of code:
 
@@ -167,7 +169,7 @@ app.MapDelete("/pizzas/{id}", (int id) => PizzaDB.RemovePizza(id));
 {{TRAFFIC_HOST1_5000}}/swagger
 
 
-## other
+## other WIP does this need to run?
 
 
 `dotnet ef database update`{{exec}}

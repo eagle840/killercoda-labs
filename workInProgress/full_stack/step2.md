@@ -1,8 +1,10 @@
 # mock api
 
+Now we'll add a simple document server to store our state changes. In the next step we'll connect to an Sql server
+
 Using the npm built in api server [json-server](https://www.npmjs.com/package/json-server)
 
-Start a new terminal
+Start a new terminal tab
 
 `touch db.json`{{exec}}
 
@@ -16,19 +18,19 @@ Start a new terminal
 }
 ```{{copy}}
 
-then run the program json-server
-
-WIP NOTE 5100
+then run the program json-server on port 5100
 
 `npx json-server --watch db.json --port 5100`{{exec}}
 
-add extention for curk to vsc
+add an extension for curl to vsc, or just run a curl command of a new terminal.
 
 `curl http://localhost:5100/pizzas`{{exec}}
 
+Leave the app running in this terminal window.
+
 using the code on https://learn.microsoft.com/en-us/training/modules/build-web-api-minimal-spa/5-exercise-create-api
 
-add the mocked api
+## Add the mocked api
 
 lets add the code to connect with the api in Pizza.jsx
 
@@ -146,6 +148,6 @@ export default defineConfig({
 ```{{copy}}
 
 
-`npx json-server --watch --port 5100 db.json`{{exec}}
+`npm run dev`{{exec}}
 
 {{TRAFFIC_HOST1_3000}}
