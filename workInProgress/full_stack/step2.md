@@ -1,6 +1,6 @@
 # mock api
 
-Now we'll add a simple document server to store our state changes. In the next step we'll connect to an Sql server
+Now we'll add a simple document server to store our state changes.
 
 Using the npm built in api server [json-server](https://www.npmjs.com/package/json-server)
 

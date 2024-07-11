@@ -5,9 +5,11 @@
 `sudo apt update`{{exec}}
 
 
-following https://learn.microsoft.com/en-us/training/modules/build-web-api-minimal-spa/2-design-front-end
+In this lab we'll be roughly following https://learn.microsoft.com/en-us/training/modules/build-web-api-minimal-spa/2-design-front-end
 
 ## Install asdf
+
+Lets use the Multiple Runtime Version Manager: [ASDF](https://asdf-vm.com/) to install the components:
 
 
 `git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
@@ -46,14 +48,6 @@ following https://learn.microsoft.com/en-us/training/modules/build-web-api-minim
 `asdf current`{{exec}}
 
 `yarn -v`{{exec}}
-
-## Generate simple react app WIP remove this?
-
-WIP npx vs npm (below)
-
-`npx create-react-app my-app`{{exec}}
-
-`ls`{{exec}}
 
 
 # Create the React front client
