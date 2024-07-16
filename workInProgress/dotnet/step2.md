@@ -26,7 +26,11 @@ EOF
 
 `dotnet tool install -g dotnet-repl`{{exec}} [Docs](https://github.com/jonsequitur/dotnet-repl)
 
+`dotnet-repl`{{exec}}
+
 `dotnet tool install -g csharprepl`{{exec}} [Docs](https://github.com/waf/CSharpRepl)
+
+to run `csharprepl`{{exec}}
 
 ### List installed tools
 
@@ -287,6 +291,3 @@ tasks.json was the build task in there
 
 ### notes:
 - 'workspaceFolder' is the same as the root folder of the project
-
-
-
