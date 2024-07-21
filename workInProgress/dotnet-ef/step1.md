@@ -4,6 +4,8 @@
 
 See dotnet lab for intro
 
+This may prove better? https://learn.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-8.0&tabs=visual-studio
+
 https://learn.microsoft.com/en-us/ef/
 
 ## Install c# debugger in VSC
