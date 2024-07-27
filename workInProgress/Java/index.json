@@ -1,6 +1,6 @@
 {
   "title": "WORK-IN_PROGRESS Intro to  Java",
-  "description": "Starting Java (v0.0.6)",
+  "description": "Starting Java (v0.0.7)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -40,6 +40,10 @@
       {
         "title": "Step 4",
         "text": "step4.md"
+      },
+      {
+        "title": "Step 5",
+        "text": "step5.md"
       }
     ],
     "intro": {
