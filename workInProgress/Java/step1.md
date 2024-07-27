@@ -56,7 +56,7 @@ The command to install JRE (Java Runtime Environment) on Ubuntu is:
 
 To install JDK (Java Development Kit) on Ubuntu, you can use the following command:
 
-`sudo apt-get install default-jdk`{{copy}}
+RUN THIS: `sudo apt-get install default-jdk`{{exec}}
 
 A headless installation refers to installing a software package without any graphical user interface (GUI) components.
 
@@ -164,3 +164,100 @@ Link for traffic into host 2 on port 4444
 Link for traffic into host X on port Y
 {{TRAFFIC_HOSTX_Y}}
 ```
+
+---
+
+## Maven v2
+
+In a typical Java project using Maven, the file structure would look something like this:
+
+Many IDE will not show the main/java/com/example structure
+
+```
+hello-world
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── example
+│   │   │           └── HelloWorld.java
+│   └── test
+│       └── java
+│           └── com
+│               └── example
+│                   └── HelloWorldTest.java
+├── pom.xml
+└── README.md
+```
+
+Here's a breakdown of the file structure:
+
+1. `src/main/java`: This is where your main Java source code resides. In this case, the `HelloWorld.java` file contains the 'hello world' program.
+
+2. `src/test/java`: This is where your test source code resides. The `HelloWorldTest.java` file contains test cases for the `HelloWorld` class.
+
+3. `pom.xml`: This is the Maven Project Object Model file that defines the project configuration, dependencies, and build settings.
+
+4. `README.md`: This file typically contains information about the project, how to build and run it, and any other relevant details.
+
+This is a basic structure for a simple 'hello world' program written in Java using Maven. You can customize this structure based on the requirements of your project.
+
+## create the HelloWorld.java
+
+In the director as shown above
+
+`mkdir -p src/test/java/com/example && touch src/test/java/com/example/HelloWorldTest.java`{{exec}}
+
+```
+class Test
+{
+    public static void main(String []args)
+    {
+        System.out.println("My First Java Program.");
+    }
+};
+```{{copy}}
+
+## pom file
+
+```
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmls="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+ 
+  <groupId>com.mycompany.app</groupId>
+  <artifactId>my-app</artifactId>
+  <version>1</version>
+  <packaging>jar</packaging>
+</project>
+```
+
+I think the artifactId might have to equal the project title?
+
+### run clean
+
+
+When you have Maven installed, you would typically run the `mvn clean` command from the root directory of your Maven project. This is the directory that contains the `pom.xml` file, which is the Maven Project Object Model file that defines the project configuration.
+
+So, if your project is structured as mentioned earlier with the `pom.xml` file in the root directory, you would navigate to that directory in your terminal and run the `mvn clean` command. Here's an example:
+
+
+`cd /path/to/your/hello-world-project`
+
+`mvn clean`{{exec}}
+
+
+This command will clean the project by deleting the `target` directory and any other generated files, preparing it for a fresh build.
+
+
+## now compile
+
+`mvn compile`{{exec}}
+
+cd target
+
+cd classes
+
+ls
+
+java program
