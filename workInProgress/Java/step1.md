@@ -46,8 +46,12 @@ Runtime: The Java Runtime Environment (JRE) is needed to run Java applications. 
 
 SDK: The Software Development Kit (SDK) is used for Java development, also known as the Java Development Kit (JDK) . It includes the JRE and tools for compiling, debugging, and packaging Java applications.
 
+## Install prereqs for this lab
 
-## Install
+`sudo apt-get install -y tree`{{copy}}
+
+
+## Install Java
 
 The command to install JRE (Java Runtime Environment) on Ubuntu is:
 
@@ -169,6 +173,10 @@ Link for traffic into host X on port Y
 
 ## Maven v2
 
+WIP move this to step 3 (and up those past)
+
+also gradle will be step 4?
+
 In a typical Java project using Maven, the file structure would look something like this:
 
 Many IDE will not show the main/java/com/example structure
@@ -204,6 +212,12 @@ This is a basic structure for a simple 'hello world' program written in Java usi
 
 ## create the HelloWorld.java
 
+`cd ~`{{exec}}
+
+`mkdir helloworld`{{exec}}
+
+`cd helloworld`{{exec}}
+
 In the director as shown above
 
 `mkdir -p src/test/java/com/example && touch src/test/java/com/example/HelloWorldTest.java`{{exec}}
@@ -218,15 +232,15 @@ class Test
 };
 ```{{copy}}
 
+`touch pom.xml`{{exec}}
+
 ## pom file
 
 ```
-<?xml version="1.0" encoding="UTF-8" ?>
-<project xmls="http://maven.apache.org/POM/4.0.0">
+<project>
   <modelVersion>4.0.0</modelVersion>
- 
-  <groupId>com.mycompany.app</groupId>
-  <artifactId>my-app</artifactId>
+  <groupId>com.mycompany.helloworld</groupId>
+  <artifactId>helloworld</artifactId>
   <version>1</version>
   <packaging>jar</packaging>
 </project>
@@ -246,6 +260,10 @@ So, if your project is structured as mentioned earlier with the `pom.xml` file i
 
 `mvn clean`{{exec}}
 
+`tree`{{exec}}
+
+why is the above showing no new files?
+
 
 This command will clean the project by deleting the `target` directory and any other generated files, preparing it for a fresh build.
 
@@ -253,6 +271,10 @@ This command will clean the project by deleting the `target` directory and any o
 ## now compile
 
 `mvn compile`{{exec}}
+
+`tree`{{exec}}
+
+why is the above showing no new files?
 
 cd target
 
