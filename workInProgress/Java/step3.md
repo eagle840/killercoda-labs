@@ -69,6 +69,8 @@ To run Gradle for your Java project, you can follow these steps:
 
 This command will compile your Java source code, run any tests, and package your application into a JAR file.
 
+`tree`{{exec}}
+
 4. To run your Java program, you can use the following command:
 
 
@@ -76,6 +78,29 @@ This command will compile your Java source code, run any tests, and package your
 
 
 If you have defined a `run` task in your `build.gradle` file that executes your main class, this command will run your "Hello World" program.
+
+```
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // Add any dependencies here
+}
+
+mainClassName = 'HelloWorld'
+
+run {
+    if (project.hasProperty('args')) {
+        args project.args.split('\\s+')
+    }
+}
+```
 
 Alternatively, you can also run your Java program directly using the `java` command after building the project with Gradle. For example:
 

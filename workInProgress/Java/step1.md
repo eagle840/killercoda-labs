@@ -48,7 +48,7 @@ SDK: The Software Development Kit (SDK) is used for Java development, also known
 
 ## Install prereqs for this lab
 
-`sudo apt-get install -y tree`{{copy}}
+`sudo apt-get install -y tree`{{execute}}
 
 
 ## Install Java
@@ -107,6 +107,8 @@ Reboot your system, and voila
 
 `nano HelloWorld.java`{{exec}}
 
+Note the the file starts with a capital, and matchs exactly the class name.
+
 Here's a simple "Hello, World!" program in Java:
 
 ```java
@@ -121,12 +123,18 @@ To run this program, you can save it in a file named `HelloWorld.java`, then com
 
 `javac HelloWorld.java`{{exec}}
 
+`ls`{{exec}}
+
+note the creation of the file HelloWorld.class
+
+Lets run it
+
 
 `java HelloWorld`{{exec}}
 
 
 You should see the output `Hello, World!` printed to the console.
 
-To see a verbose outpur
+If you want to see a verbose output on the compilation:
 
 `javac -verbose HelloWorld.java`{{exec}}

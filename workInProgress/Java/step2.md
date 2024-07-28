@@ -7,7 +7,7 @@ Maven is a build automation tool used primarily for Java projects. It provides a
 
 `apt install -y maven`{{exec}}
 
-`mvn --version`{{exec}}
+`mvn -v`{{exec}}
 
  The "Hello World" example in Maven involves creating a simple Java project and building it using Maven. Here are the steps to create a basic "Hello World" Maven project:
 
@@ -106,7 +106,7 @@ Here's a breakdown of the file structure:
 
 4. `README.md`: This file typically contains information about the project, how to build and run it, and any other relevant details.
 
-This is a basic structure for a simple 'hello world' program written in Java using Maven. You can customize this structure based on the requirements of your project.
+
 
 ## create the HelloWorld.java
 
