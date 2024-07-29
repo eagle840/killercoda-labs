@@ -3,6 +3,8 @@
 
 ## Maven
 
+Pullled form https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
+
 Maven is a build automation tool used primarily for Java projects. It provides a way to manage project dependencies, build and package projects, and manage project documentation. Maven uses a declarative XML-based configuration file called pom.xml (Project Object Model) to define the project structure, dependencies, and build process. It also supports various plugins that can be used to extend its functionality. Maven simplifies the build process by providing a standard way to manage dependencies and build projects, making it easier to share and collaborate on Java projects.
 
 `apt install -y maven`{{exec}}
@@ -14,20 +16,20 @@ Maven is a build automation tool used primarily for Java projects. It provides a
 1. Open a terminal or command prompt and navigate to the directory where you want to create the project.
 
 2. Run the following command to create a new Maven project:
-   ```
-   mvn archetype:generate -DgroupId=com.example -DartifactId=helloworld -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-   ```
+
+   `mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false`{{exec}}
 
    This command uses the Maven archetype plugin to generate a new project based on the "maven-archetype-quickstart" archetype. It sets the group ID to "com.example" and the artifact ID to "helloworld". The "interactiveMode=false" flag skips the interactive mode and uses default values.
 
 3. Once the project is created, navigate into the project directory:
-   ```
-   cd helloworld
-   ```
+
+   `cd my-app`{{exec}}
+
+   `tree`{{exec}}
 
 4. Open the project in your preferred IDE or text editor.
 
-5. In the `src/main/java/com/example/App.java` file, replace the existing code with the following "Hello World" code:
+5. WIP REMOVE? In the `src/main/java/com/example/App.java` file, replace the existing code with the following "Hello World" code:
    ```java
    package com.example;
 
@@ -38,11 +40,39 @@ Maven is a build automation tool used primarily for Java projects. It provides a
    }
    ```
 
-6. Save the file.
+6. Use the following for the pom.xml file
+
+   ```
+   <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <groupId>com.mycompany.app</groupId>
+   <artifactId>my-app</artifactId>
+   <version>1.0-SNAPSHOT</version>
+
+   <properties>
+      <maven.compiler.source>1.8</maven.compiler.source>
+      <maven.compiler.target>1.8</maven.compiler.target>
+   </properties>
+
+   <dependencies>
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>4.12</version>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
+   </project>
+   ```
 
 7. Open a terminal or command prompt and navigate to the project directory.
 
 8. Run the following command to build the project:
+
+   `mvn package`{{exec}}
+
    ```
    mvn clean package
    ```
@@ -51,21 +81,32 @@ Maven is a build automation tool used primarily for Java projects. It provides a
 
 9. After the build is successful, you can run the application using the following command:
    ```
-   java -cp target/helloworld-1.0-SNAPSHOT.jar com.example.App
+   java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
    ```
 
    This command runs the compiled Java code and prints "Hello, World!" to the console.
 
 That's it! You have created a basic "Hello World" Maven project and built it using Maven.
 
-```
-Link for traffic into host 1 on port 80
-{{TRAFFIC_HOST1_80}}
-Link for traffic into host 2 on port 4444
-{{TRAFFIC_HOST2_4444}}
-Link for traffic into host X on port Y
-{{TRAFFIC_HOSTX_Y}}
-```
+
+
+---
+
+Although hardly a comprehensive list, these are the most common default lifecycle phases executed.
+
+validate: validate the project is correct and all necessary information is available
+compile: compile the source code of the project
+test: test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed
+package: take the compiled code and package it in its distributable format, such as a JAR.
+integration-test: process and deploy the package if necessary into an environment where integration tests can be run
+verify: run any checks to verify the package is valid and meets quality criteria
+install: install the package into the local repository, for use as a dependency in other projects locally
+deploy: done in an integration or release environment, copies the final package to the remote repository for sharing with other developers and projects.
+There are two other Maven lifecycles of note beyond the default list above. They are
+
+clean: cleans up artifacts created by prior builds
+site: generates site documentation for this project
+
 
 ---
 
