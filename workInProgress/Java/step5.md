@@ -70,3 +70,32 @@ RUN \
 `docker run -it --rm -p 8080:8080 jmeter`{{exec}}
 
 http://localhost:8080/vnc.html
+
+---
+
+
+need a base that has x11 loaded
+
+
+in container:
+```
+   1  cp /html/* .
+    2  http-server
+    3  http-server -h
+    4  http-server
+    5  curl
+    6  apk update
+    7  apt update
+    8  apt install curl
+    9  apt install openjdk8-jre
+   10  apt install java
+   11  apt-get install default-jdk
+   12  java -version
+   13  curl -L https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.4.1.tgz >  /tmp/jmeter.tgz
+   14  mkdir -p /opt
+   15  tar -xvf /tmp/jmeter.tgz -C /opt
+   16  rm /tmp/jmeter.tgz
+   17  cd /etc/supervisor/conf.d
+   18  /opt/apache-jmeter-5.4.1/bin/./jmeter
+   19  history
+   ```
