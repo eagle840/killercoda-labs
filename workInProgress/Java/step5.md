@@ -62,6 +62,8 @@ JMX is widely used in enterprise applications to monitor and manage Java-based s
 
 https://stackoverflow.com/questions/67419731/use-jmeter-desktop-application-as-web-app#:~:text=Currently%20running%20JMeter%20as%20a,someone%20else)%20will%20be%20able
 
+https://novnc.com/info.html
+
 `nano Dockerfile`{{exec}}
 
 WIP apk update
