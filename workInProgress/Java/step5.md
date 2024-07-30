@@ -1,5 +1,21 @@
 # Web based monitoring
 
+## JMX
+
+JMX stands for Java Management Extensions. It is a technology that allows monitoring and managing Java applications, system objects, and devices. JMX provides a standard way to expose management and monitoring information about Java applications, making it easier to monitor and manage Java applications in a consistent manner.
+
+With JMX, developers can instrument their Java applications by exposing managed beans (MBeans) that provide information about the application's internal state, configuration, and performance metrics. These MBeans can be accessed and manipulated using JMX-compliant tools and libraries.
+
+Some common use cases for JMX include:
+
+1. Monitoring application performance metrics such as memory usage, CPU usage, and thread count.
+2. Configuring application settings at runtime without restarting the application.
+3. Triggering actions or notifications based on certain conditions or thresholds.
+4. Integrating with monitoring tools and frameworks like JConsole, VisualVM, or Nagios.
+
+Overall, JMX is a powerful tool for managing and monitoring Java applications, providing developers and administrators with valuable insights into the runtime behavior of their applications.
+
+https://jolokia.org/index.html
 
 ## javamelody
 
