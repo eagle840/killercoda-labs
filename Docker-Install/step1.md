@@ -8,30 +8,30 @@
 
 ## Docker remove
 
-`apt-get remove docker  docker.io containerd runc -y`{{exec}}   
+`apt-get remove docker  docker.io containerd runc -y`{{exec}}
 
-## Docker install  
+## Docker install
 
-`apt-get install ca-certificates curl gnupg  lsb-release -y`{{exec}}   
+`apt-get install ca-certificates curl gnupg  lsb-release -y`{{exec}}
 
-`mkdir -p /etc/apt/keyrings`{{exec}}   
+`mkdir -p /etc/apt/keyrings`{{exec}}
 
-`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}   
+`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}
 
 ```
 echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```{{exec}}   
+```{{exec}}
 
-`apt-get update`{{exec}}   
+`apt-get update`{{exec}}
 
-`apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y `{{exec}}  
+`apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y `{{exec}}
 
 ## Docker version check
 
-`docker version`{{exec}}   
+`docker version`{{exec}}
 
-`docker-compose version`{{exec}}   
+`docker-compose version`{{exec}}
 
 `docker compose version`{{exec}}
 
@@ -62,7 +62,7 @@ For the older Compose V1:
 | 3.0 ; 3.1           | 1.13.0+ / 17.03+      |
 | 2.1                 | 1.12.0+               |
 | 2.0                 | 1.10.0+               |
-| 1.0 * | 1.9.1+                | 
+| 1.0 * | 1.9.1+                |
 
 Compose v1 is legacy, and you shouldn't use it. There will be no 'version' in a v1 file.
 
@@ -85,3 +85,28 @@ Remember this is the new 'Compose V2' Version, and not to be confused with the o
 
 
 See https://docs.docker.com/compose/compose-file/ [link](https://docs.docker.com/compose/compose-file/)
+
+
+
+
+`nano docker-compose.yml`{{exec}}
+
+```
+version: '3.8'
+
+services:
+  redis:
+    image: redis:alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
+    driver: local
+
+```{{copy}}
+
+`docker compose pull`{{exec}}

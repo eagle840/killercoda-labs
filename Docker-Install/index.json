@@ -1,6 +1,6 @@
 {
   "title": "Docker and Compose",
-  "description": "Install the latest version of docker with Compose(v0.0.1)",
+  "description": "Install the latest version of docker with Compose(v0.0.2)",
   "difficulty": "Beginner",
   "time": "60 minutes",
   "details": {
