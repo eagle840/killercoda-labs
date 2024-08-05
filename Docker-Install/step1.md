@@ -40,6 +40,27 @@ echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docke
 - 'docker compose' is the newer project, composed in Go and part of Docker
 - 'docker-compose' is the orginal project and now deprecated
 
+The main difference between Docker Compose v1 and v2 lies in the command syntax and integration with the Docker CLI. Here are some key points:
+
+Command Syntax:
+- Compose v1: Uses the docker-compose command.
+- Compose v2: Uses the docker compose command (note the space instead of a hyphen)1.
+Integration:
+- Compose v1: Was a standalone tool written in Python.
+- Compose v2: Is integrated into the Docker CLI and written in Go, providing a more consistent and predictable set of options and flags1.
+Container Naming:
+- Compose v1: Uses underscores (_) as word separators in container names.
+- Compose v2: Uses hyphens (-) instead, which are valid characters in DNS hostnames1.
+Deprecated Commands:
+- Compose v1: Supported the docker-compose scale command.
+- Compose v2: Replaces this with docker compose up --scale1.
+New Features:
+- Compose v2: Introduces new features like improved build performance with BuildKit, support for SSH resources at build time, and the ability to define multiple platforms for multi-arch images2.
+
+Switching to Compose v2 is recommended as Compose v1 is no longer supported or updated2.
+
+Are you planning to migrate an existing project to Compose v2, or starting a new one?
+
 
 ## Docker compose confusion
 
