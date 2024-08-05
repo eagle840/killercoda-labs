@@ -6,6 +6,8 @@
 
 `npm install @hapi/hapi`{{exec}}
 
+`nano index.js`{{exec}}
+
 ```
 'use strict';
 
@@ -38,8 +40,27 @@ process.on('unhandledRejection', (err) => {
 });
 
 init();
-```
+```{{copy}}
 
 `node index.js`{{exec}}
 
 {{TRAFFIC_HOST1_3000}}
+
+`npm install -g nodemon`{{exec}}
+
+
+`nodemon -v`{{exec}}
+
+
+nodemon watches the current directry, lets adjust that to watch all files above:
+
+`nano nodemon.json`{{exec}}
+
+
+```
+{
+    "watch": ["**/*.*"]
+}
+```{{exec}}
+
+`nodemon index.js`{{exec}}
