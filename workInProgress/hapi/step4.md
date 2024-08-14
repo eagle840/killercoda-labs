@@ -28,6 +28,27 @@ https://hapi.dev/api/?v=21.3.3#-routeoptionssecurity
 
 In Hapi, you can set the Strict-Transport-Security (HSTS) header using the `hsts` plugin. Here's an example of how you can set the HSTS header in a Hapi server:
 
+The following appears to work:
+
+```javascript
+const server = new Server({
+    host: '127.0.0.1',
+    port: 3333,
+    state: {
+        strictHeader: true
+    },
+    routes: {
+        security: {
+            hsts: {
+                includeSubDomains: true,
+                preload: true,
+                maxAge: 15768000
+            }
+        }
+    }
+})
+```
+
 ```javascript
 const Hapi = require('@hapi/hapi');
 
@@ -78,6 +99,8 @@ In this example:
 With this setup, the HSTS header will be automatically added to the server responses, enforcing HTTPS connections for the specified duration and including subdomains.
 
 ## CSP
+
+check out: https://www.writesoftwarewell.com/content-security-policy/
 
 In Hapi, you can set the Content-Security-Policy (CSP) header using the `hapi-securify` plugin. Here's an example of how you can set the CSP header in a Hapi server:
 
