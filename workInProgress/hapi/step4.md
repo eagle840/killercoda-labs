@@ -19,6 +19,10 @@ HTTP Security Headers are additional layers of security that can be implemented 
 To check if these headers are present on a website, you can use the `curl` command with the `-I` option to fetch the headers. For example:
 
 
+# follow
+
+https://hapi.dev/api/?v=21.3.3#-routeoptionssecurity
+
 ## HSTS header
 
 
