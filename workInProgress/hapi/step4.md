@@ -1,5 +1,8 @@
 # security header
 
+
+https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#
+
 HTTP Security Headers are additional layers of security that can be implemented on web servers to enhance the security of web applications. Here are some common HTTP security headers that you can implement:
 
 1. **Strict-Transport-Security (HSTS)**: This header tells the browser to only connect to the website over HTTPS, preventing downgrade attacks.
@@ -22,6 +25,8 @@ To check if these headers are present on a website, you can use the `curl` comma
 # follow
 
 https://hapi.dev/api/?v=21.3.3#-routeoptionssecurity
+
+https://www.keycdn.com/blog/http-security-headers
 
 ## HSTS header
 
@@ -98,9 +103,22 @@ In this example:
 
 With this setup, the HSTS header will be automatically added to the server responses, enforcing HTTPS connections for the specified duration and including subdomains.
 
+### RESULTS
+
+```
+strict-transport-security: max-age=15768000; includeSubDomains; preload
+x-frame-options: DENY
+x-xss-protection: 0
+x-download-options: noopen
+x-content-type-options: nosniff
+```
+
+
 ## CSP
 
 check out: https://www.writesoftwarewell.com/content-security-policy/
+
+https://caniuse.com/?search=content%20security%20policy
 
 In Hapi, you can set the Content-Security-Policy (CSP) header using the `hapi-securify` plugin. Here's an example of how you can set the CSP header in a Hapi server:
 

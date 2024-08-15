@@ -7,6 +7,36 @@ github: https://github.com/killercoda
 
 We'll be using asdf to install dotnet, however complete instructions for download and installing for other systems can be found on Micosoft [here](https://dotnet.microsoft.com/en-us/download)
 
+## Manual Install
+
+https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&pivots=os-linux-ubuntu-2004
+
+`lsb_release -a`{{exec}}
+
+
+`wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb`{{exec}}
+
+`sudo dpkg -i packages-microsoft-prod.deb`{{exec}}
+
+`rm packages-microsoft-prod.deb`{{exec}}
+
+ `sudo apt-get update &&   sudo apt-get install -y dotnet-sdk-8.0`{{exec}}
+
+`dotnet --version`{{exec}}
+
+
+## Basic use
+
+To list all the sdk's installed
+
+`dotnet --list-sdks`{{exec}}
+
+`dotnet --list-runtimes`{{exec}}
+
+`dotnet --info`{{exec}}
+
+## install with asdf - NOT NEEDED.
+
 `git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
 
 `. "$HOME/.asdf/asdf.sh"`{{exec}} WIP pipe to .brashrc?
@@ -35,7 +65,7 @@ We'll be using asdf to install dotnet, however complete instructions for downloa
 #### Now dotnet commands are available
 `dotnet --version`{{exec}}
 
-install asdf, dotnet 
+install asdf, dotnet
 
 # create dotnet wep api with swagger
 
@@ -113,35 +143,35 @@ The Swagger UI can be found at https://localhost:<port>/swagger
 
 # docker update
 
-`apt-get remove docker  docker.io containerd runc -y`{{exec}}   
+`apt-get remove docker  docker.io containerd runc -y`{{exec}}
 
-`apt-get update`{{exec}}   
+`apt-get update`{{exec}}
 
-`apt-get install ca-certificates curl gnupg  lsb-release -y`{{exec}}   
+`apt-get install ca-certificates curl gnupg  lsb-release -y`{{exec}}
 
-`mkdir -p /etc/apt/keyrings`{{exec}}   
+`mkdir -p /etc/apt/keyrings`{{exec}}
 
-`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}   
+`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}
 
 ```
 echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```{{exec}}   
+```{{exec}}
 
-`apt-get update`{{exec}}   
+`apt-get update`{{exec}}
 
-`apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y `{{exec}}   
+`apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y `{{exec}}
 
-`docker version`{{exec}}   
+`docker version`{{exec}}
 
-`docker-compose version`{{exec}}   
+`docker-compose version`{{exec}}
 
 `docker compose version`{{exec}}
 
 # Set imageid in index.json
 
 - ubuntu: Ubuntu 20.04 with Docker and Podman
-= kubernetes-kubeadm-2nodes: 
+= kubernetes-kubeadm-2nodes:
 - kubernetes-kubeadm-1node:
 
 to taint the control node for work:
@@ -198,9 +228,9 @@ and check the config file
 
 `docker exec some-rabbit cat /etc/rabbitmq/rabbitmq.conf`{{execute}}
 
-and head over to port 8080 and login   
-un:guest   
-pw:guest  
+and head over to port 8080 and login
+un:guest
+pw:guest
 
 
 Next we'll update the python files with the new IP address of the docker container.
@@ -229,4 +259,3 @@ to allow pods on the controlplane
 to allow access to running pods with ports 9000 and 9090
 
 `kubectl port-forward -n minio-dev pod/minio 9000 9090 --address 0.0.0.0`{{copy}}
-

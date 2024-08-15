@@ -4,7 +4,9 @@
 
 `npm init`{{exec}}
 
-`npm install @hapi/hapi`{{exec}}
+`npm i @hapi/hapi@20.3.0`{{exec}}
+
+`npm install @hapi/hapi`{{copy}}
 
 `nano index.js`{{exec}}
 
