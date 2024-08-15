@@ -20,6 +20,8 @@
 
 `cd WebApi/`{{exec}}
 
+terminate the other app before running
+
 
 `dotnet run --urls http://0.0.0.0:5000`{{exec}}
 
