@@ -7,6 +7,10 @@ github: https://github.com/killercoda
 
 We'll be using asdf to install dotnet, however complete instructions for download and installing for other systems can be found on Micosoft [here](https://dotnet.microsoft.com/en-us/download)
 
+`sudo apt update`{{exec}}
+
+`apt install -y curl git sqlite3 libpq-dev libreadline-dev tree`{{exec}}
+
 ## Manual Install
 
 https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&pivots=os-linux-ubuntu-2004

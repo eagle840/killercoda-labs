@@ -29,3 +29,9 @@ terminate the other app before running
 https://securityheaders.com/
 
 `curl -I -s -L -X GET http://0.0.0.0:5000/weatherforecast`{{exec}}
+
+{{TRAFFIC_HOST1_5000}}/weatherforecast
+
+swagger url
+
+{{TRAFFIC_HOST1_5000}}/swagger
