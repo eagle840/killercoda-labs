@@ -1,6 +1,6 @@
 {
   "title": "Dotnet security headers",
-  "description": "Setting security headers in API and web(v0.0.4)",
+  "description": "Setting security headers in API and web(v0.0.5)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
