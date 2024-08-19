@@ -76,7 +76,7 @@ app.Use(async (context, next) => {
 
 
 
-
+`cd ~`{{exec}}
 
 
 # create dotnet wep api with swagger
