@@ -47,7 +47,37 @@ To list all the sdk's installed
 #### Now dotnet commands are available
 `dotnet --version`{{exec}}
 
-install asdf, dotnet
+
+`dotnet new webapp -n MyWebApp`{{exec}}
+
+`dotnet run --urls http://0.0.0.0:5000`{{exec}} WIP use watch
+
+
+`curl -I -s -L -X GET http://0.0.0.0:5000/`{{exec}}
+
+
+After 'app.UseAuthorization();` add:
+
+```
+app.Use(async (context, next) => {
+    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'");
+
+    await next();
+});
+```{{copy}}
+
+
+`dotnet run --urls http://0.0.0.0:5000`{{exec}} WIP use watch
+
+
+`curl -I -s -L -X GET http://0.0.0.0:5000/`{{exec}}
+
+## Try below, adding the app.use(X)
+
+
+
+
+
 
 # create dotnet wep api with swagger
 
