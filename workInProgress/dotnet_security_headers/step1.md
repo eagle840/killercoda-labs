@@ -50,11 +50,26 @@ To list all the sdk's installed
 
 `dotnet new webapp -n MyWebApp`{{exec}}
 
+`cd MyWebApp`{{exec}}
+
 `dotnet run --urls http://0.0.0.0:5000`{{exec}} WIP use watch
+
+
+
 
 
 `curl -I -s -L -X GET http://0.0.0.0:5000/`{{exec}}
 
+
+{{TRAFFIC_HOST1_5000}}
+
+now check the headers on  securityheaders.com
+
+https://securityheaders.com/?q={{TRAFFIC_HOST1_5000}}/&followRedirects=on
+
+
+
+#### Add Content-Security-Policy
 
 After 'app.UseAuthorization();` add:
 
@@ -69,17 +84,38 @@ app.Use(async (context, next) => {
 
 `dotnet run --urls http://0.0.0.0:5000`{{exec}} WIP use watch
 
+{{TRAFFIC_HOST1_5000}}
+
+now check the headers on  securityheaders.com
+
+https://securityheaders.com/?q={{TRAFFIC_HOST1_5000}}/&followRedirects=on
+
+
 
 `curl -I -s -L -X GET http://0.0.0.0:5000/`{{exec}}
+
+now update to:
+
+```
+app.Use(async (context, next) => {
+    context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; frame-src 'self'");
+    context.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+
+    await next();
+});
+```
 
 ## Try below, adding the app.use(X)
 
 
 
-`cd ~`{{exec}}
+
 
 
 # create dotnet wep api with swagger
+
+
+`cd ~`{{exec}}
 
 review https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-8.0
 
