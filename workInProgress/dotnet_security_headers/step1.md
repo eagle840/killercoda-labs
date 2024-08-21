@@ -104,6 +104,11 @@ app.Use(async (context, next) => {
     await next();
 });
 ```
+Then add
+
+```
+    context.Response.Headers.Add("X-XSS-Protection", "0");
+```
 
 ## Try below, adding the app.use(X)
 
