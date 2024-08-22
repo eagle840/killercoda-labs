@@ -67,6 +67,8 @@ apt-get install sqlcmd
 sqlcmd -?
 ```{{exec}}
 
+`sqlcmd -S localhost -U SA -P 'MyP@ssW0rd'`{{exec}}
+
 
 https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility?view=sql-server-ver16&tabs=go%2Cwindows&pivots=cs1-bash
 

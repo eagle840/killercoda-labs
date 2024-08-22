@@ -8,6 +8,17 @@ https://learn.microsoft.com/en-gb/azure/data-api-builder/quickstart-sql#install-
 
 `dotnet tool list --global`{{exec}}
 
+```
+cat << \EOF >> ~/.bash_profile
+# Add .NET Core SDK tools
+export PATH="$PATH:/root/.dotnet/tools"
+EOF
+```{{exec}}
+
+`export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
+
+
+
 https://learn.microsoft.com/en-gb/azure/data-api-builder/quickstart-sql#create-configuration-files
 
 
