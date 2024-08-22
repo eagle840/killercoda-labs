@@ -57,6 +57,16 @@ connect
 
 `/opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P 'MyP@ssW0rd'`{{exec}}
 
+install sqlcmd
+
+```
+curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc
+add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/20.04/prod.list)"
+apt-get update
+apt-get install sqlcmd
+sqlcmd -?
+```{{exec}}
+
 
 https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility?view=sql-server-ver16&tabs=go%2Cwindows&pivots=cs1-bash
 
