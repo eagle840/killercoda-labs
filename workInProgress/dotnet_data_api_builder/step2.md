@@ -22,7 +22,9 @@ EOF
 https://learn.microsoft.com/en-gb/azure/data-api-builder/quickstart-sql#create-configuration-files
 
 
-`dab init --database-type "mssql" --host-mode "Development" --connection-string "Server=localhost,1433;User Id=sa;Database=bookshelf;Password=<your-password>;TrustServerCertificate=True;Encrypt=True;"`{{exec}}
+`dab init --database-type "mssql" --host-mode "Development" --connection-string "Server=localhost,1433;User Id=sa;Database=bookshelf;Password=<your-password>;TrustServerCertificate=True;Encrypt=True;"`
+
+`dab init --database-type "mssql" --host-mode "Development" --connection-string "Server=localhost,1433;User Id=sa;Database=bookshelf;Password=MyP@ssW0rd;TrustServerCertificate=True;Encrypt=True;"`{{exec}}
 
 
 `dab add Author --source "dbo.authors" --permissions "anonymous:*"`{{exec}}

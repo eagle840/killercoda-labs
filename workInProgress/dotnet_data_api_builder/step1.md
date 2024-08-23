@@ -47,7 +47,9 @@ open a new tab and setup the servers.
 
 WIP copy from dotnet lab
 
-`docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=MyP@ssW0rd' -p 1433:1433 --name sql_server_container -d mcr.microsoft.com/mssql/server`{{exec}}
+WIP add name to docker command
+
+`docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=MyP@ssW0rd' -p 1433:1433 --name sql_server_container -d mcr.microsoft.com/mssql/server`{{copy}}
 
 WIP  -give a name to the container
 
@@ -57,7 +59,9 @@ connect
 
 `/opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P 'MyP@ssW0rd'`{{exec}}
 
-install sqlcmd
+`/opt/mssql-tools18/bin/sqlcmd -?`{{exec}}
+
+OR install sqlcmd on local
 
 ```
 curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc
@@ -83,7 +87,7 @@ GO
 
 USE bookshelf;
 GO
-```
+```{{copy}}
 
 Create a new dbo.authors table
 
@@ -112,7 +116,9 @@ INSERT INTO dbo.authors VALUES
     (09, 'Avery', null, 'Howard'),
     (10, 'Violet', null, 'Martinez')
 GO
-```
+```{{copy}}
+
+`exit`{{exec}}
 
 
 # REMOVE BELOW
