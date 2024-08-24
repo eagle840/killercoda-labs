@@ -17,12 +17,32 @@ EOF
 
 `export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
 
+DAB's components:
+
+= Source data
+- Configuration file: dab-config.json
+- Data API Builder Runtime
+- REST and GraphQL methods
+- REST and GraphQL endpoints  
+  - https://localhost:5000/ -> health
+  - https://localhost:5000/swagger
+  - https://localhost:5000/api/<name>   CHECK THIS
+  - http://localhost:5000/graphql
+
+`dab -?`{{exec}}
+
 
 
 https://learn.microsoft.com/en-gb/azure/data-api-builder/quickstart-sql#create-configuration-files
 
+We'll change localhost -> 0.0.0.0
+
+`dab init --database-type "mssql" --host-mode "Development" --connection-string "Server=0.0.0.0,1433;User Id=sa;Database=bookshelf;Password=<your-password>;TrustServerCertificate=True;Encrypt=True;"`{{exec}}
+
 
 `dab init --database-type "mssql" --host-mode "Development" --connection-string "Server=localhost,1433;User Id=sa;Database=bookshelf;Password=<your-password>;TrustServerCertificate=True;Encrypt=True;"`{{exec}}
+
+`cat dab-config.json`{{exec}}
 
 
 `dab add Author --source "dbo.authors" --permissions "anonymous:*"`{{exec}}
@@ -31,3 +51,12 @@ https://learn.microsoft.com/en-gb/azure/data-api-builder/quickstart-sql#create-c
 
 
 `dab start`{{exec}}
+
+{{TRAFFIC_HOST1_5000}}
+
+{{TRAFFIC_HOST1_5000}}/swagger
+
+{{TRAFFIC_HOST1_5000}}/graphql
+
+{{TRAFFIC_HOST1_5000}}/api/Author
+
