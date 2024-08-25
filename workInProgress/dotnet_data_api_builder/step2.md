@@ -45,7 +45,7 @@ https://learn.microsoft.com/en-gb/azure/data-api-builder/quickstart-sql#create-c
 
 
 
-`dab init --database-type "mssql" --host-mode "Development" --connection-string "Server=localhost,1433;User Id=sa;Database=bookshelf;Password=<your-password>;TrustServerCertificate=True;Encrypt=True;"`{{exec}}
+`dab init --database-type "mssql" --host-mode "Development" --connection-string "Server=localhost,1433;User Id=sa;Database=bookshelf;Password=MyP@ssW0rd;TrustServerCertificate=True;Encrypt=True;"`{{exec}}
 
 `cat dab-config.json`{{exec}}
 
