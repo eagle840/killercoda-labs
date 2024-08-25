@@ -8,14 +8,20 @@ https://learn.microsoft.com/en-gb/azure/data-api-builder/quickstart-sql#install-
 
 `dotnet tool list --global`{{exec}}
 
+wip: `exec`{{copy}}
+
+wip: `export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
+
+WIP:
 ```
 cat << \EOF >> ~/.bash_profile
 # Add .NET Core SDK tools
 export PATH="$PATH:/root/.dotnet/tools"
 EOF
-```{{exec}}
+```{{copy}}
 
-`export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
+WIP:
+`export PATH="$PATH:/root/.dotnet/tools"`{{copy}}
 
 DAB's components:
 
@@ -29,15 +35,14 @@ DAB's components:
   - https://localhost:5000/api/<name>   CHECK THIS
   - http://localhost:5000/graphql
 
-`dab -?`{{exec}}
+`dab --help`{{exec}}
 
 
 
 https://learn.microsoft.com/en-gb/azure/data-api-builder/quickstart-sql#create-configuration-files
 
-We'll change localhost -> 0.0.0.0
 
-`dab init --database-type "mssql" --host-mode "Development" --connection-string "Server=0.0.0.0,1433;User Id=sa;Database=bookshelf;Password=<your-password>;TrustServerCertificate=True;Encrypt=True;"`{{exec}}
+
 
 
 `dab init --database-type "mssql" --host-mode "Development" --connection-string "Server=localhost,1433;User Id=sa;Database=bookshelf;Password=<your-password>;TrustServerCertificate=True;Encrypt=True;"`{{exec}}
@@ -49,6 +54,8 @@ We'll change localhost -> 0.0.0.0
 
 ### Test API with the local database
 
+
+WIP We'll change localhost -> 0.0.0.0
 
 `dab start`{{exec}}
 

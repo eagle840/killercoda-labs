@@ -51,13 +51,17 @@ WIP copy from dotnet lab
 
 WIP  -give a name to the container
 
-`docker exec -it <name or id> "bash"`{{exec}}
+`docker exec -it sql_server_container "bash"`{{exec}}
 
 connect
 
-`/opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P 'MyP@ssW0rd'`{{exec}}
+`/opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P 'MyP@ssW0rd' -C`{{exec}}
 
-install sqlcmd
+WIP need -C in docker 'trust server certificatee'
+
+WIP cut and paste does work well in the docker, may be better to run sql cmds locally
+
+to install sqlcmd locally if needed:
 
 ```
 curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc
@@ -83,7 +87,7 @@ GO
 
 USE bookshelf;
 GO
-```
+```{{copy}}
 
 Create a new dbo.authors table
 
@@ -112,8 +116,11 @@ INSERT INTO dbo.authors VALUES
     (09, 'Avery', null, 'Howard'),
     (10, 'Violet', null, 'Martinez')
 GO
-```
+```{{copy}}
 
+and exit the sqlcmd:
+
+`exit`{{exit}}
 
 # REMOVE BELOW
 
