@@ -8,24 +8,22 @@ https://learn.microsoft.com/en-gb/azure/data-api-builder/quickstart-sql#install-
 
 `dotnet tool list --global`{{exec}}
 
-wip: `exec`{{copy}}
+`export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
 
-wip: `export PATH="$PATH:/root/.dotnet/tools"`{{exec}}
+wip REMOVE: `exec`
 
-WIP:
+WIP need this to run in new terminals?:
 ```
 cat << \EOF >> ~/.bash_profile
 # Add .NET Core SDK tools
 export PATH="$PATH:/root/.dotnet/tools"
 EOF
-```{{copy}}
+```
 
-WIP:
-`export PATH="$PATH:/root/.dotnet/tools"`{{copy}}
 
-DAB's components:
+## DAB's components:
 
-= Source data
+- Source data
 - Configuration file: dab-config.json
 - Data API Builder Runtime
 - REST and GraphQL methods
@@ -57,7 +55,9 @@ https://learn.microsoft.com/en-gb/azure/data-api-builder/quickstart-sql#create-c
 
 WIP We'll change localhost -> 0.0.0.0
 
-`dab start`{{exec}}
+`dab start`{{copy}}
+
+`DOTNET_URLS=http://0.0.0.0:5000 dab start`{{exec}}
 
 {{TRAFFIC_HOST1_5000}}
 
