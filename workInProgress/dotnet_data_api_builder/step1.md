@@ -6,12 +6,9 @@ Quickstart: Use Data API builder with SQL [link](https://learn.microsoft.com/en-
 These quickstarts inc docker for cosmos, postgreSQL. MySQL
 
 
-## Install c# debugger in VSC
+WIP Install c# debugger in VSC
 
 
-# WIP with asdf
-
-https://github.com/hensou/asdf-dotnet  WHAT IS THIS?
 
 `sudo apt update`{{exec}}
 
@@ -19,7 +16,6 @@ https://github.com/hensou/asdf-dotnet  WHAT IS THIS?
 
 ## WIP install dotnet
 
-asdf isn't working with global dotnet tools
 
 ```
 wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
@@ -53,15 +49,23 @@ WIP add name to docker command
 
 WIP  -give a name to the container
 
-`docker exec -it <name or id> "bash"`{{exec}}
+`docker exec -it sql_server_container "bash"`{{exec}}
 
 connect
 
-`/opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P 'MyP@ssW0rd'`{{exec}}
+`/opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P 'MyP@ssW0rd' -C`{{exec}}
+
 
 `/opt/mssql-tools18/bin/sqlcmd -?`{{exec}}
 
 OR install sqlcmd on local
+=======
+WIP need -C in docker 'trust server certificatee'
+
+WIP cut and paste does work well in the docker, may be better to run sql cmds locally
+
+to install sqlcmd locally if needed:
+
 
 ```
 curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc
@@ -118,29 +122,9 @@ INSERT INTO dbo.authors VALUES
 GO
 ```{{copy}}
 
+<<<<<<< HEAD
+=======
+and exit the sqlcmd:
+
+>>>>>>> 3c1bdf65024b5a3ed59b1d0fc83829b14ff49706
 `exit`{{exec}}
-
-
-# REMOVE BELOW
-
-**Redis**
-
-`docker run -d --name redis-server -p 6379:6379 redis`{{exec}}
-
-**Azurite (blob?)**
-
-https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=docker-hub
-
-`docker run -d -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-storage/azurite`{{exec}}
-
-## db management
-
-WIP not docker, you need direct file access (or give container access)
-
-`docker run -d -p 8080:8080 adminer`{{exec}}
-
-https://www.adminer.org/
-
-WIP might have to attach a folder/file/db to docker to connect to local files
-
-Or just use mysql or similar
