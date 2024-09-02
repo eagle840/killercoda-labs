@@ -122,14 +122,75 @@ https://caniuse.com/?search=content%20security%20policy
 
 In Hapi, you can set the Content-Security-Policy (CSP) header using the `hapi-securify` plugin. Here's an example of how you can set the CSP header in a Hapi server:
 
-First, install the `hapi-securify` plugin using npm:
+WIP, BAD First, install the `hapi-securify` plugin using npm:
 
-```bash
-npm install hapi-securify
-```
+
+WIP: bad `npm install hapi-securify`
+
 
 Then, in your Hapi server configuration, you can set the CSP header like this:
 
+WIP add a second route with customer headers:
+
+```
+'use strict';
+
+const Hapi = require('@hapi/hapi');
+
+const init = async () => {
+
+    const server = Hapi.server({
+        port: 3000,
+        host: '0.0.0.0'
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/',
+        handler: function (request, h) {
+
+            h.state('data', { firstVisit: false });
+            return h.response('Hello');
+        }
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/test',
+        handler: function (request, h) {
+            const response = h.response('success');
+            response.header('X-Custom', 'some-value');
+            return response;
+        }
+    });
+
+    server.state('data', {
+        ttl: null,
+        isSecure: true,
+        isHttpOnly: true,
+        encoding: 'base64json',
+        clearInvalid: true,
+        strictHeader: true
+    });
+
+    await server.start();
+    console.log('Server running on %s', server.info.uri);
+};
+
+process.on('unhandledRejection', (err) => {
+
+    console.log(err);
+    process.exit(1);
+});
+
+init();
+
+
+```{{copy}}
+
+
+
+THIS IS OLD, don't USE:
 ```javascript
 const Hapi = require('@hapi/hapi');
 const securify = require('hapi-securify');
@@ -181,6 +242,8 @@ process.on('unhandledRejection', (err) => {
 init();
 ```
 
+
+WIP, this is bad:
 In this example:
 - We are setting up a Hapi server on `localhost:3000`.
 - We are registering the `hapi-securify` plugin with the CSP directives specified in the `options` object.
