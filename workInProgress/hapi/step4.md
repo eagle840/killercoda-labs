@@ -28,6 +28,9 @@ https://hapi.dev/api/?v=21.3.3#-routeoptionssecurity
 
 https://www.keycdn.com/blog/http-security-headers
 
+
+WIP:   https://github.com/helmetjs/helmet
+
 ## HSTS header
 
 
