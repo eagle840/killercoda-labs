@@ -4,6 +4,8 @@
 
 `npm init`{{exec}}
 
+Just hit return from each item until complete
+
 `npm i @hapi/hapi@20.3.0`{{exec}}
 
 `npm install @hapi/hapi`{{copy}}
@@ -66,3 +68,18 @@ nodemon watches the current directry, lets adjust that to watch all files above:
 ```{{exec}}
 
 `nodemon index.js`{{exec}}
+
+# Hapi Inert
+
+
+https://hapi.dev/module/inert/api/?v=7.1.0
+
+
+`npm install @hapi/inert`{{exec}}
+
+
+create a public folder in the project folder
+
+`mkdir public`{{exec}}
+
+set path to 'public/file.js'

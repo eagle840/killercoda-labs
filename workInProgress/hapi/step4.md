@@ -119,6 +119,46 @@ x-content-type-options: nosniff
 
 ## CSP
 
+Generate some web content and use hapi/inert
+
+```
+To create a web page with different types of JavaScript that you can test Content Security Policy against, you can use the following example code:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval';">
+    <title>CSP Test Page</title>
+</head>
+<body>
+    <h1>Content Security Policy Test Page</h1>
+
+    <p>This page contains different types of JavaScript that you can test against Content Security Policy.</p>
+
+    <script>
+        // Inline script
+        console.log('This is an inline script.');
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        // External script
+        console.log('This is an external script loaded from a CDN.');
+    </script>
+
+    <button onclick="alert('This is an inline event handler.');">Click me</button>
+
+    <a href="javascript:alert('This is a javascript: URL.');">Click me</a>
+</body>
+</html>
+```
+
+In this example, the web page includes inline scripts, external scripts loaded from a CDN, inline event handlers, and a link with a `javascript:` URL. The Content Security Policy (CSP) is set in the `<meta>` tag in the `<head>` section to restrict the sources from which scripts can be loaded.
+```
+
 check out: https://www.writesoftwarewell.com/content-security-policy/
 
 https://caniuse.com/?search=content%20security%20policy

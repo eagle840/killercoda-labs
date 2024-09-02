@@ -33,11 +33,14 @@ Will be working with https://github.com/XGovFormBuilder/digital-form-builder
 
 `asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`{{exec}}
 
-`asdf install nodejs 16.20.1`{{exec}}
+
+WIP moving from 16.20.1 to 18.20.1
+
+`asdf install nodejs 20.20.1`{{exec}}
 
 `asdf current`{{exec}}
 
-`asdf global nodejs 16.20.1`{{exec}}
+`asdf global nodejs 20.20.1`{{exec}}
 
 `asdf current`{{exec}}
 
