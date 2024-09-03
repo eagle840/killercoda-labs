@@ -36,11 +36,11 @@ Will be working with https://github.com/XGovFormBuilder/digital-form-builder
 
 WIP moving from 16.20.1 to 18.20.1
 
-`asdf install nodejs 20.20.1`{{exec}}
+`asdf install nodejs 18.20.1`{{exec}}
 
 `asdf current`{{exec}}
 
-`asdf global nodejs 20.20.1`{{exec}}
+`asdf global nodejs 18.20.1`{{exec}}
 
 `asdf current`{{exec}}
 

@@ -157,7 +157,7 @@ To create a web page with different types of JavaScript that you can test Conten
 ```
 
 In this example, the web page includes inline scripts, external scripts loaded from a CDN, inline event handlers, and a link with a `javascript:` URL. The Content Security Policy (CSP) is set in the `<meta>` tag in the `<head>` section to restrict the sources from which scripts can be loaded.
-```
+
 
 check out: https://www.writesoftwarewell.com/content-security-policy/
 
