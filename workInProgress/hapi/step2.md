@@ -12,6 +12,8 @@ Just hit return from each item until complete
 
 `nano index.js`{{exec}}
 
+**WIP skip, goto insert**
+
 ```
 'use strict';
 
@@ -84,8 +86,10 @@ create a public folder in the project folder
 
 create page.html
 
+`touch public/page.html`{{exec}}
+
 ```
-hello world
+hello inert world{{Copy}}
 ```
 
 IGNORE set path to 'public/file.js'
@@ -125,3 +129,7 @@ const provision = async () => {
 
 provision();
 ```
+
+`nodemon index.js`{{exec}}
+
+{{TRAFFIC_HOST1_3000}}

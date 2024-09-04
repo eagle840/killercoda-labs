@@ -46,7 +46,7 @@ WIP moving from 16.20.1 to 18.20.1
 
 `node -v`{{exec}}
 
-## Install yarn (is yarn needed?)
+## Install yarn (not needed?)
 
 `asdf plugin-add yarn`{{exec}}
 
@@ -60,16 +60,3 @@ WIP moving from 16.20.1 to 18.20.1
 `yarn -v`
 
 WIP why is it showing 3.2.2 and not 1.22.10
-
---- delete below ---
-
-
-
-```
-Link for traffic into host 1 on port 80
-{{TRAFFIC_HOST1_80}}
-Link for traffic into host 2 on port 4444
-{{TRAFFIC_HOST2_4444}}
-Link for traffic into host X on port Y
-{{TRAFFIC_HOSTX_Y}}
-```

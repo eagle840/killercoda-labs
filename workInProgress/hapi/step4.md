@@ -31,6 +31,8 @@ https://www.keycdn.com/blog/http-security-headers
 
 WIP:   https://github.com/helmetjs/helmet
 
+**WIP goto CSP**
+
 ## HSTS header
 
 
@@ -119,7 +121,7 @@ x-content-type-options: nosniff
 
 ## CSP
 
-Generate some web content and use hapi/inert
+Generate some web content and use hapi/inert in the public/page.html
 
 ```
 To create a web page with different types of JavaScript that you can test Content Security Policy against, you can use the following example code:
@@ -155,6 +157,8 @@ To create a web page with different types of JavaScript that you can test Conten
 </body>
 </html>
 ```
+
+In the browser, open developer tools, and check the console. (and headers: network>select file>'headers' tab)
 
 In this example, the web page includes inline scripts, external scripts loaded from a CDN, inline event handlers, and a link with a `javascript:` URL. The Content Security Policy (CSP) is set in the `<meta>` tag in the `<head>` section to restrict the sources from which scripts can be loaded.
 
