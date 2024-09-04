@@ -82,4 +82,46 @@ create a public folder in the project folder
 
 `mkdir public`{{exec}}
 
-set path to 'public/file.js'
+create page.html
+
+```
+hello world
+```
+
+IGNORE set path to 'public/file.js'
+
+use - will always return, no matter the url
+
+```
+const Path = require('path');
+const Hapi = require('@hapi/hapi');
+const Inert = require('@hapi/inert');
+
+const server = new Hapi.Server({
+    port: 3000,
+    routes: {
+        files: {
+            relativeTo: Path.join(__dirname, 'public')
+        }
+    }
+});
+
+const provision = async () => {
+
+    await server.register(Inert);
+
+    server.route({
+    method: 'GET',
+    path: '/{path*}',
+    handler: {
+        file: 'page.html'
+    }
+});
+
+    await server.start();
+
+    console.log('Server running at:', server.info.uri);
+};
+
+provision();
+```
