@@ -6,7 +6,7 @@ https://www.zaproxy.org/docs/docker/about/
 
 # Access the API from outside of the docker container
 
-`https://www.zaproxy.org/docs/docker/about/#accessing-the-api-from-outside-of-the-docker-container`{{exec}}
+https://www.zaproxy.org/docs/docker/about/#accessing-the-api-from-outside-of-the-docker-container
 
 `docker ps`{{exec}}
 
@@ -28,5 +28,8 @@ https://www.zaproxy.org/docs/docker/about/
   "inScopeOnly": "false"
 }
 ```
+
+
+Documentation? https://www.zaproxy.org/docs/api/#api-catalogue
 
 `curl -X POST http://localhost:8080/JSON/ascan/action/scan/ -d @scan_request.json -H "Content-Type: application/json"`{{exec}}
