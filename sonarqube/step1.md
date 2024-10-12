@@ -8,6 +8,46 @@ This fixes a docker problem closing down the sonarcube container:
 `sysctl -w vm.max_map_count=262144`{{execute}}
 
 
+# Git install
+
+some of these might be wrong/duplicate
+
+
+`apt-get update`{{execute}}
+
+`sudo apt update`{{execute}}
+
+`sudo apt install -y git`{{execute}}
+
+`sudo adduser git`{{execute}}
+
+`sudo -u git mkdir /home/git/myproject.git`{{execute}}
+
+`sudo -u git git init --bare /home/git/myproject.git`{{execute}}
+
+`sudo chown -R git:git /home/git/myproject.git`{{execute}}
+
+`git clone git@your_server_ip:/home/git/myproject.git`{{execute}}
+
+`git clone git@localhost:/home/git/myproject.git`{{execute}}
+
+`cd myproject`{{execute}}
+
+`echo "# My Project" >> README.md`{{execute}}
+
+`git add README.md`{{execute}}
+
+`git commit -m "Initial commit"`{{execute}}
+
+`git config --global user.email "you@example.com"`{{execute}}
+
+`git config --global user.name "Your Name"`{{execute}}
+
+`git commit -m "Initial commit"`{{execute}}
+
+`git push origin master`{{execute}}
+
+
 
 ##  Start Sonarcube
 
@@ -17,7 +57,9 @@ This fixes a docker problem closing down the sonarcube container:
 
 `cd docker-sonarqube/example-compose-files/sq-with-postgres/`{{execute}}
 
-`docker-compose up -d`{{execute}}
+WIP `docker-compose up -d`{{copy}}
+
+`docker compose up -d`{{execute}}
 
 confirm both containers are up:   
 `docker-compose ps`{{execute}}
