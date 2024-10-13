@@ -8,6 +8,42 @@ This fixes a docker problem closing down the sonarcube container:
 `sysctl -w vm.max_map_count=262144`{{execute}}
 
 
+## Docker remove
+
+`docker version`{{exec}}
+
+`docker-compose version`{{exec}}
+
+`docker compose version`{{exec}}
+
+`apt-get remove docker  docker.io containerd runc -y`{{exec}}
+
+## Docker install
+
+`apt-get install ca-certificates curl gnupg  lsb-release -y`{{exec}}
+
+`mkdir -p /etc/apt/keyrings`{{exec}}
+
+`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}
+
+```
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```{{exec}}
+
+`apt-get update`{{exec}}
+
+`apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y`{{exec}}
+
+## Docker version check
+
+`docker version`{{exec}}
+
+`docker-compose version`{{exec}}
+
+`docker compose version`{{exec}}
+
+
 # Git install
 
 some of these might be wrong/duplicate
@@ -27,8 +63,6 @@ some of these might be wrong/duplicate
 
 `sudo chown -R git:git /home/git/myproject.git`{{execute}}
 
-`git clone git@your_server_ip:/home/git/myproject.git`{{execute}}
-
 `git clone git@localhost:/home/git/myproject.git`{{execute}}
 
 `cd myproject`{{execute}}
@@ -36,8 +70,6 @@ some of these might be wrong/duplicate
 `echo "# My Project" >> README.md`{{execute}}
 
 `git add README.md`{{execute}}
-
-`git commit -m "Initial commit"`{{execute}}
 
 `git config --global user.email "you@example.com"`{{execute}}
 
@@ -61,6 +93,8 @@ WIP `docker-compose up -d`{{copy}}
 
 `docker compose up -d`{{execute}}
 
+It will take a few minutes for Sonarcube to startup
+
 confirm both containers are up:   
 `docker-compose ps`{{execute}}
 
@@ -69,6 +103,8 @@ connect to 9000 web page
 {{TRAFFIC_HOST1_9000}}
 
 un and password is admin
+
+Update the new password when prompted `Admin123456789!`{{copy}}
 
 # create a new local Sonarqube project
 
