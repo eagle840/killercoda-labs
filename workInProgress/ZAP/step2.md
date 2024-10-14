@@ -4,6 +4,19 @@
 https://www.zaproxy.org/docs/docker/about/
 
 
+# with webswing
+
+`docker run -u zap -p 8080:8080 -p 8090:8090 -i ghcr.io/zaproxy/zaproxy:stable zap-webswing.sh`{{execute}}
+
+goto /zap/ url
+
+once open
+
+Tools>options>API  note api key value
+
+- Add address' to define what others can access (localhost only by default)
+
+
 # Access the API from outside of the docker container
 
 https://www.zaproxy.org/docs/docker/about/#accessing-the-api-from-outside-of-the-docker-container
@@ -31,7 +44,9 @@ what about docker pull ghcr.io/zaproxy/zaproxy:bare
   "inScopeOnly": "false"
 }
 ```
+need to add context: "Default Context"
 
+WIP: list contexts
 
 Documentation? https://www.zaproxy.org/docs/api/#api-catalogue
 
