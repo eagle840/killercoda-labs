@@ -32,4 +32,6 @@ https://www.zaproxy.org/docs/docker/about/#accessing-the-api-from-outside-of-the
 
 Documentation? https://www.zaproxy.org/docs/api/#api-catalogue
 
+for the following scan: https://www.zaproxy.org/docs/api/?shell#ascanactionscan
+
 `curl -X POST http://localhost:8080/JSON/ascan/action/scan/ -d @scan_request.json -H "Content-Type: application/json"`{{exec}}
