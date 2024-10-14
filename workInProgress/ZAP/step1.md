@@ -6,6 +6,8 @@
 
 `sudo apt update`{{exec}}
 
+`apt install jq -y`{{exec}}
+
 ## Docker remove
 
 `apt-get remove docker  docker.io containerd runc -y`{{exec}}
