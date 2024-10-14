@@ -4,7 +4,9 @@ In OWASP ZAP, the scan tree is a hierarchical representation of the targets that
 
 Here's how the scan tree works with the concept of 'context' in OWASP ZAP:
 
-1. **Context**: A context in OWASP ZAP represents a collection of one or more URLs that are grouped together for scanning purposes. Each context can have its own configuration settings, including authentication details, session management, and scope of scanning. By organizing URLs into contexts, you can customize the scanning behavior for different parts of the application.
+1. **Context**: A context in OWASP ZAP represents a collection of one or more URLs that are grouped together for scanning purposes. Each context can have its own configuration settings, including authentication details, session management, and scope of scanning. By organizing URLs into contexts, you can customize the scanning behavior for different parts of the application. (default: "Default Context")
+
+
 
 2. **Scan Tree and Context Relationship**: When you add URLs to a context in OWASP ZAP, those URLs become part of the scan tree under that specific context. The scan tree structure reflects the hierarchy of contexts and URLs that have been added for scanning. Each context in the scan tree contains the URLs and parameters that are included in that context's scope.
 
