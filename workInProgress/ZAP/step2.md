@@ -159,11 +159,42 @@ see https://www.zaproxy.org/docs/docker/baseline-scan/
      -u $(id -u):$(id -g) \
      -t ghcr.io/zaproxy/zaproxy:stable \
      zap-baseline.py \
-     -t http://hosthost:80 \
+     -t http://localhost:80 \
      -g gen.conf \
      -x OWASP-ZAP-Report.xml \
      -r scan-report.html
   ```{{exec}}
+
+  to debug the run:
+
+  ```
+  docker run --rm \
+     -v $(pwd):/zap/wrk/:rw \
+     -u $(id -u):$(id -g) \
+     -t ghcr.io/zaproxy/zaproxy:stable \
+     zap-baseline.py -d \
+     -t http://localhost:80 \
+     -g gen.conf \
+     -x OWASP-ZAP-Report.xml \
+     -r scan-report.html
+  ```{{exec}}
+
+WIP zap doesn't seem to like localhost:80
+
+```
+ERROR [Errno 5] ZAP failed to access: http://localhost:8080
+2024-10-18 16:44:56,853 I/O error: [Errno 5] ZAP failed to access: http://localhost:8080
+Traceback (most recent call last):
+  File "/zap/zap-baseline.py", line 519, in main
+    zap_access_target(zap, target)
+  File "/zap/zap_common.py", line 108, in _wrap
+    return_data = func(*args_list, **kwargs)
+  File "/zap/zap_common.py", line 404, in zap_access_target
+    raise IOError(errno.EIO, 'ZAP failed to access: {0}'.format(target))
+OSError: [Errno 5] ZAP failed to access: http://localhost:8080
+```
+
+Find a site you can scan...
 
   the output should show to similar:
 
