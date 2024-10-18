@@ -112,6 +112,23 @@ for the following scan: https://www.zaproxy.org/docs/api/?shell#ascanactionscan
 
 `curl -X POST http://localhost:8080/JSON/ascan/action/scan/ -d @scan_request.json -H "Content-Type: application/json"`{{exec}}
 
+
+## From command line:
+
+`python3 -m http.server`{{exec}}
+
+
+```
+docker run --rm \
+  -v $(pwd):/zap/wrk/:rw \
+  -t ghcr.io/zaproxy/zaproxy:stable \
+  zap-baseline.py \
+  -t http://hosthost:8000 \
+  -g gen.conf \
+  -x OWASP-ZAP-Report.xml \
+  -r scan-report.html
+  ```{{exec}}
+
 ## Addons
 
 Also know as market place
