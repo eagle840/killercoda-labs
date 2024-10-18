@@ -115,7 +115,30 @@ for the following scan: https://www.zaproxy.org/docs/api/?shell#ascanactionscan
 
 ## From command line:
 
-`python3 -m http.server`{{exec}}
+html code that will result in ZAP failure
+
+nano ./web/index.html
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OWASP ZAP Test Page</title>
+</head>
+<body>
+<h1>OWASP ZAP Test Page</h1>
+<p>This is a test page to check if OWASP ZAP is working correctly.</p>
+<script>
+  var maliciousCode = 'alert("XSS Attack!")';
+  eval(maliciousCode);
+</script>
+</body>
+</html>
+```{{copy}}
+
+`python3 -m http.server --directory ./web`{{exec}}
 
 leave the server running until the scan is complete
 
