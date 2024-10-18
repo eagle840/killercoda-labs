@@ -117,7 +117,9 @@ for the following scan: https://www.zaproxy.org/docs/api/?shell#ascanactionscan
 
 html code that will result in ZAP failure
 
-nano ./web/index.html
+`mkdir web`{{exec}}
+
+`nano ./web/index.html`{{exec}}
 
 ```
 <!DOCTYPE html>
@@ -138,7 +140,9 @@ nano ./web/index.html
 </html>
 ```{{copy}}
 
-`python3 -m http.server --directory ./web`{{exec}}
+`python3 -m http.server --directory web`{{exec}}
+
+{{TRAFFIC_HOST1_80}}
 
 leave the server running until the scan is complete
 
@@ -155,7 +159,7 @@ see https://www.zaproxy.org/docs/docker/baseline-scan/
      -u $(id -u):$(id -g) \
      -t ghcr.io/zaproxy/zaproxy:stable \
      zap-baseline.py \
-     -t http://hosthost:8000 \
+     -t http://hosthost:80 \
      -g gen.conf \
      -x OWASP-ZAP-Report.xml \
      -r scan-report.html
@@ -232,12 +236,16 @@ PASS: WSDL File Detection [90030]
 PASS: Loosely Scoped Cookie [90033]
 FAIL-NEW: 0     FAIL-INPROG: 0  WARN-NEW: 0     WARN-INPROG: 0  INFO: 0 IGNORE: 0       PASS: 65
 ```
+WIP why is there no warning/fail for the javascript?!
+
 
   `ls`{{exec}}
 
-  `python3 -m http.server --directory ./  --bind 0.0.0.0`{{exec}}
+  Now terminate the http server, so we can review the report
 
-  {{TRAFFIC_HOST1_8080}}
+  `python3 -m http.server --directory ./`{{exec}}
+
+  {{TRAFFIC_HOST1_8000}}
 
 ## Addons
 
