@@ -117,6 +117,12 @@ for the following scan: https://www.zaproxy.org/docs/api/?shell#ascanactionscan
 
 `python3 -m http.server`{{exec}}
 
+leave the server running until the scan is complete
+
+docs: https://docs.python.org/3/library/http.server.html
+
+
+see https://www.zaproxy.org/docs/docker/baseline-scan/
 
 ```
 docker run --rm \
@@ -127,7 +133,28 @@ docker run --rm \
   -g gen.conf \
   -x OWASP-ZAP-Report.xml \
   -r scan-report.html
+  ```{{copy}}
+
+  USE:
+
+
+  ```
+  docker run --rm \
+     -v $(pwd):/zap/wrk/:rw \
+     -u $(id -u):$(id -g) \
+     -t ghcr.io/zaproxy/zaproxy:stable \
+     zap-baseline.py \
+     -t http://hosthost:8000 \
+     -g gen.conf \
+     -x OWASP-ZAP-Report.xml \
+     -r scan-report.html
   ```{{exec}}
+
+  `ls`{{exec}}
+
+  `python3 -m http.server --directory ./  --bind 0.0.0.0`{{exec}}
+
+  {{TRAFFIC_HOST1_8080}}
 
 ## Addons
 
