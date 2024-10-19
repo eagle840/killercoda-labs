@@ -10,6 +10,8 @@ https://www.zaproxy.org/docs/docker/about/
 
 goto /zap/ url
 
+{{TRAFFIC_HOST1_8080}}/zap
+
 once open
 
 Tools>options>API  note api key value
@@ -140,7 +142,7 @@ html code that will result in ZAP failure
 </html>
 ```{{copy}}
 
-`python3 -m http.server --directory web`{{exec}}
+`python3 -m http.server 80 --directory web`{{exec}}
 
 {{TRAFFIC_HOST1_80}}
 
