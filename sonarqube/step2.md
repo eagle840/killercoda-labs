@@ -71,7 +71,7 @@ example code snippet:
 sonar-scanner \
   -Dsonar.projectKey=pyproject \
   -Dsonar.sources=. \
-  -Dsonar.host.url=https://93cdfbdc-1290-4e26-80e3-3d9f821c30d7-10-244-5-186-9000.spch.r.killercoda.com \
+  -Dsonar.host.url={{TRAFFIC_HOST1_9000}} \
   -Dsonar.login=sqp_ab68ca7ea0b4495b4aa5fb8e1703aacb73b4c1d8
 ```
 
