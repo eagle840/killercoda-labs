@@ -1,10 +1,14 @@
 
-One of the eassiest ways to install python is with asdf, (see killacoda lab WIP:LINK), but in this lab we'll use linux alternatives.
+WIP: One of the easiest ways to install python is with asdf, (see killacoda lab WIP:LINK), but in this lab we'll use linux alternatives.
 
 # Index
 
 1. install
+  - 1.1 Quick Install
+  - 1.2 With venv
 2. Package managers and dependencies - pull the debug into 4
+  - 2.1 REPL's
+  - 2.2 Package management
 3. linting
 4. debugging, pull dependencies into 2
 5. notebooks
@@ -21,11 +25,11 @@ Order these into the above
 # Step One - Install
 
 1. Fast setup
-2. 
+2.
 
 
 
-# Fast Setup
+## Quick Install - w/ pip-tools
 
 `sudo apt update`{{exec}}
 
@@ -48,6 +52,8 @@ Pip tool will help resolve dependency issues across packages
 
 **REVIEW** https://pypi.org/project/pip-tools/
 
+The pip-compile command lets you compile a requirements.txt file from your dependencies, specified in either pyproject.toml, setup.cfg, setup.py, or requirements.in.
+
 `touch requirements.in`{{exec}}
 
 and list your required packages:
@@ -65,7 +71,46 @@ pip tools will create a requirements.txt
 `pip install -r requirements.txt`{{exec}}
 
 ---
-# Setup a clean python
+
+## Quick Install - with Wheel
+
+When troubleshooting dependency management in Python, the choice between using `wheel` and `pip-tools` depends on the specific nature of the issue you are facing. Here are some scenarios where you might choose to use `wheel` over `pip-tools` for troubleshooting dependency management:
+
+**Use `Wheel` for Troubleshooting Dependency Management:**
+
+1. **Binary Distribution Issues:** If you encounter problems related to binary distribution or installation of Python packages, using `wheel` can help ensure that the packages are installed correctly in a binary format, potentially resolving compatibility or installation issues.
+
+2. **Platform-specific Dependencies:** When troubleshooting platform-specific dependency issues, creating platform-specific `wheel` packages can help ensure that the correct dependencies are included and installed for the specific platform, addressing compatibility issues.
+
+3. **Speed and Efficiency:** If you are troubleshooting slow installation times or performance issues related to dependency management, using `wheel` to create and install binary packages can improve installation speed and efficiency compared to source distributions.
+
+4. **Packaging and Distribution:** If the focus of your troubleshooting is on packaging and distributing Python packages with their dependencies, `wheel` provides a standardized format for packaging and distributing Python libraries and applications.
+
+In contrast, `pip-tools` is more focused on managing project dependencies and generating `requirements.txt` files with pinned versions. If your troubleshooting efforts involve ensuring consistent versions of dependencies, managing project dependencies across different environments, or simplifying the process of updating and maintaining dependencies, `pip-tools` would be more suitable.
+
+In summary, use `wheel` for troubleshooting binary distribution issues, platform-specific dependencies, speed and efficiency improvements, and packaging and distribution concerns. Use `pip-tools` for managing project dependencies, ensuring version consistency, and simplifying dependency management workflows. The choice between the two tools depends on the specific nature of the dependency management issue you are troubleshooting.
+
+
+for linux
+
+`apt install python3.8-venv`{{exec}}
+
+`mkdir cleanproject`{{exec}}
+
+`cd cleanproject`{{exec}}
+
+`python3 -m venv .venv`{{exec}}
+
+`source .venv/bin/activate`{{exec}}
+
+
+
+WIP: install 'wheel' this well help in package builds and dependencies
+
+WIP `pip3 install wheel`{{exec}}
+
+---
+# Setup a clean python ? REMOVE?
 
 `sudo apt update`{{exec}}
 
@@ -85,25 +130,9 @@ To much is already installed:
 
 so setup  a clean env
 
-## venv
 
-for linux
 
-`apt install python3.8-venv`{{exec}}
 
-`mkdir cleanproject`{{exec}}
-
-`cd cleanproject`{{exec}}
-
-`python3 -m venv .venv`{{exec}}
-
-`source .venv/bin/activate`{{exec}}
-
-install 'wheel' this well help in package builds and dependencies
-
-`pip3 install wheel`{{exec}}
-
-?? what is the best REPL?
 
 
 # setup = from old project
@@ -113,7 +142,7 @@ https://docs.python.org/3/tutorial/venv.html
 
 
 `python -V`{{execute}}
-   
+
 `python3 -V`{{execute}}
 
 `ln -s /usr/bin/python3 /usr/bin/python`{{execute}}
@@ -184,7 +213,7 @@ Lets discover what version of Python we have.
 `python -V`{{execute}}
 
 `which python`{{execute}}
-   
+
 `python3 -V`{{execute}}
 
 `which python3`{{execute}}
@@ -282,7 +311,7 @@ When creating a virtual environment
 
 and activate it with WIP :`/.venv/activate`{{copy}} # CHECK
 
-consider Anaconda for windows https://www.anaconda.com/download or   
+consider Anaconda for windows https://www.anaconda.com/download or
 py launcher (py -h) https://docs.python.org/3/using/windows.html#python-launcher-for-windows
 
 
@@ -290,7 +319,7 @@ py launcher (py -h) https://docs.python.org/3/using/windows.html#python-launcher
 
 `pip install --upgrade pip`{{exec}}
 
-with certain ML type packages you may have to install 
+with certain ML type packages you may have to install
 
 https://visualstudio.microsoft.com/visual-cpp-build-tools/
 
@@ -307,7 +336,7 @@ https://docs.python.org/3/tutorial/venv.html
 `apt install -y python3.11-venv`{{execute}}
 
 `mkdir py311`{{execute}}
- 
+
 `cd py311/`{{execute}}
 
 ### Create and activate venv
@@ -358,7 +387,7 @@ https://peps.python.org/pep-0397/
 
 some packages have a requirements.txt file, use
 
-`pip install -r requirements.txt` 
+`pip install -r requirements.txt`
 
 
 
@@ -370,7 +399,7 @@ We'll use an environment/folder called '.venv' is one of the more popular folder
 
 Lets look at what has been setup:
 
-`tree -a`{{execute}} 
+`tree -a`{{execute}}
 
 Now lets activate the virtual envirnoment
 
@@ -401,6 +430,3 @@ if you open a python command prompt and look for the click module, you'll see it
 `dir(click)`{{execute}}
 
 `quit()`{{execute}}
- 
-
-

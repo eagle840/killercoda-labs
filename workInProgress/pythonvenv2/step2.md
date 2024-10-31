@@ -1,9 +1,38 @@
-# Packages & Dependancy checking 
+
+# Python REPL's
+
+?? what is the best REPL?
+
+# Packages & Dependancy checking
 
 pip vs pip3
 
 - pip for python 2 and 3
 - pip3 for python3 only
+
+In Python, `pip` and `pip3` are both package managers used to install and manage Python packages. Here are the pros and cons of each:
+
+**pip:**
+- **Pros:**
+  - It is the default package manager for Python 2.x.
+  - It is widely used and has a large community support.
+  - It is easy to use and has a simple syntax for installing packages.
+
+- **Cons:**
+  - It is not the default package manager for Python 3.x, so you may need to use `pip3` for Python 3.x installations.
+  - It can sometimes lead to conflicts when managing packages for different Python versions on the same system.
+
+**pip3:**
+- **Pros:**
+  - It is the default package manager for Python 3.x.
+  - It helps avoid confusion when working with multiple Python versions on the same system.
+
+- **Cons:**
+  - Some users may find it inconvenient to have to specify `pip3` instead of just `pip`.
+  - It may not be available by default on some systems that have Python 3 installed.
+
+In general, if you are working with Python 2.x, you can use `pip`, and if you are working with Python 3.x, you should use `pip3` to manage your packages. It's a good practice to use the appropriate version of `pip` based on the Python version you are working with to avoid any conflicts or issues.
+
 
 Popular Commands
 
@@ -45,7 +74,7 @@ Note the # via statements showing hieararchy
 
 `pip-compile -h`{{execute}}
 
-When you run `pip install <pkg>` it installs the latest package, which may break a module/program. 
+When you run `pip install <pkg>` it installs the latest package, which may break a module/program.
 
 create `common.in` with the packages you need
 
@@ -63,7 +92,7 @@ Using Pip sync in virtual environments installs only and just the items in the s
 
 WIP what does this do
 
-`pip install pip`{{execute}} 
+`pip install pip`{{execute}}
 
 ## pip-sync
 
@@ -112,7 +141,7 @@ If you encounter any issues during installation, here are some power tips to hel
 See the ML section (step 6)
 
 
--- Download 
+-- Download
 
 need to explore the download option, and find-links, user and no-index
 
@@ -145,13 +174,13 @@ pip download jsmin==2.2.2
 
 ls
 
-tar -zxvf jsmin-2.2.2.tar.gz 
+tar -zxvf jsmin-2.2.2.tar.gz
 
  ls
 
 pip install jsmin-2.2.2
 
-pip install jsmin-2.2.2.tar.gz 
+pip install jsmin-2.2.2.tar.gz
 
  tree
 
@@ -167,12 +196,12 @@ ls
 
 python3 setup.py install
 
-pip freeze 
+pip freeze
 
 # goto pipy.org and get the specific version file
 
 wget https://files.pythonhosted.org/packages/17/73/615d1267a82ed26cd7c124108c3c61169d8e40c36d393883eaee3a561852/jsmin-2.2.2.tar.gz
-  
+
 ---
 
 python3.8 -u -m pip install aalib -vvv
@@ -205,5 +234,3 @@ Using `python3.8 -u -m pip install click -vvv` instead of just `pip install clic
 4. **Debugging**: The `-vvv` flag increases the verbosity of the output, providing more detailed information about the installation process. This can be helpful for debugging installation issues or understanding the dependencies being installed.
 
 Overall, using `python3.8 -u -m pip install click -vvv` provides more control and visibility over the package installation process, which can be useful in complex or specific environments.
-
-

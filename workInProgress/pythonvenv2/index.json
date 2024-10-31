@@ -1,6 +1,6 @@
 {
   "title": "work-in-progress Python Tools",
-  "description": "Using a python environment successfully (v0.1.15)",
+  "description": "Using a python environment successfully (v0.1.16)",
   "difficulty": "Intermediate",
   "time": "1",
   "details": {
@@ -32,6 +32,10 @@
       {
         "title": "Step 7",
         "text": "step7.md"
+      },
+      {
+        "title": "Step 8",
+        "text": "step8.md"
       }
     ],
     "intro": {
