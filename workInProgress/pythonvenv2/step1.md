@@ -20,21 +20,18 @@ WIP: One of the easiest ways to install python is with asdf, (see killacoda lab 
 
 Order these into the above
 
-- Package depency, pip, pip-tools, pipdeptree
-
-# Step One - Install
-
-1. Fast setup
-2.
-
+pipdeptree
 
 
 ## Quick Install - w/ pip-tools
 
+We'll be using python version 3.
+
 `sudo apt update`{{exec}}
 
-`pip3 install --upgrade pip`{{exec}}
+`python3 -V`{{exec}}
 
+`pip3 install --upgrade pip`{{exec}}
 
 `apt install python3.8-venv`{{exec}}
 
@@ -66,7 +63,7 @@ transformers
 
 `pip-compile`{{exec}} # takes a while
 
-pip tools will create a requirements.txt
+pip tools will create a requirements.txt, which we can now install.
 
 `pip install -r requirements.txt`{{exec}}
 
@@ -109,24 +106,7 @@ WIP: install 'wheel' this well help in package builds and dependencies
 
 WIP `pip3 install wheel`{{exec}}
 
----
-# Setup a clean python ? REMOVE?
-
-`sudo apt update`{{exec}}
-
-`pip3 install --upgrade pip`{{exec}}
-
-`python -V`{{exec}}
-
-`pip -V`{{exec}}
-
-`python3 -V`{{exec}}
-
-`pip3 -V`{{exec}}
-
-To much is already installed:
-
-`pip freeze`{{exec}}
+`pip3 freeze`{{exec}}
 
 so setup  a clean env
 
