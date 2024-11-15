@@ -1,6 +1,6 @@
 {
   "title": "ZAP on Docker",
-  "description": "Running and accessing OWASP ZAP on a docker container(v0.1.2)",
+  "description": "Running and accessing OWASP ZAP on a docker container(v0.1.3)",
   "difficulty": "Beginner",
   "time": "60 minutes",
   "details": {

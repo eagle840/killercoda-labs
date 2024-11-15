@@ -26,7 +26,7 @@ Tools>options>API  note api key value
 - ATTACK
 
 
-## WINDOWS
+## Window Layout
 
 ```
 ##################################
@@ -47,6 +47,13 @@ context   => contexts
 pscan     => passive scan
 spider    => regular spider
 reports   => reports
+
+
+## JuiceShop
+
+In the 'Workspace window', click automatic and enter `https://juice-shop.herokuapp.com/`{{copy}}  and then click Attach.
+
+You can review the `information window` Alerts.
 
 ## Setting up SSL
 
