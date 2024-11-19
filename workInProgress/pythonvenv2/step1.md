@@ -15,6 +15,7 @@ WIP: One of the easiest ways to install python is with asdf, (see killacoda lab 
 6. working with ML
 7. Web based interfaces
 8. troubleshooting/fits
+9. pytest
 
 
 
@@ -68,6 +69,48 @@ pip tools will create a requirements.txt, which we can now install.
 `pip install -r requirements.txt`{{exec}}
 
 ---
+
+## quick install - with miniconda
+
+## Install miniconda
+
+For this example, we'll need conda installed (http link)
+
+`cd ~`{{exec}}
+
+`wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh`{{exec}}
+
+`chmod +x Miniconda3-latest-Linux-x86_64.sh`{{exec}}
+
+run, accept the license, and don't init when prompted:
+
+`./Miniconda3-latest-Linux-x86_64.sh`{{exec}}
+
+`rm Miniconda3-latest-Linux-x86_64.sh `{{exec}}
+
+`echo 'PATH=$PATH':"/root/miniconda3/bin" >> /root/.bashrc`{{exec}}
+
+restart the shell:
+
+`exec bash`{{exec}}
+
+`conda -V`{{exec}}
+
+### Init conda
+
+`conda init`{{exec}}
+
+This command is used to initialize Conda for your shell. It sets up the necessary environment variables and shell-specific configurations to enable Conda commands to work properly. The `conda init` command needs to be run only once after installing Conda or when switching to a new shell.
+
+`exec bash`{{exec}}
+
+Note that the Conda environment is now in the command prompt '(base)'
+
+Lets check the python version:
+
+`python -V`{{exec}}
+
+See the miniconda lab for more instruction for miniconda or the [docs](https://docs.anaconda.com/miniconda/)
 
 ## Quick Install - with Wheel
 
