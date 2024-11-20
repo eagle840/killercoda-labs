@@ -28,6 +28,24 @@ EOF
 
 `dotnet-repl`{{exec}}
 
+`#!help`{{exec}}
+
+WIP below used in csharprepl
+
+`#r "nuget: Newtonsoft. Json"`{{exec}}
+
+
+`using Newtonsoft.Json;`{{exec}}
+
+`var json = "{name: 'Madhukar', channel: 'DotnetCoreTelugu', subscribe: true}";`{{exec}}
+
+`dynamic obj = JsonConvert.DeserializeObject<dynamic>(json);`{{exec}}
+
+`obj`{{exec}}
+
+`Console.Write(obj.name);`{{exec}}
+
+
 `dotnet tool install -g csharprepl`{{exec}} [Docs](https://github.com/waf/CSharpRepl)
 
 to run `csharprepl`{{exec}}

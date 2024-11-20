@@ -10,6 +10,8 @@ pip vs pip3
 - pip for python 2 and 3
 - pip3 for python3 only
 
+https://peps.python.org/pep-0518/
+
 In Python, `pip` and `pip3` are both package managers used to install and manage Python packages. Here are the pros and cons of each:
 
 **pip:**

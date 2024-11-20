@@ -1,7 +1,7 @@
 
 # Initial Setup
 
-`apt-get update`{{exec}}  
+`apt-get update`{{exec}}
 
 
 Miniconda is a lightweight distribution of the Conda package manager, specifically designed for creating and managing isolated Python environments. It allows you to easily install, update, and remove packages and dependencies, ensuring reproducibility and flexibility in your Python projects
@@ -10,7 +10,7 @@ Lets check the version of python we already have installed:
 
 `python -V`{{exec}}
 
-When we install Miniconda it will include the latest version, but you can load other Python versions using the 
+When we install Miniconda it will include the latest version, but you can load other Python versions using the
 
 ## Install miniconda
 
@@ -30,7 +30,7 @@ run, accept the license, and don't init when prompted:
 
 `echo 'PATH=$PATH':"/root/miniconda3/bin" >> /root/.bashrc`{{exec}}
 
-restart the shell: 
+restart the shell:
 
 `exec bash`{{exec}}
 
@@ -38,7 +38,7 @@ restart the shell:
 
 ### Init conda
 
-`conda init`{{exec}} 
+`conda init`{{exec}}
 
 This command is used to initialize Conda for your shell. It sets up the necessary environment variables and shell-specific configurations to enable Conda commands to work properly. The `conda init` command needs to be run only once after installing Conda or when switching to a new shell.
 
@@ -69,7 +69,7 @@ The basic format to create an envirnoment is
 
 conda create -n <nane of env> python=<ver> <pkgs>
 
-eg `conda create -n test python=3.7 numpy pandas`{{exec}}
+eg `conda create -n test python=3.7 numpy pandas`
 
 Lets create an environment called pytorch, and include Python 3.10
 
@@ -188,4 +188,3 @@ Link for traffic into host X on port Y
 `echo 'PATH=$PATH':$(pwd)/bin >> /root/.bashrc`{{copy}}
 
 export PATH=$PWD/bin:$PATH
-
