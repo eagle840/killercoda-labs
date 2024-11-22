@@ -1,61 +1,16 @@
-# Logging to App insites
+# Web APi
 
-## Add Application Insights
+Now lets add a API to the solution and alter the web app to call the API
 
-https://learn.microsoft.com/en-us/azure/azure-monitor/app/asp-net
+## Create API
 
-`dotnet add package Microsoft.ApplicationInsights.AspNetCore --version 2.18.0`{{exec}}
+## Test API with curl call
 
-add the following to line 3 in Program.cs
+## Alter Web app to call API
 
-```
-builder.Services.AddApplicationInsightsTelemetry();
-```
+## Add Roles to App Insights to track the two programmes (web and API
 
-In the appsettings.json, update to match:
-
-
-```
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*",
-  "ApplicationInsights": {
-    "ConnectionString": "INSERT CONNECTION STRING HERE"
-  }
-}
-```
-
-`dotnet run --urls http://0.0.0.0:5000`{{exec}}
-
-{{TRAFFIC_HOST1_5000}}
-
-
-In the Azure Application Insight 'Overview', click on 'Seacrh', and reduce the time span to 30mins. It will take a couple of minutes for the entries to populate.
-
-Stop the application, and then start it in watch mode.
-
-`dotnet watch --urls http://0.0.0.0:5000`{{exec}}
-
-Now use the Editor tab to write the code.
-
-In the following example we shall be using the Privacy web page to trigger logging.
-
-
-
-Access Azure App insites
-
-
-Provide instruction here
-
-
-# Web APi  WIP Move API to step 4
-
-SEE BELOW FOR NODE.JS
+)
 
 
 **WIP** do this: https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel?view=aspnetcore-8.0
@@ -100,6 +55,8 @@ In the appsettings.json, update to match:
   }
 }
 ```
+
+WIP also need to add App Insights 'Role' to this so that App insights can tell the difference between Web and API
 
 `dotnet run --urls http://0.0.0.0:5001`{{exec}}
 

@@ -1,4 +1,4 @@
-# Using Node.JS
+# Using Node.JS Move to step 5
 
 See MS docs on App Insights JS sdk https://learn.microsoft.com/en-us/azure/azure-monitor/app/javascript-sdk?tabs=javascriptwebsdkloaderscript
 
@@ -74,5 +74,3 @@ appInsights.setup("<YOUR_CONNECTION_STRING>");
 appInsights.defaultClient.context.tags[appInsights.defaultClient.context.keys.cloudRole] = "MyRoleName";
 appInsights.start();
 ```
-
-

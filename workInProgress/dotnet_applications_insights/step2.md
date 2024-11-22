@@ -99,39 +99,13 @@ Lets force an exception when visting the Privacy page, in ./MyWebApp/Pages/Priva
 
 note how the web page itself is updated
 
-### finished code
+## Now use App insights
 
-```
-var builder = WebApplication.CreateBuilder(args);
+Goto the Azure App Insights portal and copy the connection string, and add it to the appsettings.json.
 
-builder.Services.AddApplicationInsightsTelemetry();
-
-// Add services to the container.
-builder.Services.AddRazorPages();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapRazorPages();
-
-app.Run();
+Now rerun the logging and exception steps and note how it effects App insights.
 
 
-```
 
 # Namespace logging
 
