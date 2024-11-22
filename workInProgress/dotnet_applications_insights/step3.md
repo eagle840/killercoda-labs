@@ -1,4 +1,59 @@
-# Web APi
+# Logging to App insites
+
+## Add Application Insights
+
+https://learn.microsoft.com/en-us/azure/azure-monitor/app/asp-net
+
+`dotnet add package Microsoft.ApplicationInsights.AspNetCore --version 2.18.0`{{exec}}
+
+add the following to line 3 in Program.cs
+
+```
+builder.Services.AddApplicationInsightsTelemetry();
+```
+
+In the appsettings.json, update to match:
+
+
+```
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ApplicationInsights": {
+    "ConnectionString": "INSERT CONNECTION STRING HERE"
+  }
+}
+```
+
+`dotnet run --urls http://0.0.0.0:5000`{{exec}}
+
+{{TRAFFIC_HOST1_5000}}
+
+
+In the Azure Application Insight 'Overview', click on 'Seacrh', and reduce the time span to 30mins. It will take a couple of minutes for the entries to populate.
+
+Stop the application, and then start it in watch mode.
+
+`dotnet watch --urls http://0.0.0.0:5000`{{exec}}
+
+Now use the Editor tab to write the code.
+
+In the following example we shall be using the Privacy web page to trigger logging.
+
+
+
+Access Azure App insites
+
+
+Provide instruction here
+
+
+# Web APi  WIP Move API to step 4
 
 SEE BELOW FOR NODE.JS
 
@@ -73,5 +128,3 @@ https://localhost:<port>/swagger/v1/swagger.json
 https://learn.microsoft.com/en-us/aspnet/core/web-api/microsoft.dotnet-openapi?view=aspnetcore-8.0
 
 `dotnet tool install -g Microsoft.dotnet-openapi`{{exec}}
-
-

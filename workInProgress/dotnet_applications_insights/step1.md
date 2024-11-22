@@ -54,7 +54,8 @@ In this lab we will quickly install Dotnet using ASDF
 `dotnet --version`{{exec}}
 
 
-
+WIP
+remove the below
 
 ## USes a sln file?
 
@@ -82,6 +83,3 @@ in Program.cs addd
 after app.UseHttpsRedirection();
 
 learn more: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
-
-
-

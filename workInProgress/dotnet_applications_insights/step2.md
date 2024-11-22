@@ -1,4 +1,4 @@
-# Build a web app
+# Build a web app and local logging
 
 
 
@@ -57,8 +57,12 @@ Stop the application, and then start it in watch mode.
 
 `dotnet watch --urls http://0.0.0.0:5000`{{exec}}
 
+Now use the Editor tab to write the code.
 
-## add a log 
+In the following example we shall be using the Privacy web page to trigger logging.
+
+
+## add a log
 
 In the /pages/Privacy.cshtml.cs update the 'OnGet'
 
@@ -70,7 +74,12 @@ WIP: i think this just logs to stdout/err?
         _logger.LogInformation("hello log");
     }
 ```
+
+and visit the Privacy page, checking the terminal tab for the log outputs.
+
 ## warnng and error
+
+Add the following two lines and revisit the Privacy page. Notice the difference in the log outputs.
 
 ```
         _logger.LogWarning("An example of a Warning trace..");
@@ -79,7 +88,7 @@ WIP: i think this just logs to stdout/err?
 
 ## Add a Throw Exception (remove if statement, or set deveplopment)
 
-Let force an exception when visting the Privacy page, in ./MyWebApp/Pages/Privacy.cshtml.cs, update the OnGet to:
+Lets force an exception when visting the Privacy page, in ./MyWebApp/Pages/Privacy.cshtml.cs, update the OnGet to:
 
 ```
     public void OnGet()
@@ -88,7 +97,7 @@ Let force an exception when visting the Privacy page, in ./MyWebApp/Pages/Privac
     }
 ```
 
-
+note how the web page itself is updated
 
 ### finished code
 
@@ -140,7 +149,7 @@ Lets look at a sample appsettings.json
 }
 ```
 
-In the provided logging configuration, the namespaces are used to define different levels of logging for specific parts of the application. 
+In the provided logging configuration, the namespaces are used to define different levels of logging for specific parts of the application.
 
 1. Default Namespace:
    - The "Default" namespace is used to set the default log level for the entire application. In this case, the default log level is set to "Information", which means that all log messages that do not fall under a specific namespace will be logged at the "Information" level.
@@ -170,4 +179,3 @@ The built-in logging providers in .NET Core provide different ways to output log
    - The EventLog provider writes log messages to the Windows Event Log. This provider is useful for logging critical events and errors that need to be monitored and managed centrally. Log messages sent to the EventLog provider can be viewed using the Event Viewer tool in Windows.
 
 Each of these built-in providers offers different capabilities and is suitable for different scenarios. By configuring the logging providers in the application settings, you can control where log messages are sent and how they are processed, making it easier to manage and analyze logs effectively.
-
