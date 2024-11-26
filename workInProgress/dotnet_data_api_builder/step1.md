@@ -49,16 +49,16 @@ WIP add name to docker command
 
 WIP  -give a name to the container
 
-`docker exec -it sql_server_container "bash"`{{exec}}
+WIP REMOVE `docker exec -it sql_server_container "bash"`{{exec}}
 
-connect
+WIP REMOVE connect
 
-`/opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P 'MyP@ssW0rd' -C`{{exec}}
+WIP REMOVE `/opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P 'MyP@ssW0rd' -C`{{exec}}
 
 
-`/opt/mssql-tools18/bin/sqlcmd -?`{{exec}}
+WIP REMOVE `/opt/mssql-tools18/bin/sqlcmd -?`{{exec}}
 
-OR install sqlcmd on local
+DO THIS install sqlcmd on local
 =======
 WIP need -C in docker 'trust server certificatee'
 
@@ -122,9 +122,4 @@ INSERT INTO dbo.authors VALUES
 GO
 ```{{copy}}
 
-<<<<<<< HEAD
-=======
-and exit the sqlcmd:
-
->>>>>>> 3c1bdf65024b5a3ed59b1d0fc83829b14ff49706
 `exit`{{exec}}
