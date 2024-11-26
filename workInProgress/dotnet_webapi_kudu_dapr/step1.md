@@ -25,7 +25,7 @@ https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=
 `dotnet --version`{{exec}}
 
 
-## Basic use
+## Basic use  REMOVE
 
 To list all the sdk's installed
 
@@ -35,50 +35,61 @@ To list all the sdk's installed
 
 `dotnet --info`{{exec}}
 
-## install with asdf - NOT NEEDED.
 
-`git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
 
-`. "$HOME/.asdf/asdf.sh"`{{exec}} WIP pipe to .brashrc?
+## Start mySQL
 
-`echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc`{{exec}}
+It also takes a few seconds to get MySQL up and running, if you get an error wait a few seconds and try again.
 
-`. "$HOME/.asdf/completions/asdf.bash"`{{exec}}
+`docker exec -it  some-mysql mysql -uroot -p1234`{{execute}}
 
-`echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc`{{exec}}
+-uroot   => user root
+-p       => prompt for password, or -p1234
 
-`asdf current`{{exec}}
+Once connected, you should see `mysql>`
 
-### use dotnet
+Exit out of the prompt, back to the host, with `quit`{{execute}}
 
-`asdf plugin add dotnet`{{exec}}
+### To connect from the host
 
-#### Show all installable versions
-`asdf list-all dotnet`{{exec}}
+Lets install the mysql client:
 
-#### Install specific version
-`asdf install dotnet latest`{{exec}}
+`apt update`{{execute}}
 
-#### Set a version globally (on your ~/.tool-versions file)
-`asdf global dotnet latest`{{exec}}
+`apt install mysql-client`{{execute}}
 
-#### Now dotnet commands are available
-`dotnet --version`{{exec}}
+`mysql -h 0.0.0.0  -P3306  -uroot -p1234 --ssl-mode=disabled`{{execute}}
 
-install asdf, dotnet
+### create a db
+
+now we're connected lets create a new database.
+
+`show databases;`{{execute}}
+
+`create database test1;`{{execute}}
+
+`show databases;`{{execute}}
+
+and exit mysql/container
+
+`exit;`{{execute}}
 
 # create dotnet wep api with swagger
 
-review https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-8.0
+REMOVE https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-8.0
+
+We'll be using: https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0&tabs=visual-studio-code
 
 
 build it
 
 run it
 
-`dotnet new webapi -n YourProjectName`{{exec}}
+`dotnet new webapi --use-controllers -o TodoApi`{{exec}}
 
-`cd YourProjectName/`{{exec}}
+`cd TodoApi`{{exec}}
+
+`dotnet add package Microsoft.EntityFrameworkCore.InMemory`{{exec}}
 
 
 `dotnet run --urls http://0.0.0.0:5000`{{exec}}
@@ -93,11 +104,131 @@ swagger url
 
 {{TRAFFIC_HOST1_5000}}/swagger
 
+
+### Add a model class
+
+mkdir Models
+
+touch Models/TodoItem.cs
+
+```
+namespace TodoApi.Models;
+
+public class TodoItem
+{
+    public long Id { get; set; }
+    public string? Name { get; set; }
+    public bool IsComplete { get; set; }
+}
+```
+
+### Add a database context
+
+
+touch Models/TodoContext.cs
+
+```
+using Microsoft.EntityFrameworkCore;
+
+namespace TodoApi.Models;
+
+public class TodoContext : DbContext
+{
+    public TodoContext(DbContextOptions<TodoContext> options)
+        : base(options)
+    {
+    }
+
+    public DbSet<TodoItem> TodoItems { get; set; } = null!;
+}
+```
+
+###  Register the database context
+
+first part of program.cs, set to
+
+```
+using Microsoft.EntityFrameworkCore;
+using TodoApi.Models;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+builder.Services.AddDbContext<TodoContext>(opt =>
+    opt.UseInMemoryDatabase("TodoList"));
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+```
+
+###  Scaffold a controller
+
+```
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet tool uninstall -g dotnet-aspnet-codegenerator
+dotnet tool install -g dotnet-aspnet-codegenerator
+dotnet tool update -g dotnet-aspnet-codegenerator
+```{{exec}}
+
+```
+echo 'export PATH=$HOME/.dotnet/tools:$PATH' >> ~/.bashrc
+source ~/.bashrc
+```{{exec}}
+
+`dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers`{{exec}}
+
+
+### Update the PostTodoItem create method
+
+update to:
+
+```
+[HttpPost]
+public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
+{
+    _context.TodoItems.Add(todoItem);
+    await _context.SaveChangesAsync();
+
+    //    return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
+    return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
+}
+```
+
+### Test
+
+Connect to swagger and add (post) the following
+
+```
+{
+  "name": "walk dog",
+  "isComplete": true
+}
+```
+
+`dotnet run --urls http://0.0.0.0:5000`{{exec}}
+
+grab the json from the /weatherforecast url
+
+
+
+---
+
+
+REMOVE BELOW:
+
 **Note the swagger spec under the project name** `https://xxx-5000.spch.r.killercoda.com/swagger/v1/swagger.json`
 
 test it
 
 make sure /swagger and api definition are there
+
+# Create a controller-based API
+
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-9.0&tabs=visual-studio-code
 
 
 # MS Swagger
@@ -135,127 +266,14 @@ The Swagger UI can be found at https://localhost:<port>/swagger
 
 {{TRAFFIC_HOST1_5000}}//swagger
 
----- delete below ----
 
-# Run First
+### Test the location header URI
 
-`sudo apt update`{{exec}}
-
-# docker update
-
-`apt-get remove docker  docker.io containerd runc -y`{{exec}}
-
-`apt-get update`{{exec}}
-
-`apt-get install ca-certificates curl gnupg  lsb-release -y`{{exec}}
-
-`mkdir -p /etc/apt/keyrings`{{exec}}
-
-`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}
-
-```
-echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```{{exec}}
-
-`apt-get update`{{exec}}
-
-`apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y `{{exec}}
-
-`docker version`{{exec}}
-
-`docker-compose version`{{exec}}
-
-`docker compose version`{{exec}}
-
-# Set imageid in index.json
-
-- ubuntu: Ubuntu 20.04 with Docker and Podman
-= kubernetes-kubeadm-2nodes:
-- kubernetes-kubeadm-1node:
-
-to taint the control node for work:
-
-```
-kubectl taint nodes controlplane node-role.kubernetes.io/master:NoSchedule-
-kubectl taint nodes controlplane node-role.kubernetes.io/control-plane:NoSchedule-
-```
+{{TRAFFIC_HOST1_5000}}//api/TodoItems/1
 
 
-# Copy Files/adjust index
 
-text here
-
-# Run apt update
-
-apt-get update -y{{execute}}
-
-```apt-get update -y{{execute}}```
+### Routing and URL paths
 
 
-# For links to ports:
-
-```
-Link for traffic into host 1 on port 80
-{{TRAFFIC_HOST1_80}}
-Link for traffic into host 2 on port 4444
-{{TRAFFIC_HOST2_4444}}
-Link for traffic into host X on port Y
-{{TRAFFIC_HOSTX_Y}}
-```
-
-
-# Example setup for postgres with raw data
-
-git clone https://github.com/josephmachado/simple_dbt_project.git
-
-- raw folders
-- warehouse setup
-- docker postgres and -v to those folders
-
-
-We'll be using the rabbitmq container with the management feature installed.
-
-https://hub.docker.com/_/rabbitmq
-
-`docker run -d --hostname my-rabbit --name some-rabbit -p 8080:15672 rabbitmq:3-management`{{execute}}
-
-make sure it started
-
-`docker ps`{{execute}}
-
-and check the config file
-
-`docker exec some-rabbit cat /etc/rabbitmq/rabbitmq.conf`{{execute}}
-
-and head over to port 8080 and login
-un:guest
-pw:guest
-
-
-Next we'll update the python files with the new IP address of the docker container.
-
-`RabbitIP=$(docker inspect some-rabbit | jq -r .[0].NetworkSettings.IPAddress)`{{execute}}
-
-`echo $RabbitIP`{{execute}}
-
-`sed -i "s/localhost/$RabbitIP/g" send.py receive.py worker.py new_task.py`{{execute}}
-
-## k8s port-forward
-
-`k -n <ns> port-forward service/<svc-name> 9090:9090 --address 0.0.0.0`
-
-- this is to forword a CLusterIP so that killacoda can access
-
-
-`echo 'PATH=$PATH':$(pwd)/bin >> /root/.bashrc`{{copy}}
-
-export PATH=$PWD/bin:$PATH
-
-to allow pods on the controlplane
-
-`kubectl taint node controlplane node-role.kubernetes.io/master:NoSchedule-`{{copy}}
-
-to allow access to running pods with ports 9000 and 9090
-
-`kubectl port-forward -n minio-dev pod/minio 9000 9090 --address 0.0.0.0`{{copy}}
+REVIEW AND ADD THIS SECTION
