@@ -1,13 +1,8 @@
 
 # Initial Setup
 
-Doc: https://killercoda.com/creators
 
-github: https://github.com/killercoda
-
-We'll be using asdf to install dotnet, however complete instructions for download and installing for other systems can be found on Micosoft [here](https://dotnet.microsoft.com/en-us/download)
-
-## Manual Install
+## Manual Install of Dotnet
 
 https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&pivots=os-linux-ubuntu-2004
 
@@ -37,18 +32,22 @@ To list all the sdk's installed
 
 
 
-## Start mySQL
+## Start mySQL (optional)
 
 It also takes a few seconds to get MySQL up and running, if you get an error wait a few seconds and try again.
 
-`docker exec -it  some-mysql mysql -uroot -p1234`{{execute}}
+`docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=MyP@ssW0rd' -p 1433:1433 --name sql_server_container -d mcr.microsoft.com/mssql/server`{{copy}}
 
--uroot   => user root
--p       => prompt for password, or -p1234
 
-Once connected, you should see `mysql>`
+```
+curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc
+add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/20.04/prod.list)"
+apt-get update
+apt-get install sqlcmd
+sqlcmd -?
+```{{exec}}
 
-Exit out of the prompt, back to the host, with `quit`{{execute}}
+`sqlcmd -S localhost -U SA -P 'MyP@ssW0rd'`{{exec}}
 
 ### To connect from the host
 
@@ -81,9 +80,7 @@ REMOVE https://learn.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-page
 We'll be using: https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0&tabs=visual-studio-code
 
 
-build it
 
-run it
 
 `dotnet new webapi --use-controllers -o TodoApi`{{exec}}
 
@@ -184,7 +181,7 @@ source ~/.bashrc
 
 ### Update the PostTodoItem create method
 
-update to:
+In TodoItemsController.cs   update the HttpPost to:
 
 ```
 [HttpPost]
@@ -213,67 +210,30 @@ Connect to swagger and add (post) the following
 
 grab the json from the /weatherforecast url
 
+{{TRAFFIC_HOST1_5000}}/weatherforecast
 
+swagger url
 
----
+{{TRAFFIC_HOST1_5000}}/swagger
 
+{{TRAFFIC_HOST1_5000}}/swagger/v1/swagger.json
 
-REMOVE BELOW:
+### Adding additional
 
-**Note the swagger spec under the project name** `https://xxx-5000.spch.r.killercoda.com/swagger/v1/swagger.json`
+- add a new model
+- add the class to ToDoContext.cs
+- run
+  ```
+  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+  dotnet add package Microsoft.EntityFrameworkCore.Design
+  dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+  dotnet add package Microsoft.EntityFrameworkCore.Tools
+  dotnet tool uninstall -g dotnet-aspnet-codegenerator
+  dotnet tool install -g dotnet-aspnet-codegenerator
+  dotnet tool update -g dotnet-aspnet-codegenerator
+  ---
+- run
+  `dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m <MODELNAME> -dc TodoContext -outDir Controllers`
+- in the new controller set the POST  "GetTodoItem" =>  nameof(GetTodoItem)
 
-test it
-
-make sure /swagger and api definition are there
-
-# Create a controller-based API
-
-https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-9.0&tabs=visual-studio-code
-
-
-# MS Swagger
-
-
-https://learn.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-8.0&tabs=visual-studio-code
-
-`dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.5.0`{{exec}}
-
-Add the Swagger generator to the services collection in Program.cs:
-
-```
-builder.Services.AddControllers();
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-```
-
-Enable the middleware for serving the generated JSON document and the Swagger UI, also in Program.cs
-
-```
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-```
-
-Launch the app and navigate to https://localhost:<port>/swagger/v1/swagger.json
-
-{{TRAFFIC_HOST1_5000}}//swagger/v1/swagger.json
-
-
-The Swagger UI can be found at https://localhost:<port>/swagger
-
-{{TRAFFIC_HOST1_5000}}//swagger
-
-
-### Test the location header URI
-
-{{TRAFFIC_HOST1_5000}}//api/TodoItems/1
-
-
-
-### Routing and URL paths
-
-
-REVIEW AND ADD THIS SECTION
+## Curl command against the end point
