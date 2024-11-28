@@ -1,8 +1,9 @@
-# Continue api builder
+# API builder
 
 
 https://learn.microsoft.com/en-gb/azure/data-api-builder/quickstart-sql#install-the-data-api-builder-cli
 
+## Install API builder
 
 `dotnet tool install --global Microsoft.DataApiBuilder`{{exec}}
 
@@ -46,6 +47,7 @@ https://learn.microsoft.com/en-gb/azure/data-api-builder/quickstart-sql#create-c
 `dab init --database-type "mssql" --host-mode "Development" --connection-string "Server=localhost,1433;User Id=sa;Database=bookshelf;Password=MyP@ssW0rd;TrustServerCertificate=True;Encrypt=True;"`{{exec}}
 =======
 
+Let review the created dab-config file:
 
 `cat dab-config.json`{{exec}}
 

@@ -104,9 +104,9 @@ swagger url
 
 ### Add a model class
 
-mkdir Models
+`mkdir Models`{{exec}}
 
-touch Models/TodoItem.cs
+`touch Models/TodoItem.cs`{{exec}}
 
 ```
 namespace TodoApi.Models;
@@ -122,7 +122,7 @@ public class TodoItem
 ### Add a database context
 
 
-touch Models/TodoContext.cs
+`touch Models/TodoContext.cs`{{exec}}
 
 ```
 using Microsoft.EntityFrameworkCore;
@@ -231,9 +231,11 @@ swagger url
   dotnet tool uninstall -g dotnet-aspnet-codegenerator
   dotnet tool install -g dotnet-aspnet-codegenerator
   dotnet tool update -g dotnet-aspnet-codegenerator
-  ---
+  ```{{exec}}
+
 - run
   `dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m <MODELNAME> -dc TodoContext -outDir Controllers`
+
 - in the new controller set the POST  "GetTodoItem" =>  nameof(GetTodoItem)
 
 ## Curl command against the end point

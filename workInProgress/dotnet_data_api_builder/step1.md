@@ -3,6 +3,10 @@
 
 Quickstart: Use Data API builder with SQL [link](https://learn.microsoft.com/en-gb/azure/data-api-builder/quickstart-sql)
 
+MS Docs: https://learn.microsoft.com/en-gb/azure/data-api-builder/
+
+
+
 These quickstarts inc docker for cosmos, postgreSQL. MySQL
 
 
@@ -14,7 +18,7 @@ WIP Install c# debugger in VSC
 
 `apt install -y curl git sqlite3 libpq-dev libreadline-dev sqlite`{{exec}}
 
-## WIP install dotnet
+## Install dotnet
 
 
 ```
@@ -32,12 +36,12 @@ and verify the install:
 
 `dotnet --version`{{exec}}
 
-## Run Docker sql, redis and azurite
+## Run Docker sql, WIP redis and azurite
 
 open a new tab and setup the servers.
 
 
-**SQL**
+**Setup SQL**
 
 [link to deploy mssql on docker](https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-docker-container-deployment?view=sql-server-ver16&pivots=cs1-bash)
 
@@ -66,6 +70,7 @@ WIP cut and paste does work well in the docker, may be better to run sql cmds lo
 
 to install sqlcmd locally if needed:
 
+## Install sqlcmd
 
 ```
 curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc
@@ -75,10 +80,15 @@ apt-get install sqlcmd
 sqlcmd -?
 ```{{exec}}
 
+`sqlcmd -h`{{exec}}
+
 `sqlcmd -S localhost -U SA -P 'MyP@ssW0rd'`{{exec}}
 
 
 https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility?view=sql-server-ver16&tabs=go%2Cwindows&pivots=cs1-bash
+
+
+## Create new database
 
 Create a new bookshelf database
 
