@@ -6,12 +6,10 @@ Quickstart: Use Data API builder with SQL [link](https://learn.microsoft.com/en-
 MS Docs: https://learn.microsoft.com/en-gb/azure/data-api-builder/
 
 
-
 These quickstarts inc docker for cosmos, postgreSQL. MySQL
 
 
 WIP Install c# debugger in VSC
-
 
 
 `sudo apt update`{{exec}}
@@ -36,7 +34,7 @@ and verify the install:
 
 `dotnet --version`{{exec}}
 
-## Run Docker sql, WIP redis and azurite
+## Run Docker sql
 
 open a new tab and setup the servers.
 
@@ -45,32 +43,13 @@ open a new tab and setup the servers.
 
 [link to deploy mssql on docker](https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-docker-container-deployment?view=sql-server-ver16&pivots=cs1-bash)
 
-WIP copy from dotnet lab
-
-WIP add name to docker command
 
 `docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=MyP@ssW0rd' -p 1433:1433 --name sql_server_container -d mcr.microsoft.com/mssql/server`{{copy}}
 
-WIP  -give a name to the container
-
-WIP REMOVE `docker exec -it sql_server_container "bash"`{{exec}}
-
-WIP REMOVE connect
-
-WIP REMOVE `/opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P 'MyP@ssW0rd' -C`{{exec}}
 
 
-WIP REMOVE `/opt/mssql-tools18/bin/sqlcmd -?`{{exec}}
+**install sqlcmd**
 
-DO THIS install sqlcmd on local
-=======
-WIP need -C in docker 'trust server certificatee'
-
-WIP cut and paste does work well in the docker, may be better to run sql cmds locally
-
-to install sqlcmd locally if needed:
-
-## Install sqlcmd
 
 ```
 curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc
@@ -81,6 +60,8 @@ sqlcmd -?
 ```{{exec}}
 
 `sqlcmd -h`{{exec}}
+
+and connect to the local database:
 
 `sqlcmd -S localhost -U SA -P 'MyP@ssW0rd'`{{exec}}
 
