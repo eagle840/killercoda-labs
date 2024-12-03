@@ -161,11 +161,17 @@ var app = builder.Build();
 
 ###  Scaffold a controller
 
+
+add packages
 ```
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package Microsoft.EntityFrameworkCore.Tools
+```
+
+Install aspnet code generator
+```
 dotnet tool uninstall -g dotnet-aspnet-codegenerator
 dotnet tool install -g dotnet-aspnet-codegenerator
 dotnet tool update -g dotnet-aspnet-codegenerator
@@ -221,19 +227,21 @@ swagger url
 ### Adding additional
 
 - add a new model
-- add the class to ToDoContext.cs
-- run
-  ```
-  dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-  dotnet add package Microsoft.EntityFrameworkCore.Design
-  dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-  dotnet add package Microsoft.EntityFrameworkCore.Tools
-  dotnet tool uninstall -g dotnet-aspnet-codegenerator
-  dotnet tool install -g dotnet-aspnet-codegenerator
-  dotnet tool update -g dotnet-aspnet-codegenerator
-  ```{{exec}}
+  - `touch Models/TodoItem.cs`{{exec}}
+  - ```
+    namespace TaskApi.Models;
 
-- run
+    public class TaskItem
+    {
+        public long Id { get; set; }
+        public string? Name { get; set; }
+        public bool IsComplete { get; set; }
+    }
+    ```
+- add the class to ToDoContext.cs
+
+
+- run Rewrite to correct args
   `dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m <MODELNAME> -dc TodoContext -outDir Controllers`
 
 - in the new controller set the POST  "GetTodoItem" =>  nameof(GetTodoItem)
