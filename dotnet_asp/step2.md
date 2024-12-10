@@ -30,17 +30,17 @@ EOF
 
 
 
-`dotnet add ./Demo/Demo.csproj package Microsoft.EntityFrameworkCore.Design`{{exec}}
+`dotnet add ./Demo/Demo.csproj package Microsoft.EntityFrameworkCore.Design --version=8`{{exec}}
 
-`dotnet add ./Demo/Demo.csproj package Microsoft.EntityFrameworkCore.SqlServer`{{exec}}
+`dotnet add ./Demo/Demo.csproj package Microsoft.EntityFrameworkCore.SqlServer --version=8`{{exec}}
 
-`dotnet add ./Demo/Demo.csproj package Microsoft.EntityFrameworkCore.Tools`{{exec}}
+`dotnet add ./Demo/Demo.csproj package Microsoft.EntityFrameworkCore.Tools --version=8`{{exec}}
 
-`dotnet add ./Demo/Demo.csproj package Microsoft.VisualStudio.Web.CodeGeneration.Design`{{exec}}
+`dotnet add ./Demo/Demo.csproj package Microsoft.VisualStudio.Web.CodeGeneration.Design --version=8`{{exec}}
 
-`dotnet add ./Demo/Demo.csproj package Microsoft.AspNetCore.Identity.EntityFrameworkCore`{{exec}}
+`dotnet add ./Demo/Demo.csproj package Microsoft.AspNetCore.Identity.EntityFrameworkCore --version=8`{{exec}}
 
-`dotnet add ./Demo/Demo.csproj package Microsoft.AspNetCore.Identity.UI`{{exec}}
+`dotnet add ./Demo/Demo.csproj package Microsoft.AspNetCore.Identity.UI --version=8`{{exec}}
 
 ## Generate identity pages
 
