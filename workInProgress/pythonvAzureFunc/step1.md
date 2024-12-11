@@ -40,6 +40,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(f"Error: {str(e)}", status_code=400)
 
 ```
+works:
+curl -localhost:7071/api/MyHttpTrigger
+
+Error:
+curl -X POST   -H "Content-Type: application/json"   -d '["https://www.example.com", "https://www.bbc.com"]'   localhost:7071/api/MyHttpTrigger
 ## Quick Install - w/ pip-tools
 
 We'll be using python version 3.
@@ -74,22 +79,147 @@ Pip tool will help resolve dependency issues across packages
 
 `sudo apt-get install azure-functions-core-tools-4`{{exec}}
 
+`func -h`{{exec}}
+
 `func init MyProjFolder --worker-runtime python --model V2`{{exec}}
 
 `ls`{{exec}}
 
 `func new --template "Http Trigger" --name MyHttpTrigger`{{exec}}
 
-`func start`{{exec}}
+select 'python' and 'anonymous'
+
+`func start`
 
 `func start --verbose`{{exec}}
 
 
+WIP check port #
+`curl http://localhost:7071/api/MyHttpTrigger`{{exec}}
 
 
+`curl http://localhost:7071/api/MyHttpTrigger?name=john`{{exec}}
 
+
+WORKING, input json list
+
+```
+import azure.functions as func
+import datetime
+import json
+import ssl
+import socket
+import logging
+
+app = func.FunctionApp()
+
+hostname = "www.example.com"
+
+def get_ssl_expiry_date(hostname):
+    context = ssl.create_default_context()
+    conn = context.wrap_socket(
+        socket.socket(socket.AF_INET),
+        server_hostname=hostname,
+    )
+    conn.settimeout(3.0)
+    conn.connect((hostname, 443))
+    ssl_info = conn.getpeercert()
+    expiry_date = datetime.datetime.strptime(ssl_info['notAfter'], '%b %d %H:%M:%S %Y %Z')
+    return expiry_date
+
+@app.route(route="MyHttpTrigger", auth_level=func.AuthLevel.ANONYMOUS)
+def MyHttpTrigger(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
+
+    names = req.params.get('names')
+    if names:
+        try:
+            names = json.loads(names)
+        except json.JSONDecodeError:
+            return func.HttpResponse(
+                "Invalid JSON format for 'names' parameter.",
+                status_code=400
+            )
+    else:
+        try:
+            req_body = req.get_json()
+        except ValueError:
+            req_body = {}
+        names = req_body.get('names')
+
+    if names:
+        if not isinstance(names, list):
+            return func.HttpResponse(
+                "'names' should be a JSON list.",
+                status_code=400
+            )
+        expiry_date = get_ssl_expiry_date(hostname)
+        response_message = f"Hello, {', '.join(names)}. SSL certificate expiry date is {expiry_date}."
+        return func.HttpResponse(response_message)
+    else:
+        return func.HttpResponse(
+            "This HTTP triggered function executed successfully. Pass a 'names' JSON list in the query string or in the request body for a personalized response.",
+            status_code=200
+        )
+```
+
+
+curl cmd:
+
+`curl -X POST "http://localhost:7071/api/MyHttpTrigger" -H "Content-Type: application/json" -d '{"names":["john","jim"]}'`{{exec}}
+
+
+Single name and expirty WORKING:
+```
+import azure.functions as func
+import datetime
+import json
+import ssl
+import socket
+import logging
+
+app = func.FunctionApp()
+
+hostname="www.example.com"
+
+def get_ssl_expiry_date(hostname):
+    context = ssl.create_default_context()
+    conn = context.wrap_socket(
+        socket.socket(socket.AF_INET),
+        server_hostname=hostname,
+    )
+    conn.settimeout(3.0)
+    conn.connect((hostname, 443))
+    ssl_info = conn.getpeercert()
+    expiry_date = datetime.datetime.strptime(ssl_info['notAfter'], '%b %d %H:%M:%S %Y %Z')
+    return expiry_date
+
+@app.route(route="MyHttpTrigger", auth_level=func.AuthLevel.ANONYMOUS)
+def MyHttpTrigger(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
+
+    name = req.params.get('name')
+    expiry_date = get_ssl_expiry_date(hostname)
+    print (expiry_date)
+
+    if not name:
+        try:
+            req_body = req.get_json()
+        except ValueError:
+            pass
+        else:
+            name = req_body.get('name')
+
+    if name:
+        return func.HttpResponse(f"Hello, {name}. expiry is {expiry_date}.")
+    else:
+        return func.HttpResponse(
+             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
+             status_code=200
+        )
+```
 ---
-DELEYTE BELOW
+DELETE BELOW
 
 WIP: One of the easiest ways to install python is with asdf, (see killacoda lab WIP:LINK), but in this lab we'll use linux alternatives.
 
