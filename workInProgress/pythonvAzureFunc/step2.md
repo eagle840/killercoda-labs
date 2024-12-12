@@ -7,26 +7,31 @@ https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cl
 
 `curl -L https://aka.ms/InstallAzureCli | bash`{{exec}}
 
+`exec -l $SHELL`{{exec}}
+
 ## Create resources
 
+`az --h`{{exec}}
 
-az login
+`az login`{{exec}}
 
-az group create --name AzureFunctionsQuickstart-rg --location <REGION>
+WIP need variable for the following commands
 
-az storage account create --name <STORAGE_NAME> --location <REGION> --resource-group AzureFunctionsQuickstart-rg --sku Standard_LRS
+`az group create --name AzureFunctionsQuickstart-rg --location <REGION>`{{exec}}
 
-az functionapp create --resource-group AzureFunctionsQuickstart-rg --consumption-plan-location westeurope --runtime python --runtime-version <PYTHON_VERSION> --functions-version 4 --name <APP_NAME> --os-type linux --storage-account <STORAGE_NAME>
+`az storage account create --name <STORAGE_NAME> --location <REGION> --resource-group AzureFunctionsQuickstart-rg --sku Standard_LRS`{{exec}}
+
+`az functionapp create --resource-group AzureFunctionsQuickstart-rg --consumption-plan-location westeurope --runtime python --runtime-version <PYTHON_VERSION> --functions-version 4 --name <APP_NAME> --os-type linux --storage-account <STORAGE_NAME>`{{exec}}
 
 ## Publish App
 
-func azure functionapp publish <APP_NAME>
+`func azure functionapp publish <APP_NAME>`{{exec}}
 
 
 
 ## Clean up
 
-az group delete --name AzureFunctionsQuickstart-rg
+`az group delete --name AzureFunctionsQuickstart-rg
 ---
 
 # DELETE BELOW
