@@ -101,6 +101,8 @@ WIP check port #
 `curl http://localhost:7071/api/MyHttpTrigger?name=john`{{exec}}
 
 
+[Developer Guide](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-python?tabs=get-started%2Casgi%2Capplication-level&pivots=python-mode-decorators)
+
 WORKING, input json list
 
 ```
@@ -166,7 +168,13 @@ def MyHttpTrigger(req: func.HttpRequest) -> func.HttpResponse:
 
 curl cmd:
 
-`curl -X POST "http://localhost:7071/api/MyHttpTrigger" -H "Content-Type: application/json" -d '{"names":["john","jim"]}'`{{exec}}
+WIP `curl -X POST "http://localhost:7071/api/MyHttpTrigger" -H "Content-Type: application/json" -d '{"names":["john","jim"]}'`{{exec}}
+
+CORRECT FORMAT `
+CORRECT FORMAT `curl -X GET "http://localhost:7071/api/MyHttpTrigger" -d 'names=["www.example.com"}]'`{{exec}}
+- but needs a LIST
+
+THIS WORKS!  `curl -X GET "http://localhost:7071/api/MyHttpTrigger" -d '{"names":["www.example.com"]}'`{{exec}}
 
 
 Single name and expirty WORKING:
