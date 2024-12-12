@@ -115,7 +115,7 @@ import logging
 
 app = func.FunctionApp()
 
-hostname = "www.example.com"
+
 
 def get_ssl_expiry_date(hostname):
     context = ssl.create_default_context()
@@ -155,8 +155,21 @@ def MyHttpTrigger(req: func.HttpRequest) -> func.HttpResponse:
                 "'names' should be a JSON list.",
                 status_code=400
             )
-        expiry_date = get_ssl_expiry_date(hostname)
-        response_message = f"Hello, {', '.join(names)}. SSL certificate expiry date is {expiry_date}."
+        # expiry_date = get_ssl_expiry_date(hostname)
+
+        result = {}
+        for url in names:
+            hostname = url.split("//")[-1].split("/")[0]
+            logging.info(hostname)
+            expiry_date = get_ssl_expiry_date(hostname)
+            logging.info(expiry_date.strftime('%Y-%m-%d'))
+            result[url] = expiry_date.strftime('%Y-%m-%d')
+
+
+
+        # response_message = f"Hello, {', '.join(names)}. SSL certificate expiry date is {expiry_date}."
+        # response_message = f"Hello, {', '.join(names)}. SSL certificate expiry date is {', '.join(result)}."
+        response_message = f"Hello, {', '.join(names)}. SSL certificate expiry date is {result}."
         return func.HttpResponse(response_message)
     else:
         return func.HttpResponse(
