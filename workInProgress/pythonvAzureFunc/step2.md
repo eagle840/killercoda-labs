@@ -1,4 +1,36 @@
 
+# Deploy to Azure
+
+https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-python?tabs=linux%2Cbash%2Cazure-cli%2Cbrowser
+
+## Install Az cli
+
+`curl -L https://aka.ms/InstallAzureCli | bash`{{exec}}
+
+## Create resources
+
+
+az login
+
+az group create --name AzureFunctionsQuickstart-rg --location <REGION>
+
+az storage account create --name <STORAGE_NAME> --location <REGION> --resource-group AzureFunctionsQuickstart-rg --sku Standard_LRS
+
+az functionapp create --resource-group AzureFunctionsQuickstart-rg --consumption-plan-location westeurope --runtime python --runtime-version <PYTHON_VERSION> --functions-version 4 --name <APP_NAME> --os-type linux --storage-account <STORAGE_NAME>
+
+## Publish App
+
+func azure functionapp publish <APP_NAME>
+
+
+
+## Clean up
+
+az group delete --name AzureFunctionsQuickstart-rg
+---
+
+# DELETE BELOW
+
 # Python REPL's
 
 ?? what is the best REPL?
