@@ -100,6 +100,10 @@ WIP check port #
 
 `curl http://localhost:7071/api/MyHttpTrigger?name=john`{{exec}}
 
+Let check the site  open site for 7071
+
+now with /api/MyHttpTrigger
+
 
 [Developer Guide](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-python?tabs=get-started%2Casgi%2Capplication-level&pivots=python-mode-decorators)
 
@@ -190,55 +194,7 @@ CORRECT FORMAT `curl -X GET "http://localhost:7071/api/MyHttpTrigger" -d 'names=
 THIS WORKS!  `curl -X GET "http://localhost:7071/api/MyHttpTrigger" -d '{"names":["www.example.com"]}'`{{exec}}
 
 
-Single name and expirty WORKING:
-```
-import azure.functions as func
-import datetime
-import json
-import ssl
-import socket
-import logging
 
-app = func.FunctionApp()
-
-hostname="www.example.com"
-
-def get_ssl_expiry_date(hostname):
-    context = ssl.create_default_context()
-    conn = context.wrap_socket(
-        socket.socket(socket.AF_INET),
-        server_hostname=hostname,
-    )
-    conn.settimeout(3.0)
-    conn.connect((hostname, 443))
-    ssl_info = conn.getpeercert()
-    expiry_date = datetime.datetime.strptime(ssl_info['notAfter'], '%b %d %H:%M:%S %Y %Z')
-    return expiry_date
-
-@app.route(route="MyHttpTrigger", auth_level=func.AuthLevel.ANONYMOUS)
-def MyHttpTrigger(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
-
-    name = req.params.get('name')
-    expiry_date = get_ssl_expiry_date(hostname)
-    print (expiry_date)
-
-    if not name:
-        try:
-            req_body = req.get_json()
-        except ValueError:
-            pass
-        else:
-            name = req_body.get('name')
-
-    if name:
-        return func.HttpResponse(f"Hello, {name}. expiry is {expiry_date}.")
-    else:
-        return func.HttpResponse(
-             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-             status_code=200
-        )
-```
 ---
 DELETE BELOW
 
