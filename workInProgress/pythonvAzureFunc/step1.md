@@ -174,6 +174,10 @@ def MyHttpTrigger(req: func.HttpRequest) -> func.HttpResponse:
         # response_message = f"Hello, {', '.join(names)}. SSL certificate expiry date is {expiry_date}."
         # response_message = f"Hello, {', '.join(names)}. SSL certificate expiry date is {', '.join(result)}."
         response_message = f"Hello, {', '.join(names)}. SSL certificate expiry date is {result}."
+        # response_message = f"Hello."
+        # response_message = f"Domain:, {', '.join(names)}. SSL certificate expiry date is {result}."
+        # response_message = f"[ {result} ]"
+        # FOR JSON output response_message = json.dumps([result])
         return func.HttpResponse(response_message)
     else:
         return func.HttpResponse(
