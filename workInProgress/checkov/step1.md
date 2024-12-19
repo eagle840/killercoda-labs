@@ -50,5 +50,8 @@ Pip tool will help resolve dependency issues across packages
     ]
 }
 ```
+`checkov -h`{{exec}}
+
+`pip3 install -U checkov`{{exec}}
 
 `checkov -f template.json`{{exec}}
