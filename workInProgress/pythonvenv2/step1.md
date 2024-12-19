@@ -9,6 +9,7 @@ WIP: One of the easiest ways to install python is with asdf, (see killacoda lab 
 2. Package managers and dependencies - pull the debug into 4
   - 2.1 REPL's
   - 2.2 Package management
+  - 2.3 Pkg mngt tools: Poetry, Hatch
 3. linting
 4. debugging, pull dependencies into 2
 5. notebooks
