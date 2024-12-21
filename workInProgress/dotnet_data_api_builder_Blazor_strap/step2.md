@@ -41,18 +41,12 @@ Let review the created dab-config file:
 
 `dab add Author --source "dbo.authors" --permissions "anonymous:*"`{{exec}}
 
-note the changes in the config file:
-
-`cat dab-config.json`{{exec}}
-
 ### Test API with the local database
 
 
 WIP We'll change localhost -> 0.0.0.0
 
-If we wanted to start locally, we'd use`dab start`{{copy}}
-
-But on Killacoda:
+`dab start`{{copy}}
 
 `DOTNET_URLS=http://0.0.0.0:5000 dab start`{{exec}}
 

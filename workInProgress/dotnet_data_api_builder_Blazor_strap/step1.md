@@ -5,8 +5,6 @@ Quickstart: Use Data API builder with SQL [link](https://learn.microsoft.com/en-
 
 MS Docs: https://learn.microsoft.com/en-gb/azure/data-api-builder/
 
-YT MS Developer: https://www.youtube.com/watch?v=XQRO_uoGhp4
-
 
 These quickstarts inc docker for cosmos, postgreSQL. MySQL
 
@@ -61,7 +59,7 @@ apt-get install sqlcmd
 sqlcmd -?
 ```{{exec}}
 
-`sqlcmd -?`{{exec}}
+`sqlcmd -h`{{exec}}
 
 and connect to the local database:
 
