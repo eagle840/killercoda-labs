@@ -9,6 +9,19 @@ github: https://github.com/killercoda
 
 `sudo apt update`{{exec}}
 
+WIP # Install a user
+
+
+
+`sudo adduser jsuser`{{exec}}
+
+You will be prompted to set a password for the new user and provide additional information like full name, phone number, etc. You can skip these additional fields by pressing Enter.
+
+`su - jsuser`{{exec}}
+
+Enter the password for the new user when prompted.
+
+
 
 
 
@@ -39,23 +52,3 @@ nvm current # Should print "v22.12.0".
 # Verify npm version:
 npm -v # Should print "10.9.0".
 ```{{exec}}
-
-with node installed, you can jump to step 2.
-
-WIP # Install a user
-
-1. Open a terminal window.
-
-2. Run the following command and follow the prompts to set up the new user:
-```bash
-sudo adduser jsuser
-```{{exec}}
-Replace `newusername` with the desired username for the new user.
-
-3. You will be prompted to set a password for the new user and provide additional information like full name, phone number, etc. You can skip these additional fields by pressing Enter.
-
-4. Once the user is created, you can switch to the new user account using the `su` command:
-```bash
-su - jsuser
-```{{exec}}
-Enter the password for the new user when prompted.
