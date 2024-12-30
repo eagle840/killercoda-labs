@@ -1,14 +1,10 @@
 # resume pdf
 
-
+With the following, we get an error
 
 `resume export --format pdf --theme jsonresume-theme-modern  myresume.pdf`{{exec}}
 
-WIP: having install with theme. First try theme with html, then pdf
-
-check -https://www.npmjs.com/package/resume-cli
-and -https://jsonresume.org/getting-started
-also your devops pipeline
+Lets fix that:
 
 ### In a new tab, with root user
 
@@ -26,6 +22,8 @@ taken from https://www.skynats.com/blog/install-google-chrome-headless-ubuntu-se
 
 `google-chrome-stable --version`{{exec}}
 
-## return to tab for jsuser
+### Run again
 
 `resume export --format pdf --theme jsonresume-theme-modern  myresume.pdf`{{exec}}
+
+`ls`{{exec}}
