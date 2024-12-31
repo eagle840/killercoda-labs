@@ -2,7 +2,7 @@
 
 With the following, we get an error
 
-`resume export --format pdf --theme jsonresume-theme-modern  myresume.pdf`{{exec}}
+`resume export --format pdf --theme jsonresume-theme-flat  myresumeflat.pdf`{{exec}}
 
 Lets fix that:
 
@@ -22,8 +22,15 @@ taken from https://www.skynats.com/blog/install-google-chrome-headless-ubuntu-se
 
 `google-chrome-stable --version`{{exec}}
 
-### Run again
+### Run again (in the jsuser tab)
 
-`resume export --format pdf --theme jsonresume-theme-modern  myresume.pdf`{{exec}}
+
+`resume export --format pdf --theme jsonresume-theme-flat  myresumeflat.pdf`{{exec}}
 
 `ls`{{exec}}
+
+## View in the web server
+
+`http-server -c-1 -a 0.0.0.0`{{exec}}
+
+{{TRAFFIC_HOST1_8080}}
