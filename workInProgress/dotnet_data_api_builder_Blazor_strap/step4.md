@@ -82,6 +82,10 @@ namespace BlazorAuthorsApp.Services
 }
 ```{{copy}}
 
+WIP you will need to update the url above to {{TRAFFIC_HOST1_5000}}/api/Author
+
+WIP see if this fixes the WIP below
+
 4. **Register the Service in `Program.cs`:**
 
 ```csharp
