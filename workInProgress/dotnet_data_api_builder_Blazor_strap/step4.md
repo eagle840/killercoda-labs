@@ -44,13 +44,14 @@ namespace BlazorAuthorsApp.Models
 {
     public class Author
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Bio { get; set; }
+        public int id { get; set; }
+        public string first_name { get; set; }
+        public string middle_name { get; set; }
+        public string last_name { get; set; }
         // Add other properties as needed
     }
 }
-```
+```{{copy}}
 
 3. **Create a Service to Fetch Data:**
    Create a new file named `AuthorService.cs` in the `Services` folder (create the folder if it doesn't exist) with the following content:
@@ -79,7 +80,7 @@ namespace BlazorAuthorsApp.Services
         }
     }
 }
-```
+```{{copy}}
 
 4. **Register the Service in `Program.cs`:**
 
@@ -87,12 +88,32 @@ namespace BlazorAuthorsApp.Services
 builder.Services.AddScoped<AuthorService>();
 ```
 
+WIP Chect against this, which is working (Program.cs)
+
+```csharp
+using System.Net.Http;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.DependencyInjection;using Microsoft.AspNetCore.Components.Web;
+using BlazorAuthorsApp;
+using BlazorAuthorsApp.Services;
+
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+builder.RootComponents.Add<App>("#app");
+builder.RootComponents.Add<HeadOutlet>("head::after");
+
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+builder.Services.AddScoped<AuthorService>();
+
+await builder.Build().RunAsync();
+```{{copy}}
+
 5. **Create a Component to Display the Authors:**
    Create a new file named `AuthorList.razor` in the `Pages` folder with the following content:
 
 ```razor
+@inject BlazorAuthorsApp.Services.AuthorService AuthorService 
+@using BlazorAuthorsApp.Models
 @page "/authors"
-@inject AuthorService AuthorService
 
 <h3>Authors List</h3>
 
@@ -109,7 +130,7 @@ else
     <ul>
         @foreach (var author in authors)
         {
-            <li>@author.Name - @author.Bio</li>
+            <li>@author.first_name - @author.last_name</li>
         }
     </ul>
 }
@@ -122,7 +143,7 @@ else
         authors = await AuthorService.GetAuthors();
     }
 }
-```
+```{{copy}}
 
 6. **Update `NavMenu.razor` to include the new page:**
    Add a link to the new `AuthorList` component in the `NavMenu.razor` file:
@@ -136,10 +157,11 @@ else
 ### Step 4: Run Your Blazor App
 Run your Blazor app using the following command:
 
-```bash
-dotnet run
-```
+
+`dotnet run --urls http://0.0.0.0:5000`{{exec}}
 
 Navigate to `http://localhost:5000/authors` in your browser, and you should see the list of authors displayed on the page.
+
+{{TRAFFIC_HOST1_5000}}/authors
 
 There you go! You've successfully set up a Blazor app to fetch and display data from your `authors` table. If you have any more questions or need further assistance, feel free to ask!
