@@ -20,6 +20,16 @@ cd BlazorAuthorsApp
 dotnet add package Microsoft.AspNet.WebApi.Client
 ```{{exec}}
 
+`mkdir Models`{{exec}}
+
+`touch Models/Author.cs`{{exec}}
+
+`mkdir Services`{{exec}}
+
+`touch Services/AuthorService.cs`{{exec}}
+
+`touch Pages/AuthorList.razor`{{exec}}
+
 ### Step 3: Modify the Code to Fetch Data from the API
 
 1. **Open `Program.cs` and add the necessary HTTP client service:**

@@ -58,4 +58,8 @@ WIP We'll change localhost -> 0.0.0.0
 
 {{TRAFFIC_HOST1_5000}}/api/Author
 
+`curl -X 'GET' \
+  '{{TRAFFIC_HOST1_5000}}/api/Author' \
+  -H 'accept: application/json'`{{exec}}
+
 In future versions we'll add redis and noSql.
