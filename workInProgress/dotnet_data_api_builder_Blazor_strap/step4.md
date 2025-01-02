@@ -158,10 +158,13 @@ else
 Run your Blazor app using the following command:
 
 
-`dotnet run --urls http://0.0.0.0:5000`{{exec}}
+`dotnet run --urls http://0.0.0.0:5001`{{exec}}
 
 Navigate to `http://localhost:5000/authors` in your browser, and you should see the list of authors displayed on the page.
 
-{{TRAFFIC_HOST1_5000}}/authors
+WIP: goto browser developer tools and see why it's not pulling data
+- ? because dab is running in developer-mode?
+
+{{TRAFFIC_HOST1_5001}}/authors
 
 There you go! You've successfully set up a Blazor app to fetch and display data from your `authors` table. If you have any more questions or need further assistance, feel free to ask!
