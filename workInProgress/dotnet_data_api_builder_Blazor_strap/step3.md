@@ -66,3 +66,96 @@ copy the code into one of the pages
 
 
 `dotnet run --urls http://0.0.0.0:5001`{{exec}}
+
+now to pull all items:
+
+```
+@page "/"
+
+<PageTitle>Counter</PageTitle>
+
+<button @onclick="FetchData">Get Data</button>
+
+@if (todos != null && todos.Any())
+{
+    @foreach (var todo in todos)
+    {
+        <h3>Title: @todo.title</h3>
+        <p>Completed: @todo.completed</p>
+    }
+}
+
+@code{
+    public List<Todo> todos;
+    public HttpClient httpClient = new HttpClient();
+
+    public async Task FetchData()
+    {
+        todos = await httpClient.GetFromJsonAsync<List<Todo>>("https://jsonplaceholder.typicode.com/todos");
+    }
+
+    public class Todo
+    {
+         public int userId { get; set; }
+         public int id { get; set; }
+         public string title { get; set; }
+         public bool completed { get; set; }
+    }
+}
+
+```
+
+
+
+---
+
+
+code for the next json
+
+
+Sure thing! You'll need to adjust your code to accommodate the new structure of the JSON data. Here's an updated version of your code to handle the `values` array within the root object:
+
+```csharp
+@page "/"
+
+<PageTitle>Counter</PageTitle>
+
+<button @onclick="FetchData">Get Data</button>
+
+@if (todos != null && todos.Any())
+{
+    @foreach (var todo in todos)
+    {
+        <h3>Title: @todo.title</h3>
+        <p>Completed: @todo.completed</p>
+    }
+}
+
+@code{
+    public List<Todo> todos;
+    public HttpClient httpClient = new HttpClient();
+
+    public async Task FetchData()
+    {
+        var response = await httpClient.GetFromJsonAsync<RootObject>("https://your-new-api-endpoint.com");
+        todos = response.values;
+    }
+
+    public class Todo
+    {
+         public int userId { get; set; }
+         public int id { get; set; }
+         public string title { get; set; }
+         public bool completed { get; set; }
+    }
+
+    public class RootObject
+    {
+        public List<Todo> values { get; set; }
+    }
+}
+```
+
+In this code, the `RootObject` class is created to match the new JSON structure, and the `FetchData` method is updated to parse the response accordingly.
+
+Give this a try and let me know if it works as expected!
