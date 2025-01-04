@@ -36,7 +36,7 @@ and verify the install:
 
 ## Run Docker sql
 
-open a new tab and setup the servers.
+open a new tab and setup the sql server.
 
 
 **Setup SQL**
@@ -57,9 +57,10 @@ add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/20.
 apt-get update
 apt-get install sqlcmd
 sqlcmd -?
+#
 ```{{exec}}
 
-`sqlcmd -h`{{exec}}
+`sqlcmd -?`{{exec}}
 
 and connect to the local database:
 

@@ -58,8 +58,10 @@ WIP We'll change localhost -> 0.0.0.0
 
 {{TRAFFIC_HOST1_5000}}/api/Author
 
-`curl -X 'GET' \
-  '{{TRAFFIC_HOST1_5000}}/api/Author' \
-  -H 'accept: application/json'`{{exec}}
+`curl -X 'GET' '{{TRAFFIC_HOST1_5000}}/api/Author' -H 'accept: application/json'`{{exec}}
 
-In future versions we'll add redis and noSql.
+note the format of the JSON
+
+```JSON
+{"value":[{"id":1,"first_name":"Henry","middle_name":null,"last_name":"Ross"},{"id":2,"first_name":"Jacob","middle_name":"A.","last_name":"Hancock"}]}
+```

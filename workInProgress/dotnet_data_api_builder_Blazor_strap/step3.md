@@ -6,18 +6,17 @@ https://blazorstrap.io/V5/V5
 
 dotnet add package BlazorStrap.V5 --version 5.2.103.122024
 
-
-## Blazor WebAssembly
-
-
-https://blazorstrap.io/V5/V5  > install
+Note the two different types:
+- Blazor WebAssembly https://blazorstrap.io/V5/V5  > install
 
 
-## Server Side
-
-https://blazorstrap.io/V5/V5  > install
+- Server Side https://blazorstrap.io/V5/V5  > install
 
 --
+
+# Simple JSON call
+
+
 
 https://jsonplaceholder.typicode.com/todos/1
 
@@ -25,10 +24,11 @@ curl https://jsonplaceholder.typicode.com/todos/
 
 `dotnet new blazorwasm -o WasmJSONApp --framework net8.0`{{exec}}
 
-`dotnet new blazor -o BlazorJSONApp --framework net8.0`{{exec}}
+WIP `dotnet new blazor -o BlazorJSONApp --framework net8.0`{{copy}}  # clicking get-data doesn't work
 
 
-cd BlazorJSONApp/
+
+`cd WasmJSONApp/`{{exec}}
 
 copy the code into one of the pages
 
@@ -52,6 +52,7 @@ copy the code into one of the pages
     public async Task FetchData()
     {
         todo = await httpClient.GetFromJsonAsync<Todo>("https://jsonplaceholder.typicode.com/todos/1");
+        Console.WriteLine($"Fetched {todos.Count} todo items.");
     }
 
     public class Todo
@@ -66,6 +67,8 @@ copy the code into one of the pages
 
 
 `dotnet run --urls http://0.0.0.0:5001`{{exec}}
+
+{{TRAFFIC_HOST1_5001}}
 
 now to pull all items:
 
