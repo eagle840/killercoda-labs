@@ -52,7 +52,7 @@ copy the code into one of the pages
     public async Task FetchData()
     {
         todo = await httpClient.GetFromJsonAsync<Todo>("https://jsonplaceholder.typicode.com/todos/1");
-        Console.WriteLine($"Fetched {todos.Count} todo items.");
+        
     }
 
     public class Todo
@@ -95,6 +95,7 @@ now to pull all items:
     public async Task FetchData()
     {
         todos = await httpClient.GetFromJsonAsync<List<Todo>>("https://jsonplaceholder.typicode.com/todos");
+        Console.WriteLine($"Fetched {todos.Count} todo items.");
     }
 
     public class Todo
