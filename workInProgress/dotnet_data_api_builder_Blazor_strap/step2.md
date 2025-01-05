@@ -58,6 +58,8 @@ WIP We'll change localhost -> 0.0.0.0
 
 {{TRAFFIC_HOST1_5000}}/api/Author
 
+Open a new tab and run:
+
 `curl -X 'GET' '{{TRAFFIC_HOST1_5000}}/api/Author' -H 'accept: application/json'`{{exec}}
 
 note the format of the JSON

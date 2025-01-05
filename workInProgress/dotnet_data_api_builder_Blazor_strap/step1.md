@@ -6,13 +6,15 @@ Quickstart: Use Data API builder with SQL [link](https://learn.microsoft.com/en-
 MS Docs: https://learn.microsoft.com/en-gb/azure/data-api-builder/
 
 
-These quickstarts inc docker for cosmos, postgreSQL. MySQL
-
-
-WIP Install c# debugger in VSC
-
-
 `sudo apt update`{{exec}}
+
+
+Open a new tab to start the sql setup, and run
+
+`docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=MyP@ssW0rd' -p 1433:1433 --name sql_server_container -d mcr.microsoft.com/mssql/server`{{exec}}
+
+Now return to the orginal tab to continue the install
+
 
 `apt install -y curl git sqlite3 libpq-dev libreadline-dev sqlite`{{exec}}
 

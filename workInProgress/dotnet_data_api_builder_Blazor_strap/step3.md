@@ -12,28 +12,38 @@ Note the two different types:
 
 - Server Side https://blazorstrap.io/V5/V5  > install
 
+
+# Radzen Setup
+
+
+https://blazor.radzen.com/
+
 --
 
-# Simple JSON call
+# Simple JSON call to https://jsonplaceholder.typicode.com/todos/1
 
+With the new tab still open:
 
+We'll first call a simple public api
 
 https://jsonplaceholder.typicode.com/todos/1
 
-curl https://jsonplaceholder.typicode.com/todos/
+`curl https://jsonplaceholder.typicode.com/todos/1`{{exec}}
+
+Let's create the program (using WASM)
 
 `dotnet new blazorwasm -o WasmJSONApp --framework net8.0`{{exec}}
 
-WIP `dotnet new blazor -o BlazorJSONApp --framework net8.0`{{copy}}  # clicking get-data doesn't work
-
-
+WIP Server side version`dotnet new blazor -o BlazorJSONApp --framework net8.0`{{copy}}  WIP, keep the name the same so cd works
 
 `cd WasmJSONApp/`{{exec}}
 
 copy the code into one of the pages
 
+in ./Pages/Counter.razor, replace all the code with:
+
 ```csharp
-@page "/"
+@page "/counter"
 
 <PageTitle>Counter</PageTitle>
 
@@ -64,7 +74,7 @@ copy the code into one of the pages
     }
 }
 ```
-
+and run the program
 
 `dotnet run --urls http://0.0.0.0:5001`{{exec}}
 
@@ -250,7 +260,7 @@ below: working
 
     public async Task FetchData()
     {
-        var response = await httpClient.GetFromJsonAsync<RootObject>("https://b2a5dd97-faac-4b74-9ae0-900287ca7ae4-10-244-6-202-5000.spca.r.killercoda.com/api/Author");
+        var response = await httpClient.GetFromJsonAsync<RootObject>("YOUR-URL/api/Author");
         todos = response?.value ?? new List<Todo>();
 
         // Debug message to print out the number of items returned
@@ -272,3 +282,5 @@ below: working
 }
 
 ```
+
+Important, replace  `YOUR-URL`   with `{{TRAFFIC_HOST1_5000}}`
