@@ -3,6 +3,8 @@
 
 https://www.zaproxy.org/docs/docker/about/
 
+Dos's covering the types of scan: https://www.zaproxy.org/docs/docker/
+
 
 # with webswing
 
@@ -302,6 +304,10 @@ www.zaproxy.org/addons
 
 `python -m http.server 8000`{{exec}}
 
+`mkdir zap-reports/`{{exec}}
+
+`chmod +777 zap-reports/`{{exec}}
+
 
 # running base line scan
 
@@ -309,24 +315,44 @@ www.zaproxy.org/addons
 docs: https://www.zaproxy.org/docs/docker/baseline-scan/
 
 `docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
-    -t https://www.example.com -g gen.conf -r testreport.html`{{exec}}
+    -t https://www.example.com -g gen.conf -r testreport.html`{{copy}}
+
+
+`docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
+    -t http://localhost:8000 -g gen.conf -r basehttpserverreport.html`{{exec}}
+
+`docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
+    -t http://localhost:3000 -g gen.conf -r baseJSreport.html`{{exec}}
 
 # Running an api scan
 
-`python -m http.server 8000`{{exec}}
+https://www.zaproxy.org/docs/docker/api-scan/
 
-
-`mkdir zap-reports/`{{exec}}
-
-`chmod +777 zap-reports/`{{exec}}
-
-
-Docs: https://www.zaproxy.org/blog/2017-06-19-scanning-apis-with-zap/
+Blog: https://www.zaproxy.org/blog/2017-06-19-scanning-apis-with-zap/
 
 `docker run  -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-api-scan.py -t {{TRAFFIC_HOST1_8000}} -f openapi -r api-simple-api-002.html
+
+`docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
+    -t http://localhost:3000/rest/ -g gen.conf -r apiJSreport.html`{{exec}}
 
 `ls zap-reports/`{{exec}}
 
 Review the report on
+
+{{TRAFFIC_HOST1_8000}}
+
+# Full scan
+
+https://www.zaproxy.org/docs/docker/full-scan/
+
+`docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py \
+    -t https://www.example.com -g gen.conf -r testreport.h`
+
+
+`docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py \
+    -t http://localhost:3000 -g gen.conf -r fullJSreport.h`{{exec}}
+
+
+
 
 {{TRAFFIC_HOST1_8000}}
