@@ -53,6 +53,10 @@ reports   => reports
 
 In the 'Workspace window', click automatic and enter `https://juice-shop.herokuapp.com/`{{copy}}  and then click Attach.
 
+In the 'Workspace window', click automatic and enter `http://localhost:3000`{{copy}}  and then click Attach.
+
+
+
 You can review the `information window` Alerts.
 
 ## Setting up SSL
@@ -292,3 +296,37 @@ WIP why is there no warning/fail for the javascript?!
 Also know as market place
 
 www.zaproxy.org/addons
+
+
+---
+
+`python -m http.server 8000`{{exec}}
+
+
+# running base line scan
+
+
+docs: https://www.zaproxy.org/docs/docker/baseline-scan/
+
+`docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
+    -t https://www.example.com -g gen.conf -r testreport.html`{{exec}}
+
+# Running an api scan
+
+`python -m http.server 8000`{{exec}}
+
+
+`mkdir zap-reports/`{{exec}}
+
+`chmod +777 zap-reports/`{{exec}}
+
+
+Docs: https://www.zaproxy.org/blog/2017-06-19-scanning-apis-with-zap/
+
+`docker run  -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-api-scan.py -t {{TRAFFIC_HOST1_8000}} -f openapi -r api-simple-api-002.html
+
+`ls zap-reports/`{{exec}}
+
+Review the report on
+
+{{TRAFFIC_HOST1_8000}}

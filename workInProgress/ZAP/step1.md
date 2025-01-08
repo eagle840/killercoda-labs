@@ -36,3 +36,20 @@ echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docke
 `docker-compose version`{{exec}}
 
 `docker compose version`{{exec}}
+
+Lets pull down the images we'll use.
+
+`docker pull  ghcr.io/zaproxy/zaproxy:stable`{{exec}}
+
+`docker pull bkimminich/juice-shop`{{exe}}
+
+Lets start juice shop
+
+`docker run --rm -p 3000:3000 bkimminich/juice-shop`{{exe}}
+
+WIP Also at https://juice-shop.herokuapp.com/
+
+and confirm it's up with a apu call
+
+
+`curl http://localhost:3000/rest/products/search?q=Apple`{{exe}}
