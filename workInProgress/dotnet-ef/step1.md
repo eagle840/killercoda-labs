@@ -47,7 +47,9 @@ open a new tab and setup the servers.
 
 WIP copy from dotnet lab
 
-`docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=<YourPassword>' -p 1433:1433 --name sql_server_container -d mcr.microsoft.com/mssql/server`{{exec}}
+
+
+`docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=MyP@ssW0rd' -p 1433:1433 --name sql_server_container -d mcr.microsoft.com/mssql/server`{{copy}}
 
 **Redis**
 
