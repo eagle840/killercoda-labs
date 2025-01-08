@@ -1,61 +1,153 @@
-# Step 3
 
-In OWASP ZAP, the scan tree is a hierarchical representation of the targets that are being scanned by the tool. It organizes the URLs, parameters, and other elements that OWASP ZAP will scan for vulnerabilities during an active scan. The scan tree structure helps manage and prioritize the scanning process by defining the scope of the security testing.
-
-Here's how the scan tree works with the concept of 'context' in OWASP ZAP:
-
-1. **Context**: A context in OWASP ZAP represents a collection of one or more URLs that are grouped together for scanning purposes. Each context can have its own configuration settings, including authentication details, session management, and scope of scanning. By organizing URLs into contexts, you can customize the scanning behavior for different parts of the application. (default: "Default Context")
+# From command line:
 
 
-
-2. **Scan Tree and Context Relationship**: When you add URLs to a context in OWASP ZAP, those URLs become part of the scan tree under that specific context. The scan tree structure reflects the hierarchy of contexts and URLs that have been added for scanning. Each context in the scan tree contains the URLs and parameters that are included in that context's scope.
-
-3. **Managing Scan Scope**: By organizing URLs into contexts and structuring them in the scan tree, you can effectively manage the scan scope in OWASP ZAP. You can add or remove URLs from contexts, adjust scanning configurations for each context, and prioritize the scanning of specific parts of the application based on the context settings.
-
-4. **Scanning Process**: During an active scan in OWASP ZAP, the tool traverses the scan tree starting from the root context and scans the URLs and parameters within each context. The scan tree guides the scanning process, ensuring that OWASP ZAP covers all the targets specified in the contexts while following the defined scope and configurations.
-
-Overall, the scan tree and context management in OWASP ZAP provide a structured approach to organizing and conducting security scans on web applications. By leveraging contexts and the scan tree, you can customize the scanning process, focus on specific areas of the application, and efficiently identify security vulnerabilities.
-
-
-When setting up OWASP ZAP for the first time to scan a single URL like http://www.example.com, you need to configure the ZAP context, add the URL to the context, and then initiate the scan. Here's a step-by-step guide on how to do this, including the necessary curl commands:
-
-1. **Start OWASP ZAP Docker Container**:
-   First, ensure that your OWASP ZAP server is running in a Docker container. You can start the container using the following command:
-
-   `docker run -u zap -p 8080:8080 -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0 -port 8080 -config api.disablekey=true`{{execute}}
-
-2. **Create a New Context**:
-   Use the following curl command to create a new context named "Example Context":
-
-   `curl -X POST http://localhost:8080/JSON/context/action/newContext/ -d 'contextName=Example Context'`{{execute}}
-
-3. **Add URL to the Context**:
-   Add the URL http://www.example.com to the "Example Context" using the following curl command:
-
-   `curl -X POST http://localhost:8080/JSON/context/action/includeInContext/ -d 'contextName=Example Context&regex=http://www.example.com/.*'`{{execute}}
-
-   **Confirm**
-
-   `curl -X GET http://localhost:8080/JSON/context/view/context/?contextName=Example%20Context | jq`{{exec}}
-
-   Check the response from the above command to ensure that the URL `http://www.example.com` is listed under the specified context.
+  ```
+  docker run --rm \
+     -v $(pwd):/zap/wrk/:rw \
+     -u $(id -u):$(id -g) \
+     -t ghcr.io/zaproxy/zaproxy:stable \
+     zap-baseline.py \
+     -t http://localhost:80 \
+     -g gen.conf \
+     -x OWASP-ZAP-Report.xml \
+     -r scan-report.html
+  ```{{exec}}
 
 
-4. **Start the Scan**:
-   Initiate the scan on the specified URL using the following curl command:
+`Docker run [docker options] (ZAP Image) (Packaged Scan Name) -t (target) [zap options]`
 
-   `curl -X POST http://localhost:8080/JSON/ascan/action/scan/ -d 'url=http://www.example.com'`{{execute}}
+`zap-baseline.py` and `zap-full-scan.py`
 
-   WIP still getting {"code":"url_not_found","message":"URL Not Found in the Scan Tree"}
+-m # the number of minutes to spider
+-a  include alpha rules (passive for baseline, active for full)
+-j  use AJAX spider in addition
 
-5. **Monitor Scan Progress**:
-   You can monitor the scan progress by checking the scan status using the following curl command:
+-r (file)report: html format
+-J (file)report: json format
+-x (file)report: xml format
+-w (file)report: markdown format
 
-   `curl -X GET http://localhost:8080/JSON/ascan/view/status/`{{execute}}
+  to debug the run:
 
-6. **Retrieve Scan Results**:
-   Once the scan is completed, you can retrieve the scan results using the following curl command:
+  ```
+  docker run --rm \
+     -v $(pwd):/zap/wrk/:rw \
+     -u $(id -u):$(id -g) \
+     -t ghcr.io/zaproxy/zaproxy:stable \
+     zap-baseline.py -d \
+     -t http://localhost:80 \
+     -g gen.conf \
+     -x OWASP-ZAP-Report.xml \
+     -r scan-report.html
+  ```{{exec}}
 
-   `curl -X GET http://localhost:8080/JSON/ascan/view/alerts/`{{execute}}
 
-By following these steps and using the provided curl commands, you can configure OWASP ZAP, set up the scan for a single URL, and retrieve the scan results for analysis. This approach allows you to perform security testing on the specified URL using OWASP ZAP in a structured and automated manner.
+
+
+## Example ouput:
+
+```
+  Total of 2 URLs
+PASS: Vulnerable JS Library (Powered by Retire.js) [10003]
+PASS: In Page Banner Information Leak [10009]
+PASS: Cookie No HttpOnly Flag [10010]
+PASS: Cookie Without Secure Flag [10011]
+PASS: Re-examine Cache-control Directives [10015]
+PASS: Cross-Domain JavaScript Source File Inclusion [10017]
+PASS: Content-Type Header Missing [10019]
+PASS: Anti-clickjacking Header [10020]
+PASS: X-Content-Type-Options Header Missing [10021]
+PASS: Information Disclosure - Debug Error Messages [10023]
+PASS: Information Disclosure - Sensitive Information in URL [10024]
+PASS: Information Disclosure - Sensitive Information in HTTP Referrer Header [10025]
+PASS: HTTP Parameter Override [10026]
+PASS: Information Disclosure - Suspicious Comments [10027]
+PASS: Open Redirect [10028]
+PASS: Cookie Poisoning [10029]
+...
+
+...
+PASS: Application Error Disclosure [90022]
+PASS: WSDL File Detection [90030]
+PASS: Loosely Scoped Cookie [90033]
+FAIL-NEW: 0     FAIL-INPROG: 0  WARN-NEW: 0     WARN-INPROG: 0  INFO: 0 IGNORE: 0       PASS: 65
+```
+
+---
+
+
+To allow zap to write to a local directory:
+
+`mkdir zap-reports/`{{exec}}
+
+`chmod +777 zap-reports/`{{exec}}
+
+
+For the upcoming reports:
+
+`python -m http.server 8000 -d ./zap-reports/`{{exec}}
+
+
+
+
+## running base line scan
+
+
+docs: https://www.zaproxy.org/docs/docker/baseline-scan/
+
+`docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t https://www.example.com -g gen.conf -r testreport.html`{{copy}}
+
+
+`docker run -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:8000 -g gen.conf -r basehttpserverreport.html`{{exec}}
+
+
+WIP look ling can't access localhost this wey?:
+`docker run -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3000 -g gen.conf -r baseJSreport.html`{{exec}}
+
+`docker run -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t {{TRAFFIC_HOST1_3000}} -g gen.conf -r baseJSreport.html`{{exec}}
+
+`ls zap-reports/`{{exec}}
+
+Review the report on
+
+{{TRAFFIC_HOST1_8000}}
+
+## Running an api scan
+
+https://www.zaproxy.org/docs/docker/api-scan/
+
+Blog: https://www.zaproxy.org/blog/2017-06-19-scanning-apis-with-zap/
+
+`docker run  -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-api-scan.py -t {{TRAFFIC_HOST1_8000}} -f openapi -r api-simple-api-002.html
+
+`docker run -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3000/rest/ -g gen.conf -r apiJSreport.html`{{exec}}
+
+`docker run -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t {{TRAFFIC_HOST1_3000}} -g gen.conf -r apiJSreport.html`{{exec}}
+
+
+WIP Or this?:
+`docker run -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t {{TRAFFIC_HOST1_3000}}/rest -g gen.conf -r apiJSreport.html`{{exec}}
+
+`ls zap-reports/`{{exec}}
+
+Review the report on
+
+{{TRAFFIC_HOST1_8000}}
+
+## Full scan
+
+https://www.zaproxy.org/docs/docker/full-scan/
+
+`docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t https://www.example.com -g gen.conf -r testreport.h`
+
+
+`docker run -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t http://localhost:3000 -g gen.conf -r fullJSreport.h`{{exec}}
+
+`docker run -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t {{TRAFFIC_HOST1_3000}} -g gen.conf -r fullJSreport.h`{{exec}}
+
+`ls zap-reports/`{{exec}}
+
+Review the report on
+
+{{TRAFFIC_HOST1_8000}}

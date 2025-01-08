@@ -41,15 +41,15 @@ Lets pull down the images we'll use.
 
 `docker pull  ghcr.io/zaproxy/zaproxy:stable`{{exec}}
 
-`docker pull bkimminich/juice-shop`{{exe}}
+`docker pull bkimminich/juice-shop`{{exec}}
 
 Lets start juice shop
 
-`docker run --rm -p 3000:3000 bkimminich/juice-shop`{{exe}}
+`docker run --rm -p 3000:3000 bkimminich/juice-shop`{{exec}}
 
 WIP Also at https://juice-shop.herokuapp.com/
 
 and confirm it's up with a apu call
 
 
-`curl http://localhost:3000/rest/products/search?q=Apple`{{exe}}
+`curl http://localhost:3000/rest/products/search?q=Apple`{{exec}}
