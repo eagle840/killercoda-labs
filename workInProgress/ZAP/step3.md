@@ -2,6 +2,8 @@
 # From command line:
 
 
+
+**Format**
   ```
   docker run --rm \
      -v $(pwd):/zap/wrk/:rw \
@@ -17,7 +19,7 @@
 
 `Docker run [docker options] (ZAP Image) (Packaged Scan Name) -t (target) [zap options]`
 
-`zap-baseline.py` and `zap-full-scan.py`
+`zap-baseline.py`, `zap-full-scan.py` and `zap-api-scan.py`
 
 -m # the number of minutes to spider
 -a  include alpha rules (passive for baseline, active for full)
@@ -119,9 +121,7 @@ https://www.zaproxy.org/docs/docker/api-scan/
 
 Blog: https://www.zaproxy.org/blog/2017-06-19-scanning-apis-with-zap/
 
-`docker run  -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-api-scan.py -t {{TRAFFIC_HOST1_8000}} -f openapi -r api-simple-api-002.html
-
-`docker run -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3000/rest/ -g gen.conf -r apiJSreport.html`{{exec}}
+Uses: `zap-api-scan.py`
 
 `docker run -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t {{TRAFFIC_HOST1_3000}} -g gen.conf -r apiJSreport.html`{{exec}}
 
@@ -139,12 +139,12 @@ Review the report on
 
 https://www.zaproxy.org/docs/docker/full-scan/
 
-`docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t https://www.example.com -g gen.conf -r testreport.h`
+WIP: Unknown time, over 20mins to run?
+
+Uses `zap-full-scan.py`
 
 
-`docker run -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t http://localhost:3000 -g gen.conf -r fullJSreport.h`{{exec}}
-
-`docker run -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t {{TRAFFIC_HOST1_3000}} -g gen.conf -r fullJSreport.h`{{exec}}
+`docker run -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-full-scan.py -t {{TRAFFIC_HOST1_3000}} -g gen.conf -r fullJSreport.html`{{exec}}
 
 `ls zap-reports/`{{exec}}
 

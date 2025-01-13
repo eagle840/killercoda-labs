@@ -10,7 +10,6 @@ Dos's covering the types of scan: https://www.zaproxy.org/docs/docker/
 
 `docker run -u zap -p 8080:8080 -p 8090:8090 -i ghcr.io/zaproxy/zaproxy:stable zap-webswing.sh`{{execute}}
 
-goto /zap/ url
 
 {{TRAFFIC_HOST1_8080}}/zap
 

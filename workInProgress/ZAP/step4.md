@@ -21,7 +21,7 @@ When setting up OWASP ZAP for the first time to scan a single URL like http://ww
 1. **Start OWASP ZAP Docker Container**:
    First, ensure that your OWASP ZAP server is running in a Docker container. You can start the container using the following command:
 
-   `docker run -u zap -p 8080:8080 -i owasp/zap2docker-stable zap.sh -daemon -host 0.0.0.0 -port 8080 -config api.disablekey=true`{{execute}}
+   `docker run -u zap -p 8080:8080 -i ghcr.io/zaproxy/zaproxy:stable zap.sh -daemon -host 0.0.0.0 -port 8080 -config api.disablekey=true`{{execute}}
 
 2. **Create a New Context**:
    Use the following curl command to create a new context named "Example Context":
