@@ -1,4 +1,7 @@
 # Step 34
+
+Docs: https://www.zaproxy.org/docs/api/#introduction
+
 In OWASP ZAP, the scan tree is a hierarchical representation of the targets that are being scanned by the tool. It organizes the URLs, parameters, and other elements that OWASP ZAP will scan for vulnerabilities during an active scan. The scan tree structure helps manage and prioritize the scanning process by defining the scope of the security testing.
 
 Here's how the scan tree works with the concept of 'context' in OWASP ZAP:
@@ -30,6 +33,8 @@ Confirm it's up and running:
 
 `curl http://localhost:8080/JSON/core/view/version`{{exec}}
 
+TRY {{TRAFFIC_HOST1_3000}}/UI
+
 
 2. **Create a New Context**:
    Use the following curl command to create a new context named "Example Context":
@@ -39,7 +44,9 @@ Confirm it's up and running:
 3. **Add URL to the Context**:
    Add the URL http://www.example.com to the "Example Context" using the following curl command:
 
-   `curl -X POST http://localhost:8080/JSON/context/action/includeInContext/ -d 'contextName=Example Context&regex=http://www.example.com/.*'`{{execute}}
+   bad:`curl -X POST http://localhost:8080/JSON/context/action/includeInContext/ -d 'contextName=Example Context&regex=http://www.example.com/.*'`{{copy}}
+
+   try`curl 'http://localhost:8080/JSON/context/action/includeInContext/?contextName=Example+Context&regex=http%3A%2F%2Fwww.example.com/.*'`{{exec}}
 
    **Confirm**
 
