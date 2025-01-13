@@ -89,6 +89,8 @@ www.zaproxy.org/addons
 
 # Access the API from outside of the docker container
 
+WIP **Isn't this in step 4?**
+
 https://www.zaproxy.org/docs/docker/about/#accessing-the-api-from-outside-of-the-docker-container
 
 Read and comsume this: https://www.zaproxy.org/docs/docker/about/
