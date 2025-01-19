@@ -44,4 +44,30 @@ If you prefer using the .NET CLI without the `dotnet-script` tool, you can use t
 dotnet run -p hello.csx
 ```
 
+
+##  Directives 
+
 This is a simple example, but it shows how easy it is to get started with C# scripting. If you have any specific questions or need more examples, feel free to ask!
+
+You’re correct that in many programming languages, `#` is used to denote comments or remarks. However, in the context of C# scripting, the `#` character serves multiple purposes.
+
+- **Comments**: You’re right, in C#, `//` is used for single-line comments and `/* ... */` for multi-line comments.
+- **Preprocessor Directives**: In C# scripting, `#` is also used for preprocessor directives, which provide instructions to the compiler. Common directives include `#define`, `#if`, `#else`, `#endif`, and `#region`.
+- **Script Directives**: In C# scripting specifically, `#r` is a directive used to reference external assemblies, while `#load` is used to load other script files.
+
+Here’s an example that uses both `#r` and a comment in a C# script:
+```csharp
+#r "Microsoft.Azure.DocumentDB.Core" // This references the Cosmos DB SDK
+using Microsoft.Azure.Documents;
+using Microsoft.Azure.Documents.Client;
+
+var endpoint = "https://your-cosmos-db-endpoint.documents.azure.com:443/";
+var authKey = "your-auth-key";
+var client = new DocumentClient(new Uri(endpoint), authKey);
+
+Console.WriteLine("Connected to Azure Cosmos DB!");
+```
+
+So while `#` does indeed function as a comment marker in some contexts, its versatility in C# scripting extends to powerful directives that enhance your scripting capabilities. 
+
+If you have more questions or if there's anything else you'd like to know, feel free to ask!
