@@ -33,7 +33,7 @@ Confirm it's up and running:
 
 `curl http://localhost:8080/JSON/core/view/version`{{exec}}
 
-TRY {{TRAFFIC_HOST1_3000}}/UI
+TRY {{TRAFFIC_HOST1_8080}}/UI
 
 
 2. **Create a New Context**:

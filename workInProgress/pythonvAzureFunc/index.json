@@ -1,6 +1,6 @@
 {
   "title": "work-in-progress Python Azure Functions",
-  "description": "Using a Azure Functions with Python (v0.0.7)",
+  "description": "Using a Azure Functions with Python (v0.0.8)",
   "difficulty": "Intermediate",
   "time": "1",
   "details": {
@@ -24,18 +24,6 @@
       {
         "title": "Step 5",
         "text": "step5.md"
-      },
-      {
-        "title": "Step 6",
-        "text": "step6.md"
-      },
-      {
-        "title": "Step 7",
-        "text": "step7.md"
-      },
-      {
-        "title": "Step 8",
-        "text": "step8.md"
       }
     ],
     "intro": {
