@@ -19,10 +19,10 @@ We'll be using python version 3.11
 
 
 
-```bash
+```
 sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt update
-sudo apt install python3.11
+sudo apt install python3.11 jq
 ```{{exec}}
 
 `python3 -V`{{exec}}
@@ -183,7 +183,11 @@ def MyHttpTrigger(req: func.HttpRequest) -> func.HttpResponse:
 ```{{copy}}
 
 
-curl -X POST http://localhost:7071/api/MyHttpTrigger -H "Content-Type: application/json" -d '{"names": ["www.example.com", "www.bbc.com"]}'
+`curl -X POST http://localhost:7071/api/MyHttpTrigger -H "Content-Type: application/json" -d '{"names": ["www.example.com", "www.bbc.com"]}'`{{exec}}
+
+---
+DELETE BELOW?
+
 
 
 curl cmd:
