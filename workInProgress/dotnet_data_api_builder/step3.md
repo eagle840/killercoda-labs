@@ -38,6 +38,17 @@ type Author @model {
 
 {{TRAFFIC_HOST1_5000}}/graphql
 
+WIP
+
+what do I get if I hit:
+{{TRAFFIC_HOST1_5000}}
+
+{{TRAFFIC_HOST1_5000}}/swagger
+
+{{TRAFFIC_HOST1_5000}}/graphql
+
+{{TRAFFIC_HOST1_5000}}/api/Author
+
 Run query
 
 ```
@@ -48,6 +59,20 @@ query {
       firstName
       lastName
     }
+  }
+}
+```
+
+```
+mutation {
+  createAuthor(item: {
+    id: "003",
+    firstName: "Jane",
+    lastName: "Doe"
+  }) {
+    id
+    firstName
+    lastName
   }
 }
 ```
