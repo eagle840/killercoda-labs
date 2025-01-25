@@ -3,15 +3,15 @@
 https://learn.microsoft.com/en-us/training/modules/work-with-cosmos-db/3-exercise-work-cosmos-db-dotnet
 
 
-md az204-cosmos
-cd az204-cosmos
+`md az204-cosmos`{{exec}}
 
-dotnet new console
+`cd az204-cosmos`{{exec}}
 
+`dotnet new console`{{exec}}
 
-code . -r
+`code . -r`{{exec}}
 
-dotnet add package Microsoft.Azure.Cosmos
+`dotnet add package Microsoft.Azure.Cosmos`{{exec}}
 
 Delete any existing code in the Program.cs file and add the using Microsoft.Azure.Cosmos statement.
 

@@ -1,15 +1,6 @@
 
 # Initial Setup
 
-Quickstart: Use Data API builder with SQL [link](https://learn.microsoft.com/en-gb/azure/data-api-builder/quickstart-sql)
-
-MS Docs: https://learn.microsoft.com/en-gb/azure/data-api-builder/
-
-YT MS Developer: https://www.youtube.com/watch?v=XQRO_uoGhp4
-
-
-These quickstarts inc docker for cosmos, postgreSQL. MySQL
-
 
 WIP Install c# debugger in VSC
 
@@ -36,17 +27,71 @@ and verify the install:
 
 `dotnet --version`{{exec}}
 
-## Run Docker sql
-
-open a new tab and setup the servers.
 
 ## Setup Cosmos 
 
 In Azure setup a cosmos resourvce
 
+WIP  Compare against serverless
+
+```
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.DocumentDB/databaseAccounts",
+      "apiVersion": "2021-04-01-preview",
+      "name": "[parameters('accountName')]",
+      "location": "[parameters('location')]",
+      "kind": "GlobalDocumentDB",
+      "properties": {
+        "databaseAccountOfferType": "Standard",
+        "locations": [
+          {
+            "locationName": "[parameters('location')]"
+          }
+        ]
+      }
+    }
+  ],
+  "parameters": {
+    "accountName": {
+      "type": "string",
+      "defaultValue": "mycosmosdbaccount"
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "West US"
+    }
+  }
+}
+
+```
+
 **create a arm template** to 'custom deploy'
 
 ## Install cosmos data migration tool
+
+https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-migrate-desktop-tool?tabs=azure-cli
+
+https://github.com/azurecosmosdb/data-migration-desktop-tool
+
+Download the latest release at https://github.com/AzureCosmosDB/data-migration-desktop-tool/releases
+
+as on Jan 2025
+
+`wget https://github.com/AzureCosmosDB/data-migration-desktop-tool/releases/download/2.1.6/dmt-2.1.6-linux-x64.zip`{{exec}}
+
+`unzip dmt-2.1.6-linux-x64.zip`{{exec}}
+
+/root/linux-package
+
+```
+chmod +x /root/linux-package/dmt
+echo 'export PATH=$PATH:/root/linux-package' >> ~/.bashrc
+source ~/.bashrc
+```{{exec}}
 
 
 ## Create new database
