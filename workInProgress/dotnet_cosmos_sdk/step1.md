@@ -7,7 +7,7 @@ WIP Install c# debugger in VSC
 
 `sudo apt update`{{exec}}
 
-`apt install -y curl git sqlite3 libpq-dev libreadline-dev sqlite`{{exec}}
+`apt install -y curl git sqlite3 libpq-dev libreadline-dev sqlite jq`{{exec}}
 
 ## Install dotnet
 
@@ -93,6 +93,8 @@ echo 'export PATH=$PATH:/root/linux-package' >> ~/.bashrc
 source ~/.bashrc
 ```{{exec}}
 
+
+`dmt -h`{{exec}}
 
 ## Create new database
 
