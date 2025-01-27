@@ -1,7 +1,21 @@
 
 ## Initial Setup
 
+Sure! Here are some popular time series databases:
 
+https://db-engines.com/en/system/InfluxDB
+
+**InfluxDB** is a highly scalable, open-source time series database designed for real-time analytics, monitoring, and IoT applications¹(https://www.trustradius.com/time-series-databases)²(https://www.timescale.com/learn/the-best-time-series-databases-compared). It supports SQL-like queries through InfluxQL and its own scripting language, Flux²(https://www.timescale.com/learn/the-best-time-series-databases-compared).
+
+## Comparison of **InfluxDB** and **Prometheus**:
+
+- **Purpose**: InfluxDB is a time series database for analytics and monitoring; Prometheus is a monitoring and alerting toolkit.
+- **Data Collection**: InfluxDB uses a push model; Prometheus uses a pull model.
+- **Query Language**: InfluxDB supports InfluxQL and Flux; Prometheus uses PromQL.
+- **Storage**: InfluxDB offers scalable, cloud-native options; Prometheus uses efficient local storage and supports federation.
+- **Visualization**: Both are often paired with Grafana for advanced dashboards.
+
+Both are great for monitoring, but your choice depends on your specific needs.
 
 
 # list of programs
