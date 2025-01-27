@@ -75,7 +75,7 @@ public class Program
 }
 ```
 
-after, add 
+after, add
 
 ```
 public async Task CosmosAsync()
@@ -206,4 +206,4 @@ public class Program
     }
 }
 
-```
+```{{copy}}

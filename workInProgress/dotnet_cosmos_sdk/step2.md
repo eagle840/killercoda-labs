@@ -53,7 +53,7 @@ type Author @model {
 ```{{copy}}
 
 
-`dab init --database-type "cosmosdb_nosql" --host-mode "Development" --cosmosdb_nosql-database bookshelf --graphql-schema schema.graphql --connection-string "CONNECT_STRING"`
+`dab init --database-type "cosmosdb_nosql" --host-mode "Development" --cosmosdb_nosql-database bookshelf --graphql-schema schema.graphql --connection-string "CONNECT_STRING"`{{exec}}
 
 
 `dab add Author --source "authors" --permissions "anonymous:*"`{{exec}}
@@ -162,5 +162,3 @@ data
   }
 ]
 ```
-
-
