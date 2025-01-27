@@ -3,9 +3,11 @@
 
 Sure! Here are some popular time series databases:
 
+Also see: https://killercoda.com/influxdata/course/Training/influxdb-roadshow-training
+
 https://db-engines.com/en/system/InfluxDB
 
-**InfluxDB** is a highly scalable, open-source time series database designed for real-time analytics, monitoring, and IoT applications¹(https://www.trustradius.com/time-series-databases)²(https://www.timescale.com/learn/the-best-time-series-databases-compared). It supports SQL-like queries through InfluxQL and its own scripting language, Flux²(https://www.timescale.com/learn/the-best-time-series-databases-compared).
+**InfluxDB** is a highly scalable, open-source time series database designed for real-time analytics, monitoring, and IoT applications. It supports SQL-like queries through InfluxQL and its own scripting language, Flux.
 
 ## Comparison of **InfluxDB** and **Prometheus**:
 
@@ -36,19 +38,6 @@ a js program
 - https://library.mosse-institute.com/articles/2022/10/generating-logs-of-analysis-using-soc-faker-part-1.html
 
 
-## soc-faker
-
-- A python package for use in generating fake data for SOC and security automation.
--
-
---- old lab - DELETE
-
-Boot up the ES and kibana
-
-`docker-compose up -d`{{exec}}
-
-In another tab, lets setup some tools/config
-
 `apt update`{{exec}}
 
 `apt install -y net-tools jq tree`{{exec}}
@@ -69,23 +58,34 @@ docker run \
  --env DOCKER_INFLUXDB_INIT_USERNAME=dbadmin \
  --env DOCKER_INFLUXDB_INIT_PASSWORD=dbadmin123 \
  --env DOCKER_INFLUXDB_INIT_ORG=MyOrg \
- --env DOCKER_INFLUXDB_INIT_BUCKET=BUCKET_NAME \
+ --env DOCKER_INFLUXDB_INIT_BUCKET=BUCKET_ONE \
  influxdb:2
-```
+```exec
 
 ## Connecting
 
-### Cli
+#### Cli
 
 In a new tab `docker exec -it influxdb2 influx config ls`{{exec}}
 
-### UI portal
+#### UI portal
 
-{{TRAFFIC_HOST1_5601}}
+login:  un:dbadmin   PW: dbadmin123
 
-### Http API
+{{TRAFFIC_HOST1_8086}}
+
+#### Http API
 
 create a token https://docs.influxdata.com/influxdb/v2/admin/tokens/create-token/
+
+In the portal, LHS click the UP arrow, and API tokens
+
+Generate a new all access token. (make sure to copy it down)
+
+
+`API_TOKEN="insert  token"{{copy}}
+
+
 
 ```bash
 #######################################
@@ -100,34 +100,42 @@ curl --get "http://localhost:8086/api/v2" \
   --data-urlencode "q=SELECT * FROM cpu_usage"
 ```
 
-
+```
+curl --get "http://localhost:8086/api/v2" \
+  --header {$API_TOKEN} \
+  --header 'Content-type: application/json' \
+  --data-urlencode "db=mydb" \
+  --data-urlencode "q=SELECT * FROM cpu_usage"
+```
 ## Actions
 
 `docker exec -it influxdb2 influx v1 shell`{{exec}}
 
 make sure you're in the influx shell **>**
 
-`show databases`{{exec}}
+`show databases`{{copy}
 
-`create database newdatabase`{{exec}}
+WIP doesn't wor; so use BUCKET_ONE`create database newdatabase`{{copy}}
 
-`show databases`{{exec}}
+`show databases`{{copy}}
 
-`user newdatabase`{{exec}}
+WIP `use newdatabase`{{copy}}
 
-`show measurements`{{exec}}
+`use BUCKET_ONE`{{copy}}
 
-`insert cpu, host=node1 value=10`{{exec}}
+`show measurements`{{copy}}
 
-`show measurements`{{exec}}
+`insert cpu, host=node1 value=10`{{copy}}
 
-`select * from cpu`{{exec}}
+`show measurements`{{copy}}
+
+`select * from cpu`{{copy}}
 
 Note that the system has added a timestamp.
 
-`drop measurement cpu`
+`drop measurement cpu`{{copy}}
 
-`show measurements`{{exec}}
+`show measurements`{{copy}}
 
 ## UI
 
@@ -144,70 +152,39 @@ insert cpu, host=node3 value=22
 
 Host is the tag for the nodes
 
-`select * from cpu where host='node'`{{exec}}
+`select * from cpu where host='node'`{{copy}}
 
 For a time range
 
-`select * from cpu where time >= now() - 5m`
----
+`select * from cpu where time >= now() - 5m`{{copy}}
 
 
-
-Delete below?
-
-
-## Install Logstash
-
-Config APT to download logstash, note that it's important to use the same version of logstash as elastricsearch.
-
-See https://www.elastic.co/guide/en/logstash/7.17/installing-logstash.html#_apt for more info
-
-`wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg`{{exec}}
-
-`sudo apt-get install apt-transport-https`{{exec}}
-
-`echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-7.x.list`{{exec}}
-
-`sudo apt-get update`{{exec}}
-
-And install Logstash
-
-`apt-get install logstash`{{exec}}
-
-`PATH=$PATH:/usr/share/logstash/bin`{{exec}}
-
-[See the elastic site for getting started](https://www.elastic.co/guide/en/logstash/7.17/first-event.html)
-
-review the main config file:
-
-`ls /etc/logstash/`{{exec}}
-
-and list out the available binaries:
-
-`ls /usr/share/logstash/bin`{{exec}}
-
-`/usr/share/logstash/bin/logstash -h`{{exec}}
+## Install Telegraf
 
 
-## Check Elastic Stack is running.
-
-Once the Docker-compose has completed, wait a few minutes for the elasticsearch server to come up, you will get a json response from:
-
-`curl http://localhost:9200`{{exec}}
+https://influxdata.com/time-series-platform/telegraf/
 
 
-{{TRAFFIC_HOST1_5601}}/app/home
+```
+# influxdata-archive_compat.key GPG fingerprint:
+#     9D53 9D90 D332 8DC7 D6C8 D3B9 D8FF 8E1F 7DF8 B07E
+wget -q https://repos.influxdata.com/influxdata-archive_compat.key
+echo '393e8779c89ac8d958f81f942f9ad7fb82a25e133faddaf92e15b16e6ac9ce4c influxdata-archive_compat.key' | sha256sum -c && cat influxdata-archive_compat.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg > /dev/null
+echo 'deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg] https://repos.influxdata.com/debian stable main' | sudo tee /etc/apt/sources.list.d/influxdata.list
+
+sudo apt-get update && sudo apt-get install telegraf
+```{{exec}}
 
 
-## Run a basic logstash test
+See https://docs.influxdata.com/telegraf/v1/
 
 
-start logstash
+https://docs.influxdata.com/telegraf/v1/get-started/
 
-`/usr/share/logstash/bin/logstash -e 'input { stdin { } } output { stdout {} }'`{{exec}}
+create a sample config
 
-After starting Logstash, wait until you see "Pipeline main started" and then enter hello world at the command prompt and note the json element outputed.
+`telegraf --sample-config > telegraf.conf`{{exec}}  =>  /etc/telegraf/telegraf.conf
 
-Note the json output that logstash has generated.
+set the  InfluxDB URL in the config
 
-ctrl-d to exit
+`telegraf --sample-config --input-filter cpu:mem --output-filter influxdb_v2 > telegraf.conf`{{exec}}
