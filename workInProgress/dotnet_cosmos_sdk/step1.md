@@ -28,7 +28,7 @@ and verify the install:
 `dotnet --version`{{exec}}
 
 
-## Setup Cosmos 
+## Setup Cosmos
 
 In Azure setup a cosmos resourvce
 
@@ -101,3 +101,7 @@ source ~/.bashrc
 
 Put some data here and migrate to cosmos
 
+## Connecting with Python/Jupter
+
+
+https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/tutorial-create-notebook-vscode?tabs=python

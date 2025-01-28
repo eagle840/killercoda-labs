@@ -33,6 +33,8 @@ https://learn.microsoft.com/en-gb/azure/data-api-builder/quickstart-sql#install-
 
 Cosmos and graphql
 
+## Setup an Azure Cosmos Account
+
 Create an azure cosmos db
 
 Create a db bookshelf
@@ -52,6 +54,8 @@ type Author @model {
 }
 ```{{copy}}
 
+
+## Initait DAB, add the **connection string**
 
 `dab init --database-type "cosmosdb_nosql" --host-mode "Development" --cosmosdb_nosql-database bookshelf --graphql-schema schema.graphql --connection-string "CONNECT_STRING"`{{exec}}
 
