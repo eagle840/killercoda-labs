@@ -28,7 +28,7 @@ install python 3.11 with the following script:
 
 ### Install mlflow
 
-`pip install -U click jinja2`{{exec}} 
+`pip install -U click jinja2`{{exec}}
 
 `pip install mlflow`{{exec}}
 
@@ -60,15 +60,15 @@ and note that some new folders have been created for mlflow.
 
 By default, mlflow will track resources in the local mlruns folder, in a future step we'll change that to a sqlite database
 
-each numbered folder is an 'experiment', and each experiment has 'runs' with alphanumberic numbers. (as shown in the UI later).      
-     - meta data file: basic info about the experiment, inc 'name'   
-     - tags folder - more info about the 'experiment/run'   
-    
+each numbered folder is an 'experiment', and each experiment has 'runs' with alphanumberic numbers. (as shown in the UI later).
+     - meta data file: basic info about the experiment, inc 'name'
+     - tags folder - more info about the 'experiment/run'
+
 lets list out experiment 0 runs:
 
 `mlflow runs list --experiment-id 0`{{exec}}
-     
-      
+
+
 
 This working in conjunction with the mlflow ui tool.
 
@@ -87,7 +87,7 @@ Exit out of the ui server (ctrl-c)
 
 ## Another Example:
 
-In this example, we'll be using  scikit learn
+In this example, we'll be using  scikit learn [elasticNet](https://scikit-learn.org/dev/modules/generated/sklearn.linear_model.ElasticNet.html)
 
 
 `pip install -U scikit-learn`{{exec}}
@@ -102,7 +102,7 @@ https://scikit-learn.org/stable/modules/linear_model.html#elastic-net
 
 `cat train.py`{{exec}}
 
-note:   
+note:
    - mlflow.sklearn.log_model  - will store the generated model
 
 Note the directory/file structure:
@@ -146,13 +146,11 @@ run the model a training a couple more times with different parmeters:
 
 lets look at the ui now:
 
-`mlflow ui --host 0.0.0.0`{{exec}} 
+`mlflow ui --host 0.0.0.0`{{exec}}
 
-you can access the ui at port 5000 {{TRAFFIC_HOST1_5000}} 
+you can access the ui at port 5000 {{TRAFFIC_HOST1_5000}}
 
 
 ## compare model parameters
 
 Go back into the UI, and tick the check boxs againt all three runs, and click on compare. This will give you an analyical comparison of the runs, allowing you to pick the best model for your requirement.
-
-
