@@ -66,6 +66,64 @@ dotnet run -- --name 'Mica Pereira' --state 'Washington' --country 'United State
 
 AT STEP 8
 
+Update the URI and KEY, and update 'CosmosHandler.cs' with
+
+```
+using Humanizer;
+using Microsoft.Azure.Cosmos;
+using System;
+using System.Threading.Tasks;
+
+public static class CosmosHandler
+{
+    public static async Task ManageCustomerAsync(string name, string email, string state, string country)
+    {
+        Container container = await GetContainerAsync();
+        string id = name.Kebaberize();
+        var customer = new {
+            id = id,
+            name = name,
+            address = new {
+                state = state,
+                country = country
+            }
+        };
+        var response = await container.CreateItemAsync(customer);
+        Console.WriteLine($"[{response.StatusCode}]\t{id}\t{response.RequestCharge} RUs");
+    }
+
+    private static readonly CosmosClient _client;
+
+    static CosmosHandler()
+    {
+        _client = new CosmosClient(
+            accountEndpoint: "URL",
+            authKeyOrResourceToken: "KEY"
+        );
+    }
+
+    private static async Task<Container> GetContainerAsync()
+    {
+        Database database = _client.GetDatabase("cosmicworks");
+        List<string> keyPaths = new()
+        {
+            "/address/country",
+            "/address/state"
+        };
+        ContainerProperties properties = new(
+            id: "customers",
+            partitionKeyPaths: keyPaths
+        );
+        return await database.CreateContainerIfNotExistsAsync(
+            containerProperties: properties
+        );
+    }
+}
+
+```
+
+AT [Retrieve an item using the SDK](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/tutorial-dotnet-console-app#retrieve-an-item-using-the-sdk)
+
 ---
 
 
