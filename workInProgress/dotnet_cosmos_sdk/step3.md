@@ -1,3 +1,75 @@
+# Command line
+
+Taken from  https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/tutorial-dotnet-console-app
+
+
+`dotnet new console --langVersion preview`{{exec}}
+
+`dotnet add package Microsoft.Azure.Cosmos --version 3.31.1-preview`{{exec}}
+
+`dotnet add package Microsoft.Azure.Cosmos --version 3.31.1-preview`{{exec}}
+
+`dotnet add package System.CommandLine --prerelease`{{exec}}
+
+`dotnet add package Humanizer`{{exec}}
+
+replace Program.cs with
+
+```
+using System.CommandLine;
+
+    var command = new RootCommand();
+
+    var nameOption = new Option<string>("--name") { IsRequired = true };
+    var emailOption = new Option<string>("--email");
+    var stateOption = new Option<string>("--state") { IsRequired = true };
+    var countryOption = new Option<string>("--country") { IsRequired = true };
+
+    command.AddOption(nameOption);
+    command.AddOption(emailOption);
+    command.AddOption(stateOption);
+    command.AddOption(countryOption);
+
+    command.SetHandler(
+        handle: CosmosHandler.ManageCustomerAsync,
+        nameOption,
+        emailOption,
+        stateOption,
+        countryOption
+);
+
+await command.InvokeAsync(args);
+```
+
+`dotnet build`{{exec}}
+
+`touch CosmosHandler.cs`{{exec}}
+
+```
+using Humanizer;
+using Microsoft.Azure.Cosmos;
+using System;
+using System.Threading.Tasks;
+
+public static class CosmosHandler
+{
+    public static async Task ManageCustomerAsync(string name, string email, string state, string country)
+    {
+        await Console.Out.WriteLineAsync($"Hello {name} of {state}, {country}!");
+    }
+}
+
+```
+
+dotnet run -- --name 'Mica Pereira' --state 'Washington' --country 'United States'
+
+
+AT STEP 8
+
+---
+
+
+
 # sdk
 
 https://learn.microsoft.com/en-us/training/modules/work-with-cosmos-db/3-exercise-work-cosmos-db-dotnet
