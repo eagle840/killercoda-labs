@@ -14,15 +14,13 @@
 
 `cd MyWebApp/`{{exec}}
 
-WIP add the project to the solution file
-
-WIP, move to step 3 and 4?`dotnet sln ../MySolution.sln add MyWebApp.csproj`{{exec}}
-
 ## Add Application Insights
 
 https://learn.microsoft.com/en-us/azure/azure-monitor/app/asp-net
 
-`dotnet add package Microsoft.ApplicationInsights.AspNetCore --version 2.18.0`{{exec}}
+`dotnet add package Microsoft.ApplicationInsights.AspNetCore --version 2.22.0`{{copy}}
+
+`dotnet add package Microsoft.ApplicationInsights.AspNetCore`{{exec}}
 
 check the csproj file, that is has been added
 
@@ -57,7 +55,7 @@ In the appsettings.json, update to match:
 {{TRAFFIC_HOST1_5000}}
 
 
-In the Azure Application Insight 'Overview', click on 'Seacrh', and reduce the time span to 30mins. It will take a couple of minutes for the entries to populate.
+In the Azure Application Insight 'Overview', click on 'Seacrh', and reduce the time span to 1 hour. It will take a couple of minutes for the entries to populate.
 
 Stop the application, and then start it in watch mode.
 
@@ -69,6 +67,10 @@ In the following example we shall be using the Privacy web page to trigger loggi
 
 
 ## add a log
+
+logging in blazor https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/logging?view=aspnetcore-8.0
+
+logging w/ App Insights https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview
 
 In the /pages/Privacy.cshtml.cs update the 'OnGet'
 
