@@ -1,7 +1,9 @@
 # Build a web app and local logging
 
 
+# create as a standalone
 
+- with the next two step intergrate together (api and wasm)
 
  https://learn.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/razor-pages-start?view=aspnetcore-7.0&tabs=visual-studio-code
 
@@ -12,9 +14,9 @@
 
 `cd MyWebApp/`{{exec}}
 
-add the project to the solution file
+WIP add the project to the solution file
 
-WIP, is this needed?`dotnet sln ../MySolution.sln add MyWebApp.csproj`{{exec}}
+WIP, move to step 3 and 4?`dotnet sln ../MySolution.sln add MyWebApp.csproj`{{exec}}
 
 ## Add Application Insights
 
@@ -153,3 +155,10 @@ The built-in logging providers in .NET Core provide different ways to output log
    - The EventLog provider writes log messages to the Windows Event Log. This provider is useful for logging critical events and errors that need to be monitored and managed centrally. Log messages sent to the EventLog provider can be viewed using the Event Viewer tool in Windows.
 
 Each of these built-in providers offers different capabilities and is suitable for different scenarios. By configuring the logging providers in the application settings, you can control where log messages are sent and how they are processed, making it easier to manage and analyze logs effectively.
+
+
+## Close down the app.
+
+`ctrl-c`
+
+in the next steps we'll start a API app, and a blasor WASM app, and tie the two together in app insights

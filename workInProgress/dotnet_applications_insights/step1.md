@@ -44,7 +44,7 @@ and verify the install:
 `dotnet --version`{{exec}}
 
 
-# WIP remove the below
+# WIP move this to STEP 3
 
 ## USes a sln file?
 

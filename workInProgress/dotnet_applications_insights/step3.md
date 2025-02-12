@@ -18,6 +18,8 @@ Now lets add a API to the solution and alter the web app to call the API
 
 `cd ~`{{exec}}
 
+WIP Add sln file
+
 WIP old remove this `dotnet new web -o TodoApi`{{exec}}
 
 `dotnet new webapi -o TodoApi`{{exec}}
@@ -26,7 +28,7 @@ WIP old remove this `dotnet new web -o TodoApi`{{exec}}
 
 add the project to the solution file
 
-`dotnet sln ../MySolution.sln add TodoApi.csproj`{{exec}}
+WIP `dotnet sln ../MySolution.sln add TodoApi.csproj`{{exec}}
 
 wip `dotnet dev-certs https --trust`{{copy}}  # FOr windows machines
 

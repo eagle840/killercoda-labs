@@ -5,17 +5,19 @@ To create a Blazor WebAssembly (Wasm) app that makes a simple GET request to you
 1. Create a new Blazor WebAssembly project:
 ```bash
 dotnet new blazorwasm -o WeatherApp
-```
+```{{exec}}
 
 2. Navigate to the WeatherApp directory:
 ```bash
 cd WeatherApp
-```
+```{{exec}}
+
+WIP add sln  `dotnet sln ../MySolution.sln add TodoApi.csproj`{{exec}}
 
 3. Add the `System.Net.Http.Json` package to your project. This package provides support for making HTTP requests in Blazor WebAssembly:
 ```bash
 dotnet add package System.Net.Http.Json
-```
+```{{exec}}
 
 4. Open the `WeatherApp.csproj` file in a text editor and ensure that the `System.Net.Http.Json` package is added as a reference:
 ```xml
@@ -24,9 +26,11 @@ dotnet add package System.Net.Http.Json
 </ItemGroup>
 ```
 
-`cat WeatherApp.csproj`
+`cat WeatherApp.csproj`{{exec}}
 
 5. Update the `WeatherApp/Pages/Home.razor` file to make a GET request to your TodoApi:
+
+
 ```csharp
 @page "/"
 @using System.Net.Http
@@ -36,41 +40,7 @@ dotnet add package System.Net.Http.Json
 
 <h1>Weather Information</h1>
 
-@if (weatherData != null)
-{
-    <p>Temperature: @weatherData.Temperature</p>
-    <p>Conditions: @weatherData.Conditions</p>
-}
-else
-{
-    <p>Loading...</p>
-}
-
-@code {
-    private WeatherData weatherData;
-
-    protected override async Task OnInitializedAsync()
-    {
-        weatherData = await HttpClient.GetFromJsonAsync<WeatherData>("https://localhost:5001/weather");
-        // enter killcoda url {{TRAFFIC_HOST1_5001}}/weatherforecast
-    }
-
-    public class WeatherData
-    {
-        public string Temperature { get; set; }
-        public string Conditions { get; set; }
-    }
-}
-```
-
-```
-@page "/"
-@using System.Net.Http
-@using System.Net.Http.Json
-@using System.Text.Json
-@inject HttpClient HttpClient
-
-<h1>Weather Information</h1>
+<button @onclick="RefreshData">Refresh Data</button>
 
 @if (weatherData != null)
 {
@@ -102,8 +72,12 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        weatherData = await HttpClient.GetFromJsonAsync<WeatherData[]>("https://localhost:5001/weatherforecast");
-        // enter killcoda url {{TRAFFIC_HOST1_5001}}/weatherforecast
+        await RefreshData();
+    }
+
+    private async Task RefreshData()
+    {
+        weatherData = await HttpClient.GetFromJsonAsync<WeatherData[]>("{{TRAFFIC_HOST1_5001}}/weatherforecast");
     }
 
     public class WeatherData
@@ -121,7 +95,7 @@ else
 7. Run your Blazor WebAssembly project by navigating to the WeatherApp directory and executing:
 ```bash
 dotnet run --urls http://0.0.0.0:5000
-```
+```{{exec}}
 
 8. Access your WeatherApp in a web browser at `https://localhost:5000`, {{TRAFFIC_HOST1_5000}}
 
