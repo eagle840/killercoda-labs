@@ -23,39 +23,28 @@ In this lab we will quickly install Dotnet using ASDF
 
 
 
-`apt install -y curl git sqlite3 libpq-dev libreadline-dev`{{exec}}
 
-`git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
 
-`. "$HOME/.asdf/asdf.sh"`{{exec}} WIP pipe to .brashrc?
+`apt install -y curl git sqlite3 libpq-dev libreadline-dev sqlite jq`{{exec}}
 
-`echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc`{{exec}}
 
-`. "$HOME/.asdf/completions/asdf.bash"`{{exec}}
+```
+wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+```{{exec}}
 
-`echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc`{{exec}}
+```
+sudo apt-get update && \
+  sudo apt-get install -y dotnet-sdk-8.0
+```{{exec}}
 
-`asdf current`{{exec}}
+and verify the install:
 
-### use dotnet
-
-`asdf plugin add dotnet`{{exec}}
-
-#### Show all installable versions
-`asdf list-all dotnet`{{exec}}
-
-#### Install specific version
-`asdf install dotnet latest`{{exec}}
-
-#### Set a version globally (on your ~/.tool-versions file)
-`asdf global dotnet latest`{{exec}}
-
-#### Now dotnet commands are available
 `dotnet --version`{{exec}}
 
 
-WIP
-remove the below
+# WIP remove the below
 
 ## USes a sln file?
 

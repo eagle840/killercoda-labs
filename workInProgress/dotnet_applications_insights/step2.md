@@ -14,7 +14,7 @@
 
 add the project to the solution file
 
-`dotnet sln ../MySolution.sln add MyWebApp.csproj`{{exec}}
+WIP, is this needed?`dotnet sln ../MySolution.sln add MyWebApp.csproj`{{exec}}
 
 ## Add Application Insights
 

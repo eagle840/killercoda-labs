@@ -8,8 +8,14 @@ docker run -d -p 8086:8086 --name influxdb influxdb
 
 2. Pull and run Prophet Docker container:
 ```
-docker run -it --name prophet jupyter/datascience-notebook
+docker run -it -p 8888:8888 --name prophet jupyter/datascience-notebook
 ```{{exec}}
+
+connect to port 8888
+
+enter token from
+
+`docker exec prophet jupyter server list`{{exec}}
 
 3. Install Prophet in the Jupyter notebook container:
 ```
@@ -64,6 +70,22 @@ forecast = m.predict(future)
 
 This code will load data from InfluxDB, create a Prophet model, fit the model to the data, and generate a forecast for the future time periods.
 
+graph TD
+    A[Signal] --> B[Growth/Trend]
+    A --> C[Seasonal]
+    A --> D[Holiday]
+    A --> K[Noise]
+
+    B --> E[Linear Growth]
+    B --> F[Logistic Growth]
+
+    C --> G[Yearly Seasonality]
+    C --> H[Weekly Seasonality]
+    C --> I[Daily Seasonality]
+
+    D --> J[Holiday Effects]
+
+    K --> L[Random Fluctuations]
 
 
 DELETE BELOW

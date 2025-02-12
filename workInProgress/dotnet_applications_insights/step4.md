@@ -1,3 +1,5 @@
+# blazor wasm
+
 # Using Node.JS Move to step 5
 
 See MS docs on App Insights JS sdk https://learn.microsoft.com/en-us/azure/azure-monitor/app/javascript-sdk?tabs=javascriptwebsdkloaderscript
