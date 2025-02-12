@@ -111,7 +111,15 @@ Goto the Azure App Insights portal and copy the connection string, and add it to
 
 Now rerun the logging and exception steps and note how it effects App insights.
 
+## WIP
 
+in Program.cs addd
+
+`app.UseHttpLogging();`  wip:error
+
+after app.UseHttpsRedirection();
+
+learn more: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0
 
 # Namespace logging
 

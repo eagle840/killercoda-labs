@@ -12,11 +12,19 @@ Now lets add a API to the solution and alter the web app to call the API
 
 )
 
+## add sln file
+
 
 **WIP** do this: https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel?view=aspnetcore-8.0
 
 
 `cd ~`{{exec}}
+
+for this project, since to dotnet apps running together
+
+`dotnet new sln -n MySolution`{{exec}}
+
+`dotnet  sln list`{{exec}}
 
 WIP Add sln file
 

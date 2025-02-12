@@ -21,12 +21,7 @@ record the connection string
 
 In this lab we will quickly install Dotnet using ASDF
 
-
-
-
-
 `apt install -y curl git sqlite3 libpq-dev libreadline-dev sqlite jq`{{exec}}
-
 
 ```
 wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
@@ -42,33 +37,3 @@ sudo apt-get update && \
 and verify the install:
 
 `dotnet --version`{{exec}}
-
-
-# WIP move this to STEP 3
-
-## USes a sln file?
-
-
-for this project, since to dotnet apps running together
-
-`dotnet new sln -n MySolution`{{exec}}
-
-`dotnet  sln list`{{exec}}
-
-## Manual Logging
-
-update the appsettings.json
-
-```
-"Microsoft.AspNetCore": "Information"
-
-
-```
-
-in Program.cs addd
-
-`app.UseHttpLogging();`  wip:error
-
-after app.UseHttpsRedirection();
-
-learn more: https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-8.0

@@ -34,7 +34,7 @@ dotnet add package System.Net.Http.Json
 
 5. Update the `WeatherApp/Pages/Home.razor` file to make a GET request to your TodoApi:
 
-
+**WASM code**
 ```csharp
 @page "/"
 @using System.Net.Http
@@ -93,6 +93,76 @@ else
     }
 }
 ```
+
+**server side**
+```
+@page "/"
+@using System.Net.Http
+@inject HttpClient Http
+
+<h1>Weather Forecast</h1>
+
+@if (weatherForecasts == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <button @onclick="RefreshData">Refresh Data</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temperature (C)</th>
+                <th>Summary</th>
+                <th>Temperature (F)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in weatherForecasts)
+            {
+                <tr>
+                    <td>@forecast.date</td>
+                    <td>@forecast.temperatureC</td>
+                    <td>@forecast.summary</td>
+                    <td>@forecast.temperatureF</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private WeatherForecast[] weatherForecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RefreshData();
+    }
+
+    private async Task RefreshData()
+    {
+        weatherForecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("{{TRAFFIC_HOST1_5001}}/weatherforecast");
+    }
+
+    public class WeatherForecast
+    {
+        public DateTime date { get; set; }
+        public int temperatureC { get; set; }
+        public string summary { get; set; }
+        public int temperatureF { get; set; }
+    }
+}
+```
+add the application insights key in  /Properties/launchsettings.json
+```
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "ApplicationInsights": {
+    "InstrumentationKey": "INSERT INSTRUMENTATION KEY"
+    },
+  "iisSettings": {
+  ```
 
 6. Ensure the TodoApi code is running on port 5001 STEP X
 
