@@ -1,6 +1,6 @@
 {
   "title": "Work-in-progress Application Insights with Dotnet, JS and Python",
-  "description": "Start monitoring apps in Azure Application Insights (Azure account needed)v0.1.4",
+  "description": "Start monitoring apps in Azure Application Insights (Azure account needed)v0.1.5",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {

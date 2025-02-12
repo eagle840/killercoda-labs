@@ -20,7 +20,6 @@ Now lets add a API to the solution and alter the web app to call the API
 
 WIP Add sln file
 
-WIP old remove this `dotnet new web -o TodoApi`{{exec}}
 
 `dotnet new webapi -o TodoApi`{{exec}}
 
@@ -32,9 +31,9 @@ WIP `dotnet sln ../MySolution.sln add TodoApi.csproj`{{exec}}
 
 wip `dotnet dev-certs https --trust`{{copy}}  # FOr windows machines
 
-`dotnet add package Microsoft.ApplicationInsights.AspNetCore --version 2.18.0`{{exec}}
+`dotnet add package Microsoft.ApplicationInsights.AspNetCore --version 2.18.0`{{exec}} WIP is ver needed?
 
-add the following to line 3 in Program.cs
+add the following to line 6 in Program.cs
 
 ```
 builder.Services.AddApplicationInsightsTelemetry();

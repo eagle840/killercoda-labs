@@ -2,9 +2,13 @@
 
 To create a Blazor WebAssembly (Wasm) app that makes a simple GET request to your existing .NET Core Web API, you can follow these steps:
 
-1. Create a new Blazor WebAssembly project:
+1. Create a new Blazor WebAssembly project: (or server-side)
 ```bash
 dotnet new blazorwasm -o WeatherApp
+```{{exec}}
+
+```bash
+dotnet new blazor -o WeatherApp
 ```{{exec}}
 
 2. Navigate to the WeatherApp directory:
@@ -100,6 +104,13 @@ dotnet run --urls http://0.0.0.0:5000
 8. Access your WeatherApp in a web browser at `https://localhost:5000`, {{TRAFFIC_HOST1_5000}}
 
 This setup will make a GET request to your TodoApi endpoint at `https://localhost:5001/weather` and display the temperature and conditions returned by the API. Make sure to update the URL in the `OnInitializedAsync` method to match the actual endpoint of your TodoApi.
+
+
+
+## WIP is App insights avaialble for WASM
+- see https://www.youtube.com/watch?v=j1dClqBD10k
+
+## rerun as a non wasm
 
 ---
 

@@ -24,6 +24,10 @@ https://learn.microsoft.com/en-us/azure/azure-monitor/app/asp-net
 
 `dotnet add package Microsoft.ApplicationInsights.AspNetCore --version 2.18.0`{{exec}}
 
+check the csproj file, that is has been added
+
+`cat MyWebApp.csproj`{{exec}}
+
 add the following to line 3 in Program.cs
 
 ```
@@ -73,7 +77,7 @@ WIP: i think this just logs to stdout/err?
 ```
     public void OnGet()
     {
-        _logger.LogInformation("hello log");
+        _logger.LogInformation("Privacy page called!");
     }
 ```
 
