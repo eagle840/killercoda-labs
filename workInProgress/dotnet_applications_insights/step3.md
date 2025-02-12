@@ -64,7 +64,7 @@ WIP also need to add App Insights 'Role' to this so that App insights can tell t
 
 in a new tab
 
-`curl localhost:5001`{{exec}}
+`curl localhost:5001/weatherforecast`{{exec}}
 
 ctrl-c
 

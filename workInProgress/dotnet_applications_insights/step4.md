@@ -24,6 +24,8 @@ dotnet add package System.Net.Http.Json
 </ItemGroup>
 ```
 
+`cat WeatherApp.csproj`
+
 5. Update the `WeatherApp/Pages/Home.razor` file to make a GET request to your TodoApi:
 ```csharp
 @page "/"
@@ -50,7 +52,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         weatherData = await HttpClient.GetFromJsonAsync<WeatherData>("https://localhost:5001/weather");
-        // enter killcoda url {{TRAFFIC_HOST1_5000}}/weather
+        // enter killcoda url {{TRAFFIC_HOST1_5001}}/weatherforecast
     }
 
     public class WeatherData
@@ -61,10 +63,60 @@ else
 }
 ```
 
-6. Run your TodoApi project (if not already running) by navigating to the TodoApi directory and executing:
-```bash
-dotnet run
 ```
+@page "/"
+@using System.Net.Http
+@using System.Net.Http.Json
+@using System.Text.Json
+@inject HttpClient HttpClient
+
+<h1>Weather Information</h1>
+
+@if (weatherData != null)
+{
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Temperature (C)</th>
+            <th>Summary</th>
+            <th>Temperature (F)</th>
+        </tr>
+        @foreach (var item in weatherData)
+        {
+            <tr>
+                <td>@item.Date</td>
+                <td>@item.TemperatureC</td>
+                <td>@item.Summary</td>
+                <td>@item.TemperatureF</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>Loading...</p>
+}
+
+@code {
+    private WeatherData[] weatherData;
+
+    protected override async Task OnInitializedAsync()
+    {
+        weatherData = await HttpClient.GetFromJsonAsync<WeatherData[]>("https://localhost:5001/weatherforecast");
+        // enter killcoda url {{TRAFFIC_HOST1_5001}}/weatherforecast
+    }
+
+    public class WeatherData
+    {
+        public string Date { get; set; }
+        public int TemperatureC { get; set; }
+        public string Summary { get; set; }
+        public int TemperatureF { get; set; }
+    }
+}
+```
+
+6. Ensure the TodoApi code is running on port 5001 STEP X
 
 7. Run your Blazor WebAssembly project by navigating to the WeatherApp directory and executing:
 ```bash
