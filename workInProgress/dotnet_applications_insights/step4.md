@@ -16,7 +16,7 @@ dotnet new blazor -o WeatherApp
 cd WeatherApp
 ```{{exec}}
 
-WIP add sln  `dotnet sln ../MySolution.sln add TodoApi.csproj`{{exec}}
+WIP add sln  `dotnet sln ../MySolution.sln add WeatherApp.csproj`{{exec}}
 
 3. Add the `System.Net.Http.Json` package to your project. This package provides support for making HTTP requests in Blazor WebAssembly:
 ```bash
@@ -95,6 +95,8 @@ else
 ```
 
 **server side**
+
+WIP `dotnet add package Microsoft.Extensions.Http`{{exec}}
 ```
 @page "/"
 @using System.Net.Http
