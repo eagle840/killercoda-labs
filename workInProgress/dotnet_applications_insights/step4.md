@@ -23,6 +23,8 @@ WIP add sln  `dotnet sln ../MySolution.sln add WeatherApp.csproj`{{exec}}
 dotnet add package System.Net.Http.Json
 ```{{exec}}
 
+`dotnet add package Microsoft.ApplicationInsights.AspNetCore`{{exec}}
+
 4. Open the `WeatherApp.csproj` file in a text editor and ensure that the `System.Net.Http.Json` package is added as a reference:
 ```xml
 <ItemGroup>
@@ -31,6 +33,41 @@ dotnet add package System.Net.Http.Json
 ```
 
 `cat WeatherApp.csproj`{{exec}}
+
+confirm that the app is working
+
+`dotnet run --urls http://0.0.0.0:5000`{{exec}}
+
+{{TRAFFIC_HOST1_5000}}
+
+
+ADD application insights code
+
+add the following to line 5 in Program.cs
+
+```
+builder.Services.AddApplicationInsightsTelemetry();
+```
+
+In the appsettings.json, update to match:
+
+
+```
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ApplicationInsights": {
+    "ConnectionString": "INSERT CONNECTION STRING HERE"
+  }
+}
+```
+
+
 
 5. Update the `WeatherApp/Pages/Home.razor` file to make a GET request to your TodoApi:
 
