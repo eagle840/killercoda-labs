@@ -1,20 +1,11 @@
 
-# Initial Setup
-
-Doc: https://killercoda.com/creators
-
-github: https://github.com/killercoda
-
-https://dotnet.microsoft.com/en-us/learn
-
+# Applications Insights with Dotnet
 
 ## Setup Azure
 
 wip Link to free account setup
 
-In Azure, create a Applications Insight resource  WIP link to MS Docs to setup
-
-record the connection string
+In Azure, create a Applications Insights resource. and note the connection string in the top of the overview page.
 
 
 ## Install Dotnet

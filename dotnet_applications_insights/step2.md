@@ -1,7 +1,7 @@
 # Build a web app and local logging
 
 
-# create as a standalone
+## create as a standalone app
 
 - with the next two step intergrate together (api and wasm)
 
@@ -11,51 +11,14 @@
 
 `dotnet new webapp -n MyWebApp`{{exec}}
 
-
 `cd MyWebApp/`{{exec}}
 
-## Add Application Insights
-
-https://learn.microsoft.com/en-us/azure/azure-monitor/app/asp-net
-
-`dotnet add package Microsoft.ApplicationInsights.AspNetCore --version 2.22.0`{{copy}}
-
-`dotnet add package Microsoft.ApplicationInsights.AspNetCore`{{exec}}
-
-check the csproj file, that is has been added
-
-`cat MyWebApp.csproj`{{exec}}
-
-add the following to line 3 in Program.cs
-
-```
-builder.Services.AddApplicationInsightsTelemetry();
-```
-
-In the appsettings.json, update to match:
-
-
-```
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "AllowedHosts": "*",
-  "ApplicationInsights": {
-    "ConnectionString": "INSERT CONNECTION STRING HERE"
-  }
-}
-```
 
 `dotnet run --urls http://0.0.0.0:5000`{{exec}}
 
 {{TRAFFIC_HOST1_5000}}
 
 
-In the Azure Application Insight 'Overview', click on 'Seacrh', and reduce the time span to 1 hour. It will take a couple of minutes for the entries to populate.
 
 Stop the application, and then start it in watch mode.
 
@@ -74,7 +37,6 @@ logging w/ App Insights https://learn.microsoft.com/en-us/azure/azure-monitor/ap
 
 In the /pages/Privacy.cshtml.cs update the 'OnGet'
 
-WIP: i think this just logs to stdout/err?
 
 ```
     public void OnGet()
@@ -107,11 +69,7 @@ Lets force an exception when visting the Privacy page, in ./MyWebApp/Pages/Priva
 
 note how the web page itself is updated
 
-## Now use App insights
 
-Goto the Azure App Insights portal and copy the connection string, and add it to the appsettings.json.
-
-Now rerun the logging and exception steps and note how it effects App insights.
 
 ## WIP
 

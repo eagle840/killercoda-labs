@@ -2,32 +2,16 @@
 
 Now lets add a API to the solution and alter the web app to call the API
 
-## Create API
-
-## Test API with curl call
-
-## Alter Web app to call API
-
-## Add Roles to App Insights to track the two programmes (web and API
-
-)
-
-## add sln file
-
-
-**WIP** do this: https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel?view=aspnetcore-8.0
-
-
+## Create Solution File
 `cd ~`{{exec}}
 
-for this project, since to dotnet apps running together
+for this project, since to dotnet apps running together, lets create a solution file.
 
 `dotnet new sln -n MySolution`{{exec}}
 
 `dotnet  sln list`{{exec}}
 
-WIP Add sln file
-
+## Create the API
 
 `dotnet new webapi -o TodoApi`{{exec}}
 
@@ -35,11 +19,13 @@ WIP Add sln file
 
 add the project to the solution file
 
-WIP `dotnet sln ../MySolution.sln add TodoApi.csproj`{{exec}}
+`dotnet sln ../MySolution.sln add TodoApi.csproj`{{exec}}
 
 wip `dotnet dev-certs https --trust`{{copy}}  # FOr windows machines
 
-`dotnet add package Microsoft.ApplicationInsights.AspNetCore --version 2.18.0`{{exec}} WIP is ver needed?
+`dotnet add package Microsoft.ApplicationInsights.AspNetCore --version 2.18.0`{{exec}}
+
+logging w/ App Insights https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview
 
 add the following to line 6 in Program.cs
 
@@ -76,21 +62,3 @@ in a new tab
 `curl localhost:5001/weatherforecast`{{exec}}
 
 ctrl-c
-
-
-
-
-## using swashbuckle  - remove the swagger section  WIP REMOVE
-
-
-https://learn.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-8.0&tabs=netcore-cli
-
-
-
-https://localhost:<port>/swagger/v1/swagger.json
-
-## Using the .Net OPENAPI tool
-
-https://learn.microsoft.com/en-us/aspnet/core/web-api/microsoft.dotnet-openapi?view=aspnetcore-8.0
-
-`dotnet tool install -g Microsoft.dotnet-openapi`{{exec}}
