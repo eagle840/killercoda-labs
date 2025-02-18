@@ -1,6 +1,6 @@
 {
   "title": "Application Insights with Dotnet.",
-  "description": "Start monitoring dotnet apps in Azure Application Insights (Azure account needed)v1.0.0",
+  "description": "Start monitoring dotnet apps in Azure Application Insights (Azure account needed)v1.0.1",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {

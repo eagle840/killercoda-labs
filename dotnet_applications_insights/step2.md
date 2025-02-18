@@ -3,7 +3,6 @@
 
 ## create as a standalone app
 
-- with the next two step intergrate together (api and wasm)
 
  https://learn.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/razor-pages-start?view=aspnetcore-7.0&tabs=visual-studio-code
 
@@ -24,7 +23,7 @@ Stop the application, and then start it in watch mode.
 
 `dotnet watch --urls http://0.0.0.0:5000`{{exec}}
 
-Now use the Editor tab to write the code.
+Now use the Editor tab to write the following code updats.
 
 In the following example we shall be using the Privacy web page to trigger logging.
 
@@ -32,8 +31,6 @@ In the following example we shall be using the Privacy web page to trigger loggi
 ## add a log
 
 logging in blazor https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/logging?view=aspnetcore-8.0
-
-logging w/ App Insights https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview
 
 In the /pages/Privacy.cshtml.cs update the 'OnGet'
 
@@ -45,7 +42,7 @@ In the /pages/Privacy.cshtml.cs update the 'OnGet'
     }
 ```
 
-and visit the Privacy page, checking the terminal tab for the log outputs.
+restart the app, and visit the Privacy page, checking the terminal tab for the log outputs.
 
 ## warnng and error
 

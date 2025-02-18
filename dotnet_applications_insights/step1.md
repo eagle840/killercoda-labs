@@ -3,14 +3,14 @@
 
 ## Setup Azure
 
-wip Link to free account setup
+
 
 In Azure, create a Applications Insights resource. and note the connection string in the top of the overview page.
 
 
 ## Install Dotnet
 
-In this lab we will quickly install Dotnet using ASDF
+In this step we will quickly install Dotnet.
 
 `apt install -y curl git sqlite3 libpq-dev libreadline-dev sqlite jq`{{exec}}
 

@@ -1,15 +1,15 @@
 # blazor wasm
 
-To create a Blazor WebAssembly (Wasm) app that makes a simple GET request to your existing .NET Core Web API, you can follow these steps:
+To create a Blazor app that makes a simple GET request to your existing .NET Core Web API, you can follow these steps:
 
 1. Create a new Blazor project:
-
 
 ```bash
 dotnet new blazor -o WeatherApp
 ```{{exec}}
 
 2. Navigate to the WeatherApp directory:
+
 ```bash
 cd WeatherApp
 ```{{exec}}
@@ -40,7 +40,7 @@ dotnet add package System.Net.Http.Json
 {{TRAFFIC_HOST1_5000}}
 
 
-ADD application insights code
+6. Add application insights code
 
 add the following to line 5 in Program.cs
 
@@ -68,13 +68,13 @@ In the appsettings.json, update to match:
 
 
 
-5. Update the `WeatherApp/Pages/Weather.razor` file to make a GET request to your TodoApi:
+6. Update the `WeatherApp/Pages/Weather.razor` and program.cs files to make a GET request to your TodoApi:
 
 
 
 **server side**
 
-WIP `dotnet add package Microsoft.Extensions.Http`{{exec}}
+WIP, remove `dotnet add package Microsoft.Extensions.Http`{{copy}}
 
 **program.cs**
 ```
@@ -171,17 +171,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        // Simulate asynchronous loading to demonstrate streaming rendering
-        await Task.Delay(500);
-
-        var startDate = DateOnly.FromDateTime(DateTime.Now);
-        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
-        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = startDate.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = summaries[Random.Shared.Next(summaries.Length)]
-        }).ToArray();
+        await RefreshData();
     }
 
     private class WeatherForecast
@@ -203,9 +193,9 @@ else
 
 
 
-6. Ensure the TodoApi code is running on port 5001 STEP 3
+7. Ensure the TodoApi code is running on port 5001 STEP 3
 
-7. Run your Blazor project by navigating to the WeatherApp directory and executing:
+8. Run your Blazor project by navigating to the WeatherApp directory and executing:
 
 ```bash
 dotnet run --urls http://0.0.0.0:5000

@@ -21,11 +21,13 @@ add the project to the solution file
 
 `dotnet sln ../MySolution.sln add TodoApi.csproj`{{exec}}
 
-wip `dotnet dev-certs https --trust`{{copy}}  # FOr windows machines
+If you're running this on your own Windows machine: `dotnet dev-certs https --trust`{{copy}}
 
 `dotnet add package Microsoft.ApplicationInsights.AspNetCore --version 2.18.0`{{exec}}
 
 logging w/ App Insights https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview
+
+
 
 add the following to line 6 in Program.cs
 
