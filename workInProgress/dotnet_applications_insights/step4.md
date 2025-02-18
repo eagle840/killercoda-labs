@@ -134,6 +134,132 @@ else
 **server side**
 
 WIP `dotnet add package Microsoft.Extensions.Http`{{exec}}
+
+**program.cs**
+```
+using WeatherApp.Components;
+using Microsoft.AspNetCore.Components;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddApplicationInsightsTelemetry();
+
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+
+builder.Services.AddScoped<HttpClient>(s =>
+{
+    var navigationManager = s.GetRequiredService<NavigationManager>();
+    var httpClient = new HttpClient { BaseAddress = new Uri(navigationManager.BaseUri) };
+    return httpClient;
+});
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error", createScopeForErrors: true);
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+
+app.UseStaticFiles();
+app.UseAntiforgery();
+
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode();
+
+app.Run();
+
+```
+
+**Weather.razor**
+
+WIP: what commponents need removing?
+
+```
+@page "/weather"
+@using System
+@using System.Net.Http
+@using System.Net.Http.Json
+@using System.Text.Json
+@inject HttpClient HttpClient
+@attribute [StreamRendering]
+
+<PageTitle>Weather</PageTitle>
+
+<h1>Weather</h1>
+
+<p>This component demonstrates showing data.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Simulate asynchronous loading to demonstrate streaming rendering
+        await Task.Delay(500);
+
+        var startDate = DateOnly.FromDateTime(DateTime.Now);
+        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
+        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        {
+            Date = startDate.AddDays(index),
+            TemperatureC = Random.Shared.Next(-20, 55),
+            Summary = summaries[Random.Shared.Next(summaries.Length)]
+        }).ToArray();
+    }
+
+    private class WeatherForecast
+    {
+        public DateOnly Date { get; set; }
+        public int TemperatureC { get; set; }
+        public string? Summary { get; set; }
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+
+    private async Task RefreshData()
+    {
+        forecasts = await HttpClient.GetFromJsonAsync<WeatherForecast[]>("https://2193556f-f345-410c-a303-2e4406bfe7e6-10-244-4-200-5001.spca.r.killercoda.com/weatherforecast");
+    }
+}
+
+```
+
+**OLD CODE**
 ```
 @page "/"
 @using System.Net.Http
@@ -181,7 +307,7 @@ else
 
     private async Task RefreshData()
     {
-        weatherForecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("{{TRAFFIC_HOST1_5001}}/weatherforecast");
+        weatherForecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("https://2193556f-f345-410c-a303-2e4406bfe7e6-10-244-4-200-5001.spca.r.killercoda.com/weatherforecast");
     }
 
     public class WeatherForecast
@@ -193,6 +319,8 @@ else
     }
 }
 ```
+
+
 add the application insights key in  /Properties/launchsettings.json
 ```
 {
