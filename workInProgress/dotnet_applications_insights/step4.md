@@ -253,7 +253,7 @@ else
 
     private async Task RefreshData()
     {
-        forecasts = await HttpClient.GetFromJsonAsync<WeatherForecast[]>("https://2193556f-f345-410c-a303-2e4406bfe7e6-10-244-4-200-5001.spca.r.killercoda.com/weatherforecast");
+        forecasts = await HttpClient.GetFromJsonAsync<WeatherForecast[]>("{{TRAFFIC_HOST1_5001}}/weatherforecast");
     }
 }
 
