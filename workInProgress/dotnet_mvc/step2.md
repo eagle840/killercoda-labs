@@ -11,6 +11,16 @@
 
 `cd MyWebApp/`{{exec}}
 
+`dotnet run --urls http://0.0.0.0:5000`{{exec}}
+
+{{TRAFFIC_HOST1_5000}}
+
+
+
+---
+
+# REMOVE BELOW
+
 ## Add Application Insights
 
 https://learn.microsoft.com/en-us/azure/azure-monitor/app/asp-net
