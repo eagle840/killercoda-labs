@@ -66,3 +66,35 @@ app.MapRazorComponents<App>()
 
 app.Run();
 ```{{exec}}
+
+
+##  WIP: Searching
+
+Open 'search' and set a new filter 'cloud role name`
+
+`cloud role instance` is the machine name
+
+## WIP logging to Application insights
+
+
+https://learn.microsoft.com/en-us/azure/azure-monitor/app/ilogger
+
+```
+.ConfigureLogging(logging =>
+{
+    logging.AddApplicationInsights();
+})
+```
+so the following should be sent to App Insights
+
+
+```
+    public void OnGet()
+    {
+        _logger.LogInformation("Privacy page called!");
+    }
+```
+
+Another way to view
+
+In App InSights, got 'Logs' and look in the 'traces' table.
