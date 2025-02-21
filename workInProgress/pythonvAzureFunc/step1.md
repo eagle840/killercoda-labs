@@ -19,11 +19,13 @@ We'll be using python version 3.11
 
 
 
-```
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt update
-sudo apt install python3.11 jq
-```{{exec}}
+
+`add-apt-repository ppa:deadsnakes/ppa`{{exec}}
+
+`apt update`{{exec}}
+
+`apt install -y python3.11 jq`{{exec}}
+
 
 `python3 -V`{{exec}}
 
@@ -31,15 +33,15 @@ sudo apt install python3.11 jq
 
 WIP `pip3 install --upgrade pip`{{exec}}
 
-`apt install python3.8-venv`{{copy}}
+WIP `apt install -y python3.8-venv`{{copy}}
 
-`apt install python3.11-venv`{{exec}}
+`apt install -y python3.11-venv`{{exec}}
 
 `mkdir cleanproject`{{exec}}
 
 `cd cleanproject`{{exec}}
 
-`python3 -m venv .venv`{{copy}}
+WIP `python3 -m venv .venv`{{copy}}
 
 `python3.11 -m venv .venv`{{exec}}
 
@@ -69,17 +71,21 @@ Pip tool will help resolve dependency issues across packages
 
 `func init MyProjFolder --worker-runtime python --model V2`{{exec}}
 
+
+
 WIP appears this creats code in the folder MyProjFolder
 
-`ls`{{exec}}
+`ls MyProjFolder`{{exec}}
 
 WIP copilot says run `new` inside the created foler `cd MyProjFolder`{{exec}}
 
-`func new --template "Http Trigger" --name MyHttpTrigger`{{exec}}
+ WIP `func new --template "Http Trigger" --name MyHttpTrigger`{{exec}}
 
 WIP makes code in this folder
 
 select 'python' and 'anonymous'
+
+`cd MyProjFolder`{{exec}}
 
 `func start`
 
@@ -94,7 +100,18 @@ WIP check port #
 `curl http://localhost:7071/api/MyHttpTrigger`{{exec}}
 
 
+### GET
 `curl http://localhost:7071/api/MyHttpTrigger?name=john`{{exec}}
+
+### POST
+```
+curl -X POST \
+  http://localhost:7071/api/Policy_Check \
+  -H 'Content-Type: application/json' \
+  -d '{"name": "nick"}'
+```{{exec}}
+
+
 
 Let check the site  open site for 7071
 
