@@ -104,10 +104,10 @@ app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 def http_trigger1(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
-    name = req.params.get('name')
+    name = req.params.get('name')  ## see if parameter
     if not name:
         try:
-            req_body = req.get_json()
+            req_body = req.get_json()  ## see if body
         except ValueError:
             pass
         else:
@@ -160,6 +160,22 @@ Make sure you're still in  the MyProjFolder
 
 And check the editor for the new updated code.
 
+
+`func start --verbose`{{exec}}
+
+## Add a python library
+
+We're going to create and use a jq package.
+
+First add `jq` to the requirement.txt file
+
+and update the local python environment (will automatically do it on Azure)
+
+stop the application are run:
+
+`pip install -r requirements.txt`{{exec}}
+
+and restart the func app
 
 `func start --verbose`{{exec}}
 
