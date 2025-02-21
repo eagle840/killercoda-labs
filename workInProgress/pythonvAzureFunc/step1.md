@@ -3,6 +3,7 @@
 
 [MS doc](https://learn.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=linux%2Cisolated-process%2Cnode-v4%2Cpython-v2%2Chttp-trigger%2Ccontainer-apps&pivots=programming-language-python)
 
+[MS Docs python](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-python?tabs=get-started%2Casgi%2Capplication-level&pivots=python-mode-decorators)
 
 
 ## Quick Install - w/ pip-tools
@@ -24,7 +25,7 @@ We'll be using python version 3.11
 
 `apt update`{{exec}}
 
-`apt install -y python3.11 jq`{{exec}}
+`apt install -y python3.11 jq tree`{{exec}}
 
 
 `python3 -V`{{exec}}
@@ -69,6 +70,8 @@ Pip tool will help resolve dependency issues across packages
 
 ## Start a new function app
 
+Function vs Function App, the app is what holds the functions.
+
 `func init MyProjFolder --worker-runtime python --model V2`{{exec}}
 
 
@@ -85,33 +88,82 @@ WIP makes code in this folder
 
 select 'python' and 'anonymous'
 
-`cd MyProjFolder`{{exec}}
+`tree`{{exec}}
 
-`func start`
+WIP `func start`
+
+copy the default Azure f() code
+
+```python
+import azure.functions as func
+import logging
+
+app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
+
+@app.route(route="http_trigger1")
+def http_trigger1(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
+
+    name = req.params.get('name')
+    if not name:
+        try:
+            req_body = req.get_json()
+        except ValueError:
+            pass
+        else:
+            name = req_body.get('name')
+
+    if name:
+        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
+    else:
+        return func.HttpResponse(
+             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
+             status_code=200
+        )
+
+```{{copy}}
 
 `func start --verbose`{{exec}}
+
+Note the returned url in yellow
 
 WIP `Reading host configuration file '/root/cleanproject/host.json'`
 
 WIP it looks like the run function auto reloads on code change.
 
-
-WIP check port #
-`curl http://localhost:7071/api/MyHttpTrigger`{{exec}}
+**open a new tab**
 
 
 ### GET
-`curl http://localhost:7071/api/MyHttpTrigger?name=john`{{exec}}
+
+`curl http://localhost:7071/api/http_trigger1?name=john`{{exec}}
+
+
+
 
 ### POST
 ```
 curl -X POST \
-  http://localhost:7071/api/Policy_Check \
+  http://localhost:7071/api/http_trigger1 \
   -H 'Content-Type: application/json' \
   -d '{"name": "nick"}'
 ```{{exec}}
 
+## Create a new function
 
+Make sure you're still in  the MyProjFolder
+
+`func new --template "Timer Trigger" --name myTimerFunc`{{exec}}
+
+- select python
+- enter for the schedule:  `0 */1 * * * *`
+
+And check the editor for the new updated code.
+
+
+`func start --verbose`{{exec}}
+
+--- WHAT IS BELOW?
 
 Let check the site  open site for 7071
 
