@@ -78,7 +78,7 @@ Function vs Function App, the app is what holds the functions.
 
 WIP appears this creats code in the folder MyProjFolder
 
-`ls MyProjFolder`{{exec}}
+
 
 WIP copilot says run `new` inside the created foler `cd MyProjFolder`{{exec}}
 
@@ -89,6 +89,8 @@ WIP makes code in this folder
 select 'python' and 'anonymous'
 
 `tree`{{exec}}
+
+`cd MyProjFolder`{{exec}}
 
 WIP `func start`
 
@@ -149,7 +151,9 @@ curl -X POST \
   -d '{"name": "nick"}'
 ```{{exec}}
 
-## Create a new function
+# Create a new function
+
+Stop the func app
 
 Make sure you're still in  the MyProjFolder
 
@@ -160,10 +164,48 @@ Make sure you're still in  the MyProjFolder
 
 And check the editor for the new updated code.
 
+`cat function_app.py`{{exec}}
+
 
 `func start --verbose`{{exec}}
 
-## Add a python library
+Note the logs showing the app first every 5 seconds.
+
+# Add a python library
+
+enter the following code:
+
+```python
+import azure.functions as func
+import logging
+import json
+
+@app.route(route="http_trigger1", methods=['POST'])
+def http_trigger1(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
+
+    try:
+        req_body = req.get_json()
+    except ValueError:
+        return func.HttpResponse("Invalid JSON in request body", status_code=400)
+
+    if not req_body:
+        return func.HttpResponse("Request body is empty", status_code=400)
+
+    # Process the JSON object
+    logging.info(f'Received JSON object: {req_body}')
+
+    return func.HttpResponse("JSON object received successfully", status_code=200)
+```
+
+run run:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"key1": "value1", "key2": "value2"}' \
+  http://localhost:7071/api/http_trigger1
+```
 
 We're going to create and use a jq package.
 
@@ -175,9 +217,73 @@ stop the application are run:
 
 `pip install -r requirements.txt`{{exec}}
 
-and restart the func app
+add `import jq`
 
+and the following code at line 8
+
+```
+def apply_jq_query(json_obj, jq_query):
+    try:
+        compiled_query = jq.compile(jq_query)
+        result = compiled_query.input(json_obj).first()
+        return result
+    except jq.JqError as e:
+        return {"error": f"Invalid jq query: {e}"}
+
+```{{copy}}
+
+to end up with the final code:
+
+**note the query string**
+
+set the query and run an example
+
+
+```python
+import azure.functions as func
+import logging
+import json
+import jq
+
+def apply_jq_query(json_obj, jq_query):
+    try:
+        compiled_query = jq.compile(jq_query)
+        result = compiled_query.input(json_obj).first()
+        return result
+    except jq.JqError as e:
+        return {"error": f"Invalid jq query: {e}"}
+
+@app.route(route="http_trigger1", methods=['POST'])
+def http_trigger1(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
+
+    try:
+        req_body = req.get_json()
+    except ValueError:
+        return func.HttpResponse("Invalid JSON in request body", status_code=400)
+
+    if not req_body:
+        return func.HttpResponse("Request body is empty", status_code=400)
+
+    # Process the JSON object
+    logging.info(f'Received JSON object: {req_body}')
+
+    # Run a jq query against the JSON object
+    jq_query = ".key1"
+    result = apply_jq_query(req_body, jq_query)
+
+    logging.info(f'Query result: {result}')
+
+    return func.HttpResponse("JSON object received and query executed successfully", status_code=200)
+```
 `func start --verbose`{{exec}}
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"key1": "value1", "key2": "value2"}' \
+  http://localhost:7071/api/http_trigger1
+```
 
 --- WHAT IS BELOW?
 
