@@ -1,60 +1,34 @@
-# Juypter notepad and lab
 
-https://docs.jupyter.org/en/latest/
+# Deploy to Azure
+
+[MS docs quickstart](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-python?tabs=linux%2Cbash%2Cazure-cli%2Cbrowser)
+
+## Install Az cli
+
+`curl -L https://aka.ms/InstallAzureCli | bash`{{exec}}
+
+`exec -l $SHELL`{{exec}}
+
+## Create resources
+
+`az --h`{{exec}}
+
+`az login`{{exec}}
+
+WIP need variable for the following commands
+
+`az group create --name AzureFunctionsQuickstart-rg --location <REGION>`{{exec}}
+
+`az storage account create --name <STORAGE_NAME> --location <REGION> --resource-group AzureFunctionsQuickstart-rg --sku Standard_LRS`{{exec}}
+
+`az functionapp create --resource-group AzureFunctionsQuickstart-rg --consumption-plan-location westeurope --runtime python --runtime-version <PYTHON_VERSION> --functions-version 4 --name <APP_NAME> --os-type linux --storage-account <STORAGE_NAME>`{{exec}}
+
+## Publish App
+
+`func azure functionapp publish <APP_NAME>`{{exec}}
 
 
-### Notebook
 
-Jupyter Notebook is a simplified notebook authoring application, and is a part of Project Jupyter, a large umbrella project centered around the goal of providing tools (and standards) for interactive computing with computational notebooks.
+## Clean up
 
-`pip install notebook`{{exec}}
-
-`jupyter notebook -h`{{exec}}
-
-`jupyter notebook`{{copy}}
-
-To run it on this lab:
-
-`jupyter notebook password`{{exec}}
-
-`jupyter notebook --allow-root --ip=0.0.0.0`{{exec}}
-
-[click here]({{TRAFFIC_HOST1_8888}})
-
-
-### Lab
-
-JupyterLab is the next-generation user interface for Project Jupyter offering all the familiar building blocks of the classic Jupyter Notebook (notebook, terminal, text editor, file browser, rich outputs, etc.) in a flexible and powerful user interface.
-
-`pip install jupyterlab`{{exec}}
-
-`jupyter-lab -h`{{exec}}
-
-`jupyter-lab`{{copy}}
-
-To run it on this lab:
-
-`jupyter-lab password`{{exec}}
-
-`jupyter-lab --allow-root --ip=0.0.0.0`{{exec}}
-
-[click here]({{TRAFFIC_HOST1_8888}})
-
-### Voila
-
-[Voilà](https://voila.readthedocs.io/en/stable/) allows you to convert a Jupyter Notebook into an interactive dashboard that allows you to share your work with others. It is secure and customizable, giving you control over what your readers experience.
-
-`pip install voila`{{exec}}
-
-`voila -h`{{exec}}
-
-`voila`{{exec}}
-
-WIP move pip install to top of page, an use basic for all the jupyter 
-
-`pip install ipywidgets pandas`{{exec}}
-
-`voila basics.ipynb --port 8888 --Voila.ip='0.0.0.0'`{{exec}}
-
-[click here]({{TRAFFIC_HOST1_8888}})
-
+`az group delete --name AzureFunctionsQuickstart-rg`{{exec}}
