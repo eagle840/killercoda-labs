@@ -5,10 +5,12 @@ Lets setup an app to accept a JSON from a POST request:
 
 enter the following code:
 
-```python
+```
 import azure.functions as func
 import logging
 import json
+
+app = func.FunctionApp()
 
 @app.route(route="http_trigger1", methods=['POST'])
 def http_trigger1(req: func.HttpRequest) -> func.HttpResponse:
@@ -26,16 +28,23 @@ def http_trigger1(req: func.HttpRequest) -> func.HttpResponse:
     logging.info(f'Received JSON object: {req_body}')
 
     return func.HttpResponse("JSON object received successfully", status_code=200)
-```
+```{{copy}}
+
+
+Start the app
+
+`func start --verbose`{{exec}}
+
+
 
 run run:
 
-```bash
+```
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '{"key1": "value1", "key2": "value2"}' \
   http://localhost:7071/api/http_trigger1
-```
+```{{exec}}
 
 Now lets add a jq package, so we can run JSON queries
 
@@ -49,13 +58,13 @@ stop the application are run:
 
 `pip install -r requirements.txt`{{exec}}
 
-
-
-and the following code at line 8
+In the code we'll add
 
 ```
 import jq
-
+```
+and
+```
 def apply_jq_query(json_obj, jq_query):
     try:
         compiled_query = jq.compile(jq_query)
@@ -66,7 +75,7 @@ def apply_jq_query(json_obj, jq_query):
 
 ```{{copy}}
 
-to end up with the final code:
+with some adjustment to end up with the final code:
 
 **note the query string**
 
@@ -78,6 +87,8 @@ import azure.functions as func
 import logging
 import json
 import jq
+
+app = func.FunctionApp()
 
 def apply_jq_query(json_obj, jq_query):
     try:
@@ -107,9 +118,11 @@ def http_trigger1(req: func.HttpRequest) -> func.HttpResponse:
     result = apply_jq_query(req_body, jq_query)
 
     logging.info(f'Query result: {result}')
+    response_message = f"Query result is, {result}"
 
-    return func.HttpResponse("JSON object received and query executed successfully", status_code=200)
-```
+    return func.HttpResponse(response_message, status_code=200)
+```{{copy}}
+
 `func start --verbose`{{exec}}
 
 ```bash
@@ -117,7 +130,7 @@ curl -X POST \
   -H "Content-Type: application/json" \
   -d '{"key1": "value1", "key2": "value2"}' \
   http://localhost:7071/api/http_trigger1
-```
+```{{exec}}
 
 --- WHAT IS BELOW?
 
