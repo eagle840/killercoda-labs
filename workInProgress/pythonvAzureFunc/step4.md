@@ -1,1 +1,6 @@
-use kafka? so you can show the use of the hosts file?
+# Bindings
+
+# Authorization Levels
+
+
+# Durable Functions (statefull)

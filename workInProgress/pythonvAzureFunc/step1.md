@@ -5,6 +5,9 @@
 
 [MS Docs python](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-python?tabs=get-started%2Casgi%2Capplication-level&pivots=python-mode-decorators)
 
+https://pypi.org/project/azure-functions/
+
+https://learn.microsoft.com/en-us/azure/azure-functions/
 
 step 5 - Push to Azure
 
