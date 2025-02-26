@@ -27,7 +27,7 @@ The app only contains a bare template - creates only an instance of the Function
 
 Lets add a 'function'
 
-`func new --template "Http Trigger" --name http_trigger1`{{exec}}
+`func new --template "Http Trigger" --name http_trigger1 --authlevel "anonymous"`{{exec}}
 
 Note that the name is used in the url `/api/<name>`
 

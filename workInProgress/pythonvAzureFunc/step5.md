@@ -17,6 +17,12 @@
 
 WIP need variable for the following commands
 
+## Create New resources
+
+If you don't have the resource created already:
+
+WIP `region=""`
+
 `az group create --name AzureFunctionsQuickstart-rg --location <REGION>`{{exec}}
 
 `az storage account create --name <STORAGE_NAME> --location <REGION> --resource-group AzureFunctionsQuickstart-rg --sku Standard_LRS`{{exec}}
@@ -25,7 +31,14 @@ WIP need variable for the following commands
 
 ## Publish App
 
+Before you publish, make sure you are in the app folder (that contains host.json)
+
+`func azure functionapp -h`{{exec}}
+
+
 `func azure functionapp publish <APP_NAME>`{{exec}}
+
+`func azure functionapp list-functions <APP_NAME>`{{exec}}
 
 
 

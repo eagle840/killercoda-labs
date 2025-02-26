@@ -5,6 +5,8 @@
 
 [MS Docs python](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-python?tabs=get-started%2Casgi%2Capplication-level&pivots=python-mode-decorators)
 
+[Using the new V2 model](https://techcommunity.microsoft.com/blog/azurecompute/azure-functions-v2-python-programming-model/3665168)
+
 https://pypi.org/project/azure-functions/
 
 https://learn.microsoft.com/en-us/azure/azure-functions/
