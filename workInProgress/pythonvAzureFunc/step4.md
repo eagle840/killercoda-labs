@@ -4,7 +4,76 @@ see: https://techcommunity.microsoft.com/blog/azurecompute/azure-functions-v2-py
 
 ## v1 vs v2
 
+Simplier folder structure,programming, and introduces blueprints and decorators
+
+**v2 model**
+```
+<project_root>/
+ | -.venv/
+ | -function_app.py
+ | -blueprint.py
+ | -helper_functions.py
+ | -tests/
+ | | -test_my_function.py
+ | | -test-requirements.txt
+ | -.funcignore
+ | -host.json
+ | -requirements.txt
+```
+
+**old v1 model**
+```
+<project_root>/
+ | — .venv/
+ | — my_first_function/
+ | | — __init__.py
+ | | — function.json
+ | | — example.py
+ | — my_second_function/
+ | | — __init__.py
+ | | — function.json
+ | — helper_functions.py
+ | — tests/
+ | | — test_my_second_function.py
+ | — .funcignore
+ | — host.json
+ | — requirements.txt
+```
+
 ## Blue prints
+
+```
+import logging
+import azure.functions as func
+import pandas as pd
+from io import BytesIO
+
+
+bp = func.Blueprint()
+
+@bp.route(route="hello_world", auth_level="anonymous")
+def hello_world(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info("Python HTTP trigger function processed a request.")
+
+    name = req.params.get("name") or "world"
+
+    return func.HttpResponse(f"Hello {name}", status_code=200)
+```
+
+notice that the parameters previously specified in a function.json file (such as route and auth_level) have been relocated to a decorator in the v2 model. This eliminates the need for the json file.
+
+
+With blueprint created, carry on with the function_app.py
+```
+import azure.functions as func
+from blueprint import bp
+
+
+app = func.FunctionApp()
+
+app.register_functions(bp)
+```
+
 
 # Triggere and Bindings
 

@@ -6,6 +6,8 @@ To set up InfluxDB and Prophet in Docker, you can use the following commands:
 docker run -d -p 8086:8086 --name influxdb influxdb
 ```{{exec}}
 
+
+
 2. Pull and run Prophet Docker container:
 ```
 docker run -it -p 8888:8888 --name prophet jupyter/datascience-notebook
@@ -13,7 +15,16 @@ docker run -it -p 8888:8888 --name prophet jupyter/datascience-notebook
 
 connect to port 8888
 
+user name  'user'
+password 'user1234'
+
+record down the api key
+
 enter token from
+
+## Pull sample data
+
+https://docs.influxdata.com/influxdb/cloud/reference/sample-data/
 
 `docker exec prophet jupyter server list`{{exec}}
 
@@ -25,6 +36,8 @@ enter token from
 To get some data from the internet and populate the InfluxDB with it, you can use the following example:
 
 1. Download sample data from the internet:
+
+see link above (ie https://docs.influxdata.com/influxdb/cloud/reference/sample-data/)
 ```
 wget https://raw.githubusercontent.com/influxdata/influxdb/master/models/energy_usage/energy_usage.txt
 ```{{exec}}
