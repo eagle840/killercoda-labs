@@ -1,4 +1,6 @@
 
+GET 'https://killercoda.com/ir4engineer/course/workInProgress/influx_and_faker' running first!
+
 To set up InfluxDB and Prophet in Docker, you can use the following commands:
 
 1. Pull and run InfluxDB Docker container:
@@ -6,6 +8,30 @@ To set up InfluxDB and Prophet in Docker, you can use the following commands:
 docker run -d -p 8086:8086 --name influxdb influxdb
 ```{{exec}}
 
+TRY THIS INSTEAD
+
+```
+docker run \
+ --name influxdb2 \
+ --publish 8086:8086 \
+ --mount type=volume,source=influxdb2-data,target=/var/lib/influxdb2 \
+ --mount type=volume,source=influxdb2-config,target=/etc/influxdb2 \
+ --env DOCKER_INFLUXDB_INIT_MODE=setup \
+ --env DOCKER_INFLUXDB_INIT_USERNAME=dbadmin \
+ --env DOCKER_INFLUXDB_INIT_PASSWORD=dbadmin123 \
+ --env DOCKER_INFLUXDB_INIT_ORG=MyOrg \
+ --env DOCKER_INFLUXDB_INIT_BUCKET=BUCKET_ONE \
+ influxdb:2
+ ```{{exec}}
+
+
+{{TRAFFIC_HOST1_8086}}
+
+
+user name  'dbadmin'
+password 'dbadmin123'
+
+Note the bucket name 'BUCKET_ONE'
 
 
 2. Pull and run Prophet Docker container:
@@ -15,8 +41,18 @@ docker run -it -p 8888:8888 --name prophet jupyter/datascience-notebook
 
 connect to port 8888
 
-user name  'user'
-password 'user1234'
+{{TRAFFIC_HOST1_8888}}
+
+## Jupter
+
+`docker exec prophet jupyter server list`{{exec}}
+
+`token=$(docker exec prophet jupyter server list | grep -oP 'token=\K[^ ]+')
+echo $token`{{grep}}
+
+{{TRAFFIC_HOST1_8888}}/lab?token=<insert token>
+
+
 
 record down the api key
 
@@ -26,12 +62,24 @@ enter token from
 
 https://docs.influxdata.com/influxdb/cloud/reference/sample-data/
 
-`docker exec prophet jupyter server list`{{exec}}
+replace the bucket name with 'BUCKET_ONE'
+
+
 
 3. Install Prophet in the Jupyter notebook container:
 ```
 !pip install fbprophet
 ```{{exec}}
+
+pip install pystan
+pip install pandas
+pip install prophet
+pip install influxdb-client
+
+https://docs.influxdata.com/influxdb/cloud/api-guide/client-libraries/python/
+https://facebook.github.io/prophet/docs/quick_start.html
+
+
 
 To get some data from the internet and populate the InfluxDB with it, you can use the following example:
 
@@ -48,7 +96,59 @@ docker cp energy_usage.txt influxdb:/tmp
 docker exec -it influxdb influx -import -path=/tmp/energy_usage.txt -precision=s
 ```{{exec}}
 
+TRY
+
+Calender Icon > Task > paste sample from  https://docs.influxdata.com/influxdb/cloud/reference/sample-data/
+
 Now, to run Prophet against the data in InfluxDB, you can use the following steps:
+
+
+## prohet quickstart
+
+https://facebook.github.io/prophet/docs/quick_start.html
+
+```
+# Python
+import pandas as pd
+from prophet import Prophet
+
+```
+# Python
+df = pd.read_csv('https://raw.githubusercontent.com/facebook/prophet/main/examples/example_wp_log_peyton_manning.csv')
+df.head()
+
+```
+# Python
+m = Prophet()
+m.fit(df)
+
+```
+# Python
+future = m.make_future_dataframe(periods=365)
+future.tail()
+
+```
+# Python
+forecast = m.predict(future)
+forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail()
+```
+
+```
+# Python
+fig1 = m.plot(forecast)
+```
+
+```
+# Python
+fig2 = m.plot_components(forecast)
+```
+
+
+WIP? Can I import that CSV into Influx and then run the code against influx?
+
+
+
+### chatGPT
 
 1. Connect to the Jupyter notebook container:
 ```

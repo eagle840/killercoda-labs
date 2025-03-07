@@ -74,6 +74,30 @@ login:  un:dbadmin   PW: dbadmin123
 
 {{TRAFFIC_HOST1_8086}}
 
+
+## Load sample data
+
+We'll ne using samples from:  https://docs.influxdata.com/influxdb/cloud/reference/sample-data/
+
+In the UI, click on the calender Icon on the left
+
+Top right click 'create task' > 'New task'
+
+Give it a name
+
+Paste the task in, be sure to change the bucket name to 'BUCKET_ONE'
+
+The CRON settings don't matter at this point
+
+Save
+
+Now in the Task, on the right, click the cog, and select 'run'
+
+
+
+
+
+
 #### Http API
 
 create a token https://docs.influxdata.com/influxdb/v2/admin/tokens/create-token/
