@@ -5,6 +5,8 @@ Doc: https://killercoda.com/creators
 
 github: https://github.com/killercoda
 
+https://learn.microsoft.com/en-us/powershell/scripting/samples/creating-.net-and-com-objects--new-object-?view=powershell-7.5
+
 # Run First
 
 `sudo apt update`{{exec}}
@@ -55,35 +57,35 @@ github: https://github.com/killercoda
 
 # docker update
 
-`apt-get remove docker  docker.io containerd runc -y`{{exec}}   
+`apt-get remove docker  docker.io containerd runc -y`{{exec}}
 
-`apt-get update`{{exec}}   
+`apt-get update`{{exec}}
 
-`apt-get install ca-certificates curl gnupg  lsb-release -y`{{exec}}   
+`apt-get install ca-certificates curl gnupg  lsb-release -y`{{exec}}
 
-`mkdir -p /etc/apt/keyrings`{{exec}}   
+`mkdir -p /etc/apt/keyrings`{{exec}}
 
-`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}   
+`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}
 
 ```
 echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```{{exec}}   
+```{{exec}}
 
-`apt-get update`{{exec}}   
+`apt-get update`{{exec}}
 
-`apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y `{{exec}}   
+`apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y `{{exec}}
 
-`docker version`{{exec}}   
+`docker version`{{exec}}
 
-`docker-compose version`{{exec}}   
+`docker-compose version`{{exec}}
 
 `docker compose version`{{exec}}
 
 # Set imageid in index.json
 
 - ubuntu: Ubuntu 20.04 with Docker and Podman
-= kubernetes-kubeadm-2nodes: 
+= kubernetes-kubeadm-2nodes:
 - kubernetes-kubeadm-1node:
 
 to taint the control node for work:
@@ -140,9 +142,9 @@ and check the config file
 
 `docker exec some-rabbit cat /etc/rabbitmq/rabbitmq.conf`{{execute}}
 
-and head over to port 8080 and login   
-un:guest   
-pw:guest  
+and head over to port 8080 and login
+un:guest
+pw:guest
 
 
 Next we'll update the python files with the new IP address of the docker container.
@@ -171,4 +173,3 @@ to allow pods on the controlplane
 to allow access to running pods with ports 9000 and 9090
 
 `kubectl port-forward -n minio-dev pod/minio 9000 9090 --address 0.0.0.0`{{copy}}
-
