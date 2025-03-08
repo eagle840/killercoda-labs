@@ -3,12 +3,10 @@ GET 'https://killercoda.com/ir4engineer/course/workInProgress/influx_and_faker' 
 
 To set up InfluxDB and Prophet in Docker, you can use the following commands:
 
-1. Pull and run InfluxDB Docker container:
-```
-docker run -d -p 8086:8086 --name influxdb influxdb
-```{{exec}}
+## 1. Pull and run InfluxDB Docker container:
 
-TRY THIS INSTEAD
+
+WIP make this a daemon (sometimes the terminal crashes and you lose the running container)
 
 ```
 docker run \
@@ -28,29 +26,109 @@ docker run \
 {{TRAFFIC_HOST1_8086}}
 
 
-user name  'dbadmin'
-password 'dbadmin123'
+user name  `dbadmin`
 
-Note the bucket name 'BUCKET_ONE'
+password `dbadmin123`
+
+bucket name: `BUCKET_ONE`
 
 
-2. Pull and run Prophet Docker container:
+
+
+
+## 2. Pull and run Juypter
+
+
+Here's how you can achieve this step by step:
+
+### 1. Create an example notebook file
+First, create a simple Jupyter notebook file on your local machine. Here's an example:
+
+#### **File: `example_notebook.ipynb`**
+```json
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Simple Notes\n",
+    "This is an example notebook containing simple notes."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
+```{{copy}}
+
+Save this content in a file named `example_notebook.ipynb`.
+
+---
+
+### 2. Create a Docker volume and add the notebook
+
+Now, create a Docker volume and copy the notebook into it.
+
+Run the following commands:
+```bash
+# Create a Docker volume
+docker volume create jupyter_volume
+
+# Copy the notebook to the volume
+docker run --rm -v jupyter_volume:/data -v "$(pwd)":/host busybox cp /host/example_notebook.ipynb /data/
 ```
-docker run -it -p 8888:8888 --name prophet jupyter/datascience-notebook
-```{{exec}}
+This creates a volume named `jupyter_volume` and places the `example_notebook.ipynb` file in it.
+
+---
+
+### 3. Start the Jupyter notebook with the volume attached
+You can now start the Jupyter notebook container with the volume mounted:
+
+```bash
+docker run -it -p 8888:8888 --name prophet -v jupyter_volume:/home/jovyan/work jupyter/datascience-notebook
+```
+
+---
+
+### 4. Access the Jupyter notebook
+Open a web browser . You’ll find the `example_notebook.ipynb` file in the `work` directory of the Jupyter environment.
+
+Let me know if you encounter any issues or need further assistance! 🚀
+
+WIP make this a daemon (sometimes the terminal crashes and you lose the running container)
+
+OLD `docker run -it -p 8888:8888 --name prophet jupyter/datascience-notebook`{{exec}}
 
 connect to port 8888
 
 {{TRAFFIC_HOST1_8888}}
-
-## Jupter
 
 `docker exec prophet jupyter server list`{{exec}}
 
 `token=$(docker exec prophet jupyter server list | grep -oP 'token=\K[^ ]+')
 echo $token`{{grep}}
 
-{{TRAFFIC_HOST1_8888}}/lab?token=<insert token>
+run the following and append the result onto the url: `/lab?token=$token`{{exec}}
 
 
 
