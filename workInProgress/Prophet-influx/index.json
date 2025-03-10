@@ -1,6 +1,6 @@
 {
   "title": "work-in-progress FB Prophet and influx",
-  "description": "Using a python environment successfully (v0.0.5)",
+  "description": "Using a python environment successfully (v0.0.6)",
   "difficulty": "Intermediate",
   "time": "1",
   "details": {
@@ -20,22 +20,6 @@
       {
         "title": "Step 4",
         "text": "step4.md"
-      },
-      {
-        "title": "Step 5",
-        "text": "step5.md"
-      },
-      {
-        "title": "Step 6",
-        "text": "step6.md"
-      },
-      {
-        "title": "Step 7",
-        "text": "step7.md"
-      },
-      {
-        "title": "Step 8",
-        "text": "step8.md"
       }
     ],
     "intro": {
