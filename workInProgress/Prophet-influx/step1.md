@@ -111,6 +111,8 @@ This creates a volume named `jupyter_volume` and places the `example_notebook.ip
 ### 3. Start the Jupyter notebook with the volume attached
 You can now start the Jupyter notebook container with the volume mounted:
 
+WIP why `/home/jovyan/work` ?
+
 `docker run -it -p 8888:8888 --name prophet -v jupyter_volume:/home/jovyan/work jupyter/datascience-notebook`{{exec}}
 
 ---
@@ -125,7 +127,13 @@ goto {{TRAFFIC_HOST1_8888}} and enter the token.
 
 
 
-
+WIP:
+When creating a new notebook
+```
+[I 2025-03-10 08:31:35.991 ServerApp] Creating new notebook in /work
+[W 2025-03-10 08:31:36.042 ServerApp] 403 POST /api/contents/work?1741595495958 (10.244.4.127): Permission denied: work/Untitled.ipynb
+[W 2025-03-10 08:31:36.044 ServerApp] wrote error: 'Permission denied: work/Untitled.ipynb'
+```
 
 record down the api key
 
