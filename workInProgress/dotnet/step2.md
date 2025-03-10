@@ -4,6 +4,12 @@ https://learn.microsoft.com/en-us/dotnet/core/diagnostics/tools-overview
 
 https://learn.microsoft.com/en-us/dotnet/core/tools/troubleshoot-usage-issues
 
+## Interactive
+
+(copilot:)
+C# can be used within Jupyter Notebooks through the **.NET Interactive extension**¹(https://dev.to/kenakamu/time-to-learn-c-with-notebook-2gfj). This extension allows C# and other .NET languages to be used in Jupyter Notebooks, and it is integrated into **Visual Studio Code (VS Code)**²(https://code.visualstudio.com/docs/datascience/jupyter-notebooks). So, rather than breaking off into its own thing, C# continues to be supported in Jupyter Notebooks, but now with enhanced integration within VS Code²(https://code.visualstudio.com/docs/datascience/jupyter-notebooks).
+
+
 
 ## REPL tools
 
