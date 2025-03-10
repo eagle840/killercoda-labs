@@ -44,6 +44,11 @@ Here's how you can achieve this step by step:
 ### 1. Create an example notebook file
 First, create a simple Jupyter notebook file on your local machine. Here's an example:
 
+WIP you may have to chmod the dir, since jupyter is complaining about file premissions
+
+
+`chmod u+w <dir>/<file>`
+
 #### **File: `example_notebook.ipynb`**
 ```json
 {
@@ -88,6 +93,8 @@ Save this content in a file named `example_notebook.ipynb`.
 ### 2. Create a Docker volume and add the notebook
 
 Now, create a Docker volume and copy the notebook into it.
+
+
 
 Run the following commands:
 ```bash
