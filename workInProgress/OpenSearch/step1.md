@@ -71,11 +71,15 @@ and turn off ssl [link](https://forum.opensearch.org/t/how-to-disable-ssl-locall
 
 wip `OPENSEARCH_INITIAL_ADMIN_PASSWORD='myPassword1234'`{{exec}}
 
+export OPENSEARCH_INITIAL_ADMIN_PASSWORD=<custom-admin-password>
+
+`export OPENSEARCH_INITIAL_ADMIN_PASSWORD=myPassword1234`{{exec}}
+
 `docker compose up -d`{{exec}}
 
 `docker compose ps`{{exec}}
 
-`curl https://localhost:9200 -ku admin:myPassword1234`{{exec}}
+`curl http://localhost:9200 -ku admin:myPassword1234`{{exec}}
 
 
 ## connect
