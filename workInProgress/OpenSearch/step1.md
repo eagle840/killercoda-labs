@@ -40,9 +40,9 @@ echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docke
 
 https://opensearch.org/docs/latest/getting-started/quickstart/
 
-`sudo swapoff -a`
+`sudo swapoff -a`{{exec}}
 
-`sudo vi /etc/sysctl.conf`
+`sudo vi /etc/sysctl.conf`{{exec}}
 
 edit by adding `vm.max_map_count=262144`{{copy}}
 
@@ -55,13 +55,22 @@ esc
 
 
 
-`sudo sysctl -p
+`sudo sysctl -p`{{exec}}
 
-`curl -O https://raw.githubusercontent.com/opensearch-project/documentation-website/2.19/assets/examples/docker-compose.yml
+`curl -O https://raw.githubusercontent.com/opensearch-project/documentation-website/2.19/assets/examples/docker-compose.yml`{{exec}}
 
 
 Edit the docker file with a password
 
-`OPENSEARCH_INITIAL_ADMIN_PASSWORD='my:Password1234'`{{exeec}}
+`OPENSEARCH_INITIAL_ADMIN_PASSWORD='myPassword1234'`{{exec}}
 
-`docker compose up -d`{{copy}}
+`docker compose up -d`{{exec}}
+
+`docker compose ps`{{exec}}
+
+`curl https://localhost:9200 -ku admin:myPassword1234`{{exec}}
+
+
+## connect
+
+{{TRAFFIC_HOST1_5601}}
