@@ -42,6 +42,28 @@ a js program
 
 `apt install -y net-tools jq tree`{{exec}}
 
+## Local install
+
+https://docs.influxdata.com/influxdb/v2/install/?t=Linux
+
+```
+# Ubuntu and Debian
+# Add the InfluxData key to verify downloads and add the repository
+curl --silent --location -O https://repos.influxdata.com/influxdata-archive.key
+echo "943666881a1b8d9b849b74caebf02d3465d6beb716510d86a39f6c8e8dac7515  influxdata-archive.key" | sha256sum --check - && cat influxdata-archive.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/influxdata-archive.gpg > /dev/null && echo 'deb [signed-by=/etc/apt/trusted.gpg.d/influxdata-archive.gpg] https://repos.influxdata.com/debian stable main' | sudo tee /etc/apt/sources.list.d/influxdata.list
+```{{exec}}
+
+
+```
+# Install influxdb
+sudo apt-get update && sudo apt-get install influxdb2
+sudo service influxdb start
+sudo service influxdb status
+```{{exec}}
+
+`influxd`{{exec}}
+
+{{TRAFFIC_HOST1_8086}}
 
 
 ## install Influx with docker
