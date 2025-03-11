@@ -60,9 +60,16 @@ esc
 `curl -O https://raw.githubusercontent.com/opensearch-project/documentation-website/2.19/assets/examples/docker-compose.yml`{{exec}}
 
 
-Edit the docker file with a password
 
-`OPENSEARCH_INITIAL_ADMIN_PASSWORD='myPassword1234'`{{exec}}
+
+Edit the docker file with a password, set the pq to myPassword1234
+
+and turn off ssl [link](https://forum.opensearch.org/t/how-to-disable-ssl-locally/6656/5)
+```
+- plugins.security.disabled=true
+```
+
+wip `OPENSEARCH_INITIAL_ADMIN_PASSWORD='myPassword1234'`{{exec}}
 
 `docker compose up -d`{{exec}}
 
