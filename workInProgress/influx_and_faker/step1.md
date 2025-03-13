@@ -101,6 +101,12 @@ login:  un:dbadmin   PW: dbadmin123
 
 We'll ne using samples from:  https://docs.influxdata.com/influxdb/cloud/reference/sample-data/
 
+
+Find he USGS data
+
+https://earthquake.usgs.gov/earthquakes/map/ (https://www.usgs.gov/data/latest-earthquakes-map-and-list)
+
+
 In the UI, click on the calender Icon on the left
 
 Top right click 'create task' > 'New task'

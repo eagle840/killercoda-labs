@@ -49,6 +49,10 @@ WIP you may have to chmod the dir, since jupyter is complaining about file premi
 
 `chmod u+w <dir>/<file>`
 
+`touch example_notebook.ipynb`{{exec}}
+
+Copy the code low
+
 #### **File: `example_notebook.ipynb`**
 ```json
 {
@@ -60,6 +64,15 @@ WIP you may have to chmod the dir, since jupyter is complaining about file premi
     "# Simple Notes\n",
     "This is an example notebook containing simple notes."
    ]
+  },
+  {
+   "cell_type": "code",
+   "metadata": {},
+   "source": [
+    "!pip install pandas prophet"
+   ],
+   "outputs": [],
+   "execution_count": null
   }
  ],
  "metadata": {
