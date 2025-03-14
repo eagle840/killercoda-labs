@@ -32,8 +32,89 @@ password `dbadmin123`
 
 bucket name: `BUCKET_ONE`
 
+## Test db
 
 
+https://docs.influxdata.com/influxdb/v2/get-started/write/?t=influx+CLI
+
+`docker exec -it influxdb2 bash`{{exec}}
+
+Inside docker:
+
+`influx version`{{exec}}
+
+`influx --help`{{exec}}
+
+`influx config ls`{{exec}}
+
+`influx server-config`{{exec}}
+
+
+`influx bucket create --name get-started`{{exec}}
+
+`influx bucket list`{{exec}}
+
+```
+influx write \
+  --bucket get-started \
+  --precision s "
+home,room=Living\ Room temp=21.1,hum=35.9,co=0i 1641024000
+home,room=Kitchen temp=21.0,hum=35.9,co=0i 1641024000
+home,room=Living\ Room temp=21.4,hum=35.9,co=0i 1641027600
+home,room=Kitchen temp=23.0,hum=36.2,co=0i 1641027600
+home,room=Living\ Room temp=21.8,hum=36.0,co=0i 1641031200
+home,room=Kitchen temp=22.7,hum=36.1,co=0i 1641031200
+home,room=Living\ Room temp=22.2,hum=36.0,co=0i 1641034800
+home,room=Kitchen temp=22.4,hum=36.0,co=0i 1641034800
+home,room=Living\ Room temp=22.2,hum=35.9,co=0i 1641038400
+home,room=Kitchen temp=22.5,hum=36.0,co=0i 1641038400
+home,room=Living\ Room temp=22.4,hum=36.0,co=0i 1641042000
+home,room=Kitchen temp=22.8,hum=36.5,co=1i 1641042000
+home,room=Living\ Room temp=22.3,hum=36.1,co=0i 1641045600
+home,room=Kitchen temp=22.8,hum=36.3,co=1i 1641045600
+home,room=Living\ Room temp=22.3,hum=36.1,co=1i 1641049200
+home,room=Kitchen temp=22.7,hum=36.2,co=3i 1641049200
+home,room=Living\ Room temp=22.4,hum=36.0,co=4i 1641052800
+home,room=Kitchen temp=22.4,hum=36.0,co=7i 1641052800
+home,room=Living\ Room temp=22.6,hum=35.9,co=5i 1641056400
+home,room=Kitchen temp=22.7,hum=36.0,co=9i 1641056400
+home,room=Living\ Room temp=22.8,hum=36.2,co=9i 1641060000
+home,room=Kitchen temp=23.3,hum=36.9,co=18i 1641060000
+home,room=Living\ Room temp=22.5,hum=36.3,co=14i 1641063600
+home,room=Kitchen temp=23.1,hum=36.6,co=22i 1641063600
+home,room=Living\ Room temp=22.2,hum=36.4,co=17i 1641067200
+home,room=Kitchen temp=22.7,hum=36.5,co=26i 1641067200
+"
+```{{exec}}
+
+## query
+
+https://docs.influxdata.com/influxdb/v2/get-started/query/?t=influx+CLI
+
+
+**influx query**
+
+
+
+```
+influx query '
+from(bucket: "get-started")
+    |> range(start: 2022-01-01T08:00:00Z, stop: 2022-01-01T20:00:01Z)
+    |> filter(fn: (r) => r._measurement == "home")
+    |> filter(fn: (r) => r._field== "co" or r._field == "hum" or r._field == "temp")
+'
+```{{exec}}
+
+**InfluxQL**
+
+First enter the shell
+`influx v1 shell`{{exec}}
+
+```
+SELECT co,hum,temp,room FROM "get-started".autogen.home WHERE time >= '2022-01-01T08:00:00Z' AND time <= '2022-01-01T20:00:00Z'
+```{{exec}}
+
+**ESC** and 'exit'
 
 
 ## 2. Pull and run Juypter
