@@ -5,10 +5,10 @@ https://mui.com/material-ui/getting-started/installation/
 
 `mkdir react1; cd react1`{{exec}}
 
-```
-npm create vite@latest my-app -- --template react
-cd my-app
-```{{exec}}
+`npm create vite@latest my-app -- --template react`{{exec}}
+
+`cd my-app`{{exec}}
+
 
 
 
@@ -65,7 +65,25 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 5. Run Your Project
 Start the development server to see your component in action:
 
-`npm run dev`{{exec}}
+first update  vite.config.js
+
+```
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    host: '0.0.0.0',
+    allowedHosts: true
+  }
+})
+```{{copy}}
+
+`npm run dev`{{copy}}
+
+`npm run dev -- --host 0.0.0.0`{{exec}}
 
 This will open your project in the browser, typically at http://localhost:5173.
 
