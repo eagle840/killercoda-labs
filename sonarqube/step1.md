@@ -127,25 +127,23 @@ select language python and OS linux, and copy the code snippet to run latter.
 
 When your on the sonarcube server, setting up a project - you'll see the instructions for setting up the scanner, we have done this for you below:
 
-
+https://docs.sonarsource.com/sonarqube-server/latest/analyzing-source-code/scanners/sonarscanner/
 
 `cd ~`{{exec}}
 
-`wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip`{{copy}}
+`wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-7.0.2.4839-linux-x64.zip`{{exec}}
 
-`wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip`{{copy}}
+`unzip sonar-scanner-cli-7.0.2.4839-linux-x64.zip`{{exec}}
 
-`wget https://github.com/SonarSource/sonar-scanner-cli/archive/refs/tags/7.0.2.4839.zip`{{exec}}
+`cd sonar-scanner-7.0.2.4839-linux-x64/`{{exec}}
 
-`unzip sonar-scanner-cli-4.7.0.2747-linux.zip`{{exec}}
 
-`cd sonar-scanner-4.7.0.2747-linux/`{{exec}}
 
 `cd conf`{{exec}}
 
-remove the # in the server name
+WIP: remove the # in the server name
 
-`nano sonar-scanner.properties`{{exec}}
+WIP `nano sonar-scanner.properties`{{copy}}
 
 `cd ..`{{exec}}
 

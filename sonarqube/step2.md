@@ -7,7 +7,7 @@ https://flask.palletsprojects.com/en/2.2.x/quickstart/#a-minimal-application
 
 `cd ~`{{exec}}
 
-`mkdir myproject && cd myproject`{{exec}}
+`cd myproject`{{exec}}
 
 `pip install flask`{{exec}}
 
@@ -48,10 +48,10 @@ sonar.projectKey=my:project
 #sonar.projectName=My project
 # defaults to 'not provided'
 #sonar.projectVersion=1.0
- 
+
 # Path is relative to the sonar-project.properties file. Defaults to .
 #sonar.sources=.
- 
+
 # Encoding of the source code. Default is default system encoding
 #sonar.sourceEncoding=UTF-8
 ```{{copy}}
@@ -64,8 +64,9 @@ for more info on this project config file: https://docs.sonarqube.org/latest/ana
 
 and run the analysis using the code snippet from step 1. Once complete the page will refresh
 
-example code snippet:
+Suggested you open a new tab and run `htop`{{exec}} to see how heavy your lab session is being run.
 
+example code snippet (use the code copied form the SonarQube page!):
 
 ```
 sonar-scanner \
