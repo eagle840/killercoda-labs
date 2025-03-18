@@ -4,7 +4,7 @@
 # NOTE
 
 
-This fixes a docker problem closing down the sonarcube container:   
+This fixes a docker problem closing down the sonarcube container:
 `sysctl -w vm.max_map_count=262144`{{execute}}
 
 
@@ -95,14 +95,14 @@ WIP `docker-compose up -d`{{copy}}
 
 It will take a few minutes for Sonarcube to startup
 
-confirm both containers are up:   
-`docker-compose ps`{{execute}}
+confirm both containers are up:
+`docker compose ps`{{execute}}
 
-connect to 9000 web page   
+connect to 9000 web page
 
 {{TRAFFIC_HOST1_9000}}
 
-un and password is admin
+un and password is `admin`
 
 Update the new password when prompted `Admin123456789!`{{copy}}
 
@@ -127,9 +127,15 @@ select language python and OS linux, and copy the code snippet to run latter.
 
 When your on the sonarcube server, setting up a project - you'll see the instructions for setting up the scanner, we have done this for you below:
 
+
+
 `cd ~`{{exec}}
 
-`wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip`{{exec}}
+`wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip`{{copy}}
+
+`wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip`{{copy}}
+
+`wget https://github.com/SonarSource/sonar-scanner-cli/archive/refs/tags/7.0.2.4839.zip`{{exec}}
 
 `unzip sonar-scanner-cli-4.7.0.2747-linux.zip`{{exec}}
 
