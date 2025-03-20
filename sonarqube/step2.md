@@ -68,6 +68,8 @@ Suggested you open a new tab and run `htop`{{exec}} to see how heavy your lab se
 
 example code snippet (use the code copied form the SonarQube page!):
 
+Expect 1st run to be under 1 min
+
 ```
 sonar-scanner \
   -Dsonar.projectKey=pyproject \
