@@ -18,9 +18,35 @@
 
 Lets pull down the images we'll use.
 
-`docker pull  ghcr.io/zaproxy/zaproxy:stable`{{exec}}
 
-`docker pull bkimminich/juice-shop`{{exec}}
+
+`docker run -u zap -it  zaproxy/zap-stable zap.sh -help`{{exec}}
+
+WIP see error below before running
+
+```
+mkdir -p $(pwd)/output
+chmod -R 777 $(pwd)/output
+```{{exec}}
+
+`docker run -u zap -it -v $(pwd):/output  zaproxy/zap-stable zap.sh -daemon -quickurl http://www.example.com -quickprogress -quickout report1.html`{{copy}}
+
+`docker run -u zap -it -v $(pwd):/output zaproxy/zap-stable zap.sh -daemon -quickurl http://www.example.com -quickprogress -quickout /output/report1.html`{{exec}}
+
+
+```
+Attack complete
+Writing results to /zap/report1.html
+The directory of given '-quickout' file is not writable:
+/zap/report1.html
+```
+
+try -u root
+
+test to comfirm
+
+`docker run -u zap -it -v $(pwd)/output:/output zaproxy/zap-stable touch /output/testfile.txt`{{copy}}
+
 
 Lets start juice shop
 

@@ -198,8 +198,6 @@ Save this script to a file, for example, `serve_html.py`, and run it using Pytho
 
 `python serve_html.py`{{exec}}
 
-{{TRAFFIC_HOST1_3000}}
+{{TRAFFIC_HOST1_8000}}
 
-This will start a local server on port 8000. You can then access your HTML report by navigating to `{{TRAFFIC_HOST1_3000}}/zap_report.html` in your web browser.
-
-Let me know if you need any further assistance!
+This will start a local server on port 8000. You can then access your HTML report by navigating to `{{TRAFFIC_HOST1_8000}}/zap_report.html` in your web browser.
