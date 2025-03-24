@@ -18,7 +18,9 @@
 
 Lets pull down the images we'll use.
 
+## Zap on Docker
 
+https://www.zaproxy.org/docs/docker/
 
 `docker run -u zap -it  zaproxy/zap-stable zap.sh -help`{{exec}}
 
@@ -46,6 +48,30 @@ try -u root
 test to comfirm
 
 `docker run -u zap -it -v $(pwd)/output:/output zaproxy/zap-stable touch /output/testfile.txt`{{copy}}
+
+## Lets start juice shop
+
+`docker run --rm -p 3000:3000 bkimminich/juice-shop`{{exec}}
+
+Can can view juice-shop here: {{TRAFFIC_HOST1_3000}}
+
+## baseline scan
+
+https://www.zaproxy.org/docs/docker/baseline-scan/
+
+`docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t https://www.example.com -g gen.conf -r testreport.html`{{exec}}
+
+`docker run -u zap -it -v $(pwd):/output zaproxy/zap-stable zap.sh -daemon -quickurl {{TRAFFIC_HOST1_3000}} -quickprogress -quickout /output/report1.html`{{exec}}
+
+
+## API scan
+
+https://www.zaproxy.org/docs/docker/api-scan/
+
+against juice shop?
+
+
+## Juice shop
 
 
 Lets start juice shop
