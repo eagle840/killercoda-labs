@@ -116,6 +116,40 @@ SELECT co,hum,temp,room FROM "get-started".autogen.home WHERE time >= '2022-01-0
 
 **ESC** and 'exit'
 
+# Populate db with sample data.
+
+WIP: would it be better to use the Air Sample data, since there would be trends (for FB prophet)?
+
+See: https://docs.influxdata.com/influxdb/cloud/reference/sample-data/#usgs-earthquake-data
+
+Note that we have changed the bucket name in the script below.
+
+Lets populate the db with some data that is live.
+
+Open the GUI, and click the calendar icon on the left.
+
+Create a new task, and run now. You should see success in the logs.
+
+```
+import "influxdata/influxdb/sample"
+
+option task = {name: "earthquake", every: 1h}
+
+sample.data(set: "usgs")
+    |> to(bucket: "BUCKET_ONE")
+
+```{{copy}}
+
+## view
+
+Click the graph icon
+
+select 'earthquake', the 'depth'.
+select 'Table' in top left.
+select 'view raw data' in center.
+selecr `past 24h` in time selector
+click `SUBMIT`
+
 
 ## 2. Pull and run Juypter
 
