@@ -116,6 +116,14 @@ SELECT co,hum,temp,room FROM "get-started".autogen.home WHERE time >= '2022-01-0
 
 **ESC** and 'exit'
 
+### GUI
+
+Select the 'get-started` bucket and set the custom time range to over the 2022-01-01 00:01 to 2022-01-02 00:01
+
+Select 'home'
+set Table type
+click `submey
+
 # Populate db with sample data.
 
 WIP: would it be better to use the Air Sample data, since there would be trends (for FB prophet)?
