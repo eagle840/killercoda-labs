@@ -176,6 +176,8 @@ WIP you may have to chmod the dir, since jupyter is complaining about file premi
 
 Copy the code low
 
+wip consider anaconda
+
 #### **File: `example_notebook.ipynb`**
 ```json
 {
@@ -192,7 +194,70 @@ Copy the code low
    "cell_type": "code",
    "metadata": {},
    "source": [
-    "!pip install pandas prophet"
+    "!pip install pandas statsmodels scikit-learn matplotlib seaborn prophet"
+   ],
+   "outputs": [],
+   "execution_count": null
+  },
+  {
+   "cell_type": "code",
+   "metadata": {},
+   "source": [
+    "import pandas as pd","from prophet import Prophet"
+   ],
+   "outputs": [],
+   "execution_count": null
+  },
+  {
+   "cell_type": "code",
+   "metadata": {},
+   "source": [
+    "df = pd.read_csv('https://raw.githubusercontent.com/facebook/prophet/main/examples/example_wp_log_peyton_manning.csv')", "df.head()"
+   ],
+   "outputs": [],
+   "execution_count": null
+  },
+  {
+   "cell_type": "code",
+   "metadata": {},
+   "source": [
+    "m = Prophet()", "m.fit(df)"
+   ],
+   "outputs": [],
+   "execution_count": null
+  },
+  {
+   "cell_type": "code",
+   "metadata": {},
+   "source": [
+    "future = m.make_future_dataframe(periods=365)","future.tail()"
+   ],
+   "outputs": [],
+   "execution_count": null
+  },
+  {
+   "cell_type": "code",
+   "metadata": {},
+   "source": [
+    "forecast = m.predict(future)","forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail()"
+   ],
+   "outputs": [],
+   "execution_count": null
+  },
+  {
+   "cell_type": "code",
+   "metadata": {},
+   "source": [
+    "fig1 = m.plot(forecast)"
+   ],
+   "outputs": [],
+   "execution_count": null
+  },
+  {
+   "cell_type": "code",
+   "metadata": {},
+   "source": [
+    "fig2 = m.plot_components(forecast)"
    ],
    "outputs": [],
    "execution_count": null
@@ -230,7 +295,7 @@ Save this content in a file named `example_notebook.ipynb`.
 
 Now, create a Docker volume and copy the notebook into it.
 
-
+WIP:might be quicker to start in host
 
 Run the following commands:
 ```bash
