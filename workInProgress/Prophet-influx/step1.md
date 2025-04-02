@@ -297,7 +297,7 @@ https://jupyter.org/
 
 `python -V`{{exec}}
 
-`apt install python3-venv`{{exec}}
+`apt install -y python3-venv`{{exec}}
 
 `python -m venv .venv`{{exec}}
 
