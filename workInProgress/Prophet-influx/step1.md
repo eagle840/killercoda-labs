@@ -291,7 +291,29 @@ Save this content in a file named `example_notebook.ipynb`.
 
 ---
 
-### 2. Create a Docker volume and add the notebook
+### 2. install juypter
+
+`python -V`{{exec}}
+
+`apt install python3-venv`{{exec}}
+
+`python -m venv .venv`{{exec}}
+
+`source ./.venv/bin/activate`{{exec}}
+
+`pip install notebook`{{exec}}
+
+`#jupyter server list | grep -oP 'token=\K[^ ]+'`{{exec}}
+
+`jupyter -h`{{exec}}
+
+`jupyter notebook --allow-root --ip=0.0.0.0 `{{exec}}
+
+Note the key in the output, needed to get into the portal
+
+{{TRAFFIC_HOST1_8888}}
+
+### 2. WIP Remove, or move to pythonvenv? Create a Docker volume and add the notebook
 
 Now, create a Docker volume and copy the notebook into it.
 

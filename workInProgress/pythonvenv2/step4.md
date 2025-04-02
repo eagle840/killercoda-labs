@@ -25,16 +25,68 @@ In this lab we will be covering bpython and  ipython
 
 To start the ipython shell, simply run:
 
-```shell
-ipython
-```
-VS
-
 `ipython`{{exec}}
 
 
 Once inside the ipython shell, you can execute additional commands, such as listing the files in the current directory using `ls`. You can also run Python programs directly from the interpreter using the `run` command, e.g., `run example.py`. Furthermore, you can execute defined functions, for example, `printme("hello")`.
 
+#### query variables
+
+In IPython, you can query and inspect variables in several ways:
+
+1. **Using `whos`**: This command provides a list of all variables in the current namespace along with their types and information.
+   ```python
+   whos
+   ```
+
+2. **Using `who`**: This command lists all the variables in the current namespace.
+   ```python
+   who
+   ```
+
+3. **Using `dir()`**: This function returns a list of names in the current local scope.
+   ```python
+   dir()
+   ```
+
+4. **Using `type()`**: This function returns the type of a variable.
+   ```python
+   type(variable_name)
+   ```
+
+5. **Using `print()`**: You can simply print the variable to see its value.
+   ```python
+   print(variable_name)
+   ```
+
+#### query functions/classes
+
+Exploring a function/class in IPython is quite straightforward! Here are a few ways you can do it:
+
+1. **Using `?` or `??`**: You can use `?` to get a brief description of the function, including its docstring. If you need more detailed information, including the source code, use `??`.
+   ```python
+   your_function?
+   your_function??
+   ```
+
+2. **Using `help()`**: This will provide you with the docstring and other relevant information about the function.
+   ```python
+   help(your_function)
+   ```
+
+3. **Using `inspect` module**: This module provides several useful functions to get information about live objects, including functions.
+   ```python
+   import inspect
+   print(inspect.getsource(your_function))
+   print(inspect.signature(your_function))
+   ```
+
+4. **Using `dir()`**: This will list the attributes and methods of the function object.
+   ```python
+   dir(your_function)
+   ```
+
+These methods should help you explore and understand your function better. Is there anything specific you're looking to find out about your function?
 
 # Debugging
 
