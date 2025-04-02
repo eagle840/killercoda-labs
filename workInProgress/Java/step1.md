@@ -8,13 +8,13 @@ The main distributions of Java are:
 
 2. OpenJDK: This is an open-source implementation of the Java Development Kit. It is maintained by the OpenJDK community and is the basis for many other Java distributions.
 
-3. AdoptOpenJDK: This is a community-driven distribution of OpenJDK. 
+3. AdoptOpenJDK: This is a community-driven distribution of OpenJDK.
 
-4. Amazon Corretto: This is a no-cost, multiplatform, production-ready distribution of OpenJDK provided by Amazon. 
+4. Amazon Corretto: This is a no-cost, multiplatform, production-ready distribution of OpenJDK provided by Amazon.
 
 5. Azul Zulu: This is a certified, freely available distribution of OpenJDK provided by Azul Systems.
 
-6. IBM SDK for Java: This is a distribution of OpenJDK provided by IBM. 
+6. IBM SDK for Java: This is a distribution of OpenJDK provided by IBM.
 
 ## Editions
 
@@ -33,14 +33,19 @@ Java has different editions and profiles that cater to specific use cases. Here 
 
 ## Releases/Versions
 
+Just the major version are shown, see the wikipedia article for a full list.
+
+See: https://en.wikipedia.org/wiki/Java_version_history
+
 1. Java 1.0: Initial release in 1996.
 2. Java 1.2 (Java 2): Released in 1998, introduced the Java 2 platform.
 3. Java 5 (Java 1.5): Released in 2004, introduced generics and annotations.
 4. Java 8: Released in 2014, introduced lambda expressions and the Stream API.
 5. Java 11: Released in 2018, a long-term support (LTS) version with various enhancements.
 6. Java 17: Released in 2021, the latest LTS version with new features and improvements.
+7. Java 25: LTS To be release in Sept 2025
 
-## JRE vs JDK 
+## JRE vs JDK
 
 Runtime: The Java Runtime Environment (JRE) is needed to run Java applications. It includes the Java Virtual Machine (JVM) and core libraries.
 
@@ -138,3 +143,11 @@ You should see the output `Hello, World!` printed to the console.
 If you want to see a verbose output on the compilation:
 
 `javac -verbose HelloWorld.java`{{exec}}
+
+# Java REPL
+
+Introduced in JDK 9, the JShell REPL was added.
+
+To open the console: 'jshell`{{exec}}
+
+see https://www.jetbrains.com/help/idea/jshell-console.html#open for more tips.
