@@ -293,6 +293,8 @@ Save this content in a file named `example_notebook.ipynb`.
 
 ### 2. install juypter
 
+https://jupyter.org/
+
 `python -V`{{exec}}
 
 `apt install python3-venv`{{exec}}
