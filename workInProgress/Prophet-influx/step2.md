@@ -1,4 +1,6 @@
 
+1. Open the prophet.ipynb in notebook
+
 
 3. Install Prophet in the Jupyter notebook container:
 ```

@@ -203,7 +203,7 @@ wip consider anaconda
    "cell_type": "code",
    "metadata": {},
    "source": [
-    "import pandas as pd","from prophet import Prophet"
+    "import pandas as pd\n","from prophet import Prophet"
    ],
    "outputs": [],
    "execution_count": null
@@ -212,7 +212,7 @@ wip consider anaconda
    "cell_type": "code",
    "metadata": {},
    "source": [
-    "df = pd.read_csv('https://raw.githubusercontent.com/facebook/prophet/main/examples/example_wp_log_peyton_manning.csv')", "df.head()"
+    "df = pd.read_csv('https://raw.githubusercontent.com/facebook/prophet/main/examples/example_wp_log_peyton_manning.csv')\n", "df.head()"
    ],
    "outputs": [],
    "execution_count": null
@@ -221,7 +221,7 @@ wip consider anaconda
    "cell_type": "code",
    "metadata": {},
    "source": [
-    "m = Prophet()", "m.fit(df)"
+    "m = Prophet()\n", "m.fit(df)"
    ],
    "outputs": [],
    "execution_count": null
@@ -230,7 +230,7 @@ wip consider anaconda
    "cell_type": "code",
    "metadata": {},
    "source": [
-    "future = m.make_future_dataframe(periods=365)","future.tail()"
+    "future = m.make_future_dataframe(periods=365)\n","future.tail()"
    ],
    "outputs": [],
    "execution_count": null
@@ -239,7 +239,7 @@ wip consider anaconda
    "cell_type": "code",
    "metadata": {},
    "source": [
-    "forecast = m.predict(future)","forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail()"
+    "forecast = m.predict(future)\n","forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail()\n"
    ],
    "outputs": [],
    "execution_count": null

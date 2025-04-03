@@ -1,6 +1,6 @@
 {
   "title": "work-in-progress FB Prophet and influx",
-  "description": "Using a python environment successfully (v0.0.17)",
+  "description": "Using a python environment successfully (v0.0.18)",
   "difficulty": "Intermediate",
   "time": "1",
   "details": {
@@ -32,7 +32,8 @@
       "host01": [
         {"file": "quickstart.ipynb", "target": "~/", "chmod": "+w"},
         {"file": "prophet.ipynb", "target": "~/", "chmod": "+w"},
-        {"file": "influxquickstart.ipynb", "target": "~/", "chmod": "+w"}
+        {"file": "influxquickstart.ipynb", "target": "~/", "chmod": "+w"},
+        {"file": "influxphet.ipynb", "target": "~/", "chmod": "+w"}
       ]
     }
   },
