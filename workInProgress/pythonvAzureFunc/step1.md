@@ -33,26 +33,13 @@ We'll be using python version 3.11
 
 `apt update`{{exec}}
 
-`apt install -y python3.11 jq tree`{{exec}}
-
-
-`python3 -V`{{exec}}
-
-`python3.11 -V`{{exec}}
-
-WIP `pip3 install --upgrade pip`{{exec}}
-
-WIP `apt install -y python3.8-venv`{{copy}}
-
-`apt install -y python3.11-venv`{{exec}}
+`apt install -y python3.12-venv jq tree`{{exec}}
 
 `mkdir cleanproject`{{exec}}
 
 `cd cleanproject`{{exec}}
 
-WIP `python3 -m venv .venv`{{copy}}
-
-`python3.11 -m venv .venv`{{exec}}
+`python -m venv .venv`{{exec}}
 
 `source .venv/bin/activate`{{exec}}
 

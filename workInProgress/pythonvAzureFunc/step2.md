@@ -7,6 +7,8 @@ Function vs Function App, the app is what holds the functions.
 
 ### Create the 'Function App'
 
+"Create a new Function App in the current folder. Initializes git repo."
+
 `func init MyProjFolder --worker-runtime python --model V2`{{exec}}
 
 WIP appears this creats code in the folder MyProjFolder
@@ -25,9 +27,15 @@ The app only contains a bare template - creates only an instance of the Function
 
 ### Create the 'Function'
 
+"Create a new function from a template."
+
 Lets add a 'function'
 
-`func new --template "Http Trigger" --name http_trigger1 --authlevel "anonymous"`{{exec}}
+`func new --template "Http Trigger" --name http_trigger1 --authlevel "anonymous"`{{copy}}
+
+`func new --template "Http Trigger" --name http_trigger1 `{{exec}}
+
+If I add the authlevel in the command I get a python error, but adding it in the q&a I don't
 
 Note that the name is used in the url `/api/<name>`
 
