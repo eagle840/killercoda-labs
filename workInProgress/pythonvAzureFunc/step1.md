@@ -1,6 +1,8 @@
 
 
 
+[Gettinng started](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-python?tabs=get-started%2Casgi%2Capplication-level&pivots=python-mode-decorators)
+
 [MS doc](https://learn.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=linux%2Cisolated-process%2Cnode-v4%2Cpython-v2%2Chttp-trigger%2Ccontainer-apps&pivots=programming-language-python)
 
 [MS Docs python](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-python?tabs=get-started%2Casgi%2Capplication-level&pivots=python-mode-decorators)
@@ -22,14 +24,6 @@ Lets first check which version of python the F() app is running:
 - goto your Azure Function App
 - Click on 'Configuration' under Settings.
 - In the general tab, not the python version.
-
-
-We'll be using python version 3.11
-
-
-
-
-`add-apt-repository ppa:deadsnakes/ppa`{{exec}}
 
 `apt update`{{exec}}
 

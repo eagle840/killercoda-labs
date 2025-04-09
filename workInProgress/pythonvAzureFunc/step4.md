@@ -42,6 +42,10 @@ Simplier folder structure,programming, and introduces blueprints and decorators
 
 ## Blue prints
 
+https://stackoverflow.com/questions/74316387/how-to-use-blueprints-in-azure-functions-v2-for-python
+
+https://learn.microsoft.com/en-us/python/api/azure-functions/azure.functions.blueprint?view=azure-python
+
 ```
 import logging
 import azure.functions as func
