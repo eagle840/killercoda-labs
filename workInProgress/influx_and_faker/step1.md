@@ -57,9 +57,11 @@ echo "943666881a1b8d9b849b74caebf02d3465d6beb716510d86a39f6c8e8dac7515  influxda
 ```
 # Install influxdb
 sudo apt-get update && sudo apt-get install influxdb2
-sudo service influxdb start
-sudo service influxdb status
 ```{{exec}}
+
+`sudo service influxdb start`{{exec}}
+
+`sudo service influxdb status`{{exec}}
 
 `influxd`{{exec}}
 
