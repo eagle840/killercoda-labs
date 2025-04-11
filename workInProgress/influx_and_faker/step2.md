@@ -17,6 +17,12 @@ https://docs.influxdata.com/influxdb/v2/get-started/write/?t=influx+CLI
 
 Inside docker:
 
+`export INFLUX_ORG="your-org-name"`{{copy}}
+
+
+`export INFLUX_TOKEN="your-api-token"`{{copy}}
+
+
 `influx version`{{exec}}
 
 `influx --help`{{exec}}
@@ -27,6 +33,8 @@ Inside docker:
 
 
 `influx bucket create --name get-started`{{exec}}
+
+`influx bucket create --name get-started  --org MyOrg -t API-TOKEN`{{copy}}
 
 `influx bucket list`{{exec}}
 
@@ -99,6 +107,9 @@ Select the 'get-started` bucket and set the custom time range to over the 2022-0
 Select 'home'
 set Table type
 click `submey
+
+
+
 
 # Populate db with sample data.
 

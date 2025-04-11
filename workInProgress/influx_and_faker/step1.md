@@ -67,65 +67,25 @@ sudo apt-get update && sudo apt-get install influxdb2
 
 {{TRAFFIC_HOST1_8086}}
 
+user: `dbadmn`
 
-## install Influx with docker
+pw: `dbadmin123`
 
-https://docs.influxdata.com/influxdb/v2/install/?t=Docker
+Org: `MyOrg`
 
-```bash
-docker run \
- --name influxdb2 \
- --publish 8086:8086 \
- --mount type=volume,source=influxdb2-data,target=/var/lib/influxdb2 \
- --mount type=volume,source=influxdb2-config,target=/etc/influxdb2 \
- --env DOCKER_INFLUXDB_INIT_MODE=setup \
- --env DOCKER_INFLUXDB_INIT_USERNAME=dbadmin \
- --env DOCKER_INFLUXDB_INIT_PASSWORD=dbadmin123 \
- --env DOCKER_INFLUXDB_INIT_ORG=MyOrg \
- --env DOCKER_INFLUXDB_INIT_BUCKET=BUCKET_ONE \
- influxdb:2
-```exec
+Bucket: `BUCKET_ONE`
+
+copy the key down.
+
+And select **QUICK START**
+
+
 
 ## Connecting
 
 #### Cli
 
-In a new tab `docker exec -it influxdb2 influx config ls`{{exec}}
-
-#### UI portal
-
-login:  un:dbadmin   PW: dbadmin123
-
-{{TRAFFIC_HOST1_8086}}
-
-
-## Load sample data
-
-We'll ne using samples from:  https://docs.influxdata.com/influxdb/cloud/reference/sample-data/
-
-
-Find he USGS data
-
-https://earthquake.usgs.gov/earthquakes/map/ (https://www.usgs.gov/data/latest-earthquakes-map-and-list)
-
-
-In the UI, click on the calender Icon on the left
-
-Top right click 'create task' > 'New task'
-
-Give it a name
-
-Paste the task in, be sure to change the bucket name to 'BUCKET_ONE'
-
-The CRON settings don't matter at this point
-
-Save
-
-Now in the Task, on the right, click the cog, and select 'run'
-
-
-
-
+In a new tab `influx config ls`{{exec}}
 
 
 #### Http API
@@ -163,7 +123,7 @@ curl --get "http://localhost:8086/api/v2" \
 ```
 ## Actions
 
-`docker exec -it influxdb2 influx v1 shell`{{exec}}
+`dinflux v1 shell -t <API KEY HERE>`{{exec}}
 
 make sure you're in the influx shell **>**
 
@@ -242,3 +202,51 @@ create a sample config
 set the  InfluxDB URL in the config
 
 `telegraf --sample-config --input-filter cpu:mem --output-filter influxdb_v2 > telegraf.conf`{{exec}}
+
+--- ## install Influx with docker
+
+https://docs.influxdata.com/influxdb/v2/install/?t=Docker
+
+```bash
+docker run \
+ --name influxdb2 \
+ --publish 8086:8086 \
+ --mount type=volume,source=influxdb2-data,target=/var/lib/influxdb2 \
+ --mount type=volume,source=influxdb2-config,target=/etc/influxdb2 \
+ --env DOCKER_INFLUXDB_INIT_MODE=setup \
+ --env DOCKER_INFLUXDB_INIT_USERNAME=dbadmin \
+ --env DOCKER_INFLUXDB_INIT_PASSWORD=dbadmin123 \
+ --env DOCKER_INFLUXDB_INIT_ORG=MyOrg \
+ --env DOCKER_INFLUXDB_INIT_BUCKET=BUCKET_ONE \
+ influxdb:2
+```exec
+
+
+`docker exec -it influxdb2 influx v1 shell`{{exec}}
+
+---
+
+## Load sample data
+
+We'll ne using samples from:  https://docs.influxdata.com/influxdb/cloud/reference/sample-data/
+
+
+Find he USGS data
+
+https://earthquake.usgs.gov/earthquakes/map/ (https://www.usgs.gov/data/latest-earthquakes-map-and-list)
+
+
+In the UI, click on the calender Icon on the left
+
+Top right click 'create task' > 'New task'
+
+Give it a name
+
+Paste the task in, be sure to change the bucket name to 'BUCKET_ONE'
+
+The CRON settings don't matter at this point
+
+Save
+
+Now in the Task, on the right, click the cog, and select 'run'
+
