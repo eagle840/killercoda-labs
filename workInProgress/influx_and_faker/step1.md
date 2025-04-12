@@ -99,6 +99,8 @@ In a new tab `influx config ls`{{exec}}
 
 create a token https://docs.influxdata.com/influxdb/v2/admin/tokens/create-token/
 
+HTTP API:  https://docs.influxdata.com/influxdb/v2/reference/api/
+
 In the portal, LHS click the UP arrow, and API tokens
 
 Generate a new all access token. (make sure to copy it down)

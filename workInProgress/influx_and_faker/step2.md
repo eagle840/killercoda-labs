@@ -81,7 +81,7 @@ This command writes time-series data to an InfluxDB bucket named `get-started`. 
    - `--precision s`: Indicates that the timestamps in the input data are in seconds precision.
 
 3. **Input Data** (the multiline string provided in the command):
-   Each line represents a single data point, structured in **line protocol format**, which is how InfluxDB ingests data [DOCS](https://docs.influxdata.com/influxdb/v1/write_protocols/line_protocol_tutorial/). Here's how to decode it:
+   Each line represents a single data point, structured in **line protocol format**, which is how InfluxDB ingests data [DOCS](https://docs.influxdata.com/influxdb/v2/reference/syntax/line-protocol/). Here's how to decode it:
 
    ```plaintext
    home,room=Living\ Room temp=21.1,hum=35.9,co=0i 1641024000
