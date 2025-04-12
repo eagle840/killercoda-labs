@@ -83,6 +83,13 @@ And select **QUICK START**
 
 ## Connecting
 
+Lets set some environment variables:
+
+`export INFLUX_ORG="your-org-name"`{{copy}}
+
+
+`export INFLUX_TOKEN="your-api-token"`{{copy}}
+
 #### Cli
 
 In a new tab `influx config ls`{{exec}}
@@ -97,8 +104,6 @@ In the portal, LHS click the UP arrow, and API tokens
 Generate a new all access token. (make sure to copy it down)
 
 
-`API_TOKEN="insert  token"{{copy}}
-
 
 
 ```bash
@@ -108,9 +113,9 @@ Generate a new all access token. (make sure to copy it down)
 #######################################
 
 curl --get "http://localhost:8086/api/v2" \
-  --header "Authorization: Token YOUR_API_TOKEN" \
+  --header "Authorization: Token $INFLUX_TOKEN" \
   --header 'Content-type: application/json' \
-  --data-urlencode "db=mydb" \
+  --data-urlencode "db=BUCKET_ONE" \
   --data-urlencode "q=SELECT * FROM cpu_usage"
 ```
 
@@ -123,7 +128,9 @@ curl --get "http://localhost:8086/api/v2" \
 ```
 ## Actions
 
-`dinflux v1 shell -t <API KEY HERE>`{{exec}}
+Before starting, besure you're completed the Quickstart in the GUI
+
+`influx v1 shell -t $INFLUX_TOKEN`{{exec}}
 
 make sure you're in the influx shell **>**
 
