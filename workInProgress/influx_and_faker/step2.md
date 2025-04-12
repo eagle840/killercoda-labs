@@ -31,10 +31,7 @@ Inside docker:
 
 `influx server-config`{{exec}}
 
-
 `influx bucket create --name get-started`{{exec}}
-
-`influx bucket create --name get-started  --org MyOrg -t API-TOKEN`{{copy}}
 
 `influx bucket list`{{exec}}
 
@@ -71,6 +68,43 @@ home,room=Kitchen temp=22.7,hum=36.5,co=26i 1641067200
 "
 ```{{exec}}
 
+This command writes time-series data to an InfluxDB bucket named `get-started`. Here's a detailed explanation of its components:
+
+1. **Command**:
+   ```bash
+   influx write
+   ```
+   This invokes the `influx` CLI to write data to InfluxDB.
+
+2. **Options**:
+   - `--bucket get-started`: Specifies the target bucket in InfluxDB where the data will be stored.
+   - `--precision s`: Indicates that the timestamps in the input data are in seconds precision.
+
+3. **Input Data** (the multiline string provided in the command):
+   Each line represents a single data point, structured in **line protocol format**, which is how InfluxDB ingests data [DOCS](https://docs.influxdata.com/influxdb/v1/write_protocols/line_protocol_tutorial/). Here's how to decode it:
+
+   ```plaintext
+   home,room=Living\ Room temp=21.1,hum=35.9,co=0i 1641024000
+   ```
+   - **Measurement**: `home` (the name of what you're measuring, such as temperature readings for the home).
+   - **Tags**: `room=Living\ Room`
+     - `room` is a tag key, and `Living\ Room` is its value. (Backslash is used to escape the space in the tag value.)
+     - Tags are used for metadata and are indexed for fast querying.
+   - **Fields**: `temp=21.1,hum=35.9,co=0i`
+     - `temp=21.1`: A field key-value pair indicating temperature is 21.1.
+     - `hum=35.9`: Another field key-value pair for humidity at 35.9.
+     - `co=0i`: A field key-value pair indicating carbon monoxide level is `0` as an integer (the `i` suffix signifies an integer value).
+     - Fields hold the actual data values and are not indexed.
+   - **Timestamp**: `1641024000`
+     - A Unix timestamp in seconds corresponding to the date and time for this data point.
+
+4. **Multiple Data Points**:
+   The multiline string includes several data points for two rooms (`Living Room` and `Kitchen`), with measurements of `temp`, `hum`, and `co` at different timestamps.
+
+**What it does**:
+- It writes a series of temperature, humidity, and CO level measurements for two rooms (`Living Room` and `Kitchen`) into the `get-started` bucket in InfluxDB. This data can then be queried, visualized, or analyzed using InfluxDB's tools.
+
+
 ## query
 
 https://docs.influxdata.com/influxdb/v2/get-started/query/?t=influx+CLI
@@ -104,9 +138,16 @@ SELECT co,hum,temp,room FROM "get-started".autogen.home WHERE time >= '2022-01-0
 
 Select the 'get-started` bucket and set the custom time range to over the 2022-01-01 00:01 to 2022-01-02 00:01
 
+Click submit  -  You'll see the graph of the data
+
 Select 'home'
 set Table type
 click `submey
+
+
+Switch back to BUCKET_ONE and set the time to the past hour
+
+And select the `http-query-request-count` to see the graph of that.
 
 
 

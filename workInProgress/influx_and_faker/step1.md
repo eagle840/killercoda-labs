@@ -63,7 +63,7 @@ sudo apt-get update && sudo apt-get install influxdb2
 
 `sudo service influxdb status`{{exec}}
 
-`influxd`{{exec}}
+`influxd -h`{{exec}}
 
 {{TRAFFIC_HOST1_8086}}
 
