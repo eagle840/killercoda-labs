@@ -5,7 +5,8 @@
 
 ## Install Az cli
 
-`curl -L https://aka.ms/InstallAzureCli | bash`{{exec}}
+
+`curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash`{{exec}}
 
 `exec -l $SHELL`{{exec}}
 

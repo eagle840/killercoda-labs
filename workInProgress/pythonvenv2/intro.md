@@ -3,7 +3,7 @@ In this lab we explore way to have a successful Python experience (mainly on Lin
 Each step is generally broken down into its own lab and not dependant on the others.
 
 
-# using Python venv and troubleshooting dependiences 
+# using Python venv and troubleshooting dependiences
 
 
 
@@ -36,7 +36,9 @@ WIP: how does venv fit into the above
 
 - Dash notebook
 
-WIP 
+- WSGI (Web Server Gateway Interface) HTTP server for running Python web applications.
+
+WIP
 
 # resources
 
