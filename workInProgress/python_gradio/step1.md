@@ -24,6 +24,14 @@ We'll be using pip-tools to get a trouble free install of multiple packages
 
 `pip install pip-tools`{{exec}}
 
+manual load each for now
+
+pytorch: https://pytorch.org/get-started/locally/
+
+`pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu`{{exec}}
+
+`pip3 install tranformers`{{exec}}  # appears to work
+
 `touch requirements.in`{{exec}}
 
 copy the following into that file
