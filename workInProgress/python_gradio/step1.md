@@ -22,7 +22,7 @@ We'll be using pip-tools to get a trouble free install of multiple packages
 
 `pip install pip-tools`{{exec}}
 
-`touch requirements.txt`{{exec}}
+`touch requirements.in`{{exec}}
 
 copy the following into that file
 
@@ -30,6 +30,14 @@ copy the following into that file
 gradio
 tensorflow
 transformers
+```{{copy}}
+
+```
+gradio
+tensorflow
+transformers
+tf-keras
+torch
 ```{{copy}}
 
 and run

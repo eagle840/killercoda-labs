@@ -1,6 +1,6 @@
 # Tensorflow & Transformers
 
-
+WIP? turn this into Jyptuer?
 
 https://www.tensorflow.org/tutorials/quickstart/beginner
 
