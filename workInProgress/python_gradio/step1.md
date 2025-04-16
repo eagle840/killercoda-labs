@@ -4,7 +4,7 @@
 
 `python -V`{{exec}}
 
-`pip install --upgrade pip`{{exec}}
+
 
 `apt install python3.12-venv`{{exec}}
 
@@ -17,6 +17,8 @@ https://www.gradio.app/guides/quickstart
 `python -m venv .venv`{{exec}}
 
 `source .venv/bin/activate`{{exec}}
+
+`pip install --upgrade pip`{{exec}}
 
 We'll be using pip-tools to get a trouble free install of multiple packages
 
@@ -45,7 +47,15 @@ and run
 `pip-compile`{{exec}} # Runs against requirements.in, and takes a while. The output being requirements.txt
 
 
+WIP: the following appears to cause the killacoda session to terminate
+
 `pip install -r requirements.txt`{{exec}}
+
+WIP CONSIDER
+
+see https://github.com/huggingface/transformers/blob/main/docker/transformers-pytorch-gpu/Dockerfile
+
+This is for a GPU, try and find one without a gpu
 
 
 # Run the App
