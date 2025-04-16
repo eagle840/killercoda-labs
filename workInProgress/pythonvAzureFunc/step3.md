@@ -1,6 +1,8 @@
 
 # Add a python library
 
+for the full Azure Functions API see: [ms docs](https://learn.microsoft.com/en-us/python/api/azure-functions/azure.functions?view=azure-python)
+
 Lets setup an app to accept a JSON from a POST request:
 
 enter the following code:
@@ -8,6 +10,7 @@ enter the following code:
 ```
 import azure.functions as func
 import logging
+import datetime
 import json
 
 app = func.FunctionApp()
@@ -46,6 +49,8 @@ curl -X POST \
   http://localhost:7071/api/http_trigger1
 ```{{exec}}
 
+You'll notice in the logs in in take of the json object.
+
 Now lets add a jq package, so we can run JSON queries
 
 We're going to create and use a jq package.
@@ -63,7 +68,7 @@ In the code we'll add
 ```
 import jq
 ```
-and
+and add the function to the app code.
 ```
 def apply_jq_query(json_obj, jq_query):
     try:
@@ -85,6 +90,7 @@ set the query and run an example
 ```python
 import azure.functions as func
 import logging
+import datetime
 import json
 import jq
 
@@ -123,6 +129,8 @@ def http_trigger1(req: func.HttpRequest) -> func.HttpResponse:
     return func.HttpResponse(response_message, status_code=200)
 ```{{copy}}
 
+Lets run the app, that should return the value of `key1`
+
 `func start --verbose`{{exec}}
 
 ```bash
@@ -132,108 +140,75 @@ curl -X POST \
   http://localhost:7071/api/http_trigger1
 ```{{exec}}
 
---- WHAT IS BELOW?
-
-Let check the site  open site for 7071
-
-now with /api/MyHttpTrigger
 
 
-[Developer Guide](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-python?tabs=get-started%2Casgi%2Capplication-level&pivots=python-mode-decorators)
+## The full app
 
-WORKING, input json list
+Where the app uses the url parameter as the jq query
 
 ```python
 import azure.functions as func
-import datetime
-import json
-import ssl
-import socket
 import logging
+import json
+import jq
 
 app = func.FunctionApp()
 
+def apply_jq_query(json_obj, jq_query):
+    try:
+        compiled_query = jq.compile(jq_query)
+        result = compiled_query.input(json_obj).first()
+        return result
+    except jq.JqError as e:
+        return {"error": f"Invalid jq query: {e}"}
 
-
-def get_ssl_expiry_date(hostname):
-    context = ssl.create_default_context()
-    conn = context.wrap_socket(
-        socket.socket(socket.AF_INET),
-        server_hostname=hostname,
-    )
-    conn.settimeout(3.0)
-    conn.connect((hostname, 443))
-    ssl_info = conn.getpeercert()
-    expiry_date = datetime.datetime.strptime(ssl_info['notAfter'], '%b %d %H:%M:%S %Y %Z')
-    return expiry_date
-
-@app.route(route="MyHttpTrigger", auth_level=func.AuthLevel.ANONYMOUS)
-def MyHttpTrigger(req: func.HttpRequest) -> func.HttpResponse:
+@app.route(route="http_trigger1", methods=['POST'])
+def http_trigger1(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
-    names = req.params.get('names')
-    if names:
-        try:
-            names = json.loads(names)
-        except json.JSONDecodeError:
-            return func.HttpResponse(
-                "Invalid JSON format for 'names' parameter.",
-                status_code=400
-            )
-    else:
-        try:
-            req_body = req.get_json()
-        except ValueError:
-            req_body = {}
-        names = req_body.get('names')
+    try:
+        req_body = req.get_json()
+    except ValueError:
+        return func.HttpResponse("Invalid JSON in request body", status_code=400)
 
-    if names:
-        if not isinstance(names, list):
-            return func.HttpResponse(
-                "'names' should be a JSON list.",
-                status_code=400
-            )
-        # expiry_date = get_ssl_expiry_date(hostname)
+    if not req_body:
+        return func.HttpResponse("Request body is empty", status_code=400)
 
-        result = {}
-        for url in names:
-            hostname = url.split("//")[-1].split("/")[0]
-            logging.info(hostname)
-            expiry_date = get_ssl_expiry_date(hostname)
-            logging.info(expiry_date.strftime('%Y-%m-%d'))
-            result[url] = expiry_date.strftime('%Y-%m-%d')
+    # Extract the jq query from the query parameter
+    jq_query = req.params.get('jq_query')
+    if not jq_query:
+        return func.HttpResponse("Missing jq_query parameter", status_code=400)
 
+    logging.info(f'Received jq query: {jq_query}')
+    logging.info(f'Received JSON object: {req_body}')
 
+    # Run the jq query against the JSON object
+    result = apply_jq_query(req_body, jq_query)
 
-        # response_message = f"Hello, {', '.join(names)}. SSL certificate expiry date is {expiry_date}."
-        # response_message = f"Hello, {', '.join(names)}. SSL certificate expiry date is {', '.join(result)}."
-        response_message = f"Hello, {', '.join(names)}. SSL certificate expiry date is {result}."
-        # response_message = f"Hello."
-        # response_message = f"Domain:, {', '.join(names)}. SSL certificate expiry date is {result}."
-        # response_message = f"[ {result} ]"
-        # FOR JSON output response_message = json.dumps([result])
-        return func.HttpResponse(response_message)
-    else:
-        return func.HttpResponse(
-            "This HTTP triggered function executed successfully. Pass a 'names' JSON list in the query string or in the request body for a personalized response.",
-            status_code=200
-        )
+    logging.info(f'Query result: {result}')
+    response_message = f"Query result is, {result}"
+
+    return func.HttpResponse(response_message, status_code=200)
+
 ```{{copy}}
 
 
-`curl -X POST http://localhost:7071/api/MyHttpTrigger -H "Content-Type: application/json" -d '{"names": ["www.example.com", "www.bbc.com"]}'`{{exec}}
 
----
-DELETE BELOW?
+Lets look at the data:
+
+`cat data1.json`{{exec}}
+
+and run the query
+
+```bash
+curl -X POST \
+     -H "Content-Type: application/json" \
+     --data "@data1.json" \
+     "http://localhost:7071/api/http_trigger1?jq_query=.employees[]|select(.department==\"Engineering\"and.salary>75000)|{name,projects}"
+```{{exec}}
 
 
+--- 
 
-curl cmd:
 
-WIP `curl -X POST "http://localhost:7071/api/MyHttpTrigger" -H "Content-Type: application/json" -d '{"names":["john","jim"]}'`{{exec}}
-
-CORRECT FORMAT `
-CORRECT FORMAT `curl -X GET "http://localhost:7071/api/MyHttpTrigger" -d 'names=["www.example.com"}]'`{{exec}}
-- but needs a LIST
-
-THIS WORKS!  `curl -X GET "http://localhost:7071/api/MyHttpTrigger" -d '{"names":["www.example.com"]}'`{{exec}}
+[Developer Guide](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-python?tabs=get-started%2Casgi%2Capplication-level&pivots=python-mode-decorators)

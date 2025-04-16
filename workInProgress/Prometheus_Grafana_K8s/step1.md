@@ -1,5 +1,17 @@
 # INTRO
 
+
+## Comparison of Log and Analytics Stacks by Key Components
+
+| **Stack**       | **Database**      | **Data Collection** | **Visualization** |
+|------------------|-------------------|---------------------|-------------------|
+| **ELK**          | Elasticsearch     | Logstash            | Kibana            |
+| **EFK**          | Elasticsearch     | Fluentd             | Kibana            |
+| **TICK**         | InfluxDB          | Telegraf            | Chronograf        |
+| **Prometheus & Grafana** | Prometheus | Exporters           | Grafana           |
+
+
+
 In this lab we will install an Prometheous/Grafana stack on a k8s cluster
 
 WIP - create storaege
