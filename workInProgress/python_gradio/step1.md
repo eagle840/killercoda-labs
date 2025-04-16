@@ -30,7 +30,10 @@ pytorch: https://pytorch.org/get-started/locally/
 
 `pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu`{{exec}}
 
-`pip3 install tranformers`{{exec}}  # appears to work
+`pip install tranformers`{{exec}}
+
+`pip install tensorflow`{{exec}}# appears to work
+
 
 `touch requirements.in`{{exec}}
 
