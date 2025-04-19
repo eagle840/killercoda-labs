@@ -28,6 +28,10 @@ And open the following link to inspect.
 
 {{TRAFFIC_HOST1_3000}}
 
+See for a tutorial: https://prototype-kit.service.gov.uk/docs/prototyping
+
+and see the link at the bottom of that page for 'Getting Started'
+
 # Install options
 
 We'll cover using the node website directions, and using asdf
