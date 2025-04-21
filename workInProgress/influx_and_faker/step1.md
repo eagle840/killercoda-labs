@@ -1,6 +1,16 @@
 
 ## Initial Setup
 
+
+WIP:
+- should I be using v3?
+- provide examples of different way to enter data
+  - csv
+  - lineprotocol
+  - cli
+  - client (pytho)
+  - telegraf ()
+
 Sure! Here are some popular time series databases:
 
 Also see: https://killercoda.com/influxdata/course/Training/influxdb-roadshow-training

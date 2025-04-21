@@ -1,3 +1,15 @@
+WIP # In WIP provide a front page list of to do?
+
+
+1. read:
+  - https://www.influxdata.com/blog/no-code-time-series-forecasting-pipeline-influxdb3/
+  - https://www.influxdata.com/blog/forecasting-with-fb-prophet-and-influxdb/
+
+2. it appears that v3 has direct inbuild support for python - should I use v3 in this lab?
+
+
+
+
 
 'https://killercoda.com/ir4engineer/course/workInProgress/influx_and_faker' running first!
 
@@ -10,6 +22,7 @@ WIP make this a daemon (sometimes the terminal crashes and you lose the running 
 
 ```
 docker run \
+ --detach \
  --name influxdb2 \
  --publish 8086:8086 \
  --mount type=volume,source=influxdb2-data,target=/var/lib/influxdb2 \
