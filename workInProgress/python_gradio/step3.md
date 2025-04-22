@@ -8,6 +8,8 @@ READ and follow the **Guide** from https://www.gradio.app/guides/the-interface-c
 
 For more details items, see the **Docs** at https://www.gradio.app/docs
 
+Try the Gradio Playground to experiment:  https://www.gradio.app/playground
+
 
 
 update the function
