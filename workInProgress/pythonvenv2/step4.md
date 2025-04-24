@@ -132,3 +132,24 @@ To initiate pudb for debugging, run the following command, replacing `pythonProg
 ```shell
 python3 -m pudb pythonProgramToDebug.py
 ```
+
+
+## Power Tips
+
+### If you're low on memory
+
+Yes, there is! You can use the `--no-cache-dir` flag with `pip` to help manage installations on systems with low memory. This flag prevents `pip` from caching package files, which can reduce memory usage during the installation process. Here's how you can use it:
+
+```sh
+pip install <package_name> --no-cache-dir
+```
+
+For example, to install the `requests` package without caching, you would run:
+
+```sh
+pip install requests --no-cache-dir
+```
+
+This can be particularly useful if you're working on a system with limited RAM [1](https://stackoverflow.com/questions/57058641/pip-install-killed-out-of-memory-how-to-get-around-it).
+
+Is there a specific package you're trying to install?
