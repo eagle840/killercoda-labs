@@ -14,10 +14,10 @@ Installing Chromadb and be a bit of a pain, but the following sequence successfu
 
 ## install sqlite
 
-```
-apt install sqlite3
-sqlite3 --version
-```{{exec}}
+`apt install -y sqlite3`{{exec}}
+
+`sqlite3 --version`{{exec}}
+
 
 
 
@@ -27,11 +27,9 @@ sqlite3 --version
 python -V
 ```{{exec}}
 
-```
-sudo apt-get install build-essential -y
-apt install -y python3.12-venv
-```{{exec}}
+`apt-get install build-essential -y`{{exec}}
 
+`apt install -y python3.12-venv`{{exec}}
 
 `cd ~`{{exec}}
 
