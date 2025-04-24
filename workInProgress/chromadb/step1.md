@@ -6,8 +6,6 @@ https://docs.trychroma.com/getting-started
 
 Installing Chromadb and be a bit of a pain, but the following sequence successfully installs on this version of Ubuntu.
 
-`apt-get update`{{exec}}
-
 `apt update`{{exec}}
 
 `sudo apt-get install libreadline-dev -y`{{exec}}
@@ -17,8 +15,6 @@ Installing Chromadb and be a bit of a pain, but the following sequence successfu
 `apt install -y sqlite3`{{exec}}
 
 `sqlite3 --version`{{exec}}
-
-
 
 
 ## install Python 3.10
@@ -50,19 +46,6 @@ pip install --upgrade pip
 `pip install pysqlite3-binary`{{exec}}
 
 `pip install chromadb`{{exec}}
-
-Make an small adjustment to allow Chromadb to work  NO LONGER NEEDED:
-
-`nano .venv/lib/python3.10/site-packages/chromadb/__init__.py`{{exec}}
-
- Added these 3 lines in 'venv3.10/lib/python3.10/site-packages/chromadb/__init__.py' at the beginning:
-
-
-```
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-```{{copy}}
 
 
 `python`{{exec}}
