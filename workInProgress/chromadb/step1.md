@@ -10,20 +10,9 @@ Installing Chromadb and be a bit of a pain, but the following sequence successfu
 
 `sudo apt-get install libreadline-dev -y`{{exec}}
 
-## install sqlite
+## Setup Python
 
-`apt install -y sqlite3`{{exec}}
-
-`sqlite3 --version`{{exec}}
-
-
-## install Python 3.10
-
-```
-python -V
-```{{exec}}
-
-`apt-get install build-essential -y`{{exec}}
+`python -V`{{exec}}
 
 `apt install -y python3.12-venv`{{exec}}
 
@@ -43,7 +32,6 @@ pip install --upgrade pip
 
 ## Install Chromadb
 
-`pip install pysqlite3-binary`{{exec}}
 
 `pip install chromadb`{{exec}}
 

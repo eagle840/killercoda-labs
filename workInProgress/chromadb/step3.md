@@ -8,24 +8,9 @@ https://www.sbert.net/
 
 We'll run the install inside ipython
 
-`%pip install pip install -U sentence-transformers`{{exec}}
-
-why isn't it:
-
-`!pip install -U sentence-transformers`{{exec}}
-
 `%pip install -U sentence-transformers`{{exec}}
 
-
-
-you might have to install this outside of ipython
-
-`pip install -U sentence-transformers`{{exec}}
-
-`pip install sentence-transformers`{{exec}}
-
-
-It'll take a few minutes to install the packages,
+- It'll take a few minutes to install the packages,
 
 
 ```
@@ -47,7 +32,7 @@ for sentence, embedding in zip(sentences, embeddings):
     print("")
 ```{{copy}}
 
-It'll take a few minutes to install the above model,
+- It'll take a few minutes to install the above model,
 
 
 ## Comparing Sentence Similarities
