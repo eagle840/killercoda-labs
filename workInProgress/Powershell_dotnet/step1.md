@@ -9,6 +9,8 @@ https://learn.microsoft.com/en-us/powershell/scripting/samples/creating-.net-and
 
 # Run First
 
+`cat /etc/os-release`{{exec}}
+
 `sudo apt update`{{exec}}
 
 
@@ -35,6 +37,8 @@ https://learn.microsoft.com/en-us/powershell/scripting/samples/creating-.net-and
 
 ###################################
 # Prerequisites
+
+wget https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 
 # Update the list of packages
 `sudo apt-get update`{{exec}}
@@ -64,8 +68,25 @@ https://learn.microsoft.com/en-us/powershell/scripting/samples/creating-.net-and
 # Start PowerShell
 `pwsh`{{exec}}
 
+`exit`{{exec}}
+
 
 ---
+
+##################################
+# Install dotnet
+
+do i need? `wget https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb`{{exec}}
+
+
+`sudo add-apt-repository ppa:dotnet/backports`{{exec}}
+
+
+`sudo apt-get update`{{exec}}
+
+`sudo apt-get install -y dotnet-sdk-9.0`{{exec}}
+
+`dotnet --version`{{exec}}
 
 DELETE BELOW
 

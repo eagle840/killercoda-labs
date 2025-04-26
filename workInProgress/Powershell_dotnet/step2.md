@@ -1,5 +1,7 @@
 # Step 2: Explore .NET Framework
 
+PowerShell 7.5 is built on **.NET 9.0**. This version brings various updates and improvements to PowerShell, ensuring compatibility and enhanced performance across platforms like Ubuntu. If you're exploring features or compatibility, feel free to ask!
+
 
 2.1: Understand the .NET Framework Architecture
 Start by understanding the architecture of the .NET Framework. It consists of the Common Language Runtime (CLR) and the .NET Framework Class Library. The CLR is the execution engine that handles running applications, while the Class Library provides a set of standard classes that can be used in your code.
