@@ -38,7 +38,7 @@ https://learn.microsoft.com/en-us/powershell/scripting/samples/creating-.net-and
 ###################################
 # Prerequisites
 
-wget https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+`wget https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb`{{exec}}
 
 # Update the list of packages
 `sudo apt-get update`{{exec}}
