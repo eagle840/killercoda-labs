@@ -1,5 +1,7 @@
 # Step 2: Explore .NET Framework
 
+PowerShell 7.5 is built on **.NET 9.0**. This version brings various updates and improvements to PowerShell, ensuring compatibility and enhanced performance across platforms like Ubuntu. If you're exploring features or compatibility, feel free to ask!
+
 
 2.1: Understand the .NET Framework Architecture
 Start by understanding the architecture of the .NET Framework. It consists of the Common Language Runtime (CLR) and the .NET Framework Class Library. The CLR is the execution engine that handles running applications, while the Class Library provides a set of standard classes that can be used in your code.
@@ -46,7 +48,7 @@ Reading and writing to a file using System.IO.File:
 
 
 # Write to a file
-`[System.IO.File]::WriteAllText('./text.txt', 'Hello, World!')`{{exec}}
+`[System.IO.File]::WriteAllText('./text.txt', 'Hello, World!')`{{exec}}  # see below for explaination
 
 # Read from a file
 `$content = [System.IO.File]::ReadAllText('./text.txt')`{{exec}}
@@ -54,15 +56,16 @@ Reading and writing to a file using System.IO.File:
 
 Making a network request using System.Net.WebClient:
 
-```
-$webClient = New-Object System.Net.WebClient
-$content = $webClient.DownloadString('http://example.com')
-```{{exec}}
+`$webClient = New-Object System.Net.WebClient`{{exec}}
+
+`$content = $webClient.DownloadString('http://example.com')`{{exec}}
 
 `$content`{{exec}}
 
 Working with collections using System.Collections.ArrayList:
 
+
+WIP: need to break this down to seperate commands:
 ```
 $arrayList = New-Object System.Collections.ArrayList
 $arrayList.Add('Hello')
@@ -72,3 +75,30 @@ $arrayList.Remove('World')
 
 
 `$arrayList`{{exec}}
+
+
+Note One
+
+
+Explain the command
+
+1. **`[System.IO.File]`**:
+   - This is the **type accelerator** for the .NET `System.IO.File` class. In PowerShell, you can directly access .NET classes by referencing their namespace (e.g., `System.IO.File`).
+   - The `System.IO.File` class provides static methods for working with files, such as reading, writing, and checking file attributes.
+
+2. **`::WriteAllText`**:
+   - The `::` syntax calls a **static method** of the class. Here, `WriteAllText` is a static method of `System.IO.File` that writes text to a file.
+   - If the file does not exist, it will be created. If it already exists, its contents will be overwritten.
+
+3. **`'./text.txt'`**:
+   - This is the file path where the text will be written.
+   - The `./` refers to the current directory. So, `text.txt` will be created in the directory where this command is run.
+
+4. **`'Hello, World!'`**:
+   - This is the string that will be written into the file.
+
+When you run this command, it will:
+- Create a file named `text.txt` in the current directory.
+- Write the text `Hello, World!` into that file.
+
+If you'd like further help understanding PowerShell syntax or working with .NET classes, let me know—I'd love to guide you!
