@@ -93,7 +93,25 @@ These methods should help you explore and understand your function better. Is th
 
 ## Using pdb to Debug
 
-Python provides a built-in debugger called pdb (Python Debugger) that allows you to step through code, set breakpoints, and interactively inspect variables. To use pdb, insert the following line in your code where you want to start debugging:
+Python provides a built-in debugger called pdb (Python Debugger) that allows you to step through code, set breakpoints, and interactively inspect variables.
+
+`python -m pdb <app.py>`
+
+you can set the breakpoint with `break <line#>`, then `c` to **continue** until the breakpoint (`tbreak` only breaks once)
+
+`p variable_name` to print out the variable_name variable
+
+`next` will run the next line  (vs `step` - goes into the function call)
+
+**enter** runs the last command
+
+`jump #`  jump to line #
+
+`q` for quitting the running program
+
+you can also put `breakpoint()` into the program, and it will set the line below as the break point
+
+To use pdb, insert the following line in your code where you want to start debugging:
 
 ```python
 import pdb; pdb.set_trace()
@@ -111,6 +129,7 @@ Once the debugger is triggered, you can use the following commands to navigate a
 - b [func] break at function name
 - cl clear all breakpoints
 - p(var) print the value var
+
 
 
 For more details on pdb and its commands, refer to the [official documentation](https://docs.python.org/3/library/pdb.html#debugger-commands).
