@@ -111,6 +111,13 @@ you can set the breakpoint with `break <line#>`, then `c` to **continue** until 
 
 you can also put `breakpoint()` into the program, and it will set the line below as the break point
 
+If you have issue exitting
+
+>import os
+
+>os._exit(0)
+
+
 To use pdb, insert the following line in your code where you want to start debugging:
 
 ```python
