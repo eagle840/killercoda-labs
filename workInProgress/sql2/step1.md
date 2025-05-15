@@ -7,7 +7,9 @@ create the file: docker-compose.yml  and paste the yaml file in.
 
 (ctrl-insert:copy shift-insert:paste)
 
+WIP whi is it running on 3308, and not default 3306
 
+```yaml
 version: '3'
 
 services:
@@ -74,10 +76,10 @@ Here's the login for the MySQL server. You can get the server name from using `d
 
 ```
 system: mysql
-server: compose1_mysql-dev_1   (from docker-compose ps)
+server: root_mysql-dev_1   (name from `docker-compose ps`)
 un: root
 pw: 1234
-database: test1
+database: test1 (you can leave blank)
 ```
 
 
@@ -133,7 +135,9 @@ entity relationship   https://dev.mysql.com/doc/sakila/en/sakila-structure.html
 
 `unzip sakila-db.zip`{{exec}}
 
-`mysql -h 0.0.0.0  -P3306  -uroot -p1234 --ssl-mode=disabled`{{execute}}
+NOTE: that the sql server wass started on 3308 (not the default 3306) WHY?
+
+`mysql -h 0.0.0.0  -P3308  -uroot -p1234 --ssl-mode=disabled`{{execute}}
 
 
 `SOURCE ./sakila-db/sakila-schema.sql;`{{exec}}
@@ -152,3 +156,63 @@ entity relationship   https://dev.mysql.com/doc/sakila/en/sakila-structure.html
 
 
 review https://dev.mysql.com/doc/sakila/en/sakila-usage.html  from more commands
+
+## Adding users
+
+You can add users in MySQL using the `CREATE USER` statement and grant them privileges with `GRANT`. Here's how:
+
+### 1. **Create a New User**
+```sql
+CREATE USER 'new_user'@'localhost' IDENTIFIED BY 'secure_password';
+```
+Replace `'new_user'` with the desired username and `'secure_password'` with a strong password.
+
+### 2. **Grant Privileges**
+```sql
+GRANT ALL PRIVILEGES ON database_name.* TO 'new_user'@'localhost';
+```
+This grants full access to a specific database. Replace `database_name` with the actual database name.
+
+### 3. **Apply Changes**
+```sql
+FLUSH PRIVILEGES;
+```
+This ensures MySQL applies the new permissions.
+
+### 4. **Verify User**
+```sql
+SELECT user FROM mysql.user;
+```
+This lists all users in MySQL.
+
+For more details, check out [this guide](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql) or [MySQL's official documentation](https://dev.mysql.com/doc/refman/9.3/en/creating-accounts.html). Let me know if you need help with specific permissions!
+
+## For root access
+
+You can create another user with root-level access in MySQL by granting them **all privileges** and the ability to grant permissions to others. Here's how:
+
+### 1. **Create the User**
+```sql
+CREATE USER 'new_root_user'@'localhost' IDENTIFIED BY 'strong_password';
+```
+Replace `'new_root_user'` with the desired username and `'strong_password'` with a secure password.
+
+### 2. **Grant Root-Level Privileges**
+```sql
+GRANT ALL PRIVILEGES ON *.* TO 'new_root_user'@'localhost' WITH GRANT OPTION;
+```
+This gives the user full control over all databases and the ability to grant privileges to others.
+
+### 3. **Apply Changes**
+```sql
+FLUSH PRIVILEGES;
+```
+This ensures MySQL applies the new permissions.
+
+### 4. **Verify User**
+```sql
+SELECT user, host FROM mysql.user;
+```
+This lists all users and their access levels.
+
+If you need remote access, you can replace `'localhost'` with `'%'` to allow connections from any host, but be cautious with security settings. You can also check out [this guide](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql) for more details. Let me know if you need help configuring access!
