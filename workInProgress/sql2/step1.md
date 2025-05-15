@@ -1,4 +1,88 @@
-#  Setup and create a simple DB
+# Docker compose
+
+
+create the file: docker-compose.yml  and paste the yaml file in.
+
+`nano docker-compose.yml`{{execute}}
+
+(ctrl-insert:copy shift-insert:paste)
+
+
+version: '3'
+
+services:
+
+    mysql-dev:
+        image: mysql:8.0.2
+        environment:
+            MYSQL_ROOT_PASSWORD: 1234
+            MYSQL_DATABASE: test1
+        ports:
+           - "3308:3306"
+        volumes:
+           - "./data:/var/lib/mysql:rw"
+```
+
+
+lets copy across the data folder we created in step 1
+
+WIP, not using this. 
+
+`cp -r /root/data/ /root/compose1/data/`
+
+and tell docker-compose to start up.
+
+`docker-compose up -d`{{execute}}
+
+and confirm it's running  
+`docker-compose ps`{{execute}}
+
+
+you can connect to the container in either way:  
+`docker exec -it compose1_mysql-dev_1 /bin/bash`{{execute}}
+
+OR
+
+`docker-compose exec  mysql-dev /bin/bash`{{execute}}
+
+and then exit the container when finished   
+`exit`{{execute}}
+
+### Adminer tool
+
+Lets add the Adminer tool to the yml so we can administor those databases:
+
+``` yaml
+    admin:
+        image: adminer
+        ports:
+        - 8080:8080
+```
+
+make the port 0.0.0.0:8080
+
+`nano docker-compose.yml`{{execute}}
+
+`docker-compose up -d `{{execute}}
+
+And lets connect and login:
+
+
+{{TRAFFIC_HOST1_8080}}
+
+Here's the login for the MySQL server. You can get the server name from using `docker-compose ps`
+
+```
+system: mysql
+server: compose1_mysql-dev_1   (from docker-compose ps)
+un: root
+pw: 1234
+database: test1
+```
+
+
+
+# WIP: Setup and create a simple DB
 
 In this step will setup MySQL in docker and use local storage:
 
