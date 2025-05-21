@@ -24,6 +24,17 @@ Order these into the above
 
 pipdeptree
 
+## determine the python executable
+
+Start python and run, to determine where the python exe is running:
+
+`python`{{exec}}  (windows `py`)
+
+```python
+import sys
+print("Python interpreter location:", sys.executable)
+```{{exec}}
+
 
 ## Quick Install - w/ pip-tools
 
