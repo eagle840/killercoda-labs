@@ -3,6 +3,8 @@
 
 ?? what is the best REPL?
 
+Garbage collection (see bottom of this page)
+
 # Packages & Dependancy checking
 
 pip vs pip3
@@ -236,3 +238,16 @@ Using `python3.8 -u -m pip install click -vvv` instead of just `pip install clic
 4. **Debugging**: The `-vvv` flag increases the verbosity of the output, providing more detailed information about the installation process. This can be helpful for debugging installation issues or understanding the dependencies being installed.
 
 Overall, using `python3.8 -u -m pip install click -vvv` provides more control and visibility over the package installation process, which can be useful in complex or specific environments.
+
+
+## Garbage Collection
+
+In Python, `import gc` brings in the **garbage collection module**, which helps manage memory by automatically cleaning up unused objects. Python primarily uses **reference counting** to track objects, but when objects form **cyclic references** (where they reference each other), they may not be freed properly. The `gc` module steps in to handle these cases.
+
+With `gc`, you can:
+- **Enable or disable** automatic garbage collection (`gc.enable()`, `gc.disable()`).
+- **Manually trigger** garbage collection (`gc.collect()`).
+- **Inspect memory usage**, including unreachable objects (`gc.get_objects()`, `gc.get_stats()`).
+- **Adjust collection thresholds** to fine-tune performance (`gc.set_threshold()`).
+
+Would you like an example of how to use it? 🚀
