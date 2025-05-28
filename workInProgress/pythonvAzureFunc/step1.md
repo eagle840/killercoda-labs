@@ -69,22 +69,33 @@ you'll need az to work with azurite
 
 `az -h`{{exec}}
 
-and create a container
+and create a container  Be sure to use the HTTP version of the endpoing
+
+WIP: this looks like a table endpoint, not a blob endpoint.
 
 ```bash
-az storage container create \
-  --name mycontainer \
-  --connection-string "UseDevelopmentStorage=true"
+az storage blob upload \
+  --account-name devstoreaccount1 \
+  --container-name mycontainer \
+  --name myfile.txt \
+  --file ./myfile.txt \
+  --connection-string "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;"
 ```{{exec}}
 
 To list all blobs
 
+
+
 ```bash
 az storage blob list \
   --container-name mycontainer \
-  --connection-string "UseDevelopmentStorage=true" \
+  --connection-string "az storage blob upload \
+  --account-name devstoreaccount1 \
+  --container-name mycontainer \
+  --name myfile.txt \
+  --file ./myfile.txt \
+  --connection-string "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;"" \
   --output table
-
 ```{{exec}}
 
 
