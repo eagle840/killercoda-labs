@@ -90,3 +90,61 @@ And check the editor for the new updated code.
 `func start --verbose`{{exec}}
 
 Note the logs showing the app first every minute.
+
+
+## Add Send to blob
+
+WIP ChatGPT, need to troubleshoot
+
+```python
+import azure.functions as func
+import datetime
+import json
+import logging
+from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
+
+app = func.FunctionApp()
+
+# Connection string for Azurite (local emulator)
+AZURITE_CONNECTION_STRING = "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;" \
+                            "AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;" \
+                            "BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;"
+
+CONTAINER_NAME = "responses"
+
+@app.route(route="http_trigger1", auth_level=func.AuthLevel.ANONYMOUS)
+def http_trigger1(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
+
+    name = req.params.get('name')
+    if not name:
+        try:
+            req_body = req.get_json()
+        except ValueError:
+            req_body = {}
+        name = req_body.get('name')
+
+    if name:
+        message = f"Hello, {name}. This HTTP triggered function executed successfully."
+    else:
+        message = "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
+
+    # Store the message in blob storage
+    try:
+        blob_service_client = BlobServiceClient.from_connection_string(AZURITE_CONNECTION_STRING)
+        container_client = blob_service_client.get_container_client(CONTAINER_NAME)
+
+        # Create container if it doesn't exist
+        try:
+            container_client.create_container()
+        except Exception:
+            pass  # Container already exists
+
+        blob_name = f"response-{datetime.datetime.utcnow().isoformat()}.txt"
+        blob_client = container_client.get_blob_client(blob_name)
+        blob_client.upload_blob(message, overwrite=True)
+    except Exception as e:
+        logging.error(f"Failed to upload to blob storage: {e}")
+
+    return func.HttpResponse(message, status_code=200)
+```{{copy}}
