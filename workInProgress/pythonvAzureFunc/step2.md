@@ -94,7 +94,17 @@ Note the logs showing the app first every minute.
 
 ## Add Send to blob
 
-WIP ChatGPT, need to troubleshoot
+add 'azure-storage-blob' to the requirments.txt file and run:
+
+`pip install -r requirements.txt`{{exec}}
+
+WIP ChatGPT, need to troubleshoot - the program runs but no updates to the blob storage
+
+Create a container to store the responses
+
+```bash
+az storage container create  --name responses --connection-string "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;"
+```{{exec}}
 
 ```python
 import azure.functions as func
@@ -148,3 +158,21 @@ def http_trigger1(req: func.HttpRequest) -> func.HttpResponse:
 
     return func.HttpResponse(message, status_code=200)
 ```{{copy}}
+
+
+`func start --verbose`{{exec}}
+
+
+```
+curl -X POST \
+  http://localhost:7071/api/http_trigger1 \
+  -H 'Content-Type: application/json' \
+  -d '{"name": "nick"}'
+```{{exec}}
+
+```bash
+az storage blob list \
+  --container-name mycontainer \
+  --connection-string "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;" \
+  --output table
+```{{exec}}
