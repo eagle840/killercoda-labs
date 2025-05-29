@@ -29,38 +29,6 @@ Lets first check which version of python the F() app is running:
 
 `apt install -y python3.12-venv jq tree`{{exec}}
 
-### Azurite (blob and other) docker service
-
-start docker
-
-https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=docker-hub%2Cblob-storage#install-azurite
-
-`docker run -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-storage/azurite`{{exec}}
-
-Azurite does not create any containers or blobs by default. It only emulates the storage account `devstoreaccount1`
-
-see docs if you only want blob
-
-When using Azurite, the default account is:
-
-Account Name: devstoreaccount1
-Account Key: Eby8vdM02xNOcqFe...== (standard dev key)
-Blob Endpoint: http://127.0.0.1:10000/devstoreaccount1
-Connection String:  `UseDevelopmentStorage=true`
-
-
-### install the cli tool (optional)
-
-If you want to install azurite directly on the local machine
-
-https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=npm%2Cblob-storage#command-line-options
-
-`apt install -y npm`{{exec}}
-
-`npm install -g azurite`{{exec}}
-
-`azurite -h`{{exec}}
-
 
 ## Install az
 
@@ -73,34 +41,7 @@ you'll need az to work with azurite
 
 `az -h`{{exec}}
 
-and create a container  Be sure to use the HTTP version of the endpoing
 
-
-```bash
-az storage container create  --name mycontainer --connection-string "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;"
-```{{exec}}
-
-`touch myfile.txt`{{exec}}
-
-```bash
-az storage blob upload \
-  --account-name devstoreaccount1 \
-  --container-name mycontainer \
-  --name myfile.txt \
-  --file ./myfile.txt \
-  --connection-string "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;"
-```{{exec}}
-
-To list all blobs
-
-
-
-```bash
-az storage blob list \
-  --container-name mycontainer \
-  --connection-string "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;" \
-  --output table
-```{{exec}}
 
 
 ## Azure Functions
@@ -132,3 +73,60 @@ Pip tool will help resolve dependency issues across packages
 `sudo apt-get install azure-functions-core-tools-4`{{exec}}
 
 `func -h`{{exec}}
+
+## Azurite (blob and other) docker service
+
+### start docker
+
+https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=docker-hub%2Cblob-storage#install-azurite
+
+`docker run -p 10000:10000 -p 10001:10001 -p 10002:10002 mcr.microsoft.com/azure-storage/azurite`{{exec}}
+
+Azurite does not create any containers or blobs by default. It only emulates the storage account `devstoreaccount1`
+
+see docs if you only want blob
+
+When using Azurite, the default account is:
+
+Account Name: devstoreaccount1
+Account Key: Eby8vdM02xNOcqFe...== (standard dev key)
+Blob Endpoint: http://127.0.0.1:10000/devstoreaccount1
+Connection String:  `UseDevelopmentStorage=true`
+
+### Test fucntionality
+
+and create a container  Be sure to use the HTTP version of the endpoing
+
+
+```bash
+az storage container create  --name mycontainer --connection-string "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;"
+```{{exec}}
+
+`touch myfile.txt`{{exec}}
+
+```bash
+az storage blob upload \
+  --account-name devstoreaccount1 \
+  --container-name mycontainer \
+  --name myfile.txt \
+  --file ./myfile.txt \
+  --connection-string "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;"
+```{{exec}}
+
+To list all blobs
+
+
+
+```bash
+az storage blob list \
+  --container-name mycontainer \
+  --connection-string "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;" \
+  --output table
+```{{exec}}
+
+
+### install the cli tool (optional)
+
+If you want to install azurite directly on the local machine
+
+https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=npm%2Cblob-storage#command-line-options
