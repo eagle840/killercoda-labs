@@ -1,2 +1,2 @@
-This lab is for a Gradio working alongside Tensorflow and Transformers
+This lab is for an introduction to Jinja2 
 

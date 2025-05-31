@@ -1,18 +1,15 @@
-## Run First
+## Setup the environment
 
 `sudo apt update`{{exec}}
 
 `python -V`{{exec}}
 
-
-
 `apt install python3.12-venv`{{exec}}
 
-https://www.gradio.app/guides/quickstart
 
-`mkdir gradio`{{exec}}
+`mkdir jinja`{{exec}}
 
-`cd gradio`{{exec}}
+`cd jinja`{{exec}}
 
 `python -m venv .venv`{{exec}}
 

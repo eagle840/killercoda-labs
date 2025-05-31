@@ -23,7 +23,7 @@ First, make sure you have [Python 3](https://www.python.org/) installed in your 
 
 ```bash
 pip install jinja2
-```
+```{{exec}}
 
 This command installs Jinja2, the templating engine we'll use to generate HTML from JSON.
 
@@ -32,6 +32,8 @@ This command installs Jinja2, the templating engine we'll use to generate HTML f
 ## Step 2: Create the Python Script
 
 Next, create a new file named `render_html.py` by using your favorite text editor (e.g., `nano`, `vim`, or the built-in editor in your environment).
+
+`touch render_html.py`{{exec}}
 
 Paste the following code into `render_html.py`:
 
@@ -75,7 +77,7 @@ with open("output.html", "w") as file:
     file.write(html_output)
 
 print("HTML file generated successfully: output.html")
-```
+```{{copy}}
 
 This script does the following:
 
@@ -92,7 +94,7 @@ Return to your terminal and run the script by executing:
 
 ```bash
 python render_html.py
-```
+```{{exec}}
 
 You should see a message confirming that `output.html` has been generated.
 
@@ -104,9 +106,11 @@ Now, to view your rendered HTML, open the `output.html` file in a web browser. Y
 
 ```bash
 ls -l output.html
-```
+```{{exec}}
 
 If your Katacoda environment supports web preview, you can click on or navigate to the preview link to see your HTML page beautifully rendered.
+
+`python -m http.server 8000`{{exec}}
 
 For example, the rendered page should greet you with:
 
