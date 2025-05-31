@@ -3,16 +3,8 @@
 
 [MS docs quickstart](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-python?tabs=linux%2Cbash%2Cazure-cli%2Cbrowser)
 
-## Install Az cli
-
-
-`curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash`{{exec}}
-
-`exec -l $SHELL`{{exec}}
 
 ## Create resources
-
-`az --h`{{exec}}
 
 `az login`{{exec}}
 

@@ -94,7 +94,7 @@ Note the logs showing the app first every minute.
 
 ## Add Send to blob
 
-add 'azure-storage-blob' to the requirments.txt file and run:
+add `azure-storage-blob` to the requirments.txt file and run:
 
 `pip install -r requirements.txt`{{exec}}
 
@@ -172,7 +172,14 @@ curl -X POST \
 
 ```bash
 az storage blob list \
-  --container-name mycontainer \
+  --container-name responses \
   --connection-string "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;" \
   --output table
 ```{{exec}}
+
+```bash
+az storage blob download \
+  --container-name responses \
+  --name <blob_name> \
+  --connection-string "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;"
+  ```{{copy}}
