@@ -16,6 +16,10 @@ That sounds like a solid plan, Nicholas! Here’s a **rough outline** of how you
 - Use the `jsonschema` Python library to validate the JSON object against the schema.
 - Return detailed validation errors if mismatches occur.
 
+`pip install jsonschema`{{exec}}
+
+`python json_check.py`{{exec}}
+
 Example using `jsonschema`:
 ```python
 from jsonschema import validate, ValidationError
