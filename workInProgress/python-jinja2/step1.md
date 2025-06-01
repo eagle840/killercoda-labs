@@ -4,7 +4,7 @@
 
 `python -V`{{exec}}
 
-`apt install python3.12-venv`{{exec}}
+`apt install -y python3.12-venv`{{exec}}
 
 
 `mkdir jinja`{{exec}}

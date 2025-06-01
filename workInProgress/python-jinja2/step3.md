@@ -1,8 +1,6 @@
-STEP 1
+# Use JSON Schema 
 
-That sounds like a solid plan, Nicholas! Here’s a **rough outline** of how you can structure this functionality:
 
----
 
 ### **1. Accept JSON Input**
 - Allow users to send a JSON object via an HTTP request.
@@ -18,7 +16,7 @@ That sounds like a solid plan, Nicholas! Here’s a **rough outline** of how you
 
 `pip install jsonschema`{{exec}}
 
-`python json_check.py`{{exec}}
+`touch json_check.py`{{exec}}
 
 Example using `jsonschema`:
 ```python
@@ -50,7 +48,11 @@ except ValidationError as e:
     print(f"JSON validation error: {e}")
 ```{{copy}}
 
+`python json_check.py`{{exec}}
+
 ---
+
+# Add HTML report
 
 ### **3. Generate HTML Report**
 - Extract the JSON keys and their corresponding **descriptions** from the JSON Schema.
@@ -73,6 +75,79 @@ Using **Jinja2** to format:
     {% endfor %}
 </table>
 ```{{copy}}
+
+
+```python
+from jsonschema import validate, ValidationError
+from jinja2 import Template
+
+# Sample Schema
+schema = {
+    "type": "object",
+    "properties": {
+        "name": {"type": "string", "description": "User's full name"},
+        "age": {"type": "integer", "description": "User's age"},
+        "email": {"type": "string", "description": "Email address"}
+    },
+    "required": ["name", "age"]
+}
+
+# Sample JSON object
+json_data = {
+    "name": "Nicholas",
+    "age": 30,
+    "email": "nicholas@example.com"
+}
+
+# Validate JSON
+try:
+    validate(instance=json_data, schema=schema)
+    print("JSON is valid!")
+except ValidationError as e:
+    print(f"JSON validation error: {e}")
+
+
+
+# Jinja2 template string
+template_str = """<!DOCTYPE html>
+<html>
+<head>
+    <title>Employees</title>
+</head>
+<body>
+    <h1>Hello, {{ name }}!</h1>
+    <h2>Your Role: {{ role }}</h2>
+    <h3>Projects:</h3>
+    <table border="1">
+        <tr>
+            <th>Field</th>
+            <th>Value</th>
+            <th>Description</th>
+        </tr>
+        {% for key, value in json_data.items() %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
+                <td>{{ schema["properties"][key]["description"] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>"""
+
+# Render the HTML using Jinja2
+template = Template(template_str)
+html_output = template.render(json_data)
+
+# Save the HTML to output.html
+with open("output2.html", "w") as file:
+    file.write(html_output)
+
+print("HTML file generated successfully: output2.html")
+
+
+```{{copy}}
+
 
 ---
 
@@ -97,7 +172,17 @@ Your project is shaping up to be really useful for validating structured data dy
 # STEP 2
 
 
-Great observation, Nicholas! Instead of hardcoding the schema, we can dynamically **fetch** it from a URL. Here’s how to update the code to retrieve the JSON Schema from a remote location using the `requests` module.
+Instead of hardcoding the schema, we can dynamically **fetch** it from a URL. 
+
+Here are some sources where you can find JSON Schema examples:
+
+- [JSON Schema Examples](https://json-schema.org/learn/json-schema-examples) – A collection of schemas for different use cases, including addresses, blog posts, calendars, and more.
+- [JSON Schema Store](https://www.schemastore.org/json/) – A large repository of JSON Schemas for various applications, including configuration files and industry standards.
+- [Awesome JSON Schema](https://github.com/sourcemeta/awesome-jsonschema) – A curated list of JSON Schema resources, tutorials, and tools.
+
+These should give you plenty of options to experiment with in your project! Let me know if you need help integrating one of them. 🚀
+
+Here’s how to update the code to retrieve the JSON Schema from a remote location using the `requests` module.
 
 ---
 

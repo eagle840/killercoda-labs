@@ -11,6 +11,9 @@ Great addition, Nicholas! To dynamically generate a **Jinja2 template** based on
 ---
 
 ### **Updated Code: Generate Jinja2 Template from Schema**
+
+`touch templete_generate.py`{{exec}}
+
 ```python
 import requests
 
@@ -67,6 +70,8 @@ try:
 except requests.RequestException as e:
     print(f"Error fetching schema: {e}")
 ```{{copy}}
+
+`python templete_generate.py`{{exec}}
 
 ---
 

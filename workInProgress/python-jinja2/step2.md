@@ -1,6 +1,3 @@
-Below is a complete Katacoda lab markdown page that walks users through setting up the Python script to render HTML from JSON using Jinja2. You can copy this content into your Katacoda scenario configuration.
-
----
 
 # Render HTML from JSON using Jinja2
 
@@ -112,6 +109,8 @@ If your Katacoda environment supports web preview, you can click on or navigate 
 
 `python -m http.server 8000`{{exec}}
 
+{{TRAFFIC_HOST1_8000}}
+
 For example, the rendered page should greet you with:
 
 - A headline saying "Hello, Nicholas!"
@@ -134,7 +133,3 @@ In this lab, you've learned how to:
 This is a foundational step that can be extended further. Imagine integrating this into an Azure Function App to process API requests or storing the HTML output in Azure Blob Storage for distributed web applications.
 
 Happy coding, and feel free to experiment with the template to suit your own projects!
-
----
-
-Would you like to explore further enhancements, such as adding CSS to style your HTML or integrating this with Azure Blob Storage for automated outputs?
