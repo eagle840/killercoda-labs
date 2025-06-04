@@ -1,9 +1,29 @@
 {
-  "title": "work-in-progress Python Azure Functions",
-  "description": "Using a Azure Functions with Python, using the v2 Model (v0.2.0)",
-  "difficulty": "Intermed./workInProgress/pythonvenviate",
-  "time": "1",
+  "title": "Work-in-progress Openfeature",
+  "description": "Getting started with Openfeature(v0.0.1)",
+  "difficulty": "Intermediate",
+  "time": "60 minutes",
   "details": {
+    "assets":{
+      "host01": [
+        {
+          "file": "send.py",
+          "target": "~/"
+        },
+        {
+          "file": "new_task.py",
+          "target": "~/"
+        },
+        {
+          "file": "worker.py",
+          "target": "~/"
+        },
+        {
+          "file": "receive.py",
+          "target": "~/"
+        }
+      ]
+    },
     "steps": [
       {
         "title": "Step 1",
@@ -31,12 +51,6 @@
     },
     "finish": {
       "text": "finish.md"
-    },
-    "assets": {
-      "host01": [
-        {"file": "basics.ipynb", "target": "~/", "chmod": "+w"},
-        {"file": "data1.json", "target": "~/", "chmod": "+w"}
-      ]
     }
   },
   "environment": {
