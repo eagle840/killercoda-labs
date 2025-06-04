@@ -44,9 +44,9 @@ We'll be using python version 3.
 
 `python3 -V`{{exec}}
 
-`pip3 install --upgrade pip`{{exec}}
 
-`apt install python3.8-venv`{{exec}}
+
+`apt install python3.12-venv`{{exec}}
 
 `mkdir cleanproject`{{exec}}
 
@@ -55,6 +55,8 @@ We'll be using python version 3.
 `python3 -m venv .venv`{{exec}}
 
 `source .venv/bin/activate`{{exec}}
+
+`pip install --upgrade pip`{{exec}}
 
 Pip tool will help resolve dependency issues across packages
 

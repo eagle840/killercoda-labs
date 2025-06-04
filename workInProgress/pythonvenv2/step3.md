@@ -1,3 +1,106 @@
+# System Info
+
+lets figure out what system we're running on
+
+Here’s a small Python script that gathers several indicators of a system’s compute resources:
+
+- CPU: Logical and physical core count
+- CPU Frequency
+- Total Memory & Available Memory
+- Total Disk & Free Disk
+- GPU info (optional, if nvidia-smi present)
+- OS & Python version
+
+This script uses the psutil and platform modules. GPU info (if available) is fetched via nvidia-smi.
+
+`pip install psutil`{{exec}}
+
+`touch sys_summary.py`{{exec}}
+
+and run
+
+`python sys_summary.py`{{exec}}
+
+copy the following into:
+
+```
+import os
+import platform
+import psutil
+import shutil
+import subprocess
+import sys
+
+def bytes2human(n):
+    # Converts bytes to a readable format
+    symbols = ('B', 'KB', 'MB', 'GB', 'TB', 'PB')
+    prefix = {}
+    for i, s in enumerate(symbols):
+        prefix[s] = 1 << (i * 10)
+    for s in reversed(symbols):
+        if n >= prefix[s]:
+            value = float(n) / prefix[s]
+            return '%.1f %s' % (value, s)
+    return "%s B" % n
+
+def get_gpu_info():
+    try:
+        result = subprocess.check_output(
+            "nvidia-smi --query-gpu=name,memory.total,memory.free --format=csv,noheader,nounits",
+            shell=True
+        ).decode().strip()
+        if result:
+            gpus = []
+            for line in result.split('\n'):
+                name, total, free = [x.strip() for x in line.split(',')]
+                gpus.append({
+                    'Name': name,
+                    'Memory Total': f'{total} MB',
+                    'Memory Free': f'{free} MB'
+                })
+            return gpus
+    except Exception:
+        return None
+
+def main():
+    print("System Summary")
+    print("="*40)
+
+    # CPU Info
+    print(f"Physical CPUs (cores): {psutil.cpu_count(logical=False)}")
+    print(f"Logical CPUs (threads): {psutil.cpu_count(logical=True)}")
+    freq = psutil.cpu_freq()
+    if freq:
+        print(f"CPU Frequency: {freq.current:.2f} MHz")
+    print(f"CPU Usage: {psutil.cpu_percent(interval=1)}%")
+
+    # Memory Info
+    vm = psutil.virtual_memory()
+    print(f"Memory Total: {bytes2human(vm.total)}")
+    print(f"Memory Available: {bytes2human(vm.available)}")
+
+    # Disk Info (root partition)
+    root_usage = shutil.disk_usage(os.path.abspath(os.sep))
+    print(f"Disk Total: {bytes2human(root_usage.total)}")
+    print(f"Disk Used: {bytes2human(root_usage.used)}")
+    print(f"Disk Free: {bytes2human(root_usage.free)}")
+
+    # GPU Info
+    gpus = get_gpu_info()
+    if gpus:
+        print("\nGPU(s):")
+        for i, gpu in enumerate(gpus):
+            print(f"  GPU {i}: {gpu['Name']} ({gpu['Memory Free']} free of {gpu['Memory Total']})")
+    else:
+        print("\nGPU(s): None detected or nvidia-smi not available.")
+
+    # System & Python Info
+    print("\nSystem:", platform.platform())
+    print("Python:", sys.version.split()[0])
+
+if __name__ == '__main__':
+    main()
+```{{copy}}
 
 
 # linting
