@@ -103,7 +103,7 @@ WIP what does this do
 describe use
 
 ---
-# pipdeptree
+## pipdeptree
 
 `pip install pipdeptree`{{execute}}
 
@@ -125,22 +125,22 @@ To see the currently installed packages and their versions, run:
 
 `pip freeze`{{copy}}
 
-# Common Installation Problems
+## Common Installation Problems
 
 If you encounter any issues during installation, here are some power tips to help you troubleshoot:
 
 
-## 'killed'
+### 'killed'
 
 - If you receive a 'killed' message, it could be due to running out of memory. Try adding the `--no-cache-dir` flag to the installation command.
 
-## 'pyYAML'
+### 'pyYAML'
 
 - If you get an error related to uninstalling 'PyYAML', you can ignore the installed version by adding the `--ignore-installed PyYAML` flag. Refer to this [Stack Overflow post](https://stackoverflow.com/questions/49911550/how-to-upgrade-disutils-package-pyyaml) for more details.
 
 `sudo -H pip3 install --ignore-installed PyYAML`{{copy}}
 
-## Using ML?
+### Using ML?
 
 See the ML section (step 6)
 
@@ -251,3 +251,14 @@ With `gc`, you can:
 - **Adjust collection thresholds** to fine-tune performance (`gc.set_threshold()`).
 
 Would you like an example of how to use it? 🚀
+
+
+
+# Other package management
+
+### poetry
+
+### UV
+
+- https://github.com/astral-sh/uv
+- https://docs.astral.sh/uv/

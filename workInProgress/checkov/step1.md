@@ -8,9 +8,9 @@ We'll be using python version 3.
 
 `python3 -V`{{exec}}
 
-`pip3 install --upgrade pip`{{exec}}
 
-`apt install python3.8-venv`{{exec}}
+
+`apt install python3.12-venv`{{exec}}
 
 `mkdir cleanproject`{{exec}}
 
@@ -21,6 +21,8 @@ We'll be using python version 3.
 `source .venv/bin/activate`{{exec}}
 
 Pip tool will help resolve dependency issues across packages
+
+`pip3 install --upgrade pip`{{exec}}
 
 `pip install pip-tools`{{exec}}
 
@@ -50,6 +52,9 @@ Pip tool will help resolve dependency issues across packages
     ]
 }
 ```
+
+docs: https://www.checkov.io/2.Basics/CLI%20Command%20Reference.html
+
 `checkov -h`{{exec}}
 
 `pip3 install -U checkov`{{exec}}
