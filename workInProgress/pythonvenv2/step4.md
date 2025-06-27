@@ -61,15 +61,15 @@ In IPython, you can query and inspect variables in several ways:
 
 6. **Inspecting lists**
 
-Assuming `messages` is an unknown list:
+Assuming `messages` is an unknown list, messages[0] returns 1st item:
 
 - Check each element
-   ```
+   ```python
    for i, msg in enumerate(messages):
       print(f"Index {i}: Type = {type(msg)}")
    ```
 - Inspect Object Attributes (if they are objects)
-   ```
+   ```python
    for i, msg in enumerate(messages):
       print(f"Index {i}: {msg}")
       if isinstance(msg, dict):
@@ -78,7 +78,7 @@ Assuming `messages` is an unknown list:
          print("Attributes:", dir(msg))
    ```
 - Use pprint for Better Formatting
-   ```
+   ```python
    from pprint import pprint
    pprint(messages)
 
