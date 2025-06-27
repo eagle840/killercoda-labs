@@ -59,6 +59,30 @@ In IPython, you can query and inspect variables in several ways:
    print(variable_name)
    ```
 
+6. **Inspecting lists**
+
+Assuming `messages` is an unknown list:
+
+- Check each element
+   ```
+   for i, msg in enumerate(messages):
+      print(f"Index {i}: Type = {type(msg)}")
+   ```
+- Inspect Object Attributes (if they are objects)
+   ```
+   for i, msg in enumerate(messages):
+      print(f"Index {i}: {msg}")
+      if isinstance(msg, dict):
+         print("Keys:", msg.keys())
+      else:
+         print("Attributes:", dir(msg))
+   ```
+- Use pprint for Better Formatting
+   ```
+   from pprint import pprint
+   pprint(messages)
+
+   ```
 #### query functions/classes
 
 Exploring a function/class in IPython is quite straightforward! Here are a few ways you can do it:
