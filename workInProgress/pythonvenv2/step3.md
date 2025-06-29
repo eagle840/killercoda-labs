@@ -118,3 +118,59 @@ if __name__ == '__main__':
 `pip install flake8`{{execute}}
 
 `flake8`{{execute}}
+
+
+# Environment Variables
+
+There are three main ways to store environment variables: memory, in code, and in a file.
+
+---
+
+## 🧠 1. In Memory
+
+You can set environment variables dynamically within your Python program using the `os.environ` dictionary:
+
+```python
+import os
+value = os.environ["varix"] # to pull it from the working O/S environment OR:
+value = os.getenv["varix"] 
+os.environ['API_KEY'] = 'my-secret-key' # to set it in the programs working environment
+```
+
+These variables exist only during the lifetime of the program and are accessible using `os.getenv('API_KEY')`.
+
+---
+
+## 🖊️ 2. In Code (Hardcoded)
+
+Though possible, hardcoding configuration variables directly in source code is discouraged:
+
+```python
+API_KEY = 'my-secret-key'
+```
+
+🔒 **Why avoid this?** Hardcoding secrets increases the risk of accidental exposure, especially when code is shared or committed to version control.
+
+---
+
+## 📄 3. In a File (`.env`)
+
+A `.env` file stores environment variables in key-value format:
+
+```
+API_KEY=my-secret-key
+DEBUG=True
+```
+
+This file is typically excluded from version control for security. To load its contents into your Python environment:
+
+```python
+from dotenv import load_dotenv, find_dotenv
+import os
+
+load_dotenv(find_dotenv())  # Searches for and loads the .env file
+api_key = os.getenv('API_KEY')
+```
+
+---
+

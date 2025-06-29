@@ -14,11 +14,14 @@ Great addition, Nicholas! To dynamically generate a **Jinja2 template** based on
 
 `touch templete_generate.py`{{exec}}
 
+`pip install requests`{{exec}}
+
 ```python
 import requests
 
 # URL of the JSON Schema (Replace with your actual schema URL)
-SCHEMA_URL = "https://example.com/schema.json"
+# SCHEMA_URL = "https://example.com/schema.json"
+SCHEMA_URL = "https://json.schemastore.org/azure-containerapp-template.json"
 
 def fetch_schema(url):
     """Fetch JSON Schema from a given URL."""
