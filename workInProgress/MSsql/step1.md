@@ -106,13 +106,23 @@ https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sq
 
 `cat /etc/os-release`{{exec}}
 
-'sudo apt-get install mssql-tools'{{exec}}
+`sudo apt-get install mssql-tools`{{exec}}
 
 It also takes a few seconds to get MySQL up and running, if you get an error wait a few seconds and try again.
 
 `curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc`{{exec}}
 
 `curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list | sudo tee /etc/apt/sources.list.d/mssql-release.list`{{exec}}
+
+`sudo apt-get update`{{exec}}
+
+`sudo apt-get install mssql-tools18 unixodbc-dev`{{exec}}
+
+`echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bash_profile`{{exec}}
+
+`source ~/.bash_profile`{{exec}}
+
+`sqlcmd -?`{{exec}}
 
 `docker exec -it  some-mysql mysql -uroot -p1234`{{execute}}
 
