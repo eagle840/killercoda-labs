@@ -1,6 +1,8 @@
 # Docker compose
 
 
+READ: https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver17&tabs=cli&pivots=cs1-bash
+
 create the file: docker-compose.yml  and paste the yaml file in.
 
 `nano docker-compose.yml`{{execute}}
