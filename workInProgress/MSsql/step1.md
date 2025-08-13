@@ -24,7 +24,7 @@ version: '3'
 services:
 
   mssql-dev:
-    image: mcr.microsoft.com/mssql/server:2025-latest
+    image: mcr.microsoft.com/mssql/server:2017-latest
     environment:
       SA_PASSWORD: "YourStrong!Passw0rd"
       ACCEPT_EULA: "Y"
@@ -133,7 +133,7 @@ It also takes a few seconds to get MySQL up and running, if you get an error wai
 
 `sqlcmd -?`{{exec}}
 
-`sqlcmd -S localhost -U sa -P 'YourStrong!Passw0rd'`{{exec}}
+`sqlcmd -C -S localhost -U sa -P 'YourStrong!Passw0rd'`{{exec}}
 
 
 `docker exec -it root_mssql-dev_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'YourStrong!Passw0rd'`{{exec}}
@@ -142,6 +142,15 @@ It also takes a few seconds to get MySQL up and running, if you get an error wai
 
 `docker exec -it root_mssql-dev_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong!Passw0rd"`{{exec}}
 
+# LESSON !
+
+https://learn.microsoft.com/en-us/sql/t-sql/lesson-1-creating-database-objects?view=sql-server-ver17
+
+
+```
+CREATE DATABASE TestData
+GO
+```{{exec}}
 
 -uroot   => user root
 -p       => prompt for password, or -p1234
