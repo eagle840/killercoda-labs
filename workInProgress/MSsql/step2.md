@@ -1,26 +1,34 @@
-# Transactions
-
-Here is an example of a transaction using the sakila database in MySQL:
-
-`START TRANSACTION;`{{exec}}
-
--- Step 1: Perform some operations (e.g., insert, update, delete)
-
-`INSERT INTO film (title, release_year) VALUES ('New Film', 2022);`{{exec}}
-
-`UPDATE actor SET first_name = 'John' WHERE actor_id = 1;`{{exec}}
-
--- Step 2: Perform some additional operations based on previous changes
-
-`DELETE FROM film WHERE release_year < 2000;`{{exec}}
-
-`INSERT INTO actor (first_name, last_name) VALUES ('Jane', 'Doe');`{{exec}}
-
--- Step 3: Commit the transaction
-
-`COMMIT;`{{exec}}
+# Lessons
 
 
-In this example, a transaction is started using the `START TRANSACTION` statement. Then, some operations are performed, like inserting a new film and updating an actor's first name. After that, additional operations are performed based on the changes made in the previous steps, like deleting films released before the year 2000 and inserting a new actor named Jane Doe. Finally, the `COMMIT` statement is used to commit the changes made in the transaction and make them permanent in the database.
+https://learn.microsoft.com/en-us/sql/t-sql/lesson-1-creating-database-objects?view=sql-server-ver17
 
-If any error occurs during the transaction, you can roll back the changes using the `ROLLBACK` statement instead of committing them, ensuring that the database remains in
+Create a database
+```
+CREATE DATABASE TestData
+GO
+```{{exec}}
+
+Create a table
+```
+USE TestData
+GO
+```{{exec}}
+
+```
+CREATE TABLE dbo.Products
+    (ProductID int PRIMARY KEY NOT NULL,
+    ProductName varchar(25) NOT NULL,
+    Price money NULL,
+    ProductDescription varchar(max) NULL)
+GO
+```{{exec}}
+
+
+Insert data into a table
+```
+-- Standard syntax
+INSERT dbo.Products (ProductID, ProductName, Price, ProductDescription)
+    VALUES (1, 'Clamp', 12.48, 'Workbench clamp')
+GO
+```{{exec}}

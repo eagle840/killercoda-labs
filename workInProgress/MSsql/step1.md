@@ -9,14 +9,7 @@ create the file: docker-compose.yml  and paste the yaml file in.
 
 (ctrl-insert:copy shift-insert:paste)
 
-WIP
 
-`sudo adduser --disabled-password --gecos "" sa`{{exec}}
-
-
-`docker run -e "ACCEPT_EULA=Y" -e 'MSSQL_SA_PASSWORD="YourStrong!Passw0rd"' -u sa -p 1433:1433 --name sql1 --hostname sql1  -it  mcr.microsoft.com/mssql/server:2017-latest > containers.txt`{{exec}}
-
-WIP whi is it running on 3308, and not default 3306
 
 ```yaml
 version: '3'
@@ -35,12 +28,6 @@ services:
       - "./mssql-data:/var/opt/mssql"
 ```
 
-
-lets copy across the data folder we created in step 1
-
-WIP, not using this.
-
-`cp -r /root/data/ /root/compose1/data/`
 
 and tell docker-compose to start up.
 
@@ -94,20 +81,6 @@ database: test1 (you can leave blank)
 
 
 
-# WIP: Setup and create a simple DB
-
-In this step will setup MySQL in docker and use local storage:
-
-Lets jump over to docker hub and search for an mysql mage https://hub.docker.com/
-You should end up here: https://hub.docker.com/_/mysql, we'll be using version 8.0.2 to keep things stable.
-
-Looking through the notes you'll see  how to startup mysql,
-
-`docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1234 -d mysql:8.0.2`{{execute}}
-
-It'll take a minute to pull the image, so wait until you see a container up and running with
-
-`docker ps`{{execute}}
 
 ## Connect to MS SQL
 
@@ -115,9 +88,8 @@ https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sq
 
 `cat /etc/os-release`{{exec}}
 
-`sudo apt-get install mssql-tools`{{exec}}
 
-It also takes a few seconds to get MySQL up and running, if you get an error wait a few seconds and try again.
+**Setup to install**
 
 `curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc`{{exec}}
 
@@ -135,131 +107,16 @@ It also takes a few seconds to get MySQL up and running, if you get an error wai
 
 `sqlcmd -C -S localhost -U sa -P 'YourStrong!Passw0rd'`{{exec}}
 
-
-`docker exec -it root_mssql-dev_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'YourStrong!Passw0rd'`{{exec}}
-
-`docker exec -it  some-mysql mysql -uroot -p1234`{{execute}}
-
-`docker exec -it root_mssql-dev_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong!Passw0rd"`{{exec}}
-
-# LESSON !
-
-https://learn.microsoft.com/en-us/sql/t-sql/lesson-1-creating-database-objects?view=sql-server-ver17
-
+Confirm the connection
 
 ```
-CREATE DATABASE TestData
+SELECT @@VERSION;
 GO
 ```{{exec}}
 
--uroot   => user root
--p       => prompt for password, or -p1234
 
-Once connected, you should see `mysql>`
-
-Exit out of the prompt, back to the host, with `quit`{{execute}}
-
-## To connect from the host
-
-Lets install the mysql client:
-
-`apt update`{{execute}}
-
-`apt install mysql-client -y`{{execute}}
-
-`mysql -h 0.0.0.0  -P3306  -uroot -p1234 --ssl-mode=disabled`{{execute}}
-
-`quit`{{execute}}
-
-
-## Use an example db
-
-https://dev.mysql.com/doc/index-other.html > sakila database
-
-entity relationship   https://dev.mysql.com/doc/sakila/en/sakila-structure.html
-
-`wget https://downloads.mysql.com/docs/sakila-db.zip`{{exec}}
-
-`unzip sakila-db.zip`{{exec}}
-
-NOTE: that the sql server wass started on 3308 (not the default 3306) WHY?
-
-`mysql -h 0.0.0.0  -P3308  -uroot -p1234 --ssl-mode=disabled`{{execute}}
-
-
-`SOURCE ./sakila-db/sakila-schema.sql;`{{exec}}
-
-`SOURCE ./sakila-db/sakila-data.sql;`{{exec}}
+`docker exec -it root_mssql-dev_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'YourStrong!Passw0rd'`{{exec}}
 
 
 
-`USE sakila;`{{exec}}
-
-`SHOW FULL TABLES;`{{exec}}
-
-`SELECT COUNT(*) FROM film;`{{exec}}
-
-`SELECT COUNT(*) FROM film_text;`{{exec}}
-
-
-review https://dev.mysql.com/doc/sakila/en/sakila-usage.html  from more commands
-
-## Adding users
-
-You can add users in MySQL using the `CREATE USER` statement and grant them privileges with `GRANT`. Here's how:
-
-### 1. **Create a New User**
-```sql
-CREATE USER 'new_user'@'localhost' IDENTIFIED BY 'secure_password';
-```
-Replace `'new_user'` with the desired username and `'secure_password'` with a strong password.
-
-### 2. **Grant Privileges**
-```sql
-GRANT ALL PRIVILEGES ON database_name.* TO 'new_user'@'localhost';
-```
-This grants full access to a specific database. Replace `database_name` with the actual database name.
-
-### 3. **Apply Changes**
-```sql
-FLUSH PRIVILEGES;
-```
-This ensures MySQL applies the new permissions.
-
-### 4. **Verify User**
-```sql
-SELECT user FROM mysql.user;
-```
-This lists all users in MySQL.
-
-For more details, check out [this guide](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql) or [MySQL's official documentation](https://dev.mysql.com/doc/refman/9.3/en/creating-accounts.html). Let me know if you need help with specific permissions!
-
-## For root access
-
-You can create another user with root-level access in MySQL by granting them **all privileges** and the ability to grant permissions to others. Here's how:
-
-### 1. **Create the User**
-```sql
-CREATE USER 'new_root_user'@'localhost' IDENTIFIED BY 'strong_password';
-```
-Replace `'new_root_user'` with the desired username and `'strong_password'` with a secure password.
-
-### 2. **Grant Root-Level Privileges**
-```sql
-GRANT ALL PRIVILEGES ON *.* TO 'new_root_user'@'localhost' WITH GRANT OPTION;
-```
-This gives the user full control over all databases and the ability to grant privileges to others.
-
-### 3. **Apply Changes**
-```sql
-FLUSH PRIVILEGES;
-```
-This ensures MySQL applies the new permissions.
-
-### 4. **Verify User**
-```sql
-SELECT user, host FROM mysql.user;
-```
-This lists all users and their access levels.
-
-If you need remote access, you can replace `'localhost'` with `'%'` to allow connections from any host, but be cautious with security settings. You can also check out [this guide](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql) for more details. Let me know if you need help configuring access!
+`docker exec -it root_mssql-dev_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong!Passw0rd"`{{exec}}
