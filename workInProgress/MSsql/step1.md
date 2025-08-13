@@ -9,6 +9,13 @@ create the file: docker-compose.yml  and paste the yaml file in.
 
 (ctrl-insert:copy shift-insert:paste)
 
+WIP
+
+`sudo adduser --disabled-password --gecos "" sa`{{exec}}
+
+
+`docker run -e "ACCEPT_EULA=Y" -e 'MSSQL_SA_PASSWORD="YourStrong!Passw0rd"' -u sa -p 1433:1433 --name sql1 --hostname sql1  -it  mcr.microsoft.com/mssql/server:2017-latest > containers.txt`{{exec}}
+
 WIP whi is it running on 3308, and not default 3306
 
 ```yaml
@@ -125,6 +132,11 @@ It also takes a few seconds to get MySQL up and running, if you get an error wai
 `source ~/.bash_profile`{{exec}}
 
 `sqlcmd -?`{{exec}}
+
+`sqlcmd -S localhost -U sa -P 'YourStrong!Passw0rd'`{{exec}}
+
+
+`docker exec -it root_mssql-dev_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'YourStrong!Passw0rd'`{{exec}}
 
 `docker exec -it  some-mysql mysql -uroot -p1234`{{execute}}
 
