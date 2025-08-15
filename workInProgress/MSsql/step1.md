@@ -120,3 +120,11 @@ GO
 
 
 `docker exec -it root_mssql-dev_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong!Passw0rd"`{{exec}}
+
+
+
+## Connect via SSMS ???
+
+is this the endpoint?
+
+{{TRAFFIC_HOST1_1433}}
