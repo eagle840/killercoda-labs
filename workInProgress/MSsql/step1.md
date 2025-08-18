@@ -91,6 +91,8 @@ https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sq
 
 **Setup to install**
 
+"Install the sqlcmd and bcp SQL Server command-line tools on Linux"
+
 `curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc`{{exec}}
 
 `curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list | sudo tee /etc/apt/sources.list.d/mssql-release.list`{{exec}}
@@ -132,3 +134,51 @@ is this the endpoint?
 # Configure SQL Server on Linux with the mssql-conf tool
 
 https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-configure-mssql-conf?view=sql-server-ver17
+
+## Add SQL Power shell
+
+https://learn.microsoft.com/en-us/powershell/sql-server/sql-server-powershell?view=sqlserver-ps
+
+### Install PS
+
+https://learn.microsoft.com/en-us/powershell/scripting/install/install-ubuntu?view=powershell-7.5
+
+###################################
+# Prerequisites
+
+# Update the list of packages
+`sudo apt-get update`{{exec}}
+
+# Install pre-requisite packages.
+`sudo apt-get install -y wget apt-transport-https software-properties-common`{{exec}}
+
+# Get the version of Ubuntu
+`source /etc/os-release`{{exec}}
+
+# Download the Microsoft repository keys
+`wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
+
+# Register the Microsoft repository keys
+`sudo dpkg -i packages-microsoft-prod.deb`{{exec}}
+
+# Delete the Microsoft repository keys file
+`rm packages-microsoft-prod.deb`{{exec}}
+
+# Update the list of packages after we added packages.microsoft.com
+`s`udo apt-get update`{{exec}}
+
+###################################
+# Install PowerShell
+`sudo apt-get install -y powershell`{{exec}}
+
+# Start PowerShell
+`pwsh`{{exec}}
+
+### Install PS SQLServer (for SQL Server)
+
+
+https://www.powershellgallery.com/packages/Sqlserver/22.2.0
+
+`Install-Module -Name SqlServer -RequiredVersion 22.2.0`{{exec}}
+
+### FOr SQL AGENT, uses Module SQLPS
