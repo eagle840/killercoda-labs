@@ -128,3 +128,7 @@ GO
 is this the endpoint?
 
 {{TRAFFIC_HOST1_1433}}
+
+# Configure SQL Server on Linux with the mssql-conf tool
+
+https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-configure-mssql-conf?view=sql-server-ver17
