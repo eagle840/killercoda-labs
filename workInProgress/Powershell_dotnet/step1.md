@@ -88,3 +88,45 @@ do i need? `wget https://packages.microsoft.com/config/ubuntu/24.04/packages-mic
 
 `dotnet --version`{{exec}}
 
+# P$ and .net over view
+
+Understanding what a **.NET object** is will definitely help you get more out of PowerShell, since PowerShell is tightly integrated with the .NET framework.
+
+### What is a .NET Object?
+
+A **.NET object** is an instance of a **class** defined in the .NET framework. Think of a class as a blueprint, and an object as a specific item built from that blueprint.
+
+.NET provides a huge library of classes for things like:
+- Working with files and directories
+- Managing network connections
+- Handling dates and times
+- Creating user interfaces
+- Performing mathematical operations
+
+Each object has:
+- **Properties**: These are like characteristics or data fields (e.g., a `FileInfo` object might have a `Length` property for file size).
+- **Methods**: These are actions the object can perform (e.g., a `FileInfo` object might have a `Delete()` method to remove the file).
+
+### Example in PowerShell
+
+Here’s a simple example using PowerShell:
+
+```powershell
+$file = Get-Item "C:\example.txt"
+```
+
+This command returns a `.NET object` of type `System.IO.FileInfo`. You can then access its properties and methods:
+
+```powershell
+$file.Length       # Property: size of the file
+$file.Delete()     # Method: deletes the file
+```
+
+### Why It Matters
+
+Because PowerShell works with .NET objects, you can:
+- Access rich data structures directly
+- Use object-oriented programming concepts
+- Pipe objects between commands and manipulate them easily
+
+Would you like to see a few more examples of common .NET objects in PowerShell or how to create your own?
