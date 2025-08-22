@@ -123,6 +123,20 @@ GO
 
 `docker exec -it root_mssql-dev_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong!Passw0rd"`{{exec}}
 
+## loadup adventure works bd
+
+url:https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms
+
+
+these are windows cmd, rewrite for linux
+
+`docker exec -it <container_id_or_name> ls /var/opt/mssql/backup`{{exec}}
+
+`docker cp C:\sqlbak\your_backup_file.bak <container_name>:/var/opt/mssql/backup/`{{exec}}
+
+
+
+
 
 
 ## Connect via SSMS ???
