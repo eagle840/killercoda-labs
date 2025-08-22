@@ -127,6 +127,8 @@ GO
 
 url:https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms
 
+I think you want to use the lite series, since the ms learn seem to be using the salesLT schema
+
 
 these are windows cmd, rewrite for linux
 
