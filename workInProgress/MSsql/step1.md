@@ -30,7 +30,7 @@ version: '3'
 services:
 
   mssql-dev:
-    image: mcr.microsoft.com/mssql/server:2017-latest
+    image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       SA_PASSWORD: "YourStrong!Passw0rd"
       ACCEPT_EULA: "Y"
@@ -94,7 +94,7 @@ having issues?
 system: ms-sql
 server: root_mssql-dev_1   (name from `docker-compose ps`)
 un: sa
-pw: YourStrong!Passw0rd
+pw: YourStrong:Passw0rd
 database: test1 (you can leave blank)
 ```
 
@@ -107,8 +107,26 @@ https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sq
 
 `cat /etc/os-release`{{exec}}
 
+**Setup GO sqlcmd**
 
-**Setup to install**
+`curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc`{{exec}}
+
+`add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/22.04/prod.list)"`{{exec}}
+
+`apt-get update`{{exec}}
+
+`apt-get install sqlcmd`{{exec}}
+
+`echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bash_profile`{{exec}}
+`
+`source ~/.bash_profile`{{exec}}
+
+`sqlcmd -?`{{exec}}
+
+
+**Setup to OBDC ? install**
+
+??? There seems to be 2 versions of sqlcmd (GO, and ODBC)
 
 "Install the sqlcmd and bcp SQL Server command-line tools on Linux"
 
@@ -126,9 +144,10 @@ https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sq
 
 `sqlcmd -?`{{exec}}
 
-`sqlcmd -C -S localhost -U sa -P 'YourStrong!Passw0rd'`{{exec}}
+## Confirm connection
 
-Confirm the connection
+`sqlcmd -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
+
 
 ```
 SELECT @@VERSION;
@@ -149,17 +168,17 @@ github show no update in 2 years
 This might be a python install (pip mssql-cli)
 
 
-`docker exec -it root_mssql-dev_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'YourStrong!Passw0rd'`{{exec}}
+`docker exec -it root_mssql-dev_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
 
 
 
-`docker exec -it root_mssql-dev_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong!Passw0rd"`{{exec}}
+`docker exec -it root_mssql-dev_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong:Passw0rd"`{{exec}}
 
 ## loadup adventure works bd
 
 url: https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms
 
-`wget https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2017.bak`{{exec}}
+`wget https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2022.bak`{{exec}}
 
 I think you want to use the lite series, since the ms learn seem to be using the salesLT schema
 
@@ -172,7 +191,7 @@ these are windows cmd, rewrite for linux
 
 `docker cp C:\sqlbak\your_backup_file.bak <container_name>:/var/opt/mssql/backup/`{{exec}}
 
-`docker cp AdventureWorksLT2017.bak sql2022:/var/opt/mssql/backup`{{exec}}
+`docker cp AdventureWorksLT2022.bak sql2022:/var/opt/mssql/backup`{{exec}}
 
 connect to the sql server with sqlcmd
 
@@ -180,7 +199,7 @@ Run the restore command:
 
 ```sql
 RESTORE FILELISTONLY
-FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2017.bak';
+FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak';
 GO
 ```
 
@@ -191,6 +210,15 @@ RESTORE DATABASE YourDatabaseName
 FROM DISK = N'/var/opt/mssql/AdventureWorksLT2017.bak'
 WITH MOVE 'LogicalDataFileName' TO '/var/opt/mssql/data/AdventureWorksLT2012.mdf',
      MOVE 'LogicalLogFileName' TO '/var/opt/mssql/data/AdventureWorksLT2012_log.ldf';
+GO
+
+```
+
+```sql
+RESTORE DATABASE YourDatabaseName
+FROM DISK = N'/var/opt/mssql/AdventureWorksLT2022.bak'
+WITH MOVE 'AdventureWorksLT2022' TO '/var/opt/mssql/data/AdventureWorksLT2022.mdf',
+     MOVE 'AdventureWorksLT2022' TO '/var/opt/mssql/data/AdventureWorksLT2022_log.ldf';
 GO
 
 ```
