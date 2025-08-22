@@ -7,15 +7,17 @@ create the file: docker-compose.yml  and paste the yaml file in.
 
 `nano docker-compose.yml`{{execute}}
 
+WIP sql 2017 seems to crash alot, using 2022
+
 (ctrl-insert:copy shift-insert:paste)
 
 WIP compose seems to be crushing, try
 
-`sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YourStrong:Passw0rd" -it -p 1433:1433 --name sql1 --hostname sql1 -d  mcr.microsoft.com/mssql/server:2017-latest`{{exec}}
+`sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YourStrong:Passw0rd" -it -p 1433:1433 --name sql1 --hostname sql1 -d  mcr.microsoft.com/mssql/server:2022-latest`{{exec}}
 
-`sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YourStrong:Passw0rd" -p 1433:1433 --name sql1 --hostname sql1 -d  mcr.microsoft.com/mssql/server:2017-latest`{{exec}}
+`sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YourStrong:Passw0rd" -p 1433:1433 --name sql1 --hostname sql1 -d  mcr.microsoft.com/mssql/server:2022-latest`{{exec}}
 
-`docker run -it --rm mcr.microsoft.com/mssql/server:2017-latest /bin/bash`
+`docker run -it --rm mcr.microsoft.com/mssql/server:2022-latest /bin/bash`
 
 
 `docker logs sql1`{{exec}}
@@ -166,7 +168,11 @@ these are windows cmd, rewrite for linux
 
 `docker exec -it <container_id_or_name> ls /var/opt/mssql/backup`{{exec}}
 
+`docker exec sql2022 mkdir /var/opt/mssql/backup`{{exec}}
+
 `docker cp C:\sqlbak\your_backup_file.bak <container_name>:/var/opt/mssql/backup/`{{exec}}
+
+`docker cp AdventureWorksLT2017.bak sql2022:/var/opt/mssql/backup`{{exec}}
 
 connect to the sql server with sqlcmd
 
@@ -174,7 +180,7 @@ Run the restore command:
 
 ```sql
 RESTORE FILELISTONLY
-FROM DISK = N'/var/opt/mssql/backup/your.bak';
+FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2017.bak';
 GO
 ```
 
@@ -182,9 +188,9 @@ Then use those names in the restore:
 
 ```sql
 RESTORE DATABASE YourDatabaseName
-FROM DISK = N'/var/opt/mssql/backup/your.bak'
-WITH MOVE 'LogicalDataFileName' TO '/var/opt/mssql/data/YourDatabaseName.mdf',
-     MOVE 'LogicalLogFileName' TO '/var/opt/mssql/data/YourDatabaseName_log.ldf';
+FROM DISK = N'/var/opt/mssql/AdventureWorksLT2017.bak'
+WITH MOVE 'LogicalDataFileName' TO '/var/opt/mssql/data/AdventureWorksLT2012.mdf',
+     MOVE 'LogicalLogFileName' TO '/var/opt/mssql/data/AdventureWorksLT2012_log.ldf';
 GO
 
 ```
