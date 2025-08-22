@@ -9,6 +9,17 @@ create the file: docker-compose.yml  and paste the yaml file in.
 
 (ctrl-insert:copy shift-insert:paste)
 
+WIP compose seems to be crushing, try
+
+`sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YourStrong:Passw0rd" -it -p 1433:1433 --name sql1 --hostname sql1 -d  mcr.microsoft.com/mssql/server:2017-latest`{{exec}}
+
+`sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YourStrong:Passw0rd" -p 1433:1433 --name sql1 --hostname sql1 -d  mcr.microsoft.com/mssql/server:2017-latest`{{exec}}
+
+`docker run -it --rm mcr.microsoft.com/mssql/server:2017-latest /bin/bash`
+
+
+`docker logs sql1`{{exec}}
+
 
 
 ```yaml
@@ -69,7 +80,13 @@ And lets connect and login:
 
 {{TRAFFIC_HOST1_8080}}
 
-Here's the login for the MySQL server. You can get the server name from using `docker-compose ps`
+Here's the login for the MySQL server. You can get the server name from using
+
+`docker-compose ps`{{execute}}
+
+having issues?
+
+`docker-compose logs -f`{{execute}}
 
 ```
 system: ms-sql
@@ -116,6 +133,19 @@ SELECT @@VERSION;
 GO
 ```{{exec}}
 
+## mssql-cli
+
+Was forked of dbcli (https://www.dbcli.com/)
+
+https://learn.microsoft.com/en-us/sql/tools/mssql-cli?view=sql-server-ver17
+
+Doesn't seem to be in the apt repo?
+
+github show no update in 2 years
+
+
+This might be a python install (pip mssql-cli)
+
 
 `docker exec -it root_mssql-dev_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'YourStrong!Passw0rd'`{{exec}}
 
@@ -125,7 +155,9 @@ GO
 
 ## loadup adventure works bd
 
-url:https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms
+url: https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms
+
+`wget https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2017.bak`{{exec}}
 
 I think you want to use the lite series, since the ms learn seem to be using the salesLT schema
 
@@ -135,6 +167,28 @@ these are windows cmd, rewrite for linux
 `docker exec -it <container_id_or_name> ls /var/opt/mssql/backup`{{exec}}
 
 `docker cp C:\sqlbak\your_backup_file.bak <container_name>:/var/opt/mssql/backup/`{{exec}}
+
+connect to the sql server with sqlcmd
+
+Run the restore command:
+
+```sql
+RESTORE FILELISTONLY
+FROM DISK = N'/var/opt/mssql/backup/your.bak';
+GO
+```
+
+Then use those names in the restore:
+
+```sql
+RESTORE DATABASE YourDatabaseName
+FROM DISK = N'/var/opt/mssql/backup/your.bak'
+WITH MOVE 'LogicalDataFileName' TO '/var/opt/mssql/data/YourDatabaseName.mdf',
+     MOVE 'LogicalLogFileName' TO '/var/opt/mssql/data/YourDatabaseName_log.ldf';
+GO
+
+```
+
 
 
 
