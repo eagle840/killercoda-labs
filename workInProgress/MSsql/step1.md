@@ -23,7 +23,7 @@ WIP compose seems to be crushing, try
 `docker logs sql1`{{exec}}
 
 
-
+I think we can remove this:
 ```yaml
 version: '3'
 
@@ -180,6 +180,9 @@ url: https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-config
 
 `wget https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2022.bak`{{exec}}
 
+
+https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-transact-sql?view=sql-server-ver17
+
 I think you want to use the lite series, since the ms learn seem to be using the salesLT schema
 
 
@@ -203,6 +206,8 @@ FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak';
 GO
 ```
 
+You'll use the LogicalName for the first parameter for **MOVE** and the PhysicalName for **TO**
+
 Then use those names in the restore:
 
 ```sql
@@ -225,8 +230,46 @@ GO
 
 
 
+```sql
+RESTORE DATABASE AdventureWorksLT2022
+FROM DISK = N'/var/opt/mssql/AdventureWorksLT2022.bak'
+WITH MOVE 'AdventureWorksLT2022_Data' TO '/var/opt/mssql/data/AdventureWorksLT2022.mdf',
+     MOVE 'AdventureWorksLT2022_Log' TO '/var/opt/mssql/data/AdventureWorksLT2022_log.ldf';
+GO
+```
 
 
+### Confirm
+
+```sql
+EXEC sp_databases;
+GO
+```{{exec}}
+
+OR
+
+```sql
+SELECT name FROM sys.databases;
+GO
+```{{exec}}
+
+```sql
+USE YourDatabaseName;
+GO
+```{{exec}}
+
+```sql
+SELECT name FROM sys.tables;
+```{{exec}}
+
+
+
+## for Backup
+
+```sql
+BACKUP DATABASE <name>
+TO DISK = 'path/name.bak'
+```
 
 
 ## Connect via SSMS ???
@@ -286,3 +329,11 @@ https://www.powershellgallery.com/packages/Sqlserver/22.2.0
 `Install-Module -Name SqlServer -RequiredVersion 22.2.0`{{exec}}
 
 ### FOr SQL AGENT, uses Module SQLPS
+
+`docker exec -it --user root sql1 bash`{{exec}}
+
+`/opt/mssql/bin/mssql-conf set sqlagent.enabled true`{{exec}}
+
+restart the container
+
+`docker restart sql1`{{exec}}
