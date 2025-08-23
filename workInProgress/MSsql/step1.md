@@ -5,6 +5,10 @@ READ: https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-doc
 
 create the file: docker-compose.yml  and paste the yaml file in.
 
+`mkdir mssql-data`{{exec}}
+
+`sudo chown -R 10001:10001 ./mssql-data/`{{exec}}
+
 `nano docker-compose.yml`{{execute}}
 
 (ctrl-insert:copy shift-insert:paste)
@@ -25,7 +29,7 @@ services:
   mssql-dev:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
-      SA_PASSWORD: "YourStrong!Passw0rd"
+      SA_PASSWORD: "YourStrong:Passw0rd"
       ACCEPT_EULA: "Y"
       MSSQL_PID: "Developer"
     ports:
@@ -62,10 +66,10 @@ and then exit the container when finished
 Lets add the Adminer tool to the yml so we can administor those databases:
 
 ``` yaml
-    admin:
-        image: adminer
-        ports:
-        - 8080:8080
+  admin:
+    image: adminer
+    ports:
+    - 8080:8080
 ```
 
 make the port 0.0.0.0:8080
@@ -89,10 +93,10 @@ having issues?
 
 ```
 system: ms-sql
-server: root_mssql-dev_1   (name from `docker-compose ps`)
+server: mssql-dev   (name from `docker-compose ps`)
 un: sa
 pw: YourStrong:Passw0rd
-database: test1 (you can leave blank)
+database: (you can leave blank)
 ```
 
 
@@ -186,9 +190,17 @@ I think you want to use the lite series, since the ms learn seem to be using the
 
 these are windows cmd, rewrite for linux
 
+### For docker
+
 `docker exec sql1 mkdir /var/opt/mssql/backup`{{exec}}
 
 `docker cp AdventureWorksLT2022.bak sql1:/var/opt/mssql/backup`{{exec}}
+
+## For docker-compose
+
+`docker cp AdventureWorksLT2022.bak sql1:/var/opt/mssql/backup`{{exec}}
+
+`docker cp AdventureWorksLT2022.bak root_mssql-dev_1:/var/opt/mssql/backup`{{exec}}
 
 connect to the sql server with sqlcmd
 
