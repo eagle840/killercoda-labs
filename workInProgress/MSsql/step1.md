@@ -7,18 +7,11 @@ create the file: docker-compose.yml  and paste the yaml file in.
 
 `nano docker-compose.yml`{{execute}}
 
-WIP sql 2017 seems to crash alot, using 2022
-
 (ctrl-insert:copy shift-insert:paste)
 
 WIP compose seems to be crushing, try
 
-`sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YourStrong:Passw0rd" -it -p 1433:1433 --name sql1 --hostname sql1 -d  mcr.microsoft.com/mssql/server:2022-latest`{{exec}}
-
 `sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YourStrong:Passw0rd" -p 1433:1433 --name sql1 --hostname sql1 -d  mcr.microsoft.com/mssql/server:2022-latest`{{exec}}
-
-`docker run -it --rm mcr.microsoft.com/mssql/server:2022-latest /bin/bash`
-
 
 `docker logs sql1`{{exec}}
 
@@ -41,6 +34,10 @@ services:
       - "./mssql-data:/var/opt/mssql"
 ```
 
+things to try:
+- check the volume
+- what is M& version of this docker-compose file
+
 
 and tell docker-compose to start up.
 
@@ -51,11 +48,11 @@ and confirm it's running
 
 
 you can connect to the container in either way:
-`docker exec -it compose1_mysql-dev_1 /bin/bash`{{execute}}
+`docker exec -it compose1_mssql-dev_1 /bin/bash`{{execute}}
 
 OR
 
-`docker-compose exec  mysql-dev /bin/bash`{{execute}}
+`docker-compose exec  mssql-dev /bin/bash`{{execute}}
 
 and then exit the container when finished
 `exit`{{execute}}
@@ -107,6 +104,7 @@ https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sq
 
 `cat /etc/os-release`{{exec}}
 
+
 **Setup GO sqlcmd**
 
 `curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc`{{exec}}
@@ -118,7 +116,7 @@ https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sq
 `apt-get install sqlcmd`{{exec}}
 
 `echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bash_profile`{{exec}}
-`
+
 `source ~/.bash_profile`{{exec}}
 
 `sqlcmd -?`{{exec}}
@@ -188,13 +186,9 @@ I think you want to use the lite series, since the ms learn seem to be using the
 
 these are windows cmd, rewrite for linux
 
-`docker exec -it <container_id_or_name> ls /var/opt/mssql/backup`{{exec}}
+`docker exec sql1 mkdir /var/opt/mssql/backup`{{exec}}
 
-`docker exec sql2022 mkdir /var/opt/mssql/backup`{{exec}}
-
-`docker cp C:\sqlbak\your_backup_file.bak <container_name>:/var/opt/mssql/backup/`{{exec}}
-
-`docker cp AdventureWorksLT2022.bak sql2022:/var/opt/mssql/backup`{{exec}}
+`docker cp AdventureWorksLT2022.bak sql1:/var/opt/mssql/backup`{{exec}}
 
 connect to the sql server with sqlcmd
 
@@ -210,29 +204,10 @@ You'll use the LogicalName for the first parameter for **MOVE** and the Physical
 
 Then use those names in the restore:
 
-```sql
-RESTORE DATABASE YourDatabaseName
-FROM DISK = N'/var/opt/mssql/AdventureWorksLT2017.bak'
-WITH MOVE 'LogicalDataFileName' TO '/var/opt/mssql/data/AdventureWorksLT2012.mdf',
-     MOVE 'LogicalLogFileName' TO '/var/opt/mssql/data/AdventureWorksLT2012_log.ldf';
-GO
-
-```
-
-```sql
-RESTORE DATABASE YourDatabaseName
-FROM DISK = N'/var/opt/mssql/AdventureWorksLT2022.bak'
-WITH MOVE 'AdventureWorksLT2022' TO '/var/opt/mssql/data/AdventureWorksLT2022.mdf',
-     MOVE 'AdventureWorksLT2022' TO '/var/opt/mssql/data/AdventureWorksLT2022_log.ldf';
-GO
-
-```
-
-
 
 ```sql
 RESTORE DATABASE AdventureWorksLT2022
-FROM DISK = N'/var/opt/mssql/AdventureWorksLT2022.bak'
+FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak'
 WITH MOVE 'AdventureWorksLT2022_Data' TO '/var/opt/mssql/data/AdventureWorksLT2022.mdf',
      MOVE 'AdventureWorksLT2022_Log' TO '/var/opt/mssql/data/AdventureWorksLT2022_log.ldf';
 GO
@@ -254,17 +229,18 @@ GO
 ```{{exec}}
 
 ```sql
-USE YourDatabaseName;
+USE AdventureWorksLT2022;
 GO
 ```{{exec}}
 
 ```sql
 SELECT name FROM sys.tables;
+GO
 ```{{exec}}
 
 
 
-## for Backup
+## FYI: for Backup
 
 ```sql
 BACKUP DATABASE <name>
@@ -282,43 +258,39 @@ is this the endpoint?
 
 https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-configure-mssql-conf?view=sql-server-ver17
 
-## Add SQL Power shell
+# Add SQL Power shell
 
 https://learn.microsoft.com/en-us/powershell/sql-server/sql-server-powershell?view=sqlserver-ps
 
-### Install PS
+## Install PS
 
 https://learn.microsoft.com/en-us/powershell/scripting/install/install-ubuntu?view=powershell-7.5
 
 ###################################
-# Prerequisites
+### Prerequisites
 
-# Update the list of packages
-`sudo apt-get update`{{exec}}
 
-# Install pre-requisite packages.
+
+### Install pre-requisite packages.
 `sudo apt-get install -y wget apt-transport-https software-properties-common`{{exec}}
 
-# Get the version of Ubuntu
-`source /etc/os-release`{{exec}}
+### Download the Microsoft repository keys
+`wget -q https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb`{{exec}}
 
-# Download the Microsoft repository keys
-`wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
-
-# Register the Microsoft repository keys
+### Register the Microsoft repository keys
 `sudo dpkg -i packages-microsoft-prod.deb`{{exec}}
 
-# Delete the Microsoft repository keys file
+### Delete the Microsoft repository keys file
 `rm packages-microsoft-prod.deb`{{exec}}
 
-# Update the list of packages after we added packages.microsoft.com
-`s`udo apt-get update`{{exec}}
+### Update the list of packages after we added packages.microsoft.com
+`sudo apt-get update`{{exec}}
 
-###################################
-# Install PowerShell
+
+### Install PowerShell
 `sudo apt-get install -y powershell`{{exec}}
 
-# Start PowerShell
+### Start PowerShell
 `pwsh`{{exec}}
 
 ### Install PS SQLServer (for SQL Server)
@@ -333,6 +305,8 @@ https://www.powershellgallery.com/packages/Sqlserver/22.2.0
 `docker exec -it --user root sql1 bash`{{exec}}
 
 `/opt/mssql/bin/mssql-conf set sqlagent.enabled true`{{exec}}
+
+`exit`{{exec}} # exit the container
 
 restart the container
 

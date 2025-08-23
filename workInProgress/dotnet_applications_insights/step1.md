@@ -21,7 +21,7 @@ record the connection string
 
 In this lab we will quickly install Dotnet using ASDF
 
-`apt install -y curl git sqlite3 libpq-dev libreadline-dev sqlite jq`{{exec}}
+`apt install -y curl git sqlite3 libpq-dev libreadline-dev jq`{{exec}}
 
 ```
 wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
