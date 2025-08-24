@@ -105,6 +105,18 @@ EXEC msdb.dbo.sp_add_job
 GO
 ```{{exec}}
 
+WIP need to add
+
+https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-add-jobserver-transact-sql?view=sql-server-ver17
+
+```sql
+sp_add_jobserver
+    [ @job_id = ] job_id
+        | [ @job_name = ] 'job_name'
+    [ , [ @server_name = ] 'server' ]
+[ ; ]
+```{{copy}}
+
 ---
 
 #### 5. **Add a Job Step**
@@ -125,9 +137,12 @@ GO
 EXEC msdb.dbo.sp_add_schedule
     @schedule_name = N'TestSchedule',
     @freq_type = 4,  -- Daily
+    @freq_interval = 1,
     @active_start_time = 090000;  -- 9:00 AM
 GO
+```{{exec}}
 
+```sql
 EXEC msdb.dbo.sp_attach_schedule
     @job_name = N'TestJob',
     @schedule_name = N'TestSchedule';

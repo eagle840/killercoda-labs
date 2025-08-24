@@ -28,6 +28,7 @@ services:
 
   mssql-dev:
     image: mcr.microsoft.com/mssql/server:2022-latest
+    hostname: mssql2022
     environment:
       SA_PASSWORD: "YourStrong:Passw0rd"
       ACCEPT_EULA: "Y"
@@ -36,7 +37,7 @@ services:
       - "1433:1433"
     volumes:
       - "./mssql-data:/var/opt/mssql"
-```
+```{{copy}}
 
 things to try:
 - check the volume
@@ -70,7 +71,7 @@ Lets add the Adminer tool to the yml so we can administor those databases:
     image: adminer
     ports:
     - 8080:8080
-```
+```{{copy}}
 
 make the port 0.0.0.0:8080
 
@@ -198,9 +199,11 @@ these are windows cmd, rewrite for linux
 
 ## For docker-compose
 
-`docker cp AdventureWorksLT2022.bak sql1:/var/opt/mssql/backup`{{exec}}
+`docker exec  root_mssql-dev_1 mkdir /var/opt/mssql/backup`{{exec}}
 
-`docker cp AdventureWorksLT2022.bak root_mssql-dev_1:/var/opt/mssql/backup`{{exec}}
+`docker cp AdventureWorksLT2022.bak root_mssql-dev_1:/var/opt/mssql/backup/`{{exec}}
+
+`docker exec  root_mssql-dev_1 ls /var/opt/mssql/backup/`{{exec}}
 
 connect to the sql server with sqlcmd
 

@@ -63,8 +63,16 @@ Understanding the distinction between **logon accounts** and **database accounts
 - **Created with**: `CREATE USER`
 - **Example**:
   ```sql
-  CREATE USER sa FOR LOGIN sa;
+  USE [YourDatabase];
+  CREATE USER [your_login_name] 
+  FOR LOGIN [your_login_name];
   ```
+
+ - To grant **roles/permissions**:
+  ```
+  ALTER ROLE db_datareader ADD MEMBER [your_login_name];
+  ALTER ROLE db_datawriter ADD MEMBER [your_login_name];
+   ```
 
 
 ## Single user mode
@@ -76,6 +84,67 @@ GO
 
 - SINGLE_USER: Restricts access to one user at a time.
 - WITH ROLLBACK IMMEDIATE: Forces disconnect of all other users and rolls back their transactions immediately.
+
+
+# 🧳 Contained Databases in SQL Server
+
+Contained databases are a powerful feature in SQL Server that simplify database management, improve portability, and reduce dependency on the host SQL Server instance. Unlike traditional databases, contained databases can manage authentication and configuration internally—making them ideal for cloud, multi-tenant, or migration-heavy environments.
+
+https://learn.microsoft.com/en-us/sql/relational-databases/databases/contained-databases?view=sql-server-ver17
+
+---
+
+## 🔍 What Is a Contained Database?
+
+A **contained database** is a self-sufficient SQL Server database that minimizes reliance on the SQL Server instance. It includes its own:
+
+- Metadata
+- Authentication (via contained users)
+- Configuration settings
+
+This allows the database to be moved between servers without breaking user access or requiring server-level login recreation.
+
+---
+
+## 🔐 Contained Users vs Traditional Logins
+
+| Feature                  | Traditional Database | Contained Database       |
+|--------------------------|----------------------|---------------------------|
+| Authentication Scope     | Server-level login   | Database-level user       |
+| Migration Complexity     | High (logins must be recreated) | Low (users travel with DB) |
+| Setup                    | Login + User mapping | Direct user creation      |
+
+### ✅ Traditional Setup
+
+```sql
+-- Server-level login
+CREATE LOGIN app_user WITH PASSWORD = 'StrongP@ssword';
+
+-- Database-level user
+USE MyDatabase;
+CREATE USER app_user FOR LOGIN app_user;
+
+-- Directly inside the contained database
+CREATE USER contained_user WITH PASSWORD = 'SecureP@ss123!';
+```
+
+## Enabling
+
+Before using contained databases, enable the feature at the server level:
+
+```sql
+EXEC sp_configure 'show advanced options', 1;
+RECONFIGURE;
+EXEC sp_configure 'contained database authentication', 1;
+RECONFIGURE;
+```
+
+and create a contained db
+
+```sql
+CREATE DATABASE MyContainedDB
+CONTAINMENT = PARTIAL;
+```
 
 ---
 
