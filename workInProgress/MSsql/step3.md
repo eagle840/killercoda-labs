@@ -63,6 +63,8 @@ https://github.com/croblesm/mssql-polybase/tree/master
 
 see readme to enable and test
 
+to connect to external data: https://learn.microsoft.com/en-us/sql/relational-databases/polybase/polybase-configure-sql-server?view=sql-server-ver17
+
 
 
 
