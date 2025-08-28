@@ -1,339 +1,252 @@
-# Docker compose
+# Docker Compose Setup
 
+Set up SQL Server 2022 using Docker Compose for easier container management.
 
-READ: https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver17&tabs=cli&pivots=cs1-bash
+**Reference**: https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver17&tabs=cli&pivots=cs1-bash
 
-create the file: docker-compose.yml  and paste the yaml file in.
+## Create Data Directory
+
+First, create a directory to persist SQL Server data:
+
+`mkdir mssql-data`{{exec}}
+
+`sudo chown -R 10001:10001 ./mssql-data/`{{exec}}
+
+## Create Docker Compose File
+
+Create the docker-compose.yml file:
 
 `nano docker-compose.yml`{{execute}}
 
-WIP sql 2017 seems to crash alot, using 2022
+Copy and paste this configuration:
 
-(ctrl-insert:copy shift-insert:paste)
-
-WIP compose seems to be crushing, try
-
-`sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YourStrong:Passw0rd" -it -p 1433:1433 --name sql1 --hostname sql1 -d  mcr.microsoft.com/mssql/server:2022-latest`{{exec}}
-
-`sudo docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YourStrong:Passw0rd" -p 1433:1433 --name sql1 --hostname sql1 -d  mcr.microsoft.com/mssql/server:2022-latest`{{exec}}
-
-`docker run -it --rm mcr.microsoft.com/mssql/server:2022-latest /bin/bash`
-
-
-`docker logs sql1`{{exec}}
-
-
-I think we can remove this:
 ```yaml
-version: '3'
+version: '3.8'
 
 services:
-
   mssql-dev:
     image: mcr.microsoft.com/mssql/server:2022-latest
+    hostname: mssql-dev
+    container_name: mssql-dev
     environment:
-      SA_PASSWORD: "YourStrong!Passw0rd"
+      SA_PASSWORD: "YourStrong:Passw0rd"
       ACCEPT_EULA: "Y"
       MSSQL_PID: "Developer"
     ports:
       - "1433:1433"
     volumes:
       - "./mssql-data:/var/opt/mssql"
-```
+```{{copy}}
 
+## Start SQL Server
 
-and tell docker-compose to start up.
+Start the container using Docker Compose:
 
 `docker-compose up -d`{{execute}}
 
-and confirm it's running
+Verify the container is running:
+
 `docker-compose ps`{{execute}}
 
+Check the logs to ensure SQL Server started successfully:
 
-you can connect to the container in either way:
-`docker exec -it compose1_mysql-dev_1 /bin/bash`{{execute}}
+`docker-compose logs mssql-dev`{{execute}}
 
-OR
+## Connect to Container
 
-`docker-compose exec  mysql-dev /bin/bash`{{execute}}
+You can connect to the container using:
 
-and then exit the container when finished
+`docker-compose exec mssql-dev /bin/bash`{{execute}}
+
+Exit when finished:
+
 `exit`{{execute}}
 
-### Adminer tool
-
-Lets add the Adminer tool to the yml so we can administor those databases:
-
-``` yaml
-    admin:
-        image: adminer
-        ports:
-        - 8080:8080
-```
-
-make the port 0.0.0.0:8080
-
-`nano docker-compose.yml`{{execute}}
-
-`docker-compose up -d `{{execute}}
-
-And lets connect and login:
-
-
-{{TRAFFIC_HOST1_8080}}
-
-Here's the login for the MySQL server. You can get the server name from using
-
-`docker-compose ps`{{execute}}
-
-having issues?
-
-`docker-compose logs -f`{{execute}}
-
-```
-system: ms-sql
-server: root_mssql-dev_1   (name from `docker-compose ps`)
-un: sa
-pw: YourStrong:Passw0rd
-database: test1 (you can leave blank)
-```
 
 
 
+## Install SQL Server Command Line Tools
 
-## Connect to MS SQL
+Install the modern GO-based sqlcmd tool to connect to SQL Server.
 
-https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-ver17&tabs=redhat-install
+**Reference**: https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-ver17&tabs=redhat-install
+
+Check your Ubuntu version:
 
 `cat /etc/os-release`{{exec}}
 
-**Setup GO sqlcmd**
+**Setup GO-based sqlcmd**
+
+Install the Microsoft repository key:
 
 `curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc`{{exec}}
 
-`add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/22.04/prod.list)"`{{exec}}
+Add the Microsoft package repository:
 
-`apt-get update`{{exec}}
+`sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/22.04/prod.list)"`{{exec}}
 
-`apt-get install sqlcmd`{{exec}}
-
-`echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bash_profile`{{exec}}
-`
-`source ~/.bash_profile`{{exec}}
-
-`sqlcmd -?`{{exec}}
-
-
-**Setup to OBDC ? install**
-
-??? There seems to be 2 versions of sqlcmd (GO, and ODBC)
-
-"Install the sqlcmd and bcp SQL Server command-line tools on Linux"
-
-`curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc`{{exec}}
-
-`curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list | sudo tee /etc/apt/sources.list.d/mssql-release.list`{{exec}}
+Update package list and install the modern sqlcmd:
 
 `sudo apt-get update`{{exec}}
 
-`sudo apt-get install mssql-tools18 unixodbc-dev`{{exec}}
+`sudo apt-get install -y sqlcmd`{{exec}}
 
-`echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bash_profile`{{exec}}
+Add sqlcmd to your PATH:
 
-`source ~/.bash_profile`{{exec}}
+`echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc`{{exec}}
+
+`source ~/.bashrc`{{exec}}
+
+Verify installation:
 
 `sqlcmd -?`{{exec}}
 
-## Confirm connection
+## Test SQL Server Connection
+
+Connect to SQL Server using the GO-based sqlcmd:
 
 `sqlcmd -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
 
+Test the connection by checking the SQL Server version:
 
-```
+```sql
 SELECT @@VERSION;
 GO
 ```{{exec}}
 
-## mssql-cli
+You should see the SQL Server version information displayed.
 
-Was forked of dbcli (https://www.dbcli.com/)
+## Load AdventureWorks Sample Database
 
-https://learn.microsoft.com/en-us/sql/tools/mssql-cli?view=sql-server-ver17
+Download and restore the AdventureWorks LT sample database for learning purposes.
 
-Doesn't seem to be in the apt repo?
+**Reference**: https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms
 
-github show no update in 2 years
-
-
-This might be a python install (pip mssql-cli)
-
-
-`docker exec -it root_mssql-dev_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
-
-
-
-`docker exec -it root_mssql-dev_1 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong:Passw0rd"`{{exec}}
-
-## loadup adventure works bd
-
-url: https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms
+Download the AdventureWorksLT backup file:
 
 `wget https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2022.bak`{{exec}}
 
+Create a backup directory inside the container and copy the file:
 
-https://learn.microsoft.com/en-us/sql/t-sql/statements/restore-statements-transact-sql?view=sql-server-ver17
+`docker-compose exec mssql-dev mkdir -p /var/opt/mssql/backup`{{exec}}
 
-I think you want to use the lite series, since the ms learn seem to be using the salesLT schema
+`docker cp AdventureWorksLT2022.bak mssql-dev:/var/opt/mssql/backup/`{{exec}}
 
+Verify the file was copied:
 
-these are windows cmd, rewrite for linux
+`docker-compose exec mssql-dev ls /var/opt/mssql/backup/`{{exec}}
 
-`docker exec -it <container_id_or_name> ls /var/opt/mssql/backup`{{exec}}
+## Restore the Database
 
-`docker exec sql2022 mkdir /var/opt/mssql/backup`{{exec}}
+Connect to SQL Server and examine the backup file structure:
 
-`docker cp C:\sqlbak\your_backup_file.bak <container_name>:/var/opt/mssql/backup/`{{exec}}
+`sqlcmd -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
 
-`docker cp AdventureWorksLT2022.bak sql2022:/var/opt/mssql/backup`{{exec}}
-
-connect to the sql server with sqlcmd
-
-Run the restore command:
+First, check what files are in the backup:
 
 ```sql
 RESTORE FILELISTONLY
 FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak';
 GO
-```
+```{{exec}}
 
-You'll use the LogicalName for the first parameter for **MOVE** and the PhysicalName for **TO**
-
-Then use those names in the restore:
-
-```sql
-RESTORE DATABASE YourDatabaseName
-FROM DISK = N'/var/opt/mssql/AdventureWorksLT2017.bak'
-WITH MOVE 'LogicalDataFileName' TO '/var/opt/mssql/data/AdventureWorksLT2012.mdf',
-     MOVE 'LogicalLogFileName' TO '/var/opt/mssql/data/AdventureWorksLT2012_log.ldf';
-GO
-
-```
-
-```sql
-RESTORE DATABASE YourDatabaseName
-FROM DISK = N'/var/opt/mssql/AdventureWorksLT2022.bak'
-WITH MOVE 'AdventureWorksLT2022' TO '/var/opt/mssql/data/AdventureWorksLT2022.mdf',
-     MOVE 'AdventureWorksLT2022' TO '/var/opt/mssql/data/AdventureWorksLT2022_log.ldf';
-GO
-
-```
-
-
+Now restore the database using the logical names from the previous command:
 
 ```sql
 RESTORE DATABASE AdventureWorksLT2022
-FROM DISK = N'/var/opt/mssql/AdventureWorksLT2022.bak'
+FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak'
 WITH MOVE 'AdventureWorksLT2022_Data' TO '/var/opt/mssql/data/AdventureWorksLT2022.mdf',
      MOVE 'AdventureWorksLT2022_Log' TO '/var/opt/mssql/data/AdventureWorksLT2022_log.ldf';
 GO
-```
-
-
-### Confirm
-
-```sql
-EXEC sp_databases;
-GO
 ```{{exec}}
 
-OR
+## Verify Database Installation
+
+List all databases to confirm AdventureWorksLT2022 was restored:
 
 ```sql
 SELECT name FROM sys.databases;
 GO
 ```{{exec}}
 
+Switch to the AdventureWorks database:
+
 ```sql
-USE YourDatabaseName;
+USE AdventureWorksLT2022;
 GO
 ```{{exec}}
 
+List tables in the database:
+
 ```sql
 SELECT name FROM sys.tables;
+GO
 ```{{exec}}
 
-
-
-## for Backup
+Exit sqlcmd:
 
 ```sql
-BACKUP DATABASE <name>
-TO DISK = 'path/name.bak'
-```
+quit
+```{{exec}}
 
+## Install PowerShell and SQL Server Module
 
-## Connect via SSMS ???
+Install PowerShell for advanced SQL Server management capabilities.
 
-is this the endpoint?
+**Reference**: https://learn.microsoft.com/en-us/powershell/scripting/install/install-ubuntu?view=powershell-7.5
 
-{{TRAFFIC_HOST1_1433}}
+Install prerequisite packages:
 
-# Configure SQL Server on Linux with the mssql-conf tool
-
-https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-configure-mssql-conf?view=sql-server-ver17
-
-## Add SQL Power shell
-
-https://learn.microsoft.com/en-us/powershell/sql-server/sql-server-powershell?view=sqlserver-ps
-
-### Install PS
-
-https://learn.microsoft.com/en-us/powershell/scripting/install/install-ubuntu?view=powershell-7.5
-
-###################################
-# Prerequisites
-
-# Update the list of packages
-`sudo apt-get update`{{exec}}
-
-# Install pre-requisite packages.
 `sudo apt-get install -y wget apt-transport-https software-properties-common`{{exec}}
 
-# Get the version of Ubuntu
-`source /etc/os-release`{{exec}}
+Download and register Microsoft repository keys:
 
-# Download the Microsoft repository keys
-`wget -q https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
+`wget -q https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb`{{exec}}
 
-# Register the Microsoft repository keys
 `sudo dpkg -i packages-microsoft-prod.deb`{{exec}}
 
-# Delete the Microsoft repository keys file
 `rm packages-microsoft-prod.deb`{{exec}}
 
-# Update the list of packages after we added packages.microsoft.com
-`s`udo apt-get update`{{exec}}
+Update package list and install PowerShell:
 
-###################################
-# Install PowerShell
+`sudo apt-get update`{{exec}}
+
 `sudo apt-get install -y powershell`{{exec}}
 
-# Start PowerShell
+Start PowerShell:
+
 `pwsh`{{exec}}
 
-### Install PS SQLServer (for SQL Server)
+Install the SQL Server PowerShell module:
 
+`Install-Module -Name SqlServer -RequiredVersion 22.2.0 -Force`{{exec}}
 
-https://www.powershellgallery.com/packages/Sqlserver/22.2.0
+Exit PowerShell:
 
-`Install-Module -Name SqlServer -RequiredVersion 22.2.0`{{exec}}
+`exit`{{exec}}
 
-### FOr SQL AGENT, uses Module SQLPS
+## Enable SQL Server Agent
 
-`docker exec -it --user root sql1 bash`{{exec}}
+SQL Server Agent is required for job scheduling and automation.
+
+**Reference**: https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-configure-mssql-conf?view=sql-server-ver17
+
+Access the container as root to configure SQL Server:
+
+`docker-compose exec --user root mssql-dev bash`{{exec}}
+
+Enable SQL Server Agent:
 
 `/opt/mssql/bin/mssql-conf set sqlagent.enabled true`{{exec}}
 
-restart the container
+Exit the container:
 
-`docker restart sql1`{{exec}}
+`exit`{{exec}}
+
+Restart the container to apply the SQL Agent configuration:
+
+`docker-compose restart mssql-dev`{{exec}}
+
+Verify the container is running:
+
+`docker-compose ps`{{exec}}
