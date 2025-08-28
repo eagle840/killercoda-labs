@@ -45,6 +45,31 @@ https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-ssis?view=sql
 
 https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-language-extensions-java?view=sql-server-ver17
 
+## Polybase
+
+https://github.com/croblesm/mssql-polybase/tree/master
+
+`git clone https://github.com/croblesm/mssql-polybase.git`{{exec}}
+
+`cd mssql-polybase/`{{exec}}
+
+`docker build . -t mssql-polybase -f Dockerfile`{{exec}}
+
+`docker container run     --name sql-polybase     --env 'ACCEPT_EULA=Y'     --env 'MSSQL_SA_PASSWORD=_SqLr0ck$_'     --publish 1433:1433     --detach mssql-polybase`{{exec}}
+
+! make sure sqlcmd is installed
+
+`sqlcmd -U sa -P '_SqLr0ck$_'`{{exec}}
+
+see readme to enable and test
+
+
+
+
+## ML services
+
+https://github.com/microsoft/mssql-docker/blob/master/linux/preview/examples/mssql-mlservices/README.md
+
 -----
 
 (5 -)
