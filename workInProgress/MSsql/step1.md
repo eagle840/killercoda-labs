@@ -71,6 +71,8 @@ Install the modern GO-based sqlcmd tool to connect to SQL Server.
 
 **Reference**: https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-ver17&tabs=redhat-install
 
+**Reference** https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility?view=sql-server-ver17&tabs=go%2Cwindows-support&pivots=cs1-bash
+
 Check your Ubuntu version:
 
 `cat /etc/os-release`{{exec}}
@@ -78,6 +80,8 @@ Check your Ubuntu version:
 **Setup GO-based sqlcmd**
 
 Install the Microsoft repository key:
+
+
 
 `curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc`{{exec}}
 
@@ -100,6 +104,8 @@ Add sqlcmd to your PATH:
 Verify installation:
 
 `sqlcmd -?`{{exec}}
+
+**Power Tip** While we're taked the long way to install SQL, run `sqlcmd create mssql --accept-eula --using https://aka.ms/AdventureWorksLT.bak`to do it quickly.
 
 ## Test SQL Server Connection
 
