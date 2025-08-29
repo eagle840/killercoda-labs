@@ -1,5 +1,6 @@
 # basic usage
-
+ review this¬
+ https://learn.microsoft.com/en-us/sql/tools/sqlcmd/edit-sqlcmd-scripts-query-editor?view=sql-server-ver17
 
 `sqlcmd -?`{{exec}}
 

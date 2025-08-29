@@ -1,5 +1,7 @@
 # SQL Server Agent
 
+see https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-run-sql-server-agent-job?view=sql-server-ver17
+
 Config in docker
 
 `docker exec -it --user root mssql-dev_1 bash`{{exec}}

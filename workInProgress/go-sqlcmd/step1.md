@@ -1,5 +1,7 @@
 # MS Go-sqlcmd
 
+**reference** https://www.youtube.com/watch?v=MlA1dAeE91A
+
 ## Install SQL Server Command Line Tools
 
 Install the modern GO-based sqlcmd tool to connect to SQL Server.
