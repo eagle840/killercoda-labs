@@ -60,3 +60,13 @@ Test the connection by checking the SQL Server version:
 SELECT @@VERSION;
 GO
 ```{{exec}}
+
+to exit:
+
+`exit`{{exec}}
+
+## Formated output in shell
+
+To get a much better output while in shell,
+
+`sqlcmd -y 30 -Y 30`{{exec}}
