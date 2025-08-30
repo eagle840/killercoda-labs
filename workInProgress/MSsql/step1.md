@@ -148,6 +148,15 @@ Connect to SQL Server and examine the backup file structure:
 
 `sqlcmd -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
 
+`sqlcmd -y 30 -Y 30 -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
+
+```sql
+SELECT @@SERVERNAME,
+       SERVERPROPERTY('ComputerNamePhysicalNetBIOS'),
+       SERVERPROPERTY('MachineName'),
+       SERVERPROPERTY('ServerName');
+```{{exec}}
+
 First, check what files are in the backup:
 
 ```sql

@@ -42,7 +42,7 @@ Verify installation:
 
 `sqlcmd -?`{{exec}}
 
- `sqlcmd create mssql --accept-eula --using https://aka.ms/AdventureWorksLT.bak`to do it quickly.
+ `sqlcmd create mssql --accept-eula --using https://aka.ms/AdventureWorksLT.bak`{{exec}}
 
  confirm the sever is running
 

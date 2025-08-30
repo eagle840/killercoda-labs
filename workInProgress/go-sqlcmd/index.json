@@ -1,6 +1,6 @@
 {
   "title": "go-sqlcmd command",
-  "description": "Microsofts new GO based sqlcmd command(v0.0.4)",
+  "description": "Microsofts new GO based sqlcmd command(v0.0.5)",
   "difficulty": "Beginner",
   "time": "60 minutes",
   "details": {

@@ -33,6 +33,20 @@ INSERT dbo.Products (ProductID, ProductName, Price, ProductDescription)
 GO
 ```{{exec}}
 
+# basic exploration
+
+## syste information schema
+
+https://learn.microsoft.com/en-us/sql/relational-databases/system-information-schema-views/system-information-schema-views-transact-sql?view=sql-server-ver17
+
+```sql
+SELECT TOP 10 * 
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_TYPE = 'BASE TABLE'
+```{{exec}}
+
+`sp_databases`{{exec}}
+
 
 # Basic database admin
 
@@ -226,3 +240,8 @@ A SQL Database Administrator (DBA) plays a critical role in managing and maintai
 ---
 
 These tasks help ensure that SQL Server environments are secure, performant, and resilient.
+
+
+## change sa and password
+
+https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver17&tabs=cli&pivots=cs1-bash#change-the-system-administrator-password-1
