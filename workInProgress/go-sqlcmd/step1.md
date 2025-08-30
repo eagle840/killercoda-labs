@@ -44,6 +44,10 @@ Verify installation:
 
  `sqlcmd create mssql --accept-eula --using https://aka.ms/AdventureWorksLT.bak`to do it quickly.
 
+ confirm the sever is running
+
+ `docker ps`{{exec}}
+
 ## Test SQL Server Connection
 
 Connect to SQL Server using the GO-based sqlcmd:

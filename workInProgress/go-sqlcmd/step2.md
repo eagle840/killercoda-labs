@@ -8,7 +8,7 @@
 
 `sqlcmd query "SELECT @@version"`{{exec}}
 
-   ## format for veritcal output
+## format for veritcal output
 
 
 `sqlcmd   query "SELECT @@SERVERNAME"`{{exec}}
@@ -18,6 +18,14 @@ VS
 `sqlcmd   query "SELECT @@SERVERNAME"  -F vertical`{{exec}}
 
 `sqlcmd  -Q "SELECT @@SERVERNAME"  -F vertical`{{exec}}
+
+## control width
+
+• 	: max width for variable-length types
+• 	: max width for fixed-length type
+
+`sqlcmd -y 30 -Y 30 -Q "sp_databases"`{{exec}}
+
 
    ## list of avaiable images
 
@@ -40,5 +48,10 @@ GO
 EOF
 ```{{exec}}
 
+
+## from file
+
+`touch query.sql`{{exec}}
+
 does this work
-sqlcmd query --file multi_line_query.sql  # looks like it might -i script.sql
+sqlcmd query -query.sql  # looks like it might -i script.sql
