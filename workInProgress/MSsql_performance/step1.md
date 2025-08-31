@@ -114,92 +114,11 @@ If you want to keep it lean, Page 8 alone would be the most DP-300-aligned addit
 
 ---
 
-# OLD  Docker Compose Setup
-
-
-Using the sqlcmd to install mssql
-
-Set up SQL Server 2022 using Docker Compose for easier container management.
-
-**Reference**: https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver17&tabs=cli&pivots=cs1-bash
-
-## Create Data Directory
-
-First, create a directory to persist SQL Server data:
-
-`mkdir mssql-data`{{exec}}
-
-`sudo chown -R 10001:10001 ./mssql-data/`{{exec}}
-
-## Create Docker Compose File
-
-Create the docker-compose.yml file:
-
-`nano docker-compose.yml`{{execute}}
-
-Copy and paste this configuration:
-
-```yaml
-version: '3.8'
-
-services:
-  mssql-dev:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    hostname: mssql-dev
-    container_name: mssql-dev
-    environment:
-      SA_PASSWORD: "YourStrong:Passw0rd"
-      ACCEPT_EULA: "Y"
-      MSSQL_PID: "Developer"
-    ports:
-      - "1433:1433"
-    volumes:
-      - "./mssql-data:/var/opt/mssql"
-```{{copy}}
-
-## Start SQL Server
-
-Start the container using Docker Compose:
-
-`docker-compose up -d`{{execute}}
-
-Verify the container is running:
-
-`docker-compose ps`{{execute}}
-
-Check the logs to ensure SQL Server started successfully:
-
-`docker-compose logs mssql-dev`{{execute}}
-
-## Connect to Container
-
-You can connect to the container using:
-
-`docker-compose exec mssql-dev /bin/bash`{{execute}}
-
-Exit when finished:
-
-`exit`{{execute}}
-
-
-
-
-## Install SQL Server Command Line Tools
-
-Install the modern GO-based sqlcmd tool to connect to SQL Server.
-
-**Reference**: https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-ver17&tabs=redhat-install
-
-**Reference** https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility?view=sql-server-ver17&tabs=go%2Cwindows-support&pivots=cs1-bash
-
-Check your Ubuntu version:
-
-`cat /etc/os-release`{{exec}}
+# Install MSSQL
 
 **Setup GO-based sqlcmd**
 
 Install the Microsoft repository key:
-
 
 
 `curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc`{{exec}}
@@ -224,8 +143,9 @@ Verify installation:
 
 `sqlcmd -?`{{exec}}
 
-**Power Tip** While we're taked the long way to install SQL, run `sqlcmd create mssql --accept-eula --using https://aka.ms/AdventureWorksLT.bak`to do it quickly.
+ `sqlcmd create mssql --accept-eula --using https://aka.ms/AdventureWorksLT.bak`{{exec}}
 
+ 
 ## Test SQL Server Connection
 
 Connect to SQL Server using the GO-based sqlcmd:
