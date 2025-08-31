@@ -59,6 +59,58 @@ Great move, Nicholas—splitting this into a dedicated **MSSQL Performance Lab**
 
 Want help drafting the intro page or building a reusable Markdown template for each module? I can also help you tie this into your blog or create a companion quiz for learners.
 
+"copilot added the following for dp-3300"
+
+Sticking with your original 7 pages is a strong foundation, Nicholas—they already cover the core mechanics of MSSQL performance tuning in a hands-on, reproducible way. But if you're open to **adding one or two more pages** to round out the lab and give learners a deeper edge (especially those prepping for DP-300 or real-world tuning), here are two additions worth considering:
+
+---
+
+## 🧩 Page 8: **Query Store Regression Analysis**
+🔍 _Why add it?_  
+DP-300 leans heavily on Query Store for tracking performance over time. This module would show learners how to:
+- Detect regressions after index or query changes
+- Compare runtime stats across plan versions
+- Force a stable plan to prevent performance drift
+
+🛠 _Hands-on tasks:_
+- Enable Query Store and run baseline queries
+- Introduce a change that causes a regression
+- Use `sys.query_store_runtime_stats` and `sys.query_store_plan` to analyze
+- Force the previous plan and validate improvement
+
+---
+
+## 🧩 Page 9: **Extended Events for Performance Diagnosis**
+🎯 _Why add it?_  
+Extended Events are a lightweight, production-safe way to capture performance anomalies. This page would teach:
+- How to create a session targeting slow queries or high I/O
+- How to filter and interpret event data
+- When to use XE over Profiler or DMVs
+
+🛠 _Hands-on tasks:_
+- Create an XE session for `sql_batch_completed` or `query_post_execution_showplan`
+- Simulate a slow query and capture the event
+- Export and analyze the results
+
+---
+
+## 🧠 Summary: Final Lab Structure (9 Pages)
+
+1. Baseline Setup & Metrics  
+2. Index Design & Fragmentation  
+3. Page Splits Simulation  
+4. Query Tuning & Execution Plans  
+5. TempDB Contention  
+6. Wait Stats & Bottleneck Diagnosis  
+7. Compression & Storage Optimization  
+8. **Query Store Regression Analysis**  
+9. **Extended Events for Performance Diagnosis**
+
+---
+
+If you want to keep it lean, Page 8 alone would be the most DP-300-aligned addition. Want help drafting the markdown structure or intro text for either? I can tailor it to match your blog tone and lab style.
+
+
 
 ---
 
