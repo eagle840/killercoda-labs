@@ -18,7 +18,7 @@ You can use the `:setvar` command to declare a variable and assign it a value wi
 
     SELECT CustomerID, CompanyName, EmailAddress
     FROM SalesLT.Customer
-    WHERE CountryRegion = $(Country);
+    WHERE CountryRegion = \$(Country);
     GO
     EOF
     ```{{exec}}
@@ -43,7 +43,7 @@ For greater flexibility, you can pass variables to your script from the command 
     GO
     SELECT ProductID, Name, ListPrice
     FROM SalesLT.Product
-    WHERE Color = $(Color);
+    WHERE Color = \$(Color);
     GO
     EOF
     ```{{exec}}

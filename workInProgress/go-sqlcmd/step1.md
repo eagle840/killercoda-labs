@@ -23,10 +23,10 @@ First, we need to prepare our environment to install the `go-sqlcmd` utility.
 3.  **Update and Install:**
     Now, update your package list and install `go-sqlcmd`.
 
-    ```bash
-    sudo apt-get update
-    sudo apt-get install -y sqlcmd
-    ```{{exec}}
+look
+    `sudo apt-get update`{{exec}}
+
+    `sudo apt-get install -y sqlcmd`{{exec}}
 
 4.  **Verify the Installation:**
     Check that `go-sqlcmd` was installed correctly by displaying its help menu.
