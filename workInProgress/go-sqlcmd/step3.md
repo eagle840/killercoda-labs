@@ -1,40 +1,81 @@
-# running commands inside the shell
+# Step 3: Interactive Mode and Scripting
 
-ref: https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-commands?view=sql-server-ver17&pivots=cs1-bash
+In this step, you'll learn how to use `sqlcmd`'s interactive mode and how to execute scripts saved in `.sql` files.
 
-In addition to Transact-SQL statements within sqlcmd, the following commands are also available:
+## Interactive Mode
 
-GO [ <count> ]
+Running `sqlcmd` without a query starts an interactive session. This allows you to type and execute T-SQL statements directly.
 
-:List
+1.  **Start an interactive session:**
 
-[:]RESET
+    ```bash
+    sqlcmd
+    ```{{exec}}
 
-:Error
+2.  **Switch to the correct database context:**
+    Once in the interactive session, you can run any T-SQL command. Let's switch to the `AdventureWorksLT` database.
 
-[:]ED 1
+    ```sql
+    USE AdventureWorksLT;
+    GO
+    ```
 
-:Out
+3.  **Run a query:**
+    Now you can query the tables in that database.
 
-[:]!!
-:Perftrace
+    ```sql
+    SELECT TOP 5 ProductID, Name, ListPrice FROM SalesLT.Product;
+    GO
+    ```
 
-[:]QUIT
+4.  **Exit the session:**
+    Type `exit` to end the interactive session and return to your shell.
 
-:Connect
+    ```sql
+    exit
+    ```
 
-[:]EXIT
+## Executing Scripts from a File
 
-:On Error
+For more complex operations, it's common to save your SQL commands in a script file and execute it with `sqlcmd`.
 
-:r
+1.  **Create a SQL script file:**
+    First, let's create a simple script file named `products.sql`.
 
-:Help
+    ```bash
+    cat <<EOF > products.sql
+    USE AdventureWorksLT;
+    GO
+    SELECT Name, Color, Size
+    FROM SalesLT.Product
+    WHERE Color = 'Red';
+    GO
+    EOF
+    ```{{exec}}
 
-:ServerList 1
+2.  **Execute the script using the `-i` flag:**
+    The `-i` flag tells `sqlcmd` to read its input from the specified file.
 
-:XML [ ON | OFF ] 1
+    ```bash
+    sqlcmd -i products.sql
+    ```{{exec}}
 
-:Setvar
+## Special `sqlcmd` Commands
 
-:Listvar
+`sqlcmd` has its own set of commands that are not T-SQL. These commands, which are often prefixed with a colon (`:`), provide additional functionality.
+
+1.  **:List**
+    The `:List` command shows the content of the statement buffer.
+
+    ```sql
+    :List
+    ```
+
+2.  **:Help**
+    The `:Help` command displays a list of available `sqlcmd` commands and their descriptions.
+
+    ```sql
+    :Help
+    ```
+
+Next, we will explore how to restore a database from a backup file.

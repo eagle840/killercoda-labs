@@ -1,25 +1,33 @@
 {
-  "title": "go-sqlcmd command",
-  "description": "Microsofts new GO based sqlcmd command(v0.0.5)",
+  "title": "Getting Started with go-sqlcmd",
+  "description": "A hands-on lab for learning the modern, Go-based sqlcmd command-line tool for SQL Server.",
   "difficulty": "Beginner",
-  "time": "60 minutes",
+  "time": "25 minutes",
   "details": {
     "steps": [
       {
-        "title": "Step 1",
+        "title": "Installation and Setup",
         "text": "step1.md"
       },
       {
-        "title": "Step 2",
+        "title": "Basic Querying and Output Formatting",
         "text": "step2.md"
       },
       {
-        "title": "Step 3",
+        "title": "Interactive Mode and Scripting",
         "text": "step3.md"
       },
       {
-        "title": "Step 4",
+        "title": "Restoring a Database from a Backup",
         "text": "step4.md"
+      },
+      {
+        "title": "Error Handling and Debugging",
+        "text": "step5.md"
+      },
+      {
+        "title": "Working with Variables",
+        "text": "step6.md"
       }
     ],
     "intro": {

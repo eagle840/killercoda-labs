@@ -1,72 +1,63 @@
-# MS Go-sqlcmd
+# Step 1: Installation and Setup
 
-**reference** https://www.youtube.com/watch?v=MlA1dAeE91A
+This step will guide you through the installation of `go-sqlcmd` and the setup of a SQL Server container instance for you to work with.
 
-## Install SQL Server Command Line Tools
+## Installing `go-sqlcmd`
 
-Install the modern GO-based sqlcmd tool to connect to SQL Server.
+First, we need to prepare our environment to install the `go-sqlcmd` utility.
 
-**Reference**: https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-ver17&tabs=redhat-install
+1.  **Add the Microsoft package repository key:**
+    This command downloads and installs the GPG key for Microsoft's official package repository. This ensures that the packages you download are authentic.
 
-**Reference** https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility?view=sql-server-ver17&tabs=go%2Cwindows-support&pivots=cs1-bash
+    ```bash
+    curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc
+    ```{{exec}}
 
-Check your Ubuntu version:
+2.  **Register the Microsoft repository:**
+    Next, we add the official Microsoft package repository for Ubuntu 22.04 to your system's list of package sources.
 
-`cat /etc/os-release`{{exec}}
+    ```bash
+    sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/22.04/prod.list)"
+    ```{{exec}}
 
-**Setup GO-based sqlcmd**
+3.  **Update and Install:**
+    Now, update your package list and install `go-sqlcmd`.
 
-Install the Microsoft repository key:
+    ```bash
+    sudo apt-get update
+    sudo apt-get install -y sqlcmd
+    ```{{exec}}
 
+4.  **Verify the Installation:**
+    Check that `go-sqlcmd` was installed correctly by displaying its help menu.
 
+    ```bash
+    sqlcmd -?
+    ```{{exec}}
 
-`curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc`{{exec}}
+## Creating a SQL Server Instance
 
-Add the Microsoft package repository:
+With `go-sqlcmd` installed, you can now easily create a local SQL Server container instance. This command will download the latest SQL Server image and restore the `AdventureWorksLT` sample database.
 
-`sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/22.04/prod.list)"`{{exec}}
+1.  **Create the SQL Server container:**
 
-Update package list and install the modern sqlcmd:
+    ```bash
+    sqlcmd create mssql --accept-eula --using https://aka.ms/AdventureWorksLT.bak
+    ```{{exec}}
 
-`sudo apt-get update`{{exec}}
+2.  **Verify the container is running:**
+    Use the `docker ps` command to confirm that the SQL Server container is up and running.
 
-`sudo apt-get install -y sqlcmd`{{exec}}
+    ```bash
+    docker ps
+    ```{{exec}}
 
-Add sqlcmd to your PATH:
+## Test the Connection
 
-`echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc`{{exec}}
+Finally, let's test the connection to your new SQL Server instance by running a simple query to get the server version.
 
-`source ~/.bashrc`{{exec}}
-
-Verify installation:
-
-`sqlcmd -?`{{exec}}
-
- `sqlcmd create mssql --accept-eula --using https://aka.ms/AdventureWorksLT.bak`{{exec}}
-
- confirm the sever is running
-
- `docker ps`{{exec}}
-
-## Test SQL Server Connection
-
-Connect to SQL Server using the GO-based sqlcmd:
-
-`sqlcmd query`{{exec}}
-
-Test the connection by checking the SQL Server version:
-
-```sql
-SELECT @@VERSION;
-GO
+```bash
+sqlcmd query "SELECT @@VERSION"
 ```{{exec}}
 
-to exit:
-
-`exit`{{exec}}
-
-## Formated output in shell
-
-To get a much better output while in shell,
-
-`sqlcmd -y 30 -Y 30`{{exec}}
+In the next step, you will learn more about executing queries.

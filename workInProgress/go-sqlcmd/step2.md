@@ -1,57 +1,63 @@
-# basic usage
- review this¬
- https://learn.microsoft.com/en-us/sql/tools/sqlcmd/edit-sqlcmd-scripts-query-editor?view=sql-server-ver17
+# Step 2: Basic Querying and Output Formatting
 
-`sqlcmd -?`{{exec}}
+Now that you have a running SQL Server instance, let's explore different ways to execute queries and format the results.
 
-`sqlcmd create mssql --accept-eula --using https://aka.ms/AdventureWorksLT.bak`{{exec}}
+## Executing Queries
 
-`sqlcmd query "SELECT @@version"`{{exec}}
+`go-sqlcmd` provides several ways to run your queries.
 
-## format for veritcal output
+1.  **Using the `query` subcommand:**
+    The `query` subcommand is a straightforward way to execute a single query string.
 
+    ```bash
+    sqlcmd query "SELECT name FROM sys.databases"
+    ```{{exec}}
 
-`sqlcmd   query "SELECT @@SERVERNAME"`{{exec}}
+2.  **Using the `-Q` flag:**
+    The `-Q` flag provides an alternative way to pass a query string. It is useful for quick, one-off queries.
 
-VS
+    ```bash
+    sqlcmd -Q "SELECT TOP 5 CustomerID, CompanyName FROM SalesLT.Customer"
+    ```{{exec}}
 
-`sqlcmd   query "SELECT @@SERVERNAME"  -F vertical`{{exec}}
+3.  **Using a heredoc for multi-line queries:**
+    For longer or more complex queries, you can use a `heredoc` to pass a multi-line script to the `query` subcommand.
 
-`sqlcmd  -Q "SELECT @@SERVERNAME"  -F vertical`{{exec}}
+    ```bash
+    sqlcmd query <<EOF
+    USE AdventureWorksLT;
+    SELECT TOP 3 ProductID, Name, Color
+    FROM SalesLT.Product
+    WHERE Color = 'Black';
+    GO
+    EOF
+    ```{{exec}}
 
-## control width
+## Formatting Query Output
 
-• 	: max width for variable-length types
-• 	: max width for fixed-length type
+`go-sqlcmd` gives you fine-grained control over how the query results are displayed.
 
-`sqlcmd -y 30 -Y 30 -Q "sp_databases"`{{exec}}
+1.  **Vertical Formatting (`-F vertical`):**
+    The default output is horizontal, which can be hard to read for tables with many columns. The `vertical` format displays each column on a new line, which is often more readable.
 
+    Compare the default output:
+    ```bash
+    sqlcmd -Q "SELECT @@SERVERNAME, DB_NAME()"
+    ```{{exec}}
 
-   ## list of avaiable images
+    With the vertical output:
+    ```bash
+    sqlcmd -Q "SELECT @@SERVERNAME, DB_NAME()" -F vertical
+    ```{{exec}}
 
-`sqlcmd create mssql get-tags`{{exec}}
+2.  **Controlling Column Width (`-y` and `-Y`):**
+    You can control the width of the output columns to prevent text from being truncated or wrapping.
+    - `-y`: Sets the maximum width for variable-length data types.
+    - `-Y`: Sets the width for fixed-length data types.
 
-`sqlcmd   query "SELECT @@SERVERNAME"  --vertical`{{exec}}
+    This command sets the display width for variable-length columns to 30 characters.
+    ```bash
+    sqlcmd -y 30 -Q "SELECT Name, ProductNumber, Color FROM SalesLT.Product"
+    ```{{exec}}
 
-`sqlcmd -Q "sp_databases" -F vertical`{{exec}}
-
-`sqlcmd -Q "sp_tables" -F vertical`{{exec}}
-
-
-```bash
-sqlcmd query <<EOF
-USE AdventureWorksLT;
-SELECT CustomerID, CustomerName
-FROM dbo.Customers
-WHERE Country = 'UK';
-GO
-EOF
-```{{exec}}
-
-
-## from file
-
-`touch query.sql`{{exec}}
-
-does this work
-sqlcmd query -query.sql  # looks like it might -i script.sql
+In the next step, we will look at using `sqlcmd` in interactive mode and running scripts from files.
