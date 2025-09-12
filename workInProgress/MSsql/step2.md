@@ -40,7 +40,7 @@ GO
 https://learn.microsoft.com/en-us/sql/relational-databases/system-information-schema-views/system-information-schema-views-transact-sql?view=sql-server-ver17
 
 ```sql
-SELECT TOP 10 * 
+SELECT TOP 10 *
 FROM INFORMATION_SCHEMA.TABLES
 WHERE TABLE_TYPE = 'BASE TABLE'
 ```{{exec}}
@@ -78,7 +78,7 @@ Understanding the distinction between **logon accounts** and **database accounts
 - **Example**:
   ```sql
   USE [YourDatabase];
-  CREATE USER [your_login_name] 
+  CREATE USER [your_login_name]
   FOR LOGIN [your_login_name];
   ```
 
@@ -245,3 +245,9 @@ These tasks help ensure that SQL Server environments are secure, performant, and
 ## change sa and password
 
 https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver17&tabs=cli&pivots=cs1-bash#change-the-system-administrator-password-1
+
+## Notes
+
+what is the msdb database?
+
+Setup a lab page, inc a email server for https://learn.microsoft.com/en-us/training/modules/schedule-tasks-using-sql-server-agent/3-describe-task-status-notifications
