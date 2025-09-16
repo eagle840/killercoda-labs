@@ -10,6 +10,12 @@ The **`mssql-conf`** tool is a command-line utility used to configure **SQL Serv
 - It modifies the **`mssql.conf`** file located at `/var/opt/mssql/`.
 - Used to set, unset, and validate SQL Server configuration parameters.
 
+`docker-compose exec mssql-dev /bin/bash`{{exec}}
+
+`ls /var/opt/mssql/`{{exec}}
+
+`cat /var/opt/mssql/mssql.conf`{{exec}}
+
 ---
 
 ### ⚙️ Common Usage Examples
