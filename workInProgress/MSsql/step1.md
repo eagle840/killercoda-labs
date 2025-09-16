@@ -122,6 +122,10 @@ GO
 
 You should see the SQL Server version information displayed.
 
+Exit when finished:
+
+`exit`{{execute}}
+
 ## Load AdventureWorks Sample Database
 
 Download and restore the AdventureWorks LT sample database for learning purposes.
@@ -146,7 +150,8 @@ Verify the file was copied:
 
 Connect to SQL Server and examine the backup file structure:
 
-`sqlcmd -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
+
+We'll use the -y and -Y options to control display output and make it easier to read
 
 `sqlcmd -y 30 -Y 30 -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
 
@@ -155,6 +160,7 @@ SELECT @@SERVERNAME,
        SERVERPROPERTY('ComputerNamePhysicalNetBIOS'),
        SERVERPROPERTY('MachineName'),
        SERVERPROPERTY('ServerName');
+GO
 ```{{exec}}
 
 First, check what files are in the backup:
