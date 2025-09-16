@@ -161,9 +161,9 @@ Install the SQL Server PowerShell module:
 
 And test the connection:
 
-`Invoke-Sqlcmd -ServerInstance "localhost,1433" -Username "sa" -Password "YourStrong:Passw0rd" -Query "SELECT GETDATE();"`{{exec}}
+`Invoke-Sqlcmd -ServerInstance "localhost,1433" -TrustServerCertificate -EncryptConnection -Username "sa" -Password "YourStrong:Passw0rd" -Query "SELECT GETDATE();"`{{exec}}
 
-WIP don't seem to get this working with just arguments
+We can also use a connection string
 
 `Invoke-Sqlcmd -ConnectionString "Server=localhost,1433;User ID=sa;Password=YourStrong:Passw0rd;Encrypt=True;TrustServerCertificate=True" -Query "SELECT @@VERSION;"`{{exec}}
 
