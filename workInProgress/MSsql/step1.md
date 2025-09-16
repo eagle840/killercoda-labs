@@ -167,31 +167,3 @@ And test the connection:
 Exit PowerShell:
 
 `exit`{{exec}}
-
-## Enable SQL Server Agent
-
-WIP Move to the Steo 3, where wel'll first cover mssql-conf and then review the options )Full text, SSIS, java, polybase etc), and then activate sql server agent
-
-SQL Server Agent is required for job scheduling and automation.
-
-**Reference**: https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-configure-mssql-conf?view=sql-server-ver17
-
-Access the container as root to configure SQL Server:
-
-`docker-compose exec --user root mssql-dev bash`{{exec}}
-
-Enable SQL Server Agent:
-
-`/opt/mssql/bin/mssql-conf set sqlagent.enabled true`{{exec}}
-
-Exit the container:
-
-`exit`{{exec}}
-
-Restart the container to apply the SQL Agent configuration:
-
-`docker-compose restart mssql-dev`{{exec}}
-
-Verify the container is running:
-
-`docker-compose ps`{{exec}}
