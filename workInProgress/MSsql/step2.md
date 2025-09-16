@@ -35,7 +35,7 @@ GO
 
 # basic exploration
 
-## syste information schema
+## system information schema
 
 https://learn.microsoft.com/en-us/sql/relational-databases/system-information-schema-views/system-information-schema-views-transact-sql?view=sql-server-ver17
 
@@ -47,8 +47,116 @@ WHERE TABLE_TYPE = 'BASE TABLE'
 
 `sp_databases`{{exec}}
 
+## Backup the database
 
-# Basic database admin
+```sql
+BACKUP DATABASE TestData
+TO DISK = '/var/opt/mssql/backup/TestData.bak'
+WITH FORMAT,
+     INIT,
+     NAME = 'BackUpTestData',
+     SKIP,
+     NOREWIND,
+     NOUNLOAD,
+     STATS = 10;
+GO
+```{{exec}}
+
+**Explanation of Options**
+
+TO DISK: Specifies the path and filename for the backup.
+WITH FORMAT: Creates a new media set, overwriting any existing backup sets.
+INIT: Overwrites the existing file if it exists.
+NAME: A label for the backup set.
+SKIP, NOREWIND, NOUNLOAD: Options for tape devices (included for completeness, but not needed for disk backups).
+STATS = 10: Displays progress every 10%.
+
+## Load AdventureWorks Sample Database
+
+Download and restore the AdventureWorks LT sample database for learning purposes.
+
+**Reference**: https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms
+
+Download the AdventureWorksLT backup file:
+
+`wget https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2022.bak`{{exec}}
+
+Create a backup directory inside the container and copy the file:
+
+`docker-compose exec mssql-dev mkdir -p /var/opt/mssql/backup`{{exec}}
+
+`docker cp AdventureWorksLT2022.bak mssql-dev:/var/opt/mssql/backup/`{{exec}}
+
+Verify the file was copied:
+
+`docker-compose exec mssql-dev ls /var/opt/mssql/backup/`{{exec}}
+
+## Restore the Database
+
+Connect to SQL Server and examine the backup file structure:
+
+
+We'll use the -y and -Y options to control display output and make it easier to read
+
+`sqlcmd -y 30 -Y 30 -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
+
+```sql
+SELECT @@SERVERNAME,
+       SERVERPROPERTY('ComputerNamePhysicalNetBIOS'),
+       SERVERPROPERTY('MachineName'),
+       SERVERPROPERTY('ServerName');
+GO
+```{{exec}}
+
+First, check what files are in the backup:
+
+```sql
+RESTORE FILELISTONLY
+FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak';
+GO
+```{{exec}}
+
+Now restore the database using the logical names from the previous command:
+
+```sql
+RESTORE DATABASE AdventureWorksLT2022
+FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak'
+WITH MOVE 'AdventureWorksLT2022_Data' TO '/var/opt/mssql/data/AdventureWorksLT2022.mdf',
+     MOVE 'AdventureWorksLT2022_Log' TO '/var/opt/mssql/data/AdventureWorksLT2022_log.ldf';
+GO
+```{{exec}}
+
+## Verify Database Installation
+
+List all databases to confirm AdventureWorksLT2022 was restored:
+
+```sql
+SELECT name FROM sys.databases;
+GO
+```{{exec}}
+
+Switch to the AdventureWorks database:
+
+```sql
+USE AdventureWorksLT2022;
+GO
+```{{exec}}
+
+List tables in the database:
+
+```sql
+SELECT name FROM sys.tables;
+GO
+```{{exec}}
+
+Exit sqlcmd:
+
+```sql
+quit
+```{{exec}}
+
+
+# Account Types
 
 ## 🔐 Logon Account vs 📂 Database Account in SQL Server
 

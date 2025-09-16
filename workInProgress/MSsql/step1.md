@@ -146,69 +146,6 @@ Verify the file was copied:
 
 `docker-compose exec mssql-dev ls /var/opt/mssql/backup/`{{exec}}
 
-## Restore the Database
-
-Connect to SQL Server and examine the backup file structure:
-
-
-We'll use the -y and -Y options to control display output and make it easier to read
-
-`sqlcmd -y 30 -Y 30 -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
-
-```sql
-SELECT @@SERVERNAME,
-       SERVERPROPERTY('ComputerNamePhysicalNetBIOS'),
-       SERVERPROPERTY('MachineName'),
-       SERVERPROPERTY('ServerName');
-GO
-```{{exec}}
-
-First, check what files are in the backup:
-
-```sql
-RESTORE FILELISTONLY
-FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak';
-GO
-```{{exec}}
-
-Now restore the database using the logical names from the previous command:
-
-```sql
-RESTORE DATABASE AdventureWorksLT2022
-FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak'
-WITH MOVE 'AdventureWorksLT2022_Data' TO '/var/opt/mssql/data/AdventureWorksLT2022.mdf',
-     MOVE 'AdventureWorksLT2022_Log' TO '/var/opt/mssql/data/AdventureWorksLT2022_log.ldf';
-GO
-```{{exec}}
-
-## Verify Database Installation
-
-List all databases to confirm AdventureWorksLT2022 was restored:
-
-```sql
-SELECT name FROM sys.databases;
-GO
-```{{exec}}
-
-Switch to the AdventureWorks database:
-
-```sql
-USE AdventureWorksLT2022;
-GO
-```{{exec}}
-
-List tables in the database:
-
-```sql
-SELECT name FROM sys.tables;
-GO
-```{{exec}}
-
-Exit sqlcmd:
-
-```sql
-quit
-```{{exec}}
 
 ## Install PowerShell and SQL Server Module
 
