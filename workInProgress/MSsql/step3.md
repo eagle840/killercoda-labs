@@ -91,32 +91,36 @@ sudo /opt/mssql/bin/mssql-conf set filelocation.defaultbackupdir /sql/backup
 
 ---
 
+## Enable SQL Server Agent
 
-# SQL Server Agent
+WIP Move to the Steo 3, where wel'll first cover mssql-conf and then review the options )Full text, SSIS, java, polybase etc), and then activate sql server agent
 
-see https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-run-sql-server-agent-job?view=sql-server-ver17
+SQL Server Agent is required for job scheduling and automation.
 
-Config in docker
+**Reference**: https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-configure-mssql-conf?view=sql-server-ver17
 
-`docker exec -it --user root mssql-dev_1 bash`{{exec}}
+Access the container as root to configure SQL Server:
 
+`docker-compose exec --user root mssql-dev bash`{{exec}}
 
-```
-root@57301203bac5:/# /opt/mssql/bin/mssql-conf set sqlagent.enabled true
-SQL Server needs to be restarted in order to apply this setting. Please run
-'systemctl restart mssql-server.service'.
-```
+Enable SQL Server Agent:
 
 `/opt/mssql/bin/mssql-conf set sqlagent.enabled true`{{exec}}
 
+Exit the container:
+
+`exit`{{exec}}
+
+Restart the container to apply the SQL Agent configuration:
+
+`docker-compose restart mssql-dev`{{exec}}
+
+Verify the container is running:
+
+`docker-compose ps`{{exec}}
 
 
-`docker container restart mssql-dev_1`{{exec}}
-
-
-
-
-https://learn.microsoft.com/en-us/ssms/agent/sql-server-agent
+ref: https://learn.microsoft.com/en-us/ssms/agent/sql-server-agent
 
 
 Install SQL Server Agent on Linux

@@ -159,6 +159,11 @@ Install the SQL Server PowerShell module:
 
 `Install-Module -Name SqlServer -RequiredVersion 22.2.0 -Force`{{exec}}
 
+And test the connection:
+
+`Invoke-Sqlcmd -ServerInstance "localhost,1433" -Username "sa" -Password "YourStrong!Password" -Query "SELECT GETDATE();"`{{exec}}
+
+
 Exit PowerShell:
 
 `exit`{{exec}}
