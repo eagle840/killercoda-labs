@@ -72,12 +72,12 @@ GO
 
 **Explanation of Options**
 
-TO DISK: Specifies the path and filename for the backup.
-WITH FORMAT: Creates a new media set, overwriting any existing backup sets.
-INIT: Overwrites the existing file if it exists.
-NAME: A label for the backup set.
-SKIP, NOREWIND, NOUNLOAD: Options for tape devices (included for completeness, but not needed for disk backups).
-STATS = 10: Displays progress every 10%.
+- TO DISK: Specifies the path and filename for the backup.
+- WITH FORMAT: Creates a new media set, overwriting any existing backup sets.
+- INIT: Overwrites the existing file if it exists.
+- NAME: A label for the backup set.
+- SKIP, NOREWIND, NOUNLOAD: Options for tape devices (included for completeness, but not needed for disk backups).
+- STATS = 10: Displays progress every 10%.
 
 `exit`{{exec}}
 
@@ -97,7 +97,9 @@ Download the AdventureWorksLT backup file:
 
 Create a backup directory inside the container and copy the file:
 
-`docker-compose exec mssql-dev mkdir -p /var/opt/mssql/backup`{{exec}}
+
+WIP Remove this line
+`docker-compose exec mssql-dev mkdir -p /var/opt/mssql/backup`{{copy}}
 
 `docker cp AdventureWorksLT2022.bak mssql-dev:/var/opt/mssql/backup/`{{exec}}
 
@@ -163,12 +165,87 @@ SELECT name FROM sys.tables;
 GO
 ```{{exec}}
 
+
+## Using DBCC for check the database
+
+
+The DBCC command line tool in SQL Server refers to a set of Database Console Commands (DBCC) — specialized Transact-SQL (T-SQL) statements used to check, maintain, and troubleshoot SQL Server databases.
+
+**Docs** https://learn.microsoft.com/en-us/sql/t-sql/database-console-commands/dbcc-transact-sql?view=sql-server-ver17
+
+```sql
+DBCC CHECKDB('AdventureWorksLT2022')
+```{{exec}}
+
+## Intro to stored Procedure sp_holp
+
+The `sp_help` stored procedure in SQL Server is a **built-in system procedure** that provides **detailed information** about a database object — such as a table, view, stored procedure, or user-defined function.
+
+**ref** https://learn.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-help-transact-sql?view=sql-server-ver17
+
+---
+
+### 🔹 What Does `sp_help` Do?
+
+When you run:
+
+```sql
+EXEC sp_help 'YourObjectName';
+```
+
+SQL Server returns **multiple result sets** that describe:
+
+- **Column names and data types**
+- **Identity columns**
+- **Indexes**
+- **Constraints**
+- **Foreign keys**
+- **Rowguid columns**
+- **Storage details**
+
+---
+
+### 🔹 Example: Table Info
+
+```sql
+EXEC sp_help 'sys.databases';
+GO
+```{{exec}}
+
+This might return:
+
+1. **Column details** — name, type, length, nullability
+2. **Identity info** — if any column is an identity
+3. **Indexes** — clustered, non-clustered, unique
+4. **Constraints** — primary keys, foreign keys, check constraints
+
+---
+
+### 🔹 Use Cases
+
+- Quickly inspect table structure
+- Review constraints and indexes
+- Debug schema issues
+- Prepare for migrations or documentation
+
+---
+
+### 🔹 Notes
+
+- If you run `sp_help` without parameters:
+  ```sql
+  EXEC sp_help;
+  ```
+  It returns a list of **all objects** in the current database.
+
+- Works best with **user-defined objects**. For system views like `sys.databases`, use `sys.columns` or `INFORMATION_SCHEMA`.
+
+
 Exit sqlcmd:
 
 ```sql
 quit
 ```{{exec}}
-
 
 # Account Types
 
@@ -273,14 +350,16 @@ EXEC sp_configure 'show advanced options', 1;
 RECONFIGURE;
 EXEC sp_configure 'contained database authentication', 1;
 RECONFIGURE;
-```
+GO
+```{{exec}}
 
 and create a contained db
 
 ```sql
 CREATE DATABASE MyContainedDB
 CONTAINMENT = PARTIAL;
-```
+GO
+```{{exec}}
 
 
 

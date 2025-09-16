@@ -147,6 +147,8 @@ https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-language-exte
 
 ## Polybase
 
+https://learn.microsoft.com/en-us/sql/relational-databases/polybase/polybase-linux-setup?view=sql-server-ver16&tabs=rhel
+
 https://github.com/croblesm/mssql-polybase/tree/master
 
 `git clone https://github.com/croblesm/mssql-polybase.git`{{exec}}
