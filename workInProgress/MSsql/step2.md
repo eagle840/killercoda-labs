@@ -1,7 +1,11 @@
-# Lessons
+# Create a Databse
 
 
 https://learn.microsoft.com/en-us/sql/t-sql/lesson-1-creating-database-objects?view=sql-server-ver17
+
+We'll use the -y and -Y options to control display output and make it easier to read
+
+`sqlcmd -y 30 -Y 30 -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
 
 Create a database
 ```
@@ -43,9 +47,13 @@ https://learn.microsoft.com/en-us/sql/relational-databases/system-information-sc
 SELECT TOP 10 *
 FROM INFORMATION_SCHEMA.TABLES
 WHERE TABLE_TYPE = 'BASE TABLE'
+GO
 ```{{exec}}
 
-`sp_databases`{{exec}}
+```sql
+sp_databases
+GO
+```{{exec}}
 
 ## Backup the database
 
@@ -70,6 +78,12 @@ INIT: Overwrites the existing file if it exists.
 NAME: A label for the backup set.
 SKIP, NOREWIND, NOUNLOAD: Options for tape devices (included for completeness, but not needed for disk backups).
 STATS = 10: Displays progress every 10%.
+
+`exit`{{exec}}
+
+Check the docker volume for the backup:
+
+`ls mssql-data/backup`{{exec}}
 
 ## Load AdventureWorks Sample Database
 

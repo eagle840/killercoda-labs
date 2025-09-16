@@ -1,3 +1,91 @@
+# mssql-config
+
+The **`mssql-conf`** tool is a command-line utility used to configure **SQL Server on Linux**. It serves a similar purpose to **SQL Server Configuration Manager** on Windows, allowing DBAs to manage server-level settings in a structured and scriptable way.
+
+---
+
+### 🧰 What is `mssql-conf`?
+
+- A **configuration script** installed with SQL Server on Linux (Red Hat, SUSE, Ubuntu).
+- It modifies the **`mssql.conf`** file located at `/var/opt/mssql/`.
+- Used to set, unset, and validate SQL Server configuration parameters.
+
+---
+
+### ⚙️ Common Usage Examples
+
+You run it using:
+
+```bash
+sudo /opt/mssql/bin/mssql-conf <command> <parameter> <value>
+```
+
+#### ✅ Set a Configuration Value
+```bash
+sudo /opt/mssql/bin/mssql-conf set tcpport 1455
+```
+
+#### 🔄 Unset a Configuration Value
+```bash
+sudo /opt/mssql/bin/mssql-conf unset tcpport
+```
+
+#### 🔍 List Available Parameters
+```bash
+/opt/mssql/bin/mssql-conf list
+```
+
+#### 🔐 Reset SA Password
+```bash
+sudo /opt/mssql/bin/mssql-conf set-sa-password 'NewStrongPassword'
+```
+
+#### 🧠 Set Memory Limit
+```bash
+sudo /opt/mssql/bin/mssql-conf set memory.memorylimitmb 2048
+```
+
+#### 📁 Change Default Backup Directory
+```bash
+sudo /opt/mssql/bin/mssql-conf set filelocation.defaultbackupdir /sql/backup
+```
+
+---
+
+### 🔧 Configuration Areas You Can Manage
+
+- **SQL Server Agent** (enable/disable)
+- **Authentication** (Microsoft Entra ID, Windows AD)
+- **File locations** (data, log, backup, error logs)
+- **Network settings** (TCP port, TLS)
+- **Memory limits**
+- **Trace flags**
+- **Collation**
+- **Edition and locale**
+- **Machine Learning Services**
+
+---
+
+### 🛡️ Best Practices
+
+- **Backup the config file** before making changes:
+  ```bash
+  sudo cp /var/opt/mssql/mssql.conf /var/opt/mssql/mssql-backup.conf
+  ```
+
+- **Restart SQL Server** after changes:
+  ```bash
+  sudo systemctl restart mssql-server
+  ```
+
+- **Use `validate`** to clean up invalid settings:
+  ```bash
+  sudo /opt/mssql/bin/mssql-conf validate
+  ```
+
+---
+
+
 # SQL Server Agent
 
 see https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-run-sql-server-agent-job?view=sql-server-ver17

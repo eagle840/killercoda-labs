@@ -126,26 +126,6 @@ Exit when finished:
 
 `exit`{{execute}}
 
-## Load AdventureWorks Sample Database
-
-Download and restore the AdventureWorks LT sample database for learning purposes.
-
-**Reference**: https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms
-
-Download the AdventureWorksLT backup file:
-
-`wget https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2022.bak`{{exec}}
-
-Create a backup directory inside the container and copy the file:
-
-`docker-compose exec mssql-dev mkdir -p /var/opt/mssql/backup`{{exec}}
-
-`docker cp AdventureWorksLT2022.bak mssql-dev:/var/opt/mssql/backup/`{{exec}}
-
-Verify the file was copied:
-
-`docker-compose exec mssql-dev ls /var/opt/mssql/backup/`{{exec}}
-
 
 ## Install PowerShell and SQL Server Module
 
@@ -184,6 +164,8 @@ Exit PowerShell:
 `exit`{{exec}}
 
 ## Enable SQL Server Agent
+
+WIP Move to the Steo 3, where wel'll first cover mssql-conf and then review the options )Full text, SSIS, java, polybase etc), and then activate sql server agent
 
 SQL Server Agent is required for job scheduling and automation.
 
