@@ -163,6 +163,11 @@ And test the connection:
 
 `Invoke-Sqlcmd -ServerInstance "localhost,1433" -Username "sa" -Password "YourStrong:Passw0rd" -Query "SELECT GETDATE();"`{{exec}}
 
+WIP don't seem to get this working with just arguments
+
+`Invoke-Sqlcmd -ConnectionString "Server=localhost,1433;User ID=sa;Password=YourStrong:Passw0rd;Encrypt=True;TrustServerCertificate=True" -Query "SELECT @@VERSION;"`{{exec}}
+
+
 
 Exit PowerShell:
 
