@@ -161,7 +161,7 @@ Install the SQL Server PowerShell module:
 
 And test the connection:
 
-`Invoke-Sqlcmd -ServerInstance "localhost,1433" -Username "sa" -Password "YourStrong!Password" -Query "SELECT GETDATE();"`{{exec}}
+`Invoke-Sqlcmd -ServerInstance "localhost,1433" -Username "sa" -Password "YourStrong:Passw0rd" -Query "SELECT GETDATE();"`{{exec}}
 
 
 Exit PowerShell:
