@@ -203,6 +203,13 @@ SQL Server returns **multiple result sets** that describe:
 - **Rowguid columns**
 - **Storage details**
 
+to get a list of all sys objects run
+
+```sql
+select name, xtype FROM sys.sysobjects;
+GO
+```{{exec}}
+
 ---
 
 ### 🔹 Example: Table Info

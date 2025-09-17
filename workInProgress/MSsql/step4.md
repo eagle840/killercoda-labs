@@ -123,6 +123,118 @@ Here’s a downloadable SQL script that demonstrates the **common DP-300 exam ti
 
 ---
 
+In SQL Server — including **Azure SQL Database** — you can apply a variety of **permissions to schemas** to control access and operations on the objects within them.
+
+---
+
+### 🔐 Schema-Level Permissions
+
+Here are the key permissions you can grant on a schema:
+
+| **Permission**     | **Description**                                                                 |
+|--------------------|----------------------------------------------------------------------------------|
+| `CONTROL`          | Full control over the schema and its objects.                                   |
+| `ALTER`            | Allows changes to the schema (e.g., adding/removing objects).                   |
+| `REFERENCES`       | Allows creation of foreign key references to objects in the schema.             |
+| `SELECT`           | Allows reading data from tables/views in the schema.                            |
+| `INSERT`           | Allows inserting data into tables in the schema.                                |
+| `UPDATE`           | Allows updating data in tables in the schema.                                   |
+| `DELETE`           | Allows deleting data from tables in the schema.                                 |
+| `EXECUTE`          | Allows executing stored procedures and functions in the schema.                 |
+| `VIEW DEFINITION`  | Allows viewing metadata (e.g., table structure, procedure code).                |
+| `TAKE OWNERSHIP`   | Allows taking ownership of the schema.                                          |
+
+---
+
+### 🧪 Example: Granting Permissions on a Schema
+
+```sql
+-- Grant SELECT and EXECUTE on the Sales schema to user Nick
+GRANT SELECT, EXECUTE ON SCHEMA::Sales TO Nick;
+```
+
+You can also **deny** or **revoke** permissions:
+
+```sql
+DENY DELETE ON SCHEMA::Sales TO Nick;
+REVOKE EXECUTE ON SCHEMA::Sales TO Nick;
+```
+
+---
+
+### 🧠 Why Use Schema-Level Permissions?
+
+- **Simplifies security management**: Instead of granting permissions on each object, you grant them once at the schema level.
+- **Supports modular design**: You can isolate business logic, data access, and reporting into separate schemas.
+- **Improves maintainability**: Easier to audit and manage permissions.
+
+---
+
+# User Permissons with Schemas
+
+You're spot on, Nick — understanding the relationship between **logins**, **database users**, and **schemas** is key to managing security in SQL Server and Azure SQL Database.
+
+Let’s break it down clearly:
+
+---
+
+### 🔐 1. **Login vs. User**
+
+| **Login** | **Database User** |
+|-----------|-------------------|
+| Exists at the **server level** | Exists at the **database level** |
+| Authenticates access to the SQL Server or Azure SQL logical server | Maps to a login and grants access to a specific database |
+| Created with `CREATE LOGIN` | Created with `CREATE USER` |
+| Can be SQL-auth or Azure AD-auth | Can be mapped to a login or created independently |
+
+---
+
+### 🔗 2. **How They Interact**
+
+- When a user connects to SQL Server or Azure SQL Database:
+  1. The **login** is authenticated at the server level.
+  2. The login is mapped to a **database user** inside the target database.
+  3. The **database user** is granted permissions — including on **schemas**.
+
+Example:
+```sql
+-- Server-level login
+CREATE LOGIN NickLogin WITH PASSWORD = 'StrongPassword!';
+
+-- Database-level user mapped to login
+USE YourDatabase;
+CREATE USER NickUser FOR LOGIN NickLogin;
+
+-- Grant schema-level permissions
+GRANT SELECT, EXECUTE ON SCHEMA::Sales TO NickUser;
+```
+
+---
+
+### 🧱 3. **Schema Permissions Are Granted to Database Users**
+
+- Permissions on schemas (like `SELECT`, `EXECUTE`, `ALTER`) are granted to **database users**, **roles**, or **groups**.
+- The login itself doesn’t directly interact with schemas — it must be mapped to a user in the database.
+
+---
+
+### 🧠 In Azure SQL Database
+
+- You often use **Azure Active Directory (AAD)** for authentication.
+- You can create users like:
+  ```sql
+  CREATE USER [Nick@yourdomain.com] FROM EXTERNAL PROVIDER;
+  GRANT SELECT ON SCHEMA::Sales TO [Nick@yourdomain.com];
+  ```
+
+This allows centralized identity management and schema-level access control.
+
+---
+
+Would you like a script that audits all users and their schema-level permissions in your Azure SQL Database? Or a guide to setting up AAD users with schema access?
+
+
+---
 
 
 # Stored Procedure
