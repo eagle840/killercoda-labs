@@ -1,96 +1,34 @@
+# Step 1: Install Node.js with NVM
 
-# Initial Setup
+Before we can create a React application, we need to install Node.js and its package manager, npm. We'll use the Node Version Manager (nvm), a script that lets you easily install and manage different Node.js versions.
 
-Doc: https://killercoda.com/creators
-
-github: https://github.com/killercoda
-
-# Run First
-
+First, let's update our package lists.
 `sudo apt update`{{exec}}
 
-## Website Install
+### 1. Install NVM
 
-Head to the website: https://nodejs.org/en/download
+Run the following command to download and execute the nvm installation script.
+```bash
+# Download and install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
-select the version you need, in our case: Verion 22, on Windows, using NVM, and npm
-
-copy and run the script, as below
-
-(in the linux case, you'll need the 3 extra commands)
-
-
-NVM (Node Version Manager) - Manages multiple versions of Node.js.
-```
-# Download and install nvm:
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-
+# Source the script to apply the changes to the current session
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 ```{{exec}}
 
-`nvm ls-remote`{{exec}}
+### 2. Install Node.js
 
-### Install nodeJS
-```
-# Download and install Node.js:
-nvm install 22
-# Verify the Node.js version:
-node -v # Should print "v22.12.0".
-nvm current # Should print "v22.12.0".
-# Verify npm version:
-npm -v # Should print "10.9.0".
+Now, we can use nvm to install a recent version of Node.js.
+```bash
+# Install the latest Long-Term Support (LTS) version of Node.js
+nvm install --lts
+
+# Verify the installation
+node -v
+npm -v
 ```{{exec}}
 
-### Install YARN
+This will install the latest stable version of Node.js and npm, and you should see the version numbers printed in your terminal.
 
-`npm install --global yarn`{{exec}}
-
-# OR install with asdf
-
-### install asdf
-
-`git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
-
-`. "$HOME/.asdf/asdf.sh"`{{exec}} WIP pipe to .brashrc?
-
-`echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc`{{exec}}
-
-`. "$HOME/.asdf/completions/asdf.bash"`{{exec}}
-
-`echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc`{{exec}}
-
-`asdf current`{{exec}}
-
-## install nodejs
-
-To install in your own machine, head over to nodejs.org
-
-
-`asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`{{exec}}
-
-`asdf list all nodejs`{{exex}}
-
-`asdf install nodejs 20.11.1`{{exec}}
-
-`asdf current`{{exec}}
-
-`asdf global nodejs 20.11.1`{{exec}}
-
-`asdf current`{{exec}}
-
-`node -v`{{exec}}
-
-## Install yarn
-
-`asdf plugin-add yarn`{{exec}}
-
-
-`asdf install yarn 1.22.10`{{exec}}
-
-`asdf global yarn 1.22.10`{{exec}}
-
-`asdf current`{{exec}}
-
-`yarn -v`{{exec}}
+---
