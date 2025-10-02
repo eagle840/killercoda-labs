@@ -1,58 +1,44 @@
 
-# Initial Setup
 
+# Step 1: Install Node.js with NVM
 
+Before we can create a React application, we need to install Node.js and its package manager, npm. We'll use the Node Version Manager (nvm), a script that lets you easily install and manage different Node.js versions.
+
+First, let's update our package lists.
 `sudo apt update`{{exec}}
 
+### 1. Install NVM
 
-In this lab we'll be roughly following https://learn.microsoft.com/en-us/training/modules/build-web-api-minimal-spa/2-design-front-end
+Run the following command to download and execute the nvm installation script.
+```bash
+# Download and install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
-## Install asdf
+# Source the script to apply the changes to the current session
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+```{{exec}}
 
-Lets use the Multiple Runtime Version Manager: [ASDF](https://asdf-vm.com/) to install the components:
+### 2. Install Node.js
+
+Now, we can use nvm to install a recent version of Node.js.
+```bash
+# Install the latest Long-Term Support (LTS) version of Node.js
+nvm install --lts
+
+# Verify the installation
+node -v
+npm -v
+```{{exec}}
+
+This will install the latest stable version of Node.js and npm, and you should see the version numbers printed in your terminal.
 
 
-`git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2`{{exec}}
-
-`. "$HOME/.asdf/asdf.sh"`{{exec}}
-
-
-`echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc`{{exec}}
-
-`. "$HOME/.asdf/completions/asdf.bash"`{{exec}}
-
-`echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc`{{exec}}
-
-`asdf current`{{exec}}
-
-## Install nodejs and yarn with asdf
-
-`asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git`{{exec}}
-
-`asdf install nodejs 20.11.1`{{exec}}
-
-`asdf current`{{exec}}
-
-`asdf global nodejs 20.11.1`{{exec}}
-
-`asdf current`{{exec}}
-
-`node -v`{{exec}}
-
-`asdf plugin-add yarn`{{exec}}
-
-`asdf install yarn 1.22.10`{{exec}}
-
-`asdf global yarn 1.22.10`{{exec}}
-
-`asdf current`{{exec}}
-
-`yarn -v`{{exec}}
 
 
 # Create the React front client
 
-We'll be Using [React](https://react.dev/), and the [Vite](https://vitejs.dev/) web blunder
+We'll be Using [React](https://react.dev/), and the [Vite](https://vitejs.dev/) web builder
 
 `npm create vite@latest PizzaClient --template react`{{exec}}
 
@@ -80,6 +66,7 @@ export default defineConfig({
   server: {
     port: 3000,  // Client port
     host: '0.0.0.0', // Bind to all network interfaces
+    allowedHosts: true // allow all hosts
   }
 })
 ```{{copy}}
