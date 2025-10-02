@@ -13,13 +13,26 @@ This command uses the official React template to set up a project structure for 
 
 ### 2. Configure the Dev Server
 
-Before we can run the app, we need to make a small change to Vite's configuration to ensure it works correctly within the Killercoda environment.
+Navigate into your new project directory. **All subsequent commands in this step should be run from inside this `my-app` directory.**
+```bash
+cd my-app
+```{{exec}}
 
-First, navigate into your new project directory:
-`cd my-app`{{exec}}
+Next, you need to update the Vite configuration to work in this environment. Open the `vite.config.js` file and **replace all of its content** with the code below. This tells the dev server to listen on all network interfaces.
 
-Next, I'll use a command to update the `vite.config.js` file to accept external network connections.
-`echo "import { defineConfig } from 'vite';\nimport react from '@vitejs/plugin-react';\n\nexport default defineConfig({\n  plugins: [react()],\n  server: {\n    host: '0.0.0.0',\n    port: 3000\n  }\n});" > vite.config.js`{{exec}}
+```javascript
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    host: '0.0.0.0',
+    port: 3000
+  }
+});
+```{{copy}}
 
 ### 3. Install Dependencies and Run
 
