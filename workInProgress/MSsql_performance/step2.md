@@ -212,3 +212,81 @@ Connect to SQL Server using the GO-based sqlcmd:
 SELECT @@VERSION;
 GO;
 ```{{exec}}
+
+
+## Load AdventureWorks Sample Database
+
+Download the AdventureWorksLT backup file:
+
+`wget https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2022.bak`{{exec}}
+
+Create a backup directory inside the container and copy the file:
+
+
+WIP Remove this line
+`docker-compose exec mssql-dev mkdir -p /var/opt/mssql/backup`{{copy}}
+
+`docker cp AdventureWorksLT2022.bak mssql-dev:/var/opt/mssql/backup/`{{exec}}
+
+Verify the file was copied:
+
+`docker-compose exec mssql-dev ls /var/opt/mssql/backup/`{{exec}}
+
+## Restore the Database
+
+Connect to SQL Server and examine the backup file structure:
+
+
+We'll use the -y and -Y options to control display output and make it easier to read
+
+`sqlcmd -y 30 -Y 30 -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
+
+
+First, check what files are in the backup:
+
+```sql
+RESTORE FILELISTONLY
+FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak';
+GO
+```{{exec}}
+
+Now restore the database using the logical names from the previous command:
+
+```sql
+RESTORE DATABASE AdventureWorksLT2022
+FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak'
+WITH MOVE 'AdventureWorksLT2022_Data' TO '/var/opt/mssql/data/AdventureWorksLT2022.mdf',
+     MOVE 'AdventureWorksLT2022_Log' TO '/var/opt/mssql/data/AdventureWorksLT2022_log.ldf';
+GO
+```{{exec}}
+
+## Verify Database Installation
+
+List all databases to confirm AdventureWorksLT2022 was restored:
+
+```sql
+SELECT name FROM sys.databases;
+GO
+```{{exec}}
+
+Switch to the AdventureWorks database:
+
+```sql
+USE AdventureWorksLT2022;
+GO
+```{{exec}}
+
+List tables in the database:
+
+```sql
+SELECT name FROM sys.tables;
+GO
+```{{exec}}
+
+## Enable Query store
+Query Store is not enabled by default on restored databases. You can enable it for the AdventureWorksLT2022 database with the following command:
+
+```sql
+ALTER DATABASE AdventureWorksLT2022
+SET QUERY_STORE = ON (OPERATION_MODE = READ_WRITE);
+```{{exec}}
