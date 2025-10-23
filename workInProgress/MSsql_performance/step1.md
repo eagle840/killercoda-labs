@@ -5,6 +5,8 @@ Great move, Nicholas—splitting this into a dedicated **MSSQL Performance Lab**
 
 ## 🧪 MSSQL Performance Lab Structure (7 Pages)
 
+### **Page 0: Infra Setup
+
 ### **Page 1: Baseline Setup & Metrics**
 - Install SQL Server (Docker or local)
 - Enable `Query Store` and configure basic telemetry
@@ -66,7 +68,7 @@ Sticking with your original 7 pages is a strong foundation, Nicholas—they alre
 ---
 
 ## 🧩 Page 8: **Query Store Regression Analysis**
-🔍 _Why add it?_  
+🔍 _Why add it?_
 DP-300 leans heavily on Query Store for tracking performance over time. This module would show learners how to:
 - Detect regressions after index or query changes
 - Compare runtime stats across plan versions
@@ -81,7 +83,7 @@ DP-300 leans heavily on Query Store for tracking performance over time. This mod
 ---
 
 ## 🧩 Page 9: **Extended Events for Performance Diagnosis**
-🎯 _Why add it?_  
+🎯 _Why add it?_
 Extended Events are a lightweight, production-safe way to capture performance anomalies. This page would teach:
 - How to create a session targeting slow queries or high I/O
 - How to filter and interpret event data
@@ -96,14 +98,14 @@ Extended Events are a lightweight, production-safe way to capture performance an
 
 ## 🧠 Summary: Final Lab Structure (9 Pages)
 
-1. Baseline Setup & Metrics  
-2. Index Design & Fragmentation  
-3. Page Splits Simulation  
-4. Query Tuning & Execution Plans  
-5. TempDB Contention  
-6. Wait Stats & Bottleneck Diagnosis  
-7. Compression & Storage Optimization  
-8. **Query Store Regression Analysis**  
+1. Baseline Setup & Metrics
+2. Index Design & Fragmentation
+3. Page Splits Simulation
+4. Query Tuning & Execution Plans
+5. TempDB Contention
+6. Wait Stats & Bottleneck Diagnosis
+7. Compression & Storage Optimization
+8. **Query Store Regression Analysis**
 9. **Extended Events for Performance Diagnosis**
 
 ---
@@ -145,7 +147,7 @@ Verify installation:
 
  `sqlcmd create mssql --accept-eula --using https://aka.ms/AdventureWorksLT.bak`{{exec}}
 
- 
+
 ## Test SQL Server Connection
 
 Connect to SQL Server using the GO-based sqlcmd:
