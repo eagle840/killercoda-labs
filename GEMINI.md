@@ -27,4 +27,5 @@ The contents of this repository are used by the Killercoda platform. To use or d
 1.  A GitHub repository containing scenarios like this one is linked to a Killercoda creator profile.
 2.  When a user starts a scenario, Killercoda reads the `index.json` and the associated markdown files to build the interactive lab environment.
 3.  Updates to the scenarios are made by pushing changes to the linked GitHub repository branch.
-4. The file @CreatorGuide.md contains a more detailed usage for killacoda development.
+4.  The file @CreatorGuide.md contains a more detailed usage for killacoda development.
+5.  Version numbering of the labs is in index.json, included in the dsscription field (eg "description""Getting started with Openfeature(v0.0.1)")

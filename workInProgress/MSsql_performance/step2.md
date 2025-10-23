@@ -149,7 +149,14 @@ Check the logs to ensure SQL Server started successfully:
 1.  Go to **Dashboards** > **New** > **New Dashboard**.
 2.  Click **Add visualization**.
 3.  Select the **InfluxDB** data source you just configured.
-4.  In the query editor, you can start building a query. Here is an example to show the number of batch requests per second:
+4.  In the query editor, you can build queries to visualize different metrics.
+
+### Example Dashboard Panels
+
+Here are a few examples of queries you can use to create panels for a comprehensive SQL Server monitoring dashboard.
+
+#### Panel 1: Batch Requests/Sec (Throughput)
+This shows the number of batch requests per second that SQL Server is handling.
 
 ```flux
 from(bucket: "my-bucket")
@@ -160,7 +167,45 @@ from(bucket: "my-bucket")
   |> yield(name: "mean")
 ```
 
-5.  This will display a graph of the "Batch Requests/sec" counter from SQL Server. You can now add more panels to build a comprehensive dashboard for monitoring key SQL Server metrics like `user_connections`, `page_life_expectancy`, etc.
+#### Panel 2: User Connections
+This panel shows how many active user connections there are.
+
+```flux
+from(bucket: "my-bucket")
+  |> range(v: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["_measurement"] == "sqlserver_performance_counters")
+  |> filter(fn: (r) => r["_field"] == "user_connections")
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+  |> yield(name: "mean")
+```
+
+#### Panel 3: Page Life Expectancy (Memory Pressure)
+This is a key indicator of memory pressure. It shows how long, in seconds, a data page stays in the buffer pool. A consistently low value (e.g., below 300) can indicate that the server needs more memory.
+
+```flux
+from(bucket: "my-bucket")
+  |> range(v: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["_measurement"] == "sqlserver_performance_counters")
+  |> filter(fn: (r) => r["_field"] == "page_life_expectancy")
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+  |> yield(name: "mean")
+```
+
+#### Panel 4: CPU Usage
+This directly measures how hard the processor is working.
+
+**Note:** To get this metric, you first need to tell Telegraf to collect it by adding `[[inputs.cpu]]` to your `telegraf.conf` file.
+
+```flux
+from(bucket: "my-bucket")
+  |> range(v: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["_measurement"] == "cpu")
+  |> filter(fn: (r) => r["_field"] == "usage_idle")
+  |> filter(fn: (r) => r["cpu"] == "cpu-total")
+  |> map(fn: (r) => ({ r with _value: 100.0 - r._value }))
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+  |> yield(name: "mean_cpu_usage")
+```
 
 ## Install SQL Server Command Line Tools
 
