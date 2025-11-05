@@ -20,6 +20,16 @@ First, create a directory to persist SQL Server data:
 
 `sudo chown -R 10001:10001 ./mssql-data/`{{exec}}
 
+`cd mssql-data`{{exec}}
+
+`mkdir backup`{{exec}}
+
+`cd backup`{{exec}}
+
+`wget https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2022.bak`{{exec}}
+
+`cd ../..`{{exec}}
+
 Create a new Docker Compose file named `docker-compose-monitoring.yml`:
 
 `nano docker-compose.yml`{{execute}}
@@ -261,17 +271,7 @@ GO;
 
 ## Load AdventureWorks Sample Database
 
-Download the AdventureWorksLT backup file:
 
-`wget https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2022.bak`{{exec}}
-
-Create a backup directory inside the container and copy the file:
-
-
-WIP Remove this line
-`docker-compose exec mssql-dev mkdir -p /var/opt/mssql/backup`{{copy}}
-
-`docker cp AdventureWorksLT2022.bak mssql-dev:/var/opt/mssql/backup/`{{exec}}
 
 Verify the file was copied:
 

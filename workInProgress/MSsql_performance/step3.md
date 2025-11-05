@@ -1,5 +1,8 @@
 # Page 2: Index Design & Fragmentation
 
+
+May also what to check out: https://microsoftlearning.github.io/dp-300-database-administrator/Instructions/Labs/07-detect-correct-fragmentation-issues.html
+
 In this step, we'll explore how indexes can become fragmented and how to fix them. Fragmented indexes can lead to poor query performance because they require more I/O to read.
 
 We will be working within the `AdventureWorksLT2022` database.

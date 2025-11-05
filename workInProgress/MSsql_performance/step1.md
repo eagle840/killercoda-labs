@@ -1,8 +1,4 @@
 
-Great move, Nicholas—splitting this into a dedicated **MSSQL Performance Lab** makes total sense, especially given your hands-on style and Killercoda setup. Here's a curated structure with **7 lab pages** that balance depth, practicality, and reproducibility. Each page builds on the last, giving learners a solid performance tuning journey.
-
----
-
 ## 🧪 MSSQL Performance Lab Structure (7 Pages)
 
 ### **Page 0: Infra Setup
@@ -118,6 +114,9 @@ If you want to keep it lean, Page 8 alone would be the most DP-300-aligned addit
 
 # Install MSSQL
 
+
+WIP **MOVE TO NEXT STEP - ignore below**
+
 **Setup GO-based sqlcmd**
 
 Install the Microsoft repository key:
@@ -145,6 +144,10 @@ Verify installation:
 
 `sqlcmd -?`{{exec}}
 
+## Setup SQL and the AdventureWorks database
+
+`sqlcmd create mssql get-tags`{{exec}}
+
  `sqlcmd create mssql --accept-eula --using https://aka.ms/AdventureWorksLT.bak`{{exec}}
 
 
@@ -152,7 +155,9 @@ Verify installation:
 
 Connect to SQL Server using the GO-based sqlcmd:
 
-`sqlcmd -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
+WIP: skip this line for now, the create command already creates an association to the server
+
+WIP `sqlcmd -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{copy}}
 
 Test the connection by checking the SQL Server version:
 
@@ -161,89 +166,17 @@ SELECT @@VERSION;
 GO
 ```{{exec}}
 
+`sqlcmd query "EXEC sp_databases;"`{{exec}}
+
+
+
+`sqlcmd query "USE AdventureWorksLT2022;"`{{exec}}
+
 You should see the SQL Server version information displayed.
 
-## Load AdventureWorks Sample Database
 
-Download and restore the AdventureWorks LT sample database for learning purposes.
+# WIP delete below?
 
-**Reference**: https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms
-
-Download the AdventureWorksLT backup file:
-
-`wget https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2022.bak`{{exec}}
-
-Create a backup directory inside the container and copy the file:
-
-`docker-compose exec mssql-dev mkdir -p /var/opt/mssql/backup`{{exec}}
-
-`docker cp AdventureWorksLT2022.bak mssql-dev:/var/opt/mssql/backup/`{{exec}}
-
-Verify the file was copied:
-
-`docker-compose exec mssql-dev ls /var/opt/mssql/backup/`{{exec}}
-
-## Restore the Database
-
-Connect to SQL Server and examine the backup file structure:
-
-`sqlcmd -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
-
-`sqlcmd -y 30 -Y 30 -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
-
-```sql
-SELECT @@SERVERNAME,
-       SERVERPROPERTY('ComputerNamePhysicalNetBIOS'),
-       SERVERPROPERTY('MachineName'),
-       SERVERPROPERTY('ServerName');
-```{{exec}}
-
-First, check what files are in the backup:
-
-```sql
-RESTORE FILELISTONLY
-FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak';
-GO
-```{{exec}}
-
-Now restore the database using the logical names from the previous command:
-
-```sql
-RESTORE DATABASE AdventureWorksLT2022
-FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak'
-WITH MOVE 'AdventureWorksLT2022_Data' TO '/var/opt/mssql/data/AdventureWorksLT2022.mdf',
-     MOVE 'AdventureWorksLT2022_Log' TO '/var/opt/mssql/data/AdventureWorksLT2022_log.ldf';
-GO
-```{{exec}}
-
-## Verify Database Installation
-
-List all databases to confirm AdventureWorksLT2022 was restored:
-
-```sql
-SELECT name FROM sys.databases;
-GO
-```{{exec}}
-
-Switch to the AdventureWorks database:
-
-```sql
-USE AdventureWorksLT2022;
-GO
-```{{exec}}
-
-List tables in the database:
-
-```sql
-SELECT name FROM sys.tables;
-GO
-```{{exec}}
-
-Exit sqlcmd:
-
-```sql
-quit
-```{{exec}}
 
 ## Install PowerShell and SQL Server Module
 
