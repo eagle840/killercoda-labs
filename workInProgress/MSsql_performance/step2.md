@@ -161,6 +161,12 @@ Check the logs to ensure SQL Server started successfully:
 3.  Select the **InfluxDB** data source you just configured.
 4.  In the query editor, you can build queries to visualize different metrics.
 
+WIP ## import server dashboard
+
+select import dashboard, and use 409
+
+- https://grafana.com/grafana/dashboards/409-sql-server-telegraf/
+
 ### Example Dashboard Panels
 
 Here are a few examples of queries you can use to create panels for a comprehensive SQL Server monitoring dashboard.
