@@ -2,7 +2,7 @@ Here’s a condensed **Markdown document** summarizing the key points from the K
 # Killercoda Creator Guide
 
 ## 🚀 Getting Started
-- **Become a Creator**: Create interactive scenarios for teaching, sharing, or presenting.
+- **Become a Creator**: Create interactive scenarios for teaching, sharing, or presenting on a Ubuntu Server(s)
 - **Setup**:
   - Link a GitHub repo to your Killercoda profile.
   - Push updates to the repo/branch to update scenarios.

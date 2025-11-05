@@ -139,6 +139,41 @@ Check the logs to ensure SQL Server started successfully:
 
 `docker-compose logs mssql-dev`{{execute}}
 
+## Verify Data Collection
+
+Before configuring Grafana, it's a good practice to verify that Telegraf is successfully collecting data from SQL Server and sending it to InfluxDB.
+
+### 1. Check Telegraf for Connection Errors
+
+SQL Server can take a minute to start. It's possible that Telegraf started faster and failed to connect initially.
+
+Check the Telegraf logs:
+
+`docker-compose logs telegraf`{{execute}}
+
+You might see a "connection refused" error like this, which is normal if SQL Server wasn't ready:
+
+```
+telegraf | ... E! [inputs.sqlserver] Error in plugin: ... connect: connection refused
+```
+
+If you see this, simply wait a moment and restart Telegraf:
+
+`docker-compose restart telegraf`{{execute}}
+
+A successful connection will show a log message confirming the queries being used:
+```
+telegraf | ... I! [inputs.sqlserver] Config: Effective Queries: [...]
+```
+
+### 2. Query InfluxDB Directly
+
+Now, query InfluxDB to see if data is arriving. This command asks InfluxDB for the last data point it received in the last 10 minutes.
+
+`docker-compose exec influxdb influx query 'from(bucket: "my-bucket") |> range(start: -10m) |> last()'`{{execute}}
+
+If data is flowing, you will see a table containing the most recently collected metric. Now you can be confident that the data pipeline is working before you even open Grafana.
+
 ## Configure Grafana
 
 1.  Open Grafana in your browser by navigating to `http://<your-host-ip>:3000` {{TRAFFIC_HOST1_3000}}. The default login is `admin` / `admin`. You will be prompted to change the password.
@@ -161,11 +196,14 @@ Check the logs to ensure SQL Server started successfully:
 3.  Select the **InfluxDB** data source you just configured.
 4.  In the query editor, you can build queries to visualize different metrics.
 
-WIP ## import server dashboard
+## Import SQL Server Dashboard
 
-select import dashboard, and use 409
-
-- https://grafana.com/grafana/dashboards/409-sql-server-telegraf/
+1.  Go to **Dashboards** > **New** > **Import**.
+2.  In the **Import via grafana.com** box, enter the dashboard ID `13544` and click **Load**.
+    - This dashboard is specifically designed for SQL Server with Telegraf and InfluxDB 2.x (Flux).
+    - Dashboard Link: [MS SQL Server via Telegraf](https://grafana.com/grafana/dashboards/13544-ms-sql-server-via-telegraf/)
+3.  On the next screen, select your InfluxDB data source.
+4.  Click **Import**.
 
 ### Example Dashboard Panels
 
