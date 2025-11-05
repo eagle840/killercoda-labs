@@ -245,7 +245,7 @@ Install the Microsoft repository key:
 
 Add the Microsoft package repository:
 
-`sudo add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/22.04/prod.list)"`{{exec}}
+`sudo add-apt-repository -y "$(wget -qO- https://packages.microsoft.com/config/ubuntu/22.04/prod.list)"`{{exec}}
 
 Update package list and install the modern sqlcmd:
 
