@@ -1,5 +1,30 @@
 # Page 2: Index Design & Fragmentation
 
+## Understanding Index Types
+
+Before we dive into fragmentation, it's crucial to understand the main types of indexes available in SQL Server. Each serves a different purpose and has a unique impact on performance.
+
+### Clustered vs. Non-Clustered Indexes
+
+Think of a **Clustered Index** as a phone book sorted by last name. The data itself is physically stored in the order of the clustered index key. Because of this, a table can only have **one** clustered index. When you create a `PRIMARY KEY`, SQL Server automatically creates a clustered index on that column by default.
+
+A **Non-Clustered Index** is like the index at the back of a textbook. It's a separate structure that contains the indexed columns and a "pointer" (a row locator) back to the actual data row in the clustered index (or the heap if there is no clustered index). You can have multiple non-clustered indexes on a single table. They are great for speeding up queries that filter or sort by columns other than the clustered index key.
+
+### Filtered Indexes
+
+A **Filtered Index** is a special type of non-clustered index that only includes rows that meet a specific `WHERE` clause. This is incredibly useful for performance and storage when you have a column where you only ever query a small subset of its values. For example, you could create a filtered index on an `IsActive` column `WHERE IsActive = 1`. This index would be much smaller and faster to scan than a full index on all rows.
+
+### Columnstore Indexes
+
+**Columnstore Indexes** are designed for data warehousing and analytics workloads. Instead of storing data row-by-row, they store it column-by-column. This has two major benefits:
+1.  **High Compression:** Data within a single column is often very similar, leading to excellent compression ratios. This reduces I/O.
+2.  **Batch Mode Processing:** Queries can process data in batches of rows, which is much more efficient for aggregations and large scans.
+
+There are two types:
+- **Clustered Columnstore Index:** The entire table is stored in a columnar format. This is ideal for large fact tables in a data warehouse. A table can have only one clustered columnstore index.
+- **Non-Clustered Columnstore Index:** A secondary, columnar index on a traditional rowstore table. This is useful for enabling fast analytics on an operational (OLTP) table without converting the entire table to a columnstore.
+
+---
 
 May also what to check out: https://microsoftlearning.github.io/dp-300-database-administrator/Instructions/Labs/07-detect-correct-fragmentation-issues.html
 
