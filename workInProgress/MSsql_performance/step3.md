@@ -82,7 +82,7 @@ Index fragmentation occurs when the logical ordering of pages in an index does n
 We can simulate this by inserting a large number of rows with random `CustomerID` values (using `NEWID()`).
 
 ```sql
-INSERT INTO dbo.Customers (CustomerID, CustomerName, RegistrationDate)
+INSERT INTO SalesLT.Customers (CustomerID, CustomerName, RegistrationDate)
 SELECT TOP 10000 NEWID(), 'Customer ' + CAST(ROW_NUMBER() OVER (ORDER BY a.object_id) AS VARCHAR(10)), GETDATE() - (ROW_NUMBER() OVER (ORDER BY a.object_id) % 365)
 FROM sys.all_objects a, sys.all_objects b;
 GO
