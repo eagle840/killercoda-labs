@@ -40,6 +40,7 @@ steps:
 
         telegraf:
           image: telegraf:1.29
+          user: root
           container_name: telegraf
           depends_on:
             - influxdb
@@ -80,8 +81,16 @@ steps:
       ```toml
       [agent]
         interval = "10s"
+        round_interval = true
+        metric_batch_size = 1000
+        metric_buffer_limit = 10000
+        collection_jitter = "0s"
+        flush_interval = "10s"
+        flush_jitter = "0s"
         hostname = "ubuntu-host"
+        omit_hostname = false
 
+      # System metrics
       [[inputs.cpu]]
         percpu = true
         totalcpu = true
@@ -95,14 +104,18 @@ steps:
       [[inputs.processes]]
       [[inputs.kernel]]
 
-      [[inputs.logparser]]
-        files = ["/host/var/log/syslog"]
-        from_beginning = true
-        [inputs.logparser.grok]
-          patterns = ["%{SYSLOGTIMESTAMP:timestamp} %{SYSLOGHOST:host} %{DATA:program}(?:\\[%{POSINT:pid}\\])?: %{GREEDYDATA:message}"]
-          measurement = "syslog"
+      # Journal logs via exec
+      [[inputs.exec]]
+        commands = ["journalctl -n 100 -o short"]
+        timeout = "5s"
+        data_format = "grok"
+        name_override = "journal"
+        [inputs.exec.grok]
+          patterns = ["%{GREEDYDATA:message}"]
+          measurement = "journal_logs"
           timezone = "UTC"
 
+      # Output to InfluxDB
       [[outputs.influxdb]]
         urls = ["http://localhost:8086"]
         database = "telegraf"
@@ -173,6 +186,9 @@ steps:
       ```sql
       SELECT mean("usage_idle") FROM "cpu" WHERE $timeFilter GROUP BY time($__interval) fill(null)
       ```{{copy}}
+
+      Select 'FROM' -> cpu
+      select 'SELECT -> usage_active
 
   - title: Step 6 - Explore and Extend
     content: |
