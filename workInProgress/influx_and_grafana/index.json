@@ -1,6 +1,6 @@
 {
   "title": "Ubuntu Monitoring with Telegraf, InfluxDB, and Grafana",
-  "description": "Learn how to monitor an Ubuntu system using the TIG stack (Telegraf, InfluxDB, and Grafana). (v0.1.1)",
+  "description": "Learn how to monitor an Ubuntu system using the TIG stack (Telegraf, InfluxDB, and Grafana). (v0.1.2)",
   "difficulty": "Intermediate",
   "time": "20 minutes",
   "details": {
