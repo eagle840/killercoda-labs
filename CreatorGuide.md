@@ -112,3 +112,37 @@ sed 's/PORT/80/g' /etc/killercoda/host
 ---
 
 Created from the Killacoda site.
+
+---
+
+**A Killercoda lab typically follows a structured GitHub repository format with key files like `index.json`, `intro.md`, `step*.md`, and `finish.md` to define the tutorial flow.**
+
+Here’s a breakdown of the standard Killercoda lab file structure and what each component does:
+
+---
+
+### 🗂️ **Core File Structure**
+
+| File/Folder       | Purpose                                                                 |
+|-------------------|-------------------------------------------------------------------------|
+| `index.json`      | Defines the scenario metadata, environment, and steps.                  |
+| `intro.md`        | Introduction shown before the lab starts.                              |
+| `step1.md`, `step2.md`, etc. | Markdown files for each step in the lab.                        |
+| `finish.md`       | Final message shown after lab completion.                              |
+| `setup`           | Optional folder for initialization scripts or files.                   |
+| `assets/`         | Static files like images or code snippets used in the lab.             |
+| `.gitignore`      | Git configuration to exclude unnecessary files.                        |
+| `README.md`       | Overview of the lab repository for contributors.                       |
+
+---
+
+### 🧩 **Optional Enhancements**
+
+- **`structure.json`**: Used in advanced setups to define nested tutorials or product-specific flows.
+- **`scripts/`**: Contains shell scripts or automation used during lab setup.
+- **`tools/`**: Custom utilities or binaries used in the lab.
+- **`docs/`**: Additional documentation or transformer tool references (especially in Grafana’s Killercoda setups).
+
+---
+
+

@@ -1,36 +1,42 @@
-version: '3.6'
+version: '3.8'
 services:
-  Elasticsearch:
-    image: elasticsearch:7.17.4 # use 7.16.2
-    container_name: elasticsearch
-    restart: always
+  influxdb:
+    image: influxdb:1.8
+    container_name: influxdb
+    ports:
+      - "8086:8086"
     volumes:
-    - elastic_data:/usr/share/elasticsearch/data/
+      - influxdb_data:/var/lib/influxdb
     environment:
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-      discovery.type: single-node    
-    ports:
-    - '9200:9200'
-    - '9300:9300'
-    networks:
-      - elk
+      - INFLUXDB_DB=telegraf
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=adminpass
 
-
-
-  Kibana:
-    image: kibana:7.17.4
-    container_name: kibana
-    restart: always       
-    ports:
-    - '5601:5601'
-    environment:
-      - ELASTICSEARCH_URL=http://elasticsearch:9200  
+  telegraf:
+    image: telegraf:1.29
+    user: root
+    container_name: telegraf
     depends_on:
-      - Elasticsearch  
-    networks:
-      - elk
-volumes:
-  elastic_data: {}
+      - influxdb
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/hostfs:ro
+      - /var/log:/host/var/log:ro
+    network_mode: host
 
-networks:
-  elk:
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - influxdb
+    volumes:
+      - grafana_data:/var/lib/grafana
+
+volumes:
+  influxdb_data:
+  grafana_data:

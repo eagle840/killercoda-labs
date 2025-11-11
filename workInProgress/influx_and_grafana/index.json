@@ -1,52 +1,40 @@
 {
-  "title": "WORK-IN-PROGRESS InfluxDB and Grafana",
-  "description": "Learn Influxdb V2 and grafana (v0.0.2) ",
+  "title": "Ubuntu Monitoring with Telegraf, InfluxDB, and Grafana",
+  "description": "Learn how to monitor an Ubuntu system using the TIG stack (Telegraf, InfluxDB, and Grafana). (v0.1.0)",
   "difficulty": "Intermediate",
-  "time": "60 minutes",
+  "time": "20 minutes",
   "details": {
-    "assets":{
+    "assets": {
       "host01": [
         {
-          "file": "docker-compose.yaml",
-          "target": "~/"
+          "file": "assets/docker-compose.yaml",
+          "target": "~/ubuntu-monitoring/"
         },
         {
-          "file": "inlog.log",
-          "target": "~/temp/"
-        },
-        {
-          "file": "logstash.conf",
-          "target": "~/logstash/"
-        },
-        {
-          "file": "elasticsearch.yml",
-          "target": "~/elasticsearch/"
-        },
-        {
-          "file": "sysloggen.sh",
-          "target": "~/"
+          "file": "assets/telegraf.conf",
+          "target": "~/ubuntu-monitoring/"
         }
       ]
     },
     "steps": [
       {
-        "title": "Step 1",
+        "title": "Initial Setup",
         "text": "step1.md"
       },
       {
-        "title": "Step 2",
+        "title": "Launch the Monitoring Stack",
         "text": "step2.md"
       },
       {
-        "title": "Step 3",
+        "title": "Verify Data in InfluxDB",
         "text": "step3.md"
       },
       {
-        "title": "Step 4",
+        "title": "Visualize Data in Grafana",
         "text": "step4.md"
       },
       {
-        "title": "Step 5",
+        "title": "Exploring Further",
         "text": "step5.md"
       }
     ],

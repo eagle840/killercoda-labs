@@ -1,51 +1,17 @@
+Now that the stack is running, Telegraf should be collecting metrics and sending them to InfluxDB. Let's verify that the data is arriving as expected.
 
+We can execute a command inside the `influxdb` container to query the database. The following command shows the "measurements" (which are like tables in a relational database) that Telegraf is writing to.
 
---- remove below
+```bash
+docker exec influxdb influx -database telegraf -execute 'SHOW MEASUREMENTS'
+```{{exec}}
 
+You should see a list of measurements like `cpu`, `disk`, `mem`, `net`, and `system`. This confirms that Telegraf is successfully collecting and storing different types of system metrics.
 
-# advanced gork 
+Next, let's query one of these measurements to see the actual data points. The following command retrieves the last 5 entries from the `cpu` measurement.
 
-http://grokconstructor.appspot.com/
+```bash
+docker exec influxdb influx -database telegraf -execute 'SELECT * FROM cpu LIMIT 5'
+```{{exec}}
 
-
-https://www.elastic.co/guide/en/logstash/7.17/plugins-filters-grok.html
-
-when you need to match different patterns
-
-
-
-
-```
-grok {
-  match => {
-    "fieldname" => [
-      "pattern1",
-      "pattern2",
-      ...,
-      "patternN"
-    ]
-  }
-}
-```
-
-%{Pattern_name:Field_name:optional_type}
-
-(type: int and float, default is string)
-
-%{NUMBER:num:float}
-
-
-
-## creating your own pattern
-
-If one of the 200 logstash grok patterns don't match you need, you can create your own pattern with
-
-```
-(?<custom_field>custom pattern)
-```
-
-For example:
-
-(?\d\d-\d\d-\d\d)
-
-This grok pattern will match the regex of 22-22-22 (or any other digit) to the field name.
+The output will show you detailed CPU metrics with timestamps, proving that your data collection pipeline is working correctly.
