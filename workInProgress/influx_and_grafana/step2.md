@@ -15,3 +15,11 @@ docker ps
 ```{{exec}}
 
 You should see three running containers: `influxdb`, `telegraf`, and `grafana`. This confirms that our stack is up and running.
+
+Finally, let's inspect the Telegraf logs to confirm that it's collecting and sending data.
+
+```bash
+docker logs telegraf
+```{{exec}}
+
+Look for lines in the output containing `Wrote metrics`. This message confirms that Telegraf is successfully sending the collected data to InfluxDB.
