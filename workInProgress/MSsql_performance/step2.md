@@ -10,6 +10,106 @@ While Windows environments often use **Perfmon**, for Linux and containerized en
 *   **Telegraf**: A plugin-driven server agent for collecting and reporting metrics. We will configure it to pull data from SQL Server.
 *   **Grafana**: A visualization tool to create dashboards for our metrics.
 
+---
+
+Here’s how to use **Telegraf** to collect metrics from **Microsoft SQL Server** and send them to **InfluxDB**, all in a single comprehensive Markdown document:
+
+***
+
+# 📊 Monitoring MS SQL Server with Telegraf → InfluxDB
+
+## ✅ Use the `sqlserver` Input Plugin
+
+Telegraf includes a dedicated **`inputs.sqlserver`** plugin tailored for Microsoft SQL Server—including on-premises, Azure SQL DB, Managed Instances, Elastic Pools, and Azure Arc-enabled instances. It gathers metrics directly from SQL Server’s dynamic management views (DMVs). [\[docs.influxdata.com\]](https://docs.influxdata.com/telegraf/v1/input-plugins/sqlserver/), [\[deepwiki.com\]](https://deepwiki.com/influxdata/telegraf/3.3-sql-server-input)
+
+### Example Configuration in `telegraf.conf`:
+
+```toml
+[[inputs.sqlserver]]
+  ## List of SQL Server instance connection strings
+  servers = [
+    "Server=192.168.1.10;Port=1433;User Id=telegraf;Password=your-password;app name=telegraf;log=1;",
+  ]
+
+  ## Optional: target type (on-premises, Azure, etc.)
+  database_type = "SQLServer"
+  # database_type = "AzureSQLDB" | "AzureSQLManagedInstance" | "AzureSQLPool"
+  # query_timeout = "5s"
+  # auth_method = "connection_string"  # or "AAD"
+  # include_query = []    # select which built-in queries to enable
+  # exclude_query = []    # disable specific metrics
+```
+
+***
+
+## ⚙️ How It Works
+
+*   On startup, **Telegraf connects** using the specified connection string.
+*   It runs multiple **predefined queries** against DMVs (`sys.dm_os_performance_counters`, `sys.dm_io_virtual_file_stats`, etc.) to collect:
+    *   Buffer/cache metrics
+    *   I/O statistics
+    *   Scheduler and wait stats
+    *   Memory clerks and more. [\[deepwiki.com\]](https://deepwiki.com/influxdata/telegraf/3.3-sql-server-input)
+*   Metrics are formatted as measurement fields sent to your outputs.
+
+***
+
+## 📥 Optional: Custom Queries with Generic SQL Input
+
+If you need application-specific or business-level metrics, use the generic **`inputs.sql`** plugin with `driver = "sqlserver"`:
+
+```toml
+[[inputs.sql]]
+  driver = "sqlserver"
+  dsn = "sqlserver://user:password@host:1433?database=DBName"
+
+  [[inputs.sql.query]]
+    query = "SELECT COUNT(*) AS user_count FROM dbo.Users;"
+    measurement = "custom_user_metrics"
+
+  [[inputs.sql.query]]
+    query = "SELECT database_id, file_id, num_of_reads, num_of_writes FROM sys.dm_io_virtual_file_stats(DB_ID(), NULL);"
+    measurement = "db_file_io"
+```
+
+You can repeat `[[inputs.sql.query]]` blocks for multiple custom metrics. [\[docs.influxdata.com\]](https://docs.influxdata.com/telegraf/v1/input-plugins/sql/), [\[community....uxdata.com\]](https://community.influxdata.com/t/how-to-set-plugin-sql-input-into-bucket-telegraf/30887), [\[community....uxdata.com\]](https://community.influxdata.com/t/set-multiple-query-on-sql-input-plugin/30879)
+
+***
+
+## 📝 Send Metrics to InfluxDB
+
+Ensure your `telegraf.conf` includes an **InfluxDB output section**:
+
+```toml
+[[outputs.influxdb_v2]]
+  urls = ["http://localhost:8086"]
+  token = "YOUR_INFLUXDB_TOKEN"
+  organization = "your-org"
+  bucket = "sql_metrics"
+```
+
+***
+
+## 🚀 Full Data Flow
+
+1.  **Telegraf** reads metrics via `inputs.sqlserver` and/or `inputs.sql`.
+2.  Optionally processes or aggregates metrics (via processor/aggregator plugins).
+3.  **Outputs** metrics to **InfluxDB**, ready for visualization in **Grafana** or other dashboards.
+
+***
+
+## 🧠 Takeaway
+
+*   Use **`inputs.sqlserver`** for comprehensive and pre-built SQL Server metrics.
+*   Add **`inputs.sql`** for ad-hoc or custom queries.
+*   Combine with **InfluxDB output** for end-to-end monitoring.
+
+If you'd like, I can also help design a **Grafana dashboard** or suggest additional **processor/aggregator plugins** to optimize your Telegraf workflow.
+
+Do you want me to include a full sample `telegraf.conf` combining SQL Server input and InfluxDB output?
+
+---
+
 ## Create Docker Compose for Monitoring
 
 ## Create Data Directory
