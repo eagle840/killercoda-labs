@@ -1,12 +1,6 @@
 Our first step is to create a working directory for our project. The necessary configuration files, `docker-compose.yaml` and `telegraf.conf`, have already been placed in this directory for you.
 
-Let's create the directory and inspect the files.
-
-```bash
-mkdir ~/ubuntu-monitoring && cd ~/ubuntu-monitoring
-```{{exec}}
-
-Now, view the Docker Compose configuration that defines our TIG stack services.
+Let's inspect the Docker Compose configuration that defines our TIG stack services.
 
 ```bash
 cat docker-compose.yaml

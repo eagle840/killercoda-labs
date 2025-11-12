@@ -1,6 +1,7 @@
 The final step is to visualize our metrics in Grafana. Grafana provides a powerful and flexible way to create dashboards.
 
 First, access the Grafana web interface. Click on the **Grafana** tab next to the terminal.
+-   Goto: {{TRAFFIC_HOST1_3000}}
 -   Login with the username `admin` and password `admin`. You can skip changing the password.
 
 Next, we need to connect Grafana to our InfluxDB database.

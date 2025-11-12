@@ -1,6 +1,6 @@
 {
   "title": "Ubuntu Monitoring with Telegraf, InfluxDB, and Grafana",
-  "description": "Learn how to monitor an Ubuntu system using the TIG stack (Telegraf, InfluxDB, and Grafana). (v0.1.4)",
+  "description": "Learn how to monitor an Ubuntu system using the TIG stack (Telegraf, InfluxDB, and Grafana). (v0.1.5)",
   "difficulty": "Intermediate",
   "time": "20 minutes",
   "details": {
@@ -8,11 +8,11 @@
       "host01": [
         {
           "file": "assets/docker-compose.yaml",
-          "target": "~/ubuntu-monitoring/"
+          "target": "~/"
         },
         {
           "file": "assets/telegraf.conf",
-          "target": "~/ubuntu-monitoring/"
+          "target": "~/"
         }
       ]
     },
