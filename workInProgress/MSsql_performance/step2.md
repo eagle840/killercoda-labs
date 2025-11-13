@@ -10,6 +10,12 @@ While Windows environments often use **Perfmon**, for Linux and containerized en
 *   **Telegraf**: A plugin-driven server agent for collecting and reporting metrics. We will configure it to pull data from SQL Server.
 *   **Grafana**: A visualization tool to create dashboards for our metrics.
 
+NOTE:
+There appears to be a datasource for grafana for mssql
+There appears to be a setup in sql needed for telegraf
+There appears to be a grafana sql dashbaord for mssql https://grafana.com/grafana/dashboards/21378-microsoft-sql-server-dashboard/
+
+
 ---
 
 Here’s how to use **Telegraf** to collect metrics from **Microsoft SQL Server** and send them to **InfluxDB**, all in a single comprehensive Markdown document:
@@ -23,6 +29,8 @@ Here’s how to use **Telegraf** to collect metrics from **Microsoft SQL Server*
 Telegraf includes a dedicated **`inputs.sqlserver`** plugin tailored for Microsoft SQL Server—including on-premises, Azure SQL DB, Managed Instances, Elastic Pools, and Azure Arc-enabled instances. It gathers metrics directly from SQL Server’s dynamic management views (DMVs). [\[docs.influxdata.com\]](https://docs.influxdata.com/telegraf/v1/input-plugins/sqlserver/), [\[deepwiki.com\]](https://deepwiki.com/influxdata/telegraf/3.3-sql-server-input)
 
 ### Example Configuration in `telegraf.conf`:
+
+Follow https://docs.influxdata.com/telegraf/v1/input-plugins/sqlserver/  to setup in the SQL server
 
 ```toml
 [[inputs.sqlserver]]
