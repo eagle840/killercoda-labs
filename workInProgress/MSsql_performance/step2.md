@@ -417,7 +417,7 @@ Connect to SQL Server using the GO-based sqlcmd:
 
 ```sql
 SELECT @@VERSION;
-GO;
+GO
 ```{{exec}}
 
 
@@ -486,4 +486,5 @@ Query Store is not enabled by default on restored databases. You can enable it f
 ```sql
 ALTER DATABASE AdventureWorksLT2022
 SET QUERY_STORE = ON (OPERATION_MODE = READ_WRITE);
+GO
 ```{{exec}}
