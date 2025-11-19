@@ -18,6 +18,17 @@ The structure of each scenario is defined by a set of conventional files:
 
 *   **`.sh` / asset files**: Scenarios can include shell scripts or other asset files that can be used for setup, verification, or as part of the exercises. These are defined in the `assets` section of `index.json`.
 
+* **assets folder** /assets directory contains files  that are uploaded into the lab. But most also be included in the index.json file,
+   * eg
+     ```
+       "details": {
+            "assets":{
+            "host01": [
+                {
+                "file": "send.py",
+                "target": "~/"
+    ```
+
 *   **`CreatorGuide.md`**: This is a key file in the root of the repository that acts as a comprehensive guide for creating and structuring these Killercoda scenarios. It details the available environments, scenario syntax, how to define executable code, and other platform features.
 
 # Usage
