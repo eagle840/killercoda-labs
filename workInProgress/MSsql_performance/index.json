@@ -8,14 +8,14 @@
       "host01": [
         {
           "file": "datasource.yaml",
+          "target": "~/grafana-provisioning/datasources/"
+        },
+        {
+          "file": "docker-compose.yaml",
           "target": "~/"
         },
         {
-          "file": "assets/docker-compose.yaml",
-          "target": "~/"
-        },
-        {
-          "file": "assets/telegraf.conf",
+          "file": "/telegraf.conf",
           "target": "~/"
         }
       ]
