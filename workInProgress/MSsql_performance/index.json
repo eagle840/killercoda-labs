@@ -11,7 +11,7 @@
           "target": "~/grafana-provisioning/datasources/"
         },
         {
-          "file": "docker-compose.yaml",
+          "file": "docker-compose.yml",
           "target": "~/"
         },
         {
