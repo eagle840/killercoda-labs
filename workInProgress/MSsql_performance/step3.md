@@ -90,6 +90,36 @@ GO
 
 This query inserts 10,000 random customer records.
 
+### **Why Inserts Cause Page Splits**
+
+When you insert rows into a table with a **clustered index**, SQL Server must keep the index in **sorted order** based on the key. This behavior impacts fragmentation differently depending on the key pattern:
+
+#### ✅ **Sequential Inserts (e.g., IDENTITY or NEWSEQUENTIALID)**
+
+*   New rows are added **at the end of the index** because keys increase in order.
+*   This is efficient: minimal page splits, mostly append operations.
+*   Fragmentation stays low unless there are deletes or updates that change key values.
+
+#### ⚠️ **Non-Sequential Inserts (e.g., NEWID or random values)**
+
+*   New rows can land **anywhere in the index**, not just at the end.
+*   If the target page is full, SQL Server performs a **page split**:
+    *   It allocates a new page.
+    *   Moves roughly half the rows from the original page to the new one.
+    *   Inserts the new row in the correct position.
+*   Page splits cause:
+    *   **Logical fragmentation** (pages out of physical order).
+    *   **Extra I/O** and **larger transaction logs**.
+    *   Increased storage and slower range scans.
+
+#### **Impact on Performance**
+
+*   Frequent page splits = higher fragmentation = more reads for queries.
+*   Random inserts are common with GUID keys, which is why they’re considered an anti-pattern for clustered indexes.
+
+
+
+
 ## Check Fragmentation Again
 
 Now, let's run our fragmentation check query again.
@@ -105,6 +135,12 @@ GO
 ```{{exec}}
 
 You should now see a significantly higher `avg_fragmentation_in_percent`, especially for the clustered index. This is because the random GUIDs for `CustomerID` caused data to be inserted all over the index, leading to many page splits.
+
+
+**Fragmentation and Page Splits**
+High index fragmentation usually indicates that the physical order of index pages no longer matches their logical order. This happens because of **page splits**, which occur when SQL Server inserts a row into a full page in the middle of the index. To maintain sorted order, the engine creates a new page and moves half the rows, scattering pages across the file. Over time, these splits lead to fragmented pages, increasing I/O and slowing down range scans.
+
+
 
 ## Fixing Fragmentation
 
