@@ -7,7 +7,7 @@
     "assets": {
       "host01": [
         {
-          "file": "assets/datasource.yaml",
+          "file": "datasource.yaml",
           "target": "~/"
         },
         {
