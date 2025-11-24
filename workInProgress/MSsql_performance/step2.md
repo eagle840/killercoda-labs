@@ -488,3 +488,34 @@ ALTER DATABASE AdventureWorksLT2022
 SET QUERY_STORE = ON (OPERATION_MODE = READ_WRITE);
 GO
 ```{{exec}}
+
+---
+
+# jupter
+
+```
+import pyodbc
+
+# Replace with your actual credentials and server info
+conn = pyodbc.connect(
+    "DRIVER={ODBC Driver 18 for SQL Server};"
+    "SERVER=localhost;"
+    "DATABASE=master;"
+    UID=your_username;PWD=your_password;
+    "Encrypt=no;"
+)
+
+cursor = conn.cursor()
+cursor.execute("SELECT name FROM sys.databases")
+for row in cursor.fetchall():
+    print(row)
+```
+
+you can also use ipython-sql
+
+```
+%load_ext sql
+
+# For SQL auth:
+%sql mssql+pyodbc://username:password@localhost/master?driver=ODBC+Driver+18+for+SQL+Server
+```

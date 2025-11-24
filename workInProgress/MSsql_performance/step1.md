@@ -112,6 +112,42 @@ If you want to keep it lean, Page 8 alone would be the most DP-300-aligned addit
 
 ---
 
+# Install JupterLab
+
+```
+sudo apt update
+sudo apt install python3.12 python3.12-venv python3.12-dev
+```
+
+```
+python3.12 -m venv ~/venvs/jupyterlab-env
+source ~/venvs/jupyterlab-env/bin/activate
+```
+
+```
+pip install --upgrade pip
+pip install jupyterlab
+```
+
+```
+jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+```
+
+```
+sudo apt install -y unixodbc-dev gcc g++ gnupg2 curl
+curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+curl https://packages.microsoft.com/config/ubuntu/24.04/prod.list | sudo tee /etc/apt/sources.list.d/mssql-release.list
+sudo apt update
+sudo ACCEPT_EULA=Y apt install -y msodbcsql18
+```
+
+```
+pip install pyodbc ipython-sql
+```
+
+
+===
+
 # Install MSSQL
 
 
