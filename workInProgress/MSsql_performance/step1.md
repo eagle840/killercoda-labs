@@ -109,10 +109,141 @@ Extended Events are a lightweight, production-safe way to capture performance an
 If you want to keep it lean, Page 8 alone would be the most DP-300-aligned addition. Want help drafting the markdown structure or intro text for either? I can tailor it to match your blog tone and lab style.
 
 
+---
+
+Here’s the **updated instructions using a virtual environment and manual `.deb` install for the ODBC driver** (since Ubuntu 24.04 repo signing is broken):
+
+***
+
+## ✅ **1. Create and Activate a Virtual Environment**
+
+try adding
+
+```
+
+  jupyter:
+    image: python:3.11-slim
+    container_name: jupyter-lab
+    command: >
+      bash -c "
+      pip install jupyterlab ipykernel pyodbc sqlalchemy pandas &&
+      jupyter lab --ip=0.0.0.0 --port=8888 --allow-root --no-browser"
+    ports:
+      - "8888:8888"
+    volumes:
+      - "./notebooks:/workspace"
+    working_dir: /workspace
+    depends_on:
+
+```
+
+```bash
+# Install venv if not already installed
+sudo apt-get install python3-venv
+
+# Create a virtual environment
+python3 -m venv jupyter_env
+
+# Activate it
+source jupyter_env/bin/activate
+```
+
+***
+
+## ✅ **2. Install Jupyter Lab and Python Packages**
+
+Inside the venv:
+
+```bash
+pip install --upgrade pip
+pip install jupyterlab ipykernel pyodbc sqlalchemy pandas
+```
+
+***
+
+## ✅ **3. Register venv as Jupyter Kernel**
+
+```bash
+python -m ipykernel install --user --name=jupyter_env --display-name "Python (jupyter_env)"
+```
+
+***
+
+## ✅ **4. Install ODBC Driver for SQL Server (Manual .deb Method)**
+
+Since Ubuntu 24.04 repo is unsigned, download and install manually:
+
+```bash
+# Download the latest msodbcsql18 .deb package (from Ubuntu 22.04 repo)
+curl -O https://packages.microsoft.com/ubuntu/22.04/prod/pool/main/m/msodbcsql18/msodbcsql18_18.3.2.1-1_amd64.deb
+
+# Install it
+sudo ACCEPT_EULA=Y dpkg -i msodbcsql18_18.3.2.1-1_amd64.deb
+
+# Install dependencies if needed
+sudo apt-get install -f
+```
+
+***
+
+## ✅ **5. Verify ODBC Driver**
+
+```bash
+odbcinst -q -d -n "ODBC Driver 18 for SQL Server"
+```
+
+***
+
+## ✅ **6. Connect to SQL Server in Jupyter**
+
+In your notebook:
+
+```python
+import pyodbc
+import pandas as pd
+
+# Connection string
+
+
+conn = pyodbc.connect(
+    'DRIVER={ODBC Driver 18 for SQL Server};'
+    'SERVER=mssql-dev;'
+    'DATABASE=master;'
+    'UID=sa;'
+    'PWD=YourStrong:Passw0rd;'
+    'TrustServerCertificate=yes;'
+)
+
+# Test query
+df = pd.read_sql("SELECT TOP 10 * FROM YourTable", conn)
+print(df)
+```
+
+***
+
+## ✅ **7. (Optional) Use SQLAlchemy**
+
+```python
+from sqlalchemy import create_engine
+
+engine = create_engine('mssql+pyodbc://your_username:your_password@localhost/YourDatabaseName?driver=ODBC+Driver+18+for+SQL+Server')
+df = pd.read_sql("SELECT TOP 10 * FROM YourTable", engine)
+```
+
+
+```
+jupyter lab --ip=0.0.0.0 --port=8888 --allow-root --no-browser
+```
+
+***
+
+👉 Do you want me to **write a single shell script that automates all these steps (venv setup, Jupyter install, kernel registration, ODBC driver download and install)**? Or should I also include **a ready-to-run Jupyter Notebook template with connection and sample queries**?
+
+
 
 ---
 
-# Install JupterLab
+# Install JupterLab (old version)
 
 ```
 sudo apt update
