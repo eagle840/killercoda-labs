@@ -135,7 +135,7 @@ try adding
     working_dir: /workspace
     depends_on:
 
-```
+```{{copy}}
 
 ```bash
 # Install venv if not already installed
@@ -146,7 +146,7 @@ python3 -m venv jupyter_env
 
 # Activate it
 source jupyter_env/bin/activate
-```
+```{{copy}}
 
 ***
 
@@ -157,7 +157,7 @@ Inside the venv:
 ```bash
 pip install --upgrade pip
 pip install jupyterlab ipykernel pyodbc sqlalchemy pandas
-```
+```{{copy}}
 
 ***
 
@@ -165,7 +165,7 @@ pip install jupyterlab ipykernel pyodbc sqlalchemy pandas
 
 ```bash
 python -m ipykernel install --user --name=jupyter_env --display-name "Python (jupyter_env)"
-```
+```{{copy}}
 
 ***
 
@@ -182,7 +182,10 @@ sudo ACCEPT_EULA=Y dpkg -i msodbcsql18_18.3.2.1-1_amd64.deb
 
 # Install dependencies if needed
 sudo apt-get install -f
-```
+```{{copy}}
+
+You might need
+Make sure you also have unixODBC installed (`sudo apt-get install unixodbc`{{copy}})
 
 ***
 
@@ -190,7 +193,7 @@ sudo apt-get install -f
 
 ```bash
 odbcinst -q -d -n "ODBC Driver 18 for SQL Server"
-```
+```{{copy}}
 
 ***
 
@@ -217,7 +220,7 @@ conn = pyodbc.connect(
 # Test query
 df = pd.read_sql("SELECT TOP 10 * FROM YourTable", conn)
 print(df)
-```
+```{{copy}}
 
 ***
 
@@ -228,12 +231,12 @@ from sqlalchemy import create_engine
 
 engine = create_engine('mssql+pyodbc://your_username:your_password@localhost/YourDatabaseName?driver=ODBC+Driver+18+for+SQL+Server')
 df = pd.read_sql("SELECT TOP 10 * FROM YourTable", engine)
-```
+```{{copy}}
 
 
 ```
 jupyter lab --ip=0.0.0.0 --port=8888 --allow-root --no-browser
-```
+```{{copy}}
 
 ***
 
