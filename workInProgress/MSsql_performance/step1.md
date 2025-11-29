@@ -117,25 +117,7 @@ Here’s the **updated instructions using a virtual environment and manual `.deb
 
 ## ✅ **1. Create and Activate a Virtual Environment**
 
-try adding
 
-```
-
-  jupyter:
-    image: python:3.11-slim
-    container_name: jupyter-lab
-    command: >
-      bash -c "
-      pip install jupyterlab ipykernel pyodbc sqlalchemy pandas &&
-      jupyter lab --ip=0.0.0.0 --port=8888 --allow-root --no-browser"
-    ports:
-      - "8888:8888"
-    volumes:
-      - "./notebooks:/workspace"
-    working_dir: /workspace
-    depends_on:
-
-```{{copy}}
 
 ```bash
 # Install venv if not already installed
@@ -199,6 +181,8 @@ odbcinst -q -d -n "ODBC Driver 18 for SQL Server"
 
 ## ✅ **6. Connect to SQL Server in Jupyter**
 
+`jupyter-lab  --ip=0.0.0.0 --port=8888 --no-browser --allow-root`{{exec}}
+
 In your notebook:
 
 ```python
@@ -210,17 +194,40 @@ import pandas as pd
 
 conn = pyodbc.connect(
     'DRIVER={ODBC Driver 18 for SQL Server};'
-    'SERVER=mssql-dev;'
-    'DATABASE=master;'
+    'SERVER=localhost;'
+    'DATABASE=AdventureWorksLT2022;'
     'UID=sa;'
     'PWD=YourStrong:Passw0rd;'
     'TrustServerCertificate=yes;'
 )
 
-# Test query
+# Test query  WIP errors out
 df = pd.read_sql("SELECT TOP 10 * FROM YourTable", conn)
 print(df)
 ```{{copy}}
+
+# But this works
+
+try:
+    
+    print("Connection successful!")
+
+    # Create a cursor object
+    cursor = conn.cursor()
+
+    # Example query
+    cursor.execute("SELECT TOP 5 * FROM SalesLT.Customer")
+
+    # Fetch and print results
+    for row in cursor.fetchall():
+        print(row)
+
+    # Close the connection
+    cursor.close()
+    conn.close()
+
+except pyodbc.Error as e:
+    print("Error:", e)
 
 ***
 
