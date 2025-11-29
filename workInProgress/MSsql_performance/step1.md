@@ -229,6 +229,13 @@ try:
 except pyodbc.Error as e:
     print("Error:", e)
 
+
+# above appears to close the connection, so can't run below. rerun the con statemenet above
+# cursor.execute("EXEC sp_tables @table_type = "'TABLE'";")
+
+# ?? in that try catch - remove the close?
+
+
 ***
 
 ## ✅ **7. (Optional) Use SQLAlchemy**
