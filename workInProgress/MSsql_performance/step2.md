@@ -498,11 +498,12 @@ import pyodbc
 
 # Replace with your actual credentials and server info
 conn = pyodbc.connect(
-    "DRIVER={ODBC Driver 18 for SQL Server};"
-    "SERVER=localhost;"
-    "DATABASE=master;"
-    UID=your_username;PWD=your_password;
-    "Encrypt=no;"
+    'DRIVER={ODBC Driver 18 for SQL Server};'
+    'SERVER=localhost;'
+    'DATABASE=AdventureWorksLT2022;'
+    'UID=sa;'
+    'PWD=YourStrong:Passw0rd;'
+    'TrustServerCertificate=yes;'
 )
 
 cursor = conn.cursor()

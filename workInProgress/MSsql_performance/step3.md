@@ -50,6 +50,23 @@ GO
 
 The `PRIMARY KEY` constraint automatically creates a clustered index on the `CustomerID` column.
 
+In jupyter:
+```python
+sql = """
+CREATE TABLE dbo.Customers (
+    CustomerID UNIQUEIDENTIFIER PRIMARY KEY,
+    CustomerName NVARCHAR(100),
+    RegistrationDate DATETIME
+)
+"""
+
+# Execute the SQL
+cursor.execute(sql)
+conn.commit()
+
+print("Table created successfully.")
+```{{copy}}
+
 ## Create a Non-Clustered Index
 
 Let's also create a non-clustered index on the `RegistrationDate` column, as we might often query for customers who registered on a certain date.

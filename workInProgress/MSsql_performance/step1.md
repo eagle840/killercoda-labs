@@ -121,7 +121,7 @@ Here’s the **updated instructions using a virtual environment and manual `.deb
 
 ```bash
 # Install venv if not already installed
-sudo apt-get install python3-venv
+sudo apt-get install -y python3-venv
 
 # Create a virtual environment
 python3 -m venv jupyter_env
@@ -182,6 +182,10 @@ odbcinst -q -d -n "ODBC Driver 18 for SQL Server"
 ## ✅ **6. Connect to SQL Server in Jupyter**
 
 `jupyter-lab  --ip=0.0.0.0 --port=8888 --no-browser --allow-root`{{exec}}
+
+Copy the token down
+
+{{TRAFFIC_HOST1_80}}
 
 In your notebook:
 

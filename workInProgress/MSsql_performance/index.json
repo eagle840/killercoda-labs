@@ -1,6 +1,6 @@
 {
   "title": "Microsoft SQL Performance Tuning",
-  "description": "Tuning  MS SQL(v0.1.7)",
+  "description": "Tuning  MS SQL(v0.1.8)",
   "difficulty": "Beginner",
   "time": "60 minutes",
   "details": {
@@ -16,6 +16,10 @@
         },
         {
           "file": "/telegraf.conf",
+          "target": "~/"
+        },
+        {
+          "file": "/mssql_perf_1.ipynb",
           "target": "~/"
         }
       ]
