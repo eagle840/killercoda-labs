@@ -118,134 +118,12 @@ Do you want me to include a full sample `telegraf.conf` combining SQL Server inp
 
 ---
 
-## Create Docker Compose for Monitoring
 
-## Create Data Directory
 
-First, create a directory to persist SQL Server data:
 
-`mkdir mssql-data`{{exec}}
 
-`sudo chown -R 10001:10001 ./mssql-data/`{{exec}}
 
-`cd mssql-data`{{exec}}
 
-`mkdir backup`{{exec}}
-
-`cd backup`{{exec}}
-
-`wget https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2022.bak`{{exec}}
-
-`cd ../..`{{exec}}
-
-Create a new Docker Compose file named `docker-compose-monitoring.yml`:
-
-`nano docker-compose.yml`{{execute}}
-
-Copy and paste the following configuration. This defines the four services: `mssql-dev`, `influxdb`, `grafana`, and `telegraf`.
-
-```yaml
-version: '3.8'
-
-services:
-  mssql-dev:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    hostname: mssql-dev
-    container_name: mssql-dev
-    environment:
-      SA_PASSWORD: "YourStrong:Passw0rd"
-      ACCEPT_EULA: "Y"
-      MSSQL_PID: "Developer"
-    ports:
-      - "1433:1433"
-    volumes:
-      - "./mssql-data:/var/opt/mssql"
-
-  influxdb:
-    image: influxdb:2.7
-    container_name: influxdb
-    ports:
-      - "8086:8086"
-    volumes:
-      - influxdb-data:/var/lib/influxdb2
-    environment:
-      - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=admin
-      - DOCKER_INFLUXDB_INIT_PASSWORD=password
-      - DOCKER_INFLUXDB_INIT_ORG=my-org
-      - DOCKER_INFLUXDB_INIT_BUCKET=my-bucket
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-token
-
-  grafana:
-    image: grafana/grafana:10.2.0
-    container_name: grafana
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana-data:/var/lib/grafana
-
-  telegraf:
-    image: telegraf:1.28
-    container_name: telegraf
-    volumes:
-      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
-    depends_on:
-      - mssql-dev
-      - influxdb
-    command: --config /etc/telegraf/telegraf.conf
-
-volumes:
-  mssql-data:
-  influxdb-data:
-  grafana-data:
-```{{copy}}
-
-## Create Telegraf Configuration
-
-Create a file named `telegraf.conf` to configure Telegraf to collect metrics from SQL Server and send them to InfluxDB.
-
-`nano telegraf.conf`{{execute}}
-
-```toml
-[agent]
-  interval = "10s"
-  round_interval = true
-  metric_batch_size = 1000
-  metric_buffer_limit = 10000
-  collection_jitter = "0s"
-  flush_interval = "10s"
-  flush_jitter = "0s"
-  precision = ""
-  debug = false
-  quiet = false
-  hostname = ""
-  omit_hostname = false
-
-[[outputs.influxdb_v2]]
-  urls = ["http://influxdb:8086"]
-  token = "my-super-secret-token"
-  organization = "my-org"
-  bucket = "my-bucket"
-
-[[inputs.sqlserver]]
-  servers = ["server=mssql-dev;user id=sa;password=YourStrong:Passw0rd;app name=telegraf;log=1;"]
-  query_version = 2
-  include_query = []
-```{{copy}}
-
-## Start the Monitoring Stack
-
-Now, start all the services using the new compose file:
-
-`docker-compose  up -d`{{execute}}
-
-Verify that all containers are running:
-
-`docker-compose  ps`{{execute}}
-
-Check the logs to ensure SQL Server started successfully:
-
-`docker-compose logs mssql-dev`{{execute}}
 
 ## Verify Data Collection
 
@@ -369,116 +247,6 @@ from(bucket: "my-bucket")
   |> yield(name: "mean_cpu_usage")
 ```
 
-## Install SQL Server Command Line Tools
-
-Install the modern GO-based sqlcmd tool to connect to SQL Server.
-
-**Reference**: https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-ver17&tabs=redhat-install
-
-**Reference** https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility?view=sql-server-ver17&tabs=go%2Cwindows-support&pivots=cs1-bash
-
-Check your Ubuntu version:
-
-`cat /etc/os-release`{{exec}}
-
-**Setup GO-based sqlcmd**
-
-Install the Microsoft repository key:
-
-
-
-`curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc`{{exec}}
-
-Add the Microsoft package repository:
-
-`sudo add-apt-repository -y "$(wget -qO- https://packages.microsoft.com/config/ubuntu/22.04/prod.list)"`{{exec}}
-
-Update package list and install the modern sqlcmd:
-
-`sudo apt-get update`{{exec}}
-
-`sudo apt-get install -y sqlcmd`{{exec}}
-
-Add sqlcmd to your PATH:
-
-`echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc`{{exec}}
-
-`source ~/.bashrc`{{exec}}
-
-Verify installation:
-
-`sqlcmd -?`{{exec}}
-
-## Test SQL Server Connection
-
-Connect to SQL Server using the GO-based sqlcmd:
-
-`sqlcmd -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
-
-```sql
-SELECT @@VERSION;
-GO
-```{{exec}}
-
-
-## Load AdventureWorks Sample Database
-
-
-
-Verify the file was copied:
-
-`docker-compose exec mssql-dev ls /var/opt/mssql/backup/`{{exec}}
-
-## Restore the Database
-
-Connect to SQL Server and examine the backup file structure:
-
-
-We'll use the -y and -Y options to control display output and make it easier to read
-
-`sqlcmd -y 30 -Y 30 -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
-
-
-First, check what files are in the backup:
-
-```sql
-RESTORE FILELISTONLY
-FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak';
-GO
-```{{exec}}
-
-Now restore the database using the logical names from the previous command:
-
-```sql
-RESTORE DATABASE AdventureWorksLT2022
-FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak'
-WITH MOVE 'AdventureWorksLT2022_Data' TO '/var/opt/mssql/data/AdventureWorksLT2022.mdf',
-     MOVE 'AdventureWorksLT2022_Log' TO '/var/opt/mssql/data/AdventureWorksLT2022_log.ldf';
-GO
-```{{exec}}
-
-## Verify Database Installation
-
-List all databases to confirm AdventureWorksLT2022 was restored:
-
-```sql
-SELECT name FROM sys.databases;
-GO
-```{{exec}}
-
-Switch to the AdventureWorks database:
-
-```sql
-USE AdventureWorksLT2022;
-GO
-```{{exec}}
-
-List tables in the database:
-
-```sql
-SELECT name FROM sys.tables;
-GO
-```{{exec}}
 
 ## Enable Query store
 Query Store is not enabled by default on restored databases. You can enable it for the AdventureWorksLT2022 database with the following command:
@@ -493,24 +261,8 @@ GO
 
 # jupter
 
-```
-import pyodbc
 
-# Replace with your actual credentials and server info
-conn = pyodbc.connect(
-    'DRIVER={ODBC Driver 18 for SQL Server};'
-    'SERVER=localhost;'
-    'DATABASE=AdventureWorksLT2022;'
-    'UID=sa;'
-    'PWD=YourStrong:Passw0rd;'
-    'TrustServerCertificate=yes;'
-)
-
-cursor = conn.cursor()
-cursor.execute("SELECT name FROM sys.databases")
-for row in cursor.fetchall():
-    print(row)
-```
+open up the ipynb in jupyter
 
 you can also use ipython-sql
 

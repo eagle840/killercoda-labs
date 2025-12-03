@@ -220,6 +220,13 @@ We'll use the -y and -Y options to control display output and make it easier to 
 
 `sqlcmd -y 30 -Y 30 -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
 
+`sqlcmd -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
+
+```sql
+SELECT @@VERSION;
+GO
+```{{exec}}
+
 
 First, check what files are in the backup:
 
@@ -298,7 +305,7 @@ Inside the venv:
 
 ```bash
 pip install --upgrade pip
-pip install -y jupyterlab ipykernel pyodbc sqlalchemy pandas
+pip install  jupyterlab ipykernel pyodbc sqlalchemy pandas
 ```{{exec}}
 
 ***
@@ -325,7 +332,7 @@ sudo ACCEPT_EULA=Y dpkg -i msodbcsql18_18.3.2.1-1_amd64.deb
 
 # Install dependencies if needed
 sudo apt-get install -f
-```{{copy}}
+```{{exec}}
 
 You might need
 Make sure you also have unixODBC installed (`sudo apt-get install unixodbc`{{copy}})
@@ -336,7 +343,7 @@ Make sure you also have unixODBC installed (`sudo apt-get install unixodbc`{{cop
 
 ```bash
 odbcinst -q -d -n "ODBC Driver 18 for SQL Server"
-```{{copy}}
+```{{exec}}
 
 ***
 
