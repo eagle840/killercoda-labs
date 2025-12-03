@@ -115,6 +115,166 @@ Here’s the **updated instructions using a virtual environment and manual `.deb
 
 ***
 
+
+## Download Adventure works LT
+
+
+First, create a directory to persist SQL Server data:
+
+`mkdir mssql-data`{{exec}}
+
+`sudo chown -R 10001:10001 ./mssql-data/`{{exec}}
+
+`cd mssql-data`{{exec}}
+
+`mkdir backup`{{exec}}
+
+`cd backup`{{exec}}
+
+`wget https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorksLT2022.bak`{{exec}}
+
+`cd ../..`{{exec}}
+
+## Start docker-compose in new tab
+
+
+Now, start all the services using the new compose file:
+
+`docker-compose  up -d`{{execute}}
+
+Verify that all containers are running:
+
+`docker-compose  ps`{{execute}}
+
+Check the logs to ensure SQL Server started successfully:
+
+`docker-compose logs mssql-dev`{{execute}}
+
+
+## Install SQL Server Command Line Tools
+
+Install the modern GO-based sqlcmd tool to connect to SQL Server.
+
+**Reference**: https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-ver17&tabs=redhat-install
+
+**Reference** https://learn.microsoft.com/en-us/sql/tools/sqlcmd/sqlcmd-utility?view=sql-server-ver17&tabs=go%2Cwindows-support&pivots=cs1-bash
+
+Check your Ubuntu version:
+
+`cat /etc/os-release`{{exec}}
+
+**Setup GO-based sqlcmd**
+
+Install the Microsoft repository key:
+
+
+
+`curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc`{{exec}}
+
+Add the Microsoft package repository:
+
+`sudo add-apt-repository -y "$(wget -qO- https://packages.microsoft.com/config/ubuntu/22.04/prod.list)"`{{exec}}
+
+Update package list and install the modern sqlcmd:
+
+`sudo apt-get update`{{exec}}
+
+`sudo apt-get install -y sqlcmd`{{exec}}
+
+Add sqlcmd to your PATH:
+
+`echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc`{{exec}}
+
+`source ~/.bashrc`{{exec}}
+
+Verify installation:
+
+`sqlcmd -?`{{exec}}
+
+## Test SQL Server Connection
+
+Connect to SQL Server using the GO-based sqlcmd:
+
+`sqlcmd -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
+
+```sql
+SELECT @@VERSION;
+GO
+```{{exec}}
+
+
+## Load AdventureWorks Sample Database
+
+
+
+Verify the file was copied:
+
+`docker-compose exec mssql-dev ls /var/opt/mssql/backup/`{{exec}}
+
+## Restore the Database
+
+Connect to SQL Server and examine the backup file structure:
+
+
+We'll use the -y and -Y options to control display output and make it easier to read
+
+`sqlcmd -y 30 -Y 30 -C -S localhost -U sa -P 'YourStrong:Passw0rd'`{{exec}}
+
+
+First, check what files are in the backup:
+
+```sql
+RESTORE FILELISTONLY
+FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak';
+GO
+```{{exec}}
+
+Now restore the database using the logical names from the previous command:
+
+```sql
+RESTORE DATABASE AdventureWorksLT2022
+FROM DISK = N'/var/opt/mssql/backup/AdventureWorksLT2022.bak'
+WITH MOVE 'AdventureWorksLT2022_Data' TO '/var/opt/mssql/data/AdventureWorksLT2022.mdf',
+     MOVE 'AdventureWorksLT2022_Log' TO '/var/opt/mssql/data/AdventureWorksLT2022_log.ldf';
+GO
+```{{exec}}
+
+## Verify Database Installation
+
+List all databases to confirm AdventureWorksLT2022 was restored:
+
+```sql
+SELECT name FROM sys.databases;
+GO
+```{{exec}}
+
+Switch to the AdventureWorks database:
+
+```sql
+USE AdventureWorksLT2022;
+GO
+```{{exec}}
+
+List tables in the database:
+
+```sql
+SELECT name FROM sys.tables;
+GO
+```{{exec}}
+
+## Enable Query store
+Query Store is not enabled by default on restored databases. You can enable it for the AdventureWorksLT2022 database with the following command:
+
+```sql
+ALTER DATABASE AdventureWorksLT2022
+SET QUERY_STORE = ON (OPERATION_MODE = READ_WRITE);
+GO
+```{{exec}}
+
+## restore AdventureWorksLT
+
+
+
 ## ✅ **1. Create and Activate a Virtual Environment**
 
 
@@ -128,7 +288,7 @@ python3 -m venv jupyter_env
 
 # Activate it
 source jupyter_env/bin/activate
-```{{copy}}
+```{{exec}}
 
 ***
 
@@ -138,13 +298,14 @@ Inside the venv:
 
 ```bash
 pip install --upgrade pip
-pip install jupyterlab ipykernel pyodbc sqlalchemy pandas
-```{{copy}}
+pip install -y jupyterlab ipykernel pyodbc sqlalchemy pandas
+```{{exec}}
 
 ***
 
 ## ✅ **3. Register venv as Jupyter Kernel**
 
+WIP
 ```bash
 python -m ipykernel install --user --name=jupyter_env --display-name "Python (jupyter_env)"
 ```{{copy}}
@@ -185,9 +346,39 @@ odbcinst -q -d -n "ODBC Driver 18 for SQL Server"
 
 Copy the token down
 
-{{TRAFFIC_HOST1_80}}
+{{TRAFFIC_HOST1_8888}}
 
-In your notebook:
+In your notebook
+
+# jupter
+
+```python
+import pyodbc
+
+# Replace with your actual credentials and server info
+conn = pyodbc.connect(
+    'DRIVER={ODBC Driver 18 for SQL Server};'
+    'SERVER=localhost;'
+    'DATABASE=AdventureWorksLT2022;'
+    'UID=sa;'
+    'PWD=YourStrong:Passw0rd;'
+    'TrustServerCertificate=yes;'
+)
+
+cursor = conn.cursor()
+cursor.execute("SELECT name FROM sys.databases")
+for row in cursor.fetchall():
+    print(row)
+```{{copy}}
+
+you can also use ipython-sql
+
+```python
+%load_ext sql
+
+# For SQL auth:
+%sql mssql+pyodbc://username:password@localhost/master?driver=ODBC+Driver+18+for+SQL+Server
+```{{copy}}
 
 ```python
 import pyodbc
@@ -213,7 +404,7 @@ print(df)
 # But this works
 
 try:
-    
+
     print("Connection successful!")
 
     # Create a cursor object
