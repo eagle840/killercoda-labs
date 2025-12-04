@@ -17,6 +17,19 @@ There appears to be a grafana sql dashbaord for mssql https://grafana.com/grafan
 
 
 ---
+WIP while reviewing MS YT video @ 8:54 https://www.youtube.com/watch?v=OwNS6wbPhyI
+
+noteed
+
+```
+CREATE USER [telegraf] WITH PASSWORD = N'mypaasowd''
+GO
+GRANT VIEW DATABASE STATE TO [telegraf]
+GO
+```
+
+
+---
 
 Here’s how to use **Telegraf** to collect metrics from **Microsoft SQL Server** and send them to **InfluxDB**, all in a single comprehensive Markdown document:
 
