@@ -285,17 +285,19 @@ GO
 ## ✅ **1. Create and Activate a Virtual Environment**
 
 
-
-```bash
 # Install venv if not already installed
-sudo apt-get install -y python3-venv
+
+`sudo apt-get install -y python3-venv`{{exec}}
+
 
 # Create a virtual environment
-python3 -m venv jupyter_env
+
+`python3 -m venv jupyter_env`{{exec}}
 
 # Activate it
-source jupyter_env/bin/activate
-```{{exec}}
+
+`source jupyter_env/bin/activate`{{exec}}
+
 
 ***
 
@@ -303,10 +305,11 @@ source jupyter_env/bin/activate
 
 Inside the venv:
 
-```bash
-pip install --upgrade pip
-pip install  jupyterlab ipykernel pyodbc sqlalchemy pandas
-```{{exec}}
+
+`pip install --upgrade pip`{{exec}}
+
+`pip install  jupyterlab ipykernel pyodbc sqlalchemy pandas`{{exec}}
+
 
 ***
 
@@ -331,14 +334,20 @@ then
     echo "Ubuntu $(grep VERSION_ID /etc/os-release | cut -d '"' -f 2) is not currently supported.";
     exit;
 fi
+```{{exec}}
 
+
+```bash
 # Download the package to configure the Microsoft repo
 curl -sSL -O https://packages.microsoft.com/config/ubuntu/$(grep VERSION_ID /etc/os-release | cut -d '"' -f 2)/packages-microsoft-prod.deb
 # Install the package
 sudo dpkg -i packages-microsoft-prod.deb
 # Delete the file
 rm packages-microsoft-prod.deb
+```{{exec}}
 
+
+```bash
 # Install the driver
 sudo apt-get update
 sudo ACCEPT_EULA=Y apt-get install -y msodbcsql18
@@ -346,9 +355,15 @@ sudo ACCEPT_EULA=Y apt-get install -y msodbcsql18
 sudo ACCEPT_EULA=Y apt-get install -y mssql-tools18
 echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc
 source ~/.bashrc
+```{{exec}}
+
+
+```bash
 # optional: for unixODBC development headers
 sudo apt-get install -y unixodbc-dev
 ```copy
+
+## initial working install
 
 ```bash
 # Download the latest msodbcsql18 .deb package (from Ubuntu 22.04 repo)
