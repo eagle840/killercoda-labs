@@ -191,6 +191,80 @@ Verify installation:
 
 `sqlcmd -?`{{exec}}
 
+
+## ✅ **4. Install ODBC Driver for SQL Server (Manual .deb Method)**
+
+Since Ubuntu 24.04 repo is unsigned, download and install manually:
+
+https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver17&tabs=ubuntu18-install%2Calpine17-install%2Cdebian8-install%2Credhat7-13-install%2Crhel7-offline#18
+
+
+WIP it doesn't pass
+```bash
+if ! [[ "18.04 20.04 22.04 24.04 24.10" == *"$(grep VERSION_ID /etc/os-release | cut -d '"' -f 2)"* ]];
+then
+    echo "Ubuntu $(grep VERSION_ID /etc/os-release | cut -d '"' -f 2) is not currently supported.";
+    exit;
+fi
+```{{exec}}
+
+
+```bash
+# Download the package to configure the Microsoft repo
+curl -sSL -O https://packages.microsoft.com/config/ubuntu/$(grep VERSION_ID /etc/os-release | cut -d '"' -f 2)/packages-microsoft-prod.deb
+# Install the package
+sudo dpkg -i packages-microsoft-prod.deb
+# Delete the file
+rm packages-microsoft-prod.deb
+```{{exec}}
+
+
+
+# Install the driver
+`apt-get update`{{exec}}
+`ACCEPT_EULA=Y apt-get install -y msodbcsql18`{{exec}}
+# optional: for bcp and sqlcmd
+`sudo ACCEPT_EULA=Y apt-get install -y mssql-tools18`{{exec}}
+`echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc`{{exec}}
+`source ~/.bashrc`{{exec}}
+
+```bash
+odbcinst -q -d -n "ODBC Driver 18 for SQL Server"
+```{{exec}}
+
+
+
+```bash
+# optional: for unixODBC development headers
+sudo apt-get install -y unixodbc-dev
+```copy
+
+## initial working install
+
+```bash
+# Download the latest msodbcsql18 .deb package (from Ubuntu 22.04 repo)
+curl -O https://packages.microsoft.com/ubuntu/22.04/prod/pool/main/m/msodbcsql18/msodbcsql18_18.3.2.1-1_amd64.deb
+
+# Install it
+sudo ACCEPT_EULA=Y dpkg -i msodbcsql18_18.3.2.1-1_amd64.deb
+
+# Install dependencies if needed
+sudo apt-get install -f
+```{{exec}}
+
+You might need
+Make sure you also have unixODBC installed (`sudo apt-get install unixodbc`{{copy}})
+
+***
+
+## ✅ **5. Verify ODBC Driver**
+
+```bash
+odbcinst -q -d -n "ODBC Driver 18 for SQL Server"
+```{{exec}}
+
+***
+
 ## Test SQL Server Connection
 
 Connect to SQL Server using the GO-based sqlcmd:
@@ -322,72 +396,6 @@ python -m ipykernel install --user --name=jupyter_env --display-name "Python (ju
 
 ***
 
-## ✅ **4. Install ODBC Driver for SQL Server (Manual .deb Method)**
-
-Since Ubuntu 24.04 repo is unsigned, download and install manually:
-
-https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver17&tabs=ubuntu18-install%2Calpine17-install%2Cdebian8-install%2Credhat7-13-install%2Crhel7-offline#18
-
-```bash
-if ! [[ "18.04 20.04 22.04 24.04 24.10" == *"$(grep VERSION_ID /etc/os-release | cut -d '"' -f 2)"* ]];
-then
-    echo "Ubuntu $(grep VERSION_ID /etc/os-release | cut -d '"' -f 2) is not currently supported.";
-    exit;
-fi
-```{{exec}}
-
-
-```bash
-# Download the package to configure the Microsoft repo
-curl -sSL -O https://packages.microsoft.com/config/ubuntu/$(grep VERSION_ID /etc/os-release | cut -d '"' -f 2)/packages-microsoft-prod.deb
-# Install the package
-sudo dpkg -i packages-microsoft-prod.deb
-# Delete the file
-rm packages-microsoft-prod.deb
-```{{exec}}
-
-
-```bash
-# Install the driver
-sudo apt-get update
-sudo ACCEPT_EULA=Y apt-get install -y msodbcsql18
-# optional: for bcp and sqlcmd
-sudo ACCEPT_EULA=Y apt-get install -y mssql-tools18
-echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc
-source ~/.bashrc
-```{{exec}}
-
-
-```bash
-# optional: for unixODBC development headers
-sudo apt-get install -y unixodbc-dev
-```copy
-
-## initial working install
-
-```bash
-# Download the latest msodbcsql18 .deb package (from Ubuntu 22.04 repo)
-curl -O https://packages.microsoft.com/ubuntu/22.04/prod/pool/main/m/msodbcsql18/msodbcsql18_18.3.2.1-1_amd64.deb
-
-# Install it
-sudo ACCEPT_EULA=Y dpkg -i msodbcsql18_18.3.2.1-1_amd64.deb
-
-# Install dependencies if needed
-sudo apt-get install -f
-```{{exec}}
-
-You might need
-Make sure you also have unixODBC installed (`sudo apt-get install unixodbc`{{copy}})
-
-***
-
-## ✅ **5. Verify ODBC Driver**
-
-```bash
-odbcinst -q -d -n "ODBC Driver 18 for SQL Server"
-```{{exec}}
-
-***
 
 ## ✅ **6. Connect to SQL Server in Jupyter**
 
