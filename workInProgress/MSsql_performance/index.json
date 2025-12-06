@@ -1,6 +1,6 @@
 {
   "title": "Microsoft SQL Performance Tuning",
-  "description": "Tuning  MS SQL(v0.2.0)",
+  "description": "Tuning  MS SQL(v0.2.1)",
   "difficulty": "Beginner",
   "time": "60 minutes",
   "details": {
@@ -20,6 +20,14 @@
         },
         {
           "file": "/mssql_perf_1.ipynb",
+          "target": "~/"
+        },
+        {
+          "file": "/mssql_perf_2.ipynb",
+          "target": "~/"
+        },
+        {
+          "file": "/mssql_perf_3.ipynb",
           "target": "~/"
         }
       ]
