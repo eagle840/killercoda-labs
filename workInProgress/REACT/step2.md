@@ -8,6 +8,14 @@ We'll be using the 'old world' (ie, not things like Vite)
 
 `mkdir public`{{exec}}
 
+`mkdir scripts`{{exec}}
+
+`cd public`{{exec}}
+
+`touch index.html`{{exec}}
+
+`cd ..`{{exec}}
+
 index.html
 
 ```
@@ -26,16 +34,14 @@ index.html
 </html>
 ```
 
-`live-server --host 0.0.0.0 public`{{exec}}
+`live-server --host=0.0.0.0 public`{{exec}}
 
 {{TRAFFIC_HOST1_8080}}
 
 
 create scripts/app.js
 
-```js
-console.log(`App.js is running`);
-```
+`console.log(`App.js is running`);`{{exec}}
 
 ```html
 <!DOCTYPE html>
@@ -50,7 +56,7 @@ console.log(`App.js is running`);
 
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="/scrips/app.js"></script>
+    <script src="/scripts/app.js"></script>
 
 </body>
 </html>
