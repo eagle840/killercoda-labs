@@ -8,13 +8,16 @@ We'll be using the 'old world' (ie, not things like Vite)
 
 `mkdir public`{{exec}}
 
-`mkdir scripts`{{exec}}
 
 `cd public`{{exec}}
 
+`mkdir scripts`{{exec}}
+
 `touch index.html`{{exec}}
 
-`cd ..`{{exec}}
+`touch ./scripts/app.js`{{exec}}
+
+`cd ../..`{{exec}}
 
 index.html
 
@@ -64,6 +67,75 @@ create scripts/app.js
 
 ## JSX
 
+### Babel
+
+[bablel repl](https://babeljs.io/repl)
+
+
+- be sure to enable es2015 and react
+
+
+
+`npm install -g  babel-cli`{{exec}}
+
+`# npm install -g  babel-cli@6.24.1`
+
+`babel --help`{{exec}}
+
+`npm add babel-preset-react`{{exec}}
+
+`# npm add babel-preset-react@6.24.1`
+
+`npm add babel-preset-env`{{exec}}
+
+`# npm add babel-preset-env@1.5.2`
+
+`cat package.json`{{exec}}
+
+`mkdir src`{{exec}}
+
+`touch ./src/app.js`{{exec}}
+# this file gets translatted to scripts/app.js
+
+```jsx
+console.log('App.js is running!');
+
+// JSX - JavaScript XML
+
+var template = <p>This is JSX from app.js!</p>;
+var appRoot = document.getElementById('app');
+
+ReactDOM.render(template, appRoot);
+```
+
+babel src/app.js --out-file=public/scripts/app.js --presets=env,react`{{exec}}
+
+`cat public/scripts/app.js `{{exec}}
+
+`babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch #auto change on detect`{{exec}}
+
+`live-server --host=0.0.0.0 public`{{exec}}
+
+Now update some of the JSX and see it update (eg change <p> to <h>)
+
+
+--- dont use below
+
+```jsx
+console.log('App.js is running!');
+
+// JSX - JavaScript XML
+// var template = <p>This is JSX from app.js !< /p>;
+var template = React.createElement(
+"h1",
+{ id: "someid" },
+"Something new"
+);
+
+var appRoot = document.getElementById('app');
+
+ReactDOM.render(template, appRoot);
+```
 
 
 ---
