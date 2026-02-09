@@ -118,6 +118,41 @@ babel src/app.js --out-file=public/scripts/app.js --presets=env,react`{{exec}}
 
 Now update some of the JSX and see it update (eg change <p> to <h>)
 
+## Wrap the HTML
+
+Note that the code is wrapped in a <div>, without this react will generate an error
+
+
+```jsx
+console.log('App.js is running!');
+
+// JSX - JavaScript XML
+
+var template = <div><h1>Hello World</h><p>This is JSX from app.js!</p></div>;
+var appRoot = document.getElementById('app');
+
+ReactDOM.render(template, appRoot);
+```
+
+but lets clean it up (sometimes you'll see the html in a set of () )
+
+
+```jsx
+console.log('App.js is running!');
+
+// JSX - JavaScript XML
+
+var template =
+<div>
+    <h1>Hello World</h>
+    <p>This is JSX from app.js!</p>
+</div>;
+var appRoot = document.getElementById('app');
+
+ReactDOM.render(template, appRoot);
+```
+
+Now take a look at how babel has translated this is /public/scripts/app.js
 
 --- dont use below
 
