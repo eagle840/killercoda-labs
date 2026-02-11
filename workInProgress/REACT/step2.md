@@ -172,6 +172,42 @@ var appRoot = document.getElementById('app');
 ReactDOM.render(template, appRoot);
 ```
 
+## Adding Variables
+
+
+```jsx
+console.log('App.js is running!');
+
+// JSX - JavaScript XML
+var template = (
+    <div>
+        <h1>Indecision App</h1>
+        <p>This is some info</p>
+    <o1>
+        <li>Item one</li>
+        <li>Item two</li>
+    </o1>
+    </div>
+) ;
+
+var user = {
+    name: 'Andrew' ,
+    age: 26,
+    location: 'Philadelphia'
+};
+var userName = 'Mike';
+var templateTwo = (
+<div>
+    <h1>{userName.toUpperCase()}</h1>
+    <p>Age: {user.age}</p>
+    <p>Location: Philadelphia</p>
+</div>
+);
+
+var appRoot = document.getElementById('app');
+
+ReactDOM.render(template, appRoot);
+```
 
 ---
 ```html
