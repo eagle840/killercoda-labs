@@ -1,1 +1,1 @@
-This lab is for a REACT (c#)
+This lab is for using Playwrigth with REACT

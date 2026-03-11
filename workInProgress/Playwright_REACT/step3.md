@@ -1,9 +1,6 @@
 # Add a Playwright Test File
 
 
-```
-mkdir -p tests
-```
 
 ```
 cat << 'EOF' > tests/homepage.spec.js
@@ -14,7 +11,8 @@ test('homepage loads', async ({ page }) => {
   await expect(page.locator('h1')).toBeVisible();
 });
 EOF
-```
+```{{exec}}
+
 #  Re-run Tests With Your New Spec
 
 
@@ -22,11 +20,12 @@ EOF
 npx playwright test
 npx playwright show-report
 ```
+`apt install node-http-server`{{exec}}
 
+`http-server playwright-report -a 0.0.0.0 -p 9323`{{exec}}
 
-```
-http-server playwright-report -a 0.0.0.0 -p 9323
-```
+{{TRAFFIC_HOST1_9323}}
+
 
 
 # explaining the  terminal log
