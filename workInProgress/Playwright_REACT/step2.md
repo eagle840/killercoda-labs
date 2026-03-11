@@ -36,6 +36,10 @@ npm init playwright@latest
 ls
 ```
 
+Install additional dependenices for this Linux environment
+
+`npx playwright install-deps`{{exec}}
+
 ```
 apt install -y tree
 tree
