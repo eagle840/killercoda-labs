@@ -41,24 +41,13 @@ or
 
 `npm run dev -- --host`{{exec}}
 
-
-`npm init playwright@latest`{{exec}}
-
-
-Install additional dependenices for this Linux environment
-
-`npx playwright install-deps`{{exec}}
-
-`apt install -y tree`{{exec}}
-
-
-`npx playwright test`{{exec}}
+{{TRAFFIC_HOST1_3000}}
 
 
 `npm install -g http-server`{{exec}}
 
 
-`http-server playwright-report -a 0.0.0.0 -p 9323`{{exec}}
+`http-server XXXX -a 0.0.0.0 -p 9323`{{exec}} # default page for React index.html?
 
 or modify Modify vite.config.js
 
@@ -77,7 +66,40 @@ export default defineConfig({
 
 
 
-http://<killercoda-session-host>:9323
-{{TRAFFIC_HOST1_9323}}
+{{TRAFFIC_HOST1_5173}}
 
----
+
+
+# PlayWright Install
+
+`npm init playwright@latest`{{exec}}
+
+
+Install additional dependenices for this Linux environment
+
+`npx playwright install-deps`{{exec}}
+
+`apt install -y tree`{{exec}}
+
+
+
+
+## review the default spec
+
+`cat ./tests/example.spec.js`{{exec}}
+
+note the two sections:
+- 'has title'
+- 'get started link'
+
+## run the test
+
+`npx playwright test`{{exec}}
+
+and display the results
+
+`http-server playwright-report -a 0.0.0.0 -p 9323`{{exec}}
+
+Lets look at the html report, note now each section is run for chromium, firefox and webkit.
+
+{{TRAFFIC_HOST1_5173}}

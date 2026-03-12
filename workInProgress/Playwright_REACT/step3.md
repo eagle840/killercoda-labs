@@ -16,11 +16,11 @@ EOF
 #  Re-run Tests With Your New Spec
 
 
-```
-npx playwright test
-npx playwright show-report
-```
-`apt install node-http-server`{{exec}}
+`npx playwright test`{{exec}}
+
+`npx playwright show-report`{{exec}}
+
+
 
 `http-server playwright-report -a 0.0.0.0 -p 9323`{{exec}}
 
