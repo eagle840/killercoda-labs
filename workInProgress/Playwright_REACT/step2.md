@@ -49,24 +49,26 @@ or
 
 `http-server XXXX -a 0.0.0.0 -p 9323`{{exec}} # default page for React index.html?
 
-or modify Modify vite.config.js
+or modify Modify vite.config.js, this will allow Killacoda to allow public access.
 
 ```
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: '0.0.0.0',
-    port: 5173,   // optional
+    port: 3000,  // Client port
+    host: '0.0.0.0', // Bind to all network interfaces
+    allowedHosts: true // allow all hosts
   }
 })
 ```
 
 
 
-{{TRAFFIC_HOST1_5173}}
+{{TRAFFIC_HOST1_3000}}
 
 
 
