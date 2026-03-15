@@ -1,6 +1,6 @@
 {
   "title": "Work-In-Porgress Make for devops",
-  "description": "Using Make in devops practices(v0.0.1)",
+  "description": "Using Make in devops practices(v0.0.2)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -56,6 +56,10 @@
       {
         "title": "Step 8",
         "text": "step8.md"
+      },
+      {
+        "title": "Step 9",
+        "text": "step9.md"
       }
     ],
     "intro": {
