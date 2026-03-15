@@ -7,6 +7,8 @@ Make Repo: https://savannah.gnu.org/projects/make/
 
 Awesome cheatsheet: https://devhints.io/makefile
 
+Gemini chat on devops make files https://gemini.google.com/share/b0a8685521b4
+
 `make -v`{{exec}}
 
 `make -h`{{exec}}
