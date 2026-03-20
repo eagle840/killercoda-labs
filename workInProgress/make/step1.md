@@ -26,7 +26,46 @@ target … : prerequisites …
         …
 ```
 
-First simple makefile
+
+## First Makefile
+
+`mkdir step1 ; cd step1`{{exec}}
+
+`nano Makefile`{{exec}}
+
+```
+# Define the target file
+output: input.txt
+	@echo "Building output file..."
+	@cp input.txt output
+	@echo "Output file built."
+
+# Define a rule to check if the input file exists
+input.txt:
+	@echo "Checking if input file exists..."
+	@if [ ! -f input.txt ]; then \
+    	echo "Input file not found. Creating a new one..."; \
+    	echo "This is the input file." > input.txt; \
+	fi
+  ```
+
+
+In this example, we have a target file named `output` that depends on `input.txt`. The `output` file is built by copying the contents of `input.txt`.
+
+The `input.txt` rule checks if the file exists using the `-f` flag with the `[` command. If the file doesn't exist, it creates a new one with some sample content.
+
+When you run `make output`, it first checks if `input.txt` exists. If it doesn't, it creates a new one. Then, it compares the modification time of `input.txt` and `output`. If `input.txt` is newer or `output` doesn't exist, the commands under the `output` rule are executed to build the target file.
+
+
+Notes: prerequisites/dependencies
+
+In the context of makefiles, "prerequisites" and "dependencies" are often used interchangeably to refer to the files that a target depends on. However, there is a slight difference in their usage.
+
+"Prerequisites" typically refers to the files that are directly specified in the makefile rule as dependencies of a target. These are explicitly declared and listed after the target in the rule.
+
+"Dependencies" can have a broader meaning and can include both the directly specified prerequisites and any other files that those prerequisites depend on. In other words, dependencies can include both direct and indirect dependencies of a target.
+
+## First simple devops makefile
 
 `nano Makefile`{{exec}}
 
@@ -42,7 +81,23 @@ Now lets add a file call test and see what happens
 
 `touch test`{{exec}}
 
-wip add .PHONY: test
+`make`{{exec}}
+
+note how it say's it's upto date, its because there is no dependiency file to match dates against.
+
+## How make Thinks  
+The magic of make isn't just running commands; it’s dependency tracking.
+
+It looks at the timestamp of the target.
+
+It looks at the timestamps of the prerequisites.
+
+If any prerequisite is newer than the target, or if the target doesn't exist, make runs the recipe.
+
+if we add `.PHONY: test`{{copy}} to the top of the time, make will know that `test` is a label
+
+run it with phony added`make`{{exec}}
+
 wip add file prereq
 
 
