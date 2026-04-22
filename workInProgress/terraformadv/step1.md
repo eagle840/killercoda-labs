@@ -4,6 +4,111 @@
 Start a postgress database to store the terraform backend.   
 `docker-compose up -d`{{exec}}
 
+## WIP fold this section into the docker compose.
+
+Since this is for training and testing, we’ll use Vault’s **Development Mode**. This is perfect for learning because it starts unsealed, runs in-memory, and gives you a UI immediately.
+
+### Phase 1: Setup Vault in Docker
+
+Run the following command to start Vault. We will set a static "Root Token" so you don’t have to hunt through logs for a random string.
+
+```
+docker run -d \
+  --name vault-dev \
+  --cap-add=IPC_LOCK \
+  -p 8200:8200 \
+  -e 'VAULT_DEV_ROOT_TOKEN_ID=learn-token' \
+  -e 'VAULT_ADDR=http://0.0.0.0:8200' \
+  hashicorp/vault
+```{{copy}}
+
+#### Check if it's working:
+1.  **Browser:** Navigate to `http://localhost:8200`. Sign in with the token `learn-token`.
+2.  **Terminal:** Run `curl http://localhost:8200/v1/sys/health`. You should get a JSON response with `"sealed": false`.
+
+---
+
+### Phase 2: Prepare the "Infrastructure"
+Since you already have Postgres running, we need to ensure it has a database for Terraform to use. Connect to your Postgres instance and run:
+
+```sql
+CREATE DATABASE terraform_state;
+```
+
+---
+
+### Phase 3: Terraform Example
+Create a folder and a file named `main.tf`. This configuration does two things: 
+1.  **Backend:** Stores the state in your local Postgres.
+2.  **Provider:** Connects to Vault to create a "Secret."
+
+```hcl
+terraform {
+  # 1. State Storage in Postgres
+  backend "pg" {
+    # Replace with your actual Postgres credentials/IP
+    conn_str = "postgres://postgres:password@localhost:5432/terraform_state?sslmode=disable"
+  }
+
+  required_providers {
+    vault = {
+      source  = "hashicorp/vault"
+      version = "~> 3.0"
+    }
+  }
+}
+
+# 2. Key Vault Connection
+provider "vault" {
+  address = "http://localhost:8200"
+  token   = "learn-token"
+}
+
+# Enable KV engine (usually disabled by default in fresh builds)
+resource "vault_mount" "kvv2" {
+  path        = "secret"
+  type        = "kv-v2"
+  description = "My local secret store"
+}
+
+# Create a test secret
+resource "vault_kv_secret_v2" "example" {
+  mount = vault_mount.kvv2.path
+  name  = "test-creds"
+  data_json = jsonencode({
+    username = "admin",
+    password = "super-secret-password"
+  })
+}
+```{{copy}}
+
+---
+
+### Phase 4: The Test Flight
+
+1.  **Initialize:**  
+ `terraform init`{{exec}}  
+    *If successful, check your Postgres `terraform_state` database. You’ll see a new table named `terraform_remote_state`.*
+
+2.  **Plan & Apply:**
+ `terraform apply`{{exec}}  
+    *Type `yes` when prompted.*
+
+3.  **Verify in Vault:**
+    Go back to your browser at `http://localhost:8200`. Click on **Secrets** -> **secret/** -> **test-creds**. You should see your username and password stored securely.
+
+---
+
+### Troubleshooting Tips for Local Labs:
+* **Networking:** If Terraform is running on your host and Postgres is in Docker, use `localhost`. If Terraform is *also* inside a container, you’ll need to use the Docker network bridge IP or `host.docker.internal`.
+* **Persistence:** Remember that `vault-dev` is in-memory. If you restart the container, all secrets are gone. This is actually a great "feature" for training because you can start fresh every time by just re-running `terraform apply`.
+
+Does your Postgres instance use a custom port or a specific schema I should account for in the connection string?
+
+
+## Access/test Postgress and Vault UI's
+
+
 ## install a specific version of terraform
 
 - consider:
