@@ -173,7 +173,7 @@ You can set TF_LOG to one of the log levels (in order of decreasing verbosity)
 - ERROR 
 to change the verbosity of the logs. To send the logs to a file, use TF_LOG_PATH
 
-export TF_LOG=INFO
+`export TF_LOG=INFO`{{copy}}
 
 ## 3rd party SCA tools
 
@@ -181,34 +181,21 @@ We'll be using some 3rd party tools, to improve the tf experience/process, for e
 
 https://github.com/shuaibiyy/awesome-terraform
 
-Many of the tools use python, so lets update that first:
-
-WIP SKILL THIS And goto the docker version of checkov
-
-```
-sudo apt update
-sudo apt install -y software-properties-common
-sudo add-apt-repository -y ppa:deadsnakes/ppa
-sudo apt update
-sudo apt install -y python3.9
-python3.9 --version 
-```{{exec}}
 
 #### Checkov
 
-Checkov is an open-source static analysis tool that scans Terraform code to identify and highlight potential security and compliance issues.
+Checkov is an open-source static analysis tool that scans Terraform code to identify and highlight potential security and compliance issues. It's runs with Python, but we'll be using the docker version.
 
 https://github.com/bridgecrewio/checkov
 
-`python3.9 -m pip install checkov`{{execute}}
 
-`cd ~; checkov -d mytf`{{exec}}
+Me sure to be in your terraform directory
 
-Or run it through dock:
+`cd ~\mytf`{{exec}}
 
 ```bash
 docker run -v $(pwd):/tf bridgecrew/checkov -d /tf
-```
+```{{exec}}
 
 This command mounts the current directory (`$(pwd)`) as a volume inside the container and runs Checkov (`bridgecrew/checkov`) on the mounted directory (`/tf`). This allows Checkov to scan the Terraform files in the current directory and provide the analysis results.
 
@@ -237,6 +224,10 @@ WIP looks like now part of trivy - test
 lets generate a terraform graph
 
 we'll need to inside a package `apt install graphviz -y`{{execute}}
+
+We'll first dump out the json graph, and convert to a graphic
+
+`terraform graph`{{execute}}
 
 `terraform graph | dot -Tpng > graph.png`{{execute}}
 

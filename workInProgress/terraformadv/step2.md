@@ -88,7 +88,9 @@ add a locals.tf file, now how we imported a single item, vs the whole object:
 
 
 
-# console
+# console WIP move to step 3 
+
+Merge the below into tf imedicate lab
 
 https://prefetch.net/blog/2020/04/27/using-the-terraform-console-to-debug-interpolation-syntax/  <= way out of date
 
