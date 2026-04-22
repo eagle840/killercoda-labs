@@ -22,28 +22,37 @@ Start a postgress database to store the terraform backend.
 
 
 
-## Using tfenv to control tf versioning
+## Using tenv to control tf versioning
 
-Instead of installing terraform directly, we'll install a helper tool 'tfenv'
-
-https://github.com/tfutils/tfenv
-
-`git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv`{{exec}}
-
-`echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> ~/.bash_profile`{{exec}}
-
-`ln -s ~/.tfenv/bin/* /usr/local/bin`{{exec}}
-
-`tfenv`{{exec}}
-
-`tfenv list-remote | grep 1.3`{{exec}}
+Instead of installing terraform directly, we'll install a helper tool 'tenv'
 
 
-`tfenv install 1.3.9`{{exec}}
+https://github.com/tofuutils/tenv
 
-`tfenv use 1.3.9`{{exec}}
+```
+LATEST_VERSION=$(curl --silent https://api.github.com/repos/tofuutils/tenv/releases/latest | jq -r .tag_name)
+curl -O -L "https://github.com/tofuutils/tenv/releases/latest/download/tenv_${LATEST_VERSION}_amd64.deb"
+sudo dpkg -i "tenv_${LATEST_VERSION}_amd64.deb"
+```{{exec}}
+
+`tenv --help`{{exec}}
+
+lets lets off the available terraform versions:
+
+`tenv tf list-remote`{{exec}}
+
+and install 1.14.9 and use it@
+
+
+`tenv tf install 1.14.9`{{exec}}
+
+`tenv tf use 1.14.9`{{exec}}
 
 `terraform version`{{exec}}
+
+Lets move over to our terraform project
+
+`cd mytf`{{exec}}
 
 
 ## setting debug level
@@ -68,6 +77,8 @@ We'll be using some 3rd party tools, to improve the tf experience/process, for e
 https://github.com/shuaibiyy/awesome-terraform
 
 Many of the tools use python, so lets update that first:
+
+WIP SKILL THIS And goto the docker version of checkov
 
 ```
 sudo apt update
@@ -98,6 +109,8 @@ This command mounts the current directory (`$(pwd)`) as a volume inside the cont
 
 ### tftui - https://github.com/idoavrah/terraform-tui
 
+WIP Looks like this is abondoned
+
 tftui is a simple gui for exploring terraform state.
 
 `python3.9 -m pip install --upgrade tftui`{{exec}}
@@ -107,6 +120,8 @@ tftui is a simple gui for exploring terraform state.
 TFSec is a command-line tool that scans Terraform code to detect security vulnerabilities and provide recommendations for improving the security posture of your infrastructure-as-code.
 
 https://github.com/aquasecurity/tfsec
+
+WIP looks like now part of trivy - test
 
 `cd ~/mytf`{{exec}}
 
