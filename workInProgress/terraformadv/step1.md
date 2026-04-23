@@ -12,25 +12,43 @@ Since this is for training and testing, we’ll use Vault’s **Development Mode
 
 Run the following command to start Vault. We will set a static "Root Token" so you don’t have to hunt through logs for a random string.
 
+Docker command alter to run on this system (not for production!)
+
 ```
 docker run -d \
-  --name vault-dev \
-  --cap-add=IPC_LOCK \
-  -p 8200:8200 \
-  -e 'VAULT_DEV_ROOT_TOKEN_ID=learn-token' \
-  -e 'VAULT_ADDR=http://0.0.0.0:8200' \
-  hashicorp/vault
-```{{copy}}
+    --name vault-dev \
+    -p 8200:8200 \
+    -e 'SKIP_SETCAP=true' \
+    -e 'VAULT_DEV_ROOT_TOKEN_ID=learn-token' \
+    -e 'VAULT_LOCAL_CONFIG={"disable_mlock": true}' \
+    -e 'VAULT_ADDR=http://0.0.0.0:8200' \
+    hashicorp/vault
+```{{exec}}
+
+
+
 
 #### Check if it's working:
-1.  **Browser:** Navigate to `http://localhost:8200`. Sign in with the token `learn-token`.
-2.  **Terminal:** Run `curl http://localhost:8200/v1/sys/health`. You should get a JSON response with `"sealed": false`.
+1.  **Browser:** Navigate to `http://localhost:8200` [SITE]({{TRAFFIC_HOST1_8200}}). Sign in with the token `learn-token`.
+2.  **Terminal:** Run `curl http://localhost:8200/v1/sys/health`{exec}. You should get a JSON response with `"sealed": false`.
 
 ---
 
 ### Phase 2: Prepare the "Infrastructure"
 Since you already have Postgres running, we need to ensure it has a database for Terraform to use. Connect to your Postgres instance and run:
 
+[ACCESS Adminer DB admin]({{TRAFFIC_HOST1_8088}})
+
+login details:
+
+- System	:PostgreSQL
+- Server	:postgres1
+- Username	:root
+- Password	:1234
+- Database	:tfstate
+
+
+WIP: i believe the db is already created - just no tables yet
 ```sql
 CREATE DATABASE terraform_state;
 ```
@@ -47,7 +65,7 @@ terraform {
   # 1. State Storage in Postgres
   backend "pg" {
     # Replace with your actual Postgres credentials/IP
-    conn_str = "postgres://postgres:password@localhost:5432/terraform_state?sslmode=disable"
+    conn_str = "postgres://root:1234@localhost/tfstate?sslmode=disable"
   }
 
   required_providers {
