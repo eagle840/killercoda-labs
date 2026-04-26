@@ -140,3 +140,86 @@ Since you are using **Postgres** and **Vault**, you might have a task called `do
 
 **Would you like to add a "Doctor" or "Pre-check" task to your Taskfile to see this in action?**
 
+---
+
+# logging user/machine
+
+Using Terraform outputs as a "paper trail" is a clever way to track activity, but because Terraform tries to keep the execution environment isolated, you have to "push" that local data into the configuration.
+
+Since your goal is to create an audit log within the Terraform state, here are the two best ways to achieve this.
+
+---
+
+### Method 1: The Environment Variable Strategy (Best Practice)
+This is the most reliable method because it doesn't depend on the OS shell syntax inside your Terraform code. You simply tell Terraform to expect these values.
+
+**1. Define the variables in your `.tf` file:**
+```hcl
+variable "applied_by" {
+  type        = string
+  description = "The OS user who ran the apply"
+  default     = "unknown"
+}
+
+variable "applied_from" {
+  type        = string
+  description = "The machine name where apply was run"
+  default     = "unknown"
+}
+```
+
+**2. Run the apply using environment variables:**
+Terraform automatically picks up variables prefixed with `TF_VAR_`. You can run your apply like this:
+```bash
+export TF_VAR_applied_by=$USER
+export TF_VAR_applied_from=$HOSTNAME
+
+terraform apply
+```
+
+---
+
+### Method 2: The "External" Script (Fully Automated)
+If you don't want to remember to export variables every time, you can use the **External Data Source**. This runs a command on your local machine during the `plan` phase and captures the output.
+
+```hcl
+data "external" "audit_log" {
+  program = ["sh", "-c", <<EOT
+    echo "{\"user\": \"$(whoami)\", \"host\": \"$(hostname)\", \"timestamp\": \"$(date)\"}"
+  EOT
+  ]
+}
+
+output "execution_log" {
+  value = {
+    user      = data.external.audit_log.result.user
+    machine   = data.external.audit_log.result.host
+    applied_at = data.external.audit_log.result.timestamp
+  }
+}
+```
+*Note: This requires a bash-like shell (Linux/Mac). If you are on Windows, you would need to use `powershell` in the `program` block.*
+
+---
+
+### Important Considerations
+
+* **The "State" is the true log:** Remember that these outputs will be saved in your `terraform.tfstate` file. If you are using a remote backend (like S3 or Terraform Cloud), anyone with access to the state can see who ran the last update.
+* **Consistency:** If you run Terraform in a CI/CD pipeline (like GitHub Actions or GitLab CI), Method 2 will return the name of the **runner agent** (e.g., `runner-user` on `gh-worker-v2`), not your personal name.
+* **Sensitive Data:** Be careful not to log sensitive environment info (like IP addresses or internal file paths) if your state file isn't strictly encrypted and protected.
+
+### A Better Alternative for Auditing?
+If you are doing this for security or compliance, most teams prefer **Resource Tagging**. You can apply these variables as tags to your actual infrastructure (like an EC2 instance or an S3 bucket):
+
+```hcl
+resource "aws_instance" "example" {
+  # ... other config ...
+  tags = {
+    LastAppliedBy = var.applied_by
+    DeployedFrom  = var.applied_from
+  }
+}
+```
+
+This ensures that even if you look at the cloud console months later, you know exactly whose machine "owned" that deployment.
+

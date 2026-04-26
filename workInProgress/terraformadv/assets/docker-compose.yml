@@ -6,19 +6,34 @@ services:
         image: postgres
         environment:
             POSTGRES_USER: root
-            POSTGRES_PASSWORD: 1234
+            POSTGRES_PASSWORD: '1234'
             POSTGRES_DB: tfstate
         ports:
-        - 5432:5432
+            - 5432:5432
         networks:
-          - frontend
+            - frontend
         
     admin:
         image: adminer
         ports:
-        - 8088:8080
+            - 8088:8080
         networks:
-          - frontend
+            - frontend
+
+    vault-dev:
+        image: hashicorp/vault
+        container_name: vault-dev
+        ports:
+            - 8200:8200
+        environment:
+            SKIP_SETCAP: 'true'
+            VAULT_DEV_ROOT_TOKEN_ID: 'learn-token'
+            VAULT_LOCAL_CONFIG: '{"disable_mlock": true}'
+            VAULT_ADDR: 'http://0.0.0.0:8200'
+        networks:
+            - frontend
+        cap_add:
+            - IPC_LOCK
 
 networks:
   frontend:

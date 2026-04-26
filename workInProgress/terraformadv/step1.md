@@ -4,33 +4,43 @@
 Start a postgress database to store the terraform backend.   
 `docker-compose up -d`{{exec}}
 
-## WIP fold this section into the docker compose.
 
-Since this is for training and testing, we’ll use Vault’s **Development Mode**. This is perfect for learning because it starts unsealed, runs in-memory, and gives you a UI immediately.
+While that sets up:
 
-### Phase 1: Setup Vault in Docker
+## Using tenv to control tf versioning
 
-Run the following command to start Vault. We will set a static "Root Token" so you don’t have to hunt through logs for a random string.
+Instead of installing terraform directly, we'll install a helper tool 'tenv'
 
-Docker command alter to run on this system (not for production!)
+
+https://github.com/tofuutils/tenv
 
 ```
-docker run -d \
-    --name vault-dev \
-    -p 8200:8200 \
-    -e 'SKIP_SETCAP=true' \
-    -e 'VAULT_DEV_ROOT_TOKEN_ID=learn-token' \
-    -e 'VAULT_LOCAL_CONFIG={"disable_mlock": true}' \
-    -e 'VAULT_ADDR=http://0.0.0.0:8200' \
-    hashicorp/vault
+LATEST_VERSION=$(curl --silent https://api.github.com/repos/tofuutils/tenv/releases/latest | jq -r .tag_name)
+curl -O -L "https://github.com/tofuutils/tenv/releases/latest/download/tenv_${LATEST_VERSION}_amd64.deb"
+sudo dpkg -i "tenv_${LATEST_VERSION}_amd64.deb"
 ```{{exec}}
 
+`tenv --help`{{exec}}
 
+lets lets off the available terraform versions:
+
+`tenv tf list-remote`{{exec}}
+
+and install 1.14.9 and use it@
+
+
+`tenv tf install 1.14.9`{{exec}}
+
+`tenv tf use 1.14.9`{{exec}}
+
+`terraform version`{{exec}}
+
+# Confirm 
 
 
 #### Check if it's working:
 1.  **Browser:** Navigate to `http://localhost:8200` [SITE]({{TRAFFIC_HOST1_8200}}). Sign in with the token `learn-token`.
-2.  **Terminal:** Run `curl http://localhost:8200/v1/sys/health`{exec}. You should get a JSON response with `"sealed": false`.
+2.  **Terminal:** Run `curl http://localhost:8200/v1/sys/health`{{exec}}. You should get a JSON response with `"sealed": false`.
 
 ---
 
@@ -84,7 +94,7 @@ provider "vault" {
 
 # Enable KV engine (usually disabled by default in fresh builds)
 resource "vault_mount" "kvv2" {
-  path        = "secret"
+  path        = "mysecret"
   type        = "kv-v2"
   description = "My local secret store"
 }
@@ -109,8 +119,8 @@ resource "vault_kv_secret_v2" "example" {
     *If successful, check your Postgres `terraform_state` database. You’ll see a new table named `terraform_remote_state`.*
 
 2.  **Plan & Apply:**
- `terraform apply`{{exec}}  
-    *Type `yes` when prompted.*
+ `terraform apply -y`{{exec}}  
+
 
 3.  **Verify in Vault:**
     Go back to your browser at `http://localhost:8200`. Click on **Secrets** -> **secret/** -> **test-creds**. You should see your username and password stored securely.
@@ -145,33 +155,7 @@ Does your Postgres instance use a custom port or a specific schema I should acco
 
 
 
-## Using tenv to control tf versioning
 
-Instead of installing terraform directly, we'll install a helper tool 'tenv'
-
-
-https://github.com/tofuutils/tenv
-
-```
-LATEST_VERSION=$(curl --silent https://api.github.com/repos/tofuutils/tenv/releases/latest | jq -r .tag_name)
-curl -O -L "https://github.com/tofuutils/tenv/releases/latest/download/tenv_${LATEST_VERSION}_amd64.deb"
-sudo dpkg -i "tenv_${LATEST_VERSION}_amd64.deb"
-```{{exec}}
-
-`tenv --help`{{exec}}
-
-lets lets off the available terraform versions:
-
-`tenv tf list-remote`{{exec}}
-
-and install 1.14.9 and use it@
-
-
-`tenv tf install 1.14.9`{{exec}}
-
-`tenv tf use 1.14.9`{{exec}}
-
-`terraform version`{{exec}}
 
 Lets move over to our terraform project
 
