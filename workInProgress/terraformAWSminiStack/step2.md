@@ -20,6 +20,16 @@ rm -rf awscliv2.zip ./aws
 aws --version
 ```
 
+`curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"`{{exec}}
+
+`unzip awscliv2.zip`{{exec}}
+
+`sudo ./aws/install`{{exec}}
+
+`rm -rf awscliv2.zip ./aws`{{exec}}
+
+`aws --version`{{exec}}
+
 ### 2. Configure for MiniStack
 Once installed, the CLI defaults to looking for real AWS servers. You need to "trick" it into looking at your local MiniStack container. You have two ways to do this:
 
@@ -36,18 +46,18 @@ If you don't want to go through the interactive prompt, just run this:
 export AWS_ACCESS_KEY_ID=test
 export AWS_SECRET_ACCESS_KEY=test
 export AWS_DEFAULT_REGION=us-east-1
-```
+```{{copy}}
 
 ### 3. Testing the Connection
 Now that you have both MiniStack (from your Docker Compose) and the CLI ready, try to create your first bucket:
 
 ```bash
 aws --endpoint-url=http://localhost:4566 s3 mb s3://my-first-bucket
-```
+```{{exec}}
 
 > **Pro-Tip for Killercoda:** Typing `--endpoint-url=http://localhost:4566` every time is annoying. You can create an alias in your `.bashrc` so you only have to type `awslocal`:
 > 
 > ```bash
 > alias awslocal='aws --endpoint-url=http://localhost:4566'
-> ```
+> ```{{exec}}
 > Now you can just run: `awslocal s3 ls`
