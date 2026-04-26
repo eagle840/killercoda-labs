@@ -1,0 +1,26 @@
+services:
+  ministack:
+    image: ministackorg/ministack:latest
+    container_name: ministack_main
+    ports:
+      - "4566:4566"            # The single entry point for all 45+ services
+    environment:
+      - LOG_LEVEL=INFO         # Options: DEBUG, INFO, WARNING, ERROR
+      - PERSIST_STATE=1        # Saves metadata (Buckets, Queues, etc.)
+      - S3_PERSIST=1           # Saves actual S3 file content
+      - LAMBDA_EXECUTOR=docker # Runs Lambdas in real containers
+      - DOCKER_NETWORK=lab_net # Important for Lambda-to-Service communication
+      - MINISTACK_REGION=us-east-1
+    volumes:
+      # Allows MiniStack to spin up Lambda/RDS sidecar containers
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Persistent storage for your data
+      - ./ministack_data:/tmp/ministack
+      # Setup scripts (runs automatically on startup)
+      - ./init-scripts:/etc/localstack/init/ready.d
+    networks:
+      - lab_net
+
+networks:
+  lab_net:
+    driver: bridge

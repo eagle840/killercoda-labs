@@ -1,0 +1,41 @@
+https://www.youtube.com/watch?v=3762F8PVXWc
+Shifting Terraform Configuration Security Left
+
+
+section on terraform logging
+
+section on terraform 'dynamic blocks`
+
+section on using different terraform versions at the same time
+
+terraform provisions - local and remote
+
+
+https://docs.microsoft.com/en-us/azure/developer/terraform/create-base-template-using-yeoman
+
+
+https://spacelift.io/blog/terraform-tools
+
+OLD CODE:
+
+
+#############
+tftui - https://github.com/idoavrah/terraform-tui
+
+- need python 3.9
+
+```
+udo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install python3.9
+python3.9 --version 
+```{{exec}}
+
+python3.9 -m pip install --upgrade tftui
+
+#############
+
+terraform rover
+https://github.com/im2nguyen/rover
