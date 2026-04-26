@@ -1,5 +1,7 @@
 blank# terraform
 
+`nano main.tf`{{exec}}
+
 ```
 terraform {
   required_providers {
@@ -67,5 +69,11 @@ output "secret_arn" {
   value = aws_secretsmanager_secret.db_vault.arn
 }
 
-```
+```{{copy}}
+
+`terraform init`{{exec}}
+
+`terraform plan`{{exec}}
+
+`terraform apply`{{exec}}
 

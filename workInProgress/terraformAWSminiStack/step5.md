@@ -11,6 +11,11 @@ Since this is for a lab, I'll show you the **Inline** method first because it's 
 Create a new folder called `lambda-lab` and put this `lambda-template.yaml` inside it.
 
 **`lambda-lab/lambda-template.yaml`**
+
+`md lambda-lab`{{exec}}
+
+`nano lambda-template.yml`{{exec}}
+
 ```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Simple Inline Lambda Lab
@@ -59,7 +64,7 @@ awslocal cloudformation deploy \
     --template-file lambda-lab/lambda-template.yaml \
     --stack-name lambda-stack \
     --capabilities CAPABILITY_IAM
-```
+```{{exec}}
 
 ---
 
@@ -70,12 +75,12 @@ If your code is in a separate file (e.g., `index.py`), you need to zip it and up
     ```bash
     echo "def handler(event, context): return {'body': 'Zip deploy works!'}" > index.py
     zip function.zip index.py
-    ```
+    ```{{exec}}
 
 2.  **Upload to your S3 bucket:** (Using the bucket we created earlier)
     ```bash
     awslocal s3 cp function.zip s3://killercoda-lab-storage/v1/function.zip
-    ```
+    ```{{exec}}
 
 3.  **Update your template:**
     Instead of `ZipFile: |`, change the `Code` block in your YAML to:
@@ -93,12 +98,12 @@ Once deployed, you can trigger it directly from the CLI to see the output.
 **Invoke the function:**
 ```bash
 awslocal lambda invoke --function-name hello-killercoda output.json
-```
+```{{exec}}
 
 **View the response:**
 ```bash
 cat output.json
-```
+```{{exec}}
 
 ### Housekeeping for Lambdas
 * **Logs:** In MiniStack, your Lambda logs aren't just in the container logs; they go to **CloudWatch Logs**. You can see them with:
@@ -109,6 +114,6 @@ cat output.json
 * **Cleanup:** If you want to delete the whole stack and the function:
     ```bash
     awslocal cloudformation delete-stack --stack-name lambda-stack
-    ```
+    ```{{exec}}
 
 **Which method fits your lab better?** Inline is great for "Coding 101," but the S3 method is better if you're teaching "CI/CD and Deployment Pipelines."
