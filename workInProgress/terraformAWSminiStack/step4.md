@@ -1,4 +1,4 @@
-blank# terraform
+# terraform
 
 `nano main.tf`{{exec}}
 
@@ -76,4 +76,8 @@ output "secret_arn" {
 `terraform plan`{{exec}}
 
 `terraform apply`{{exec}}
+
+`terraform show`{{exec}}
+
+`terraform destroy`{{exec}}
 

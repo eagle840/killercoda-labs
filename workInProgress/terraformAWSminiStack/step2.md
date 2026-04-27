@@ -60,4 +60,4 @@ aws --endpoint-url=http://localhost:4566 s3 mb s3://my-first-bucket
 > ```bash
 > alias awslocal='aws --endpoint-url=http://localhost:4566'
 > ```{{exec}}
-> Now you can just run: `awslocal s3 ls`
+> Now you can just run: `awslocal s3 ls`{{exec}}

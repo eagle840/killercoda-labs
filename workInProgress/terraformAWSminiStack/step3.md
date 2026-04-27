@@ -5,7 +5,7 @@ Yes, CloudFormation works excellently with MiniStack. Since MiniStack is "drop-i
 In 2026, MiniStack uses a "Modern Engine" that handles the same YAML or JSON templates you'd use in production.
 
 ### 1. The CloudFormation Template (`template.yaml`)
-Create a file named `template.yaml`. This template mirrors your Terraform setup: an S3 bucket and a Secrets Manager secret.
+Create a file named `template.yaml`{{copy}}. This template mirrors your Terraform setup: an S3 bucket and a Secrets Manager secret.
 
 ```yaml
 AWSTemplateFormatVersion: '2010-09-09'
@@ -47,7 +47,7 @@ Outputs:
     Value: !Ref LabBucket
   SecretARN:
     Value: !Ref AppSecretVault
-```
+```{{copy}}
 
 ---
 
@@ -60,7 +60,7 @@ aws --endpoint-url=http://localhost:4566 \
     cloudformation deploy \
     --stack-name my-lab-stack \
     --template-file template.yaml
-```
+```{{exec}}
 
 ### 3. Verifying the Deployment
 CloudFormation in MiniStack isn't just a "mock"—it actually creates the underlying resources. You can check the stack status and the resources it created:
@@ -68,12 +68,12 @@ CloudFormation in MiniStack isn't just a "mock"—it actually creates the underl
 **Check Stack Status:**
 ```bash
 aws --endpoint-url=http://localhost:4566 cloudformation describe-stacks --stack-name my-lab-stack
-```
+```{{exec}}
 
 **Check the Bucket:**
 ```bash
 aws --endpoint-url=http://localhost:4566 s3 ls
-```
+```{{exec}}
 
 ---
 
@@ -89,7 +89,6 @@ If you find yourself doing this a lot in Killercoda, remember to set that alias 
 Then your command becomes much cleaner:
 `awslocal cloudformation deploy --stack-name my-stack --template-file template.yaml`
 
-Would you like to see how to integrate a **Lambda function** into this CloudFormation template next?
 ---
 
 
@@ -107,15 +106,15 @@ Before changing anything, you need to see what exists in your local environment.
 * **List all stacks:**
   ```bash
   awslocal cloudformation list-stacks --stack-status-filter CREATE_COMPLETE ROLLBACK_COMPLETE
-  ```
+  ```{{exec}}
 * **Get stack details (Outputs & Status):**
   ```bash
   awslocal cloudformation describe-stacks --stack-name lambda-stack
-  ```
+  ```{{exec}}
 * **List specific resources in a stack (S3 Buckets, IAM Roles, etc):**
   ```bash
   awslocal cloudformation list-stack-resources --stack-name lambda-stack
-  ```
+  ```{{exec}}
 
 ### 2. Updating Your Stack
 If you change your `lambda-template.yaml` (e.g., changing the memory limit or adding a new secret), use the `deploy` command again. CloudFormation is smart enough to perform an **Update** instead of a new **Create**.
@@ -126,7 +125,7 @@ If you change your `lambda-template.yaml` (e.g., changing the memory limit or ad
       --template-file lambda-lab/lambda-template.yaml \
       --stack-name lambda-stack \
       --capabilities CAPABILITY_IAM
-  ```
+  ```{{exec}}
 
 ### 3. Troubleshooting & Recovery
 Sometimes a deployment fails (e.g., a typo in your YAML). You need to see the "Events" to know why.
@@ -134,11 +133,11 @@ Sometimes a deployment fails (e.g., a typo in your YAML). You need to see the "E
 * **View deployment logs/events:**
   ```bash
   awslocal cloudformation describe-stack-events --stack-name lambda-stack
-  ```
+  ```{{exec}}
 * **Retrieve the original template from the stack:**
   ```bash
   awslocal cloudformation get-template --stack-name lambda-stack
-  ```
+  ```{{exec}}
 
 ### 4. Destruction (Housekeeping)
 When the lab is over or you want to start fresh, delete the resources to free up MiniStack's memory.
@@ -146,13 +145,13 @@ When the lab is over or you want to start fresh, delete the resources to free up
 * **Delete the stack:**
   ```bash
   awslocal cloudformation delete-stack --stack-name lambda-stack
-  ```
+  ```{{exec}}
   *(Note: This doesn't return an error if it succeeds; it just starts the deletion process in the background.)*
 
 * **Wait for deletion to finish:**
   ```bash
   awslocal cloudformation wait stack-delete-complete --stack-name lambda-stack
-  ```
+  ```{{exec}}
 
 ---
 
@@ -163,6 +162,6 @@ If you want to verify the resource exists outside of CloudFormation's "logic," u
 # CloudFormation calls it 'MyHelloFunction' (Logical ID)
 # But what is its real name in the Lambda service?
 awslocal lambda list-functions
-```
+```{{exec}}
 
 Since you're running this in **Killercoda**, remember that these commands only work while the MiniStack container is up. If you restart the container without a volume mount, these "stacks" will vanish from the internal database!
