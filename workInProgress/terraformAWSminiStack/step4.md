@@ -1,4 +1,8 @@
-# terraform
+# Terraform
+
+Let use Terraform to create some resources
+
+`cd ~ ; mkdir tf ; cd tf`{{exec}}
 
 `nano main.tf`{{exec}}
 
@@ -78,6 +82,10 @@ output "secret_arn" {
 `terraform apply`{{exec}}
 
 `terraform show`{{exec}}
+
+`awslocal s3 ls`{{exec}}
+
+`awslocal kms list-keys`{{exec}}
 
 `terraform destroy`{{exec}}
 

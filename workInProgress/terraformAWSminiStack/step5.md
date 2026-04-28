@@ -58,7 +58,7 @@ Resources:
 Outputs:
   FunctionName:
     Value: !Ref MyHelloFunction
-```
+```{{copy}}
 
 **Deploy it:**
 ```bash
@@ -90,7 +90,7 @@ If your code is in a separate file (e.g., `index.py`), you need to zip it and up
     Code:
       S3Bucket: killercoda-lab-storage
       S3Key: v1/function.zip
-    ```
+    ```{{copy}}
 
 ---
 
@@ -119,10 +119,10 @@ to troubleshoot
 
 ### Housekeeping for Lambdas
 * **Logs:** In MiniStack, your Lambda logs aren't just in the container logs; they go to **CloudWatch Logs**. You can see them with:
-    ```bash
-    awslocal logs describe-log-groups
-    awslocal logs tail /aws/lambda/hello-killercoda
-    ```
+    `awslocal logs describe-log-groups`{{exec}}
+    
+    `awslocal logs tail /aws/lambda/hello-killercoda`{{exec}}
+    
 * **Cleanup:** If you want to delete the whole stack and the function:
     ```bash
     awslocal cloudformation delete-stack --stack-name lambda-stack

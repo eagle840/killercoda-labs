@@ -6,7 +6,7 @@ In 2026, MiniStack uses a "Modern Engine" that handles the same YAML or JSON tem
 
 ### 1. The CloudFormation Template (`template.yaml`)
 
-`mkdir firststack ; cd firststack`{{exec}}
+`cd ~ ; mkdir firststack ; cd firststack`{{exec}}
 
 Create a file named `template.yaml`{{copy}}. This template mirrors your Terraform setup: an S3 bucket and a Secrets Manager secret.
 
@@ -114,21 +114,27 @@ Before changing anything, you need to see what exists in your local environment.
   ```{{exec}}
 * **Get stack details (Outputs & Status):**
   ```bash
-  awslocal cloudformation describe-stacks --stack-name lambda-stack
+  awslocal cloudformation describe-stacks --stack-name my-lab-stack
   ```{{exec}}
 * **List specific resources in a stack (S3 Buckets, IAM Roles, etc):**
   ```bash
-  awslocal cloudformation list-stack-resources --stack-name lambda-stack
+  awslocal cloudformation list-stack-resources --stack-name my-lab-stack
   ```{{exec}}
 
 ### 2. Updating Your Stack
 If you change your `lambda-template.yaml` (e.g., changing the memory limit or adding a new secret), use the `deploy` command again. CloudFormation is smart enough to perform an **Update** instead of a new **Create**.
 
+eg, update line 33 to
+
+```yaml
+ SecretString: '{"api_key":"CFN_SECRET_12345","mysecret":"mysupersecret"}'
+```{{copy}}
+
 * **Update existing stack:**
   ```bash
   awslocal cloudformation deploy \
-      --template-file lambda-lab/lambda-template.yaml \
-      --stack-name lambda-stack \
+      --template-file lambda-template.yaml \
+      --stack-name my-lab-stack \
       --capabilities CAPABILITY_IAM
   ```{{exec}}
 
@@ -137,11 +143,11 @@ Sometimes a deployment fails (e.g., a typo in your YAML). You need to see the "E
 
 * **View deployment logs/events:**
   ```bash
-  awslocal cloudformation describe-stack-events --stack-name lambda-stack
+  awslocal cloudformation describe-stack-events --stack-name my-lab-stack
   ```{{exec}}
 * **Retrieve the original template from the stack:**
   ```bash
-  awslocal cloudformation get-template --stack-name lambda-stack
+  awslocal cloudformation get-template --stack-name my-lab-stack
   ```{{exec}}
 
 ### 4. Destruction (Housekeeping)
@@ -149,13 +155,13 @@ When the lab is over or you want to start fresh, delete the resources to free up
 
 * **Delete the stack:**
   ```bash
-  awslocal cloudformation delete-stack --stack-name lambda-stack
+  awslocal cloudformation delete-stack --stack-name my-lab-stack
   ```{{exec}}
   *(Note: This doesn't return an error if it succeeds; it just starts the deletion process in the background.)*
 
 * **Wait for deletion to finish:**
   ```bash
-  awslocal cloudformation wait stack-delete-complete --stack-name lambda-stack
+  awslocal cloudformation wait stack-delete-complete --stack-name my-lab-stack
   ```{{exec}}
 
 ---

@@ -14,10 +14,10 @@ When ready
 Once you run `docker compose up -d`, you can verify your "Key Vault" (Secrets Manager) and S3 are ready by running:
 ```bash
 curl http://localhost:4566/_ministack/health | jq
-```
+```{{exec}}
 
 
-While that sets up open a new tab an install terraform and AWS CLI
+While that's running lets up open a new tab and install terraform and AWS CLI
 
 ## Using tenv to control tf versioning
 
@@ -47,7 +47,9 @@ and install 1.14.9 and use it@
 
 `terraform version`{{exec}}
 
-# AWS `curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"`{{exec}}
+## Install AWS CLI 
+
+`curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"`{{exec}}
 
 `unzip awscliv2.zip`{{exec}}
 
@@ -74,7 +76,7 @@ If you don't want to go through the interactive prompt, just run this:
 export AWS_ACCESS_KEY_ID=test
 export AWS_SECRET_ACCESS_KEY=test
 export AWS_DEFAULT_REGION=us-east-1
-```{{copy}}
+```{{exec}}
 
 ### 3. Testing the Connection
 Now that you have both MiniStack (from your Docker Compose) and the CLI ready, try to create your first bucket:
