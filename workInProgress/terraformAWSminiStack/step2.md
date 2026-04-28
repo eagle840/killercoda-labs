@@ -1,63 +1,172 @@
-To install the **AWS CLI v2** in your Killercoda environment, you can run the following block of commands. Since Killercoda usually starts you as a user with `sudo` privileges, this will work perfectly.
+# Cloudformation
 
-### 1. Installation Commands
-Copy and paste this into your Killercoda terminal:
+Yes, CloudFormation works excellently with MiniStack. Since MiniStack is "drop-in" compatible, the logic is identical to how you handled Terraform: you just point the AWS CLI to your local endpoint.
 
-```bash
-# 1. Download the latest AWS CLI v2 installer
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+In 2026, MiniStack uses a "Modern Engine" that handles the same YAML or JSON templates you'd use in production.
 
-# 2. Unzip the package (Killercoda usually has unzip pre-installed)
-unzip awscliv2.zip
+### 1. The CloudFormation Template (`template.yaml`)
 
-# 3. Run the installer
-sudo ./aws/install
+`mkdir firststack ; cd firststack`{{exec}}
 
-# 4. Clean up the installer files
-rm -rf awscliv2.zip ./aws
+Create a file named `template.yaml`{{copy}}. This template mirrors your Terraform setup: an S3 bucket and a Secrets Manager secret.
 
-# 5. Verify the installation
-aws --version
-```
+`nano template.yaml`{{exec}}
 
-`curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"`{{exec}}
+```yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Lab infrastructure for S3 and Secrets Manager.
 
-`unzip awscliv2.zip`{{exec}}
+Resources:
+  # 1. The S3 Bucket
+  LabBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: killercoda-cfn-storage
 
-`sudo ./aws/install`{{exec}}
+  # 2. The KMS Key (Optional, but good for "Vault" practice)
+  VaultKey:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: Key for local vault encryption
+      KeyPolicy:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: Enable IAM User Permissions
+            Effect: Allow
+            Principal:
+              AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root'
+            Action: 'kms:*'
+            Resource: '*'
 
-`rm -rf awscliv2.zip ./aws`{{exec}}
+  # 3. The "Vault" (Secrets Manager Secret)
+  AppSecretVault:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: my-cfn-app-vault
+      Description: "Secrets stored via CloudFormation"
+      KmsKeyId: !Ref VaultKey
+      SecretString: '{"api_key":"CFN_SECRET_12345"}'
 
-`aws --version`{{exec}}
-
-### 2. Configure for MiniStack
-Once installed, the CLI defaults to looking for real AWS servers. You need to "trick" it into looking at your local MiniStack container. You have two ways to do this:
-
-**Option A: The "Dummy" Configuration (Recommended for Labs)**
-Run `aws configure` and enter these values:
-* **AWS Access Key ID**: `test`
-* **AWS Secret Access Key**: `test`
-* **Default region name**: `us-east-1`
-* **Default output format**: `json`
-
-**Option B: The "One-Liner" Export**
-If you don't want to go through the interactive prompt, just run this:
-```bash
-export AWS_ACCESS_KEY_ID=test
-export AWS_SECRET_ACCESS_KEY=test
-export AWS_DEFAULT_REGION=us-east-1
+Outputs:
+  BucketName:
+    Value: !Ref LabBucket
+  SecretARN:
+    Value: !Ref AppSecretVault
 ```{{copy}}
 
-### 3. Testing the Connection
-Now that you have both MiniStack (from your Docker Compose) and the CLI ready, try to create your first bucket:
+---
 
+### 2. Deploying to MiniStack
+To deploy this, you use the standard `aws cloudformation deploy` command, but you must include the `--endpoint-url`.
+
+**Run this in your terminal:**
 ```bash
-aws --endpoint-url=http://localhost:4566 s3 mb s3://my-first-bucket
+aws --endpoint-url=http://localhost:4566 \
+    cloudformation deploy \
+    --stack-name my-lab-stack \
+    --template-file template.yaml
 ```{{exec}}
 
-> **Pro-Tip for Killercoda:** Typing `--endpoint-url=http://localhost:4566` every time is annoying. You can create an alias in your `.bashrc` so you only have to type `awslocal`:
-> 
-> ```bash
-> alias awslocal='aws --endpoint-url=http://localhost:4566'
-> ```{{exec}}
-> Now you can just run: `awslocal s3 ls`{{exec}}
+### 3. Verifying the Deployment
+CloudFormation in MiniStack isn't just a "mock"—it actually creates the underlying resources. You can check the stack status and the resources it created:
+
+**Check Stack Status:**
+```bash
+aws --endpoint-url=http://localhost:4566 cloudformation describe-stacks --stack-name my-lab-stack
+```{{exec}}
+
+**Check the Bucket:**
+```bash
+aws --endpoint-url=http://localhost:4566 s3 ls
+```{{exec}}
+
+---
+
+### Key Differences from Terraform
+* **No "Path Style" Worries:** Unlike the Terraform provider which requires a manual flag for S3 path-style, the CloudFormation engine inside MiniStack handles the internal resource creation automatically. You don't need to configure "path-style" in the YAML template itself.
+* **State Management:** While Terraform keeps a local `.tfstate` file, CloudFormation stores the "state" inside MiniStack itself. If you run `docker-compose down` without persistence, your CloudFormation stack is gone.
+* **Rollbacks:** In the 2026 version of MiniStack, if your YAML has a syntax error, it will actually attempt a "ROLLBACK_COMPLETE," just like real AWS.
+
+### Pro-Tip: The "awslocal" Alias
+If you find yourself doing this a lot in Killercoda, remember to set that alias we talked about earlier:
+`alias awslocal='aws --endpoint-url=http://localhost:4566'`
+
+Then your command becomes much cleaner:
+`awslocal cloudformation deploy --stack-name my-stack --template-file template.yaml`
+
+---
+
+
+# Cloud stack admin
+
+
+
+To manage your CloudFormation stacks in MiniStack, you'll use the same AWS CLI commands you'd use for a real AWS environment—just remember to prepend your endpoint URL.
+
+Assuming you're using the `awslocal` alias we set up earlier (`alias awslocal='aws --endpoint-url=http://localhost:4566'`), here is your administration toolkit:
+
+### 1. Basic Visibility (What's running?)
+Before changing anything, you need to see what exists in your local environment.
+
+* **List all stacks:**
+  ```bash
+  awslocal cloudformation list-stacks --stack-status-filter CREATE_COMPLETE ROLLBACK_COMPLETE
+  ```{{exec}}
+* **Get stack details (Outputs & Status):**
+  ```bash
+  awslocal cloudformation describe-stacks --stack-name lambda-stack
+  ```{{exec}}
+* **List specific resources in a stack (S3 Buckets, IAM Roles, etc):**
+  ```bash
+  awslocal cloudformation list-stack-resources --stack-name lambda-stack
+  ```{{exec}}
+
+### 2. Updating Your Stack
+If you change your `lambda-template.yaml` (e.g., changing the memory limit or adding a new secret), use the `deploy` command again. CloudFormation is smart enough to perform an **Update** instead of a new **Create**.
+
+* **Update existing stack:**
+  ```bash
+  awslocal cloudformation deploy \
+      --template-file lambda-lab/lambda-template.yaml \
+      --stack-name lambda-stack \
+      --capabilities CAPABILITY_IAM
+  ```{{exec}}
+
+### 3. Troubleshooting & Recovery
+Sometimes a deployment fails (e.g., a typo in your YAML). You need to see the "Events" to know why.
+
+* **View deployment logs/events:**
+  ```bash
+  awslocal cloudformation describe-stack-events --stack-name lambda-stack
+  ```{{exec}}
+* **Retrieve the original template from the stack:**
+  ```bash
+  awslocal cloudformation get-template --stack-name lambda-stack
+  ```{{exec}}
+
+### 4. Destruction (Housekeeping)
+When the lab is over or you want to start fresh, delete the resources to free up MiniStack's memory.
+
+* **Delete the stack:**
+  ```bash
+  awslocal cloudformation delete-stack --stack-name lambda-stack
+  ```{{exec}}
+  *(Note: This doesn't return an error if it succeeds; it just starts the deletion process in the background.)*
+
+* **Wait for deletion to finish:**
+  ```bash
+  awslocal cloudformation wait stack-delete-complete --stack-name lambda-stack
+  ```{{exec}}
+
+---
+
+### Pro-Tip: Inspecting the "Physical" Resource
+If you want to verify the resource exists outside of CloudFormation's "logic," use the specific service CLI. For example, if your stack created a Lambda:
+
+```bash
+# CloudFormation calls it 'MyHelloFunction' (Logical ID)
+# But what is its real name in the Lambda service?
+awslocal lambda list-functions
+```{{exec}}
+
+Since you're running this in **Killercoda**, remember that these commands only work while the MiniStack container is up. If you restart the container without a volume mount, these "stacks" will vanish from the internal database!

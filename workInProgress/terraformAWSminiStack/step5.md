@@ -12,7 +12,9 @@ Create a new folder called `lambda-lab` and put this `lambda-template.yaml` insi
 
 **`lambda-lab/lambda-template.yaml`**
 
-`md lambda-lab`{{exec}}
+
+
+`cd ~ ; mkdir lambda-lab ; cd lambda-lab`{{exec}}
 
 `nano lambda-template.yml`{{exec}}
 
@@ -61,7 +63,7 @@ Outputs:
 **Deploy it:**
 ```bash
 awslocal cloudformation deploy \
-    --template-file lambda-lab/lambda-template.yaml \
+    --template-file lambda-template.yml \
     --stack-name lambda-stack \
     --capabilities CAPABILITY_IAM
 ```{{exec}}
@@ -93,6 +95,12 @@ If your code is in a separate file (e.g., `index.py`), you need to zip it and up
 ---
 
 ### How to test your Lambda
+
+`awslocal lambda help`{{exec}}
+
+`awslocal lambda list-functions`{{exec}}
+
+
 Once deployed, you can trigger it directly from the CLI to see the output.
 
 **Invoke the function:**
@@ -104,6 +112,10 @@ awslocal lambda invoke --function-name hello-killercoda output.json
 ```bash
 cat output.json
 ```{{exec}}
+
+to troubleshoot
+
+`awslocal lambda invoke --debug --function-name hello-killercoda output.json`{{exec}}
 
 ### Housekeeping for Lambdas
 * **Logs:** In MiniStack, your Lambda logs aren't just in the container logs; they go to **CloudWatch Logs**. You can see them with:

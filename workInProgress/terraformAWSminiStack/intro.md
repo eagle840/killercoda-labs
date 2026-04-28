@@ -1,4 +1,3 @@
-The third in a serious of Terraform labs, the advanced lab introduces even more advanced topics
-
+Setting up and Using MiniStack (local AWS services)
 
 
