@@ -1,5 +1,124 @@
 # steps
 
+
+
+
+
+
+# Step 2: Complex Data Logic (Loops & Dynamic Blocks)
+
+In production, you rarely hardcode every single attribute. Advanced Terraform users pass complex data objects (like JSON or YAML) into their configurations and use logic to map that data to resources.
+
+In this step, we will transform a raw JSON file into dynamic configuration for a Helm release.
+
+## 1. Prepare the Advanced JSON Data
+
+We want to control our Nginx deployment via an external `vars.json` file. Let's update the existing file with a map of Helm settings.
+
+`nano ~/mytf/vars.json`{{exec}}
+  
+  Replace the contents with this more complex structure:
+  {
+    "app_name": "nginx-advanced",
+    "labels": {
+      "tier": "frontend",
+      "managed-by": "terraform",
+      "team": "devops"
+    },
+    "helm_settings": {
+      "service.type": "NodePort",
+      "replicaCount": "2",
+      "service.port": "80"
+    }
+  }
+
+  `{{copy}}
+
+  2. Implement JSON Parsing and Dynamic Blocks
+
+  Now we need to update main.tf. We will use:
+   1. jsondecode: To read the file.
+   2. for loops: To transform the labels map into a Kubernetes-friendly format.
+   3. dynamic blocks: To iterate over helm_settings and create multiple set blocks inside our Helm resource.
+
+  `nano ~/mytf/main.tf`{{exec}}
+
+  Update the file to match this logic:
+
+```
+   1 locals {
+   2   vars = jsondecode(file("${path.module}/vars.json"))
+   3 }
+   4
+  resource "kubernetes_namespace" "namespace" {
+    metadata {
+      name = local.vars.app_name
+  Using a 'for' loop to generate labels
+      labels = {
+        for k, v in local.vars.labels : k => upper(v)
+      }
+    }
+  }
+
+  resource "helm_release" "nginx_app" {
+    name       = local.vars.app_name
+    repository = "https://charts.bitnami.com/bitnami"
+    chart      = "nginx"
+    namespace  = kubernetes_namespace.namespace.metadata[0].name
+
+  The Dynamic Block: Iterates over the helm_settings map in JSON
+    dynamic "set" {
+      for_each = local.vars.helm_settings
+      content {
+        name  = set.key
+        value = set.value
+      }
+    }
+  }
+
+  ```{{copy}}
+
+  3. Explore Logic in the Terraform Console
+
+  Before applying, let's use the Terraform Console to test our data transformations. This is a critical debugging step for advanced HCL.
+
+  `cd ~/mytf && terraform init`{{exec}}
+
+  Open the console:
+  `terraform console`{{exec}}
+
+  Try these commands to see how Terraform interprets your logic:
+
+  View the decoded JSON object:
+
+  `local.vars`{{copy}}
+
+  Test a 'for' loop to filter labels (only get labels starting with 't'):
+  `{ for k, v in local.vars.labels : k => v if substr(k, 0, 1) == "t" }`{{copy}}
+
+  Calculate the NodePort based on the port in JSON (adding an offset):
+  `tonumber(local.vars.helm_settings["service.port"]) + 30000`{{copy}}
+
+  Type exit to leave the console.
+
+  4. Apply and Validate
+
+  Now, apply the configuration. Notice how Terraform handles the creation of the Namespace and the Helm release simultaneously.
+
+  `terraform apply -auto-approve`{{exec}}
+
+  Validate that the dynamic settings were applied:
+
+  Check the Namespace labels (should be uppercase):
+  `kubectl get ns nginx-advanced --show-labels`{{exec}}
+
+  Check the Helm deployment values:
+
+---
+
+
+
+
 `cd ~\mytf`{{exec}}
 
 ## setup provider
