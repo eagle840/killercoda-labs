@@ -92,6 +92,16 @@ aws --endpoint-url=http://localhost:4566 s3 mb s3://my-first-bucket
 > ```{{exec}}
 > Now you can just run: `awslocal s3 ls`{{exec}}
 
+## Install AWS CDK 
+
+> Documentation: https://docs.aws.amazon.com/cdk/v2/guide/getting-started.html
+
+
+`apt install npm`{{exec}}
+
+`npm install -g aws-cdk`{{exec}}
+
+`cdk --version`{{exec}}
 
 # optional
 
