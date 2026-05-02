@@ -1,6 +1,6 @@
 {
   "title": "WIP - AWS Terraform on Ministack",
-  "description": "Use aws, terraform and ministack (v0.2.01",
+  "description": "Use aws, terraform and ministack (v0.2.2",
   "difficulty": "Advanced",
   "time": "60 minutes",
   "details": {

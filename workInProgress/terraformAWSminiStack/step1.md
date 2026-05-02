@@ -94,16 +94,7 @@ lets make an alias:
 `alias awslocal='aws --endpoint-url=http://localhost:4566'`{{exec}}
 
 
-## Install AWS CDK 
 
-> Documentation: https://docs.aws.amazon.com/cdk/v2/guide/getting-started.html
-
-
-`apt install npm`{{exec}}
-
-`npm install -g aws-cdk`{{exec}} WIP in step 2
-
-`cdk --version`{{exec}}
 
 # optional
 
