@@ -81,16 +81,18 @@ export AWS_DEFAULT_REGION=us-east-1
 ### 3. Testing the Connection
 Now that you have both MiniStack (from your Docker Compose) and the CLI ready, try to create your first bucket:
 
+### Confirm ministack is up
+
+`curl http://localhost:4566/_ministack/health | jq`{{exec}}
+
 ```bash
 aws --endpoint-url=http://localhost:4566 s3 mb s3://my-first-bucket
 ```{{exec}}
 
-> **Pro-Tip for Killercoda:** Typing `--endpoint-url=http://localhost:4566` every time is annoying. You can create an alias in your `.bashrc` so you only have to type `awslocal`:
-> 
-> ```bash
-> alias awslocal='aws --endpoint-url=http://localhost:4566'
-> ```{{exec}}
-> Now you can just run: `awslocal s3 ls`{{exec}}
+lets make an alias:
+
+`alias awslocal='aws --endpoint-url=http://localhost:4566'`{{exec}}
+
 
 ## Install AWS CDK 
 
@@ -99,7 +101,7 @@ aws --endpoint-url=http://localhost:4566 s3 mb s3://my-first-bucket
 
 `apt install npm`{{exec}}
 
-`npm install -g aws-cdk`{{exec}}
+`npm install -g aws-cdk`{{exec}} WIP in step 2
 
 `cdk --version`{{exec}}
 
