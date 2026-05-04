@@ -1,23 +1,21 @@
 # Initial setup
 
+we'll be using Ministack, an AWS emulator
 
-Lets startup the Ministack  
-`docker-compose up -d`{{exec}}
+- try the website for documentation and AWS101 https://ministack.org/
 
 to view docker-compose
 
 `cat docker-compose.yml`{{exec}}
 
-When ready
-
-#### 3. Health Check Command
-Once you run `docker compose up -d`, you can verify your "Key Vault" (Secrets Manager) and S3 are ready by running:
-```bash
-curl http://localhost:4566/_ministack/health | jq
-```{{exec}}
+Lets startup the Ministack  
+`docker-compose up -d`{{exec}}
 
 
-While that's running lets up open a new tab and install terraform and AWS CLI
+
+When ready, open another cli tab and install the tools we'll be using
+
+
 
 ## Using tenv to control tf versioning
 
