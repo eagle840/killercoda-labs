@@ -1,6 +1,6 @@
 {
-  "title": "WIP - AWS Terraform on Ministack",
-  "description": "Use aws, terraform and ministack (v0.2.4)",
+  "title": "WIP - AWS Iac on Ministack",
+  "description": "Use aws, IaC and ministack (v0.3.0)",
   "difficulty": "Advanced",
   "time": "60 minutes",
   "details": {
@@ -52,6 +52,10 @@
       {
         "title": "Step 6",
         "text": "step6.md"
+      },
+      {
+        "title": "Step 7",
+        "text": "step7.md"
       }
     ],
     "intro": {

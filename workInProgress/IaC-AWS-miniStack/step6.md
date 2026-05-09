@@ -156,7 +156,7 @@ The reason you see `ROLLBACK_COMPLETE` at the end of your log is that CloudForma
 
 ---
 
-### IAM
+# IAM  (WIP this isn't sam - perhaps a new step? )
 
 Using **MiniStack** to explore **Identity and Access Management (IAM)** is a brilliant move for local development. Since MiniStack is a lightweight alternative to LocalStack, it allows you to simulate AWS IAM without the fear of accidentally locking yourself out of a real account or racking up costs.
 

@@ -9,7 +9,7 @@
 
 `cd ~ && mkdir hello-cdk && cd hello-cdk`{{exec}}
 
-
+https://github.com/localstack/aws-cdk-local
 
 
 We'll install the AWS CDK and the addon for local.
