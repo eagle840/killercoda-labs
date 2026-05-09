@@ -1,7 +1,5 @@
 # Lambda
 
-WIP remove - Lambda is in the basic lab (besides, your using SAM in this lab)
-
 This is where things get interesting. In a local emulator like MiniStack, you have two ways to deploy Lambda code via CloudFormation:
 
 1.  **Inline Code:** Perfect for small scripts (Python/Node). You write the code directly in the YAML.

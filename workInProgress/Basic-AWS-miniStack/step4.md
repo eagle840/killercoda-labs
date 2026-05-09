@@ -1,0 +1,9 @@
+# STORAGE
+
+## S3
+
+## OTHER?
+
+## RDS (SQL)
+
+## DYNAMO (NOSQL)

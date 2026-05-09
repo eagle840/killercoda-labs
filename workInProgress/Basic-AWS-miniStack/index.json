@@ -1,6 +1,6 @@
 {
-  "title": "WIP - AWS Iac on Ministack",
-  "description": "Use aws, IaC and ministack (v0.3.1)",
+  "title": "WIP - Basic AWS on Ministack",
+  "description": "Use aws on ministack (v0.0.1)",
   "difficulty": "Advanced",
   "time": "60 minutes",
   "details": {
