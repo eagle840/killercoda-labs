@@ -48,7 +48,9 @@ Then, apply it in MiniStack:
 aws --endpoint-url=http://localhost:4566 iam create-policy \
     --policy-name S3ReadOnly \
     --policy-document file://policy.json
+```{{exec}}
 
+```bash
 # Attach it to the user
 aws --endpoint-url=http://localhost:4566 iam attach-user-policy \
     --user-name DevUser \
