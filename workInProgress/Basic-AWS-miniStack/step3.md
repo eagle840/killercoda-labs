@@ -197,6 +197,9 @@ awslocal configure list
 # EC2
 
 
+MINISTACK mocks an EC2 (ie, its just the metadata, not a real instance)
+
+
 In **MiniStack**, EC2 instances are handled using a "Container-as-a-Service" model. Unlike the real AWS cloud where EC2 runs on Xen or Nitro hypervisors, MiniStack emulates the EC2 API by spinning up **Docker containers** on your host machine to represent those "instances."
 
 Here is the breakdown of how they are booted and controlled.
@@ -272,3 +275,99 @@ ssh -p 12862 root@localhost
 | **IP Addresses** | Real VPC Private/Public IPs | Docker Bridge Network IPs |
 | **Persistence** | Durable EBS | Volatile (unless volume mapping is configured) |
 
+
+### ECS
+
+
+To run Nginx on ECS in **MiniStack**, you follow the standard AWS workflow. Unlike EC2, MiniStack **will** actually spawn a real Docker container on your host when you start an ECS task.
+
+Here is the step-by-step process to get Nginx running.
+
+---
+
+### 1. Create an ECS Cluster
+
+First, you need a logical grouping for your services.
+
+```bash
+aws ecs create-cluster --cluster-name my-cluster \
+    --endpoint-url http://localhost:4566
+
+```{{exec}}
+
+### 2. Register a Task Definition
+
+This is the "blueprint" that tells ECS to use the Nginx image and which ports to open. Create a file named `task-def.json`:
+
+```json
+{
+    "family": "nginx-task",
+    "containerDefinitions": [
+        {
+            "name": "web-server",
+            "image": "nginx:latest",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 8080,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true
+        }
+    ]
+}
+
+```{{copy}}
+
+Then register it:
+
+```bash
+aws ecs register-task-definition --cli-input-json file://task-def.json \
+    --endpoint-url http://localhost:4566
+
+```{{exec}}
+
+### 3. Run the Task
+
+Now, tell MiniStack to actually start the container based on that blueprint.
+
+```bash
+aws ecs run-task --cluster my-cluster --task-definition nginx-task \
+    --count 1 --launch-type FARGATE \
+    --network-configuration "awsvpcConfiguration={subnets=[subnet-000000],assignPublicIp=ENABLED}" \
+    --endpoint-url http://localhost:4566
+
+```{{exec}}
+
+*(Note: In MiniStack/LocalStack, the subnet ID doesn't have to exist unless you've strictly configured VPC validation, but `subnet-000000` is the common mock default.)*
+
+---
+
+### 4. Verify it’s working
+
+Now, if you run your original command, you should see the container:
+
+`docker ps`{{exec}}
+
+**What to expect in `docker ps`:**
+You will see a container with a name like `ministack_ecs_...` or a random hash running the `nginx:latest` image.
+
+**Test the Web Server:**
+Since we mapped the container's port 80 to your host's port **8080**, you can simply open your browser or use curl:
+
+```bash
+curl http://localhost:8080
+
+```
+
+You should see the "Welcome to nginx!" HTML response.
+
+---
+
+### Why this works (and EC2 didn't)
+
+* **EC2 in MiniStack:** Is mostly a "metadata mock." It mimics the API so your scripts don't crash, but it doesn't want to eat up your RAM by booting a whole Linux VM for every instance.
+* **ECS in MiniStack:** Is "infrastructure-backed." It recognizes that the whole point of ECS is to manage containers, so it hooks directly into your local Docker engine to pull the image and run it.
+
+**Pro-tip:** If the container doesn't show up, check your MiniStack logs (`docker logs <ministack-container-name>`). It might be failing to pull the `nginx` image from Docker Hub if your internet is spotty or Docker is throttled.
