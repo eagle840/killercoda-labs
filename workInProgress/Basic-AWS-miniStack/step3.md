@@ -19,6 +19,17 @@ Creates a new VPC with a CIDR block.   [AWS Documentation](https://docs.aws.amaz
 awslocal ec2 describe-vpcs
 ```{{exec}}
 
+### Pull the vpc-id
+
+```
+# Fetch the ID using the Name tag
+VPC_ID=$(awslocal ec2 describe-vpcs \
+  --filters "Name=tag:Name,Values=MyVPC" \
+  --query "Vpcs[0].VpcId" --output text)
+```{{exec}}
+
+`echo $VPC_ID`{{exec}}
+
 ### **Modify VPC attributes**
 Enable DNS support and hostnames:
 ```
@@ -159,22 +170,7 @@ awslocal ec2 create-vpc-endpoint \
   --subnet-ids subnet-123
 ```{{exec}}
 
----
 
-## 🧰 Helpful Meta Commands
-
-### **Check your identity**
-```
-awslocal sts get-caller-identity
-```{{exec}}
-Confirms your AWS account and IAM identity.   [AWS Documentation](https://docs.aws.amazon.com/vpc/latest/userguide/getting-started-with-amazon-vpc-using-the-aws-cli.html)
-
-### **Check CLI configuration**
-```
-awslocal configure list
-```{{exec}}
-
-  [AWS Documentation](https://docs.aws.amazon.com/vpc/latest/userguide/getting-started-with-amazon-vpc-using-the-aws-cli.html)
 
 ---
 
@@ -224,12 +220,11 @@ To boot an instance, you use the standard `aws ec2 run-instances` command, but y
 **The Command:**
 
 ```bash
-aws ec2 run-instances \
+awslocal ec2 run-instances \
     --image-id ami-000000 \
     --count 1 \
     --instance-type t2.micro \
-    --key-name my-key \
-    --endpoint-url http://localhost:4566
+    --key-name my-key
 ```{{exec}}
 
 > **Note on AMI IDs:** In MiniStack, the actual ID often doesn't matter unless you've mapped specific Docker images to specific IDs in your config. Usually, a dummy ID like `ami-000000` will trigger a default container boot.
@@ -242,7 +237,7 @@ Once booted, you manage the instances just like you would in production, provide
 
 #### **Checking Status**
 
-`aws ec2 describe-instances --endpoint-url http://localhost:456`{{exec}}
+`awslocal ec2 describe-instances`{{exec}}
 
 #### **Accessing the Instance (SSH Emulation)**
 

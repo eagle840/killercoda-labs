@@ -3,10 +3,40 @@
 
 # IAM
 
-Using **MiniStack** to explore **Identity and Access Management (IAM)** is a brilliant move for local development. Since MiniStack is a lightweight alternative to LocalStack, it allows you to simulate AWS IAM without the fear of accidentally locking yourself out of a real account or racking up costs.
-
 In MiniStack, IAM serves the same purpose as it does in AWS: defining **who** (Users/Roles) can do **what** (Policies) on **which** resources.
 
+
+Lets find out who I am:
+
+`awslocal  sts get-caller-identity`{{exec}}
+
+In AWS Identity hiarchy is set as Org > Root > Account
+
+Lets look at the org we're in: (notance the acount you're in the the last command)
+
+`awslocal organizations describe-organization`{{exec}}
+
+### AWS Configure List: The Essentials
+
+The `aws configure list` command shows the **source** and **value** of your active settings. It’s the fastest way to debug which credentials the CLI is actually using.
+
+**The Output Columns:**
+
+* **Name:** The setting (`access_key`, `secret_key`, `region`).
+* **Value:** The current setting (masked for keys).
+* **Type:** Where it came from (e.g., `env`, `shared-credentials-file`).
+* **Location:** The exact file path or variable source.
+
+**Key Precedence (Top = Highest Priority):**
+
+1. **Command Line Flags** (e.g., `--region us-east-1`)
+2. **Environment Variables** (e.g., `AWS_ACCESS_KEY_ID`)
+3. **Config/Credentials Files** (`~/.aws/config`)
+4. **Container/Instance Metadata** (IAM Roles)
+
+**Lab Note Snippet:**
+
+`awslocal configure list`{{exec}} 
 ---
 
 ## 1. The Core IAM Workflow in MiniStack
@@ -26,6 +56,100 @@ Assuming you have MiniStack running (typically on `http://localhost:4566`), you 
 First, let's create a virtual user within your local environment.
 
 `aws --endpoint-url=http://localhost:4566 iam create-user --user-name DevUser`{{exec}}
+
+---
+
+START WIP
+
+You are exactly right. Because you are using LocalStack (`localhost:4566`), the process is the same as real AWS, but you’ll need to point every command to that endpoint.
+
+To get `DevUser` to assume a role, you need to complete a "security handshake" between the **User** and the **Role**.
+
+---
+
+### Step 1: Create the Role with a "Trust Policy"
+
+The Role needs a policy that says: *"I trust DevUser to wear me."*
+
+1. **Create a file named `trust-policy.json`:**
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": { "AWS": "arn:aws:iam::000000000000:user/DevUser" },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+
+```
+
+
+*(Note: LocalStack usually uses `000000000000` as the default Account ID).*
+2. **Create the role in LocalStack:**
+
+```bash
+    aws --endpoint-url=http://localhost:4566 iam create-role \
+      --role-name "DevRole" \
+      --assume-role-policy-document file://trust-policy.json
+    ```
+
+---
+
+### Step 2: Give the User Permission to Assume the Role
+Now the User needs a policy that says: *"I am allowed to request the DevRole keys."*
+
+1.  **Create a file named `user-policy.json`:**
+    ```json
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": "sts:AssumeRole",
+          "Resource": "arn:aws:iam::000000000000:role/DevRole"
+        }
+      ]
+    }
+    ```
+
+2.  **Attach this policy to your User:**
+    
+```bash
+    aws --endpoint-url=http://localhost:4566 iam put-user-policy \
+      --user-name DevUser \
+      --policy-name AllowAssumeDevRole \
+      --policy-document file://user-policy.json
+    ```
+
+---
+
+### Step 3: Assume the Role
+Now that the "handshake" is configured, you can perform the actual switch.
+
+```bash
+aws --endpoint-url=http://localhost:4566 sts assume-role \
+  --role-arn arn:aws:iam::000000000000:role/DevRole \
+  --role-session-name "LocalStackTest"
+
+```
+
+### The "Why" Behind the Two Policies
+
+It helps to think of it like this:
+
+* **The User Policy** is the User's **permission** to leave their desk.
+* **The Role Trust Policy** is the **lock on the door** of the Role that only opens for that specific User.
+
+If you miss either one, you'll get an `AccessDenied` error. Are you planning to add specific permissions (like S3 or DynamoDB access) to that `DevRole` once you've assumed it?
+
+```
+
+```
+
+WIP END WIP
 
 ### B. Create and Attach a Policy
 Let's say you want this user to only have Read-Only access to S3. You would create a `policy.json` file:
@@ -58,16 +182,6 @@ aws --endpoint-url=http://localhost:4566 iam attach-user-policy \
 ```{{exec}}
 
 ---
-
-## 3. Why Use IAM in MiniStack?
-You might wonder, *"If it's just local, why bother with permissions?"* * **Testing Code Logic:** If your application code uses `boto3` or the AWS SDK, you can test how it handles `AccessDenied` errors by intentionally giving your local "mock" user restricted permissions.
-* **Terraform Validation:** You can run `terraform apply` against MiniStack to ensure your IAM modules are syntactically correct and the ARNs (Amazon Resource Names) are being generated as expected.
-* **Role Assumption:** You can practice **AssumeRole** logic, which is crucial for cross-account access or giving temporary permissions to Lambda functions.
-
-### Quick Tip: The "Magic" Account ID
-By default, MiniStack (like LocalStack) often uses `000000000000` as the default Account ID. When you see ARNs like `arn:aws:iam::000000000000:user/DevUser`, that's your local "mock" account!
-
-Are you planning to use MiniStack primarily for manual CLI testing, or are you trying to integrate it into a CI/CD pipeline with something like Terraform?
 
 
 ## ORG's Roots, OU, and accounts
