@@ -23,4 +23,5 @@ services:
 
 networks:
   lab_net:
+    name: lab_net
     driver: bridge
