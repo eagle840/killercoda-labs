@@ -1,6 +1,6 @@
 {
   "title": "Advanced AWS Scenarios on MiniStack",
-  "description": "IAM, STS, Lambda, and S3 Integration (v0.1.1)",
+  "description": "IAM, STS, Lambda, and S3 Integration (v0.2.0)",
   "difficulty": "Advanced",
   "time": "60 minutes",
   "details": {
