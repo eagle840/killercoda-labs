@@ -1,27 +1,11 @@
 {
-  "title": "WIP - Basic AWS on Ministack",
-  "description": "Use aws on ministack (v0.0.6)",
+  "title": "Advanced AWS Scenarios on MiniStack",
+  "description": "IAM, STS, Lambda, and S3 Integration (v0.1.0)",
   "difficulty": "Advanced",
   "time": "60 minutes",
   "details": {
     "assets":{
       "host01": [
-        {
-          "file": "main.tf",
-          "target": "~/mytf/"
-        },
-        {
-          "file": "vars.json",
-          "target": "~/mytf/"
-        },
-        {
-          "file": "var.tf",
-          "target": "~/mytf/"
-        },
-        {
-          "file": "providers.tf",
-          "target": "~/mytf/"
-        },
         {
           "file": "docker-compose.yml",
           "target": "~/"
@@ -69,6 +53,6 @@
     "uilayout": "terminal"
   },
   "backend": {
-    "imageid": "kubernetes-cluster-running:1.18"
+    "imageid": "ubuntu"
   }
 }
