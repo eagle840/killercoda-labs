@@ -19,7 +19,8 @@ import boto3
 import json
 
 # Important: MiniStack services run on a single endpoint
-MINISTACK_ENDPOINT = os.getenv("AWS_ENDPOINT_URL", "http://localhost:4566")
+# MINISTACK_ENDPOINT = os.getenv("AWS_ENDPOINT_URL", "http://localhost:4566") 
+MINISTACK_ENDPOINT = "http://172.17.0.1:4566"
 
 def lambda_handler(event, context):
     target_role_arn = "arn:aws:iam::000000000000:role/DevRole"
