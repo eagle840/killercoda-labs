@@ -1,0 +1,58 @@
+{
+  "title": "Networking AWS Services on MiniStack",
+  "description": "Introduction to networking on AWS (v0.0.1)",
+  "difficulty": "Beginner",
+  "time": "60 minutes",
+  "details": {
+    "assets":{
+      "host01": [
+        {
+          "file": "docker-compose.yml",
+          "target": "~/"
+        }
+      ]
+    },    
+    "steps": [
+      {
+        "title": "Step 1: Setup",
+        "text": "step1.md"
+      },
+      {
+        "title": "Step 2: IAM & Security",
+        "text": "step2.md"
+      },
+      {
+        "title": "Step 3: Networking & EC2",
+        "text": "step3.md"
+      },
+      {
+        "title": "Step 4: Storage (S3 & RDS)",
+        "text": "step4.md"
+      },
+      {
+        "title": "Step 5: Compute (Lambda)",
+        "text": "step5.md"
+      },
+      {
+        "title": "Step 6: Messaging (SQS & SNS)",
+        "text": "step6.md"
+      },
+      {
+        "title": "Step 7: Monitoring",
+        "text": "step7.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
