@@ -18,9 +18,12 @@ services:
       - ./ministack_data:/tmp/ministack
       # Setup scripts (runs automatically on startup)
       - ./init-scripts:/etc/localstack/init/ready.d
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     networks:
       - lab_net
 
 networks:
   lab_net:
+    name: lab_net
     driver: bridge

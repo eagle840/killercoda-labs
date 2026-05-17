@@ -16,7 +16,9 @@ Lets startup the Ministack
 When ready, open another cli tab and install the tools we'll be using
 
 
-## Install AWS CLI 
+## Install AWS CLI & Tools
+
+`sudo apt update && sudo apt install -y zip jq`{{exec}}
 
 `curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"`{{exec}}
 
@@ -27,6 +29,12 @@ When ready, open another cli tab and install the tools we'll be using
 `rm -rf awscliv2.zip ./aws`{{exec}}
 
 `aws --version`{{exec}}
+
+---
+
+### Networking Note
+MiniStack uses a dedicated Docker network called `lab_net` to allow the Lambda containers it spins up to communicate back to the main service. This is defined in your `docker-compose.yml`.
+
 
 
 ### 2. Configure for MiniStack

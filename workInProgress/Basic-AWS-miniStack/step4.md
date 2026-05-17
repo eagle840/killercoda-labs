@@ -1,9 +1,57 @@
-# STORAGE
+# Storage (S3, RDS, & DynamoDB)
 
-## S3
+AWS provides various storage types: Object (S3), Relational (RDS), and NoSQL (DynamoDB).
 
-## OTHER?
+### 1. S3 (Object Storage)
 
-## RDS (SQL)
+Create a bucket to store your files:
 
-## DYNAMO (NOSQL)
+`awslocal s3 mb s3://lab-data-bucket`{{exec}}
+
+Upload a text file:
+
+`echo "Hello AWS Lab" > hello.txt`{{exec}}
+
+`awslocal s3 cp hello.txt s3://lab-data-bucket/hello.txt`{{exec}}
+
+List bucket contents:
+
+`awslocal s3 ls s3://lab-data-bucket/`{{exec}}
+
+---
+
+### 2. DynamoDB (NoSQL)
+
+Create a simple Table for "Users":
+
+```bash
+awslocal dynamodb create-table \
+    --table-name UsersTable \
+    --attribute-definitions AttributeName=UserId,AttributeType=S \
+    --key-schema AttributeName=UserId,KeyType=HASH \
+    --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+```{{exec}}
+
+List tables:
+
+`awslocal dynamodb list-tables`{{exec}}
+
+---
+
+### 3. RDS (Relational Database)
+
+MiniStack emulates RDS by creating the metadata for a database instance.
+
+```bash
+awslocal rds create-db-instance \
+    --db-instance-identifier lab-db \
+    --db-instance-class db.t3.micro \
+    --engine postgres
+```{{exec}}
+
+Check DB status:
+
+`awslocal rds describe-db-instances --query "DBInstances[*].DBInstanceStatus"`{{exec}}
+
+### Summary
+You've explored **Object**, **NoSQL**, and **Relational** storage. These are the persistent layers of almost every cloud application.
