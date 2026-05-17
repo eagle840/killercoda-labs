@@ -1,14 +1,17 @@
-# Welcome to Basic AWS on MiniStack
+# Welcome to AWS Networking & EC2 on MiniStack
 
-In this lab, you will explore the foundational services of AWS using **MiniStack**, a high-fidelity local emulator.
+In this lab, you will master the foundational networking and compute services of AWS using **MiniStack**, a high-fidelity local emulator.
 
-This environment allows you to practice cloud architecture, deployment, and security without the cost or complexity of a real AWS account.
+Rather than just clicking buttons, you will use the **AWS CLI** to build a professional-grade architecture from the ground up.
 
 ### What you will build:
-*   A secure **IAM** identity.
-*   A virtual network (**VPC**) and **EC2** instance.
-*   Storage layers with **S3**, **RDS**, and **DynamoDB**.
-*   A serverless **Lambda** function.
-*   An asynchronous messaging flow with **SQS** and **SNS**.
+*   **VPC & Subnets**: A secure, isolated network with both Public and Private segments.
+*   **Gateways**: An Internet Gateway for public access and a NAT Gateway for private egress.
+*   **Security Groups**: Fine-grained firewall rules using Security Group Referencing.
+*   **Compute Spectrum**:
+    *   **EC2 Instances** (Metadata Mocks) to validate your network architecture.
+    *   **ECS Containers** (Infrastructure-Backed) to run a functional web server.
+
+This hands-on experience will give you deep insight into how AWS networking actually functions "under the hood."
 
 Let's get started by setting up your local environment!

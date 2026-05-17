@@ -1,0 +1,17 @@
+{
+    "family": "nginx-task",
+    "containerDefinitions": [
+        {
+            "name": "web-server",
+            "image": "nginx:latest",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 8080,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true
+        }
+    ]
+}

@@ -1,45 +1,45 @@
 {
-  "title": "Networking AWS Services on MiniStack",
-  "description": "Introduction to networking on AWS (v0.0.1)",
+  "title": "AWS Networking & EC2 on MiniStack",
+  "description": "Master AWS VPCs, Subnets, and Instances using the MiniStack emulator. (v0.1.0)",
   "difficulty": "Beginner",
-  "time": "60 minutes",
+  "time": "45 minutes",
   "details": {
-    "assets":{
+    "assets": {
       "host01": [
         {
           "file": "docker-compose.yml",
           "target": "~/"
+        },
+        {
+          "file": "task-def.json",
+          "target": "~/"
         }
       ]
-    },    
+    },
     "steps": [
       {
-        "title": "Step 1: Setup",
+        "title": "Environment Setup",
         "text": "step1.md"
       },
       {
-        "title": "Step 2: IAM & Security",
+        "title": "VPC & Subnet Foundations",
         "text": "step2.md"
       },
       {
-        "title": "Step 3: Networking & EC2",
+        "title": "Routing & Internet Access",
         "text": "step3.md"
       },
       {
-        "title": "Step 4: Storage (S3 & RDS)",
+        "title": "Network Security",
         "text": "step4.md"
       },
       {
-        "title": "Step 5: Compute (Lambda)",
+        "title": "Launching EC2 Instances",
         "text": "step5.md"
       },
       {
-        "title": "Step 6: Messaging (SQS & SNS)",
+        "title": "Advanced: Containers with ECS",
         "text": "step6.md"
-      },
-      {
-        "title": "Step 7: Monitoring",
-        "text": "step7.md"
       }
     ],
     "intro": {
