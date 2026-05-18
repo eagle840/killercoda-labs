@@ -1,131 +1,57 @@
-# Lambda
+# Storage (S3, RDS, & DynamoDB)
 
-This is where things get interesting. In a local emulator like MiniStack, you have two ways to deploy Lambda code via CloudFormation:
+AWS provides various storage types: Object (S3), Relational (RDS), and NoSQL (DynamoDB).
 
-1.  **Inline Code:** Perfect for small scripts (Python/Node). You write the code directly in the YAML.
-2.  **S3 Upload:** More realistic. You zip your code, upload it to an S3 bucket, and point CloudFormation to that bucket.
+### 1. S3 (Object Storage)
 
-Since this is for a lab, I'll show you the **Inline** method first because it's the easiest to get running, and then how to do the **S3** method for a more "pro" experience.
+Create a bucket to store your files:
 
-### Option 1: Inline Lambda (Simplest)
-Create a new folder called `lambda-lab` and put this `lambda-template.yaml` inside it.
+`awslocal s3 mb s3://lab-data-bucket`{{exec}}
 
-**`lambda-lab/lambda-template.yaml`**
+Upload a text file:
 
+`echo "Hello AWS Lab" > hello.txt`{{exec}}
 
+`awslocal s3 cp hello.txt s3://lab-data-bucket/hello.txt`{{exec}}
 
-`cd ~ ; mkdir lambda-lab ; cd lambda-lab`{{exec}}
+List bucket contents:
 
-`nano lambda-template.yml`{{exec}}
-
-```yaml
-AWSTemplateFormatVersion: '2010-09-09'
-Description: Simple Inline Lambda Lab
-
-Resources:
-  # 1. IAM Role for Lambda (MiniStack doesn't strictly enforce policies, but requires the resource)
-  LambdaExecutionRole:
-    Type: AWS::IAM::Role
-    Properties:
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service: lambda.amazonaws.com
-            Action: sts:AssumeRole
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
-
-  # 2. The Lambda Function
-  MyHelloFunction:
-    Type: AWS::Lambda::Function
-    Properties:
-      FunctionName: hello-killercoda
-      Handler: index.handler
-      Role: !GetAtt LambdaExecutionRole.Arn
-      Runtime: python3.9
-      Code:
-        ZipFile: |
-          import json
-          def handler(event, context):
-              print("Hello from Killercoda!")
-              return {
-                  'statusCode': 200,
-                  'body': json.dumps('Hello from MiniStack!')
-              }
-
-Outputs:
-  FunctionName:
-    Value: !Ref MyHelloFunction
-```{{copy}}
-
-**Deploy it:**
-```bash
-awslocal cloudformation deploy \
-    --template-file lambda-template.yml \
-    --stack-name lambda-stack \
-    --capabilities CAPABILITY_IAM
-```{{exec}}
+`awslocal s3 ls s3://lab-data-bucket/`{{exec}}
 
 ---
 
-### Option 2: The "S3 Zip" Method (More Realistic)
-If your code is in a separate file (e.g., `index.py`), you need to zip it and upload it first.
+### 2. DynamoDB (NoSQL)
 
-1.  **Create the code file:**
-    ```bash
-    echo "def handler(event, context): return {'body': 'Zip deploy works!'}" > index.py
-    zip function.zip index.py
-    ```{{exec}}
+Create a simple Table for "Users":
 
-2.  **Upload to your S3 bucket:** (Using the bucket we created earlier)
-    ```bash
-    awslocal s3 cp function.zip s3://killercoda-lab-storage/v1/function.zip
-    ```{{exec}}
+```bash
+awslocal dynamodb create-table \
+    --table-name UsersTable \
+    --attribute-definitions AttributeName=UserId,AttributeType=S \
+    --key-schema AttributeName=UserId,KeyType=HASH \
+    --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+```{{exec}}
 
-3.  **Update your template:**
-    Instead of `ZipFile: |`, change the `Code` block in your YAML to:
-    ```yaml
-    Code:
-      S3Bucket: killercoda-lab-storage
-      S3Key: v1/function.zip
-    ```{{copy}}
+List tables:
+
+`awslocal dynamodb list-tables`{{exec}}
 
 ---
 
-### How to test your Lambda
+### 3. RDS (Relational Database)
 
-`awslocal lambda help`{{exec}}
+MiniStack emulates RDS by creating the metadata for a database instance.
 
-`awslocal lambda list-functions`{{exec}}
-
-
-Once deployed, you can trigger it directly from the CLI to see the output.
-
-**Invoke the function:**
 ```bash
-awslocal lambda invoke --function-name hello-killercoda output.json
+awslocal rds create-db-instance \
+    --db-instance-identifier lab-db \
+    --db-instance-class db.t3.micro \
+    --engine postgres
 ```{{exec}}
 
-**View the response:**
-```bash
-cat output.json
-```{{exec}}
+Check DB status:
 
-to troubleshoot
+`awslocal rds describe-db-instances --query "DBInstances[*].DBInstanceStatus"`{{exec}}
 
-`awslocal lambda invoke --debug --function-name hello-killercoda output.json`{{exec}}
-
-### Housekeeping for Lambdas
-* **Logs:** In MiniStack, your Lambda logs aren't just in the container logs; they go to **CloudWatch Logs**. You can see them with:
-    `awslocal logs describe-log-groups`{{exec}}
-    
-    `awslocal logs tail /aws/lambda/hello-killercoda`{{exec}}
-    
-* **Cleanup:** If you want to delete the whole stack and the function:
-    ```bash
-    awslocal cloudformation delete-stack --stack-name lambda-stack
-    ```{{exec}}
-
-**Which method fits your lab better?** Inline is great for "Coding 101," but the S3 method is better if you're teaching "CI/CD and Deployment Pipelines."
+### Summary
+You've explored **Object**, **NoSQL**, and **Relational** storage. These are the persistent layers of almost every cloud application.

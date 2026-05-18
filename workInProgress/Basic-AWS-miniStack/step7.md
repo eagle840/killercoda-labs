@@ -1,61 +1,97 @@
-# Monitoring & Governance
+# Messaging (SQS & SNS)
 
-In this final step, you will learn how to audit your cloud activity and inspect service logs using **CloudWatch** and **CloudTrail**.
+Messaging services allow different parts of your application to communicate asynchronously.
 
----
+### 1. SQS (Simple Queue Service)
 
-### 1. CloudWatch Logs (Observability)
+SQS is a "Pull" based messaging service.
 
-When your Lambda functions execute, they automatically send their output to CloudWatch. These are organized into **Log Groups** and **Log Streams**.
+Create a queue:
 
-**A. List available Log Groups**
-Find the group created for your Lambda in Step 5.
-```bash
-awslocal logs describe-log-groups
-```{{exec}}
+`awslocal sqs create-queue --queue-name MyQueue`{{exec}}
 
-**B. Watch Logs in Real-Time**
-Instead of hunting for specific stream names, use the `tail` command to see events as they happen.
-```bash
-awslocal logs tail "/aws/lambda/hello-killercoda"
-```{{exec}}
+Send a message to the queue:
 
-*Note: If you don't see logs, try invoking the function again from the CLI in your other tab.*
+`awslocal sqs send-message --queue-url http://localhost:4566/000000000000/MyQueue --message-body "Hello from SQS"`{{exec}}
+
+Receive the message:
+
+`awslocal sqs receive-message --queue-url http://localhost:4566/000000000000/MyQueue`{{exec}}
 
 ---
 
-### 2. CloudTrail (Security & Auditing)
+### 2. SNS (Simple Notification Service)
 
-CloudTrail records every API call made to your account. This is vital for security auditing and troubleshooting configuration changes.
+SNS is a "Push" based messaging service (Pub/Sub).
 
-**A. Look up recent management events**
-This shows you the history of the commands you've run in this lab (e.g., `CreateQueue`, `PutRule`).
+Create a topic:
+
+`awslocal sns create-topic --name MyTopic`{{exec}}
+
+Subscribe an SQS queue to the topic (Fan-out pattern):
+
 ```bash
-awslocal cloudtrail lookup-events --max-items 5
+awslocal sns subscribe \
+    --topic-arn arn:aws:sns:us-east-1:000000000000:MyTopic \
+    --protocol sqs \
+    --notification-endpoint arn:aws:sqs:us-east-1:000000000000:MyQueue
 ```{{exec}}
 
-**B. Filter for specific actions**
-Let's see exactly when the SQS queue was created.
+Publish a message to the topic:
+
 ```bash
-awslocal cloudtrail lookup-events \
-    --lookup-attributes AttributeKey=EventName,AttributeValue=CreateQueue
+awslocal sns publish \
+    --topic-arn arn:aws:sns:us-east-1:000000000000:MyTopic \
+    --message "Broadcast message via SNS"
+```{{exec}}
+
+Verify the message arrived in SQS:
+
+`awslocal sqs receive-message --queue-url http://localhost:4566/000000000000/MyQueue`{{exec}}
+
+---
+
+### 3. EventBridge (Event-Driven Routing)
+
+EventBridge is a serverless event bus that makes it easy to connect applications using data from your own apps, SaaS apps, and AWS services.
+
+**A. Create an Event Rule**
+Define a rule that "filters" for specific events. We'll look for events from `my.app` with an `OrderCreated` status.
+
+```bash
+awslocal events put-rule \
+    --name MyOrderRule \
+    --event-pattern '{"source": ["my.app"], "detail-type": ["OrderCreated"]}'
+```{{exec}}
+
+**B. Add a Target**
+Tell EventBridge to send any matching events to your existing SQS queue.
+
+```bash
+awslocal events put-targets \
+    --rule MyOrderRule \
+    --targets "Id"="1","Arn"="arn:aws:sqs:us-east-1:000000000000:MyQueue"
+```{{exec}}
+
+**C. Fire a Test Event**
+Send a custom event into the default bus. Note how we wrap the JSON `Detail` in a string.
+
+```bash
+awslocal events put-events --entries '[{
+    "Source": "my.app",
+    "DetailType": "OrderCreated",
+    "Detail": "{\"orderId\": \"1234\", \"status\": \"new\"}"
+}]'
+```{{exec}}
+
+**D. Verify in SQS**
+Check the queue to see if EventBridge successfully routed your event.
+
+```bash
+awslocal sqs receive-message --queue-url http://localhost:4566/000000000000/MyQueue
 ```{{exec}}
 
 ---
 
-### 3. Resource Health
-
-You can check the overall health of the MiniStack services via its internal health endpoint.
-
-```bash
-curl -s http://localhost:4566/_ministack/health | jq
-```{{exec}}
-
----
-
-### Summary Checklist
-* [ ] Viewed Lambda logs via CloudWatch.
-* [ ] Audited API activity via CloudTrail.
-* [ ] Verified service health.
-
-**You have now completed all the technical steps! Click the 'Next' button to finish the lab.**
+### Summary
+You've used **Queues** (SQS), **Topics** (SNS), and **Event Rules** (EventBridge) to decouple your application components. In the final step, we'll learn how to **Monitor** all these resources.

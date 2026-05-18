@@ -1,97 +1,131 @@
-# Messaging (SQS & SNS)
+# Lambda
 
-Messaging services allow different parts of your application to communicate asynchronously.
+This is where things get interesting. In a local emulator like MiniStack, you have two ways to deploy Lambda code via CloudFormation:
 
-### 1. SQS (Simple Queue Service)
+1.  **Inline Code:** Perfect for small scripts (Python/Node). You write the code directly in the YAML.
+2.  **S3 Upload:** More realistic. You zip your code, upload it to an S3 bucket, and point CloudFormation to that bucket.
 
-SQS is a "Pull" based messaging service.
+Since this is for a lab, I'll show you the **Inline** method first because it's the easiest to get running, and then how to do the **S3** method for a more "pro" experience.
 
-Create a queue:
+### Option 1: Inline Lambda (Simplest)
+Create a new folder called `lambda-lab` and put this `lambda-template.yaml` inside it.
 
-`awslocal sqs create-queue --queue-name MyQueue`{{exec}}
+**`lambda-lab/lambda-template.yaml`**
 
-Send a message to the queue:
 
-`awslocal sqs send-message --queue-url http://localhost:4566/000000000000/MyQueue --message-body "Hello from SQS"`{{exec}}
 
-Receive the message:
+`cd ~ ; mkdir lambda-lab ; cd lambda-lab`{{exec}}
 
-`awslocal sqs receive-message --queue-url http://localhost:4566/000000000000/MyQueue`{{exec}}
+`nano lambda-template.yml`{{exec}}
 
----
+```yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Simple Inline Lambda Lab
 
-### 2. SNS (Simple Notification Service)
+Resources:
+  # 1. IAM Role for Lambda (MiniStack doesn't strictly enforce policies, but requires the resource)
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
 
-SNS is a "Push" based messaging service (Pub/Sub).
+  # 2. The Lambda Function
+  MyHelloFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: hello-killercoda
+      Handler: index.handler
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Runtime: python3.9
+      Code:
+        ZipFile: |
+          import json
+          def handler(event, context):
+              print("Hello from Killercoda!")
+              return {
+                  'statusCode': 200,
+                  'body': json.dumps('Hello from MiniStack!')
+              }
 
-Create a topic:
+Outputs:
+  FunctionName:
+    Value: !Ref MyHelloFunction
+```{{copy}}
 
-`awslocal sns create-topic --name MyTopic`{{exec}}
-
-Subscribe an SQS queue to the topic (Fan-out pattern):
-
+**Deploy it:**
 ```bash
-awslocal sns subscribe \
-    --topic-arn arn:aws:sns:us-east-1:000000000000:MyTopic \
-    --protocol sqs \
-    --notification-endpoint arn:aws:sqs:us-east-1:000000000000:MyQueue
-```{{exec}}
-
-Publish a message to the topic:
-
-```bash
-awslocal sns publish \
-    --topic-arn arn:aws:sns:us-east-1:000000000000:MyTopic \
-    --message "Broadcast message via SNS"
-```{{exec}}
-
-Verify the message arrived in SQS:
-
-`awslocal sqs receive-message --queue-url http://localhost:4566/000000000000/MyQueue`{{exec}}
-
----
-
-### 3. EventBridge (Event-Driven Routing)
-
-EventBridge is a serverless event bus that makes it easy to connect applications using data from your own apps, SaaS apps, and AWS services.
-
-**A. Create an Event Rule**
-Define a rule that "filters" for specific events. We'll look for events from `my.app` with an `OrderCreated` status.
-
-```bash
-awslocal events put-rule \
-    --name MyOrderRule \
-    --event-pattern '{"source": ["my.app"], "detail-type": ["OrderCreated"]}'
-```{{exec}}
-
-**B. Add a Target**
-Tell EventBridge to send any matching events to your existing SQS queue.
-
-```bash
-awslocal events put-targets \
-    --rule MyOrderRule \
-    --targets "Id"="1","Arn"="arn:aws:sqs:us-east-1:000000000000:MyQueue"
-```{{exec}}
-
-**C. Fire a Test Event**
-Send a custom event into the default bus. Note how we wrap the JSON `Detail` in a string.
-
-```bash
-awslocal events put-events --entries '[{
-    "Source": "my.app",
-    "DetailType": "OrderCreated",
-    "Detail": "{\"orderId\": \"1234\", \"status\": \"new\"}"
-}]'
-```{{exec}}
-
-**D. Verify in SQS**
-Check the queue to see if EventBridge successfully routed your event.
-
-```bash
-awslocal sqs receive-message --queue-url http://localhost:4566/000000000000/MyQueue
+awslocal cloudformation deploy \
+    --template-file lambda-template.yml \
+    --stack-name lambda-stack \
+    --capabilities CAPABILITY_IAM
 ```{{exec}}
 
 ---
 
-### Summary
-You've used **Queues** (SQS), **Topics** (SNS), and **Event Rules** (EventBridge) to decouple your application components. In the final step, we'll learn how to **Monitor** all these resources.
+### Option 2: The "S3 Zip" Method (More Realistic)
+If your code is in a separate file (e.g., `index.py`), you need to zip it and upload it first.
+
+1.  **Create the code file:**
+    ```bash
+    echo "def handler(event, context): return {'body': 'Zip deploy works!'}" > index.py
+    zip function.zip index.py
+    ```{{exec}}
+
+2.  **Upload to your S3 bucket:** (Using the bucket we created earlier)
+    ```bash
+    awslocal s3 cp function.zip s3://killercoda-lab-storage/v1/function.zip
+    ```{{exec}}
+
+3.  **Update your template:**
+    Instead of `ZipFile: |`, change the `Code` block in your YAML to:
+    ```yaml
+    Code:
+      S3Bucket: killercoda-lab-storage
+      S3Key: v1/function.zip
+    ```{{copy}}
+
+---
+
+### How to test your Lambda
+
+`awslocal lambda help`{{exec}}
+
+`awslocal lambda list-functions`{{exec}}
+
+
+Once deployed, you can trigger it directly from the CLI to see the output.
+
+**Invoke the function:**
+```bash
+awslocal lambda invoke --function-name hello-killercoda output.json
+```{{exec}}
+
+**View the response:**
+```bash
+cat output.json
+```{{exec}}
+
+to troubleshoot
+
+`awslocal lambda invoke --debug --function-name hello-killercoda output.json`{{exec}}
+
+### Housekeeping for Lambdas
+* **Logs:** In MiniStack, your Lambda logs aren't just in the container logs; they go to **CloudWatch Logs**. You can see them with:
+    `awslocal logs describe-log-groups`{{exec}}
+    
+    `awslocal logs tail /aws/lambda/hello-killercoda`{{exec}}
+    
+* **Cleanup:** If you want to delete the whole stack and the function:
+    ```bash
+    awslocal cloudformation delete-stack --stack-name lambda-stack
+    ```{{exec}}
+
+**Which method fits your lab better?** Inline is great for "Coding 101," but the S3 method is better if you're teaching "CI/CD and Deployment Pipelines."

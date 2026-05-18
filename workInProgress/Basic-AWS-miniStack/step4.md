@@ -1,57 +1,97 @@
-# Storage (S3, RDS, & DynamoDB)
+# Compute (EC2 & ECS)
 
-AWS provides various storage types: Object (S3), Relational (RDS), and NoSQL (DynamoDB).
-
-### 1. S3 (Object Storage)
-
-Create a bucket to store your files:
-
-`awslocal s3 mb s3://lab-data-bucket`{{exec}}
-
-Upload a text file:
-
-`echo "Hello AWS Lab" > hello.txt`{{exec}}
-
-`awslocal s3 cp hello.txt s3://lab-data-bucket/hello.txt`{{exec}}
-
-List bucket contents:
-
-`awslocal s3 ls s3://lab-data-bucket/`{{exec}}
+In **MiniStack**, compute resources are handled using a "Container-as-a-Service" model. Unlike the real AWS cloud where EC2 runs on hypervisors, MiniStack emulates these APIs by spinning up **Docker containers** on your host machine.
 
 ---
 
-### 2. DynamoDB (NoSQL)
+## 1. Booting EC2 Instances
 
-Create a simple Table for "Users":
+To boot an instance, you use the standard `run-instances` command. MiniStack translates this request into a Docker container.
 
+### **A. Run an Instance**
 ```bash
-awslocal dynamodb create-table \
-    --table-name UsersTable \
-    --attribute-definitions AttributeName=UserId,AttributeType=S \
-    --key-schema AttributeName=UserId,KeyType=HASH \
-    --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+awslocal ec2 run-instances \
+    --image-id ami-000000 \
+    --count 1 \
+    --instance-type t2.micro \
+    --key-name my-key
 ```{{exec}}
 
-List tables:
+> **Note on AMI IDs:** In MiniStack, a dummy ID like `ami-000000` triggers a default container boot.
 
-`awslocal dynamodb list-tables`{{exec}}
+### **B. Check Status**
+```bash
+awslocal ec2 describe-instances
+```{{exec}}
+
+### **C. Access the Instance (SSH Emulation)**
+Because these are containers, MiniStack maps a high port on your localhost to port 22 inside the container.
+```bash
+# Example (Port will vary, check describe-instances output)
+# ssh -p <MappedPort> root@localhost
+```
 
 ---
 
-### 3. RDS (Relational Database)
+## 2. Elastic Container Service (ECS)
 
-MiniStack emulates RDS by creating the metadata for a database instance.
+ECS manages containerized applications. MiniStack hooks directly into your local Docker engine to run these tasks.
 
+### **A. Create an ECS Cluster**
 ```bash
-awslocal rds create-db-instance \
-    --db-instance-identifier lab-db \
-    --db-instance-class db.t3.micro \
-    --engine postgres
+awslocal ecs create-cluster --cluster-name my-cluster
 ```{{exec}}
 
-Check DB status:
+### **B. Register a Task Definition**
+Create the "blueprint" for your Nginx server:
+```bash
+cat <<EOF > task-def.json
+{
+    "family": "nginx-task",
+    "containerDefinitions": [
+        {
+            "name": "web-server",
+            "image": "nginx:latest",
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 8080,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true
+        }
+    ]
+}
+EOF
+```{{exec}}
 
-`awslocal rds describe-db-instances --query "DBInstances[*].DBInstanceStatus"`{{exec}}
+Register it:
+```bash
+awslocal ecs register-task-definition --cli-input-json file://task-def.json
+```{{exec}}
+
+### **C. Run the Task**
+```bash
+awslocal ecs run-task --cluster my-cluster --task-definition nginx-task \
+    --count 1 --launch-type FARGATE \
+    --network-configuration "awsvpcConfiguration={subnets=[subnet-000000],assignPublicIp=ENABLED}"
+```{{exec}}
+
+---
+
+## 3. Verify Your Deployment
+
+Check if Docker has started the new containers:
+```bash
+docker ps
+```{{exec}}
+
+**Test the Web Server:**
+Since we mapped port 80 to **8080**, try to reach Nginx:
+```bash
+curl http://localhost:8080
+```{{exec}}
 
 ### Summary
-You've explored **Object**, **NoSQL**, and **Relational** storage. These are the persistent layers of almost every cloud application.
+You've explored **Server-based** (EC2) and **Container-orchestrated** (ECS) compute. While EC2 in MiniStack is a lightweight mock, ECS provides a full-fidelity container experience.
