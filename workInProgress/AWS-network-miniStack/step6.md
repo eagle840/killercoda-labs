@@ -35,7 +35,7 @@ awslocal ecs run-task --cluster lab-cluster --task-definition nginx-task \
 Since ECS is infrastructure-backed, you can see the result using standard Docker commands!
 
 ```bash
-docker ps --filter "name=ministack_ecs"
+docker ps --filter "name=ministack-ecs"
 ```{{exec}}
 
 Wait a few seconds for the status to show `Up`, then try to reach the web server:

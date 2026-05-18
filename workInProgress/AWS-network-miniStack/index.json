@@ -1,6 +1,6 @@
 {
   "title": "AWS Networking & EC2 on MiniStack",
-  "description": "Master AWS VPCs, Subnets, and Instances using the MiniStack emulator. (v0.1.0)",
+  "description": "Master AWS VPCs, Subnets, and Instances using the MiniStack emulator. (v0.1.1)",
   "difficulty": "Beginner",
   "time": "45 minutes",
   "details": {
