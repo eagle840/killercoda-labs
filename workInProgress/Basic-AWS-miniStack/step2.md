@@ -128,12 +128,12 @@ awslocal sts assume-role \
 
 ---
 
-## 4. Resource Tagging & Governance
+## 4. Resource Tagging & FinOps Governance
 
-Tagging is metadata used for cost allocation (FinOps) and automation. Following industry standards (like the FinOps Foundation) ensures your environment remains manageable.
+Tagging is the primary mechanism for **resource control**, cost allocation (FinOps), and automation. By following industry standards like the **FinOps Foundation**, you ensure that every resource is trackable and manageable.
 
 ### A. Apply Standard Tags
-Apply "Technical" and "Business" tags to your new user:
+Apply "Technical" and "Business" tags to your new user. These tags allow you to group resources and enforce ownership.
 
 ```bash
 awslocal iam tag-user --user-name DevUser \
@@ -159,8 +159,55 @@ awslocal resourcegroupstaggingapi get-tag-keys
 
 ---
 
+## 5. AWS Organizations & Service Control Policies (SCPs)
+
+As your cloud footprint grows, you move from managing single accounts to an **Organization**. This hierarchy is set as **Root > Organizational Unit (OU) > Account**.
+
+### A. The Hierarchy
+*   **Root:** The top-level container for all accounts.
+*   **OU:** A logical group of accounts (e.g., `Production`, `Security`).
+*   **Account:** The actual AWS account where resources live.
+
+### B. Service Control Policies (SCPs)
+SCPs are "Guardrails." They don't grant permissions; they set the **maximum allowed permissions** for an account. Even a Root user in a child account cannot bypass an SCP.
+
+### C. Example: Enforce Tagging on Creation
+You can use an SCP to deny the creation of resources if they aren't tagged correctly.
+
+1. **Create the SCP file:**
+```bash
+cat <<EOF > enforce-tagging-scp.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyS3WithoutProjectTag",
+      "Effect": "Deny",
+      "Action": "s3:CreateBucket",
+      "Resource": "*",
+      "Condition": {
+        "Null": { "aws:RequestTag/Project": "true" }
+      }
+    }
+  ]
+}
+EOF
+```{{exec}}
+
+2. **Create the Policy in the Organization:**
+```bash
+awslocal organizations create-policy \
+    --content file://enforce-tagging-scp.json \
+    --description "Enforces Project tag on S3 creation" \
+    --name "EnforceProjectTag" \
+    --type SERVICE_CONTROL_POLICY
+```{{exec}}
+
+---
+
 ### Summary Checklist
 * [ ] Verified identity via `sts`.
 * [ ] Created `DevUser` with an S3 Read-Only managed policy.
 * [ ] Configured a cross-identity "handshake" via IAM Roles.
-* [ ] Applied industry-standard tags for FinOps compliance.
+* [ ] Applied industry-standard FinOps tags for resource control.
+* [ ] Explored Organizations and the power of SCP guardrails.
