@@ -9,6 +9,6 @@ This environment allows you to practice cloud architecture, deployment, and secu
 *   A virtual network (**VPC**) and **EC2** instance.
 *   Storage layers with **S3**, **RDS**, and **DynamoDB**.
 *   A serverless **Lambda** function.
-*   An asynchronous messaging flow with **SQS** and **SNS**.
+*   An asynchronous messaging flow with **SQS**, **SNS**, and **EventBridge**.
 
 Let's get started by setting up your local environment!

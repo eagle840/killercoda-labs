@@ -7,7 +7,7 @@ You have completed the **Basic AWS Services on MiniStack** lab.
 *   **Networking & EC2**: Building VPCs and booting virtual servers.
 *   **Storage**: Using S3, DynamoDB, and RDS.
 *   **Serverless**: Deploying and triggering Lambda functions.
-*   **Messaging**: Decoupling services with SQS and SNS.
+*   **Messaging**: Decoupling services with SQS, SNS, and EventBridge.
 *   **Monitoring**: Auditing activity and viewing logs.
 
 ### Next Steps:

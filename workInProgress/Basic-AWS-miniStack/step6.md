@@ -51,13 +51,47 @@ Verify the message arrived in SQS:
 
 ---
 
-### 3. EventBridge
+### 3. EventBridge (Event-Driven Routing)
 
-EventBridge is an "Event Bus" for connecting applications.
+EventBridge is a serverless event bus that makes it easy to connect applications using data from your own apps, SaaS apps, and AWS services.
 
-List event buses:
+**A. Create an Event Rule**
+Define a rule that "filters" for specific events. We'll look for events from `my.app` with an `OrderCreated` status.
 
-`awslocal events list-event-buses`{{exec}}
+```bash
+awslocal events put-rule \
+    --name MyOrderRule \
+    --event-pattern '{"source": ["my.app"], "detail-type": ["OrderCreated"]}'
+```{{exec}}
+
+**B. Add a Target**
+Tell EventBridge to send any matching events to your existing SQS queue.
+
+```bash
+awslocal events put-targets \
+    --rule MyOrderRule \
+    --targets "Id"="1","Arn"="arn:aws:sqs:us-east-1:000000000000:MyQueue"
+```{{exec}}
+
+**C. Fire a Test Event**
+Send a custom event into the default bus. Note how we wrap the JSON `Detail` in a string.
+
+```bash
+awslocal events put-events --entries '[{
+    "Source": "my.app",
+    "DetailType": "OrderCreated",
+    "Detail": "{\"orderId\": \"1234\", \"status\": \"new\"}"
+}]'
+```{{exec}}
+
+**D. Verify in SQS**
+Check the queue to see if EventBridge successfully routed your event.
+
+```bash
+awslocal sqs receive-message --queue-url http://localhost:4566/000000000000/MyQueue
+```{{exec}}
+
+---
 
 ### Summary
-You've used **Queues** (SQS) and **Topics** (SNS) to decouple your application components. In the final step, we'll learn how to **Monitor** all these resources.
+You've used **Queues** (SQS), **Topics** (SNS), and **Event Rules** (EventBridge) to decouple your application components. In the final step, we'll learn how to **Monitor** all these resources.
