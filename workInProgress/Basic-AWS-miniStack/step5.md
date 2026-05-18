@@ -4,15 +4,15 @@ AWS provides various storage types: Object (S3), Relational (RDS), and NoSQL (Dy
 
 ### 1. S3 (Object Storage)
 
-Create a bucket to store your files:
+Create a bucket to store your files. We will use this bucket later to trigger an automated workflow.
 
-`awslocal s3 mb s3://lab-data-bucket`{{exec}}
+`awslocal s3 mb s3://integration-bucket`{{exec}}
 
-Upload a text file:
+Upload a test file:
 
-`echo "Hello AWS Lab" > hello.txt`{{exec}}
+`echo "Initial Data" > data.txt`{{exec}}
 
-`awslocal s3 cp hello.txt s3://lab-data-bucket/hello.txt`{{exec}}
+`awslocal s3 cp data.txt s3://integration-bucket/data.txt`{{exec}}
 
 List bucket contents:
 

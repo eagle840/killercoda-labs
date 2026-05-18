@@ -1,6 +1,6 @@
 {
   "title": "Basic AWS Services on MiniStack",
-  "description": "Introduction to IAM, EC2, S3, and Messaging (v0.2.0)",
+  "description": "Introduction to IAM, EC2, S3, and Messaging (v0.3.0)",
   "difficulty": "Beginner",
   "time": "60 minutes",
   "details": {

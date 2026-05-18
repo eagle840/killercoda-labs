@@ -17,7 +17,7 @@ awslocal logs describe-log-groups
 **B. Watch Logs in Real-Time**
 Instead of hunting for specific stream names, use the `tail` command to see events as they happen.
 ```bash
-awslocal logs tail "/aws/lambda/hello-killercoda"
+awslocal logs tail "/aws/lambda/s3-to-sqs-logger"
 ```{{exec}}
 
 *Note: If you don't see logs, try invoking the function again from the CLI in your other tab.*

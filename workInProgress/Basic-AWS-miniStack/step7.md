@@ -4,19 +4,16 @@ Messaging services allow different parts of your application to communicate asyn
 
 ### 1. SQS (Simple Queue Service)
 
-SQS is a "Pull" based messaging service.
+SQS is a "Pull" based messaging service. We already used a queue for our Lambda alerts, but let's create a dedicated one for generic app messages.
 
-Create a queue:
+`awslocal sqs create-queue --queue-name AppQueue`{{exec}}
 
-`awslocal sqs create-queue --queue-name MyQueue`{{exec}}
-
-Send a message to the queue:
-
-`awslocal sqs send-message --queue-url http://localhost:4566/000000000000/MyQueue --message-body "Hello from SQS"`{{exec}}
+Send a message:
+`awslocal sqs send-message --queue-url http://localhost:4566/000000000000/AppQueue --message-body "Hello from SQS"`{{exec}}
 
 Receive the message:
+`awslocal sqs receive-message --queue-url http://localhost:4566/000000000000/AppQueue`{{exec}}
 
-`awslocal sqs receive-message --queue-url http://localhost:4566/000000000000/MyQueue`{{exec}}
 
 ---
 

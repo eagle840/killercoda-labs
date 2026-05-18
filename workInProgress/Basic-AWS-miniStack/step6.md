@@ -1,29 +1,23 @@
-# Lambda
+# Serverless Compute (Lambda)
 
-This is where things get interesting. In a local emulator like MiniStack, you have two ways to deploy Lambda code via CloudFormation:
+In this step, we'll create the "Glue" of our architecture. We'll deploy a Lambda function that triggers automatically when a file is uploaded to S3, and then sends a notification to an SQS queue.
 
-1.  **Inline Code:** Perfect for small scripts (Python/Node). You write the code directly in the YAML.
-2.  **S3 Upload:** More realistic. You zip your code, upload it to an S3 bucket, and point CloudFormation to that bucket.
+### 1. Create the SQS Destination
+First, we need a queue for our Lambda to talk to.
 
-Since this is for a lab, I'll show you the **Inline** method first because it's the easiest to get running, and then how to do the **S3** method for a more "pro" experience.
+```bash
+awslocal sqs create-queue --queue-name lambda-alerts
+```{{exec}}
 
-### Option 1: Inline Lambda (Simplest)
-Create a new folder called `lambda-lab` and put this `lambda-template.yaml` inside it.
+### 2. The Integrated Lambda
+We will use the **Inline** method to deploy a Python function that parses S3 metadata and alerts SQS.
 
-**`lambda-lab/lambda-template.yaml`**
+`mkdir -p ~/lambda-lab && cd ~/lambda-lab`{{exec}}
 
-
-
-`cd ~ ; mkdir lambda-lab ; cd lambda-lab`{{exec}}
-
-`nano lambda-template.yml`{{exec}}
-
-```yaml
+```bash
+cat <<EOF > integration-template.yml
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Simple Inline Lambda Lab
-
 Resources:
-  # 1. IAM Role for Lambda (MiniStack doesn't strictly enforce policies, but requires the resource)
   LambdaExecutionRole:
     Type: AWS::IAM::Role
     Properties:
@@ -36,96 +30,73 @@ Resources:
             Action: sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        - arn:aws:iam::aws:policy/AmazonSQSFullAccess
 
-  # 2. The Lambda Function
-  MyHelloFunction:
+  S3ProcessorFunction:
     Type: AWS::Lambda::Function
     Properties:
-      FunctionName: hello-killercoda
+      FunctionName: s3-to-sqs-logger
       Handler: index.handler
       Role: !GetAtt LambdaExecutionRole.Arn
       Runtime: python3.9
       Code:
         ZipFile: |
           import json
+          import boto3
+          import os
+
+          sqs = boto3.client('sqs', endpoint_url='http://' + os.environ['LOCALSTACK_HOSTNAME'] + ':4566')
+
           def handler(event, context):
-              print("Hello from Killercoda!")
-              return {
-                  'statusCode': 200,
-                  'body': json.dumps('Hello from MiniStack!')
-              }
+              # Get the object key from the S3 event
+              for record in event.get('Records', []):
+                  bucket = record['s3']['bucket']['name']
+                  key = record['s3']['object']['key']
+                  print(f"File uploaded: {key} to {bucket}")
+                  
+                  # Send a message to SQS
+                  sqs.send_message(
+                      QueueUrl='http://localhost:4566/000000000000/lambda-alerts',
+                      MessageBody=f"ALERT: New file {key} detected in {bucket}!"
+                  )
+              return {'statusCode': 200}
+EOF
+```{{exec}}
 
-Outputs:
-  FunctionName:
-    Value: !Ref MyHelloFunction
-```{{copy}}
-
-**Deploy it:**
+**Deploy the Stack:**
 ```bash
 awslocal cloudformation deploy \
-    --template-file lambda-template.yml \
-    --stack-name lambda-stack \
+    --template-file integration-template.yml \
+    --stack-name integration-stack \
     --capabilities CAPABILITY_IAM
 ```{{exec}}
 
 ---
 
-### Option 2: The "S3 Zip" Method (More Realistic)
-If your code is in a separate file (e.g., `index.py`), you need to zip it and upload it first.
+### 3. Connect S3 to Lambda
+Now, tell S3 to "ping" the Lambda function whenever a `.txt` file is created.
 
-1.  **Create the code file:**
-    ```bash
-    echo "def handler(event, context): return {'body': 'Zip deploy works!'}" > index.py
-    zip function.zip index.py
-    ```{{exec}}
-
-2.  **Upload to your S3 bucket:** (Using the bucket we created earlier)
-    ```bash
-    awslocal s3 cp function.zip s3://killercoda-lab-storage/v1/function.zip
-    ```{{exec}}
-
-3.  **Update your template:**
-    Instead of `ZipFile: |`, change the `Code` block in your YAML to:
-    ```yaml
-    Code:
-      S3Bucket: killercoda-lab-storage
-      S3Key: v1/function.zip
-    ```{{copy}}
+```bash
+awslocal s3api put-bucket-notification-configuration \
+    --bucket integration-bucket \
+    --notification-configuration '{
+        "LambdaFunctionConfigurations": [
+            {
+                "LambdaFunctionArn": "arn:aws:lambda:us-east-1:000000000000:function:s3-to-sqs-logger",
+                "Events": ["s3:ObjectCreated:*"]
+            }
+        ]
+    }'
+```{{exec}}
 
 ---
 
-### How to test your Lambda
+### 4. Test the Integration
+Upload a new file and see the chain reaction!
 
-`awslocal lambda help`{{exec}}
+1. **Upload to S3:**
+`echo "Secret Message" > alert.txt`{{exec}}
+`awslocal s3 cp alert.txt s3://integration-bucket/alert.txt`{{exec}}
 
-`awslocal lambda list-functions`{{exec}}
-
-
-Once deployed, you can trigger it directly from the CLI to see the output.
-
-**Invoke the function:**
-```bash
-awslocal lambda invoke --function-name hello-killercoda output.json
-```{{exec}}
-
-**View the response:**
-```bash
-cat output.json
-```{{exec}}
-
-to troubleshoot
-
-`awslocal lambda invoke --debug --function-name hello-killercoda output.json`{{exec}}
-
-### Housekeeping for Lambdas
-* **Logs:** In MiniStack, your Lambda logs aren't just in the container logs; they go to **CloudWatch Logs**. You can see them with:
-    `awslocal logs describe-log-groups`{{exec}}
-    
-    `awslocal logs tail /aws/lambda/hello-killercoda`{{exec}}
-    
-* **Cleanup:** If you want to delete the whole stack and the function:
-    ```bash
-    awslocal cloudformation delete-stack --stack-name lambda-stack
-    ```{{exec}}
-
-**Which method fits your lab better?** Inline is great for "Coding 101," but the S3 method is better if you're teaching "CI/CD and Deployment Pipelines."
+2. **Check SQS for the notification:**
+`awslocal sqs receive-message --queue-url http://localhost:4566/000000000000/lambda-alerts`{{exec}}
