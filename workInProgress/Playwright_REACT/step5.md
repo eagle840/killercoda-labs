@@ -1,10 +1,9 @@
 # Step 5: Testing Interactions and Traces
 
-One of Playwright's most powerful features is the **Trace Viewer**, which allows you to record everything that happened during a test.
+One of Playwright's most powerful features is the **Trace Viewer**, which provides a "flight recorder" for your tests.
 
 ### 1. Write an Interactive Test
-
-Let's test the "counter" button in the default Vite app.
+Let's test the "counter" button in the default Vite app. This test will click the button and verify the count increases.
 
 ```bash
 cat << 'EOF' > tests/counter.spec.js
@@ -13,37 +12,38 @@ import { test, expect } from '@playwright/test';
 test('counter increments when clicked', async ({ page }) => {
   await page.goto('/');
 
-  // Find the button by its text content
+  // Locate the button by its text content
   const counter = page.getByRole('button', { name: /count is/i });
   
-  // Check initial state
+  // Assert initial state
   await expect(counter).toHaveText('count is 0');
   
-  // Click it!
+  // Click the button
   await counter.click();
   
-  // Verify it incremented
+  // Assert final state
   await expect(counter).toHaveText('count is 1');
 });
 EOF
 ```{{exec}}
 
 ### 2. Enable Tracing
-
-Update the config to record a trace for every test.
+Update your configuration to record a trace for every test run.
 
 ```bash
 sed -i "s/trace: 'on-first-retry'/trace: 'on'/g" playwright.config.js
 ```{{exec}}
 
 ### 3. Run and View Traces
-
 `npx playwright test`{{exec}}
 
-Now, start the report server again:
-
+Start the report server again (if not already running):
 `http-server playwright-report -a 0.0.0.0 -p 9323`{{exec}}
 
 {{TRAFFIC_HOST1_9323}}
 
-In the report, click on the **counter.spec.js** test. You will see a **Traces** section at the bottom. Click the image to open the **Trace Viewer**. You can now hover over each action (click, navigation) and see exactly what the browser looked like at that moment!
+**Action:**
+1. Open the report link.
+2. Click on the **counter.spec.js** test results.
+3. Scroll down to the **Traces** section and click the image to open the **Trace Viewer**.
+4. You can now step through each action (click, navigation) and see exactly what the browser looked like at that moment!

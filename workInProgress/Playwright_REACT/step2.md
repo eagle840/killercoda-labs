@@ -1,113 +1,40 @@
-# Hello React
+# Step 2: Create a React App with Vite
 
+We will use **Vite** to scaffold a modern React application. Vite is significantly faster and more lightweight than older tools like `create-react-app`.
 
-```
-mkdir myReact
-cd myReact
-mkdir public
-cd public
-mkdir scripts
-touch index.html
-touch ./scripts/app.js
-cd ../..
-pwd
-```
+### 1. Scaffold the Project
+Run the following command to create a new React project named `my-app` using the JavaScript template.
+```bash
+npm create vite@latest my-app -- --template react
+cd my-app
+npm install
+```{{exec}}
 
-```
-mkdir test1
-cd test1
-```
+### 2. Configure Vite for Killercoda
+To access our application from outside the terminal, we need to configure Vite to bind to all network interfaces (`0.0.0.0`) and allow all hosts.
 
-
-
-
-`npm create vite@latest my-app --template react`{{exec}}
-
-select
-
-React > JavaScript
-
-
-ls
-`cd my-app`{{exec}}
-
-`npm install`{{exec}}
-
-modify Modify vite.config.js, this will allow Killacoda to allow public access.
-
-```
+```bash
+cat << 'EOF' > vite.config.js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 3000,  // Client port
-    host: '0.0.0.0', // Bind to all network interfaces
-    allowedHosts: true // allow all hosts
+    port: 3000,
+    host: '0.0.0.0',
+    allowedHosts: true
   }
 })
-```
+EOF
+```{{exec}}
 
+### 3. Start the Development Server
+Now, start the application:
 `npm run dev`{{exec}}
 
-`npm run dev -- --host 0.0.0.0`{{exec}}
-
-or
-
-`npm run dev -- --host`{{exec}}
+The application is now running on port 3000. You can view it by clicking the link below:
 
 {{TRAFFIC_HOST1_3000}}
 
-
-`npm install -g http-server`{{exec}}
-
-
-`http-server XXXX -a 0.0.0.0 -p 9323`{{exec}} # default page for React index.html?
-
-or 
-
-
-
-{{TRAFFIC_HOST1_3000}}
-
-
-
-# PlayWright Install
-
-`npm init playwright@latest`{{exec}}
-
-
-Install additional dependenices for this Linux environment
-
-`npx playwright install-deps`{{exec}}
-
-`apt install -y tree`{{exec}}
-
-
-
-
-## review the default spec
-
-`cat ./tests/example.spec.js`{{exec}}
-
-note the two sections:
-- 'has title'
-- 'get started link'
-
-## run the test
-
-`npx playwright test`{{exec}}
-
-To view the tests if you were local  `npx playwright show-report`
-
-But since we're on katacoda:
-
-and display the results
-
-`http-server playwright-report -a 0.0.0.0 -p 9323`{{exec}}
-
-Lets look at the html report, note now each section is run for chromium, firefox and webkit.
-
-{{TRAFFIC_HOST1_9323}}
+*Note: Keep this server running. In the next steps, we will install Playwright in a new terminal session or automate the startup process.*
