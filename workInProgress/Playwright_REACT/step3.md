@@ -2,6 +2,9 @@
 
 
 
+Now lets write iur own spec file `homepage.spec.js`:
+
+
 ```
 cat << 'EOF' > tests/homepage.spec.js
 import { test, expect } from '@playwright/test';
@@ -18,7 +21,7 @@ EOF
 
 `npx playwright test`{{exec}}
 
-`npx playwright show-report`{{exec}}
+if local: `npx playwright show-report`
 
 
 
@@ -61,13 +64,13 @@ This line **only works** when your Playwright config defines a **baseURL**, for 
 
 ```js
 use: {
-  baseURL: 'http://localhost:5173'
+  baseURL: 'https://playwright.dev/'
 }
 ```
 
 Then Playwright internally expands:
 
-    page.goto('/')  →  page.goto('http://localhost:5173/')
+    page.goto('/')  →  page.goto('https://playwright.dev/')
 
 But currently, your environment has **no `baseURL` configured**, so Playwright sees:
 
@@ -129,7 +132,7 @@ In `playwright.config.js`:
 ```js
 module.exports = {
   use: {
-    baseURL: 'http://localhost:5173',
+    baseURL: 'https://playwright.dev/',
   },
   webServer: {
     command: 'npm run dev',

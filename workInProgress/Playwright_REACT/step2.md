@@ -33,6 +33,23 @@ ls
 
 `npm install`{{exec}}
 
+modify Modify vite.config.js, this will allow Killacoda to allow public access.
+
+```
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 3000,  // Client port
+    host: '0.0.0.0', // Bind to all network interfaces
+    allowedHosts: true // allow all hosts
+  }
+})
+```
+
 `npm run dev`{{exec}}
 
 `npm run dev -- --host 0.0.0.0`{{exec}}
@@ -49,22 +66,7 @@ or
 
 `http-server XXXX -a 0.0.0.0 -p 9323`{{exec}} # default page for React index.html?
 
-or modify Modify vite.config.js, this will allow Killacoda to allow public access.
-
-```
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    port: 3000,  // Client port
-    host: '0.0.0.0', // Bind to all network interfaces
-    allowedHosts: true // allow all hosts
-  }
-})
-```
+or 
 
 
 
@@ -98,10 +100,14 @@ note the two sections:
 
 `npx playwright test`{{exec}}
 
+To view the tests if you were local  `npx playwright show-report`
+
+But since we're on katacoda:
+
 and display the results
 
 `http-server playwright-report -a 0.0.0.0 -p 9323`{{exec}}
 
 Lets look at the html report, note now each section is run for chromium, firefox and webkit.
 
-{{TRAFFIC_HOST1_5173}}
+{{TRAFFIC_HOST1_9323}}
