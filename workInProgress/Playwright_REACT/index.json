@@ -1,29 +1,9 @@
 {
   "title": "PlayWright & REACT",
-  "description": "Playwright with React(v0.0.6)",
+  "description": "Playwright with React(v0.1.0)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
-    "assets":{
-      "host01": [
-        {
-          "file": "send.py",
-          "target": "~/"
-        },
-        {
-          "file": "new_task.py",
-          "target": "~/"
-        },
-        {
-          "file": "worker.py",
-          "target": "~/"
-        },
-        {
-          "file": "receive.py",
-          "target": "~/"
-        }
-      ]
-    },
     "steps": [
       {
         "title": "Step 1",
