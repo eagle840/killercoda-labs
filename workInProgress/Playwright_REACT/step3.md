@@ -42,13 +42,17 @@ Lets look at the html report, note now each section is run for chromium, firefox
 {{TRAFFIC_HOST1_9323}}
 
 
-### 3. Add a Custom Test
+### 3. Add a Custom Test for React
+
 Let's create a test file named `tests/homepage.spec.js`.
+
+wip: note that a port 3000 isn't speced
+
 ```bash
 cat << 'EOF' > tests/homepage.spec.js
 import { test, expect } from '@playwright/test';
 
-test('homepage loads', async ({ page }) => {
+test('React homepage loads', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('h1')).toBeVisible();
 });
@@ -58,4 +62,12 @@ EOF
 ### 4. Run the Tests
 Now, attempt to run your tests:
 `npx playwright test`{{exec}}
+
+`http-server playwright-report -a 0.0.0.0 -p 9323`{{exec}}
+
+Lets look at the html report, note now each section is run for chromium, firefox and webkit.
+
+{{TRAFFIC_HOST1_9323}}
+
+
 
