@@ -42,9 +42,9 @@ Now, you don't need a separate terminal running `npm run dev`. Playwright will d
 `npx playwright test`{{exec}}
 
 ### 3. View the Results
-To view the results in the Killercoda environment, we'll use a simple static server:
-`npm install -g http-server`{{exec}}
-`http-server playwright-report -a 0.0.0.0 -p 9323`{{exec}}
+To view the results in the Killercoda environment, we'll use a simple static server:  
+`npm install -g http-server`{{exec}}  
+`http-server playwright-report -a 0.0.0.0 -p 9323`{{exec}}  
 
 {{TRAFFIC_HOST1_9323}}
 

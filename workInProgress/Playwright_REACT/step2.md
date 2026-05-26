@@ -6,6 +6,12 @@ We will use **Vite** to scaffold a modern React application. Vite is significant
 Run the following command to create a new React project named `my-app` using the JavaScript template.
 ```bash
 npm create vite@latest my-app -- --template react
+```{{exec}}
+
+Select **yes** to proceed, 
+and **no** to run
+
+```bash
 cd my-app
 npm install
 ```{{exec}}

@@ -2,10 +2,15 @@
 
 Now that our React app is running, let's install **Playwright**, a powerful tool for End-to-End (E2E) testing.
 
+## Docs
+
+To review the cli commands, check out https://playwright.dev/docs/getting-started-cli
+
 ### 1. Initialize Playwright
-Open a **new terminal tab** (or stop the server with `Ctrl+C` for a moment) and run:
+Terminate the app with `ctri-c`, and install playwrite
+
 ```bash
-npm init playwright@latest -- --yes --quiet --browser=chromium --lang=js
+npm init playwright@latest --  --quiet --browser=chromium --lang=js
 ```{{exec}}
 
 *Note: We are focusing on Chromium and JavaScript for this lab.*
@@ -13,6 +18,29 @@ npm init playwright@latest -- --yes --quiet --browser=chromium --lang=js
 ### 2. Install System Dependencies
 Playwright requires specific Linux libraries to run browsers headlessly.
 `npx playwright install-deps`{{exec}}
+
+### 3. Run the Default test
+
+Playwrite comes preconfigured to run tests against it's own web site, lets take a look
+
+`cat ./tests/example.spec.js`{{exec}}
+
+### 4. Run the Tests
+Now, attempt to run your tests:
+`npx playwright test`{{exec}}
+
+### 5. Review the report
+
+Normally we could run `npx playwright show-report` to see the gui report, but since we are on katacoda
+
+`npm install -g http-server`{{exec}}
+
+`http-server playwright-report -a 0.0.0.0 -p 9323`{{exec}}
+
+Lets look at the html report, note now each section is run for chromium, firefox and webkit.
+
+{{TRAFFIC_HOST1_9323}}
+
 
 ### 3. Add a Custom Test
 Let's create a test file named `tests/homepage.spec.js`.
@@ -31,10 +59,3 @@ EOF
 Now, attempt to run your tests:
 `npx playwright test`{{exec}}
 
-### 🧠 Why did it fail?
-You will notice that the default tests might pass, but your **homepage test** fails with an "Invalid URL" error.
-
-This is because Playwright doesn't know where your application is hosted. In the test, we used:
-`await page.goto('/');`
-
-Without a configuration, Playwright doesn't know that `/` should resolve to `http://localhost:3000`. In the next step, we will fix this and automate the workflow.
