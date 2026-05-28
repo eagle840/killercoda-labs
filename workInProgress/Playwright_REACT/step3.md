@@ -7,7 +7,7 @@ Now that our React app is running, let's install **Playwright**, a powerful tool
 To review the cli commands, check out https://playwright.dev/docs/getting-started-cli
 
 ### 1. Initialize Playwright
-Terminate the app with `ctri-c`, and install playwrite
+Terminate the app with `Ctrl+C`, and install playwright
 
 ```bash
 npm init playwright@latest --  --quiet --browser=chromium --lang=js
@@ -21,7 +21,7 @@ Playwright requires specific Linux libraries to run browsers headlessly.
 
 ### 3. Run the Default test
 
-Playwrite comes preconfigured to run tests against it's own web site, lets take a look
+Playwright comes preconfigured to run tests against its own web site, let's take a look
 
 `cat ./tests/example.spec.js`{{exec}}
 
@@ -31,13 +31,13 @@ Now, attempt to run your tests:
 
 ### 5. Review the report
 
-Normally we could run `npx playwright show-report` to see the gui report, but since we are on katacoda
+Normally we could run `npx playwright show-report` to see the GUI report, but since we are on Katacoda, we'll use a static server to host the report:
 
 `npm install -g http-server`{{exec}}
 
 `http-server playwright-report -a 0.0.0.0 -p 9323`{{exec}}
 
-Lets look at the html report, note now each section is run for chromium, firefox and webkit.
+Let's look at the HTML report. Note how each section is run for Chromium, Firefox, and Webkit.
 
 {{TRAFFIC_HOST1_9323}}
 

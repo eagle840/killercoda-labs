@@ -8,9 +8,6 @@ By setting a `baseURL`, you can use relative paths like `page.goto('/')`. By add
 
 Run the following command to update `playwright.config.js`:
 
-WIP CHeck this since it wipes out the orginal config
-WIP when you run test, it auto runs the http test page, see if you can set it to 0.0.0.0  
-
 ```bash
 cat << 'EOF' > playwright.config.js
 import { defineConfig, devices } from '@playwright/test';
