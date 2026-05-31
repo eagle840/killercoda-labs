@@ -11,7 +11,7 @@ Fabric requires Docker, Docker Compose, and Go.
 `sudo apt install -y docker.io docker-compose golang-go`{{exec}}
 
 ### 3. Download Fabric Samples and Binaries
-`curl -sSL https://bit.ly/2YSbOBx | bash -s`{{exec}}
+`curl -sSL https://raw.githubusercontent.com/hyperledger/fabric/main/scripts/install-fabric.sh | bash -s -- docker binary samples`{{exec}}
 
 Wait for the download to complete. This will create a `fabric-samples` directory.
 

@@ -1,6 +1,6 @@
 {
   "title": "Hyperledger Fabric Basic",
-  "description": "Getting started with Hyperledger Fabric (v0.0.1)",
+  "description": "Getting started with Hyperledger Fabric (v0.0.2)",
   "difficulty": "Intermediate",
   "time": "45 minutes",
   "details": {
@@ -8,6 +8,14 @@
       {
         "title": "Environment Setup",
         "text": "step1.md"
+      },
+      {
+        "title": "Deploying the Smart Contract",
+        "text": "step2.md"
+      },
+      {
+        "title": "Interacting with the Ledger",
+        "text": "step3.md"
       }
     ],
     "intro": {
