@@ -1,0 +1,26 @@
+{
+  "title": "Hyperledger Fabric Basic",
+  "description": "Getting started with Hyperledger Fabric (v0.0.1)",
+  "difficulty": "Intermediate",
+  "time": "45 minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "Environment Setup",
+        "text": "step1.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
