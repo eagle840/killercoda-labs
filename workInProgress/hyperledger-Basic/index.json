@@ -1,6 +1,6 @@
 {
   "title": "Hyperledger Fabric Basic",
-  "description": "Getting started with Hyperledger Fabric (v0.0.2)",
+  "description": "Getting started with Hyperledger Fabric (v0.1.0)",
   "difficulty": "Intermediate",
   "time": "45 minutes",
   "details": {
@@ -16,6 +16,14 @@
       {
         "title": "Interacting with the Ledger",
         "text": "step3.md"
+      },
+      {
+        "title": "Deploying Private Data Collections",
+        "text": "step4.md"
+      },
+      {
+        "title": "Verifying Ledger Privacy",
+        "text": "step5.md"
       }
     ],
     "intro": {
