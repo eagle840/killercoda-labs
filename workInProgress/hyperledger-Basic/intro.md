@@ -7,4 +7,8 @@ In this lab, you will learn the fundamentals of Hyperledger Fabric, an open-sour
 *   Understanding key components (Peers, Orderers, CAs).
 *   Deploying a basic network.
 
+### Detail Overview
+
+* for a detailed overview of Hyperledger Fabric, see Telusko's your course [youtube link](https://www.youtube.com/watch?v=iTV89Tqfmgk&list=PLsyeobzWxl7rXr9qxVZPbaoU7uUqP7iPM)
+
 Let's get started!

@@ -22,14 +22,16 @@ Navigate to the `test-network` directory and bring up the network. This script w
 
 `./network.sh up`{{exec}}
 
+For a detailed review of the script, see [Youtube Link](https://www.youtube.com/watch?v=3xpMzjjaq3U)
+
 ### 5. Confirm the Network is Running
 Check the running Docker containers to see the Fabric nodes (Peers and Orderer).
 
 `docker ps`{{exec}}
 
-You should see containers for:
-*   `peer0.org1.example.com`
-*   `peer0.org2.example.com`
-*   `orderer.example.com`
+You should see the following three core components:
+*   **`peer0.org1.example.com`**: A **Peer Node** for Organization 1. Peers are the fundamental actors in the network; they maintain the ledger and execute smart contracts (chaincode) to validate transactions.
+*   **`peer0.org2.example.com`**: A **Peer Node** for Organization 2. In a permissioned network, each organization typically maintains its own peers to ensure they have a local, verified copy of the shared ledger.
+*   **`orderer.example.com`**: The **Ordering Service Node**. It acts as the network's "clock," collecting transactions from peers, ordering them into blocks, and distributing those blocks back to all peers to maintain a single, consistent history.
 
 Congratulations! You have a basic Hyperledger Fabric network running.
