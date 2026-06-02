@@ -22,6 +22,10 @@ Navigate to the `test-network` directory and bring up the network. This script w
 
 `./network.sh up`{{exec}}
 
+To see the full list for the script options:
+
+`./network.sh -h`{{exec}}
+
 For a detailed review of the script, see [Youtube Link](https://www.youtube.com/watch?v=3xpMzjjaq3U)
 
 ### 5. Confirm the Network is Running

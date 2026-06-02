@@ -1,6 +1,12 @@
 # Step 3: Interacting with the Ledger
 
+To follow in the Fabric docs: [interacting-with-the-network](https://hyperledger-fabric.readthedocs.io/en/release-2.5/test_network.html#interacting-with-the-network)
+
 Now that the chaincode is deployed, we can use the Fabric `peer` CLI to interact with it. To do this, we must tell the CLI which peer we are "acting" as.
+
+Return to to root fabric folder (needed for the peer commands to work):
+
+`cd ~/fabric-samples/`{{exec}}
 
 ### 1. Set the Environment Variables (Org1)
 We will act as the Administrator of **Org1**. Copy and run the following block to set up your environment:
@@ -14,6 +20,8 @@ export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/org1.e
 export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
 export CORE_PEER_ADDRESS=localhost:7051
 ```{{exec}}
+
+`peer -h`{{exec}}
 
 ### 2. Initialize the Ledger
 The sample chaincode has an `InitLedger` function that populates the blockchain with some starting data.
