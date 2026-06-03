@@ -4,9 +4,6 @@ To follow in the Fabric docs: [interacting-with-the-network](https://hyperledger
 
 Now that the chaincode is deployed, we can use the Fabric `peer` CLI to interact with it. To do this, we must tell the CLI which peer we are "acting" as.
 
-Return to to root fabric folder (needed for the peer commands to work):
-
-`cd ~/fabric-samples/`{{exec}}
 
 ### 1. Set the Environment Variables (Org1)
 We will act as the Administrator of **Org1**. Copy and run the following block to set up your environment:
@@ -31,7 +28,7 @@ The sample chaincode has an `InitLedger` function that populates the blockchain 
 ### 3. Query the Data
 Let's see all the assets that were just created.
 
-`peer chaincode query -C mychannel -n basic -c '{"Args":["GetAllAssets"]}'`{{exec}}
+`peer chaincode query -C mychannel -n basic -c '{"Args":["GetAllAssets"]}' | jq`{{exec}}
 
 ### 4. Create a New Asset
 Now, let's put your own data on the blockchain. We will create a new asset named `asset7`.
@@ -41,6 +38,6 @@ Now, let's put your own data on the blockchain. We will create a new asset named
 ### 5. Read the New Asset
 Verify that your data is stored securely and immutably.
 
-`peer chaincode query -C mychannel -n basic -c '{"Args":["ReadAsset","asset7"]}'`{{exec}}
+`peer chaincode query -C mychannel -n basic -c '{"Args":["ReadAsset","asset7"]}' | jq`{{exec}}
 
 You have successfully interacted with a Hyperledger Fabric ledger!

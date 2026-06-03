@@ -14,6 +14,8 @@ Notice how `assetCollection` is defined to allow members from both Org1 and Org2
 ### 2. Clean up the Previous Chaincode
 To avoid conflicts, we will bring the network down and back up to start fresh for this advanced feature.
 
+WIP ctrl-c the running docker container in tab 1
+
 `./network.sh down`{{exec}}
 
 `./network.sh up createChannel`{{exec}}
@@ -22,6 +24,16 @@ To avoid conflicts, we will bring the network down and back up to start fresh fo
 We will now deploy the `asset-transfer-private-data` chaincode. Notice the additional `-collections-config` flag.
 
 `./network.sh deployCC -ccn private -ccp ../asset-transfer-private-data/chaincode-go/ -ccl go -cccg ../asset-transfer-private-data/chaincode-go/collections_config.json`{{exec}}
+
+```
+./network.sh deployCC \
+  -ccn private \
+  -ccp ../asset-transfer-private-data/chaincode-go/ \
+  -ccl go \
+  -cccg ../asset-transfer-private-data/chaincode-go/collections_config.json
+```{{exec}}
+
+
 
 This command tells the peers exactly who is allowed to store and see the private data associated with this contract.
 

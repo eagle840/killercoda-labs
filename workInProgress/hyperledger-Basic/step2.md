@@ -16,6 +16,15 @@ The following command packages the Go chaincode, installs it on the peers of Org
 
 `./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-go -ccl go`{{exec}}
 
+```
+./network.sh deployCC \
+ -ccn basic \
+ -ccp ../asset-transfer-basic/chaincode-go \
+ -ccl go
+```{{exec}}
+
+
+
 **Argument Breakdown:**
 *   **`-ccn basic`**: **Chaincode Name**. This specifies the name by which the contract will be identified on the channel.
 *   **`-ccp ../...`**: **Chaincode Path**. Points to the directory containing the source code.
