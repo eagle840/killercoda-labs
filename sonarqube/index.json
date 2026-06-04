@@ -1,6 +1,6 @@
 {
-  "title": "sonarqube",
-  "description": "sonarqube demo (v0.93)",
+  "title": "SAST - sonarqube",
+  "description": "Static Application Security Testing - sonarqube demo (v0.93)",
   "difficulty": "Intermediate",
   "time": "15 minutes",
   "details": {
