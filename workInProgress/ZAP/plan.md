@@ -19,7 +19,7 @@ Deliver a clean, functional Killercoda lab for OWASP ZAP DAST testing against OW
     - Run `zap-baseline.py` via Docker.
     - Fix volume permission issues (ensure the host directory is writable by the `zap` user).
     - Serve `report.html` using `python3 -m http.server`.
-- [ ] **Task 2.3: Step 3 - Interactive ZAP.**
+- [x] **Task 2.3: Step 3 - Interactive ZAP.**
     - Launch `zap-webswing.sh`.
     - Provide instructions on accessing the Web UI via Killercoda's traffic ports.
     - Guide user to run a simple "Quick Start" scan in the UI.

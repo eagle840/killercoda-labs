@@ -12,7 +12,7 @@ The **Baseline Scan** (`zap-baseline.py`) runs the passive scanner against a tar
 
 We will mount our `zap-reports` directory to `/zap/wrk/` inside the container. This is the conventional path ZAP uses for input/output files.
 
-`docker run -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3000 -r baseline-report.html`{{exec}}
+`docker run --net=host -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3000 -r  baseline-report.html`{{exec}}
 
 ### Key Flags used:
 - `-v $(pwd)/zap-reports:/zap/wrk/:rw`: Mounts our local directory into the container.
