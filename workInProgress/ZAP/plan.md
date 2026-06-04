@@ -1,22 +1,33 @@
+# Updated ZAP Lab Plan
 
+## Goal
+Deliver a clean, functional Killercoda lab for OWASP ZAP DAST testing against OWASP Juice Shop.
 
-## Lab : DAST (Dynamic Application Security Testing)
+## Checklist
 
-**The Tool:** **OWASP ZAP (ZED Attack Proxy)** > ZAP is the gold standard for open-source DAST. Since Killercoda is terminal-based, you will use the **ZAP CLI** or the **ZAP Docker container** to run a baseline scan against a locally running mock application.
+### Phase 1: Cleanup & Metadata
+- [ ] **Task 1.1: Remove Ghost Assets.** Strip RabbitMQ scripts from `index.json`.
+- [ ] **Task 1.2: Fix Intro.** Update `intro.md` to reflect ZAP content instead of Docker installation.
+- [ ] **Task 1.3: Consistency Check.** Ensure all files use port 3000 for Juice Shop and consistent volume paths.
 
-### Lab Structure
+### Phase 2: Implementation
+- [ ] **Task 2.1: Step 1 - Target Setup.** 
+    - Pull and run Juice Shop in the background.
+    - Add health check to ensure it's up before the user proceeds.
+    - Brief intro to the "Vulnerable Target".
+- [ ] **Task 2.2: Step 2 - The Baseline Scan.**
+    - Run `zap-baseline.py` via Docker.
+    - Fix volume permission issues (ensure the host directory is writable by the `zap` user).
+    - Serve `report.html` using `python3 -m http.server`.
+- [ ] **Task 2.3: Step 3 - Interactive ZAP.**
+    - Launch `zap-webswing.sh`.
+    - Provide instructions on accessing the Web UI via Killercoda's traffic ports.
+    - Guide user to run a simple "Quick Start" scan in the UI.
+- [ ] **Task 2.4: Step 4 - API Automation.**
+    - Fix the "URL Not Found in Scan Tree" issue by implementing the **Spider -> Ascan** workflow.
+    - Use `curl` to interact with the API.
+    - Export report via API.
 
-* **Scenario:** A vulnerable web application (like *OWASP Juice Shop* or a simple Python Flask app) is already running in the background on `localhost:5000`.
-* **Step 1: Launch the DAST Scan:** The user triggers an automated ZAP baseline scan via Docker against the running app.
-```bash
-docker run -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:5000 -r report.html
-
-```
-
-
-* **Step 2: Inspect the Report:** Serve the `report.html` file using a simple Python HTTP server so the user can view it via Killercoda’s built-in web preview feature.
-* **Step 3: Understand the Difference:** Clear instructions explaining *why* ZAP found things SAST couldn't (like missing HTTP security headers or cookie flags that only appear when the app is actively running).
-
-
-
-Would you like me to help you write the specific step-by-step markdown content or the `background.sh` setup script for one of these specific labs?
+### Phase 3: Finalization
+- [ ] **Task 3.1: Conclusion.** Update `finish.md` with a summary of DAST vs SAST.
+- [ ] **Task 3.2: Verification.** Dry run all commands to ensure they work in the Killercoda environment.
