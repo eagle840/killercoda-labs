@@ -1,203 +1,39 @@
-# ZAP
+# Automated Baseline Scanning
 
+The fastest way to use ZAP in a CI/CD pipeline or for a quick health check is through its **Packaged Scans**. These are Python scripts that wrap ZAP's functionality into a single command.
 
-https://www.zaproxy.org/docs/docker/about/
+## 1. Prepare Report Directory
+By default, the ZAP Docker container runs as the `zap` user (UID 1000). To ensure ZAP can write the scan report to our host machine, we need to create a directory and grant it open permissions.
 
-Dos's covering the types of scan: https://www.zaproxy.org/docs/docker/
+`mkdir -p $(pwd)/zap-reports && chmod 777 $(pwd)/zap-reports`{{exec}}
 
+## 2. Run the Baseline Scan
+The **Baseline Scan** (`zap-baseline.py`) runs the passive scanner against a target. It does not perform any "attacking" (active) scans, making it safe for production environments.
 
-# with webswing
+We will mount our `zap-reports` directory to `/zap/wrk/` inside the container. This is the conventional path ZAP uses for input/output files.
 
-`docker run -u zap -p 8080:8080 -p 8090:8090 -i ghcr.io/zaproxy/zaproxy:stable zap-webswing.sh`{{execute}}
+`docker run -v $(pwd)/zap-reports:/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3000 -r baseline-report.html`{{exec}}
 
+### Key Flags used:
+- `-v $(pwd)/zap-reports:/zap/wrk/:rw`: Mounts our local directory into the container.
+- `-t http://localhost:3000`: Specifies the target URL (our Juice Shop).
+- `-r baseline-report.html`: Tells ZAP to generate an HTML report with this name.
 
-{{TRAFFIC_HOST1_8080}}/zap
+## 3. View the Report
+Since we are in a terminal-only environment, we will use Python to serve the HTML report so you can view it in your browser.
 
-once open
+`python3 -m http.server 8000 --directory ./zap-reports`{{exec}}
 
-Tools>options>API  note api key value
+Once the server is running, open the report using the port 8000 link:
 
-- Add address' to define what others can access (localhost only by default)
+{{TRAFFIC_HOST1_8000}}/baseline-report.html
 
-## Modes
+## Common CLI Options
+ZAP's packaged scans support several useful flags you might want to explore later:
+- `-m`: The number of minutes to spider.
+- `-j`: Use the AJAX spider (useful for heavy JavaScript apps like Juice Shop).
+- `-a`: Include alpha (experimental) passive scan rules.
+- `-J`: Output report in JSON format.
+- `-x`: Output report in XML format.
 
-- safe
-- protected
-- standard
-- ATTACK
-
-
-## Window Layout
-
-```
-##################################
-# Tree window # Workspace window #
-##################################
-#     Information window         #
-##################################
-
-```
-
-## Wiki/API
-
-once the proxy is setup, a DNS host ZAP is added  :http://ZAP
-
-ajaxsider => ajax syider
-ascan     => active scan
-context   => contexts
-pscan     => passive scan
-spider    => regular spider
-reports   => reports
-
-
-## JuiceShop
-
-In the 'Workspace window', click automatic and enter `https://juice-shop.herokuapp.com/`{{copy}}  and then click Attach.
-
-In the 'Workspace window', click automatic and enter `http://localhost:3000`{{copy}}  and then click Attach.
-
-
-
-You can review the `information window` Alerts.
-
-## Setting up SSL
-
-In ZAP  settings> Dynamic SSL save the SSL
-In Firesfox   Settings> Privacy $ Security > Certicates > view > import (check thrust websites)
-  - set proxy to 127.0.0.1:8080 innc https and SOCKS
-
-## Packaged Scans
-
-|     | spider | AJAX Spider | Passive  | ATTACK |
-|-----|--------|-------------|----------|--------|
-|Basline| X | X | X |   |
-|Full   | X | X | X | X |
-|API    |   |   |   | X |
-
-## workflow
-
-Context => spider => ascan => reports
-
-API for status  100 = completed scan
-
-## Addons
-
-Also know as market place
-
-www.zaproxy.org/addons
-
-
-# Access the API from outside of the docker container
-
-WIP **Isn't this in step 4?**
-
-https://www.zaproxy.org/docs/docker/about/#accessing-the-api-from-outside-of-the-docker-container
-
-Read and comsume this: https://www.zaproxy.org/docs/docker/about/
-
-`docker ps`{{exec}}
-
-what about docker pull ghcr.io/zaproxy/zaproxy:bare
-
-`docker run -u zap -p 8080:8080 -i zaproxy/zap-stable zap.sh -daemon -port 8080 -host 0.0.0.0 -config api.disablekey=true -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true`{{exec}}
-
-
-Args for starting ZAP
-  -config k=v
-  -daemon
-  -host
-  -port
-  -new session # with name
-  -session  # start session name
-
-`curl    http://localhost:8080/JSON/core/view/version`{{exec}}
-
-
-`touch scan_request.json`{{exec}}
-
-`nano scan_request.json`{{exec}}
-
-```
-{
-  "url": "http://example.com",
-  "context": "Default Context",
-  "recurse": "true",
-  "inScopeOnly": "false"
-}
-```
-need to add context: "Default Context"
-
-WIP: list contexts
-
-Documentation? https://www.zaproxy.org/docs/api/#api-catalogue
-
-for the following scan: https://www.zaproxy.org/docs/api/?shell#ascanactionscan
-
-`curl -X POST http://localhost:8080/JSON/ascan/action/scan/ -d @scan_request.json -H "Content-Type: application/json"`{{exec}}
-
-
-
-To start a scan using OWASP ZAP in daemon mode, you can use the ZAP API. Here’s a step-by-step guide:
-
-1. **Start OWASP ZAP**: You've already done this with your Docker command.
-
-2. **Access the ZAP API**: You can interact with the ZAP API using HTTP requests. Since you've disabled the API key, you can directly send requests to `http://localhost:8080`.
-
-3. **Spider the target URL**: This will crawl the target URL to discover all the links. Use the following API call:
-    `curl "http://localhost:8080/JSON/spider/action/scan/?url=http://example.com"`{{exec}}
-
-4. **Check the spider status**: Ensure the spidering process is complete before starting the active scan:
-    `curl "http://localhost:8080/JSON/spider/view/status/"`{{exec}}
-
-
-5. **Start the active scan**: Once spidering is complete, initiate the active scan:
-    `curl "http://localhost:8080/JSON/ascan/action/scan/?url=http://example.com"`{{exec}}
-
-
-6. **Monitor the scan progress**: You can check the status of the active scan:
-    `curl "http://localhost:8080/JSON/ascan/view/status/"`{{exec}}
-
-
-7. **Retrieve the scan results**: After the scan is complete, you can get the results:
-    `curl "http://localhost:8080/JSON/core/view/alerts/?baseurl=http://example.com" | jq`{{exec}}
-
-
-For more detailed information, you can refer to the ZAP API documentation[1](https://www.zaproxy.org/docs/desktop/start/features/api/).
-
-Is there a specific type of scan or target you're working with?
-
-
-To save the HTML report to a file and serve it using Python, you can follow these steps:
-
-### Step 1: Save the HTML Report to a File
-Use the following `curl` command to save the HTML report generated by OWASP ZAP to a file named `zap_report.html`:
-
-`curl "http://localhost:8080/OTHER/core/other/htmlreport/" -o zap_report.html`{{exec}}
-
-
-`curl "http://localhost:8080/OTHER/core/other/pdfreport/"`
-
-### Step 2: Serve the HTML Document Using Python
-You can use Python's built-in HTTP server to serve the HTML document. Here is a Python script to do that:
-
-`touch serve_html.py`{{exec}}
-
-```python
-import http.server
-import socketserver
-
-PORT = 8000
-Handler = http.server.SimpleHTTPRequestHandler
-
-with socketserver.TCPServer(("", PORT), Handler) as httpd:
-    print(f"Serving at port {PORT}")
-    httpd.serve_forever()
-```{{copy}}
-
-Save this script to a file, for example, `serve_html.py`, and run it using Python:
-
-`python serve_html.py`{{exec}}
-
-{{TRAFFIC_HOST1_8000}}
-
-This will start a local server on port 8000. You can then access your HTML report by navigating to `{{TRAFFIC_HOST1_8000}}/zap_report.html` in your web browser.
+Press `CTRL+C` to stop the Python server when you are done reviewing the report, then click **Continue**.

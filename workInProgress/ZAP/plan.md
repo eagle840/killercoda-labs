@@ -15,7 +15,7 @@ Deliver a clean, functional Killercoda lab for OWASP ZAP DAST testing against OW
     - Pull and run Juice Shop in the background.
     - Add health check to ensure it's up before the user proceeds.
     - Brief intro to the "Vulnerable Target".
-- [ ] **Task 2.2: Step 2 - The Baseline Scan.**
+- [x] **Task 2.2: Step 2 - The Baseline Scan.**
     - Run `zap-baseline.py` via Docker.
     - Fix volume permission issues (ensure the host directory is writable by the `zap` user).
     - Serve `report.html` using `python3 -m http.server`.
@@ -23,7 +23,8 @@ Deliver a clean, functional Killercoda lab for OWASP ZAP DAST testing against OW
     - Launch `zap-webswing.sh`.
     - Provide instructions on accessing the Web UI via Killercoda's traffic ports.
     - Guide user to run a simple "Quick Start" scan in the UI.
-- [ ] **Task 2.4: Step 4 - API Automation.**
+- [ ] **Task 2.4: Step 4 - API Automation & Daemon Mode.**
+    - Launch ZAP in **Daemon mode** (`-daemon`).
     - Fix the "URL Not Found in Scan Tree" issue by implementing the **Spider -> Ascan** workflow.
     - Use `curl` to interact with the API.
     - Export report via API.
@@ -31,3 +32,9 @@ Deliver a clean, functional Killercoda lab for OWASP ZAP DAST testing against OW
 ### Phase 3: Finalization
 - [ ] **Task 3.1: Conclusion.** Update `finish.md` with a summary of DAST vs SAST.
 - [ ] **Task 3.2: Verification.** Dry run all commands to ensure they work in the Killercoda environment.
+
+## Preservation Notes (Don't Lose These!)
+- **From old Step 2:** Webswing layout, ZAP Modes (Safe/Protected/Attack), and the concept of 'Context'.
+- **From old Step 3:** CLI flags (m, a, j) and report formats (r, J, x, w).
+- **From old Step 4:** Detailed Context API calls and Regex inclusion rules.
+
