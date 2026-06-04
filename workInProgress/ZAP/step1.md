@@ -1,82 +1,27 @@
+# Setting Up the Vulnerable Target
 
-# Docker Install
+To perform Dynamic Application Security Testing (DAST), we first need a running application to test. In this lab, we will use the **OWASP Juice Shop**, which is arguably the most modern and sophisticated insecure web application.
 
+## 1. Install Utilities
+First, let's install `jq`, a lightweight and flexible command-line JSON processor. We'll use this later to parse ZAP API responses.
 
-## System update
+`apt update && apt install jq -y`{{exec}}
 
-`sudo apt update`{{exec}}
+## 2. Deploy OWASP Juice Shop
+We will run Juice Shop as a background Docker container.
 
-`apt install jq -y`{{exec}}
+`docker run -d --name juice-shop -p 3000:3000 bkimminich/juice-shop`{{exec}}
 
-## Docker version check
+## 3. Wait for Initialization
+Juice Shop is a Node.js application and takes a few moments to start up. Run the following command to wait until the service is responsive:
 
-`docker version`{{exec}}
+`until $(curl --output /dev/null --silent --head --fail http://localhost:3000); do printf '.'; sleep 5; done && echo "Juice Shop is UP!"`{{exec}}
 
-`docker-compose version`{{exec}}
+Once you see "Juice Shop is UP!", you can view the application here: {{TRAFFIC_HOST1_3000}}
 
-`docker compose version`{{exec}}
+## 4. Pre-pull ZAP Image
+While Juice Shop is starting, let's pull the OWASP ZAP Docker image so it's ready for the next step.
 
-Lets pull down the images we'll use.
+`docker pull ghcr.io/zaproxy/zaproxy:stable`{{exec}}
 
-## Zap on Docker
-
-https://www.zaproxy.org/docs/docker/
-
-`docker run -u zap -it  zaproxy/zap-stable zap.sh -help`{{exec}}
-
-WIP see error below before running
-
-```
-mkdir -p $(pwd)/output
-chmod -R 777 $(pwd)/output
-```{{exec}}
-
-`docker run -u zap -it -v $(pwd):/output  zaproxy/zap-stable zap.sh -daemon -quickurl http://www.example.com -quickprogress -quickout report1.html`{{copy}}
-
-`docker run -u zap -it -v $(pwd):/zap/wrk/:rw zaproxy/zap-stable zap.sh -daemon -quickurl http://localhost:3000 -quickprogress -quickout /zap/wrk/report1.html`{{exec}}
-
-```
-Attack complete
-Writing results to /zap/wrk/report1.html
-```
-
-## Lets start juice shop
-
-`docker run -d --rm -p 3000:3000 bkimminich/juice-shop`{{exec}}
-
-Can can view juice-shop here: {{TRAFFIC_HOST1_3000}}
-
-## baseline scan
-
-https://www.zaproxy.org/docs/docker/baseline-scan/
-
-`docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3000 -r report.html`{{exec}}
-
-
-`docker run -u zap -it -v $(pwd):/output zaproxy/zap-stable zap.sh -daemon -quickurl {{TRAFFIC_HOST1_3000}} -quickprogress -quickout /output/report1.html`{{exec}}
-
-
-## API scan
-
-https://www.zaproxy.org/docs/docker/api-scan/
-
-against juice shop?
-
-
-## Juice shop
-
-
-Lets start juice shop
-
-`docker run --rm -p 3000:3000 bkimminich/juice-shop`{{exec}}
-
-Can can view juice-shop here: {{TRAFFIC_HOST1_3000}}
-
-WIP Also at https://juice-shop.herokuapp.com/
-
-and confirm it's up with a apu call
-
-
-`curl http://localhost:3000/rest/products/search?q=Apple`{{exec}}
-
-`curl http://localhost:3000/rest/products/search?q=Apple | jq`{{exec}}
+Click **Continue** once Juice Shop is ready.

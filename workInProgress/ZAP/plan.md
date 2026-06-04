@@ -11,7 +11,7 @@ Deliver a clean, functional Killercoda lab for OWASP ZAP DAST testing against OW
 - [x] **Task 1.3: Consistency Check.** Ensure all files use port 3000 for Juice Shop and consistent volume paths.
 
 ### Phase 2: Implementation
-- [ ] **Task 2.1: Step 1 - Target Setup.** 
+- [x] **Task 2.1: Step 1 - Target Setup.** 
     - Pull and run Juice Shop in the background.
     - Add health check to ensure it's up before the user proceeds.
     - Brief intro to the "Vulnerable Target".
