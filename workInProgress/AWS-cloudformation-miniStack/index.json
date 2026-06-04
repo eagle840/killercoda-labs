@@ -1,6 +1,6 @@
 {
   "title": "WIP - AWS Cloudform on Ministack",
-  "description": "Use aws, cloudformation and ministack (v0.0.1)",
+  "description": "Use aws, cloudformation and ministack (v0.0.2)",
   "difficulty": "Advanced",
   "time": "60 minutes",
   "details": {

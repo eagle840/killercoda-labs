@@ -206,8 +206,22 @@ Confirm the stack is completely healthy and in sync.
 
 
 
-aws cloudformation delete-stack --stack-name local-core-infra
+---
 
-```
+## Lab Step Mapping (Implementation Tracker)
 
-```
+| Step | Topic | Blueprint Alignment | Status |
+| :--- | :--- | :--- | :--- |
+| **1** | **Initial Setup** | Infrastructure Setup | ✅ Completed |
+| **2** | **The Zero-to-Hero Lifecycle** | Part 1: Lifecycle | ✅ Completed |
+| **3** | **Dynamic Infrastructure** | Part 2.1: Parameters | ✅ Completed |
+| **4** | **Wiring & Outputs** | Part 2.2 - 2.4: Refs/Outputs | ✅ Completed |
+| **5** | **Event-Driven Plumbing** | Part 3.1 - 3.2: EventBridge | ✅ Completed |
+| **6** | **Simulating the Pipeline** | Part 3.3 - 3.4: Verification | ✅ Completed |
+| **7** | **Drift & Remediation** | Part 4: Drift Detection | ✅ Completed |
+
+### Implementation Strategy
+- **Step 2:** Focus on `validate-template` and `create-stack`.
+- **Step 3/4:** Transition to dynamic templates using `Parameters` and `Intrinsic Functions`.
+- **Step 5/6:** Demonstrate architectural wiring with EventBridge and SQS.
+- **Step 7:** Practical exercise in identifying and fixing "Configuration Drift".
