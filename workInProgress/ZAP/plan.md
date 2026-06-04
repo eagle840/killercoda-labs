@@ -6,9 +6,9 @@ Deliver a clean, functional Killercoda lab for OWASP ZAP DAST testing against OW
 ## Checklist
 
 ### Phase 1: Cleanup & Metadata
-- [ ] **Task 1.1: Remove Ghost Assets.** Strip RabbitMQ scripts from `index.json`.
-- [ ] **Task 1.2: Fix Intro.** Update `intro.md` to reflect ZAP content instead of Docker installation.
-- [ ] **Task 1.3: Consistency Check.** Ensure all files use port 3000 for Juice Shop and consistent volume paths.
+- [x] **Task 1.1: Remove Ghost Assets.** Strip RabbitMQ scripts from `index.json`.
+- [x] **Task 1.2: Fix Intro.** Update `intro.md` to reflect ZAP content instead of Docker installation.
+- [x] **Task 1.3: Consistency Check.** Ensure all files use port 3000 for Juice Shop and consistent volume paths.
 
 ### Phase 2: Implementation
 - [ ] **Task 2.1: Step 1 - Target Setup.** 

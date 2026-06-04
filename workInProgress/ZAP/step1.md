@@ -33,25 +33,16 @@ chmod -R 777 $(pwd)/output
 
 `docker run -u zap -it -v $(pwd):/output  zaproxy/zap-stable zap.sh -daemon -quickurl http://www.example.com -quickprogress -quickout report1.html`{{copy}}
 
-`docker run -u zap -it -v $(pwd):/output zaproxy/zap-stable zap.sh -daemon -quickurl http://www.example.com -quickprogress -quickout /output/report1.html`{{exec}}
-
+`docker run -u zap -it -v $(pwd):/zap/wrk/:rw zaproxy/zap-stable zap.sh -daemon -quickurl http://localhost:3000 -quickprogress -quickout /zap/wrk/report1.html`{{exec}}
 
 ```
 Attack complete
-Writing results to /zap/report1.html
-The directory of given '-quickout' file is not writable:
-/zap/report1.html
+Writing results to /zap/wrk/report1.html
 ```
-
-try -u root
-
-test to comfirm
-
-`docker run -u zap -it -v $(pwd)/output:/output zaproxy/zap-stable touch /output/testfile.txt`{{copy}}
 
 ## Lets start juice shop
 
-`docker run --rm -p 3000:3000 bkimminich/juice-shop`{{exec}}
+`docker run -d --rm -p 3000:3000 bkimminich/juice-shop`{{exec}}
 
 Can can view juice-shop here: {{TRAFFIC_HOST1_3000}}
 
@@ -59,7 +50,8 @@ Can can view juice-shop here: {{TRAFFIC_HOST1_3000}}
 
 https://www.zaproxy.org/docs/docker/baseline-scan/
 
-`docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t https://www.example.com -g gen.conf -r testreport.html`{{exec}}
+`docker run -v $(pwd):/zap/wrk/:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3000 -r report.html`{{exec}}
+
 
 `docker run -u zap -it -v $(pwd):/output zaproxy/zap-stable zap.sh -daemon -quickurl {{TRAFFIC_HOST1_3000}} -quickprogress -quickout /output/report1.html`{{exec}}
 

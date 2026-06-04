@@ -1,29 +1,9 @@
 {
   "title": "DAST - ZAP on Docker",
-  "description": "Dynamic Application Security Testing: Running and accessing OWASP ZAP on a docker container(v0.2.0)",
+  "description": "Dynamic Application Security Testing: Running and accessing OWASP ZAP on a docker container(v0.2.1)",
   "difficulty": "Beginner",
   "time": "60 minutes",
   "details": {
-    "assets":{
-      "host01": [
-        {
-          "file": "send.py",
-          "target": "~/"
-        },
-        {
-          "file": "new_task.py",
-          "target": "~/"
-        },
-        {
-          "file": "worker.py",
-          "target": "~/"
-        },
-        {
-          "file": "receive.py",
-          "target": "~/"
-        }
-      ]
-    },
     "steps": [
       {
         "title": "Step 1",

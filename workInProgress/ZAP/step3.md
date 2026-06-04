@@ -10,7 +10,7 @@
      -u $(id -u):$(id -g) \
      -t ghcr.io/zaproxy/zaproxy:stable \
      zap-baseline.py \
-     -t http://localhost:80 \
+     -t http://localhost:3000 \
      -g gen.conf \
      -x OWASP-ZAP-Report.xml \
      -r scan-report.html
@@ -38,7 +38,7 @@
      -u $(id -u):$(id -g) \
      -t ghcr.io/zaproxy/zaproxy:stable \
      zap-baseline.py -d \
-     -t http://localhost:80 \
+     -t http://localhost:3000 \
      -g gen.conf \
      -x OWASP-ZAP-Report.xml \
      -r scan-report.html
