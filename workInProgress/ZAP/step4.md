@@ -5,13 +5,26 @@ In a fully automated CI/CD pipeline, you won't use a GUI or even the simplified 
 ## 1. Start ZAP in Daemon Mode
 **Daemon mode** runs ZAP in the background without a UI. We must configure it to allow API connections from our host.
 
-`docker run -d --net=host --name zap-daemon -u zap ghcr.io/zaproxy/zaproxy:stable zap.sh -daemon -host 0.0.0.0 -port 8080 -config api.disablekey=true -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true`{{exec}}
+```
+docker run -d --net=host --name zap-daemon -u zap ghcr.io/zaproxy/zaproxy:stable zap.sh \
+ -daemon -host 0.0.0.0 -port 8080 \
+ -config api.disablekey=true \
+ -config api.addrs.addr.name=.* \
+ -config api.addrs.addr.regex=true
+```{{exec}}
 
-Check that the API is responsive:
+## 2. Wait for ZAP to Initialize
+ZAP is a Java application and can be resource-intensive during startup. Run this command to wait until the ZAP API is fully ready:
+
+`until $(curl --output /dev/null --silent --head --fail http://localhost:8080); do printf '.'; sleep 5; done && echo "ZAP API is READY!"`{{exec}}
+
+Once you see "ZAP API is READY!", you can proceed with the automation.
+
+Check the ZAP version to confirm:
 
 `curl -s http://localhost:8080/JSON/core/view/version/ | jq`{{exec}}
 
-## 2. The "Scan Tree" Workflow
+## 3. The "Scan Tree" Workflow
 The most common mistake with the ZAP API is trying to "Active Scan" a URL that ZAP hasn't seen yet. ZAP will return a `url_not_found` error. 
 
 To fix this, you must follow this sequence: **Context Setup -> Spider -> Active Scan**.

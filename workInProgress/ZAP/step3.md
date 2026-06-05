@@ -40,4 +40,16 @@ In the **Workspace Window**, click on the **Automated Scan** button:
 
 You will see ZAP's spider crawling the site in the Tree window and alerts appearing in the Information window at the bottom.
 
+## 5. Review the Results
+Once the scan has made some progress, you can review what ZAP has found:
+
+1. **Alerts Tab:** In the **Information Window** at the bottom, click the **Alerts** tab.
+2. **Drill Down:** Expand the folders to see specific vulnerabilities. ZAP categorizes them by risk level (High, Medium, Low, Informational).
+3. **Details:** Click on an individual alert. The **Workspace Window** (top right) will update to show:
+    - **Description:** What the vulnerability is.
+    - **Solution:** How to fix it.
+    - **Evidence:** The specific part of the HTTP request/response that triggered the alert.
+
+This interactive exploration is what makes ZAP a favorite for security researchers.
+
 Click **Continue** once you've explored the UI.
