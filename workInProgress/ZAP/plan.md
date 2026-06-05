@@ -23,14 +23,14 @@ Deliver a clean, functional Killercoda lab for OWASP ZAP DAST testing against OW
     - Launch `zap-webswing.sh`.
     - Provide instructions on accessing the Web UI via Killercoda's traffic ports.
     - Guide user to run a simple "Quick Start" scan in the UI.
-- [ ] **Task 2.4: Step 4 - API Automation & Daemon Mode.**
+- [x] **Task 2.4: Step 4 - API Automation & Daemon Mode.**
     - Launch ZAP in **Daemon mode** (`-daemon`).
     - Fix the "URL Not Found in Scan Tree" issue by implementing the **Spider -> Ascan** workflow.
     - Use `curl` to interact with the API.
     - Export report via API.
 
 ### Phase 3: Finalization
-- [ ] **Task 3.1: Conclusion.** Update `finish.md` with a summary of DAST vs SAST.
+- [x] **Task 3.1: Conclusion.** Update `finish.md` with a summary of DAST vs SAST.
 - [ ] **Task 3.2: Verification.** Dry run all commands to ensure they work in the Killercoda environment.
 
 ## Preservation Notes (Don't Lose These!)
