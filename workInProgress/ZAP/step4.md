@@ -34,12 +34,12 @@ A **Context** groups related URLs together. Let's create one for Juice Shop.
 
 `curl -s "http://127.0.0.1:8080/JSON/context/action/newContext/?contextName=JuiceShop" | jq`{{exec}}
 
-Include our target in this context using a Regex:
+Include our target in this context using a Regex (this tells ZAP that any URL starting with this pattern is "in scope"):
 
-`curl -s "http://127.0.0.1:8080/JSON/context/action/includeInContext/?contextName=JuiceShop&regex=http://127.0.0.1:3000/.*" | jq`{{exec}}
+`curl -s "http://127.0.0.1:8080/JSON/context/action/includeInContext/?contextName=JuiceShop&regex=http://127.0.0.1:3000.*" | jq`{{exec}}
 
 ### B. The Spider (Required)
-The Spider crawls the application to discover its structure and populate the **Scan Tree**.
+The Spider crawls the application to discover its structure and populate the **Scan Tree**. ZAP will only scan URLs that match the Context we just defined.
 
 `curl -s "http://127.0.0.1:8080/JSON/spider/action/scan/?url=http://127.0.0.1:3000&contextName=JuiceShop" | jq`{{exec}}
 
