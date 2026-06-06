@@ -43,14 +43,18 @@ The Spider crawls the application to discover its structure and populate the **S
 
 `curl -s "http://127.0.0.1:8080/JSON/spider/action/scan/?url=http://127.0.0.1:3000&contextName=JuiceShop" | jq`{{exec}}
 
+The API returns a **Scan ID** (e.g., `"0"`). You can use this ID to track the progress if multiple scans are running, though in this lab we only have one.
+
 Monitor the spider status (wait for it to reach 100):
 
 `curl -s "http://127.0.0.1:8080/JSON/spider/view/status/" | jq`{{exec}}
 
 ### C. The Active Scan
-Now that the Scan Tree is populated, we can trigger the Active Scan (the "Attack" phase).
+Now that the Scan Tree is populated, we can trigger the Active Scan (the "Attack" phase). 
 
-`curl -s "http://127.0.0.1:8080/JSON/ascan/action/scan/?url=http://127.0.0.1:3000&contextName=JuiceShop" | jq`{{exec}}
+We will use **`recurse=false`** to speed up the lab. This tells ZAP to only scan the specific URL we provided, rather than attacking every single page found by the spider. In a real-world scenario, you would likely leave this as `true` to perform a comprehensive scan.
+
+`curl -s "http://127.0.0.1:8080/JSON/ascan/action/scan/?url=http://127.0.0.1:3000&contextName=JuiceShop&recurse=false" | jq`{{exec}}
 
 Monitor the attack progress:
 
