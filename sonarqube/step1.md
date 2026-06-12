@@ -44,7 +44,7 @@ some of these might be wrong/duplicate
 seond set
 
 ```
-`cd ~`{{exec}}
+cd ~
 sudo -u git mkdir /home/git/myproject.git
 sudo -u git git init --bare /home/git/myproject.git
 sudo chown -R git:git /home/git/myproject.git
@@ -132,22 +132,20 @@ When your on the sonarcube server, setting up a project - you'll see the instruc
 
 https://docs.sonarsource.com/sonarqube-server/latest/analyzing-source-code/scanners/sonarscanner/
 
-`cd ~`{{exec}}
+
 
 ## OLD
 
-`wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-7.0.2.4839-linux-x64.zip`{{exec}}
+`cd ~`{{exec}}
 
 `wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-8.1.0.6389-linux-x64.zip`{{exec}}
 
 
 `unzip sonar-scanner-cli-8.1.0.6389-linux-x64.zip`{{exec}}
 
-`cd sonar-scanner-cli-8.1.0.6389-linux-x64.zip`{{exec}}
+`cd sonar-scanner-8.1.0.6389-linux-x64/`{{exec}}
 
-`export PATH="/root/.local/share/sonarqube-cli/bin:$PATH"`{{exec}}
-
-`ls ~/.local/share/sonarqube-cli/bin/ `{{exec}}
+`export PATH="/root/sonar-scanner-8.1.0.6389-linux-x64/bin:$PATH"`{{exec}}
 
 `sonar-scanner -h`{{exec}}
 
@@ -176,7 +174,11 @@ quick start: `curl -o- https://raw.githubusercontent.com/SonarSource/sonarqube-c
 
 WIP: remove the # in the server name
 
-WIP `nano sonar-scanner.properties`{{copy}}
+WIP `nano sonar-scanner.properties`{{exec}}
+
+and set to:
+
+`sonar.host.url=http://localhost:9000`{{exec}}
 
 `cd ..`{{exec}}
 

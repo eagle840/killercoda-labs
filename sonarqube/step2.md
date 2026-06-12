@@ -38,6 +38,15 @@ exit with ctrl-c
 
 ## analysis with sonar-cube
 
+
+In the SonarQube web page follow instruction,
+
+Show ask you to install `pip install pysonar`  when run a multi-line pysonar command
+
+This should take about 5 mins to run
+
+### other:
+
 https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/
 
 add a  sonar-qube config to the python project root
