@@ -1,6 +1,6 @@
 {
   "title": "SAST - sonarqube",
-  "description": "Static Application Security Testing - sonarqube demo (v0.93)",
+  "description": "Static Application Security Testing - sonarqube demo (v0.9.4)",
   "difficulty": "Intermediate",
   "time": "15 minutes",
   "details": {
@@ -29,6 +29,6 @@
     "uilayout": "terminal"
   },
   "backend": {
-    "imageid": "ubuntu"
+    "imageid": "ubuntu-4GB"
   }
 }
