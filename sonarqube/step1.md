@@ -7,46 +7,30 @@
 This fixes a docker problem closing down the sonarcube container:
 `sysctl -w vm.max_map_count=262144`{{execute}}
 
+##  Start Sonarcube
 
-## Docker remove
+Git repo: https://github.com/SonarSource/docker-sonarqube/blob/master/example-compose-files/README.md
 
-`docker version`{{exec}}
 
-`docker-compose version`{{exec}}
 
-`docker compose version`{{exec}}
+`cd ~`{{execute}}
 
-`apt-get remove docker  docker.io containerd runc -y`{{exec}}
+`git clone https://github.com/SonarSource/docker-sonarqube.git`{{execute}}
 
-## Docker install
+`cd docker-sonarqube/example-compose-files/sq-with-postgres/`{{execute}}
 
-`apt-get install ca-certificates curl gnupg  lsb-release -y`{{exec}}
+`docker-compose up -d`{{exec}}
 
-`mkdir -p /etc/apt/keyrings`{{exec}}
+It will take a few minutes for Sonarcube to startup, so open a new tab, and we'll setup git and sonar-cli
 
-`curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg`{{exec}}
 
-```
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-```{{exec}}
-
-`apt-get update`{{exec}}
-
-`apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y`{{exec}}
-
-## Docker version check
-
-`docker version`{{exec}}
-
-`docker-compose version`{{exec}}
-
-`docker compose version`{{exec}}
 
 
 # Git install
 
 some of these might be wrong/duplicate
+
+`cd ~`{{exec}}
 
 # short version
 
@@ -54,14 +38,13 @@ some of these might be wrong/duplicate
 
 `sudo apt update`{{execute}}
 
-```
-sudo apt install -y git
-sudo useradd -m git && echo "git:yourpassword" | sudo chpasswd
-```{{exec}}
+`sudo adduser git`{{execute}}
+
 
 seond set
 
 ```
+`cd ~`{{exec}}
 sudo -u git mkdir /home/git/myproject.git
 sudo -u git git init --bare /home/git/myproject.git
 sudo chown -R git:git /home/git/myproject.git
@@ -109,22 +92,7 @@ git push origin master
 `git push origin master`{{execute}}
 
 
-
-##  Start Sonarcube
-
-Git repo: https://github.com/SonarSource/docker-sonarqube/blob/master/example-compose-files/README.md
-
-
-
-`cd ~`{{execute}}
-
-`git clone https://github.com/SonarSource/docker-sonarqube.git`{{execute}}
-
-`cd docker-sonarqube/example-compose-files/sq-with-postgres/`{{execute}}
-
-`docker-compose up -d`{{exec}}
-
-It will take a few minutes for Sonarcube to startup
+# Check  if Sonar cube is up
 
 
 `curl http://localhost:9000/api/system/health`{{exec}}
@@ -170,26 +138,39 @@ https://docs.sonarsource.com/sonarqube-server/latest/analyzing-source-code/scann
 
 `wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-7.0.2.4839-linux-x64.zip`{{exec}}
 
-`unzip sonar-scanner-cli-7.0.2.4839-linux-x64.zip`{{exec}}
+`wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-8.1.0.6389-linux-x64.zip`{{exec}}
 
-`cd sonar-scanner-7.0.2.4839-linux-x64/`{{exec}}
+
+`unzip sonar-scanner-cli-8.1.0.6389-linux-x64.zip`{{exec}}
+
+`cd sonar-scanner-cli-8.1.0.6389-linux-x64.zip`{{exec}}
+
+`export PATH="/root/.local/share/sonarqube-cli/bin:$PATH"`{{exec}}
+
+`ls ~/.local/share/sonarqube-cli/bin/ `{{exec}}
+
+`sonar-scanner -h`{{exec}}
+
+
+
 
 ## quick start
 
+Sonarqube just release v1, but it gets 'killed'
+
 Docs: https://docs.sonarsource.com/sonarqube-cli
+
+`cd ~`{{exec}}
 
 quick start: `curl -o- https://raw.githubusercontent.com/SonarSource/sonarqube-cli/refs/heads/master/user-scripts/install.sh | bash`{{exec}}
 
+`export PATH="/root/.local/share/sonarqube-cli/bin:$PATH"`{{exec}}
+
+`ls ~/.local/share/sonarqube-cli/bin/ `{{exec}}
+
 `sonar --version`{{exec}}
 
-## new
-
-`wget https://github.com/SonarSource/sonarqube-cli/archive/refs/tags/1.0.0.2628.zip`{{exec}}
-
-`unzip sonar-scanner-cli-7.0.2.4839-linux-x64.zip`{{exec}}
-
-`cd sonar-scanner-7.0.2.4839-linux-x64/`{{exec}}
-
+##  Conf ver 0.8
 
 `cd conf`{{exec}}
 
@@ -199,8 +180,4 @@ WIP `nano sonar-scanner.properties`{{copy}}
 
 `cd ..`{{exec}}
 
-`export PATH=$PWD/bin:$PATH`{{exec}}
 
-`echo 'PATH=$PATH':$(pwd)/bin >> /root/.bashrc`{{exec}}
-
-`sonar-scanner -h`{{exec}}
