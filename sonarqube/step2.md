@@ -9,6 +9,13 @@ https://flask.palletsprojects.com/en/2.2.x/quickstart/#a-minimal-application
 
 `cd myproject`{{exec}}
 
+`sudo apt install -y python3-venv`{{exec}}
+
+`python3 -m venv venv`{{exec}}
+
+`source venv/bin/activate`{{exec}}
+
+
 `pip install flask`{{exec}}
 
 `nano hello.py`{{exec}}

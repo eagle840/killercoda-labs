@@ -83,11 +83,6 @@ git push origin master
 # long version
 
 
-`apt-get update`{{execute}}
-
-`sudo apt update`{{execute}}
-
-`sudo apt install -y git`{{execute}}
 
 `sudo adduser git`{{execute}}
 
@@ -127,7 +122,7 @@ Git repo: https://github.com/SonarSource/docker-sonarqube/blob/master/example-co
 
 `cd docker-sonarqube/example-compose-files/sq-with-postgres/`{{execute}}
 
-W`docker-compose up -d`{{exec}}
+`docker-compose up -d`{{exec}}
 
 It will take a few minutes for Sonarcube to startup
 
@@ -141,7 +136,7 @@ connect to 9000 web page
 
 {{TRAFFIC_HOST1_9000}}
 
-un is admin`  and 
+un is `admin`  and    
 password is `admin`
 
 Update the new password when prompted `Admin123456789!`{{copy}}
@@ -171,12 +166,29 @@ https://docs.sonarsource.com/sonarqube-server/latest/analyzing-source-code/scann
 
 `cd ~`{{exec}}
 
+## OLD
+
 `wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-7.0.2.4839-linux-x64.zip`{{exec}}
 
 `unzip sonar-scanner-cli-7.0.2.4839-linux-x64.zip`{{exec}}
 
 `cd sonar-scanner-7.0.2.4839-linux-x64/`{{exec}}
 
+## quick start
+
+Docs: https://docs.sonarsource.com/sonarqube-cli
+
+quick start: `curl -o- https://raw.githubusercontent.com/SonarSource/sonarqube-cli/refs/heads/master/user-scripts/install.sh | bash`{{exec}}
+
+`sonar --version`{{exec}}
+
+## new
+
+`wget https://github.com/SonarSource/sonarqube-cli/archive/refs/tags/1.0.0.2628.zip`{{exec}}
+
+`unzip sonar-scanner-cli-7.0.2.4839-linux-x64.zip`{{exec}}
+
+`cd sonar-scanner-7.0.2.4839-linux-x64/`{{exec}}
 
 
 `cd conf`{{exec}}
