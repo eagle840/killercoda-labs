@@ -1,3 +1,71 @@
+# Git install
+
+some of these might be wrong/duplicate
+
+`cd ~`{{exec}}
+
+# short version
+
+`apt-get update`{{execute}}
+
+`sudo apt update`{{execute}}
+
+`sudo adduser git`{{execute}}
+
+
+seond set GIT folder
+
+```
+cd ~
+sudo -u git mkdir /home/git/myproject.git
+sudo -u git git init --bare /home/git/myproject.git
+sudo chown -R git:git /home/git/myproject.git
+git clone git@localhost:/home/git/myproject.git
+```{{exec}}
+
+thrid set
+
+```
+cd myproject
+echo "# My Project" >> README.md
+git add README.md
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+git commit -m "Initial commit"
+git push origin master
+```{{exec}}
+
+# long version
+
+
+
+`sudo adduser git`{{execute}}
+
+`sudo -u git mkdir /home/git/myproject.git`{{execute}}
+
+`sudo -u git git init --bare /home/git/myproject.git`{{execute}}
+
+`sudo chown -R git:git /home/git/myproject.git`{{execute}}
+
+`git clone git@localhost:/home/git/myproject.git`{{execute}}
+
+`cd myproject`{{execute}}
+
+`echo "# My Project" >> README.md`{{execute}}
+
+`git add README.md`{{execute}}
+
+`git config --global user.email "you@example.com"`{{execute}}
+
+`git config --global user.name "Your Name"`{{execute}}
+
+`git commit -m "Initial commit"`{{execute}}
+
+`git push origin master`{{execute}}
+
+
+
+
 # python project
 
 
@@ -42,6 +110,8 @@ exit with ctrl-c
 In the SonarQube web page follow instruction,
 
 Show ask you to install `pip install pysonar`  when run a multi-line pysonar command
+
+`pysonar -h`{{exec}}
 
 This should take about 5 mins to run
 
