@@ -25,23 +25,6 @@ It will take a few minutes for Sonarcube to startup, so open a new tab, and we'l
 
 
 
-# Check  if Sonar cube is up
-
-
-`curl http://localhost:9000/api/system/health`{{exec}}
-
-confirm both containers are up:
-`docker compose ps`{{execute}}
-
-connect to 9000 web page
-
-{{TRAFFIC_HOST1_9000}}
-
-un is `admin`  and    
-password is `admin`
-
-Update the new password when prompted `Admin123456789!`{{copy}}
-
 # create a new local Sonarqube project
 
 under 'How do you want to create your project?'
@@ -81,6 +64,54 @@ https://docs.sonarsource.com/sonarqube-server/latest/analyzing-source-code/scann
 `export PATH="/root/sonar-scanner-8.1.0.6389-linux-x64/bin:$PATH"`{{exec}}
 
 `sonar-scanner -h`{{exec}}
+
+`sonar-scanner -v`{{exec}}
+
+edit the properties file
+
+`nano /root/sonar-scanner-8.1.0.6389-linux-x64/conf/sonar-scanner.properties`
+
+```
+sonar.host.url=http://localhost:9000
+sonar.sourceEncoding=UTF-8
+```{{copy}}
+
+http://localhost:9000
+
+
+# Check  if Sonar cube is up
+
+
+`curl http://localhost:9000/api/system/health`{{exec}}
+
+confirm both containers are up:
+`docker compose ps`{{execute}}
+
+connect to 9000 web page
+
+{{TRAFFIC_HOST1_9000}}
+
+un is `admin`  and    
+password is `admin`
+
+Update the new password when prompted `Admin123456789!`{{copy}}
+
+# create a new local Sonarqube project
+
+under 'How do you want to create your project?'
+
+select Manually
+
+name and key:  'pyproject'
+
+
+under 'How do you want to analyze your repository?'
+
+select Locally
+
+and then generate the token, be sure to copy the token.
+
+select language python and OS linux, and copy the code snippet to run latter.
 
 
 Docs: https://docs.sonarsource.com/sonarqube-cli

@@ -177,3 +177,55 @@ add 'pass' to the end of the python file
 `echo 'pass' >> hello.py`{{exec}}
 
 and re-run the scanner, and you'll see that it fails due to the code-smell
+
+## Gemini notes of pysonar
+
+**No, you do not need a `toml` file for `pysonar` to work.** While its integration with `pyproject.toml` is its biggest selling point, `pysonar` is highly flexible. If it doesn't find a `toml` file, it will seamlessly fall back to other configuration methods.
+
+You can configure and run `pysonar` using any of the following three alternatives:
+
+### 1. Pure Command-Line Arguments
+
+You can pass every single configuration requirement directly into the command string when you execute it. This completely bypasses the need for any local configuration files:
+
+
+this works, but make sure your in the project folder (example token)
+```bash
+pysonar --verbose \
+  --sonar-host-url=http://localhost:9000 \
+  --sonar-token=sqp_d87480b26be81bfe4d7baa97ad1e75b8fb385546 \
+  --sonar-project-key=pyproject \
+  -Dsonar.sources=hello.py
+```
+
+After successfully completation, your'll see the page update 
+
+### 2. Environment Variables
+
+If you prefer not to expose tokens or URLs in your shell history, `pysonar` natively respects standard SonarQube environment variables. You can set them in your Ubuntu terminal or CI pipeline configuration:
+
+```bash
+export SONAR_HOST_URL="http://localhost:9000"
+export SONAR_TOKEN="sqp_your_secret_token"
+
+# Run pysonar with just the project key
+pysonar -Dsonar.projectKey="my-project-key"
+
+```
+
+### 3. Classic `sonar-project.properties` File
+
+If you are transitioning an older project or just prefer the traditional SonarQube setup, `pysonar` will still happily read a standard `sonar-project.properties` file sitting in your root directory.
+
+---
+
+### The Fallback Order (How `pysonar` thinks)
+
+When you type `pysonar` and hit enter, it looks for configuration parameters in a specific order of priority:
+
+1. **Command Line Arguments** (Explicit flags always win).
+2. **Environment Variables**.
+3. **`pyproject.toml`** (It looks for a `[tool.sonar]` block).
+4. **`sonar-project.properties`** (The legacy properties file).
+
+As long as you provide the minimum required parameters (**Host URL, Token, and Project Key**) via *at least one* of those channels, `pysonar` will run perfectly without a single `.toml` file in sight.
