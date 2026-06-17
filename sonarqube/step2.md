@@ -75,6 +75,8 @@ https://flask.palletsprojects.com/en/2.2.x/quickstart/#a-minimal-application
 
 `cd ~`{{exec}}
 
+`mkdir myproject`{{exec}}
+
 `cd myproject`{{exec}}
 
 `sudo apt install -y python3-venv`{{exec}}
@@ -109,11 +111,29 @@ exit with ctrl-c
 
 In the SonarQube web page follow instruction,
 
-Show ask you to install `pip install pysonar`  when run a multi-line pysonar command
+Show ask you to install 
+
+`pip install pysonar`  when run a multi-line pysonar command
 
 `pysonar -h`{{exec}}
 
 This should take about 5 mins to run
+
+## Run a test against it
+
+
+
+# 1. Set the token variable, take from the sonarqube project page
+`SONAR_TOKEN="sqp_d87480b26be81bfe4d7baa97ad1e75b8fb385546_example"`{{copy}}
+
+# 2. Run the command using the variable
+```{{exec}}
+pysonar --verbose \
+  --sonar-host-url=http://localhost:9000 \
+  --sonar-token="$SONAR_TOKEN" \
+  --sonar-project-key=pyproject \
+  -Dsonar.sources=hello.py
+```{{execc}}
 
 ### other:
 

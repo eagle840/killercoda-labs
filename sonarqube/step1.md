@@ -23,6 +23,23 @@ Git repo: https://github.com/SonarSource/docker-sonarqube/blob/master/example-co
 
 It will take a few minutes for Sonarcube to startup, so open a new tab, and we'll setup git and sonar-cli
 
+# Check  if Sonar cube is up
+
+
+`curl http://localhost:9000/api/system/health`{{exec}}
+
+confirm both containers are up:
+`docker compose ps`{{execute}}
+
+connect to 9000 web page
+
+{{TRAFFIC_HOST1_9000}}
+
+un is `admin`  and    
+password is `admin`
+
+Update the new password when prompted `Admin123456789!`{{copy}}
+
 
 
 # create a new local Sonarqube project
@@ -48,9 +65,6 @@ When your on the sonarcube server, setting up a project - you'll see the instruc
 
 https://docs.sonarsource.com/sonarqube-server/latest/analyzing-source-code/scanners/sonarscanner/
 
-
-
-## OLD
 
 `cd ~`{{exec}}
 
@@ -79,39 +93,7 @@ sonar.sourceEncoding=UTF-8
 http://localhost:9000
 
 
-# Check  if Sonar cube is up
 
-
-`curl http://localhost:9000/api/system/health`{{exec}}
-
-confirm both containers are up:
-`docker compose ps`{{execute}}
-
-connect to 9000 web page
-
-{{TRAFFIC_HOST1_9000}}
-
-un is `admin`  and    
-password is `admin`
-
-Update the new password when prompted `Admin123456789!`{{copy}}
-
-# create a new local Sonarqube project
-
-under 'How do you want to create your project?'
-
-select Manually
-
-name and key:  'pyproject'
-
-
-under 'How do you want to analyze your repository?'
-
-select Locally
-
-and then generate the token, be sure to copy the token.
-
-select language python and OS linux, and copy the code snippet to run latter.
 
 
 Docs: https://docs.sonarsource.com/sonarqube-cli

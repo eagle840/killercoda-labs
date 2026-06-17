@@ -3,25 +3,22 @@
 This plan outlines the steps to refine and complete the SonarQube interactive lab.
 
 ## Phase 1: Cleanup & Environment Optimization
-- [ ] 1.1 - **Remove Redundant Docker Setup**: Strip out `apt-get remove/install` for Docker in `step1.md` since it's pre-installed on Killercoda.
-- [ ] 1.2 - **Streamline Git Setup**: Ensure the local Git server setup is concise and works reliably for the user.
-- [ ] 1.3 - **Clarify Requirements**: Ensure the `sysctl` command for `vm.max_map_count` is prominently featured and explained.
+- [x] 1.1 - **Consolidate Steps**: Merge `step1.md`/`step1old.md` and `step2.md`/`step2old.md` into clean, single-source files.
+- [x] 1.2 - **Remove Legacy Files**: Delete `step1old.md`, `step2old.md`, and `notes.txt` once merged.
+- [x] 1.3 - **Streamline Git Setup**: Choose the most reliable Git setup method and remove redundant "short/long" versions.
+- [x] 1.4 - **Clarify Requirements**: Ensure the `sysctl` command for `vm.max_map_count` is at the very beginning of Step 1.
 
-## Phase 2: SonarQube & Scanner Configuration
-- [ ] 2.1 - **Resolve WIP Startup**: Finalize the `docker compose` commands in `step1.md`.
-- [ ] 2.2 - **Scanner Automation**: Replace the `WIP` manual `nano` edit for `sonar-scanner.properties` with a more automated approach (e.g., `sed` or `cat >>`).
-- [ ] 2.3 - **Verify Path**: Ensure the `sonar-scanner` binary is correctly added to the path for subsequent steps.
+## Phase 2: Automation
+- [x] 2.1 - **Automate Scanner Setup**: Replace manual `nano` edits with `sed` or `cat` commands to configure `sonar-scanner.properties`.
+- [x] 2.2 - **Download Automation**: Ensure `sonar-scanner` is downloaded and added to `PATH` automatically via executable snippets.
+- [ ] 2.3 - **Health Checks**: Use `curl` in a loop or a clear instruction to wait for SonarQube to be ready before proceeding.
 
-## Phase 3: Analysis Workflow (Step 2)
-- [ ] 3.1 - **Refine Python Project**: Ensure the Flask application setup is robust and easy to follow.
-- [ ] 3.2 - **Fix WIP Profile**: Resolve the `WIP` regarding quality profiles in the scanner configuration.
-- [ ] 3.3 - **Validate Code Smell**: Ensure the "pass" statement correctly triggers a code smell in SonarQube as intended.
+## Phase 3: Content Completion & Verification
+- [ ] 3.1 - **Refine Step 2 (Analysis)**: Ensure the Python project setup is robust and the `pysonar` (or `sonar-scanner`) execution is clearly explained.
+- [ ] 3.2 - **Flesh out Step 3**: Add concrete instructions for creating a Quality Gate and exploring the Marketplace.
+- [ ] 3.3 - **Finish Page**: Write a proper summary in `finish.md`.
+- [ ] 3.4 - **Index Metadata**: Update `index.json` versioning to `v1.0.0` and ensure the description is professional.
 
-## Phase 4: Advanced Features (Step 3)
-- [ ] 4.1 - **Implement Quality Gates**: Add a step-by-step guide on creating and applying a Quality Gate in the SonarQube UI.
-- [ ] 4.2 - **Plugin Exploration**: Briefly explain how to access the Marketplace and why plugins are useful.
-
-## Phase 5: Finalization
-- [ ] 5.1 - **Complete Finish Page**: Write a summary of key takeaways in `finish.md`.
-- [ ] 5.2 - **Metadata Update**: Update `index.json` versioning and descriptions if necessary.
-- [ ] 5.3 - **Legacy Cleanup**: Remove `step1old.md` and `step2old.md` once they are no longer needed.
+## Phase 4: Validation
+- [ ] 4.1 - **Verify UI Access**: Ensure `{{TRAFFIC_HOST1_9000}}` is used correctly.
+- [ ] 4.2 - **Test Workflow**: Walk through the lab to ensure the "code smell" is correctly detected.
