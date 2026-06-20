@@ -29,7 +29,7 @@ For creators looking to contribute or improve these labs:
 - **[CreatorGuide.md](./CreatorGuide.md):** A comprehensive guide on Killercoda's features, environment types, and syntax.
 - **[gemini-pointers/](./gemini-pointers/):** A collection of strategic tips and best practices for planning effective, robust, and educational labs.
 
-## 📖 Usage
+## 📖 Usage 
 
 To use these scenarios, link this repository to your Killercoda creator profile. Updates pushed to this repository are automatically reflected in your Killercoda labs.
 
