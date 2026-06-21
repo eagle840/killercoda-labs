@@ -11,11 +11,11 @@ This plan outlines the steps to refine and complete the SonarQube interactive la
 ## Phase 2: Automation
 - [x] 2.1 - **Automate Scanner Setup**: Replace manual `nano` edits with `sed` or `cat` commands to configure `sonar-scanner.properties`.
 - [x] 2.2 - **Download Automation**: Ensure `sonar-scanner` is downloaded and added to `PATH` automatically via executable snippets.
-- [ ] 2.3 - **Health Checks**: Use `curl` in a loop or a clear instruction to wait for SonarQube to be ready before proceeding.
+- [x] 2.3 - **Health Checks**: Use `curl` in a loop or a clear instruction to wait for SonarQube to be ready before proceeding.
 
 ## Phase 3: Content Completion & Verification
-- [ ] 3.1 - **Refine Step 2 (Analysis)**: Ensure the Python project setup is robust and the `pysonar` (or `sonar-scanner`) execution is clearly explained.
-- [ ] 3.2 - **Flesh out Step 3**: Add concrete instructions for creating a Quality Gate and exploring the Marketplace.
+- [x] 3.1 - **Refine Step 2 (Analysis)**: Ensure the Python project setup is robust and the `pysonar` (or `sonar-scanner`) execution is clearly explained.
+- [x] 3.2 - **Flesh out Step 3**: Add concrete instructions for creating a Quality Gate and exploring the Marketplace.
 - [ ] 3.3 - **Finish Page**: Write a proper summary in `finish.md`.
 - [ ] 3.4 - **Index Metadata**: Update `index.json` versioning to `v1.0.0` and ensure the description is professional.
 

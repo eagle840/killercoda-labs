@@ -21,96 +21,64 @@ Git repo: https://github.com/SonarSource/docker-sonarqube/blob/master/example-co
 
 `docker-compose up -d`{{exec}}
 
-It will take a few minutes for Sonarcube to startup, so open a new tab, and we'll setup git and sonar-cli
+# Check if SonarQube is up
 
-# Check  if Sonar cube is up
+It will take a few minutes for SonarQube to startup. Let's run a loop that waits for the service to become fully healthy:
 
+```bash
+until curl -s http://localhost:9000/api/system/health | grep -q '"status":"GREEN"\|"status":"YELLOW"'; do
+  echo "SonarQube is starting up... waiting 10 seconds"
+  sleep 10
+done
+echo "SonarQube is UP and healthy!"
+```{{exec}}
 
-`curl http://localhost:9000/api/system/health`{{exec}}
+To confirm both containers (SonarQube and PostgreSQL) are up and running, you can run:
 
-confirm both containers are up:
-`docker compose ps`{{execute}}
+`docker-compose ps`{{execute}}
 
-connect to 9000 web page
+Connect to the SonarQube web page using the link below:
 
 {{TRAFFIC_HOST1_9000}}
 
-un is `admin`  and    
-password is `admin`
+The default credentials are:
+- Username: `admin`
+- Password: `admin`
 
-Update the new password when prompted `Admin123456789!`{{copy}}
-
-
-
-# create a new local Sonarqube project
-
-under 'How do you want to create your project?'
-
-select Manually
-
-name and key:  'pyproject'
+When prompted, update the password to: `Admin123456789!`{{copy}}
 
 
-under 'How do you want to analyze your repository?'
+# Create a new local Sonarqube project
 
-select Locally
+1. Under 'How do you want to create your project?', select **Manually**.
+2. Set both the Project Name and Project Key to: `pyproject`.
+3. Under 'How do you want to analyze your repository?', select **Locally**.
+4. Generate the token, and copy it down. You will use it in Step 2.
+5. Select **Python** as the language and **Linux** as the OS.
 
-and then generate the token, be sure to copy the token.
+# Download and install SonarQube CLI
 
-select language python and OS linux, and copy the code snippet to run latter.
-
-# download and install sonar-qube cli
-
-When your on the sonarcube server, setting up a project - you'll see the instructions for setting up the scanner, we have done this for you below:
-
-https://docs.sonarsource.com/sonarqube-server/latest/analyzing-source-code/scanners/sonarscanner/
-
+Let's install the standard `sonar-scanner` command-line utility:
 
 `cd ~`{{exec}}
 
 `wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-8.1.0.6389-linux-x64.zip`{{exec}}
 
-
 `unzip sonar-scanner-cli-8.1.0.6389-linux-x64.zip`{{exec}}
 
-`cd sonar-scanner-8.1.0.6389-linux-x64/`{{exec}}
+`ln -sf /root/sonar-scanner-8.1.0.6389-linux-x64/bin/sonar-scanner /usr/local/bin/sonar-scanner`{{exec}}
 
-`export PATH="/root/sonar-scanner-8.1.0.6389-linux-x64/bin:$PATH"`{{exec}}
-
-`sonar-scanner -h`{{exec}}
+Verify the installation:
 
 `sonar-scanner -v`{{exec}}
 
-edit the properties file
+Now, configure the scanner properties automatically to point to our local SonarQube server:
 
-`nano /root/sonar-scanner-8.1.0.6389-linux-x64/conf/sonar-scanner.properties`
-
-```
+```bash
+cat << 'EOF' > /root/sonar-scanner-8.1.0.6389-linux-x64/conf/sonar-scanner.properties
 sonar.host.url=http://localhost:9000
 sonar.sourceEncoding=UTF-8
-```{{copy}}
-
-http://localhost:9000
-
-
-
-
-
-Docs: https://docs.sonarsource.com/sonarqube-cli
-
-
-##  Conf ver 0.8
-
-`cd conf`{{exec}}
-
-WIP: remove the # in the server name
-
-WIP `nano sonar-scanner.properties`{{exec}}
-
-and set to:
-
-`sonar.host.url=http://localhost:9000`{{exec}}
-
-`cd ..`{{exec}}
+EOF
+```{{exec}}
 
 

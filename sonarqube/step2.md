@@ -1,96 +1,58 @@
-# Git install
+# Step 2: Python Project Setup & Code Analysis
 
-some of these might be wrong/duplicate
+In this step, we will set up a local Python project, initialize a local Git repository, configure SonarQube scanner properties, and perform our first code scans to detect code smells.
 
-`cd ~`{{exec}}
+---
 
-# short version
+## 1. Setup Local Git and Python Project
 
-`apt-get update`{{execute}}
+First, let's create our project directory, initialize Git, and set up a Python virtual environment.
 
-`sudo apt update`{{execute}}
+We use **Git** because SonarQube relies on it to extract author information (git blame) and track which code is "new" versus "overall code".
 
-`sudo adduser git`{{execute}}
+### Create Project and Initialize Git
 
+Create the project folder and initialize a local Git repository:
 
-seond set GIT folder
-
-```
-cd ~
-sudo -u git mkdir /home/git/myproject.git
-sudo -u git git init --bare /home/git/myproject.git
-sudo chown -R git:git /home/git/myproject.git
-git clone git@localhost:/home/git/myproject.git
+```bash
+mkdir -p ~/myproject
+cd ~/myproject
+git init
 ```{{exec}}
 
-thrid set
+Configure Git defaults for our local workspace:
 
-```
-cd myproject
-echo "# My Project" >> README.md
-git add README.md
+```bash
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
-git commit -m "Initial commit"
-git push origin master
 ```{{exec}}
 
-# long version
+### Create the Python Virtual Environment
 
+Install `python3-venv` and prepare our virtual environment:
 
+```bash
+sudo apt-get update && sudo apt-get install -y python3-venv
+```{{exec}}
 
-`sudo adduser git`{{execute}}
+Create and activate the environment, then install Flask:
 
-`sudo -u git mkdir /home/git/myproject.git`{{execute}}
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install flask
+```{{exec}}
 
-`sudo -u git git init --bare /home/git/myproject.git`{{execute}}
+---
 
-`sudo chown -R git:git /home/git/myproject.git`{{execute}}
+## 2. Create and Commit Source Code
 
-`git clone git@localhost:/home/git/myproject.git`{{execute}}
+Let's write a simple Flask application.
 
-`cd myproject`{{execute}}
+Create the `hello.py` file:
 
-`echo "# My Project" >> README.md`{{execute}}
-
-`git add README.md`{{execute}}
-
-`git config --global user.email "you@example.com"`{{execute}}
-
-`git config --global user.name "Your Name"`{{execute}}
-
-`git commit -m "Initial commit"`{{execute}}
-
-`git push origin master`{{execute}}
-
-
-
-
-# python project
-
-
-taken from :
-
-https://flask.palletsprojects.com/en/2.2.x/quickstart/#a-minimal-application
-
-`cd ~`{{exec}}
-
-`mkdir myproject`{{exec}}
-
-`cd myproject`{{exec}}
-
-`sudo apt install -y python3-venv`{{exec}}
-
-`python3 -m venv venv`{{exec}}
-
-`source venv/bin/activate`{{exec}}
-
-
-`pip install flask`{{exec}}
-
-`nano hello.py`{{exec}}
-
-```
+```bash
+cat << 'EOF' > hello.py
 from flask import Flask
 
 app = Flask(__name__)
@@ -98,154 +60,110 @@ app = Flask(__name__)
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
-```{{copy}}
-
-confirm the app is working
-
-`flask --app hello run --host=0.0.0.0`{{exec}}
-
-exit with ctrl-c
-
-## analysis with sonar-cube
-
-
-In the SonarQube web page follow instruction,
-
-Show ask you to install 
-
-`pip install pysonar`  when run a multi-line pysonar command
-
-`pysonar -h`{{exec}}
-
-This should take about 5 mins to run
-
-## Run a test against it
-
-
-
-# 1. Set the token variable, take from the sonarqube project page
-`SONAR_TOKEN="sqp_d87480b26be81bfe4d7baa97ad1e75b8fb385546_example"`{{copy}}
-
-# 2. Run the command using the variable
+EOF
 ```{{exec}}
-pysonar --verbose \
-  --sonar-host-url=http://localhost:9000 \
-  --sonar-token="$SONAR_TOKEN" \
-  --sonar-project-key=pyproject \
-  -Dsonar.sources=hello.py
-```{{execc}}
 
-### other:
-
-https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/
-
-add a  sonar-qube config to the python project root
-
-
-`nano sonar-project.properties`{{exec}}
-
-```
-# must be unique in a given SonarQube instance
-sonar.projectKey=my:project
-
-# --- optional properties ---
-
-# defaults to project key
-#sonar.projectName=My project
-# defaults to 'not provided'
-#sonar.projectVersion=1.0
-
-# Path is relative to the sonar-project.properties file. Defaults to .
-#sonar.sources=.
-
-# Encoding of the source code. Default is default system encoding
-#sonar.sourceEncoding=UTF-8
-```{{copy}}
-
-WIP `sonar.profile=<quality rules profile>`
-can be added to the above profile to assoisat the scanner run with  a quality rules profile
-
-for more info on this project config file: https://docs.sonarqube.org/latest/analysis/scan/sonarscanner/
-
-
-and run the analysis using the code snippet from step 1. Once complete the page will refresh
-
-Suggested you open a new tab and run `htop`{{exec}} to see how heavy your lab session is being run.
-
-example code snippet (use the code copied form the SonarQube page!):
-
-Expect 1st run to be under 1 min
-
-```
-sonar-scanner \
-  -Dsonar.projectKey=pyproject \
-  -Dsonar.sources=. \
-  -Dsonar.host.url={{TRAFFIC_HOST1_9000}} \
-  -Dsonar.login=sqp_ab68ca7ea0b4495b4aa5fb8e1703aacb73b4c1d8
-```
-
-Once the first run is complete the web gui will refresh, go into the new project and you'll see that it was passed, and has two tabs: 'New Code' And 'Overall code'.
-
-Then you first run the scanner on a project it will analysis the whole project, but subsusqute runs will only anaylsys the new code.
-
-Run the scanner again, and you'll see the 'new code' tab populated, all with a passing score
-
-lets add some code that will generated an 'code smell'
-
-add 'pass' to the end of the python file
-
-`echo 'pass' >> hello.py`{{exec}}
-
-and re-run the scanner, and you'll see that it fails due to the code-smell
-
-## Gemini notes of pysonar
-
-**No, you do not need a `toml` file for `pysonar` to work.** While its integration with `pyproject.toml` is its biggest selling point, `pysonar` is highly flexible. If it doesn't find a `toml` file, it will seamlessly fall back to other configuration methods.
-
-You can configure and run `pysonar` using any of the following three alternatives:
-
-### 1. Pure Command-Line Arguments
-
-You can pass every single configuration requirement directly into the command string when you execute it. This completely bypasses the need for any local configuration files:
-
-
-this works, but make sure your in the project folder (example token)
-```bash
-pysonar --verbose \
-  --sonar-host-url=http://localhost:9000 \
-  --sonar-token=sqp_d87480b26be81bfe4d7baa97ad1e75b8fb385546 \
-  --sonar-project-key=pyproject \
-  -Dsonar.sources=hello.py
-```
-
-After successfully completation, your'll see the page update 
-
-### 2. Environment Variables
-
-If you prefer not to expose tokens or URLs in your shell history, `pysonar` natively respects standard SonarQube environment variables. You can set them in your Ubuntu terminal or CI pipeline configuration:
+Now, commit this initial clean version to Git so SonarQube has a baseline version of our code:
 
 ```bash
-export SONAR_HOST_URL="http://localhost:9000"
-export SONAR_TOKEN="sqp_your_secret_token"
-
-# Run pysonar with just the project key
-pysonar -Dsonar.projectKey="my-project-key"
-
-```
-
-### 3. Classic `sonar-project.properties` File
-
-If you are transitioning an older project or just prefer the traditional SonarQube setup, `pysonar` will still happily read a standard `sonar-project.properties` file sitting in your root directory.
+git add hello.py
+git commit -m "initial commit"
+```{{exec}}
 
 ---
 
-### The Fallback Order (How `pysonar` thinks)
+## 3. Configure and Run SonarQube Scanner
 
-When you type `pysonar` and hit enter, it looks for configuration parameters in a specific order of priority:
+Rather than typing long, repetitive command-line flags every time we scan, the industry standard is to place a configuration file named `sonar-project.properties` in the root of our codebase.
 
-1. **Command Line Arguments** (Explicit flags always win).
-2. **Environment Variables**.
-3. **`pyproject.toml`** (It looks for a `[tool.sonar]` block).
-4. **`sonar-project.properties`** (The legacy properties file).
+Create the configuration file:
 
-As long as you provide the minimum required parameters (**Host URL, Token, and Project Key**) via *at least one* of those channels, `pysonar` will run perfectly without a single `.toml` file in sight.
+```bash
+cat << 'EOF' > sonar-project.properties
+# Unique identifier for this project in SonarQube
+sonar.projectKey=pyproject
+
+# The path to the source directories relative to this file
+sonar.sources=.
+
+# The address of our SonarQube server
+sonar.host.url=http://localhost:9000
+
+# Exclude virtual environment from scans to focus only on our code
+sonar.exclusions=venv/**
+EOF
+```{{exec}}
+
+### Store the Authentication Token
+
+Run the following command, replacing `YOUR_GENERATED_TOKEN` with the secret token you copied from the SonarQube project creation screen in Step 1:
+
+```bash
+SONAR_TOKEN="YOUR_GENERATED_TOKEN"
+```{{copy}}
+
+### Run the First Scan
+
+With our `sonar-project.properties` file in place, executing the analysis is as simple as running `sonar-scanner` and passing our token:
+
+```bash
+sonar-scanner -Dsonar.token="$SONAR_TOKEN"
+```{{exec}}
+
+This initial scan should take less than a minute. Once complete, return to your SonarQube dashboard at:
+
+{{TRAFFIC_HOST1_9000}}
+
+Refresh the page or click on the **pyproject** project. You will see that the Quality Gate has **Passed** with 0 Bugs, 0 Vulnerabilities, and 0 Code Smells!
+
+---
+
+## 4. Introduce a Code Smell and Scan Again
+
+Now let's see static analysis in action by introducing a bad practice (a "code smell") into our Python application.
+
+An empty `except` block is a classic Python quality issue (anti-pattern) because it swallows all errors silently, making debugging extremely difficult.
+
+Append the following bad code block to `hello.py`:
+
+```bash
+cat << 'EOF' >> hello.py
+
+def calculate_risk():
+    try:
+        result = 10 / 0
+    except:
+        # Empty except block is a classic code smell!
+        pass
+EOF
+```{{exec}}
+
+Commit the change to Git so SonarQube can classify it as "new code":
+
+```bash
+git add hello.py
+git commit -m "add calculation logic"
+```{{exec}}
+
+### Scan Again
+
+Now, re-run the scanner to analyze the new code:
+
+```bash
+sonar-scanner -Dsonar.token="$SONAR_TOKEN"
+```{{exec}}
+
+### Observe the Results
+
+Go back to your SonarQube dashboard and refresh.
+1. Look at the **New Code** tab.
+2. You will see that a new **Code Smell** is detected!
+3. Click on the Code Smell count to inspect the issue: SonarQube will point exactly to your empty `except` block in `hello.py` and explain why this pattern should be avoided.
+
+---
+
+### Note on `pysonar` (Alternative Python Wrapper)
+
+Some Python developers use a tool called `pysonar` (installed via `pip install pysonar`). `pysonar` is a third-party Python-specific wrapper that automatically locates or downloads `sonar-scanner` and provides commands such as `pysonar -Dsonar.projectKey=...`. 
+
+However, using the official, native `sonar-scanner` CLI is the standard language-agnostic approach recommended across general CI/CD pipelines (such as Jenkins, GitHub Actions, and GitLab CI), ensuring you can use the same scanner tool for JavaScript, Python, Java, or C# alike!
