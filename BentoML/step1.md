@@ -64,7 +64,7 @@ cd bentoml
 # 2026
 
 # Recommend Python 3.11
-pip install bentoml torch transformers
+`pip install bentoml torch transformers`{{exec}}
 
 `cat service.py`{{exec}}
 
@@ -177,3 +177,83 @@ curl -X POST \
 or open http://127.0.0.1:3000  at the following link:
 {{TRAFFIC_HOST1_3000}}
 
+
+---
+# Reduced Model size
+
+`python3 -m venv .venv`{{exec}}
+
+`source ./.venv/bin/activate`{{exec}}
+
+
+```
+mkdir minimal-bento && cd minimal-bento
+```{{exec}}
+
+`pip install bentoml scikit-learn`{{exec}}
+
+## 2. Create and Save a Tiny Model
+Create a script named train.py. This script trains a model on a toy dataset and saves it to the BentoML local model store.
+
+`nano train.py`{{exec}}
+
+```python
+# train.py
+import bentoml
+from sklearn.linear_model import LogisticRegression
+from sklearn.datasets import load_iris
+
+# Load a tiny toy dataset
+data = load_iris()
+X, y = data.data, data.target
+
+# Train a simple model
+clf = LogisticRegression(max_iter=200)
+clf.fit(X, y)
+
+# Save the model
+bentoml.sklearn.save_model("iris_clf", clf)
+print("Model saved to BentoML store.")
+```{{copy}}
+
+`python train.py`{{exec}}
+
+
+
+## 3. Define the Service
+Create a file named service.py. This handles the API logic. By keeping logic simple, you minimize memory overhead during startup.
+
+`nano service.py`{{exec}}
+
+```python
+# service.py
+import bentoml
+import numpy as np
+
+# Load the model from the store
+runner = bentoml.sklearn.get("iris_clf:latest").to_runner()
+
+# Define the service
+svc = bentoml.Service("iris_service", runners=[runner])
+
+@svc.api(input=bentoml.io.NumpyNdarray(), output=bentoml.io.NumpyNdarray())
+def predict(input_series: np.ndarray) -> np.ndarray:
+    result = runner.predict.run(input_series)
+    return result
+```{{copy}}
+
+## Serve Locally
+
+Launch the service. Using the --reload flag is helpful for development, but for a 2GB machine, running it directly is safer for memory stability.
+
+`bentoml serve service:svc`{{exec}}
+
+
+# Test the API
+
+
+```bash
+curl -X POST -H "Content-Type: application/json" \
+  --data '[[5.1, 3.5, 1.4, 0.2]]' \
+  http://localhost:3000/predict
+```{{exec}}
