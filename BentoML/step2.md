@@ -6,10 +6,10 @@ Lets review the creation file:
 
 and build it:
 
-`bentoml build`{{exec}}
+`source venv/bin/activate && bentoml build`{{exec}}
 
 
-`bentoml serve iris_classifier:latest --production`{{exec}}
+`source venv/bin/activate && bentoml serve iris_classifier:latest --production`{{exec}}
 
 In a new terminal Tab:
 

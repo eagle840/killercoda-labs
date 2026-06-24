@@ -48,7 +48,7 @@ pip install -e .
 
 `cd examples/quickstart/`{{exec}}
 
-`pip install bentoml scikit-learn pandas`{{exec}}
+`python3 -m venv venv && source venv/bin/activate && pip install bentoml scikit-learn pandas`{{exec}}
 
 Lets reveiw the ML code:
 
@@ -56,7 +56,7 @@ Lets reveiw the ML code:
 
 And run it:
 
-`python train.py`{{exec}}
+`source venv/bin/activate && python train.py`{{exec}}
 
 Bentoml will require a service code
 
@@ -64,7 +64,7 @@ Bentoml will require a service code
 
 and run it to provide an api for processing predictions:
 
-`bentoml serve service:svc --reload`{{exec}}
+`source venv/bin/activate && bentoml serve service:svc --reload`{{exec}}
 
 In a new terminal Tab:
 
