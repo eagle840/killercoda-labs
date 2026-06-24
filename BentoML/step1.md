@@ -37,18 +37,60 @@ echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docke
 This quickstart is taken from the BenoML site: https://docs.bentoml.org/en/latest/tutorial.html
 
 
+`apt install -y python3.12-venv`{{exec}}
+
+from: https://docs.bentoml.com/en/latest/get-started/hello-world.html
+
 ```
-git clone https://github.com/bentoml/bentoml.git
-cd bentoml
-pip install -e .
+git clone https://github.com/bentoml/quickstart.git
+cd quickstart
 ```{{exec}}
 
 
+# WIP
+```
+git clone https://github.com/bentoml/bentoml.git
+cd bentoml
+```{{exec}}
 
+`python3 -m venv .venv`{{exec}}
+
+`source ./.venv/bin/activate`{{exec}}
+
+`pip install -e .`{{exec}}
+
+
+---
+# 2026
+
+# Recommend Python 3.11
+pip install bentoml torch transformers
+
+`cat service.py`{{exec}}
+
+`bentoml serve`{{exec}}
+
+You can call the exposed summarize endpoint at http://localhost:3000.
+
+```
+curl -X 'POST' \
+    'http://localhost:3000/summarize' \
+    -H 'accept: text/plain' \
+    -H 'Content-Type: application/json' \
+    -d '{
+    "text": "Breaking News: In an astonishing turn of events, the small town of Willow Creek has been taken by storm as local resident Jerry Thompson'\''s cat, Whiskers, performed what witnesses are calling a '\''miraculous and gravity-defying leap.'\'' Eyewitnesses report that Whiskers, an otherwise unremarkable tabby cat, jumped a record-breaking 20 feet into the air to catch a fly. The event, which took place in Thompson'\''s backyard, is now being investigated by scientists for potential breaches in the laws of physics. Local authorities are considering a town festival to celebrate what is being hailed as '\''The Leap of the Century."
+}'
+```{{exec}}
+
+
+expect: `Hello world! Here's your summary: Whiskers, an otherwise unremarkable tabby cat, jumped a record-breaking 20 feet into the air to catch a fly . The event is now being investigated by scientists for potential breaches in the laws of physics . Local authorities considering a town festival to celebrate what is being hailed as 'The Leap of the Century'`
+
+
+---
 
 `cd examples/quickstart/`{{exec}}
 
-`python3 -m venv venv && source venv/bin/activate && pip install bentoml scikit-learn pandas`{{exec}}
+`pip install bentoml scikit-learn pandas`{{exec}}
 
 Lets reveiw the ML code:
 
@@ -56,7 +98,7 @@ Lets reveiw the ML code:
 
 And run it:
 
-`source venv/bin/activate && python train.py`{{exec}}
+`python train.py`{{exec}}
 
 Bentoml will require a service code
 
@@ -64,7 +106,7 @@ Bentoml will require a service code
 
 and run it to provide an api for processing predictions:
 
-`source venv/bin/activate && bentoml serve service:svc --reload`{{exec}}
+`entoml serve service:svc --reload`{{exec}}
 
 In a new terminal Tab:
 
