@@ -181,6 +181,10 @@ or open http://127.0.0.1:3000  at the following link:
 ---
 # Reduced Model size
 
+`apt install -y python3.12-venv`{{exec}}
+
+`mkdir quick; cd quick` {{exec}}
+
 `python3 -m venv .venv`{{exec}}
 
 `source ./.venv/bin/activate`{{exec}}
@@ -226,27 +230,29 @@ Create a file named service.py. This handles the API logic. By keeping logic sim
 `nano service.py`{{exec}}
 
 ```python
-# service.py
 import bentoml
 import numpy as np
 
-# Load the model from the store
-runner = bentoml.sklearn.get("iris_clf:latest").to_runner()
+# 1. Define the runner
+iris_runner = bentoml.sklearn.get("iris_clf:latest").to_runner()
 
-# Define the service
-svc = bentoml.Service("iris_service", runners=[runner])
+@bentoml.service(name="iris_service")
+class IrisService:
+    # 2. Add the runner as a class attribute
+    bento_runner = iris_runner
 
-@svc.api(input=bentoml.io.NumpyNdarray(), output=bentoml.io.NumpyNdarray())
-def predict(input_series: np.ndarray) -> np.ndarray:
-    result = runner.predict.run(input_series)
-    return result
+    # 3. Use standard type hints instead of input= and output=
+    @bentoml.api
+    def predict(self, input_series: np.ndarray) -> np.ndarray:
+        return self.bento_runner.predict.run(input_series)
 ```{{copy}}
 
 ## Serve Locally
 
 Launch the service. Using the --reload flag is helpful for development, but for a 2GB machine, running it directly is safer for memory stability.
 
-`bentoml serve service:svc`{{exec}}
+
+`bentoml serve service:IrisService`{{exec}}
 
 
 # Test the API
