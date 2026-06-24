@@ -1,17 +1,45 @@
 {
-  "title": "SCA - Container CVE Scanning",
-  "description": "Software Composition Analysis - Scan a container image for cve's with trivy(v1.2)",
+  "title": "SCA & Container CVE Scanning with Trivy",
+  "description": "Scan dependencies, Dockerfiles, and images for vulnerabilities and misconfigurations using Trivy(v1.2.0)",
   "difficulty": "Intermediate",
-  "time": "20",
+  "time": "20 minutes",
   "details": {
+    "assets": {
+      "host01": [
+        {
+          "file": "package.json",
+          "target": "/root/project"
+        },
+        {
+          "file": "Dockerfile",
+          "target": "/root/project"
+        },
+        {
+          "file": "build.sh",
+          "target": "/root/project"
+        }
+      ]
+    },
     "steps": [
       {
-        "title": "Step 1",
+        "title": "Install & Basic Scan",
         "text": "step1.md"
       },
       {
-        "title": "Step 2",
+        "title": "Visual Confirmation",
         "text": "step2.md"
+      },
+      {
+        "title": "SCA & Configuration Scan",
+        "text": "step3.md"
+      },
+      {
+        "title": "CI/CD Gates & Automation",
+        "text": "step4.md"
+      },
+      {
+        "title": "Remediation & Verification",
+        "text": "step5.md"
       }
     ],
     "intro": {
@@ -25,6 +53,6 @@
     "uilayout": "terminal"
   },
   "backend": {
-    "imageid": "ubuntu:2004"
+    "imageid": "ubuntu"
   }
 }

@@ -1,0 +1,10 @@
+{
+  "name": "mock-sec-app",
+  "version": "1.0.0",
+  "description": "A demo application with vulnerable dependencies",
+  "main": "index.js",
+  "dependencies": {
+    "lodash": "4.17.15",
+    "express": "4.15.2"
+  }
+}
