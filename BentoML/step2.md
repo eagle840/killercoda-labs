@@ -1,8 +1,19 @@
 ## Containize the service
 
-Lets review the creation file:
+Lets creat a bentofile file:
 
-`cat bentofile.yaml`{{exec}}
+`nano bentofile.yaml`{{exec}}
+
+```yaml
+service: "service:IrisService"
+name: "Iris_classifier"
+include:
+  - "service.py"
+python:
+  packages:
+    - scikit-learn
+    - numpy
+```{{copy}}
 
 and build it:
 
