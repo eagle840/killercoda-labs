@@ -4,16 +4,6 @@ Lets creat a bentofile file:
 
 `nano bentofile.yaml`{{exec}}
 
-```yaml
-service: "service:IrisService"
-name: "Iris_classifier"
-include:
-  - "service.py"
-python:
-  packages:
-    - scikit-learn
-    - numpy
-```{{copy}}
 
 ```yaml
 service: "service:CancerClassifier"
@@ -24,14 +14,14 @@ python:
   packages:
     - scikit-learn
     - numpy
-```{{exec}}
+```{{copy}}
 
 and build it:
 
 `bentoml build`{{exec}}
 
 
-`bentoml serve iris_classifier:latest --production`{{exec}}
+`bentoml serve cancer --production`{{exec}}
 
 In a new terminal Tab:
 
@@ -46,20 +36,17 @@ or open http://127.0.0.1:3000  at the following link:
 {{TRAFFIC_HOST1_3000}}
 
 
-### And auild a container  (18:01)
+### And build a container  (18:01)
 
-`bentoml containerize iris_classifier:latest`{{exec}}
 
-WIP: change docker tag
+`bentoml containerize cancer`{{exec}}
+
 
 `docker images`{{exec}}
-
-`IMAGE=$(docker images | awk 'NR==2 {print $1":"$2}')`{{exec}}
 
 `IMAGE=$(docker images | awk 'NR==2 {print $1}')`{{exec}}
 
 `echo $IMAGE`{{exec}}
-
 
 replace the tag name in the following:
 
