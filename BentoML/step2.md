@@ -15,6 +15,17 @@ python:
     - numpy
 ```{{copy}}
 
+```yaml
+service: "service:CancerClassifier"
+name: "cancer"
+include:
+  - "service.py"
+python:
+  packages:
+    - scikit-learn
+    - numpy
+```{{exec}}
+
 and build it:
 
 `bentoml build`{{exec}}
@@ -44,6 +55,8 @@ WIP: change docker tag
 `docker images`{{exec}}
 
 `IMAGE=$(docker images | awk 'NR==2 {print $1":"$2}')`{{exec}}
+
+`IMAGE=$(docker images | awk 'NR==2 {print $1}')`{{exec}}
 
 `echo $IMAGE`{{exec}}
 

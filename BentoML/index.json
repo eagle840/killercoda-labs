@@ -1,6 +1,6 @@
 {
   "title": "BentoML, serve and containerize",
-  "description": "Basic BentoML setup (v0.9.5)",
+  "description": "Basic BentoML setup (v0.9.6)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
