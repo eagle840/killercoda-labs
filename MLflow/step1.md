@@ -20,13 +20,15 @@ install python 3.11 with the following script:
 
 `cd mlflow-example/`{{exec}}
 
+apt install -y python3.12-venv tree`{{exec}}
+
 `python3.12 -m venv .venv`{{execute}}
 
 `source .venv/bin/activate`{{execute}}
 
 `pip install --upgrade pip`{{exec}}
 
-`pip install -y mlflow`{{exec}}
+`pip install  mlflow`{{exec}}
 
 
 WIP `pip install mlflow[extras]`{{copy}}
@@ -41,7 +43,7 @@ There are 4 major components to MLFlow: Tracking, Projects, Models, and Registry
 
 
 
-`cat mlflow_tracking.py`{{exec}}
+`cat train.py`{{exec}}
 
 Take  a look at the mlflow_tracking.py in the editor, and notice that it's using the mlflow modules to run some logs and setting random values - we'll view these in the web gui. Lets run it (return to tab1).
 
@@ -67,7 +69,7 @@ This working in conjunction with the mlflow ui tool.
 
 (Since we're running it on killercoda, will specify a host of 0.0.0.0 so it can be accessed by any computer.)
 
-``mlflow ui --host 0.0.0.0 --allowed-hosts "*" --workers 1`{{exec}}
+`mlflow ui --host 0.0.0.0 --allowed-hosts "*" --workers 1`{{exec}}
 
 
 you can access the ui at port 5000 {{TRAFFIC_HOST1_5000}} and note the program details we just run.
