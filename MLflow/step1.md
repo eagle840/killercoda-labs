@@ -12,29 +12,24 @@ install python 3.11 with the following script:
 
 `./python_install.sh`{{exec}}
 
+
 ## MLFLow
 
-`git clone https://github.com/mlflow/mlflow`{{exec}}
 
-`cd mlflow`{{exec}}
+`git clone https://github.com/mlflow/mlflow-example.git`{{exec}}
 
-`python3.11 -m venv .venv`{{execute}}
+`cd mlflow-example/`{{exec}}
+
+`python3.12 -m venv .venv`{{execute}}
 
 `source .venv/bin/activate`{{execute}}
 
 `pip install --upgrade pip`{{exec}}
 
+`pip install -y mlflow`{{exec}}
 
 
-### Install mlflow
-
-`pip install -U click jinja2`{{exec}}
-
-`pip install mlflow`{{exec}}
-
-### Install MLflow with extra ML libraries and 3rd-party tools
-
-`pip install mlflow[extras]`{{copy}}
+WIP `pip install mlflow[extras]`{{copy}}
 
 `mlflow --version`{{exec}}
 
@@ -44,15 +39,13 @@ There are 4 major components to MLFlow: Tracking, Projects, Models, and Registry
 
 ### Run our 1st MLFlow
 
-`cd ~/mlflow/examples/quickstart/`{{exec}}
 
-This first example flow prints some log outputs:
 
 `cat mlflow_tracking.py`{{exec}}
 
 Take  a look at the mlflow_tracking.py in the editor, and notice that it's using the mlflow modules to run some logs and setting random values - we'll view these in the web gui. Lets run it (return to tab1).
 
-`python mlflow_tracking.py`{{exec}}
+`python train.py`{{exec}}
 
 and note that some new folders have been created for mlflow.
 
@@ -74,7 +67,8 @@ This working in conjunction with the mlflow ui tool.
 
 (Since we're running it on killercoda, will specify a host of 0.0.0.0 so it can be accessed by any computer.)
 
-`mlflow ui --host 0.0.0.0`{{exec}}
+``mlflow ui --host 0.0.0.0 --allowed-hosts "*" --workers 1`{{exec}}
+
 
 you can access the ui at port 5000 {{TRAFFIC_HOST1_5000}} and note the program details we just run.
 
@@ -83,6 +77,11 @@ Note how the UI corresponds with the folder directory.
 Add some info into the description in the ui for this project.
 
 Exit out of the ui server (ctrl-c)
+
+
+## Another Example
+
+try: https://github.com/mlflow/mlflow-torchserve/tree/master/examples/IrisClassification
 
 
 ## Another Example:
