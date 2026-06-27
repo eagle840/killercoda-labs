@@ -33,6 +33,10 @@ Finally, push to your Gitea repository:
 ```bash
 git branch -M main
 git remote add origin git@localhost:gitea-admin/my-first-repo.git
+```{{exec}}
+
+WIP the following is failing - this is ssh, and shouldn't get a pw request
+```bash
 git push -u origin main
 ```{{exec}}
 
