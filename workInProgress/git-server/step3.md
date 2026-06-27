@@ -6,15 +6,15 @@ To perform Git operations securely via SSH, we need to generate an SSH key pair 
 On the terminal, generate a new SSH key pair:
 
 ```bash
-ssh-keygen -t ed25519 -C "your_email@example.com" -N "" -f ~/.ssh/id_ed25519{{exec}}
-```
+ssh-keygen -t ed25519 -C "your_email@example.com" -N "" -f ~/.ssh/id_ed25519
+```{{exec}}
 
 ### 2. Copy the Public Key
 Display your public key and copy it to your clipboard:
 
 ```bash
-cat ~/.ssh/id_ed25519.pub{{exec}}
-```
+cat ~/.ssh/id_ed25519.pub
+```{{exec}}
 
 ### 3. Add Key to Gitea
 1. Log in to your Gitea instance via the web UI.

@@ -19,8 +19,8 @@ git add README.md
 git commit -m "Initial commit"
 git branch -M main
 git remote add origin git@localhost:<username>/<repo-name>.git
-git push -u origin main{{exec}}
-```
+git push -u origin main
+```{{exec}}
 
 ### 3. Verify in Gitea
 Refresh your repository page in the Gitea UI. You should now see your `README.md` file listed in the repository.
