@@ -1,37 +1,33 @@
 {
   "title": "Git Server",
-  "description": "Setup a basic Git Server (v0.0.2)",
+  "description": "Setup a basic Git Server with Gitea",
   "difficulty": "Intermediate",
-  "time": "60 minutes",
+  "time": "45 minutes",
   "details": {
     "assets":{
       "host01": [
         {
           "file": "docker-compose.yml",
           "target": "~/"
-        },
-        {
-          "file": "new_task.py",
-          "target": "~/"
-        },
-        {
-          "file": "worker.py",
-          "target": "~/"
-        },
-        {
-          "file": "receive.py",
-          "target": "~/"
         }
       ]
     },
     "steps": [
       {
-        "title": "Step 1",
+        "title": "Deploying the Git Server",
         "text": "step1.md"
       },
       {
-        "title": "Step 2",
+        "title": "Configuring Gitea",
         "text": "step2.md"
+      },
+      {
+        "title": "SSH Key Authentication",
+        "text": "step3.md"
+      },
+      {
+        "title": "Using the Repository",
+        "text": "step4.md"
       }
     ],
     "intro": {
