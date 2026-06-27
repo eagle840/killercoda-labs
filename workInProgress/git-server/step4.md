@@ -9,14 +9,28 @@ In this final step, you will create a new repository in Gitea and push your loca
 4. Click **Create Repository**.
 
 ### 2. Configure and Push Local Code
-On your terminal, initialize a new directory and push code to your new Gitea repository. Replace `<username>` and `<repo-name>` with your actual Gitea details.
+On your terminal, initialize a new directory and configure your identity for Git. Replace `<username>` and `<repo-name>` with your actual Gitea details.
+
+First, initialize the local directory and configure Git:
 
 ```bash
 mkdir my-repo && cd my-repo
 git init
+git config --global user.email "admin@example.com"
+git config --global user.name "gitea-admin"
+```{{exec}}
+
+Next, prepare your files:
+
+```bash
 echo "# Hello Gitea" > README.md
 git add README.md
 git commit -m "Initial commit"
+```{{exec}}
+
+Finally, push to your Gitea repository:
+
+```bash
 git branch -M main
 git remote add origin git@localhost:<username>/<repo-name>.git
 git push -u origin main
