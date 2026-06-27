@@ -6,7 +6,7 @@ To perform Git operations securely via SSH, we need to generate an SSH key pair 
 On the terminal, generate a new SSH key pair:
 
 ```bash
-ssh-keygen -t ed25519 -C "your_email@example.com" -N "" -f ~/.ssh/id_ed25519
+ssh-keygen -t ed25519 -C "admin@example.com" -N "" -f ~/.ssh/id_ed25519
 ```{{exec}}
 
 ### 2. Copy the Public Key

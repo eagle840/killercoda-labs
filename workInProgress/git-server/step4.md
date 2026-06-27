@@ -32,7 +32,7 @@ Finally, push to your Gitea repository:
 
 ```bash
 git branch -M main
-git remote add origin git@localhost:<username>/<repo-name>.git
+git remote add origin git@localhost:gitea-admin/my-first-repo.git
 git push -u origin main
 ```{{exec}}
 
