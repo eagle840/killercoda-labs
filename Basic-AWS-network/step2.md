@@ -1,80 +1,31 @@
-# Networking
+# VPC & Subnets
 
-AWS VPCs are managed through the **`aws ec2`** command set. The CLI exposes commands to **create, list, modify, and delete** VPCs and all related networking components (subnets, route tables, IGWs, NAT gateways, security groups, etc.).
+In this step, we will create the core network foundation: the VPC and its subnets.
 
 ---
 
-## 🧱 Core VPC Commands (Create, View, Delete)
+## 1. Create a VPC
+A Virtual Private Cloud (VPC) is your isolated network environment in AWS.
 
-### **Create a VPC**
-```
+```bash
 awslocal ec2 create-vpc --cidr-block 10.0.0.0/16 \
   --tag-specifications 'ResourceType=vpc,Tags=[{Key=Name,Value=MyVPC}]'
 ```{{exec}}
 
-### **List VPCs**
-```
-awslocal ec2 describe-vpcs
-```{{exec}}
+## 2. Identify your VPC
+Pull the `vpc-id` to use in subsequent commands.
 
-### Pull the vpc-id
-```
+```bash
 VPC_ID=$(awslocal ec2 describe-vpcs \
   --filters "Name=tag:Name,Values=MyVPC" \
   --query "Vpcs[0].VpcId" --output text)
+echo "VPC ID: $VPC_ID"
 ```{{exec}}
 
----
+## 3. Create Subnets
+Subnets allow you to segment your VPC into smaller, isolated networks.
 
-## 🌐 Subnets & Gateways
-
-### **Create a subnet**
-```
-awslocal ec2 create-subnet --vpc-id $VPC_ID --cidr-block 10.0.1.0/24
+```bash
+awslocal ec2 create-subnet --vpc-id $VPC_ID --cidr-block 10.0.1.0/24 \
+  --tag-specifications 'ResourceType=subnet,Tags=[{Key=Name,Value=PublicSubnet}]'
 ```{{exec}}
-
-### **Create an Internet Gateway (IGW)**
-```
-awslocal ec2 create-internet-gateway
-```{{exec}}
-
-### **Attach IGW to VPC**
-```
-# Note: You'll need the IGW ID from the previous command output in a real scenario
-# For this lab, we're exploring the commands
-```
-
----
-
-## 🔒 Security Groups
-
-### **Create a security group**
-```
-awslocal ec2 create-security-group \
-  --group-name MySG \
-  --description "My security group" \
-  --vpc-id $VPC_ID
-```{{exec}}
-
-### **Authorize inbound SSH (Port 22)**
-```
-awslocal ec2 authorize-security-group-ingress \
-  --group-id sg-123 \
-  --protocol tcp --port 22 --cidr 0.0.0.0/0
-```{{exec}}
-
----
-
-## 🗂️ Summary Table
-
-| Task | AWS CLI Command |
-|------|-----------------|
-| Create VPC | `create-vpc` |
-| Create subnet | `create-subnet` |
-| Create IGW | `create-internet-gateway` |
-| Attach IGW | `attach-internet-gateway` |
-| Create route table | `create-route-table` |
-| Create security group | `create-security-group` |
-| Add SG rule | `authorize-security-group-ingress` |
-
-Next, we will look at **Compute** resources and how to run your first instances.
