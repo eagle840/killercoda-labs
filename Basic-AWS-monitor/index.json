@@ -1,0 +1,46 @@
+{
+  "title": "Basic AWS Monitoring & Governance on MiniStack",
+  "description": "Introduction to CloudWatch, CloudTrail, and Resource Tagging (v0.3.0)",
+  "difficulty": "Intermediate",
+  "time": "45 minutes",
+  "details": {
+    "assets":{
+      "host01": [
+        {
+          "file": "docker-compose.yml",
+          "target": "~/"
+        }
+      ]
+    },    
+    "steps": [
+      {
+        "title": "Step 1: Setup",
+        "text": "step1.md"
+      },
+      {
+        "title": "Step 2: Resource Tagging",
+        "text": "step2.md"
+      },
+      {
+        "title": "Step 3: Observability (CloudWatch)",
+        "text": "step3.md"
+      },
+      {
+        "title": "Step 4: Auditing (CloudTrail)",
+        "text": "step4.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
