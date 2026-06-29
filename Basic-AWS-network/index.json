@@ -1,0 +1,46 @@
+{
+  "title": "Basic AWS Networking on MiniStack",
+  "description": "Introduction to VPC, Subnets, and Security Groups (v0.3.0)",
+  "difficulty": "Beginner",
+  "time": "45 minutes",
+  "details": {
+    "assets":{
+      "host01": [
+        {
+          "file": "docker-compose.yml",
+          "target": "~/"
+        }
+      ]
+    },    
+    "steps": [
+      {
+        "title": "Step 1: Setup",
+        "text": "step1.md"
+      },
+      {
+        "title": "Step 2: VPC & Subnets",
+        "text": "step2.md"
+      },
+      {
+        "title": "Step 3: Security Groups & IGW",
+        "text": "step3.md"
+      },
+      {
+        "title": "Step 4: Compute (EC2 & ECS)",
+        "text": "step4.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
