@@ -1,0 +1,46 @@
+{
+  "title": "Basic AWS Storage on MiniStack",
+  "description": "Introduction to S3, DynamoDB, and RDS (v0.3.0)",
+  "difficulty": "Beginner",
+  "time": "45 minutes",
+  "details": {
+    "assets":{
+      "host01": [
+        {
+          "file": "docker-compose.yml",
+          "target": "~/"
+        }
+      ]
+    },    
+    "steps": [
+      {
+        "title": "Step 1: Setup",
+        "text": "step1.md"
+      },
+      {
+        "title": "Step 2: S3 Object Storage",
+        "text": "step2.md"
+      },
+      {
+        "title": "Step 3: DynamoDB NoSQL",
+        "text": "step3.md"
+      },
+      {
+        "title": "Step 4: RDS Relational Database",
+        "text": "step4.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
