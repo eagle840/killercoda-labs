@@ -1,6 +1,6 @@
 {
   "title": "Scikit-learn on Docker",
-  "description": "Rapidly start up Scikit-learn/juypter with docker (v0.1)",
+  "description": "Rapidly start up Scikit-learn/juypter with docker (v0.9)",
   "difficulty": "Beginner",
   "time": "15",
   "details": {

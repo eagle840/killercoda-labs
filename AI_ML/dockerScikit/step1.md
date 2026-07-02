@@ -20,10 +20,16 @@ And statup the container:
 
  and you're ready to go
 
+ ## Use A Juypter Note Book to download
+
+ `!git clone https://github.com/ageron/handson-ml3.git`{{copy}}
+
+ And follow the labs!
+
  Just follow the instructions in the 'tensorflow-tutorials' folder
 
- If you need some more tensor examples, run and they will showup in the root folder in the jupyter webpage.
+ If you need some more tensor examples, r
 
-`git clone https://github.com/GoogleCloudPlatform/training-data-analyst`{{execute T2}}
+`git clone https://github.com/GoogleCloudPlatform/training-data-analyst`{{copy}}
 
  
