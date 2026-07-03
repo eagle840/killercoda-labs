@@ -18,9 +18,14 @@ Install the necessary tools:
 `sudo apt update && sudo apt install -y zip jq`{{exec}}
 
 `curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"`{{exec}}
+
 `unzip awscliv2.zip`{{exec}}
+
 `sudo ./aws/install`{{exec}}
+
 `rm -rf awscliv2.zip ./aws`{{exec}}
+
+`aws --version`{{exec}}
 
 ### 4. Configure for MiniStack
 Set the credentials for the local environment:
