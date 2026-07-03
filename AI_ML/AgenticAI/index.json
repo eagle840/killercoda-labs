@@ -1,9 +1,17 @@
 {
   "title": "Agentic AI with ollama, AWS ministack",
-  "description": "Rapidly start up an AgenticAI with ollama and AWS ministack (v0.2)",
+  "description": "Rapidly start up an AgenticAI with ollama and AWS ministack (v0.3)",
   "difficulty": "Beginner",
   "time": "15",
   "details": {
+    "assets":{
+      "host01": [
+        {
+          "file": "docker-compose.yml",
+          "target": "~/"
+        }
+      ]
+    },  
     "steps": [
       {
         "title": "Step 1",
