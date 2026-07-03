@@ -1,6 +1,6 @@
 {
   "title": "Agentic AI with ollama, AWS ministack",
-  "description": "Rapidly start up an AgenticAI with ollama and AWS ministack (v0.3)",
+  "description": "Rapidly start up an AgenticAI with ollama and AWS ministack (v0.4.1)",
   "difficulty": "Beginner",
   "time": "15",
   "details": {
@@ -14,8 +14,20 @@
     },  
     "steps": [
       {
-        "title": "Step 1",
+        "title": "Setup Infrastructure",
         "text": "step1.md"
+      },
+      {
+        "title": "Setup Inference Engine",
+        "text": "step2.md"
+      },
+      {
+        "title": "Prepare Agent Code",
+        "text": "step3.md"
+      },
+      {
+        "title": "Orchestrate Agent",
+        "text": "step4.md"
       }
     ],
     "intro": {
