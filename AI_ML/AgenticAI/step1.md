@@ -63,3 +63,17 @@ To exit the prompt, type `/exit`.
 Because these models run as a local API server in the background, your agent framework (like AutoGen, CrewAI, or a custom script) can interact with it at `http://localhost:11434` using standard OpenAI-compatible API calls.
 
 Are you planning to use a specific agent framework (like LangChain or CrewAI) for this setup, or are you building the orchestration layer from scratch?
+
+--- Step 2
+
+Boot up ministack,
+
+Create a S3 with a open ai schema
+
+I'll need an api service to reply to agentic quieries
+
+I'll need a lambda funcation to call the API
+
+The LLM will need to pull the openAPI schema and call the API
+
+Question? if the API has an openAPI schema endpoint, why not use that
