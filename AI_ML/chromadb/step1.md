@@ -28,12 +28,9 @@ source .venv/bin/activate
 pip install --upgrade pip
 ```{{exec}}
 
-`pip install pip-tools`{{exec}}
+## Install Dependencies
 
-## Install Chromadb
-
-
-`pip install chromadb`{{exec}}
+`pip install chromadb sentence-transformers ipython`{{exec}}
 
 
 `python`{{exec}}

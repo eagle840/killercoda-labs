@@ -4,14 +4,7 @@ https://docs.trychroma.com/embeddings
 
 https://www.sbert.net/
 
-## install all-MiniLM-L6-v2
-
-We'll run the install inside ipython
-
-`%pip install -U sentence-transformers`{{exec}}
-
-- It'll take a few minutes to install the packages,
-
+## Using the Embedding Model
 
 ```
 from sentence_transformers import SentenceTransformer
@@ -31,8 +24,6 @@ for sentence, embedding in zip(sentences, embeddings):
     print("Embedding:", embedding)
     print("")
 ```{{copy}}
-
-- It'll take a few minutes to install the above model,
 
 
 ## Comparing Sentence Similarities
