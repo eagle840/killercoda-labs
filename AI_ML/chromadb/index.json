@@ -1,28 +1,11 @@
 {
-  "title": "WIP Chromadb Vector Database",
-  "description": "Install Chromadb Database with Docker(v1.0)",
+  "title": "Chromadb Vector Database",
+  "description": "Install and explore Chromadb Vector Database (v1.0)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
     "assets":{
-      "host01": [
-        {
-          "file": "send.py",
-          "target": "~/"
-        },
-        {
-          "file": "new_task.py",
-          "target": "~/"
-        },
-        {
-          "file": "worker.py",
-          "target": "~/"
-        },
-        {
-          "file": "receive.py",
-          "target": "~/"
-        }
-      ]
+      "host01": []
     },
     "steps": [
       {
@@ -36,6 +19,10 @@
       {
         "title": "Step 3",
         "text": "step3.md"
+      },
+      {
+        "title": "Step 4",
+        "text": "step4.md"
       }
     ],
     "intro": {
