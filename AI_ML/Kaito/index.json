@@ -9,16 +9,24 @@
     },
     "steps": [
       {
-        "title": "Setup Infrastructure",
+        "title": "Setup Operator",
         "text": "step1.md"
       },
       {
-        "title": "Deploy Kaito",
+        "title": "Baseline Inference",
         "text": "step2.md"
       },
       {
-        "title": "Run Inference",
+        "title": "Simulated Fine-Tuning",
         "text": "step3.md"
+      },
+      {
+        "title": "Inference with Fine-Tuned Model",
+        "text": "step4.md"
+      },
+      {
+        "title": "Cleanup",
+        "text": "step5.md"
       }
     ],
     "intro": {

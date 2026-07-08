@@ -1,3 +1,3 @@
-# Step 2: Deploy Kaito
+# Step 2: Baseline Inference
 
-Install Kaito.
+Deploy a tiny CPU inference container to test base model functionality and verify service exposure.

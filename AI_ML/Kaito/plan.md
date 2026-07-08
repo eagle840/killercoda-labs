@@ -1,7 +1,7 @@
-# Lab Plan: Kaito AI Operator
+# Lab Plan: Kaito AI Operator (Simulated Fine-Tuning)
 
-1. [ ] **Setup Infrastructure**: Ensure a Kubernetes cluster is available (e.g., using a local cluster tool if applicable).
-2. [ ] **Deploy Kaito**: Install the Kaito operator using Helm or manifests.
-3. [ ] **Deploy Model**: Apply Kaito custom resources to deploy an AI model.
-4. [ ] **Run Inference**: Send a request to the deployed model and verify output.
-5. [ ] **Verify & Cleanup**: Confirm success and remove resources.
+1. [ ] **Setup Operator**: Install the Kaito operator using Helm.
+2. [ ] **Baseline Inference**: Deploy a tiny CPU inference container to test the base model/service exposure.
+3. [ ] **Simulated Fine-Tuning**: Apply a Workspace manifest for "mock" fine-tuning (simulating LoRA adaptation).
+4. [ ] **Inference with Fine-Tuned Model**: Point a second Workspace to the "fine-tuned" adapter and verify output.
+5. [ ] **Cleanup**: Delete all workspaces and release resources.

@@ -1,3 +1,3 @@
-# Step 1: Setup Infrastructure
+# Step 1: Setup Operator
 
-Prepare your Kubernetes environment.
+In this step, you will install the Kaito operator onto your Kubernetes cluster using Helm.
