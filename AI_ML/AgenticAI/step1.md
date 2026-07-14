@@ -28,15 +28,15 @@ Install the necessary tools:
 `aws --version`{{exec}}
 
 ### 4. Configure for MiniStack
-Set the credentials for the local environment:
+To ensure these settings persist across terminal sessions, append the credentials and alias to your `.bashrc`:
 
 ```bash
-export AWS_ACCESS_KEY_ID=test
-export AWS_SECRET_ACCESS_KEY=test
-export AWS_DEFAULT_REGION=us-east-1
+echo 'export AWS_ACCESS_KEY_ID=test' >> ~/.bashrc
+echo 'export AWS_SECRET_ACCESS_KEY=test' >> ~/.bashrc
+echo 'export AWS_DEFAULT_REGION=us-east-1' >> ~/.bashrc
+echo "alias awslocal='aws --endpoint-url=http://localhost:4566'" >> ~/.bashrc
+source ~/.bashrc
 ```{{exec}}
-
-`alias awslocal='aws --endpoint-url=http://localhost:4566'`{{exec}}
 
 ### 5. Create a test bucket
 `awslocal s3 mb s3://file-organizer-bucket`{{exec}}
