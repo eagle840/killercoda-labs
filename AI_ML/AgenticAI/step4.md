@@ -35,5 +35,6 @@ Execute your agent:
 ### Verify Tags
 Check that the files were correctly tagged in S3:
 
-`awslocal s3api get-object-tagging --bucket file-organizer-bucket --key test.txt`{{exec}}
-`awslocal s3api get-object-tagging --bucket file-organizer-bucket --key photo.jpg`{{exec}}
+`aws --endpoint-url=http://localhost:4566 s3api get-object-tagging --bucket file-organizer-bucket --key test.txt`{{exec}}
+
+`aws --endpoint-url=http://localhost:4566 s3api get-object-tagging --bucket file-organizer-bucket --key photo.jpg`{{exec}}
