@@ -63,4 +63,5 @@ Create and activate a virtual environment to manage dependencies cleanly:
 
 
 Now, install `boto3` and `ollama` libraries:
+
 `pip install boto3 ollama`{{exec}}
