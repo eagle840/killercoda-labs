@@ -1,6 +1,6 @@
 {
   "title": "PyTorch on Docker",
-  "description": "Rapidly start up PyTorch/Jupyter with docker (v1.0)",
+  "description": "An interactive Jupyter Notebook lab focused on building deep learning models with a highly intuitive, pythonic, and researcher-friendly framework. (v1.0)",
   "difficulty": "Beginner",
   "time": "15",
   "details": {

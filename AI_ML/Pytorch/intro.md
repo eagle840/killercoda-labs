@@ -2,4 +2,4 @@
 
 Rapidly start up PyTorch with Docker and start coding with built-in examples.
 
-Note: PyTorch is a deep learning framework, distinct from Scikit-learn which is primarily designed for traditional machine learning algorithms and statistical modeling.
+PyTorch is incredibly "pythonic" and behaves like standard Python/NumPy. Its dynamic computation graphs make it much easier to debug and understand exactly what is happening to your data as it flows through a neural network.

@@ -1,6 +1,6 @@
 {
   "title": "Scikit-learn on Docker",
-  "description": "Rapidly start up Scikit-learn/juypter with docker (v0.9)",
+  "description": "A beginner-friendly lab using Jupyter Notebooks to master classic machine learning algorithms like regression, classification, and clustering with simple, efficient tools.(v0.9)",
   "difficulty": "Beginner",
   "time": "15",
   "details": {

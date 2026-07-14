@@ -1,6 +1,6 @@
 {
   "title": "Tensorflow on Docker",
-  "description": "Rapidly start up tensorflow/juypter with docker (v1.1)",
+  "description": "A Jupyter Notebook-based lab designed to build, train, and deploy large-scale deep learning models using a flexible, production-ready ecosystem.(v1.1)",
   "difficulty": "Beginner",
   "time": "15",
   "details": {
