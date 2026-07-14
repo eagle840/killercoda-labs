@@ -6,7 +6,7 @@ Now, let's complete the script to perform the analysis and tag the files.
 This final step executes the core agent workflow:
 1. **Lists** all files currently in your S3 bucket.
 2. **Iterates** through each file.
-3. **Calls** the LLM to analyze the file name and determine its category.
+3. **Invokes** the `analyze_file` function (defined in Step 3) to trigger the LLM inference and determine the file's category.
 4. **Tags** the S3 object with the category returned by the AI, completing the automation loop.
 
 Update your `agent.py` script by adding the following logic:
