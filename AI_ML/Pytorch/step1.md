@@ -1,3 +1,43 @@
+## Install Directly in Lab
+
+# Initial Setup
+
+!Please be warned, the install time for the packages in this lab can take some time!
+
+https://docs.trychroma.com/getting-started
+
+Installing Chromadb and be a bit of a pain, but the following sequence successfully installs on this version of Ubuntu.
+
+`apt update`{{exec}}
+
+`sudo apt-get install libreadline-dev -y`{{exec}}
+
+## Setup Python
+
+`python -V`{{exec}}
+
+`apt install -y python3.12-venv`{{exec}}
+
+`cd ~`{{exec}}
+
+`mkdir vector`{{exec}}
+
+`cd vector/`{{exec}}
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+```{{exec}}
+
+
+```bash
+pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+```{{exec}}
+
+
+---
+
 # spin up pytorch and jupyter
 
 Lets pull the image:
