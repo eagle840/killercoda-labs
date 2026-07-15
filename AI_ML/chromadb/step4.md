@@ -4,7 +4,7 @@ In this final step, we will combine what we learned: generate embeddings for doc
 
 ## Generate Embeddings and Persist
 
-```
+```python
 import chromadb
 from sentence_transformers import SentenceTransformer
 
@@ -33,6 +33,13 @@ collection.add(
 # Verify storage
 print(f"Collection count: {collection.count()}")
 
+
+```{{exec}}
+
+## And query the db
+
+
+```python
 # Query
 results = collection.query(
     query_texts=["What is Chromadb?"],
@@ -40,3 +47,5 @@ results = collection.query(
 )
 print(f"Query results: {results['documents']}")
 ```{{exec}}
+
+

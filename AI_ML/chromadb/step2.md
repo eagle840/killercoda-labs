@@ -1,6 +1,5 @@
 # Hello World! with Chromadb
 
-`pip install ipython`{{exec}}
 
 `ipython`{{exec}}
 

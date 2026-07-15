@@ -6,6 +6,8 @@ https://www.sbert.net/
 
 ## Using the Embedding Model
 
+Lets take alook at some embeddings outputs
+
 ```
 from sentence_transformers import SentenceTransformer
 model = SentenceTransformer('all-MiniLM-L6-v2')
@@ -23,10 +25,12 @@ for sentence, embedding in zip(sentences, embeddings):
     print("Sentence:", sentence)
     print("Embedding:", embedding)
     print("")
-```{{copy}}
+```{{exec}}
 
 
 ## Comparing Sentence Similarities
+
+And use the Cosine-Similarity to compare two sentences
 
 https://www.sbert.net/docs/quickstart.html#comparing-sentence-similarities
 

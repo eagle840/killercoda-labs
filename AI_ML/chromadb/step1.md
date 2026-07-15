@@ -28,9 +28,25 @@ source .venv/bin/activate
 pip install --upgrade pip
 ```{{exec}}
 
-## Install Dependencies
+## Install Dependencies (WIP)
 
-`pip install chromadb sentence-transformers ipython`{{exec}}
+PyTorch (torch), which defaults to downloading GPU-supported binaries.
+
+Lets try ONXX version
+
+`pip install "sentence-transformers[onnx]"`{{exec}}
+
+`pip install chromadb ipython`{{exec}}
+
+Failing that try: 
+
+`pip install torch --index-url https://download.pytorch.org/whl/cpu`{{copy}}
+
+`pip install sentence-transformers`{{copy}}
+
+OLD Install:
+
+`pip install chromadb sentence-transformers ipython`{{copy}}
 
 
 `python`{{exec}}
