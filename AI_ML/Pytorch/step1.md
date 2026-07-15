@@ -36,40 +36,64 @@ pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 ```{{exec}}
 
 
+
+
+Consider the following git repos
+
+You are completely right—the official PyTorch tutorials repository is absolutely massive because it is designed to build the entire documentation website (complete with Sphinx configs, heavy assets, and web-hosting bloat).
+
+If you just want clean, lightweight, and straightforward Jupyter notebooks that you can clone and run locally right away, there are several highly-regarded, community-maintained alternatives:
+
 ---
 
-# spin up pytorch and jupyter
+### 1. The Classic Minimalist: **yunjey/pytorch-tutorial**
 
-Lets pull the image:
+This is one of the most popular community repositories for PyTorch. It is incredibly lightweight and focuses on keeping things as simple as possible—most models are implemented in fewer than 30 lines of code.
 
- `docker pull pytorch/pytorch:latest  # Download latest stable image`{{execute}}
+* **Best for:** Quick reference, clean code, and fast cloning.
+* **Topics covered:** PyTorch basics, Linear/Logistic Regression, Feedforward Nets, CNNs, RNNs, GANs, and Style Transfer.
+* **GitHub Link:** [https://github.com/yunjey/pytorch-tutorial](https://github.com/yunjey/pytorch-tutorial)
 
-And startup the container:
- 
- `docker run -it -p 8888:8888 --name pytorch-lab -v /root/:/workspace pytorch/pytorch:latest bash`{{execute}}
+`git clone https://github.com/yunjey/pytorch-tutorial`{{exec}}
 
-Inside the container, install jupyter:
+
+
+---
+
+### 2. The Beginner-Friendly Giant: **mrdbourke/pytorch-deep-learning**
+
+Created by Daniel Bourke for his "Zero to Mastery" course, this repository is organized strictly around structured, highly annotated Jupyter notebooks. It starts from complete scratch (tensors) and builds up to computer vision and custom datasets.
+
+* **Best for:** Step-by-step learning with highly commented, easy-to-read notebooks.
+* **Topics covered:** Fundamentals, Workflow, Classification, Computer Vision, Custom Datasets, and Transfer Learning.
+* **GitHub Link:** [https://github.com/mrdbourke/pytorch-deep-learning](https://github.com/mrdbourke/pytorch-deep-learning)
+
+`git clone https://github.com/mrdbourke/pytorch-deep-learning`{{exec}}
+
+---
+
+### 3. Bite-Sized Practice: **dair-ai/pytorch_notebooks**
+
+This repository is a curated collection of standalone notebooks. It doesn't throw a massive curriculum at you; instead, it provides clean, independent notebook files for studying specific tasks.
+
+* **Best for:** Picking and choosing specific topics without installing a massive project structure.
+* **Topics covered:** Simple regression, CNN quickstarts, RNNs, and basic NLP.
+* **GitHub Link:** [https://github.com/dair-ai/pytorch_notebooks](https://github.com/dair-ai/pytorch_notebooks)
+
+
+`git clone https://github.com/dair-ai/pytorch_notebooks`{{exec}}
+
+## Install and run Jupyter
 
 `pip install jupyter`{{execute}}
 
-Start Jupyter server:
+`jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root`{{execute}}
 
- `jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root`{{execute}}
+
 
 copy the token from the output to connect to the webserver
 
-or directly print the token in a second terminal window:
-
-`docker exec pytorch-lab jupyter notebook list`{{execute T2}}
 
 connect to port 8888
 
 {{TRAFFIC_HOST1_8888}}
-
-and you're ready to go
-
-Just follow the instructions in the tutorials folder
-
-If you need some pytorch examples:
-
-`git clone https://github.com/pytorch/tutorials.git`{{execute T2}}
