@@ -1,5 +1,6 @@
 # Hello World! with Chromadb
 
+Lets start ipython:
 
 `ipython`{{exec}}
 

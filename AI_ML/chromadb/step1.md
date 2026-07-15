@@ -1,6 +1,7 @@
 
 # Initial Setup
 
+!Please be warned, the install time for the packages in this lab can take some time!
 
 https://docs.trychroma.com/getting-started
 
@@ -28,25 +29,17 @@ source .venv/bin/activate
 pip install --upgrade pip
 ```{{exec}}
 
-## Install Dependencies (WIP)
+## Install Dependencies 
 
-PyTorch (torch), which defaults to downloading GPU-supported binaries.
+We'll use the CPU version of PyTorch (torch) to speed things up.
 
-Lets try ONXX version
+`pip install torch --index-url https://download.pytorch.org/whl/cpu`{{exec}}
 
-`pip install "sentence-transformers[onnx]"`{{exec}}
+`pip install sentence-transformers`{{exec}}
 
 `pip install chromadb ipython`{{exec}}
 
-Failing that try: 
-
-`pip install torch --index-url https://download.pytorch.org/whl/cpu`{{copy}}
-
-`pip install sentence-transformers`{{copy}}
-
-OLD Install:
-
-`pip install chromadb sentence-transformers ipython`{{copy}}
+## Confirm the install of chromadb
 
 
 `python`{{exec}}
