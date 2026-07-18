@@ -4,14 +4,14 @@
   "difficulty": "Beginner",
   "time": "15",
   "details": {
-    "assets": {
+    "assets":{
       "host01": [
         {
-          "file": "assets/Dockerfile",
-          "target": "Dockerfile"
+          "file": "Dockerfile",
+          "target": "~/"
         }
       ]
-    },
+    }, 
     "steps": [
       {
         "title": "Step 1",
