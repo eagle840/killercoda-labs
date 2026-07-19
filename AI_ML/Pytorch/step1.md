@@ -4,17 +4,7 @@
 
 
 
-
-{{TRAFFIC_HOST1_8888}}
-
---- 
-
 ## Run from Docker
-
-
-The Dockerfile is included as a lab asset at `assets/Dockerfile`.
-
-
 
 
 A fast‑starting, small Docker container for **CPU‑only PyTorch + Jupyter Notebook** is absolutely doable — and you don’t need the heavyweight official PyTorch images to get there. The trick is to start from a **minimal base**, install only what you need, and avoid CUDA‑related packages.
