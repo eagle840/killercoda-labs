@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  influxdb:
+    image: influxdb:2
+    ports:
+      - "8086:8086"
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=dbadmin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=dbadmin123
+      - DOCKER_INFLUXDB_INIT_ORG=MyOrg
+      - DOCKER_INFLUXDB_INIT_BUCKET=BUCKET_ONE
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+      - influxdb-config:/etc/influxdb2
+
+  jupyter:
+    build: ./assets
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./assets:/home/jovyan/work
+    depends_on:
+      - influxdb
+
+volumes:
+  influxdb-data:
+  influxdb-config:

@@ -30,10 +30,7 @@
     },
     "assets": {
       "host01": [
-        {"file": "quickstart.ipynb", "target": "~/", "chmod": "+w"},
-        {"file": "prophet.ipynb", "target": "~/", "chmod": "+w"},
-        {"file": "influxquickstart.ipynb", "target": "~/", "chmod": "+w"},
-        {"file": "influxprophet.ipynb", "target": "~/", "chmod": "+w"}
+        {"file": "influxquickstart.ipynb", "target": "~/", "chmod": "+w"}
       ]
     }
   },
