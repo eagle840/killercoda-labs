@@ -1,0 +1,46 @@
+{
+  "title": "influx",
+  "description": "A guide to setting up and using influx  (v0.0.1)",
+  "difficulty": "Intermediate",
+  "time": "1",
+  "details": {
+    "steps": [
+      {
+        "title": "Step 1",
+        "text": "step1.md"
+      },
+      {
+        "title": "Step 2",
+        "text": "step2.md"
+      },
+      {
+        "title": "Step 3",
+        "text": "step3.md"
+      },
+      {
+        "title": "Step 4",
+        "text": "step4.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {"file": "quickstart.ipynb", "target": "~/", "chmod": "+w"},
+        {"file": "prophet.ipynb", "target": "~/", "chmod": "+w"},
+        {"file": "influxquickstart.ipynb", "target": "~/", "chmod": "+w"},
+        {"file": "influxprophet.ipynb", "target": "~/", "chmod": "+w"}
+      ]
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
