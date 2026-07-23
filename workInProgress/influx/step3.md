@@ -9,9 +9,9 @@ Access the Jupyter notebook interface:
 
 ### 2. Configure the Notebook
 1.  Open the `influxquickstart.ipynb` notebook from the file browser.
-2.  Follow the instructions in the notebook cells.
-3.  **Authentication:** You will need to generate an API Token in the InfluxDB UI (Load Data -> API Tokens -> Generate API Token) and enter it into the notebook where prompted (`<my-token>`).
-4.  **Dependencies:** Note that `influxdb-client` and `prophet` are already pre-installed in the Jupyter container, so you can skip the installation cells.
+2.  **Authentication:** Generate an API Token in the InfluxDB UI (Load Data -> API Tokens -> Generate API Token).
+3.  **Configuration:** Update the first code cell in the notebook, replacing `<my-token>` with your generated token. The `url`, `org`, and `bucket` are pre-configured for this lab.
+4.  **Run:** Execute the notebook cells sequentially.
 
 ### 3. Run Forecasting
 Run the cells to:
