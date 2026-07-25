@@ -26,8 +26,10 @@ Before installing, check the latest available version of Helm from the official 
 The simplest and recommended way to install the latest version:
 
 `curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3`{{execute}}
+
 `chmod 700 get_helm.sh`{{execute}}
 `./get_helm.sh`{{execute}}
+
 
 #### Alternative Method: Manual Installation (Advanced)
 If you prefer to install a specific version manually, download the tarball directly from the [Helm releases page](https://github.com/helm/helm/releases).

@@ -4,8 +4,8 @@
 
 There are two way to search repos from the command line: 
 
-- helm search hub # searchs the artifact hub at: https://artifacthub.io/ or https://bitnami.com/stacks/helm, although the artifact hub is better layed out
-- helm search repo # search the local repo you've added repo's to
+- `helm search hub` # searchs the artifact hub at: https://artifacthub.io/ 
+- `helm search repo` # search the local repo you've added repo's to
 
 ### using the Repo
 
@@ -34,7 +34,7 @@ Install the chart using that variable:
 
 ```sh
 helm upgrade --install metrics-server metrics-server/metrics-server
-```{{copy}}
+```{{exec}}
 
 You can view the charts at https://artifacthub.io/
 
@@ -45,6 +45,12 @@ You can view the charts at https://artifacthub.io/
 eg service.port=80
 
 ### pods/volumes not coming up?
+
+We'll create an alias to speed typing
+
+```sh
+alias k=kubectl
+```{{exec}}
 
 some charts require storage, run:
 
@@ -67,7 +73,7 @@ Also note that information is stored in ~/.cache/helm/:
 ***App version:*** this is the version of the actual app
 ***Chart Version:*** this is the version of the chart, every time there is a change to the chart, the chart version is incremented, and you'll see it in the end of the chart name
 
-`helm status my-metrics-server -n kube-system`{{execute}}
+`helm status metrics-server -n kube-system`{{execute}}
 
 Lets check the endpoint is up (it will take a few minutes)
 
@@ -77,9 +83,7 @@ tip: you can add the --debug  argument to troubleshoot
 
 connect to the uri
 
-We'll create an alias to speed typing
 
-`alias k=kubectl`{{exec}}
 
 `k get svc -A`{{exec}}
 
@@ -104,19 +108,19 @@ let check it's installed, since it's installed in the kube-system namespace, we 
 
 `helm list -A`{{execute}}
 
-`helm get notes my-metrics-server`{{execute}}
+`helm get notes metrics-server`{{execute}}
 
 and lets check what values have been used:
 
-`helm get values my-metrics-server`{{execute}}
+`helm get values metrics-server`{{execute}}
 
 To get a pervious release, you can use `--revision <release number>`
 
 ## Pull down and examine the chart
 
-lets pull down and look at the metric server on the bitnami repo
+Let's pull down and examine the metrics-server chart from the official repository:
 
-`helm pull bitnami/metrics-server`{{execute}}
+`helm pull metrics-server/metrics-server`{{execute}}
 
 `tar -zxvf metrics-server-*.tgz`{{execute}}
 
