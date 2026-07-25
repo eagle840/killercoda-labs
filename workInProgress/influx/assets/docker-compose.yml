@@ -15,11 +15,11 @@ services:
       - influxdb-config:/etc/influxdb2
 
   jupyter:
-    build: ./assets
+    build: .
     ports:
       - "8888:8888"
     volumes:
-      - ./assets:/home/jovyan/work
+      - .:/home/jovyan/work
     depends_on:
       - influxdb
 

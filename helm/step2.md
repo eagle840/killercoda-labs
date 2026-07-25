@@ -19,13 +19,29 @@ search the repo (all repos that have been added), note each has a chart version 
 
 If you ever need to update: `helm repo update`
 
-Here's an example of a chart install, which we've called my-metrics-server
+### Chart Version vs. App Version
 
-WIP: use this helm chart
+It is important to understand the difference between these two:
+- **App Version:** The version of the underlying application (e.g., the actual metrics-server binary).
+- **Chart Version:** The version of the Helm chart itself, which includes the packaging, configuration, and manifests. Changes to the Helm chart (like security updates to the manifests) increment the Chart version, even if the App version remains the same.
+
+---
+
+### Installing with a Specific Version
+
+First, let's search for available versions in the repo:
+
+`helm search repo bitnami/metrics-server --versions`{{execute}}
+
+Now, set a variable for the desired chart version (we'll use a recent one):
+
+`export METRICS_SERVER_VERSION=6.12.0`{{execute}}
+
+Finally, install the chart using that variable:
 
 ```sh
 helm install my-metrics-server bitnami/metrics-server \
-  --version=5.11.9 \
+  --version=$METRICS_SERVER_VERSION \
   --namespace kube-system \
   --set apiService.create=true \
   --set extraArgs.kubelet-insecure-tls=true \

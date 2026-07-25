@@ -30,9 +30,9 @@
     },
     "assets": {
       "host01": [
-        {"file": "influxquickstart.ipynb", "target": "~/", "chmod": "+w"},
+        {"file": "influxquickstart.ipynb", "target": "~/assets/", "chmod": "+w"},
         {"file": "docker-compose.yml", "target": "~/", "chmod": "+w"},
-        {"file": "Dockerfile", "target": "~/", "chmod": "+w"}
+        {"file": "Dockerfile", "target": "~/assets/", "chmod": "+w"}
       ]
     }
   },
