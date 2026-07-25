@@ -1,138 +1,73 @@
-# INSTALL A SAMPLE CHART
+# Install a Sample Chart
 
-## Install  metrics-server
-
-There are two way to search repos from the command line: 
-
-- `helm search hub` # searchs the artifact hub at: https://artifacthub.io/ 
-- `helm search repo` # search the local repo you've added repo's to
-
-### using the Repo
-
-search the repo (all repos that have been added), note each has a chart version and an app version
-
-`helm search repo`{{execute}} - None found, so lets add one
-
-`helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/`{{execute}}   
-
-`helm search repo`{{execute}}
-
-If you ever need to update: `helm repo update`
-
-### Chart Version vs. App Version
-
-It is important to understand the difference between these two:
-- **App Version:** The version of the underlying application (e.g., the actual metrics-server binary).
-- **Chart Version:** The version of the Helm chart itself, which includes the packaging, configuration, and manifests. Changes to the Helm chart (like security updates to the manifests) increment the Chart version, even if the App version remains the same.
+In this step, we will learn how to search Helm repositories, install the `metrics-server` chart, and examine the chart structure.
 
 ---
 
-### Installing with a Specific Version
+### 1. Repository Management
 
+Helm uses repositories to manage chart collections. 
 
-Install the chart using that variable:
+**Search Options:**
+*   `helm search hub`: Searches the [Artifact Hub](https://artifacthub.io/), which is a good place to discover new charts.
+*   `helm search repo`: Searches the local repositories you have already added.
 
-```sh
-helm upgrade --install metrics-server metrics-server/metrics-server
-```{{exec}}
+**Add the Metrics Server Repository:**
+Add the official repository and update your local cache:
 
-You can view the charts at https://artifacthub.io/
+`helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/`{{execute}}
+`helm repo update`{{execute}}
 
+---
 
+### 2. Installing metrics-server
 
-* to add addictional parameters: `helm install --set param=vale`, or supply a 'values' yaml file with the vales `--values file.yaml`
+Before installing, it is helpful to understand versioning:
+*   **App Version:** The version of the underlying application (the `metrics-server` binary).
+*   **Chart Version:** The version of the Helm chart itself, which packages the manifests and configuration.
 
-eg service.port=80
+**Install the Chart:**
+We will use `helm upgrade --install` which creates the release if it doesn't exist or upgrades it if it does.
 
-### pods/volumes not coming up?
+`helm upgrade --install metrics-server metrics-server/metrics-server --namespace kube-system`{{execute}}
 
-We'll create an alias to speed typing
+---
 
-```sh
-alias k=kubectl
-```{{exec}}
+### 3. Verification and Troubleshooting
 
-some charts require storage, run:
+#### Verify Installation
+Confirm the chart is installed in the `kube-system` namespace:
 
-`k get pvc -A`{{exec}}
+`helm list -n kube-system`{{execute}}
 
-to see what the deployment is waiting for
+#### Check Pod Status
+If the metrics aren't appearing, check that the pod is running:
 
+`kubectl get pods -n kube-system -l app.kubernetes.io/name=metrics-server`{{execute}}
 
-
-Lets check the helm chart is installed (-A shows all namespaces)
-
-`helm list -A`{{execute}}
-
-Also note that information is stored in ~/.cache/helm/:
-
-`ls ./.cache/helm/repository/`{{exec}}
-
-
-***Name***  this is the release name   
-***App version:*** this is the version of the actual app
-***Chart Version:*** this is the version of the chart, every time there is a change to the chart, the chart version is incremented, and you'll see it in the end of the chart name
-
-`helm status metrics-server -n kube-system`{{execute}}
-
-Lets check the endpoint is up (it will take a few minutes)
+#### Accessing Metrics
+Once the pod is ready, verify the API endpoint:
 
 `kubectl get --raw /apis/metrics.k8s.io/v1beta1/nodes | jq`{{execute}}
 
-tip: you can add the --debug  argument to troubleshoot
+#### Port Forwarding
+For testing access, you can port-forward to the pod:
 
-connect to the uri
+```bash
+export POD_NAME=$(kubectl get pods --namespace kube-system -l "app.kubernetes.io/name=metrics-server" -o jsonpath="{.items[0].metadata.name}")
+kubectl --namespace kube-system port-forward $POD_NAME 8080:4443
+```{{copy}}
 
+---
 
+### 4. Examine the Chart
 
-`k get svc -A`{{exec}}
-
-We'll port forward to this machine:
-
-WIP: update with the correct values:
-
-`export POD_NAME=$(kubectl get pods --namespace kube-system  -l "app.kubernetes.io/name=metrics-server,app.kubernetes.io/instance=my-metrics-server" -o jsonpath="{.items[0].metadata.name}")`{{execute}}     
-
-
-`export CONTAINER_PORT=$(kubectl get pod --namespace kube-system $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")`{{exec}} 
-
-`kubectl --namespace kube-system port-forward $POD_NAME 8080:$CONTAINER_PORT`{{execute}}   
-
-and connect {{TRAFFIC_HOST1_8080}}
-
-
-
-## Check metrics-server
-
-let check it's installed, since it's installed in the kube-system namespace, we have to add the --namespace argument
-
-`helm list -A`{{execute}}
-
-`helm get notes metrics-server`{{execute}}
-
-and lets check what values have been used:
-
-`helm get values metrics-server`{{execute}}
-
-To get a pervious release, you can use `--revision <release number>`
-
-## Pull down and examine the chart
-
-Let's pull down and examine the metrics-server chart from the official repository:
+You can pull down the chart source to examine how it is packaged:
 
 `helm pull metrics-server/metrics-server`{{execute}}
-
 `tar -zxvf metrics-server-*.tgz`{{execute}}
-
 `tree metrics-server`{{execute}}
 
-`cd metrics-server/`{{execute}}
+Inside the `templates/` folder, Helm uses Go Templating to process the Kubernetes manifests. You can render these templates to see the final output:
 
-all the files in the template folder will be processed with [Go Templating](https://pkg.go.dev/text/template) to produce a yaml file for a k8s apply file
-
-lets see the output, as text, when we process this chart
-
-`helm template .`{{execute}}
-
-You can override the values in the values.yaml folder when processing, by using '--set'
-
+`helm template metrics-server/`{{execute}}
