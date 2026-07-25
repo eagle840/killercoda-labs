@@ -13,7 +13,7 @@ search the repo (all repos that have been added), note each has a chart version 
 
 `helm search repo`{{execute}} - None found, so lets add one
 
-`helm repo add bitnami https://charts.bitnami.com/bitnami`{{execute}}   
+`helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/`{{execute}}   
 
 `helm search repo`{{execute}}
 
@@ -29,26 +29,14 @@ It is important to understand the difference between these two:
 
 ### Installing with a Specific Version
 
-First, let's search for available versions in the repo:
 
-`helm search repo bitnami/metrics-server --versions`{{execute}}
-
-Now, set a variable for the desired chart version (we'll use a recent one):
-
-`export METRICS_SERVER_VERSION=6.12.0`{{execute}}
-
-Finally, install the chart using that variable:
+Install the chart using that variable:
 
 ```sh
-helm install my-metrics-server bitnami/metrics-server \
-  --version=$METRICS_SERVER_VERSION \
-  --namespace kube-system \
-  --set apiService.create=true \
-  --set extraArgs.kubelet-insecure-tls=true \
-  --set extraArgs.kubelet-preferred-address-types=InternalIP
+helm upgrade --install metrics-server metrics-server/metrics-server
 ```{{copy}}
 
-You can view the charts for bitnami at: https://bitnami.com/stacks/helm
+You can view the charts at https://artifacthub.io/
 
 
 
@@ -88,6 +76,10 @@ Lets check the endpoint is up (it will take a few minutes)
 tip: you can add the --debug  argument to troubleshoot
 
 connect to the uri
+
+We'll create an alias to speed typing
+
+`alias k=kubectl`{{exec}}
 
 `k get svc -A`{{exec}}
 

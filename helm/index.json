@@ -1,6 +1,6 @@
 {
   "title": "Kubernetes Helm",
-  "description": "Setup HELM on a  Kubernets cluster(v0.92)",
+  "description": "Setup HELM on a  Kubernets cluster(v0.93)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -16,10 +16,6 @@
       {
         "title": "Step 3",
         "text": "step3.md"
-      },
-      {
-        "title": "Step 4",
-        "text": "step4.md"
       }
     ],
     "intro": {

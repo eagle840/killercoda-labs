@@ -1,52 +1,55 @@
-# INTRO
+# Helm Installation
 
-In this lab we will install Helm and explore setting up a chart to install a complex application (frontend and backend)
+In this lab, we will install Helm, verify the installation, and confirm the Kubernetes cluster is ready.
 
-Docs and sources:
+---
 
-https://artifacthub.io/
+### 1. Prerequisites
 
-https://helm.sh/docs
+First, update the package list and install necessary dependencies:
 
-Run Ubuntu updates:
+`apt-get update -y && apt install -y tree jq`{{execute}}
 
-`apt-get update -y`{{execute}}
+---
 
-`apt install -y tree jq`{{execute}}
+### 2. Check Latest Version
 
+Before installing, check the latest available version of Helm from the official GitHub releases:
 
-# INSTALL HELM TWO WAYS:
+`curl -s https://api.github.com/repos/helm/helm/releases/latest | jq -r .tag_name`{{execute}}
 
-## 1: install helm Maually (v3.8.2)
+---
 
+### 3. Install Helm
 
-install helm3  (from https://github.com/helm/helm/releases)
-
-
-`wget https://get.helm.sh/helm-v3.8.2-linux-amd64.tar.gz`{{execute}}   
-
-`tar -zxvf helm-v3.8.2-linux-amd64.tar.gz`{{execute}}
-
-`mv linux-amd64/helm /usr/local/bin/helm`{{execute}}
-
-
-## 2: OR by script (latest)
+#### Recommended Method: Official Script
+The simplest and recommended way to install the latest version:
 
 `curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3`{{execute}}
-
 `chmod 700 get_helm.sh`{{execute}}
-
 `./get_helm.sh`{{execute}}
 
+#### Alternative Method: Manual Installation (Advanced)
+If you prefer to install a specific version manually, download the tarball directly from the [Helm releases page](https://github.com/helm/helm/releases).
 
-and check the top command (will take a couple of minutes to set getting metrics)
+*Example for v3.16.0 (Replace with desired version if needed):*
+
+```bash
+wget https://get.helm.sh/helm-v3.16.0-linux-amd64.tar.gz
+tar -zxvf helm-v3.16.0-linux-amd64.tar.gz
+mv linux-amd64/helm /usr/local/bin/helm
+```{{copy}}
+
+---
+
+### 4. Verification
+
+Confirm Helm is installed correctly:
 
 `helm version`{{execute}}
 
-Check k8s is running
+Check that your Kubernetes cluster is running:
 
 `kubectl cluster-info`{{execute}}
 
-it might take a couple of minutes, but your should get `Kubernetes master is running at`
-
-
+*Note: It may take a minute for the cluster to be fully ready.*
