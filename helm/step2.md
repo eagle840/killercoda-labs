@@ -16,6 +16,7 @@ Helm uses repositories to manage chart collections.
 Add the official repository and update your local cache:
 
 `helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/`{{execute}}
+
 `helm repo update`{{execute}}
 
 ---
@@ -65,7 +66,9 @@ kubectl --namespace kube-system port-forward $POD_NAME 8080:4443
 You can pull down the chart source to examine how it is packaged:
 
 `helm pull metrics-server/metrics-server`{{execute}}
+
 `tar -zxvf metrics-server-*.tgz`{{execute}}
+
 `tree metrics-server`{{execute}}
 
 Inside the `templates/` folder, Helm uses Go Templating to process the Kubernetes manifests. You can render these templates to see the final output:

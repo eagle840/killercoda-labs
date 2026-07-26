@@ -28,6 +28,7 @@ The simplest and recommended way to install the latest version:
 `curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3`{{execute}}
 
 `chmod 700 get_helm.sh`{{execute}}
+
 `./get_helm.sh`{{execute}}
 
 

@@ -1,6 +1,6 @@
 {
   "title": "Kubernetes Helm",
-  "description": "Setup HELM on a  Kubernets cluster(v0.93)",
+  "description": "Setup HELM on a  Kubernets cluster(v1.0)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {

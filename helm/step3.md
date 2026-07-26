@@ -9,7 +9,9 @@ In this step, we will learn how to create a basic Helm chart, customize it using
 Helm provides a generator to bootstrap a new chart with a default nginx-based structure.
 
 `cd ~`{{execute}}
+
 `helm create examplechart`{{execute}}
+
 `cd examplechart`{{execute}}
 
 ---
@@ -29,6 +31,7 @@ To make a chart dynamic, we use Go templates to inject values.
 Edit the deployment file to use a value from `values.yaml` for the number of replicas:
 
 `sed -i 's/replicaCount: 1/replicaCount: 2/' values.yaml`{{execute}}
+
 `sed -i 's/{{ .Values.replicaCount }}/{{ .Values.replicaCount }}/' templates/deployment.yaml`{{execute}}
 
 *(Note: The default generator already uses `{{ .Values.replicaCount }}`. You can check it with `cat templates/deployment.yaml`)*
@@ -51,12 +54,15 @@ Use `helm template` to render the manifests without installing them. The `--debu
 Now, install your new chart into the cluster:
 
 `cd ~`{{execute}}
+
 `helm install new-chart examplechart/ --values examplechart/values.yaml`{{execute}}
 
 #### Verify Deployment
 
 `helm list -A`{{execute}}
+
 `helm status new-chart`{{execute}}
+
 `kubectl get svc -A`{{execute}}
 
 #### Test Connectivity
