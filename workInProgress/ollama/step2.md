@@ -2,6 +2,9 @@
 
 Now that you've assessed your resources, let's install Ollama and search for a suitable model.
 
+**Note:** Ollama is cross-platform and works on Linux, macOS, and Windows.
+**Note:** Installing Ollama and downloading models can take some time. Please allow a few minutes for the processes to complete.
+
 ### Task
 1. Install Ollama:
 ```bash
@@ -17,4 +20,4 @@ ollama --version
 ```bash
 ollama list
 ```{{exec}}
-*(Note: If no models are listed yet, you can search for models at https://ollama.com/library)*
+*(Note: If no models are listed yet, you can search for available models to download at https://ollama.com/search)*

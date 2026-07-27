@@ -23,6 +23,10 @@
       {
         "title": "Manage Models",
         "text": "step4.md"
+      },
+      {
+        "title": "Explore CLI Coding Agents",
+        "text": "step5.md"
       }
     ],
     "finish": {

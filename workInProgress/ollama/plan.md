@@ -7,3 +7,4 @@
 - [ ] Update Step 2 to include CLI model search based on system info.
 - [ ] Add instructions for running the LLM with a query like 'what is the capital of france' via the command line.
 - [ ] Add Step 4: Manage models (listing, clearing, and selecting).
+- [x] Add Step 5: Explore CLI coding agents (e.g., 'ollama-agent' or 'opencode').
