@@ -1,0 +1,31 @@
+{
+  "title": "Getting Started with Ollama",
+  "description": "Learn to assess your system resources, search for models, and run a lightweight model using Ollama. (v0.0.1)",
+  "difficulty": "Beginner",
+  "time": "15 minutes",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Assess System Resources",
+        "text": "step1.md"
+      },
+      {
+        "title": "Search for a Model",
+        "text": "step2.md"
+      },
+      {
+        "title": "Run the Model",
+        "text": "step3.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
