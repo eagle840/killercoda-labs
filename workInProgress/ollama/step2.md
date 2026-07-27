@@ -16,8 +16,13 @@ curl -fsSL https://ollama.com/install.sh | sh
 ollama --version
 ```{{exec}}
 
-3. Based on your system resources (from Step 1), search for a model that fits. We recommend `tinyllama` (under 1GB):
+3. Explore available commands:
 ```bash
-ollama list
+ollama --help
 ```{{exec}}
-*(Note: If no models are listed yet, you can search for available models to download at https://ollama.com/search)*
+
+**Understanding Ollama Commands:**
+- `ollama serve`: Starts the Ollama API server in the background, allowing other applications (like coding agents) to communicate with it.
+- `ollama run <model>`: Pulls (if needed) and starts an interactive session for the specified model.
+
+*(Note: You can search for available models to download at https://ollama.com/search)*
