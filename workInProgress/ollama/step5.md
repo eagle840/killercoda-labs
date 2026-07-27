@@ -1,16 +1,57 @@
 # Step 5: Explore CLI Coding Agents
 
-Now that you have a coding model (`qwen2.5-coder:1.5b`) installed, you can leverage it with CLI coding agents to help with development tasks.
+Now that you have a coding model (`qwen2.5-coder:1.5b`) installed, you can leverage CLI coding agents to assist with development tasks.
 
-### Task
-You can use tools like `ollama-agent` or `opencode` that integrate with Ollama to provide AI-assisted coding experiences directly in your terminal.
+### Prerequisites
+Before using coding agents, ensure your local Ollama server is running in the background:
 
-1. **Explore `ollama-agent`**:
-   - Install: `npm install -g ollama-agent` (requires Node.js)
-   - Usage: `ollama-agent "Write a python script to list files in a directory"`
+```bash
+ollama serve &
+```{{exec}}
 
-2. **Explore `opencode`**:
-   - Install: `pip install opencode` (requires Python)
-   - Usage: `opencode "Explain this code snippet"`
+Verify the server is responding:
+```bash
+curl http://localhost:11434/
+```{{exec}}
 
-Ensure your local Ollama instance is running (`ollama serve`) before using these agents. The agents will automatically connect to your local Ollama API to utilize the `qwen2.5-coder:1.5b` model you downloaded.
+### Task: Using `opencode`
+We will use `opencode` to provide AI-assisted coding experiences directly in your terminal.
+
+1. **Install `opencode`**:
+```bash
+curl -fsSL https://opencode.ai/install | bash
+exec bash
+```{{exec}}
+
+2. **Configure `opencode`**:
+Create the configuration directory and file:
+```bash
+mkdir -p ~/.config/opencode
+nano ~/.config/opencode/opencode.json
+```{{exec}}
+
+Paste the following configuration into `opencode.json` and save (Ctrl+O, Enter, Ctrl+X):
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen2.5-coder:1.5b": {
+          "name": "qwen2.5 coder 1.5b"
+        }
+      }
+    }
+  }
+}
+```{{copy}}
+
+3. **Start `opencode`**:
+```bash
+opencode
+```{{exec}}
