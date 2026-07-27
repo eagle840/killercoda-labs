@@ -10,7 +10,7 @@ ollama list
 
 2. Download and run a second model, such as `qwen2.5-coder:1.5b`:
 ```bash
-ollama run qwen2.5-coder:1.5b
+ollama pull qwen2.5-coder:1.5b
 ```{{exec interrupt}}
 
 3. To remove a model to free up space:
