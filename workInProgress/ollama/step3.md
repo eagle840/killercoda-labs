@@ -1,18 +1,20 @@
-# Step 3: Run the Model
+# Step 3: Run the Model and Execute a Query
 
-Now that we have chosen `tinyllama`, let's run it.
+Now let's run the model and perform a simple query directly from the command line.
 
 ### Task
-1. First, you need to ensure Ollama is installed (it's not by default, let's install it).
-
-```bash
-curl -fsSL https://ollama.com/install.sh | sh
-```{{exec}}
-
-2. Once installed, run the `tinyllama` model. The `ollama run` command will automatically download the model if it's not present.
-
+1. Run the `tinyllama` model:
 ```bash
 ollama run tinyllama
 ```{{exec interrupt}}
 
-*(Note: The command will enter an interactive mode. Once you are done, you can type `/bye` to exit.)*
+2. Once inside the interactive prompt, you can ask a question:
+```bash
+What is the capital of France?
+```
+*(When done, type `/bye` to exit the interactive mode.)*
+
+3. You can also run a query directly from the command line without entering the interactive mode:
+```bash
+ollama run tinyllama "What is the capital of France?"
+```{{exec}}

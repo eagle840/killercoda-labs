@@ -1,6 +1,6 @@
 {
   "title": "Getting Started with Ollama",
-  "description": "Learn to assess your system resources, search for models, and run a lightweight model using Ollama. (v0.0.1)",
+  "description": "Learn to assess your system resources, search for models, and run a lightweight model using Ollama. (v0.0.2)",
   "difficulty": "Beginner",
   "time": "15 minutes",
   "details": {
@@ -13,12 +13,16 @@
         "text": "step1.md"
       },
       {
-        "title": "Search for a Model",
+        "title": "Install Ollama and Search",
         "text": "step2.md"
       },
       {
-        "title": "Run the Model",
+        "title": "Run Model and Query",
         "text": "step3.md"
+      },
+      {
+        "title": "Manage Models",
+        "text": "step4.md"
       }
     ],
     "finish": {

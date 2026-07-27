@@ -1,12 +1,20 @@
-# Step 2: Search for a Model
+# Step 2: Install Ollama and Search for Models
 
-Ollama has a large registry of models. We want to find a lightweight model that fits our <1GB constraint.
+Now that you've assessed your resources, let's install Ollama and search for a suitable model.
 
 ### Task
-A great starting point for very low-resource environments is `tinyllama`. You can verify its size or search for other models by visiting the [Ollama Library](https://ollama.com/library).
+1. Install Ollama:
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+```{{exec}}
 
-While you can search via the web, you can also search directly in the terminal if you have Ollama installed, or use `curl` to query the Ollama API if available.
+2. Verify installation:
+```bash
+ollama --version
+```{{exec}}
 
-For this lab, we have selected **`tinyllama`**, which is approximately 637MB.
-
-You do not need to perform an action here, just familiarize yourself with the Ollama website.
+3. Based on your system resources (from Step 1), search for a model that fits. We recommend `tinyllama` (under 1GB):
+```bash
+ollama list
+```{{exec}}
+*(Note: If no models are listed yet, you can search for models at https://ollama.com/library)*
