@@ -1,29 +1,9 @@
 {
   "title": "Ubuntu",
-  "description": "Basic Ubuntu server, with Killercoda commands",
+  "description": "Skeleton Lab for new projects",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
-    "assets":{
-      "host01": [
-        {
-          "file": "send.py",
-          "target": "~/"
-        },
-        {
-          "file": "new_task.py",
-          "target": "~/"
-        },
-        {
-          "file": "worker.py",
-          "target": "~/"
-        },
-        {
-          "file": "receive.py",
-          "target": "~/"
-        }
-      ]
-    },
     "steps": [
       {
         "title": "Step 1",
