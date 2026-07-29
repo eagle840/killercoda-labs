@@ -25,6 +25,10 @@
         "text": "step4.md"
       },
       {
+        "title": "Understanding Ollama API",
+        "text": "step5.md"
+      },
+      {
         "title": "Explore CLI Coding Agents",
         "text": "step6.md"
       }
