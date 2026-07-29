@@ -2,6 +2,22 @@
 
 Now that you have a coding model (`qwen2.5-coder:1.5b`) installed, you can leverage CLI coding agents to assist with development tasks.
 
+Comfirm ollama is up and running
+
+```bash
+ollama run qwen2.5-coder:1.5b  "produce a simple json file"
+```{{exec}}
+
+```bash
+ollama ps
+```{{exec}}
+
+```bash
+curl http://localhost:11434/api/ps
+```{{exec}}
+
+
+
 ### Task: Using `opencode`
 We will use `opencode` to provide AI-assisted coding experiences directly in your terminal.
 
@@ -43,3 +59,27 @@ Paste the following configuration into `opencode.json` and save (Ctrl+O, Enter, 
 ```bash
 opencode
 ```{{exec}}
+
+---
+
+# Using Qwen Code
+
+
+```bash
+curl -fsSL https://qwen-code-assets.oss-cn-hangzhou.aliyuncs.com/installation/install-qwen-standalone.sh | bash
+```{{exec}}
+
+
+```bash
+echo 'export OPENAI_API_BASE="http://localhost:11434/v1"' >> ~/.bashrc
+echo 'export OLLAMA_API_KEY="ollama"' >> ~/.bashrc
+source ~/.bashrc
+```{{exec}}
+
+
+```bash
+qwen --auth-type openai --model qwen2.5-coder:1.5b --openai-api-key ollama
+```{{exec}}
+
+
+You can also try `\auth`{{exec}} to setup there

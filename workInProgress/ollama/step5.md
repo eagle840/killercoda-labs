@@ -37,3 +37,47 @@ Tools like CLI coding agents often use the OpenAI API format. You can check whic
 ```bash
 curl http://localhost:11434/v1/models
 ```{{exec}}
+
+To send a query to your local Ollama instance using `curl`, you can use the OpenAI-compatible chat completion endpoint or Ollama's native API.
+
+Because you configured your model to stay loaded persistently, you can query it directly with a `POST` request.
+
+### Using the OpenAI-Compatible Endpoint (`/v1/chat/completions`)
+
+This method matches the standard OpenAI API format, which is great if you are writing scripts or testing integrations:
+
+```bash
+curl http://localhost:11434/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "qwen2.5-coder:7b-16k",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a bash command to find large files on a Linux filesystem."
+      }
+    ],
+    "temperature": 0.2
+  }'
+
+```
+
+### Using Ollama's Native Endpoint (`/api/chat`)
+
+If you prefer Ollama's native API structure, you can hit the `/api/chat` route. By default, this streams the response back chunk-by-chunk. If you want the complete response all at once, you can pass `"stream": false`:
+
+```bash
+curl http://localhost:11434/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "qwen2.5-coder:7b-16k",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Write a bash command to find large files on a Linux filesystem."
+      }
+    ],
+    "stream": false
+  }'
+
+```
