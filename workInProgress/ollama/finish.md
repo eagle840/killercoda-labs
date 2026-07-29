@@ -5,6 +5,7 @@ Congratulations! You have successfully:
 2. Learned how to discover models in the Ollama registry.
 3. Installed Ollama and ran a lightweight model (`tinyllama`) successfully.
 4. Managed your downloaded models (list, remove, switch).
-5. Explored CLI coding agents to leverage your models.
+5. Interacted with the Ollama API directly.
+6. Explored CLI coding agents to leverage your models.
 
 You now have the foundation to explore larger or more specialized models as your resource capacity allows!

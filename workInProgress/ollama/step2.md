@@ -22,7 +22,7 @@ ollama --help
 ```{{exec}}
 
 **Understanding Ollama Commands:**
-- `ollama serve`: Starts the Ollama API server in the background, allowing other applications (like coding agents) to communicate with it.
+- `ollama serve`: Starts the Ollama API server in the background, allowing other applications (like coding agents) to communicate with it. In our install, it automatically runs it as a background service.
 - `ollama run <model>`: Pulls (if needed) and starts an interactive session for the specified model.
 
 *(Note: You can search for available models to download at https://ollama.com/search)*

@@ -5,7 +5,8 @@ In this lab, you will learn how to:
 2. Install Ollama and search for appropriate AI models.
 3. Download and run a lightweight model.
 4. Manage your downloaded models (list, remove, switch).
-5. Explore CLI coding agents to leverage your models.
+5. Understand and interact with the Ollama API.
+6. Explore CLI coding agents to leverage your models.
 
 We will focus on selecting a model that runs efficiently within the resource constraints of this lab environment.
 
