@@ -1,0 +1,42 @@
+{
+  "title": "Getting Started with K3s and K9s",
+  "description": "Learn how to install K3s (lightweight Kubernetes), analyze its resource consumption, deploy a sample application, and manage everything using the K9s terminal UI. (v0.1.0)",
+  "difficulty": "Intermediate",
+  "time": "15 minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "Installing K3s",
+        "text": "step1.md",
+        "verify": "step1_verify.sh"
+      },
+      {
+        "title": "Analyzing Resource Footprint",
+        "text": "step2.md",
+        "verify": "step2_verify.sh"
+      },
+      {
+        "title": "Deploying Nginx on K3s",
+        "text": "step3.md",
+        "verify": "step3_verify.sh"
+      },
+      {
+        "title": "Installing and Running K9s",
+        "text": "step4.md",
+        "verify": "step4_verify.sh"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
