@@ -69,6 +69,8 @@ opencode
 curl -fsSL https://qwen-code-assets.oss-cn-hangzhou.aliyuncs.com/installation/install-qwen-standalone.sh | bash
 ```{{exec}}
 
+`source ~/.bashrc `{{exec}}
+
 
 ```bash
 echo 'export OPENAI_API_BASE="http://localhost:11434/v1"' >> ~/.bashrc

@@ -50,7 +50,7 @@ This method matches the standard OpenAI API format, which is great if you are wr
 curl http://localhost:11434/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "qwen2.5-coder:7b-16k",
+    "model": "qwen2.5-coder:1.5b",
     "messages": [
       {
         "role": "user",
@@ -60,7 +60,7 @@ curl http://localhost:11434/v1/chat/completions \
     "temperature": 0.2
   }'
 
-```
+```{{exec}}
 
 ### Using Ollama's Native Endpoint (`/api/chat`)
 
@@ -70,11 +70,11 @@ If you prefer Ollama's native API structure, you can hit the `/api/chat` route. 
 curl http://localhost:11434/api/chat \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "qwen2.5-coder:7b-16k",
+    "model": "qwen2.5-coder:1.5b",
     "messages": [
       {
         "role": "user",
-        "content": "Write a bash command to find large files on a Linux filesystem."
+        "content": "Write a simple json file"
       }
     ],
     "stream": false
