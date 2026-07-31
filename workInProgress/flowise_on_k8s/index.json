@@ -1,0 +1,42 @@
+{
+  "title": "Flowise on Kubernetes",
+  "description": "Deploying Flowise on Kubernetes",
+  "difficulty": "Intermediate",
+  "time": "60 minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "Setup Cluster",
+        "text": "step1.md"
+      },
+      {
+        "title": "Add Repo",
+        "text": "step2.md"
+      },
+      {
+        "title": "Deployment",
+        "text": "step3.md"
+      },
+      {
+        "title": "Expose Service",
+        "text": "step4.md"
+      },
+      {
+        "title": "Verification",
+        "text": "step5.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "kubernetes-kubeadm-2nodes"
+  }
+}
