@@ -11,3 +11,9 @@ Wait for the deployment to complete. You can check the status of the pods:
 ```bash
 kubectl get pods
 ```{{exec}}
+
+It will take time for the pods to come up (about 3 mins)
+
+```bash
+watch kubectl get pods -A
+```{{exec}}

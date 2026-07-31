@@ -12,6 +12,6 @@ connect to port 3000 {{TRAFFIC_HOST1_3000}}
 
 use the following in the web portal to setup the admin
 
-un:admin
-email: admin@example.com
-pw: Pa55w@rd
+un:`admin`   
+email: `admin@example.com`   
+pw: `Pa55w@rd`     
