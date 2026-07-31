@@ -11,17 +11,13 @@ Install the prerequisites for this lab
 
 `cd vector/`{{exec}}
 
-`sudo add-apt-repository -y ppa:deadsnakes/ppa`{{exec}}
-
 `sudo apt-get update`{{exec}}
-
-`apt-get install -y python3.10`{{exec}}
 
 `sudo apt-get install build-essential -y`{{exec}}
 
-`apt install -y python3.10-venv`{{exec}}
+`apt install -y python3.12-venv`{{exec}}
 
-`python3.10 -m venv .venv`{{exec}}
+`python3.12 -m venv .venv`{{exec}}
 
 `source .venv/bin/activate`{{exec}}
 

@@ -21,6 +21,10 @@
         {
           "file": "receive.py",
           "target": "~/"
+        },
+        {
+          "file": "quickstart.ipynb",
+          "target": "~/"
         }
       ]
     },
