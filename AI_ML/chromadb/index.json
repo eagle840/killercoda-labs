@@ -5,7 +5,12 @@
   "time": "60 minutes",
   "details": {
     "assets":{
-      "host01": []
+      "host01": [
+        {
+          "file": "vector/chromadb_lab.ipynb",
+          "target": "~/vector/"
+        }
+      ]
     },
     "steps": [
       {
