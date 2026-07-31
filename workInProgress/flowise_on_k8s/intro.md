@@ -1,4 +1,10 @@
-# Bare Skeleton Lab Template
+# Flowise on Kubernetes
 
-This lab serves as a bare-bones template to help you create new Killercoda scenarios. 
-It provides the essential structure required to get started quickly.
+Welcome to this lab! In this scenario, you will learn how to deploy **Flowise**, a powerful drag-and-drop tool for building LLM apps, onto a 2-node Kubernetes cluster.
+
+### What you will learn:
+- Setting up and verifying a multi-node Kubernetes cluster.
+- Using Helm to deploy applications on Kubernetes.
+- Managing services and port-forwarding for application access.
+
+Let's get started!
