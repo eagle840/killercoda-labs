@@ -3,6 +3,6 @@
 Add the HelmForge repository to your Helm configuration.
 
 ```bash
-helm repo add helmforge https://helmforge.github.io/charts
+helm repo add helmforge https://repo.helmforge.dev
 helm repo update
 ```{{exec}}

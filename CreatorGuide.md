@@ -77,6 +77,7 @@ kubectl get ns
 - Markdown variables:
   - `{{TRAFFIC_SELECTOR}}`
   - `{{TRAFFIC_HOST1_80}}`
+  - `{{TRAFFIC_HOST1_9000}}`
   - `{{TRAFFIC_HOSTX_Y}}`
 - Bash example:
 ```bash
