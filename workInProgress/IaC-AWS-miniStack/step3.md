@@ -14,6 +14,8 @@ https://github.com/localstack/aws-cdk-local
 
 We'll install the AWS CDK and the addon for local.
 
+`apt install -y npm`{{exec}}
+
 
 `npm install -g aws-cdk-local aws-cdk`{{exec}}
 

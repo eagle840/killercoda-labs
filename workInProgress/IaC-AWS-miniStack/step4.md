@@ -1,5 +1,33 @@
 # Terraform
 
+## Using tenv to control tf versioning
+
+Instead of installing terraform directly, we'll install a helper tool 'tenv'
+
+
+https://github.com/tofuutils/tenv
+
+```
+LATEST_VERSION=$(curl --silent https://api.github.com/repos/tofuutils/tenv/releases/latest | jq -r .tag_name)
+curl -O -L "https://github.com/tofuutils/tenv/releases/latest/download/tenv_${LATEST_VERSION}_amd64.deb"
+sudo dpkg -i "tenv_${LATEST_VERSION}_amd64.deb"
+```{{exec}}
+
+`tenv --help`{{exec}}
+
+lets lets off the available terraform versions:
+
+`tenv tf list-remote`{{exec}}
+
+and install 1.14.9 and use it@
+
+
+`tenv tf install 1.14.9`{{exec}}
+
+`tenv tf use 1.14.9`{{exec}}
+
+`terraform version`{{exec}}
+
 Let use Terraform to create some resources
 
 `cd ~ ; mkdir tf ; cd tf`{{exec}}

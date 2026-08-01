@@ -17,34 +17,6 @@ When ready, open another cli tab and install the tools we'll be using
 
 
 
-## Using tenv to control tf versioning
-
-Instead of installing terraform directly, we'll install a helper tool 'tenv'
-
-
-https://github.com/tofuutils/tenv
-
-```
-LATEST_VERSION=$(curl --silent https://api.github.com/repos/tofuutils/tenv/releases/latest | jq -r .tag_name)
-curl -O -L "https://github.com/tofuutils/tenv/releases/latest/download/tenv_${LATEST_VERSION}_amd64.deb"
-sudo dpkg -i "tenv_${LATEST_VERSION}_amd64.deb"
-```{{exec}}
-
-`tenv --help`{{exec}}
-
-lets lets off the available terraform versions:
-
-`tenv tf list-remote`{{exec}}
-
-and install 1.14.9 and use it@
-
-
-`tenv tf install 1.14.9`{{exec}}
-
-`tenv tf use 1.14.9`{{exec}}
-
-`terraform version`{{exec}}
-
 ## Install AWS CLI 
 
 `curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"`{{exec}}
@@ -71,9 +43,12 @@ Run `aws configure` and enter these values:
 **Option B: The "One-Liner" Export**
 If you don't want to go through the interactive prompt, just run this:
 ```bash
+cat <<EOF >> ~/.bashrc
 export AWS_ACCESS_KEY_ID=test
 export AWS_SECRET_ACCESS_KEY=test
 export AWS_DEFAULT_REGION=us-east-1
+EOF
+source ~/.bashrc
 ```{{exec}}
 
 ### 3. Testing the Connection
@@ -91,7 +66,10 @@ aws --endpoint-url=http://localhost:4566 s3 mb s3://my-first-bucket
 
 instead  lets make an alias:
 
-`alias awslocal='aws --endpoint-url=http://localhost:4566'`{{exec}}
+```bash
+echo "alias awslocal='aws --endpoint-url=http://localhost:4566'" >> ~/.bashrc
+source ~/.bashrc
+```{{exec}}
 
 ```bash
 awslocal s3 mb s3://my-first-bucket
