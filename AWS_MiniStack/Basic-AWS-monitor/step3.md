@@ -50,3 +50,9 @@ View log events in real-time to see the Lambda logs appearing.
 ```bash
 awslocal logs tail "/aws/lambda/my-logging-lambda"
 ```{{exec}}
+
+Lets clean up the output a little
+
+```bash
+awslocal logs tail "/aws/lambda/my-logging-lambda" --format short
+```{{exec}}
