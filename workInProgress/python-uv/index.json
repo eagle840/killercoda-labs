@@ -1,0 +1,50 @@
+{
+  "title": "Package Management with Python uv",
+  "description": "Building a Quick-Stats CLI with uv",
+  "difficulty": "Intermediate",
+  "time": "60 minutes",
+  "details": {
+    "assets": {
+      "host01": [
+        {
+          "file": "setup.sh",
+          "target": "~/"
+        }
+      ]
+    },
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Setup uv",
+        "text": "step1.md"
+      },
+      {
+        "title": "Initialize Project",
+        "text": "step2.md"
+      },
+      {
+        "title": "Build CLI",
+        "text": "step3.md"
+      },
+      {
+        "title": "Lint and Format",
+        "text": "step4.md"
+      },
+      {
+        "title": "Pip Migration",
+        "text": "step5.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
