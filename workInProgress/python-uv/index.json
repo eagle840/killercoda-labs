@@ -35,6 +35,10 @@
       {
         "title": "Pip Migration",
         "text": "step5.md"
+      },
+      {
+        "title": "Build and Publish",
+        "text": "step6.md"
       }
     ],
     "finish": {
