@@ -1,11 +1,26 @@
 # Step 1: Setup uv
 
-To begin, we need to install `uv` in your environment. We will perform this setup in the background to ensure you are ready to go immediately.
+To begin, we need to install `uv`.
 
-Run the following command to verify the installation:
+Run the following command to install `uv`:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source $HOME/.local/bin/env
+```{{exec}}
+
+Now, verify the installation:
 
 ```bash
 uv --version
 ```{{exec}}
 
-If you see a version number, you are ready to move to the next step!
+If you see a version number, 
+
+Lets take a quick look at help:
+
+```bash
+uv help
+```{{exec}}
+
+you are ready to move to the next step!
