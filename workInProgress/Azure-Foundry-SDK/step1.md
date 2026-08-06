@@ -8,11 +8,11 @@ We will use Python 3.12 and create a virtual environment to ensure our dependenc
 ```bash
 # Update package list and install venv
 sudo apt update && sudo apt install -y python3.12-venv
+```{{exec}}
 
-# Create the virtual environment
+```bash
+# Create the virtual environment and activate
 python3.12 -m venv venv
-
-# Activate the virtual environment
 source venv/bin/activate
 ```{{exec}}
 

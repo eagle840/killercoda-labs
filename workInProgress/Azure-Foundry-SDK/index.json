@@ -6,15 +6,15 @@
   "details": {
     "steps": [
       {
-        "title": "Step 1: Setup Python",
+        "title": "Step 1: Environment Setup",
         "text": "step1.md"
       },
       {
-        "title": "Step 2: Jupyter and Boto3",
+        "title": "Step 2: Exploring Azure Foundry via Jupyter Lab",
         "text": "step2.md"
       },
       {
-        "title": "Step 3",
+        "title": "Step 3: Building a Standalone AI App with Streamlit",
         "text": "step3.md"
       }
     ],
@@ -28,10 +28,6 @@
       "host01": [
         {
           "file": "lab_notebook.ipynb",
-          "target": "~/"
-        },
-        {
-          "file": "docker-compose.yml",
           "target": "~/"
         }
       ]
