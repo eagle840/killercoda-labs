@@ -1,0 +1,42 @@
+{
+  "title": "boto3 on AWS Minitstack",
+  "description": "Skeleton Lab for new projects",
+  "difficulty": "Intermediate",
+  "time": "60 minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "Step 1: Setup MiniStack",
+        "text": "step1.md"
+      },
+      {
+        "title": "Step 2: Setup Python",
+        "text": "step2.md"
+      },
+      {
+        "title": "Step 3: Jupyter and Boto3",
+        "text": "step3.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "lab_notebook.ipynb",
+          "target": "~/"
+        }
+      ]
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu"
+  }
+}
