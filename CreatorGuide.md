@@ -38,7 +38,15 @@ Here’s a condensed **Markdown document** summarizing the key points from the K
       { "title": "Create a pod", "text": "step1/text.md", "verify": "step1/verify.sh" },
       { "title": "Delete a pod", "text": "step2/text.md", "verify": "step2/verify.sh" }
     ],
-    "finish": { "text": "finish.md" }
+    "finish": { "text": "finish.md" }.
+    "assets": {
+      "host01": [
+        {
+          "file": "example.yaml",
+          "target": "~/"
+        }
+      ]
+    }
   },
   "backend": { "imageid": "kubernetes-kubeadm-2nodes" }
 }
