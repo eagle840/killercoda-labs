@@ -1,6 +1,6 @@
 {
   "title": "boto3 on AWS Minitstack",
-  "description": "Skeleton Lab for new projects",
+  "description": "Getting started with AWS Boto3 using MiniStack and Jupyter Lab",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
