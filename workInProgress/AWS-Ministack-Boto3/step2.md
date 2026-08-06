@@ -7,8 +7,7 @@ We will use Python 3.12 and create a virtual environment to isolate our dependen
 
 ```bash
 # Install Python 3.12 and venv
-sudo apt update
-sudo apt install -y python3.12 python3.12-venv python3.12-dev
+sudo apt install -y python3.12-venv
 ```{{exec}}
 
 Now, create and activate the virtual environment:

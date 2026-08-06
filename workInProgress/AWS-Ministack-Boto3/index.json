@@ -29,6 +29,10 @@
         {
           "file": "lab_notebook.ipynb",
           "target": "~/"
+        },
+        {
+          "file": "docker-compose.yml",
+          "target": "~/"
         }
       ]
     }

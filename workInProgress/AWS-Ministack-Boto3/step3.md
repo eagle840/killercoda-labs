@@ -9,7 +9,11 @@ Ensure your virtual environment is still active, then launch Jupyter Lab:
 jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
 ```{{exec}}
 
+copy the key in the output, you'll need it to log into juypter
+
 *Note: In the Killercoda environment, you will be able to access the Jupyter interface through the provided port access.*
+
+{{TRAFFIC_HOST1_8888}}
 
 ### 2. Connect Boto3 to MiniStack
 In a new Jupyter notebook, create a client that points to your local MiniStack endpoint instead of the real AWS.
