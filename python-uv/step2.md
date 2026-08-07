@@ -27,3 +27,14 @@ uv python pin 3.12
 uv init
 uv add requests
 ```{{exec}}
+
+### Using `uv sync`
+6. Manually add `requests-toolbelt` to `pyproject.toml`:
+```bash
+echo 'dependencies = ["requests", "requests-toolbelt"]' >> pyproject.toml
+```{{exec}}
+
+7. Synchronize the environment to install the new dependency:
+```bash
+uv sync
+```{{exec}}
