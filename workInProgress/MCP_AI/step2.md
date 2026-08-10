@@ -1,6 +1,6 @@
-# Step 2: Setup Inference Engine
+# Step 2: Setup Inference & MCP Environment
 
-Now we will install Ollama and run a tiny LLM for our agent.
+Now we will install Ollama, set up the MCP SDK, and install the MCP Inspector for debugging.
 
 ### 1. Install Ollama
 Run the official installation script:
@@ -15,11 +15,18 @@ Check if the service is running:
 *(Press `q` to exit the status view).*
 
 ### 3. Run the Model
-Pull and run the **Qwen 0.5B** model:
+Pull and run the **Qwen 2.5 0.5B** model (recommended for basic tool use):
 
-`ollama run qwen2.5:0.5b`{{exec}}
+`ollama pull qwen2.5:0.5b`{{exec}}
 
-Once the model downloads, you will see an interactive prompt `>>>`. Test it with:
-`Write a JSON object representing a user named Alice aged 25.`
+### 4. Install MCP Tools
+Create and activate a virtual environment for your MCP tools:
 
-To exit the prompt, type `/exit`.
+`mkdir mcp_env; cd mcp_env`{{exec}}
+`python3 -m venv .venv`{{exec}}
+`source .venv/bin/activate`{{exec}}
+
+Install the MCP SDK and the MCP Inspector:
+
+`pip install mcp`{{exec}}
+`pip install @modelcontextprotocol/inspector`{{exec}}

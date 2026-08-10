@@ -1,8 +1,8 @@
 {
-  "title": "MCP & AI with ollama, AWS ministack",
-  "description": "Rapidly start up an AgenticAI, MCP with ollama and AWS ministack (v1.0)",
-  "difficulty": "Beginner",
-  "time": "15",
+  "title": "MCP & Agentic AI with Ollama and AWS MiniStack",
+  "description": "Build an MCP-powered AI file organizer using Ollama, AWS MiniStack, and MCP Inspector (v2.0)",
+  "difficulty": "Intermediate",
+  "time": "20",
   "details": {
     "assets":{
       "host01": [
@@ -18,11 +18,11 @@
         "text": "step1.md"
       },
       {
-        "title": "Setup Inference Engine",
+        "title": "Setup Inference & MCP Environment",
         "text": "step2.md"
       },
       {
-        "title": "Prepare Agent Code",
+        "title": "Develop & Inspect MCP Components",
         "text": "step3.md"
       },
       {

@@ -1,40 +1,56 @@
 # Step 4: Orchestrate Agent
 
-Now, let's complete the script to perform the analysis and tag the files.
+Now we will create an MCP client that uses Ollama to intelligently categorize files in S3 by using our new MCP server tools.
 
-### Orchestration Logic
-This final step executes the core agent workflow:
-1. **Lists** all files currently in your S3 bucket.
-2. **Iterates** through each file.
-3. **Invokes** the `analyze_file` function (defined in Step 3) to trigger the LLM inference and determine the file's category.
-4. **Tags** the S3 object with the category returned by the AI, completing the automation loop.
-
-Update your `agent.py` script by adding the following logic:
+### 1. Create the Agent Client (`agent_client.py`)
+This script acts as the MCP client, querying the MCP server, and using Ollama to make decisions.
 
 ```python
-# List, Analyze, and Tag
-# Get a list of all objects currently in the S3 bucket
-response = s3.list_objects_v2(Bucket='file-organizer-bucket')
+import asyncio
+from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client
+import ollama
 
-# Iterate through each file found in the bucket
-for obj in response.get('Contents', []):
-    # Use the LLM to categorize the file based on its name
-    category = analyze_file(obj['Key'])
-    print(f"File: {obj['Key']} -> Category: {category}")
+async def run_agent():
+    # Setup MCP Connection
+    server_params = StdioServerParameters(command="python3", args=["s3_server.py"])
     
-    # Tag the S3 object with the category determined by the AI
-    tag_file(obj['Key'], category)
-    print(f"Tagged {obj['Key']} with Category={category}")
+    async with stdio_client(server_params) as (read, write):
+        async with ClientSession(read, write) as session:
+            # Initialize session
+            await session.initialize()
+
+            # 1. List objects using MCP
+            tools = await session.list_tools()
+            result = await session.call_tool("list_objects", arguments={"bucket": "file-organizer-bucket"})
+            files = eval(result.content[0].text)
+            
+            for file in files:
+                filename = file['Key']
+                # 2. Categorize using Ollama
+                prompt = f"Categorize {filename} as 'text', 'image', or 'other'. Reply ONLY with the category."
+                response = ollama.chat(model='qwen2.5:0.5b', messages=[{'role': 'user', 'content': prompt}])
+                category = response['message']['content'].strip()
+                
+                # 3. Tag using MCP
+                await session.call_tool("tag_object", arguments={
+                    "bucket": "file-organizer-bucket",
+                    "key": filename,
+                    "category": category
+                })
+                print(f"File: {filename} -> Category: {category}")
+
+if __name__ == "__main__":
+    asyncio.run(run_agent())
 ```{{copy}}
 
-### Run the Agent
-Execute your agent:
+### 2. Run the Agent
+Execute your MCP-powered agent:
 
-`python3 agent.py`{{exec}}
+`python3 agent_client.py`{{exec}}
 
-### Verify Tags
-Check that the files were correctly tagged in S3:
+### 3. Verify
+Check tags again to confirm the automation worked:
 
-`aws --endpoint-url=http://localhost:4566 s3api get-object-tagging --bucket file-organizer-bucket --key test.txt`{{exec}}
-
-`aws --endpoint-url=http://localhost:4566 s3api get-object-tagging --bucket file-organizer-bucket --key photo.jpg`{{exec}}
+`awslocal s3api get-object-tagging --bucket file-organizer-bucket --key test.txt`{{exec}}
+`awslocal s3api get-object-tagging --bucket file-organizer-bucket --key photo.jpg`{{exec}}
