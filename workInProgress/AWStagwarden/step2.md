@@ -75,3 +75,9 @@ awslocal resourcegroupstaggingapi get-resources \
     --resource-arn-list arn:aws:s3:::my-first-bucket
 ```{{exec}}
 
+## Download AWGTagWarden
+
+`git clone https://github.com/eagle840/AWSTagWarden.git`{{exec}}
+
+`cd AWSTagWarden`{{exec}}
+
