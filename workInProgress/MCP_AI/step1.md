@@ -47,3 +47,11 @@ source ~/.bashrc
 `curl -LsSf https://astral.sh/uv/install.sh | sh`{{exec}}
 
 taken from: https://modelcontextprotocol.info/docs/quickstart/server/
+
+# install Opencode
+
+`curl -fsSL https://opencode.ai/install | bash`{{exec}}
+
+(select a free model)
+
+To setup MCP Servers:  https://opencode.ai/docs/mcp-servers/
