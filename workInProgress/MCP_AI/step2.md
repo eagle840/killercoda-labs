@@ -22,6 +22,8 @@ Pull and run the **Qwen 2.5 0.5B** model (recommended for basic tool use):
 ### 4. Install MCP Tools
 Create and activate a virtual environment for your MCP tools:
 
+`apt install python3.12-venv`{{exec}}
+
 `mkdir mcp_env; cd mcp_env`{{exec}}   
 `python3 -m venv .venv`{{exec}}   
 `source .venv/bin/activate`{{exec}}   
