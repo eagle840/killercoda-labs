@@ -42,13 +42,15 @@ source ~/.bashrc
 `awslocal s3 mb s3://file-organizer-bucket`{{exec}}
 
 
-# Install uv
+# Install uv Python Package manager
 
 `curl -LsSf https://astral.sh/uv/install.sh | sh`{{exec}}
 
+`source $HOME/.local/bin/env`{{exec}}
+
 taken from: https://modelcontextprotocol.info/docs/quickstart/server/
 
-# install Opencode
+# Install Opencode
 
 `curl -fsSL https://opencode.ai/install | bash`{{exec}}
 

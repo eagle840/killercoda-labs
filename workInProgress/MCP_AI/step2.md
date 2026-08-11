@@ -22,7 +22,7 @@ Pull and run the **Qwen 2.5 0.5B** model (recommended for basic tool use):
 ### 4. Install MCP Tools
 Create and activate a virtual environment for your MCP tools:
 
-`apt install python3.12-venv`{{exec}}
+`apt install - ypython3.12-venv`{{exec}}
 
 `mkdir mcp_env; cd mcp_env`{{exec}}   
 `python3 -m venv .venv`{{exec}}   
@@ -59,16 +59,21 @@ uv add "mcp[cli]" httpx
 
 # Create our server file
 touch weather.py
-```
+```{{exec}}
 Add these to the top of your weather.py:
+
+WIP:FastMCP doesn'st seem to work (try installing just mcp)
 
 ```
 from typing import Any
 import httpx
-from mcp.server.fastmcp import FastMCP
+# from mcp.server.fastmcp import FastMCP
+from mcp.server import MCPServer
 
 # Initialize FastMCP server
-mcp = FastMCP("weather")
+# mcp = FastMCP("weather")
+mcp = MCPServer("weather")
+
 
 # Constants
 NWS_API_BASE = "https://api.weather.gov"
@@ -161,7 +166,7 @@ Forecast: {period['detailedForecast']}
         forecasts.append(forecast)
 
     return "\n---\n".join(forecasts)
-```{{exec}}
+```{{copy}}
 
 and the code to run the server
 
@@ -169,4 +174,4 @@ and the code to run the server
 if __name__ == "__main__":
     # Initialize and run the server
     mcp.run(transport='stdio')
-```{{exec}}
+```{{copy}}

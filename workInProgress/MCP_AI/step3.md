@@ -8,11 +8,15 @@ This server will expose tools to `list_objects` and `tag_object`.
 `touch s3_server.py`{{exec}}
 
 ```python
-from mcp.server.fastmcp import FastMCP
+# from mcp.server.fastmcp import FastMCP
+from mcp.server import MCPServer
 import boto3
 
 # Initialize the FastMCP server
-mcp = FastMCP("S3-Server")
+# mcp = FastMCP("S3-Server")
+mcp = MCPServer"S3-Server")
+
+
 
 # Setup MiniStack connection
 s3 = boto3.client('s3', 
@@ -47,6 +51,10 @@ if __name__ == "__main__":
 ### 2. Inspect the MCP Server
 Use the MCP Inspector to interact with your server tools:
 
-`npx @modelcontextprotocol/inspector python3 s3_server.py`{{exec}}
+`npx @modelcontextprotocol/inspector python3 s3_server.py`{{copy}}
+
+However for killacoda, use:
+
+`HOST=0.0.0.0 DANGEROUSLY_BIND_ALL_INTERFACES=true npx @modelcontextprotocol/inspector python3 s3_server.py`
 
 This will launch a web interface where you can list objects and manually trigger the tag tool to verify it works.
