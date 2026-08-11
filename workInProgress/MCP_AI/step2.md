@@ -22,11 +22,19 @@ Pull and run the **Qwen 2.5 0.5B** model (recommended for basic tool use):
 ### 4. Install MCP Tools
 Create and activate a virtual environment for your MCP tools:
 
-`mkdir mcp_env; cd mcp_env`{{exec}}
-`python3 -m venv .venv`{{exec}}
-`source .venv/bin/activate`{{exec}}
+`mkdir mcp_env; cd mcp_env`{{exec}}   
+`python3 -m venv .venv`{{exec}}   
+`source .venv/bin/activate`{{exec}}   
 
 Install the MCP SDK and the MCP Inspector:
 
 `pip install mcp`{{exec}}
-`pip install @modelcontextprotocol/inspector`{{exec}}
+
+### Install node/npm and MCP inspector
+
+`curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -`{{exec}}
+
+`apt install nodejs -y`{{exec}}
+
+
+`npm install @modelcontextprotocol/inspector`{{exec}}
