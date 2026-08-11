@@ -22,7 +22,7 @@ Pull and run the **Qwen 2.5 0.5B** model (recommended for basic tool use):
 ### 4. Install MCP Tools
 Create and activate a virtual environment for your MCP tools:
 
-`apt install - ypython3.12-venv`{{exec}}
+`apt install -y python3.12-venv`{{exec}}
 
 `mkdir mcp_env; cd mcp_env`{{exec}}   
 `python3 -m venv .venv`{{exec}}   
@@ -175,3 +175,103 @@ if __name__ == "__main__":
     # Initialize and run the server
     mcp.run(transport='stdio')
 ```{{copy}}
+
+
+---
+
+## Notes on setting up MCP in OpenCode
+
+Setting up Model Context Protocol (MCP) servers in OpenCode is done through your configuration file (`opencode.json` or `opencode.jsonc`). OpenCode supports both **local** and **remote** MCP servers.
+
+---
+
+## 1. Where to Put the Configuration File
+
+You can place your configuration in either of two locations:
+
+* **Global Config:** `~/.config/opencode/opencode.json` (applies across all your projects)
+* **Project-Level Config:** `opencode.json` or `opencode.jsonc` in your project's root folder
+
+---
+
+## 2. Adding a Local MCP Server
+
+Local MCP servers run directly on your machine as subprocesses (e.g., via `npx` or `bun`).
+
+Set the server `type` to `"local"` and define the startup command using an array of arguments:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "my-filesystem-server": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "/path/to/folder"],
+      "enabled": true,
+      "environment": {
+        "MY_ENV_VAR": "value"
+      }
+    }
+  }
+}
+
+```
+
+---
+
+## 3. Adding a Remote MCP Server
+
+Remote MCP servers communicate via HTTP/HTTPS endpoints. Set the `type` to `"remote"` and supply the server URL:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "my-remote-server": {
+      "type": "remote",
+      "url": "https://mcp.example.com/mcp",
+      "enabled": true,
+      "headers": {
+        "Authorization": "Bearer {env:MY_API_KEY}"
+      }
+    }
+  }
+}
+
+```
+
+> 💡 **Tip:** Use `{env:VARIABLE_NAME}` syntax inside config values to inject environment variables securely without committing API keys or tokens into source control.
+
+---
+
+## 4. Useful CLI Commands for MCP
+
+OpenCode provides terminal commands to help manage, authenticate, and troubleshoot your MCP connections:
+
+| Command | Description |
+| --- | --- |
+| `opencode mcp list` | View all configured MCP servers and their authentication status. |
+| `opencode mcp auth <server-name>` | Manually trigger OAuth authentication for a server. |
+| `opencode mcp debug <server-name>` | Test connectivity, check headers, and debug OAuth flow. |
+
+---
+
+## 5. Disabling or Restricting Specific Tools
+
+MCP tools are automatically available to OpenCode's LLM. If you want to disable specific tools globally or use wildcards to turn off groups of tools, configure the `"tools"` section:
+
+```json
+{
+  "tools": {
+    "my-filesystem-server": false,
+    "github-*": false
+  }
+}
+
+```
+
+> ⚠️ **Token Usage Notice:** MCP servers append tool definitions to your prompt context window. Certain servers (like GitHub MCP) can add a large number of tokens, so only enable the servers you actively need.
+
+---
+
+Which specific MCP server (e.g., GitHub, PostgreSQL, local Filesystem) are you trying to connect to OpenCode?

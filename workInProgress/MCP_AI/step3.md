@@ -5,6 +5,8 @@ In this step, we will implement an **S3 MCP Server** and use the **MCP Inspector
 ### 1. Create S3 MCP Server (`s3_server.py`)
 This server will expose tools to `list_objects` and `tag_object`.
 
+`uv add boto3`{{exec}}
+
 `touch s3_server.py`{{exec}}
 
 ```python
@@ -14,7 +16,7 @@ import boto3
 
 # Initialize the FastMCP server
 # mcp = FastMCP("S3-Server")
-mcp = MCPServer"S3-Server")
+mcp = MCPServer("S3-Server")
 
 
 
@@ -43,9 +45,9 @@ def tag_object(bucket: str, key: str, category: str) -> str:
     )
     return f"Tagged {key} with {category}"
 
-# Run the MCP server
+# Run the MCP server on 0.0.0.0
 if __name__ == "__main__":
-    mcp.run()
+    mcp.run(transport="sse", host="0.0.0.0", port=8000)
 ```{{copy}}
 
 ### 2. Inspect the MCP Server
@@ -55,6 +57,8 @@ Use the MCP Inspector to interact with your server tools:
 
 However for killacoda, use:
 
-`HOST=0.0.0.0 DANGEROUSLY_BIND_ALL_INTERFACES=true npx @modelcontextprotocol/inspector python3 s3_server.py`
+`ALLOWED_ORIGINS="*"  HOST=0.0.0.0 DANGEROUSLY_BIND_ALL_INTERFACES=true npx @modelcontextprotocol/inspector python3 s3_server.py`{{exec}}
 
 This will launch a web interface where you can list objects and manually trigger the tag tool to verify it works.
+
+{{TRAFFIC_HOST1_6274}}

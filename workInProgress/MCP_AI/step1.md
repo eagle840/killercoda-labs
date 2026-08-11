@@ -57,3 +57,48 @@ taken from: https://modelcontextprotocol.info/docs/quickstart/server/
 (select a free model)
 
 To setup MCP Servers:  https://opencode.ai/docs/mcp-servers/
+
+`mkdir  ~/.config/opencode/`{{exec}}           
+
+`touch ~/.config/opencode/opencode.json`{{exec}}
+
+
+
+## add memory
+
+```json
+"memory": {
+  "command": "npx",
+  "args": ["-y", "@modelcontextprotocol/server-memory"]
+}
+```{{copy}}
+
+Typical settings file
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "my-filesystem-server": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "/path/to/folder"],
+      "enabled": true,
+      "environment": {
+        "MY_ENV_VAR": "value"
+      }
+    }
+  }
+}
+```
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "memory": {
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-memory"]
+    }
+  }
+}
+```

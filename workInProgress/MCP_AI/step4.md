@@ -5,6 +5,8 @@ Now we will create an MCP client that uses Ollama to intelligently categorize fi
 ### 1. Create the Agent Client (`agent_client.py`)
 This script acts as the MCP client, querying the MCP server, and using Ollama to make decisions.
 
+`uv add ollama`{{exec}}
+
 `touch agent_client.py`{{exec}}
 
 ```python
