@@ -5,24 +5,30 @@ In this step, we will implement an **S3 MCP Server** and use the **MCP Inspector
 ### 1. Create S3 MCP Server (`s3_server.py`)
 This server will expose tools to `list_objects` and `tag_object`.
 
+`touch s3_server.py`{{exec}}
+
 ```python
 from mcp.server.fastmcp import FastMCP
 import boto3
 
+# Initialize the FastMCP server
 mcp = FastMCP("S3-Server")
 
+# Setup MiniStack connection
 s3 = boto3.client('s3', 
                   endpoint_url='http://localhost:4566',
                   aws_access_key_id='test',
                   aws_secret_access_key='test',
                   region_name='us-east-1')
 
+# Define a tool to list objects in an S3 bucket
 @mcp.tool()
 def list_objects(bucket: str) -> str:
     """List objects in an S3 bucket"""
     response = s3.list_objects_v2(Bucket=bucket)
     return str(response.get('Contents', []))
 
+# Define a tool to tag an S3 object
 @mcp.tool()
 def tag_object(bucket: str, key: str, category: str) -> str:
     """Tag an S3 object with a category"""
@@ -33,6 +39,7 @@ def tag_object(bucket: str, key: str, category: str) -> str:
     )
     return f"Tagged {key} with {category}"
 
+# Run the MCP server
 if __name__ == "__main__":
     mcp.run()
 ```{{copy}}
