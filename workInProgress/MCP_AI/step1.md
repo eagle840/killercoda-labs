@@ -40,3 +40,10 @@ source ~/.bashrc
 
 ### 5. Create a test bucket
 `awslocal s3 mb s3://file-organizer-bucket`{{exec}}
+
+
+# Install uv
+
+`curl -LsSf https://astral.sh/uv/install.sh | sh`{{exec}}
+
+taken from: https://modelcontextprotocol.info/docs/quickstart/server/
