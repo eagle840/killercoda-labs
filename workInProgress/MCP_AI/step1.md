@@ -54,7 +54,26 @@ taken from: https://modelcontextprotocol.info/docs/quickstart/server/
 
 `curl -fsSL https://opencode.ai/install | bash`{{exec}}
 
+`shell bash`{{exec}}
+
 (select a free model)
+
+## Setup Node/MCP 
+
+### Install node/npm and MCP inspector
+
+`curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -`{{exec}}
+
+`apt install nodejs -y`{{exec}}
+
+
+`npm install @modelcontextprotocol/inspector`{{exec}}
+
+`npm install @modelcontextprotocol/server-filesystem`{{exec}}
+
+## Config Opencode for MCP
+
+
 
 To setup MCP Servers:  https://opencode.ai/docs/mcp-servers/
 
@@ -73,7 +92,9 @@ To setup MCP Servers:  https://opencode.ai/docs/mcp-servers/
 }
 ```{{copy}}
 
-Typical settings file
+Typical settings file (USE THIS)
+
+We'll use the premade mcp server [fileserver](https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem)
 
 ```json
 {
@@ -81,7 +102,7 @@ Typical settings file
   "mcp": {
     "my-filesystem-server": {
       "type": "local",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "/path/to/folder"],
+      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "/"],
       "enabled": true,
       "environment": {
         "MY_ENV_VAR": "value"
@@ -102,3 +123,11 @@ Typical settings file
   }
 }
 ```
+
+Start Openocode
+
+use `/models` to select one of the free llms
+
+use `/mcps` to confirm your mcp is up
+
+try `tell me the number of folders in the root`{{copy}}
