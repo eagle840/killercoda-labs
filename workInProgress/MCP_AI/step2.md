@@ -185,15 +185,12 @@ if __name__ == "__main__":
 ```
 ,
     "weather": {
-            "command": "uv",
-            "enabled": true,
-            "args": [
-                "--directory",
-                "/root/weather",
-                "run",
-                "weather.py"
-            ]
+            "type": "local",
+            "command": ["uv", "run", "/root/weather/weather.py"],
+            "enabled": true
         }
+
+  
 ```{{copy}}
 
 And restart Opencode
