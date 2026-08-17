@@ -45,15 +45,19 @@ Install the MCP SDK and the MCP Inspector:
 
 taken from: https://modelcontextprotocol.info/docs/quickstart/server/
 
-```
+```bash
 # Create a new directory for our project
 uv init weather
 cd weather
 
 # Create virtual environment and activate it
 uv venv
-source .venv/bin/activate
+```{{exec}}
 
+`source .venv/bin/activate`{{exec}}
+
+
+```bash
 # Install dependencies
 uv add "mcp[cli]" httpx
 
@@ -175,6 +179,24 @@ if __name__ == "__main__":
     # Initialize and run the server
     mcp.run(transport='stdio')
 ```{{copy}}
+
+# add the mcp server to opencode, in the `.config/opencode/opencode.json`
+
+```
+,
+    "weather": {
+            "command": "uv",
+            "enabled": true,
+            "args": [
+                "--directory",
+                "/root/weather",
+                "run",
+                "weather.py"
+            ]
+        }
+```{{copy}}
+
+And restart Opencode
 
 
 ---

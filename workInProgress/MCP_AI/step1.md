@@ -114,7 +114,7 @@ We'll use the premade mcp server [fileserver](https://github.com/modelcontextpro
     }
   }
 }
-```
+```{{copy}}
 
 ```json
 {
@@ -126,7 +126,7 @@ We'll use the premade mcp server [fileserver](https://github.com/modelcontextpro
     }
   }
 }
-```
+```{{copy}}
 
 Start Openocode
 
