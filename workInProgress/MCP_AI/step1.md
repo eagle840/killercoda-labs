@@ -71,11 +71,15 @@ taken from: https://modelcontextprotocol.info/docs/quickstart/server/
 
 `npm install @modelcontextprotocol/server-filesystem`{{exec}}
 
+for a full list of servers see https://github.com/modelcontextprotocol/servers
+
 ## Config Opencode for MCP
 
 
 
 To setup MCP Servers:  https://opencode.ai/docs/mcp-servers/
+
+
 
 `mkdir  ~/.config/opencode/`{{exec}}           
 
