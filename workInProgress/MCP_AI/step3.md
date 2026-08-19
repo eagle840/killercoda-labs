@@ -2,6 +2,78 @@
 
 In this step, we will implement an **S3 MCP Server** and use the **MCP Inspector** to verify that it works correctly.
 
+
+### 1 mcp server sdk
+
+https://github.com/modelcontextprotocol/python-sdk
+
+`uv add "mcp[cli]"      # or: pip install "mcp[cli]"`{{exec}}
+
+```bash
+# Create a new directory for our project
+uv init adder
+cd adder
+
+# Create virtual environment and activate it
+uv venv
+```{{exec}}
+
+`source .venv/bin/activate`{{exec}}
+
+
+```bash
+# Install dependencies
+uv add "mcp[cli]" httpx
+
+# Create our server file
+touch server.py
+```{{exec}}
+Add these to the top of your server.py:
+
+```python
+from mcp.server import MCPServer
+
+mcp = MCPServer("Demo")
+
+
+@mcp.tool()
+def add(a: int, b: int) -> int:
+    """Add two numbers."""
+    return a + b
+
+
+@mcp.resource("greeting://{name}")
+def greeting(name: str) -> str:
+    """Greet someone by name."""
+    return f"Hello, {name}!"
+```{{copy}}
+
+
+### 2. Inspect the MCP Server
+Use the MCP Inspector to interact with your server tools:
+
+WIP: remove:  `npx @modelcontextprotocol/inspector python3 s3_server.py`{{copy}}
+
+WIP: try: `npx @modelcontextprotocol/inspector uv run mcp dev server.py`{{copy}}
+
+
+WIP: try `uv run mcp dev server.py`{{copy}} then run the mcpinspector
+
+However for killacoda, use:
+
+`ALLOWED_ORIGINS="*"  HOST=0.0.0.0 DANGEROUSLY_BIND_ALL_INTERFACES=true npx @modelcontextprotocol/inspector python3 s3_server.py`{{exec}}
+
+This will launch a web interface where you can list objects and manually trigger the tag tool to verify it works.
+
+{{TRAFFIC_HOST1_6274}}
+
+---
+
+WIP below is the aws/boto one
+
+
+
+
 ### 1. Create S3 MCP Server (`s3_server.py`)
 This server will expose tools to `list_objects` and `tag_object`.
 
