@@ -53,7 +53,6 @@ def greeting(name: str) -> str:
 Use the MCP Inspector to interact with your server tools:
 
 WIP: remove:  `npx @modelcontextprotocol/inspector python3 s3_server.py`{{copy}}
-
 WIP: try: `npx @modelcontextprotocol/inspector uv run mcp dev server.py`{{copy}}
 
 
@@ -61,7 +60,7 @@ WIP: try `uv run mcp dev server.py`{{copy}} then run the mcpinspector
 
 However for killacoda, use:
 
-`ALLOWED_ORIGINS="*"  HOST=0.0.0.0 DANGEROUSLY_BIND_ALL_INTERFACES=true npx @modelcontextprotocol/inspector python3 s3_server.py`{{exec}}
+`ALLOWED_ORIGINS="*"  HOST=0.0.0.0 DANGEROUSLY_BIND_ALL_INTERFACES=true npx @modelcontextprotocol/inspector uv run mcp dev server.py`{{exec}}
 
 This will launch a web interface where you can list objects and manually trigger the tag tool to verify it works.
 

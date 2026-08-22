@@ -142,6 +142,14 @@ Forecast: {period['detailedForecast']}
 
 and the code to run the server
 
+
+WIP:
+```python
+if __name__ == "__main__":
+    # Bind to all interfaces (0.0.0.0) on port 8080 using SSE transport
+    mcp.run(transport="sse", host="0.0.0.0", port=8080)
+```{{copy}}
+
 ```
 if __name__ == "__main__":
     # Initialize and run the server
@@ -156,9 +164,7 @@ if __name__ == "__main__":
             "type": "local",
             "command": ["uv", "run", "/root/weather/weather.py"],
             "enabled": true
-        }
-
-  
+        }  
 ```{{copy}}
 
 And restart Opencode

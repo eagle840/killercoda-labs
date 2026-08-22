@@ -60,15 +60,13 @@ We'll use the premade mcp server [fileserver](https://github.com/modelcontextpro
     "my-filesystem-server": {
       "type": "local",
       "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "/"],
-      "enabled": true,
-      "environment": {
-        "MY_ENV_VAR": "value"
-      }
+      "enabled": true
     },
     "memory": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"]
-}
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-memory"],
+      "enabled": true
+    }
   }
 }
 ```{{copy}}
