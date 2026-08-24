@@ -1,0 +1,30 @@
+{
+  "title": "Getting Started with OmniRouter",
+  "description": "Set up OmniRouter, a free AI gateway, and configure it for traffic.",
+  "difficulty": "Beginner",
+  "time": "10",
+  "details": {
+    "steps": [
+      {
+        "title": "Setup",
+        "text": "step1.md"
+      },
+      {
+        "title": "Configure OmniRouter",
+        "text": "step2.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu2004"
+  }
+}
