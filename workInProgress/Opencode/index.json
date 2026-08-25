@@ -1,0 +1,25 @@
+{
+  "title": "Mastering OpenCode: Advanced AI Development",
+  "description": "Learn to master OpenCode for AI-powered software development, scaffolding, and agentic workflows.",
+  "difficulty": "Intermediate",
+  "time": "30",
+  "details": {
+    "steps": [
+      { "title": "Install OpenCode", "text": "step1.md" },
+      { "title": "Launch & Connect Model", "text": "step2.md" },
+      { "title": "Scaffolding & Reasoning", "text": "step3.md" },
+      { "title": "Plan vs. Build Mode", "text": "step4.md" },
+      { "title": "Timeline & History", "text": "step5.md" },
+      { "title": "Defining Project Rules", "text": "step6.md" },
+      { "title": "Installing Custom Skills", "text": "step7.md" }
+    ],
+    "intro": { "text": "intro.md" },
+    "finish": { "text": "finish.md" }
+  },
+  "environment": {
+    "uilayout": "ide"
+  },
+  "backend": {
+    "imageid": "ubuntu2004"
+  }
+}
