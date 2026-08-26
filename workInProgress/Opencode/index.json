@@ -11,7 +11,8 @@
       { "title": "Plan vs. Build Mode", "text": "step4.md" },
       { "title": "Timeline & History", "text": "step5.md" },
       { "title": "Defining Project Rules", "text": "step6.md" },
-      { "title": "Installing Custom Skills", "text": "step7.md" }
+      { "title": "Installing Custom Skills", "text": "step7.md" },
+      { "title": "Configuring LSPs", "text": "step8.md" }
     ],
     "intro": { "text": "intro.md" },
     "finish": { "text": "finish.md" }

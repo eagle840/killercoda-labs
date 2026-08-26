@@ -8,5 +8,6 @@ In this lab, you will master **OpenCode**, an AI-powered CLI tool designed for b
 3. **Reasoning Control**: Scaffolding applications with customizable reasoning effort.
 4. **Agentic Workflows**: Mastering Plan Mode, timeline management, and project-level rules.
 5. **Skill Integration**: Installing and using custom agentic skills.
+6. **LSP Configuration**: Enhancing AI reasoning with Language Server Protocol.
 
 Let's get started!
