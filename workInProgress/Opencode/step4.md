@@ -6,6 +6,10 @@ Learn how to safely architect your application using Plan Mode.
 By default, OpenCode is in **Build Mode**. To switch to **Plan Mode** for reviewing architectural changes:
 Press `Shift + Tab`.
 
+### 2. Shell mode
+
+To execute shell commands directly, just type `!! before the command. EG `!pwd`{{copy}}
+
 ### 2. Parallel Workflows
 * **New context**: To start a completely new, clean context, use:
   ```text

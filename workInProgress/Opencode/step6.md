@@ -4,6 +4,16 @@ You can define custom behaviors for the agent at the project level.
 
 ### 1. Initialize Configuration
 Generate a project-level configuration file:
+
+Lets move into the `my-app`folder (project)
+
+```text
+!cd my-app
+```{{copy}}
+
+WIP: looks like you need to exit Opencode, change folder, and relauch opencode
+
+
 ```text
 /init
 ```{{copy}}
