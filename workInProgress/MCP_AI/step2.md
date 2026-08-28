@@ -2,7 +2,17 @@
 
 set up the MCP SDK, and install the MCP Inspector for debugging.
 
-
+```text
+Notes on FASTMCP
+▄▀▀ ▄▀█ █▀▀ ▀█▀ █▀▄▀█ █▀▀ █▀█                        │                          
+█▀  █▀█ ▄▄█  █  █ ▀ █ █▄▄ █▀▀                        │                          
+                │                          
+     FastMCP 3.4.7                               │                          
+     https://gofastmcp.com                             │                          
+                         │                                                                              │                          
+         🖥  Server:      Hello World MCP Server, 3.4.7                 │                          
+        🚀 Deploy free: https://horizon.prefect.io   
+```
 
 ### 4. Install MCP Tools
 Create and activate a virtual environment for your MCP tools:

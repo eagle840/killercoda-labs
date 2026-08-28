@@ -1,5 +1,7 @@
 # Using MCP and Opencode
 
+WIP figure out where to put [MCP.so](mcp.so)
+
 
 # Install uv Python Package manager
 
@@ -142,6 +144,7 @@ If you don't want to go through the interactive prompt, just run this:
 export AWS_ACCESS_KEY_ID=test
 export AWS_SECRET_ACCESS_KEY=test
 export AWS_DEFAULT_REGION=us-east-1
+export AWS_ENDPOINT_URL=http://localhost:4566
 ```{{exec}}
 
 ### 3. Testing the Connection
