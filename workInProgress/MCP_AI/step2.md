@@ -278,3 +278,67 @@ MCP tools are automatically available to OpenCode's LLM. If you want to disable 
 ---
 
 Which specific MCP server (e.g., GitHub, PostgreSQL, local Filesystem) are you trying to connect to OpenCode?
+
+---
+# mcp fast
+
+FROM: https://gofastmcp.com/getting-started/installation  (and quickstart)
+
+```bash
+uv init fasttest
+cd fasttest
+```{{exec}}
+
+```bash
+uv venv .venv
+source .venv/bin/activate
+```{{exec}}
+
+```bash
+uv add fastmcp
+fastmcp version
+```{{exec}}
+
+
+`touch server.py`{{exec}}
+
+'''python
+from fastmcp import FastMCP
+
+mcp = FastMCP("My MCP Server")
+
+@mcp.tool
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+
+if __name__ == "__main__":
+    mcp.run()
+```{{copy}}
+
+start with 
+
+`fastmcp run server.py:mcp --transport http --port 8000 --host 0.0.0.0`{{exec}}
+
+copy the link {{TRAFFIC_HOST1_8000}}/mcp
+
+Note the the address is `Starting MCP server 'My MCP Server' with transport 'http' on http://0.0.0.0:8000/mcp  `
+
+should look like:
+`https://b690ef3f8729-10-244-5-66-8000.spch.r.killercoda.com/mcp`   RETURNS
+
+```json
+{"jsonrpc":"2.0","id":"server-error","error":{"code":-32600,"message":"Not Acceptable: Client must accept text/event-stream"}}```
+
+---
+
+FROM: https://www.npmjs.com/package/@mcp-use/inspector
+
+(gh: https://github.com/mcp-use/mcp-use)
+
+`npx @mcp-use/inspector`{{exec}}
+
+open 8080
+
+{{TRAFFIC_HOST1_8080}}
+
+---
