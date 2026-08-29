@@ -1,6 +1,6 @@
 {
-  "title": "Introduction toMCP",
-  "description": "An introdution to the MCP framework and how to use it to orchestrate AI agents.",
+  "title": "MCP & Agentic AI with Ollama and AWS MiniStack",
+  "description": "Build an MCP-powered AI file organizer using Ollama, AWS MiniStack, and MCP Inspector (v2.0)",
   "difficulty": "Intermediate",
   "time": "20",
   "details": {
