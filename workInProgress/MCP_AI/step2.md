@@ -326,8 +326,9 @@ Note the the address is `Starting MCP server 'My MCP Server' with transport 'htt
 should look like:
 `https://b690ef3f8729-10-244-5-66-8000.spch.r.killercoda.com/mcp`   RETURNS
 
-```json
-{"jsonrpc":"2.0","id":"server-error","error":{"code":-32600,"message":"Not Acceptable: Client must accept text/event-stream"}}```
+```
+{"jsonrpc":"2.0","id":"server-error","error":{"code":-32600,"message":"Not Acceptable: Client must accept text/event-stream"} }
+```
 
 ---
 
@@ -335,7 +336,9 @@ FROM: https://www.npmjs.com/package/@mcp-use/inspector
 
 (gh: https://github.com/mcp-use/mcp-use)
 
-`npx @mcp-use/inspector`{{exec}}
+`npx @mcp-use/inspector --help`{{exec}}
+
+`npx @mcp-use/inspector --no-open`{{exec}}
 
 open 8080
 

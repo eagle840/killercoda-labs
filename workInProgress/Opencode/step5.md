@@ -12,8 +12,9 @@ You can use this timeline to undo specific changes or fork the session into a ne
 ### 2. Exporting and Sharing
 * **Export chat**: Export your conversation to Markdown:
   ```text
-  export
+  /export
   ```{{copy}}
+  
 * **Share session**: Generate a shareable HTML URL:
   ```text
   /share

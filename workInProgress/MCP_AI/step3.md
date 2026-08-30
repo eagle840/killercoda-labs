@@ -66,6 +66,13 @@ This will launch a web interface where you can list objects and manually trigger
 
 {{TRAFFIC_HOST1_6274}}
 
+WIP Error:
+
+```text
+Failed to connect to "python3"
+Remote connect failed (403): {"error":"Forbidden","message":"Invalid origin. Request blocked to prevent DNS rebinding attacks. Configure allowed origins via allowedOrigins option."}
+```{{copy}}
+
 ---
 
 WIP below is the aws/boto one
