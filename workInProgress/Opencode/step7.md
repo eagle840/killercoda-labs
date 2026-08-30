@@ -1,15 +1,18 @@
 # Step 7: Installing Custom Skills from `skills.sh`
 
-Enhance your agent's capabilities by installing custom workflows.
+### 1. Understanding Skills
+Skills are packaged instructions and resources that an agent can load on demand to perform a specific, well-defined task. While an agent acts as the worker, a skill is a reusable capability or knowledge package (like a playbook).
 
-### 1. Install a Skill
+In OpenCode, you can install skills, which are typically defined by folders containing a `SKILL.md` file (containing instructions) and optional supporting files.
+
+### 2. Install a Skill
 You can install skills directly from `skills.sh` within the CLI:
 ```text
 /install <skill-name>
 ```{{copy}}
 Confirm any permission prompts that appear.
 
-### 2. Trigger the Skill
+### 3. Trigger the Skill
 After installing the skill, perform a quick application restart. You can then trigger the skill using:
 ```text
 /skills
