@@ -1,0 +1,12 @@
+{
+  "browser": {
+    "browserName": "chromium",
+    "contextOptions": {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      }
+    }
+  },
+  "timeout": 30000
+}

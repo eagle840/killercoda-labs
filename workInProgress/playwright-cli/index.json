@@ -1,0 +1,51 @@
+{
+  "title": "Browser automation with playwright-cli",
+  "description": "Interactive browser automation CLI for coding agents and manual use (v1.0)",
+  "difficulty": "Intermediate",
+  "time": "45 minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "Install Node.js & playwright-cli",
+        "text": "step1.md"
+      },
+      {
+        "title": "Open pages & snapshots",
+        "text": "step2.md"
+      },
+      {
+        "title": "Interact with a page",
+        "text": "step3.md"
+      },
+      {
+        "title": "Sessions, storage & state",
+        "text": "step4.md"
+      },
+      {
+        "title": "DevTools & network",
+        "text": "step5.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+      "host01": [
+        {
+          "file": "cli.config.json",
+          "target": "/root/.playwright/"
+        }
+      ]
+    }
+  },
+  "environment": {
+    "uilayout": "terminal",
+    "hidefinish": false
+  },
+  "backend": {
+    "imageid": "ubuntu:2004"
+  }
+}
