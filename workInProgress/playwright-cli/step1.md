@@ -44,11 +44,16 @@ Take a moment to scroll the help — you'll see categories for **Interact**, **N
 
 `playwright-cli` drives real browsers. Install the **Chromium** browser binary it needs (this is the big download, be patient):
 
+
+`npx playwright install-deps`{{exec}}
+
 `npx playwright install`{{exec}} # installs the browser binaries
 
 `playwright-cli install-browser chromium`{{execute}}
 
-`npx playwright install-deps`{{exec}}
+`npx playwright install chrome`{{exec}}
+
+
 
 
 

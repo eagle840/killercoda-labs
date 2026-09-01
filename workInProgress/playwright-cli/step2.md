@@ -2,7 +2,18 @@
 
 The CLI runs a persistent browser in the background. The first command below **opens** a browser session and navigates to the TodoMVC demo app. Note that it prints a tidy snapshot: page URL, page title, and an accessibility tree.
 
+## You'll need to NOT be root
+
+```{{bash}}
+# Create a new user (e.g., 'coder')
+useradd -ms /bin/bash coder
+
+# Switch to the new user
+su - coder
+```{{exec}}
+
 ## Open a page
+
 
 `playwright-cli open https://demo.playwright.dev/todomvc/`{{execute}}
 
