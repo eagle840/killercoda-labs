@@ -16,6 +16,16 @@ Check the version — it should be **v20** or newer:
 
 `npm --version`{{execute}}
 
+## Playwright needs a user (ie not root)
+
+```
+# Create a new user (e.g., 'coder')
+useradd -ms /bin/bash coder
+
+# Switch to the new user
+su - coder
+```{{exec}}
+
 ## Install playwright-cli globally
 
 Now install the CLI package globally:
@@ -34,7 +44,13 @@ Take a moment to scroll the help — you'll see categories for **Interact**, **N
 
 `playwright-cli` drives real browsers. Install the **Chromium** browser binary it needs (this is the big download, be patient):
 
-`playwright-cli install chromium`{{execute}}
+`npx playwright install`{{exec}} # installs the browser binaries
+
+`playwright-cli install-browser chromium`{{execute}}
+
+`npx playwright install-deps`{{exec}}
+
+
 
 The scenario also ships a pinned config file that the CLI loads automatically from `~/.playwright/cli.config.json`. Verify it's there:
 
