@@ -8,7 +8,7 @@ Take a snapshot to see the refs:
 
 `playwright-cli snapshot`{{execute}}
 
-The main input (a text box with the placeholder "What needs to be done?") should appear in the snapshot.
+The main input (a text box with the placeholder **"What needs to be done?"**) should appear in the snapshot.
 
 ## Type text into the focused element
 
@@ -77,6 +77,14 @@ You can also use a CSS selector:
 Capture the current page:
 
 `playwright-cli screenshot --filename=todo.png`{{execute}}
+
+Killacoda presently doesn't have a image viewer, so lets use a web server to access them:
+
+`npx http-server`{{exec}}
+
+`npx http-server &`{{exec}}
+
+and open {{TRAFFIC_HOST1_80}}
 
 Capture a specific element by its snapshot ref (grab a ref from the input, then):
 

@@ -30,6 +30,23 @@ You should see output like:
 
 The **Snapshot** section lists the page accessibility tree. Each interactive element has a **ref** like `e15`. You'll use these refs to target elements with commands such as `click`, `fill`, and `check`.
 
+`ls -lash .playwright-cli/`{{exec.p}}
+
+Lets look at the snapshot
+
+`cat .playwright-cli/page-*.yml`{{exec}}
+
+### Understanding the Brackets ([])
+The items inside the square brackets are accessibility and state attributes captured by Playwright's automated testing tools to identify and interact with elements:
+
+[ref=e1], [ref=e2], etc.: Unique Reference IDs assigned by Playwright to target specific elements during testing automation.
+
+[cursor=pointer]: Indicates that the element is clickable (changes the mouse cursor to a pointer when hovered over, typical for links).
+
+[level=1]: Specifies the semantic heading level (HTML <h1> tag).
+
+[active]: Shows that the textbox currently has focus on the page.
+
 ## Navigate within the session
 
 The browser session stays alive between commands. You can navigate to a new URL without re-opening:

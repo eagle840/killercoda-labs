@@ -49,7 +49,7 @@ Take a moment to scroll the help — you'll see categories for **Interact**, **N
 
 `npx playwright install`{{exec}} # installs the browser binaries
 
-`playwright-cli install-browser chromium`{{execute}}
+WIP `playwright-cli install-browser chromium`{{execute}}
 
 `npx playwright install chrome`{{exec}}
 

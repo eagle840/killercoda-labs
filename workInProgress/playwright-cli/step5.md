@@ -12,6 +12,8 @@ The CLI collects console messages from the page. View them (optionally with a mi
 
 `playwright-cli console`{{execute}}
 
+(you should see a [INFO] log message)
+
 If you add a todo, you may see React's dev warnings:
 
 `playwright-cli type "Check console output"`{{execute}}
@@ -26,9 +28,11 @@ List the requests the page has made since load:
 
 `playwright-cli requests`{{execute}}
 
+`playwright-cli requests --static`{{exec}}
+
 Show full details of a specific request by its index number:
 
-`playwright-cli request 0`{{execute}}
+`playwright-cli request 1`{{execute}}
 
 This shows method, status, headers, etc. — useful for understanding what a page loads and confirming API calls succeed.
 
@@ -49,6 +53,10 @@ Count how many todo items exist:
 `playwright-cli run-code 'page => page.title()'`{{execute}}
 
 ## Record a trace and a video
+
+You'll need to install a package for this feature:
+
+`npx playwright install ffmpeg`{{exec}}
 
 Traces capture a full, inspectable record of a session (DOM snapshots, network, console, screenshots). Start a trace, do a couple of actions, then stop:
 
