@@ -76,11 +76,15 @@ Similarly, you can record a video of the session (great for sharing reproduction
 
 `playwright-cli press Enter`{{execute}}
 
-`playwright-cli video-stop --filename=demo.webm`{{execute}}
+`playwright-cli video-stop `{{execute}}
 
 List the artifacts produced:
 
 `ls -la *.trace *.webm 2>/dev/null`{{execute}}
+
+`ls -la ./.playwright-cli/traces`
+
+`ls -la ./.playwright-cli/traces/screencast`
 
 ## What you learned
 
