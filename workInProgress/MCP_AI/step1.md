@@ -47,6 +47,14 @@ for a full list of servers see
 
 `npm install @mcp-use/inspector`{{exec}}
 
+
+# Software Packages:
+
+
+# FastMCP
+
+- https://gofastmcp.com/getting-started/quickstart
+
 # MCP-USE
 
 
