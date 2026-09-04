@@ -15,4 +15,7 @@ To execute shell commands directly, just type `!! before the command. EG `!pwd`{
   ```text
   /new
   ```{{copy}}
-* **Switch sessions**: Use the `sessions` command to switch between parallel development workflows.
+
+* **Switch sessions**: Use the `/sessions` command to switch between parallel development workflows.
+
+As an example, Ask some questions about France. Create a new session, ask some questions about Germany, and the then switch back to the France conversation using '/sessions'

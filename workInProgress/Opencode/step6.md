@@ -1,33 +1,53 @@
-# Step 6: Defining Project-Wide Rules with `agents.md`
+# Step 6: Defining Agents & Project Rules
 
-### 1. Understanding Agents
-Agents (or subagents) are distinct AI personas/runtime configurations that define *who* is working and *how* the agent behaves. Each agent has:
-- A **role/persona** (system prompt)
-- Its own set of **tools**
-- Its own **model** (optional)
-- Its own **permissions**
+In this step, we'll learn how to customize OpenCode's behavior, both for specific tasks (using **Subagents**) and for the entire project (using **Project Rules**).
 
-In this step, we configure project-level rules using `agents.md` to define these behaviors for our project.
+### 1. Creating Specialized Subagents
+Subagents are task-specific helpers defined by Markdown files. This keeps your prompts organized and modular.
 
-### 2. Initialize Configuration
-Generate a project-level configuration file:
+1. Create the agents directory:
+   ```bash
+   mkdir -p .opencode/agents
+   ```{{exec}}
 
-Lets move into the `my-app`folder (project)
+2. Create a "reviewer" subagent:
+   ```bash
+   cat > .opencode/agents/reviewer.md << 'EOF'
+   ---
+   name: reviewer
+   description: Reviews code changes for correctness and style
+   tools: Read, Glob, Grep
+   ---
 
-```text
-!cd my-app
-```{{copy}}
+   You are a senior code reviewer. Your goal is to review code critically,
+   spotting bugs, performance issues, and ensuring style compliance.
+   EOF
+   ```{{exec}}
 
-WIP: looks like you need to exit Opencode, change folder, and relauch opencode
+3. Use the subagent in OpenCode:
+   ```text
+   @reviewer Please review the changes in main.ts
+   ```{{copy}}
 
+---
 
-```text
-/init
-```{{copy}}
+### 2. Setting Project-Wide Rules (`AGENTS.md`)
+While agents handle specific *tasks*, **`AGENTS.md`** establishes persistent, project-wide standards that *all* agents must follow.
 
-### 3. Add Constraints
-Edit the generated `agents.md` file to add custom instructions. For example, you can force the agent to always use emojis in its replies:
+1. Initialize project rules:
+   ```bash
+   /init
+   ```{{copy}}
 
-```markdown
-Constraint: Always use emojis in your responses.
-```{{copy}}
+2. Edit `.opencode/AGENTS.md` (or just `AGENTS.md` in the root) to set constraints:
+   ```markdown
+   # Project Standards
+   - Always use TypeScript for new files.
+   - For every change, run `npm test` before finalizing.
+   - Always document public APIs using TSDoc.
+   ```{{copy}}
+
+### Best Practices
+- **Agents (`.opencode/agents/`)**: Use these for *who* does the task (persona, permissions, specific tools).
+- **Rules (`AGENTS.md`)**: Use these for *how* the work is done (code style, testing requirements, architectural constraints).
+- **Global Rules**: Use `~/.config/opencode/AGENTS.md` if you have standards that apply to *all* your projects.
