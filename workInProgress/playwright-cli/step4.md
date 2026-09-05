@@ -77,10 +77,3 @@ You can inspect cookies and localStorage too (try a site that uses cookies, like
 - `state-load <file>` restores that state into a session.
 - `close`, `close-all`, and `list` manage sessions.
 
->>Q1: Which flag selects a named session?<<
-=== -s=
-=~= -s=
-
->>Q2: Which options saves the current session's cookies and localStorage to a file?<<
-=== state-save
-=~= state-save

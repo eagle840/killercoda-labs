@@ -2,15 +2,6 @@
 
 The CLI runs a persistent browser in the background. The first command below **opens** a browser session and navigates to the TodoMVC demo app. Note that it prints a tidy snapshot: page URL, page title, and an accessibility tree.
 
-## You'll need to NOT be root
-
-```{{bash}}
-# Create a new user (e.g., 'coder')
-useradd -ms /bin/bash coder
-
-# Switch to the new user
-su - coder
-```{{exec}}
 
 ## Open a page
 
@@ -43,7 +34,7 @@ The items inside the square brackets are accessibility and state attributes capt
 
 [cursor=pointer]: Indicates that the element is clickable (changes the mouse cursor to a pointer when hovered over, typical for links).
 
-[level=1]: Specifies the semantic heading level (HTML <h1> tag).
+[level=1]: Specifies the semantic heading level.
 
 [active]: Shows that the textbox currently has focus on the page.
 
@@ -81,10 +72,3 @@ Notice the element refs. They're assigned to the element positions in the access
 - `snapshot` prints the current page's accessibility tree with element **refs**.
 - The session is persistent — a daemon keeps the browser running between commands.
 
->>Q1: Which command prints the current page's accessibility tree with element refs?<<
-=== snapshot
-=~= snapshot
-
->>Q2: True or false: playwright-cli keeps the browser running between commands.<<
-=== true
-=~= true

@@ -16,15 +16,6 @@ Check the version — it should be **v20** or newer:
 
 `npm --version`{{execute}}
 
-## Playwright needs a user (ie not root)
-
-```
-# Create a new user (e.g., 'coder')
-useradd -ms /bin/bash coder
-
-# Switch to the new user
-su - coder
-```{{exec}}
 
 ## Install playwright-cli globally
 
@@ -70,10 +61,3 @@ You should see a JSON config setting the browser to `chromium` with a 1280x720 v
 - `playwright-cli --help` reveals the full command surface.
 - The CLI needs a browser binary (Chromium by default) installed separately.
 - Configuration lives in `~/.playwright/cli.config.json`.
-
->>Q1: Which Node.js version does playwright-cli require?<<
-=== 20
-=~= 20
-
->>Q2: What command installs the browser binary that playwright-cli drives?<<
-=~= playwright-cli install chromium

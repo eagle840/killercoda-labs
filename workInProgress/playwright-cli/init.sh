@@ -18,4 +18,4 @@ chmod 0440 /etc/sudoers.d/coder
 #usermod -aG sudo coder
 
 # 4. Switch to the new user and set up their environment
-# su - coder
+su - coder

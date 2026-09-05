@@ -94,10 +94,4 @@ List the artifacts produced:
 - `run-code` executes an arbitrary Playwright code snippet.
 - `tracing-start/stop` and `video-start/stop` record debugging artifacts.
 
->>Q1: Which command evaluates a JavaScript expression in the page context?<<
-=== eval
-=~= eval
 
->>Q2: Which command lists the network requests the page has made?<<
-=== requests
-=~= requests
