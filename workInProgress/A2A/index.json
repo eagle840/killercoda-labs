@@ -1,30 +1,58 @@
 {
-  "title": "A2A",
-  "description": "Skeleton Lab for new projects",
+  "title": "Agent-to-Agent (A2A) Protocol Lab",
+  "description": "Build two A2A agents in Python, connect them via the protocol, then integrate with opencode as an AI-powered A2A client. (v0.0.1)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
-    "steps": [
-      {
-        "title": "Step 1",
-        "text": "step1.md"
-      },
-      {
-        "title": "Step 2",
-        "text": "step2.md"
-      }
-    ],
-    "intro": {
-      "text": "intro.md"
+    "assets": {
+      "host01": [
+        {
+          "file": "starter/agent_a_card.py",
+          "target": "~/a2a-lab/starter/"
+        },
+        {
+          "file": "starter/agent_a_executor.py",
+          "target": "~/a2a-lab/starter/"
+        },
+        {
+          "file": "starter/agent_a_server.py",
+          "target": "~/a2a-lab/starter/"
+        },
+        {
+          "file": "starter/agent_b_card.py",
+          "target": "~/a2a-lab/starter/"
+        },
+        {
+          "file": "starter/agent_b_executor.py",
+          "target": "~/a2a-lab/starter/"
+        },
+        {
+          "file": "starter/agent_b_server.py",
+          "target": "~/a2a-lab/starter/"
+        },
+        {
+          "file": "starter/orchestrator.py",
+          "target": "~/a2a-lab/starter/"
+        }
+      ]
     },
-    "finish": {
-      "text": "finish.md"
-    }
+    "steps": [
+      { "title": "Setup Environment", "text": "step1.md" },
+      { "title": "Build Currency Converter Agent", "text": "step2.md" },
+      { "title": "Test with curl", "text": "step3.md" },
+      { "title": "Build Tax Calculator Agent", "text": "step4.md" },
+      { "title": "Build Orchestrator Client", "text": "step5.md" },
+      { "title": "Debug A2A Communication", "text": "step6.md" },
+      { "title": "Wire Up opencode via A2A", "text": "step7.md" },
+      { "title": "Final Demo", "text": "step8.md" }
+    ],
+    "intro": { "text": "intro.md", "foreground": "init.sh" },
+    "finish": { "text": "finish.md" }
   },
   "environment": {
     "uilayout": "terminal"
   },
   "backend": {
-    "imageid": "ubuntu"
+    "imageid": "ubuntu-4GB"
   }
 }
