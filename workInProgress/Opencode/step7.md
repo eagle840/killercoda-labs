@@ -110,3 +110,7 @@ description: Short description for the agent to decide when to load this skill
 - `description`: 1-1024 characters
 - The folder name must match the skill name
 - Skills are discovered automatically from `.opencode/skills/`
+
+**Find out more**
+
+- https://www.skills.sh/
