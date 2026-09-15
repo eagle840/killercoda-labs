@@ -8,6 +8,9 @@ Now build a **Python orchestrator** that chains both agents together: it discove
 
 ```bash
 cd ~/a2a-lab
+```{{exec}}
+
+```bash
 touch orchestrator.py
 ```{{exec}}
 
@@ -107,7 +110,7 @@ if __name__ == '__main__':
 Make sure both agents are running, then:
 
 ```bash
-cd ~/a2a-lab && source .venv/bin/activate && python orchestrator.py
+cd ~/a2a-lab && source .venv/bin/activate && python starter/orchestrator.py
 ```{{exec}}
 
 ## 3. Expected Output

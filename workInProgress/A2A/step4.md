@@ -6,6 +6,9 @@ Now build the second A2A server — a **Tax Calculator** agent on **port 9001**.
 
 ```bash
 cd ~/a2a-lab
+```{exec}
+
+```bash
 touch agent_b_card.py
 ```{{exec}}
 
@@ -156,7 +159,7 @@ if __name__ == '__main__':
 Open **another new terminal tab** (click the **+** button) and start the second agent:
 
 ```bash
-cd ~/a2a-lab && source .venv/bin/activate && python agent_b_server.py
+cd ~/a2a-lab && source .venv/bin/activate && python starter/agent_b_server.py
 ```{{exec interrupt}}
 
 You should see uvicorn start on port 9001.
@@ -178,7 +181,7 @@ curl -s -X POST http://127.0.0.1:9001/ \
   -d '{
     "jsonrpc": "2.0",
     "id": 1,
-    "method": "message/send",
+    "method": "SendMessage",
     "params": {
       "message": {
         "role": "ROLE_USER",

@@ -34,7 +34,7 @@ RESPONSE=$(curl -s -X POST http://127.0.0.1:9000/ \
   -d '{
     "jsonrpc": "2.0",
     "id": 1,
-    "method": "message/send",
+    "method": "SendMessage",
     "params": {
       "message": {
         "role": "ROLE_USER",
@@ -62,7 +62,7 @@ curl -s -X POST http://127.0.0.1:9000/ \
   -d '{
     "jsonrpc": "2.0",
     "id": 10,
-    "method": "message/send",
+    "method": "SendMessage",
     "params": {
       "message": {
         "parts": [{"text": "Convert 100 USD to EUR"}],
@@ -81,7 +81,7 @@ curl -s -X POST http://127.0.0.1:9000/ \
   -d '{
     "jsonrpc": "2.0",
     "id": 11,
-    "method": "message/send",
+    "method": "SendMessage",
     "params": {
       "message": {
         "role": "ROLE_USER",

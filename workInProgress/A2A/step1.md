@@ -12,7 +12,10 @@ In this step you will install all the dependencies needed for the lab: **uv** (P
 
 `curl -fsSL https://opencode.ai/install | bash`{{exec}}
 
-`shell bash`{{exec}}
+
+```bash
+source ~/.bashrc
+```{{exec}}
 
 Select a **free model** when prompted, then exit opencode with `Ctrl+C`.
 

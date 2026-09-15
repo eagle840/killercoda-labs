@@ -188,7 +188,7 @@ if __name__ == '__main__':
 Open a **new terminal tab** (click the **+** button in the terminal UI) and start the Currency Converter:
 
 ```bash
-cd ~/a2a-lab && source .venv/bin/activate && python agent_a_server.py
+cd ~/a2a-lab && source .venv/bin/activate && python starter/agent_a_server.py
 ```{{exec interrupt}}
 
 You should see uvicorn start and print `Uvicorn running on http://127.0.0.1:9000`.
