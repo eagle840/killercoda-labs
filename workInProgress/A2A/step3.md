@@ -41,7 +41,7 @@ curl -s -X POST http://127.0.0.1:9000/ \
 ```{{exec}}
 
 **Note:** The key fields in the JSON-RPC request:
-- **`method`**: `"message/send"` — tells the server to process a message
+- **`method`**: `"SendMessage"` — tells the server to process a message
 - **`message.role`**: `"ROLE_USER"` — the sender is a user
 - **`message.parts`**: array of content parts (here, just text)
 - **`message.messageId`**: a unique identifier for this message

@@ -6,7 +6,7 @@ Now build the second A2A server — a **Tax Calculator** agent on **port 9001**.
 
 ```bash
 cd ~/a2a-lab
-```{exec}
+```{{exec}}
 
 ```bash
 touch agent_b_card.py
