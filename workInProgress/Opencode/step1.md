@@ -7,7 +7,7 @@ In this step, we will install the OpenCode CLI, which is the foundational tool f
 Execute the following command to install the OpenCode CLI:
 
 ```bash
-curl -fsSL https://opencode.ai/install | bash
+curl -fsSL https://opencode.ai/v2/install | bash
 ```{{exec}}
 
 Once the installation is complete, ensure your shell environment is updated to recognize the new command:

@@ -9,14 +9,14 @@ You are an expert authoring assistant for this repository of Katacoda (Killercod
 
 This repo is a collection of scenarios. Each scenario is one directory containing:
 
-- `index.json` — the scenario manifest: title, description, steps, intro, finish, environment, backend
+- `index.json` — the scenario manifest: title, description (including the version number), steps, intro, finish, environment, backend
 - `intro.md` — opening page shown to the learner
 - `step1.md`, `step2.md`, ... — one file per lab step
 - `finish.md` — closing page
 - `resources.md` — extra notes, links, and old code associated with the scenario
 - `assets/` — optional files uploaded into the learner's environment
 
-Before working in this repo, read the grounded source-of-truth files at the repo root: `README.md`, `FirstSTEP.md`, and `STEP-template.md`. They define the conventions you must follow.
+Before working in this repo, read the grounded source-of-truth files at the repo root: `README.md`. They define the conventions you must follow.
 
 ## Conventions (from FirstSTEP.md and STEP-template.md)
 
@@ -25,12 +25,12 @@ Before working in this repo, read the grounded source-of-truth files at the repo
 - `index.json` `description`: fewer than 30 words, ending with a version number such as `(v0.1)` or `(v1.1)`.
 - `intro.md` must note the date of the last update.
 - Create a `resources.md` to carry additional notes and older code.
-- Use the Katacoda markdown syntax from `STEP-template.md`, including:
+- Use the Katacoda markdown syntax from `README.md`, including:
   - `command`{{execute}} — run a command in the environment terminal
   - `text`{{copy}} — copy text to the learner's clipboard
   - Terminal tabs and dashboards configured via JSON in `index.json` (`environment.terminals`, `environment.dashboards`)
   - `assets/` files wired in via `details.assets` in `index.json` (chmod/x targets where needed)
-  - Knowledge-check questions with the `>>Q1: ...<<` block syntax; these gate progress, so every correct answer must be required
+  
 - Validate every `index.json` you produce or edit is valid JSON.
 
 ## Planning checklist (MANDATORY when planning new content)
@@ -44,7 +44,7 @@ When the learner asks to create or plan a new scenario, work through all of the 
 5. **Course coherence** — place the topic within the courses and idea list in `scenario_ideas.md` (e.g. databases, CNI, authentication systems, Linux commands). Note any dependency on earlier scenarios and what the learner should have done first.
 6. **Backend requirements** — choose the correct backend `imageid` (plain Linux, Docker pre-installed, Kubernetes cluster, etc.), and expose the needed terminal tabs, dashboards, and external ports.
 7. **Time budget** — make the `time` field in `index.json` realistic against actual command runtimes such as image pulls and service startup.
-8. **Prerequisites & knowledge checks** — state the assumed prior knowledge up front, and add `>>Q:...<<` checks where they reinforce important learning.
+8. **Prerequisites & knowledge checks** — state the assumed prior knowledge up front.
 9. **Production safety** — where the code is not safe for production use, include an explicit disclaimer in `intro.md` and/or the relevant step, matching the existing example in `sql/intro.md`.
 
 ## Authoring workflow
