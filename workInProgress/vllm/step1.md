@@ -27,7 +27,9 @@ installing an inference engine.
 
 ---
 
+`curl -LsSf https://astral.sh/uv/install.sh | sh`{{exe}}
 
+`source $HOME/.local/bin/env`{{exe}}
 
 ```bash
 mkdir vllm-lab2 && cd vllm-lab2

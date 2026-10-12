@@ -1,6 +1,6 @@
 {
   "title": "vLLM High Throughput LLM Serving Lab",
-  "description": "Skeleton lab for building vLLM inference, serving, and OpenAI-compatible API scenarios. (v0.2)",
+  "description": "Skeleton lab for building vLLM inference, serving, and OpenAI-compatible API scenarios. (v0.3)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -34,6 +34,6 @@
     "uilayout": "terminal"
   },
   "backend": {
-    "imageid": "ubuntu"
+    "imageid": "ubuntu-4GB"
   }
 }
