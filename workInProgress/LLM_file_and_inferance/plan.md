@@ -189,6 +189,41 @@ tarball ships `llama-quantize`, so step 5 *could* become hands-on later.
 - Payoff prompt = **a task the 1B nails** (formatting, not reasoning).
 - Run as **root** — drop the skeleton's `coder` user. `init.sh` is then unused
   (it was not referenced from `index.json` anyway).
+- **Reuse `google_query.md` as source material** — most of its explanations are
+  woven into the lab, *distributed to the point where each becomes concrete*
+  (see mapping below), not pasted in as pre-reading.
+
+## Source material mapping (`google_query.md` → lab)
+
+The dump is ~190 lines of research. Including it *verbatim* would turn six
+hands-on steps into a wall of text. Instead, each idea lands where the learner
+can see it happening:
+
+| Dump section | Lands in | Trigger moment |
+|---|---|---|
+| Intro: weights + quantization | `intro.md` | framing / hook |
+| §1 File types (GGUF / EXL2 / GPTQ / safetensors) | `step2.md` aside + `finish.md` | they see the repo hosts several formats |
+| §2 Inside the file (metadata header vs tensor data) | **steps 3–4** | the dump's prose *is* the narration for `gguf-dump` |
+| §3 Inference loop (tokenize → matmul → predict → autoregress) | **step 6** | the file finally runs |
+| §4 Quantization table (size / quality / hardware) | **step 5** | they see `Q4_K` in the tensor map, then read why |
+| Hugging Face store (repo types, reading a page, auto vs manual) | `step2.md` + `finish.md` | they open the model card |
+| Low-spec VM (engines, tiny models, `-t`/`-c` tips) | `finish.md` | after they've run one |
+| Tools (inspection) | **steps 3–4** | tooling updated to uv + `gguf-dump` |
+
+### Corrections to apply to the dump's content
+
+The dump is AI-generated and several claims are **wrong for this box** — fixed
+during the build, not copied:
+
+- `-t 2` → **`-t 1`** (this VM has one vCPU).
+- `ggerganov/llama.cpp` → **`ggml-org/llama.cpp`**.
+- `npx @huggingface/gguf` → **unavailable** (no `node`); use `uv` + `gguf-dump`.
+- The 16 GB / Q8 / Q4 / Q2 table is sized for an **8B** model — the lab uses a
+  **1B** model; relabel it or recompute the numbers.
+- "4-bit feels almost identical to 16-bit" → **soften** for an ML-adjacent reader.
+- "GGUF = GPT-Generated Unified Format" → **disputed backronym**; verify or drop.
+- Strip artifacts: `[/goto?url=…]` citation markers, `接近 7B quality`,
+  `Use code with caution`.
 
 ## Open items / to settle during build
 
