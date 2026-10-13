@@ -1,22 +1,38 @@
 {
-  "title": "LLM files and inferance",
-  "description": "Intro to LLM files and inferance",
+  "title": "LLM Files, Quantization and Local Inference",
+  "description": "Inspect a real GGUF weights file, understand quantization, then run the same model locally with llama.cpp. (v0.1)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
-    "steps": [
-      {
-        "title": "Step 1",
-        "text": "step1.md"
-      },
-      {
-        "title": "Step 2",
-        "text": "step2.md"
-      }
-    ],
     "intro": {
       "text": "intro.md"
     },
+    "steps": [
+      {
+        "title": "Install the llama.cpp toolkit",
+        "text": "step1.md"
+      },
+      {
+        "title": "Peek at the header, then download",
+        "text": "step2.md"
+      },
+      {
+        "title": "Read the file blueprint",
+        "text": "step3.md"
+      },
+      {
+        "title": "Map the tensors",
+        "text": "step4.md"
+      },
+      {
+        "title": "Measure quantization",
+        "text": "step5.md"
+      },
+      {
+        "title": "Run the model",
+        "text": "step6.md"
+      }
+    ],
     "finish": {
       "text": "finish.md"
     }
@@ -25,6 +41,6 @@
     "uilayout": "terminal"
   },
   "backend": {
-    "imageid": "ubuntu"
+    "imageid": "ubuntu-4GB"
   }
 }
