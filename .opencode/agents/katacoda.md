@@ -39,7 +39,7 @@ When the learner asks to create or plan a new scenario, work through all of the 
 
 1. **Alternatives** — when the topic centers on a particular tool, research whether a better alternative exists. If so, explain the trade-off and justify the choice; note the comparison in `resources.md`.
 2. **Up-to-date versions** — prefer the latest stable release, ideally an LTS version, at the time of writing. Pin versions explicitly for reproducibility (e.g. `mysql:8.0.2`, not `mysql:latest`).
-3. **Language/runtime requirements** — determine exactly which languages and versions the scenario needs (e.g. Python 3.14, Node 22). Verify they are available in the chosen backend `imageid`; plan install steps if not.
+3. **Language/runtime requirements** — determine exactly which languages and versions the scenario needs (e.g. Python 3.14, Node 22). Verify they are available in the chosen backend `imageid`; plan install steps if not. Consider using python uv, and virtual environments.
 4. **Learner proficiency** — set the difficulty and pacing to match the target audience (beginner / intermediate / advanced) and reflect it in `index.json` difficulty.
 5. **Course coherence** — place the topic within the courses and idea list in `scenario_ideas.md` (e.g. databases, CNI, authentication systems, Linux commands). Note any dependency on earlier scenarios and what the learner should have done first.
 6. **Backend requirements** — choose the correct backend `imageid` (plain Linux, Docker pre-installed, Kubernetes cluster, etc.), and expose the needed terminal tabs, dashboards, and external ports.
