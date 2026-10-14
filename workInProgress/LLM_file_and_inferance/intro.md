@@ -4,6 +4,13 @@ You have probably downloaded a model and run it — Ollama, LM Studio, or a
 chat app. Behind every one of those is a **single weights file** on disk: a
 `.gguf` file. This lab takes that file apart.
 
+GGUF is not the only format you will meet, though. You may also see **EXL2 /
+GPTQ** (highly optimised for NVIDIA GPUs, but they cannot spill to system RAM)
+and **safetensors** (Hugging Face's safe, raw format — usually unquantized, and
+typically what a model is *released* in before someone re-quantizes it to GGUF).
+This lab focuses on GGUF because it is the one end users actually download and
+run.
+
 You will not just read about it. You will:
 
 1. Install **llama.cpp**, the engine that (indirectly) powers most local LLM
@@ -34,7 +41,7 @@ This VM is deliberately modest: **one vCPU** and a few GB of RAM. That is part
 of the lesson — we will see exactly how the engine adapts to limited hardware,
 and why the thread-count flag matters here.
 
-**Last updated:** 2026-10-13
+**Last updated:** 2026-10-14
 
 > **Note:** This lab is a learning experience. The commands and configuration
 > here are for exploration, not production use — do not reuse them as-is in a
