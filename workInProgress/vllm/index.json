@@ -1,6 +1,6 @@
 {
   "title": "vLLM High Throughput LLM Serving Lab",
-  "description": "Skeleton lab for building vLLM inference, serving, and OpenAI-compatible API scenarios. (v0.3.3)",
+  "description": "Skeleton lab for building vLLM inference, serving, and OpenAI-compatible API scenarios. (v0.3.4)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
