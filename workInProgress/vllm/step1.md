@@ -27,9 +27,12 @@ installing an inference engine.
 
 ---
 
-`curl -LsSf https://astral.sh/uv/install.sh | sh`{{exe}}
+WIP `curl -fsSL https://opencode.ai/v2/install | bash`{{exec}}
 
-`source $HOME/.local/bin/env`{{exe}}
+
+`curl -LsSf https://astral.sh/uv/install.sh | sh`{{exec}}
+
+`source $HOME/.local/bin/env`{{exec}}
 
 ```bash
 mkdir vllm-lab2 && cd vllm-lab2
@@ -38,13 +41,19 @@ mkdir vllm-lab2 && cd vllm-lab2
 `uv venv && source .venv/bin/activate`{{exec}}
 
 
-#   21  uv pip install triton
+WIP:   21  uv pip install triton
+
+WIP: the below seems to work only 25% of the time (a install dependense failure)
 
 `uv pip install vllm   --extra-index-url https://wheels.vllm.ai/0.31.0/cpu   --torch-backend cpu   "triton @ https://github.com/triton-lang/triton-cpu/releases/download/v3.8.0/triton-3.8.0+cpu-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"`{{exec}}
 
 `vllm --help`{{exec}}
 
    ---
+
+   opencode suugests using -135M-  and or len of 2048 (what other versions are there?)
+
+   What tools are available to monitor memory/cpu/gpu? and general vllm overall?
 
    ```
    OMP_NUM_THREADS=$(nproc) vllm serve HuggingFaceTB/SmolLM2-360M-Instruct \
