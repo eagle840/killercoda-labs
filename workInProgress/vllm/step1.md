@@ -55,6 +55,17 @@ WIP: the below seems to work only 25% of the time (a install dependense failure)
 
    What tools are available to monitor memory/cpu/gpu? and general vllm overall?
 
+   `MODEL="HuggingFaceTB/SmolLM2-135M-Instruct"`{{exec}}
+
+   WIP   `MODEL="HuggingFaceTB/SmolLM2-350M-Instruct"`{{exec}}
+
+
+   `MODEL_LEN="2048"`{{exec}}
+
+      ```
+   OMP_NUM_THREADS=$(nproc) vllm serve $MODEL --dtype bfloat16 --max-model-len $MODEL_LEN --enforce-eager --gpu-memory-utilization 0.5
+   ```{{exec}}
+
    ```
    OMP_NUM_THREADS=$(nproc) vllm serve HuggingFaceTB/SmolLM2-135M-Instruct --dtype bfloat16 --max-model-len 2048 --enforce-eager --gpu-memory-utilization 0.5
    ```{{exec}}
@@ -66,6 +77,15 @@ WIP: following fails:
   --max-model-len 4096 \
   --enforce-eager
   ```{{exec}}
+
+
+  When you see the following, it's ready to use
+
+   ```
+INFO:     Started server process [4870]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+```
 
   The following command takes a few minutes to return a result:
 
