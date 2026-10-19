@@ -56,14 +56,21 @@ WIP: the below seems to work only 25% of the time (a install dependense failure)
    What tools are available to monitor memory/cpu/gpu? and general vllm overall?
 
    ```
+   OMP_NUM_THREADS=$(nproc) vllm serve HuggingFaceTB/SmolLM2-135M-Instruct --dtype bfloat16 --max-model-len 2048 --enforce-eager --gpu-memory-utilization 0.5
+   ```{{exec}}
+
+WIP: following fails:
+   ```
    OMP_NUM_THREADS=$(nproc) vllm serve HuggingFaceTB/SmolLM2-360M-Instruct \
   --dtype bfloat16 \
   --max-model-len 4096 \
   --enforce-eager
   ```{{exec}}
 
+  The following command takes a few minutes to return a result:
+
   ```
   curl http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -d '{"model":"HuggingFaceTB/SmolLM2-360M-Instruct","messages":[{"role":"user","content":"Hello!"}]}'
+  -d '{"model":"HuggingFaceTB/SmolLM2-135M-Instruct","messages":[{"role":"user","content":"Hello!"}]}' | jq
   ```{{exec}}
