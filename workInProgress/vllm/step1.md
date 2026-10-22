@@ -49,6 +49,18 @@ WIP: the below seems to work only 25% of the time (a install dependense failure)
 
 `vllm --help`{{exec}}
 
+`vllm --version` just prints the package version; the real hardware introspection is `collect-env` plus whatever gets logged when `serve` starts up.
+
+## Caveats worth knowing
+
+- **Detection ≠ full usability.** `torch.cuda.is_available()` can be `False` due to driver problems even though a GPU is physically present — vLLM will then fail at startup rather than "feel" its way around it.
+- **Build-dependent.** A CUDA wheel can't use an AMD GPU even if one is installed; the prebuilt Docker images are per-platform (CUDA vs ROCm vs CPU).
+- **Visibility is respected.** It only sees GPUs exposed to the process — `CUDA_VISIBLE_DEVICES`, `--device-ids`, containers without GPU passthrough, etc. all change what it "feels."
+- There's no single `vllm detect-hardware` subcommand; if you want a quick standalone check, the usual recipe is `vllm collect-env` or `nvidia-smi` / `python -c "import torch; print(torch.cuda.is_available())"`.
+
+
+`vllm collect-env`{{exec}}
+
    ---
 
    opencode suugests using -135M-  and or len of 2048 (what other versions are there?)
@@ -60,18 +72,20 @@ WIP: the below seems to work only 25% of the time (a install dependense failure)
    WIP   `MODEL="HuggingFaceTB/SmolLM2-350M-Instruct"`{{exec}}
 
 
-   `MODEL_LEN="2048"`{{exec}}
+   ```bash
+   MODEL_LEN="2048"
+   ```{{exec}}
 
-      ```
+   ```bash
    OMP_NUM_THREADS=$(nproc) vllm serve $MODEL --dtype bfloat16 --max-model-len $MODEL_LEN --enforce-eager --gpu-memory-utilization 0.5
    ```{{exec}}
 
-   ```
+   ```bash
    OMP_NUM_THREADS=$(nproc) vllm serve HuggingFaceTB/SmolLM2-135M-Instruct --dtype bfloat16 --max-model-len 2048 --enforce-eager --gpu-memory-utilization 0.5
    ```{{exec}}
 
 WIP: following fails:
-   ```
+   ```bash
    OMP_NUM_THREADS=$(nproc) vllm serve HuggingFaceTB/SmolLM2-360M-Instruct \
   --dtype bfloat16 \
   --max-model-len 4096 \
