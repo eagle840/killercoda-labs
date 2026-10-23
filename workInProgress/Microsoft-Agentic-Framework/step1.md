@@ -6,7 +6,14 @@ This is your starting point. Use this step to define your initial setup or instr
 
 `source $HOME/.local/bin/env`{{exec}}
 
-## Ad gett local AI working
+## opencode for troubleshooting
+
+`curl -fsSL https://opencode.ai/v2/install | bash`{{exec}}
+
+`opencode --help`{{exec}}
+
+
+## And get local AI working
 
 `curl -fsSL https://ollama.com/install.sh | sh`{{exec}}
 
