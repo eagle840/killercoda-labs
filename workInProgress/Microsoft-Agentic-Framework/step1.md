@@ -6,8 +6,21 @@ This is your starting point. Use this step to define your initial setup or instr
 
 `source $HOME/.local/bin/env`{{exec}}
 
+## Ad gett local AI working
+
+`curl -fsSL https://ollama.com/install.sh | sh`{{exec}}
+
+
+`ollama run qwen2.5-coder:1.5b`{{exec}}
+
+`curl http://localhost:11434/`{{exec}}
+
+check OpenAI-Compatible Endpoint
+
+`curl http://localhost:11434/v1/models |jq`{{exec}}
+
 ```bash
-mkdir vllm-lab2 && cd vllm-lab2
+mkdir msfw && cd msfw
 ```{{exec}}
 
 `uv venv && source .venv/bin/activate`{{exec}}
@@ -15,14 +28,30 @@ mkdir vllm-lab2 && cd vllm-lab2
 
 `uv pip install agent-framework`{{exec}}
 
+`touch localquery.py`{{exec}}
 
-`curl -fsSL https://ollama.com/install.sh | sh`{{exec}}
 
+```python
+from openai import OpenAI
 
-`ollama serve qwen2.5-coder:1.5b`{{exec}}
+# Point the client to your local Ollama or LM Studio endpoint
+client = OpenAI(
+    base_url="http://localhost:11434/v1",  # Use http://localhost:1234/v1 for LM Studio
+    api_key="ollama",  # Local servers accept any placeholder string
+)
 
-`curl http://localhost:11434/`{{exec}}
+print("sending query")
 
-check OpenAI-Compatible Endpoint
+response = client.chat.completions.create(
+    model="qwen2.5-coder:1.5b",  # Replace with your downloaded local model name
+    messages=[
+        {"role": "system", "content": "You are a helpful local assistant."},
+        {"role": "user", "content": "Hello, write a short poem about local AI."},
+    ],
+)
 
-`curl http://localhost:11434/v1/models`{{exec}}
+print(response.choices[0].message.content)
+
+```
+
+`python localquery.py`{{exec}}
