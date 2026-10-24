@@ -1,6 +1,6 @@
 {
   "title": "Microsoft Agentic Framework",
-  "description": "Using MS Agentic Framework on local AI model (v0.1.2)",
+  "description": "Using MS Agentic Framework on local AI model (v0.1.4)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
@@ -12,6 +12,14 @@
       {
         "title": "Step 2",
         "text": "step2.md"
+      },
+      {
+        "title": "Step 3",
+        "text": "step3.md"
+      },
+      {
+        "title": "Step 4",
+        "text": "step4.md"
       }
     ],
     "intro": {
@@ -25,6 +33,6 @@
     "uilayout": "terminal"
   },
   "backend": {
-    "imageid": "ubuntu"
+    "imageid": "ubuntu-4GB"
   }
 }
