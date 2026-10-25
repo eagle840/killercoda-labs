@@ -9,9 +9,6 @@ In this step you will replace the Text Stats app with a streaming chatbot built 
 Stop the current app and create `chat_app.py`:
 
 ```bash
-pkill -f "[g]radio app.py" 2>/dev/null || true
-pkill -f "[p]ython app.py" 2>/dev/null || true
-
 cd ~/gradio-lab
 cat > chat_app.py <<'EOF'
 import os
@@ -130,22 +127,10 @@ Start it in the background:
 
 ```bash
 cd ~/gradio-lab
-nohup uv run python chat_app.py > chat.log 2>&1 &
-echo "Started PID $!"
+uv run python chat_app.py
 ```{{exec}}
 
-Wait for it to be ready:
 
-```bash
-for i in $(seq 1 30); do
-  if curl -sf http://localhost:7860 >/dev/null; then
-    echo "Chat app is up."
-    break
-  fi
-  sleep 1
-done
-curl -s -o /dev/null -w "HTTP status: %{http_code}\n" http://localhost:7860
-```{{exec}}
 
 Open the chatbot:
 
@@ -153,25 +138,7 @@ Open the chatbot:
 
 Try the example prompts, or ask your own question. The first reply may take a while because Ollama must load the model into memory. Watch the text appear token by token.
 
-## Inspect the request flow
 
-While the app is running, look at the loaded model:
-
-```bash
-ollama ps
-```{{exec}}
-
-Check the Gradio log:
-
-```bash
-tail -n 30 ~/gradio-lab/chat.log
-```{{exec}}
-
-You can also confirm the endpoint independently of Gradio:
-
-```bash
-curl -s http://localhost:11434/v1/models | python3 -m json.tool
-```{{exec}}
 
 ## A one-line alternative
 
@@ -189,27 +156,6 @@ gr.load_chat(
 
 Do not run this now: a custom chat function gives you control over the system prompt, history, and token limits, which is why the lab builds `chat_app.py` by hand.
 
-## Troubleshooting
 
-If the chatbot shows an error, check the Gradio log first:
-
-```bash
-tail -n 50 ~/gradio-lab/chat.log
-```{{exec}}
-
-If you see `Connection refused`, the Ollama server is not running:
-
-```bash
-pgrep -af "[o]llama" || echo "Ollama is not running."
-journalctl -u ollama --no-pager -n 50
-tail -n 50 /tmp/ollama.log
-```{{exec}}
-
-If replies are very slow:
-
-- Keep questions short.
-- Lower `max_tokens` in `chat_app.py`.
-- Check memory with `free -h`.
-- Unload the model when you are finished with `ollama stop tinyllama`.
 
 You have built a complete local LLM application. Proceed to the finish page for a summary and cleanup commands.

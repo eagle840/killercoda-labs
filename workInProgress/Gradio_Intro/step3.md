@@ -9,9 +9,6 @@ In this step you will build a small **Text Stats** app with a custom layout, the
 Stop the previous server and replace `app.py`:
 
 ```bash
-pkill -f "[g]radio app.py" 2>/dev/null || true
-pkill -f "[p]ython app.py" 2>/dev/null || true
-
 cd ~/gradio-lab
 cat > app.py <<'EOF'
 import os
@@ -77,22 +74,10 @@ Start the new version in the background:
 
 ```bash
 cd ~/gradio-lab
-nohup uv run python app.py > app.log 2>&1 &
-echo "Started PID $!"
+uv run python app.py 
 ```{{exec}}
 
-Wait for it to become ready:
 
-```bash
-for i in $(seq 1 30); do
-  if curl -sf http://localhost:7860 >/dev/null; then
-    echo "Gradio is up."
-    break
-  fi
-  sleep 1
-done
-curl -s -o /dev/null -w "HTTP status: %{http_code}\n" http://localhost:7860
-```{{exec}}
 
 Open the app and test it:
 
@@ -104,7 +89,7 @@ Paste a few paragraphs and click **Analyze**. Then try the **Clear** button.
 
 Every Gradio app is also an API. The `gradio_client` package is installed as a dependency of `gradio`.
 
-Create a small client:
+Leave the gradio program running, and n a new tab, Create a small client:
 
 ```bash
 cd ~/gradio-lab
@@ -134,18 +119,6 @@ You should see a description of the available endpoint followed by the word, cha
 
 This is the same mechanism you could use from another service, a scheduled job, or a test suite. You can also click **Use via API** at the bottom of the Gradio page to see generated client code.
 
-## Troubleshooting
 
-If the app did not restart, check the log:
-
-```bash
-tail -n 30 ~/gradio-lab/app.log
-```{{exec}}
-
-If port 7860 is still busy, confirm that the old process is gone:
-
-```bash
-pgrep -af "[a]pp.py" || echo "No app.py process is running."
-```{{exec}}
 
 Next, you will install Ollama and a small language model to power a real chatbot.

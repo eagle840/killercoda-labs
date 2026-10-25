@@ -18,28 +18,6 @@ This downloads the Ollama runtime and may take a minute or two. Verify the CLI:
 ollama --version
 ```{{exec}}
 
-## Make sure the server is running
-
-The install script may start Ollama as a system service. In container-based lab environments that service is not always available, so check first and start it manually only if needed:
-
-```bash
-if ! curl -sf http://localhost:11434/api/tags >/dev/null; then
-  nohup ollama serve > /tmp/ollama.log 2>&1 &
-  echo "Started ollama serve."
-fi
-
-for i in $(seq 1 15); do
-  if curl -sf http://localhost:11434/api/tags >/dev/null; then
-    echo "Ollama server is ready."
-    break
-  fi
-  sleep 1
-done
-
-curl -s http://localhost:11434/api/tags
-```{{exec}}
-
-The response is JSON. An empty `"models"` list is fine at this point.
 
 ## Pull TinyLlama
 
@@ -68,7 +46,7 @@ The first request loads the model into memory, so it can take 20 seconds or more
 Ollama exposes downloaded models at `http://localhost:11434/v1`. Check the model list:
 
 ```bash
-curl -s http://localhost:11434/v1/models | python3 -m json.tool
+curl -s http://localhost:11434/v1/models | jq
 ```{{exec}}
 
 You should see `tinyllama` in the response. The API key is required by the OpenAI SDK but ignored by Ollama, so any non-empty value works.
@@ -112,20 +90,6 @@ The first call is the slowest because the model has to load. Later calls are fas
 ollama ps
 ```{{exec}}
 
-## Troubleshooting
 
-If the API is not responding, inspect the server log. Use `journalctl` if the install script started Ollama as a system service, or the file log if you started it manually:
-
-```bash
-journalctl -u ollama --no-pager -n 50
-tail -n 50 /tmp/ollama.log
-```{{exec}}
-
-If you ran out of memory, check usage and unload the model:
-
-```bash
-free -h
-ollama stop tinyllama
-```{{exec}}
 
 You now have a local OpenAI-compatible chat endpoint. In the final step you will connect Gradio to it.

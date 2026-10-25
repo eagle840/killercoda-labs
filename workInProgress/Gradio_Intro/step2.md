@@ -48,24 +48,12 @@ Because this is a server, start it in the background and keep its output in `app
 
 ```bash
 cd ~/gradio-lab
-nohup uv run python app.py > app.log 2>&1 &
-echo "Started PID $!"
+uv run python app.py
 ```{{exec}}
 
 Wait for Gradio to finish starting, then check that it responds:
 
-```bash
-for i in $(seq 1 30); do
-  if curl -sf http://localhost:7860 >/dev/null; then
-    echo "Gradio is up."
-    break
-  fi
-  sleep 1
-done
-curl -s -o /dev/null -w "HTTP status: %{http_code}\n" http://localhost:7860
-```{{exec}}
 
-If the status is `200`, open the app:
 
 **[Open the Gradio app]({{TRAFFIC_HOST1_7860}})**
 
@@ -85,16 +73,5 @@ Gradio prints the local URL and any errors to the log. If the app does not load,
 tail -n 30 ~/gradio-lab/app.log
 ```{{exec}}
 
-## Hot reload (optional)
-
-While developing, you can let Gradio watch the file and reload on every save. Stop the background server first:
-
-```bash
-pkill -f "[p]ython app.py" 2>/dev/null || true
-cd ~/gradio-lab
-uv run gradio app.py
-```{{exec interrupt}}
-
-Gradio reloads `app.py` whenever you change it. Press `Ctrl+C` in the terminal to stop it.
 
 In the next step you will replace this simple layout with a custom `gr.Blocks` interface and call it programmatically.
