@@ -1,0 +1,42 @@
+{
+  "title": "Introduction to Gradio",
+  "description": "Build interactive Python apps with Gradio and connect them to a local TinyLlama model through Ollama's OpenAI-compatible API using uv (v0.1.0)",
+  "difficulty": "Intermediate",
+  "time": "60 minutes",
+  "details": {
+    "intro": {
+      "text": "intro.md"
+    },
+    "steps": [
+      {
+        "title": "Install uv and Create the Project",
+        "text": "step1.md"
+      },
+      {
+        "title": "Your First Gradio App",
+        "text": "step2.md"
+      },
+      {
+        "title": "Customize the UI and Use the API",
+        "text": "step3.md"
+      },
+      {
+        "title": "Install Ollama and TinyLlama",
+        "text": "step4.md"
+      },
+      {
+        "title": "Build a Local LLM Chat App",
+        "text": "step5.md"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu-4GB"
+  }
+}
