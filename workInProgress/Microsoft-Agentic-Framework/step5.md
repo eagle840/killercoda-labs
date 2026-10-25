@@ -4,14 +4,13 @@ taken from: https://learn.microsoft.com/en-us/agent-framework/get-started/memory
 
 `touch memory.py`{{exec}}
 
-
 ```python
 import asyncio
 from typing import Any
 
 from agent_framework import Agent, AgentSession, ContextProvider, SessionContext
-from agent_framework.foundry import FoundryChatClient
-from azure.identity import AzureCliCredential
+# from agent_framework.foundry import FoundryChatClient
+from agent_framework.openai import OpenAIChatClient
 
 
 class UserMemoryProvider(ContextProvider):
@@ -51,10 +50,10 @@ class UserMemoryProvider(ContextProvider):
 
 async def main() -> None:
     agent = Agent(
-        client=FoundryChatClient(
-            project_endpoint="https://your-account.services.ai.azure.com/api/projects/your-project",
-            model="gpt-6-luna",
-            credential=AzureCliCredential(),
+        client=OpenAIChatClient(
+            api_key="ollama",  # Placeholder, Ollama doesn't require an API key
+            base_url="http://localhost:11434/v1",
+            model="qwen2.5-coder:1.5b",
         ),
         instructions="You are a friendly assistant.",
         context_providers=[UserMemoryProvider()],
@@ -68,6 +67,7 @@ async def main() -> None:
 
 if __name__ == "__main__":
     asyncio.run(main())
-```{{copy}}
 
-`touch memory.py`{{exec}}
+```
+
+`python memory.py`{{exec}}

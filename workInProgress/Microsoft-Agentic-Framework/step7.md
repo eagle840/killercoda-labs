@@ -9,16 +9,17 @@ taken from: https://learn.microsoft.com/en-us/agent-framework/get-started/harnes
 import asyncio
 
 from agent_framework import create_harness_agent
-from agent_framework.foundry import FoundryChatClient
-from azure.identity import AzureCliCredential
+from agent_framework.openai import OpenAIChatClient 
+from agent_framework.openai import OpenAIChatClient
+
 
 
 async def main() -> None:
     agent = create_harness_agent(
-        client=FoundryChatClient(
-            project_endpoint="https://your-account.services.ai.azure.com/api/projects/your-project",
-            model="gpt-6-luna",
-            credential=AzureCliCredential(),
+        client=OpenAIChatClient(
+            api_key="ollama",  # Placeholder, Ollama doesn't require an API key
+            base_url="http://localhost:11434/v1",
+            model="qwen2.5-coder:1.5b",
         ),
         agent_instructions="Help users plan and complete multi-step tasks.",
         disable_file_memory=True,
@@ -32,6 +33,7 @@ async def main() -> None:
 
 if __name__ == "__main__":
     asyncio.run(main())
+
 ```{{copy}}
 
 `python harness.py`{{exec}}
