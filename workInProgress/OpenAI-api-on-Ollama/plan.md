@@ -6,13 +6,13 @@ Learn to use Ollama's OpenAI-compatible API, progressing from simple chat comple
 ## Environment
 - Backend: ubuntu-4GB
 - Install: Ollama, uv, Python, openai SDK
-- Models: qwen2.5:3b-instruct (simple), qwen3:8b (advanced reasoning/tools)
+- Models: qwen2.5:3b-instruct (simple), qwen3.5:2b (advanced reasoning/tools)
 
 ## Lab Flow
 1. Install Ollama (curl install, start service, verify)
 2. Setup with uv (init project, add openai, pull qwen2.5:3b-instruct)
 3. Simple Chat Completions (system/user, temperature, non-streaming, streaming)
-4. Reasoning & Thinking (pull qwen3:8b, compare responses, see reasoning)
+4. Reasoning & Thinking (pull qwen3.5:2b, compare responses, see reasoning)
 5. Tools & Function Calling (define get_weather tool, mock execution, tool result)
 6. Responses API (client.responses.create, compare vs chat.completions)
 

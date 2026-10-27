@@ -1,6 +1,6 @@
 {
   "title": "OpenAI API on Ollama",
-  "description": "Use OpenAI-compatible API with Ollama models (v0.1)",
+  "description": "Use OpenAI-compatible API with Ollama models (v0.2)",
   "difficulty": "Intermediate",
   "time": "75 minutes",
   "details": {

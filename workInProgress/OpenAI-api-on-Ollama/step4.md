@@ -1,13 +1,13 @@
 # Step 4: Reasoning & Thinking
 
-Now let's try a more advanced reasoning-capable model. We'll use `qwen3:8b` which has built-in thinking/reasoning capabilities.
+Now let's try a more advanced reasoning-capable model. We'll use `qwen3.5:2b` which has built-in thinking/reasoning capabilities and fits comfortably in a 4GB environment.
 
 ## Pull the Advanced Model
 
 This may take a few minutes depending on network speed:
 
 ```bash
-ollama pull qwen3:8b
+ollama pull qwen3.5:2b
 ```{{execute}}
 
 ## Compare Responses
@@ -24,7 +24,7 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="qwen3:8b",
+    model="qwen3.5:2b",
     messages=[
         {"role": "user", "content": "Solve step by step: A train travels 120 km at 60 km/h, then 90 km at 45 km/h. What is the average speed for the entire journey?"},
     ],

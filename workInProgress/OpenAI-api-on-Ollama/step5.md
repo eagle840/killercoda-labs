@@ -43,7 +43,7 @@ messages = [
 ]
 
 response = client.chat.completions.create(
-    model="qwen3:8b",
+    model="qwen3.5:2b",
     messages=messages,
     tools=tools,
     tool_choice="auto",
@@ -80,7 +80,7 @@ if tool_calls:
     
     # Get final response
     second_response = client.chat.completions.create(
-        model="qwen3:8b",
+        model="qwen3.5:2b",
         messages=messages,
         tools=tools,
     )
@@ -101,6 +101,6 @@ uv run python tool_calling.py
 
 - If the model doesn't call the tool, try rephrasing or check if the model supports function calling
 - Not all models support tools equally well through Ollama's OpenAI compatibility layer
-- If you get errors, make sure `qwen3:8b` is fully downloaded (`ollama list`)
+- If you get errors, make sure `qwen3.5:2b` is fully downloaded (`ollama list`)
 
 **What you learned:** Implemented the full tool calling flow - define tools, detect tool calls, execute them (mocked), and feed results back for a final answer.

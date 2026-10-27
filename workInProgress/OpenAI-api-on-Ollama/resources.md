@@ -8,7 +8,7 @@
 
 ## Models Used
 - [qwen2.5:3b-instruct](https://ollama.com/library/qwen2.5) - Fast, reliable for basic chat
-- [qwen3:8b](https://ollama.com/library/qwen3) - Reasoning-capable with tool support
+- [qwen3.5:2b](https://ollama.com/library/qwen3.5) - Reasoning-capable with tool support, fits in 4GB environments
 
 ## Tips & Notes
 - Any API key string works with Ollama (e.g., "ollama", "dummy")
