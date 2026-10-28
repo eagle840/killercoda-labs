@@ -4,6 +4,8 @@ Now let's use the OpenAI SDK with Ollama's OpenAI-compatible endpoint.
 
 ## Create a Basic Chat Completion
 
+A **chat completion** sends an ordered list of `messages`, each tagged with a role, and gets back one assistant message. The API is **stateless**: the model only sees the messages in this single request, so a multi-turn chat means resending the whole history every call.
+
 Create `simple_chat.py`:
 
 ```bash
@@ -34,7 +36,11 @@ Run it:
 uv run python simple_chat.py
 ```{{execute}}
 
+`response.choices[0]` is the first candidate completion — the API can return `n` of them — and `.message.content` is its text. Print that and you're done: the whole reply arrived in one object.
+
 ## Streaming Chat Completion
+
+**`stream=True`** returns an iterator instead of a finished object, and the server forwards the reply as it generates it. Each chunk carries a `delta` — only the new text since the last chunk — rather than a complete `message`.
 
 Create `simple_chat_stream.py`:
 
@@ -70,4 +76,6 @@ Run it:
 uv run python simple_chat_stream.py
 ```{{execute}}
 
-**What you learned:** Used `client.chat.completions.create()` with Ollama, tried different parameters, and implemented streaming responses.
+`end=""` stops Python inserting a newline per chunk, and `flush=True` prints immediately instead of buffering. Token count and total time are unchanged — what improves is **time to first visible word**, which is why chat UIs stream and batch jobs usually don't.
+
+**What you learned:** Used `client.chat.completions.create()` with Ollama, compared a single completion against a streamed one, and saw how the response shape changes.

@@ -26,7 +26,8 @@ client = OpenAI(
 response = client.chat.completions.create(
     model="qwen3.5:2b",
     messages=[
-        {"role": "user", "content": "Solve step by step: A train travels 120 km at 60 km/h, then 90 km at 45 km/h. What is the average speed for the entire journey?"},
+        {"role": "user", "content": "What is 2 + 2?"},
+        {"role": "system", "content": "You are a helpful assistant."},
     ],
     temperature=0.7,
 )
