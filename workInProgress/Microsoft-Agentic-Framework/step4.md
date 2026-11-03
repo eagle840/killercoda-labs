@@ -4,6 +4,8 @@ taken from: https://learn.microsoft.com/en-us/agent-framework/get-started/multi-
 
 undate the code to 
 
+Does followin allow sessions? https://learn.microsoft.com/en-us/python/api/agent-framework-core/agent_framework.openai.openaichatclient?view=agent-framework-python-latest
+
 
 ```python
         instructions="You are a friendly assistant. Keep your answers brief.",

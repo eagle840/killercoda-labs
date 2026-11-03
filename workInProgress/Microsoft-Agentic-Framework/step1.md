@@ -26,14 +26,14 @@ check OpenAI-Compatible Endpoint
 
 `curl http://localhost:11434/v1/models |jq`{{exec}}
 
-```bash
-mkdir msfw && cd msfw
-```{{exec}}
+`mkdir msfw && cd msfw`{{exec}}
 
 `uv venv && source .venv/bin/activate`{{exec}}
 
 
 `uv pip install agent-framework`{{exec}}
+
+## Simple Chat query with OpenAI API
 
 `touch localquery.py`{{exec}}
 
