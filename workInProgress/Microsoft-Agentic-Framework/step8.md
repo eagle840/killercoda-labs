@@ -7,7 +7,7 @@ https://learn.microsoft.com/en-us/agent-framework/hosting/self-hosting/openai-en
 
 ? remove this?
 
-`uv add gradio autogen-agentchat autogen-ext`{{exec}}
+`uv pip install gradio autogen-agentchat autogen-ext`{{exec}}
 
 `export OPENAI_API_KEY="your-api-key-here"`
 
@@ -73,7 +73,7 @@ app = gr.ChatInterface(
 )
 
 if __name__ == "__main__":
-    app.queue().launch(server_name="0.0.0.0", server_port=7860))
+    app.queue().launch(server_name="0.0.0.0", server_port=7860)
   
 
 ```{{copy}}

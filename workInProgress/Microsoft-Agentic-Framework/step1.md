@@ -26,6 +26,8 @@ check OpenAI-Compatible Endpoint
 
 `curl http://localhost:11434/v1/models |jq`{{exec}}
 
+## Environement setup
+
 `mkdir msfw && cd msfw`{{exec}}
 
 `uv venv && source .venv/bin/activate`{{exec}}

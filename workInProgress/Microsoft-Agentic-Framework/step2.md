@@ -6,10 +6,15 @@
 
 # documentation
 
-see https://learn.microsoft.com/en-us/agent-framework/integrations/by-component/model-providers/ollama?tabs=ollama-openai&pivots=programming-language-python
+
+see 
+- [docs](https://learn.microsoft.com/en-us/agent-framework/integrations/by-component/model-providers/ollama?tabs=ollama-openai&pivots=programming-language-python)
 
 
-Looks like second 2.ll of the page gives clear instructions on using ollama https://techcommunity.microsoft.com/blog/azuredevcommunityblog/engineering-a-local-first-agentic-podcast-studio-a-deep-dive-into-multi-agent-or/4482839
+Looks like second 2-ll of the page gives clear instructions on using ollama 
+- [link](https://techcommunity.microsoft.com/blog/azuredevcommunityblog/engineering-a-local-first-agentic-podcast-studio-a-deep-dive-into-multi-agent-or/4482839)
+
+
 ---
 
 
