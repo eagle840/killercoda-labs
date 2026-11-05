@@ -51,8 +51,8 @@ multi-turn history, streaming and `models.list()` on Ollama. It does **not** emi
 | Python | 3.12 | Available in the Ubuntu 24.04 image; `uv` can also download it. |
 | `anthropic` | `2.5.0` | The lab is written and tested against this exact release. |
 | `python-dotenv` | latest resolved by `uv` | Only used to read `.env`. |
-| `uv` | latest at boot | Installed to `/usr/local/bin`. |
-| Ollama | `0.40.14` (falls back to latest) | Installed from the GitHub release tarball; the install script assumes systemd, which containers usually lack. |
+| `uv` | installed in step 1 | Installed to `/usr/local/bin` so it is on `PATH`. |
+| Ollama | latest official release | Installed in step 1 with `curl -fsSL https://ollama.com/install.sh \| sh`. |
 
 Pin `anthropic` in `pyproject.toml`. Do **not** use `anthropic>=...` — the 2.x line removed
 arguments that older tutorials rely on.
@@ -95,13 +95,14 @@ arguments that older tutorials rely on.
 
 ## Sandbox provisioning notes
 
-- `setup.sh` runs in the background and writes `/var/log/anthropic-lab-setup.log`. The marker
-  `/var/lib/anthropic-lab-ready` appears only after the model pull succeeds.
-- The Ollama binary is installed from the pinned GitHub release tarball
-  (`v0.40.14`, falling back to the latest tarball if that URL ever fails) into `/usr`, and
-  started with `nohup setsid ollama serve`.
-- The model pull is about 1 GB. First boot typically takes 2–5 minutes; step 1 includes a
-  wait loop so learners do not race the setup.
+- There is no background setup step. `init.sh` only creates the `coder` user, and step 1 does
+  the real provisioning in the learner's terminal.
+- Step 1 installs Ollama with the official script
+  (`curl -fsSL https://ollama.com/install.sh | sh`) and then runs
+  `ollama pull qwen2.5-coder:1.5b`. The script starts the service itself when systemd is
+  available.
+- The model is about 1 GB, and the Ollama runtime adds roughly 1.5 GB, so the first step takes
+  2–5 minutes on a typical connection.
 - The backend is `ubuntu-4GB`. The 2 GB image is too tight once Ollama, the model and Python
   are all resident.
 - Port 11434 stays on loopback; no traffic selector is needed.
@@ -110,7 +111,8 @@ arguments that older tutorials rely on.
 
 | Symptom | Check |
 |---|---|
-| Step 1's wait loop times out | `tail -n 50 /var/log/anthropic-lab-setup.log`, then `cat /var/log/ollama.log` |
+| `curl` to 11434 fails after installing Ollama | `cat /var/log/ollama.log`, then start it manually: `nohup ollama serve > /var/log/ollama.log 2>&1 &` |
+| `install.sh` ends with a systemd error | Expected in a container; the binary is installed, just start `ollama serve` manually |
 | `address already in use` on 11434 | `pkill -f "ollama serve"`, rerun the server |
 | Model pull stalls | `ollama pull qwen2.5-coder:1.5b` manually; check outbound network |
 | `TypeError: unexpected keyword argument 'temperature'` | Expected on 2.5.0 — remove the argument |
@@ -119,6 +121,8 @@ arguments that older tutorials rely on.
 
 ## History
 
+- `v0.1.1` — moved Ollama installation and the model pull into step 1; removed the background
+  provisioning script.
 - `v0.1.0` — steps 1–2 (Modules 0–1 of the plan): environment, first call, response anatomy.
 - Earlier skeleton: `v0.0.1` placeholder.
 

@@ -44,10 +44,9 @@ Both steps in this scenario are `LIVE`.
 
 ## About the sandbox
 
-The first boot installs Ollama, starts it, and pulls a ~1 GB model **in the background**.
-Including the Ollama runtime, the download is roughly 2.5 GB and takes a few minutes. Step 1
-shows you how to watch the progress and wait for it — you can read the rest of this page while
-it runs.
+The sandbox starts as a bare Ubuntu VM. Step 1 installs Ollama with its official install
+script, starts the server and pulls a ~1 GB model. Including the Ollama runtime, the download
+is roughly 2.5 GB and takes a few minutes, so the first step is the slowest part of the lab.
 
 The terminal runs as `root`; `init.sh` also creates a passwordless-sudo `coder` user if you
 prefer to work as a normal user.
@@ -65,7 +64,8 @@ them.
 |---|---|
 | Python | 3.12 |
 | `anthropic` | 2.5.0 |
-| `uv` | latest at sandbox build |
+| `uv` | installed in step 1 (latest at run time) |
+| Ollama | installed in step 1 (latest official release) |
 | Model | `qwen2.5-coder:1.5b` |
 
 Pinning matters here: the 2.x SDK removed several arguments that older tutorials still use

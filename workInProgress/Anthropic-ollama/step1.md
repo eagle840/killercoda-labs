@@ -2,7 +2,7 @@
 
 > **Badge: `LIVE`** — this step talks to the real Ollama server running in your sandbox.
 >
-> **Time:** ~10 minutes · **Prerequisites:** a terminal and basic Python.
+> **Time:** ~20 minutes · **Prerequisites:** a terminal and basic Python.
 
 The Anthropic Python SDK is a thin HTTP client for one endpoint: `POST /v1/messages`.
 Anything that speaks that protocol can stand in for the Anthropic API — including a local
@@ -11,54 +11,47 @@ answers instead of Anthropic.
 
 In this step you will:
 
-1. confirm the background setup finished,
-2. create a pinned project with `uv`,
+1. install Ollama and pull the model,
+2. install `uv` and create a pinned project,
 3. make your first `messages.create()` call,
 4. move client construction into a reusable helper.
 
 ---
 
-## 1. Wait for the sandbox to finish provisioning
+## 1. Install Ollama and pull the model
 
-Killercoda started `setup.sh` in the background. It installs Ollama, starts the server and
-pulls the model. The script creates `/var/lib/anthropic-lab-ready` when it is done.
-
-Run this to wait for it (it gives up after ten minutes, or as soon as the log reports a
-fatal error):
+This sandbox starts as a bare Ubuntu VM, so install Ollama with the official script:
 
 ```bash
-for i in $(seq 1 120); do
-  [ -f /var/lib/anthropic-lab-ready ] && break
-  grep -q "FATAL" /var/log/anthropic-lab-setup.log 2>/dev/null && break
-  sleep 5
-done
-
-tail -n 8 /var/log/anthropic-lab-setup.log
-
-if [ -f /var/lib/anthropic-lab-ready ]; then
-  echo "SETUP READY"
-else
-  echo "SETUP NOT READY YET - rerun this block or read the full log"
-fi
+curl -fsSL https://ollama.com/install.sh | sh
 ```{{exec}}
 
-If you see `SETUP READY`, confirm that both Ollama and the model are live:
+This downloads the Ollama runtime (roughly 1.5 GB), so give it a minute or two. Then pull the
+model (about 1 GB):
 
 ```bash
-curl -s http://127.0.0.1:11434/api/version
+ollama pull qwen2.5-coder:1.5b
 ollama list
 ```{{exec}}
 
-Expected result: a JSON object with an Ollama version, and a table containing
-`qwen2.5-coder:1.5b`. The first boot downloads roughly 2.5 GB total (the Ollama runtime plus
-the model), so it can take a few minutes on a slow connection.
+Expected result: a progress bar during the pull, then a table containing
+`qwen2.5-coder:1.5b`. The first run downloads roughly 2.5 GB in total (runtime plus model), so
+it can take a few minutes.
 
 ---
 
-## 2. Create a pinned `uv` project
+## 2. Install `uv` and create a pinned project
 
-`uv` is already installed. It will create the project, a virtual environment and a lock
-file, and install the exact SDK version this lab teaches.
+`uv` is not preinstalled. Install it into `/usr/local/bin` so it is on `PATH` for every
+shell:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=/usr/local/bin sh
+uv --version
+```{{exec}}
+
+Then create the project, a virtual environment and a lock file, and install the exact SDK
+version this lab teaches:
 
 ```bash
 cd /root

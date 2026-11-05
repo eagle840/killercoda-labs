@@ -4,14 +4,6 @@ set -u
 
 LAB=/root/anthropic-lab
 
-if [ ! -f /var/lib/anthropic-lab-ready ]; then
-  echo "Waiting for the background setup to finish ..."
-  for _ in $(seq 1 60); do
-    [ -f /var/lib/anthropic-lab-ready ] && break
-    sleep 2
-  done
-fi
-
 if [ ! -d "$LAB" ]; then
   echo "FAIL: $LAB does not exist. Complete step 1 first."
   exit 1
