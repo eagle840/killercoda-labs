@@ -1,0 +1,34 @@
+{
+  "title": "Anthropic Python SDK with Ollama",
+  "description": "Hands-on Anthropic Python SDK lab against a local Ollama model: first call, response anatomy (v0.1.0)",
+  "difficulty": "Intermediate",
+  "time": "40 minutes",
+  "details": {
+    "intro": {
+      "text": "intro.md",
+      "background": "setup.sh",
+      "foreground": "init.sh"
+    },
+    "steps": [
+      {
+        "title": "First call against Ollama",
+        "text": "step1.md",
+        "verify": "verify1.sh"
+      },
+      {
+        "title": "Anatomy of a message",
+        "text": "step2.md",
+        "verify": "verify2.sh"
+      }
+    ],
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu-4GB"
+  }
+}
