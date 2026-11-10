@@ -1,40 +1,40 @@
 {
   "title": "Microsoft Agentic Framework",
-  "description": "Using MS Agentic Framework on local AI model (v0.2.2)",
+  "description": "Build agents on a local Ollama model with the Microsoft Agent Framework (v0.3.0)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
     "steps": [
       {
-        "title": "Step 1",
+        "title": "Local Model Endpoint",
         "text": "step1.md"
       },
       {
-        "title": "Step 2",
+        "title": "Your First Agent",
         "text": "step2.md"
       },
       {
-        "title": "Step 3",
+        "title": "Give the Agent a Tool",
         "text": "step3.md"
       },
       {
-        "title": "Step 4",
+        "title": "Multi-Turn Sessions",
         "text": "step4.md"
       },
       {
-        "title": "Step 5",
+        "title": "Memory & Persistence",
         "text": "step5.md"
       },
       {
-        "title": "Step 6",
+        "title": "Deterministic Workflows",
         "text": "step6.md"
       },
       {
-        "title": "Step 7",
+        "title": "The Agent Harness",
         "text": "step7.md"
       },
       {
-        "title": "Step 8",
+        "title": "Host It with Gradio",
         "text": "step8.md"
       }
     ],
