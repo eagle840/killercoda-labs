@@ -7,8 +7,9 @@ We are going to use **`bonsai-2:4b`**, pulled from the Ollama library:
 https://ollama.com/library/bonsai-2
 
 We chose it because the library page lists it as a **thinking** model (the `thinking` badge on that
-page), and the 4B tag is only **1.6 GB** on disk. That is small enough to load inside this lab's
-limited memory while still giving us a real reasoning loop, unlike the much smaller `gemma3:1b`.
+page), and the 4B tag is only **1.6 GB** on disk. That fits comfortably in the 4 GB of RAM this lab
+provides — check `free -m` from step 1 — while still giving us a real reasoning loop, unlike the
+much smaller `gemma3:1b`.
 
 | Model | Size | Thinking | Fits this lab? |
 | --- | --- | --- | --- |
@@ -160,5 +161,6 @@ pipeline.
 - `think=True` in the Python client returns reasoning in `message.thinking`, separate from
   `message.content`.
 
-**Tip:** Swap the `MODEL` constant for `bonsai-2:9b` if you have ~3 GB of free RAM, or use
-`think=False` to see how the answer changes when the model is not allowed to reason.
+**Tip:** `bonsai-2:9b` (3.2 GB) is the next size up. It fits on disk but leaves little headroom in
+this lab's 4 GB of RAM, so expect swapping. You can also pass `think=False` to see how the answer
+changes when the model is not allowed to reason.
