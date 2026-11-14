@@ -1,6 +1,6 @@
 {
   "title": "Getting Started with Ollama",
-  "description": "Learn to assess your system resources, search for models, and run a lightweight model using Ollama. (v0.0.3)",
+  "description": "Assess your system resources, search for models, and run lightweight and thinking models with Ollama. (v0.0.4)",
   "difficulty": "Beginner",
   "time": "15 minutes",
   "details": {
@@ -29,7 +29,7 @@
         "text": "step5.md"
       },
       {
-        "title": "Explore CLI Coding Agents",
+        "title": "Explore a Thinking Model",
         "text": "step6.md"
       }
     ],

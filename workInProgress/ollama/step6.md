@@ -1,18 +1,64 @@
-# Step 6: Exploring Thinking Models
+# Step 6: Explore a Thinking Model
 
-Due to the limited memory size, we are limited
+So far we have used `tinyllama`, a tiny general-purpose model. Now let's look at a model that
+actually reasons before it answers.
 
-`ollama run gemma3:1b`{{exec}}
+We are going to use **`bonsai-2:4b`**, pulled from the Ollama library:
+https://ollama.com/library/bonsai-2
 
-We'll use python to see the thinking in action, with the question "If John has 3 apples and gives 1 to Mary, then buys a box of 5 more, how many does he have?"
+We chose it because the library page lists it as a **thinking** model (the `thinking` badge on that
+page), and the 4B tag is only **1.6 GB** on disk. That is small enough to load inside this lab's
+limited memory while still giving us a real reasoning loop, unlike the much smaller `gemma3:1b`.
 
-# Install uv
+| Model | Size | Thinking | Fits this lab? |
+| --- | --- | --- | --- |
+| `tinyllama` | 637 MB | ❌ | ✅ |
+| `gemma3:1b` | 815 MB | ❌ (needs prompt tricks) | ✅ |
+| **`bonsai-2:4b`** | **1.6 GB** | **✅ native** | **✅** |
+| `bonsai-2:27b` | 8.3 GB | ✅ | ❌ too large |
+
+## 1. Pull the model
+
+Downloading 1.6 GB takes a minute or two, so pull it explicitly rather than letting it happen
+silently mid-query:
+
+```bash
+ollama pull bonsai-2:4b
+```{{execute}}
+
+Confirm it is on disk:
+
+```bash
+ollama list
+```{{execute}}
+
+## 2. Quick check from the CLI
+
+```bash
+ollama run bonsai-2:4b "In one sentence, what is a ternary-weight model?"
+```{{execute}}
+
+Then check how much memory it needed once loaded:
+
+```bash
+ollama ps
+```{{execute}}
+
+The `SIZE` column shows the model plus its context in memory. Unload it again with
+`ollama stop bonsai-2:4b` if you are short on RAM.
+
+## 3. Set up a Python project with uv
+
+Ollama's Python client exposes the reasoning text separately from the final answer, which is much
+easier to work with than scraping tags out of a response.
+
+Install `uv`:
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```{{execute}}
 
-Add uv to your PATH for this session:
+Add it to your PATH for this session:
 
 ```bash
 source $HOME/.cargo/env 2>/dev/null || source $HOME/.local/bin/env 2>/dev/null || export PATH="$HOME/.local/bin:$PATH"
@@ -24,97 +70,95 @@ Verify:
 uv --version
 ```{{execute}}
 
-## Create Project
+## 4. Create the project
 
 ```bash
 mkdir -p ~/ollama-thinking && cd ~/ollama-thinking
-uv init
+uv init --bare
+uv add ollama
 ```{{execute}}
 
+`uv init --bare` creates just a `pyproject.toml`, and `uv add ollama` records the dependency and
+creates the virtual environment. Note we run the script with `uv run`, so there is no need to
+activate anything or to `pip install` into the system Python.
+
+## 5. Write the thinking script
+
+This writes `thinking.py` into the current directory:
 
 ```bash
-uv add ollama 
-```{{execute}}
-
-`pip install ollama`{{exec}}
-
-`touch thinking.py`{{exec}}
-
-```python
+cat > thinking.py << 'EOF'
 import sys
 import ollama
 
+MODEL = "bonsai-2:4b"
 
-def ask_gemma_with_thinking(user_prompt: str):
-    model_name = "gemma3:1b"
 
-    # Since gemma3:1b doesn't natively use a thinking loop,
-    # we use a system prompt to force it to use <think> tags.
-    messages = [
-        {
-            "role": "system",
-            "content": (
-                "You must think step-by-step before answering. "
-                "Write your entire reasoning process inside a <think> block, "
-                "and then provide your final answer outside of it.\n"
-                "Example format:\n"
-                "<think>\n[Your step-by-step logic here]\n</think>\n[Your final answer here]"
-            ),
-        },
-        {"role": "user", "content": user_prompt},
-    ]
+def ask_with_thinking(prompt: str) -> None:
+    print(f"--- Querying {MODEL} (native thinking enabled) ---")
 
-    print(f"--- Querying {model_name} (2GB CPU Mode) ---")
+    # think=True makes Ollama return the reasoning trace in
+    # message.thinking, and the answer in message.content.
+    stream = ollama.chat(
+        model=MODEL,
+        messages=[{"role": "user", "content": prompt}],
+        think=True,
+        stream=True,
+    )
 
-    try:
-        # Stream the response to handle low-memory CPU processing smoothly
-        stream = ollama.chat(model=model_name, messages=messages, stream=True)
+    thinking_started = False
+    answer_started = False
 
-        in_thinking_block = False
-        thinking_header_printed = False
-        answer_header_printed = False
+    for chunk in stream:
+        message = chunk.message
+        thinking = getattr(message, "thinking", None) or ""
+        content = message.content or ""
 
-        for chunk in stream:
-            content = chunk["message"]["content"]
-            if not content:
-                continue
+        if thinking:
+            if not thinking_started:
+                print("\n🧠 THINKING:")
+                thinking_started = True
+            sys.stdout.write(thinking)
+            sys.stdout.flush()
 
-            # Check if the model is entering or exiting the thinking phase
-            if "<think>" in content:
-                in_thinking_block = True
-                content = content.replace("<think>", "")
-
-            if "</think>" in content:
-                in_thinking_block = False
-                content = content.replace("</think>", "")
-                # Force a newline after thinking ends
-                content += "\n"
-
-            # Print headers nicely to separate the two states
-            if in_thinking_block and not thinking_header_printed:
-                print("\n🧠 THOUGHT PROCESS:")
-                thinking_header_printed = True
-
-            if not in_thinking_block and thinking_header_printed and not answer_header_printed:
-                print("\n✨ FINAL ANSWER:")
-                answer_header_printed = True
-
-            # Stream the text to the terminal immediately
+        if content:
+            if not answer_started:
+                print("\n\n✨ FINAL ANSWER:")
+                answer_started = True
             sys.stdout.write(content)
             sys.stdout.flush()
 
-        print("\n-------------------------------------------")
-
-    except Exception as e:
-        print(f"\nAn error occurred: {e}")
-        print("Please ensure Ollama is running and gemma3:1b is downloaded.")
+    print("\n-------------------------------------------")
 
 
 if __name__ == "__main__":
-    # Test question that requires a bit of logic
-    sample_question = "If John has 3 apples and gives 1 to Mary, then buys a box of 5 more, how many does he have?"
-    ask_gemma_with_thinking(sample_question)
+    ask_with_thinking(
+        "If John has 3 apples and gives 1 to Mary, then buys a box of 5 more, how many does he have?"
+    )
+EOF
+```{{execute}}
 
-```{{copy}}
+## 6. Run it
 
-`python thinking.py`{{exec}}
+```bash
+cd ~/ollama-thinking && uv run thinking.py
+```{{execute}}
+
+You should see the streamed reasoning under 🧠 THINKING, followed by the answer under
+✨ FINAL ANSWER.
+
+Because the trace is a separate field, you can now do things a chat UI cannot: count the reasoning
+tokens, log the trace for auditing, or feed only the final answer to the next program in a
+pipeline.
+
+## What you learned
+
+- How to pick a model by checking its size, capabilities (thinking, vision, tools) and context
+  window on its library page before downloading it.
+- `bonsai-2:4b` gives native reasoning at 1.6 GB, which fits this lab's memory budget.
+- `ollama pull`, `ollama list`, `ollama ps` and `ollama stop` to manage disk and memory.
+- `think=True` in the Python client returns reasoning in `message.thinking`, separate from
+  `message.content`.
+
+**Tip:** Swap the `MODEL` constant for `bonsai-2:9b` if you have ~3 GB of free RAM, or use
+`think=False` to see how the answer changes when the model is not allowed to reason.

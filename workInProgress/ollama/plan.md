@@ -8,4 +8,4 @@
 - [x] Add instructions for running the LLM with a query via the command line.
 - [x] Add Step 4: Manage models (listing, clearing, and selecting).
 - [x] Add Step 5: Understand and interact with Ollama API.
-- [x] Add Step 6: Explore CLI coding agents (e.g., 'opencode').
+- [x] Add Step 6: Explore a thinking model (`bonsai-2:4b`) using the native `think` API.

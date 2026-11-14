@@ -6,9 +6,11 @@ In this lab, you will learn how to:
 3. Download and run a lightweight model.
 4. Manage your downloaded models (list, remove, switch).
 5. Understand and interact with the Ollama API.
-6. Explore CLI coding agents to leverage your models.
+6. Explore a thinking model (`bonsai-2:4b`) that still fits in this lab's memory.
 
 We will focus on selecting a model that runs efficiently within the resource constraints of this lab environment.
 
 **Note:** Ollama is cross-platform and works on Linux, macOS, and Windows.
 **Note:** Installing Ollama and downloading the LLM models may take a few minutes depending on network speed. Please be patient.
+
+**Last updated:** 14 November 2026
