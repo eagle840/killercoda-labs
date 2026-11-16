@@ -1,42 +1,34 @@
 ## Run First
 
-`sudo apt update`{{exec}}
 
-`python -V`{{exec}}
+`curl -LsSf https://astral.sh/uv/install.sh | sh`{{exec}}
 
+`mkdir gradioT`{{exec}}
 
+`cd gradioT`{{exec}}
 
-`apt install python3.12-venv`{{exec}}
+`source $HOME/.local/bin/env`{{exec}}
 
-https://www.gradio.app/guides/quickstart
-
-`mkdir gradio`{{exec}}
-
-`cd gradio`{{exec}}
-
-`python -m venv .venv`{{exec}}
+`uv venv`{{exec}}
 
 `source .venv/bin/activate`{{exec}}
 
-`pip install --upgrade pip`{{exec}}
+`uv pip  install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu`{{exec}}
 
-We'll be using pip-tools to get a trouble free install of multiple packages
+`uv pip  install transformers tensorflow tf-keras gradio`{{exec}}
+
+
+https://www.gradio.app/guides/quickstart
+
+WIP:
 
 `pip install pip-tools`{{exec}}
 
-manual load each for now
+
 
 pytorch: https://pytorch.org/get-started/locally/
 
-`pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu`{{exec}}
-
-`python -m pip install transformers`{{exec}}
-
-`python -m pip install tensorflow`{{exec}}# appears to work
-
-`python -m pip install tf-keras`{{exec}}
-
-`python -m pip install gradio`{{exec}}
+WIP:
 
 
 `touch requirements.in`{{exec}}

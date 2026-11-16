@@ -1,6 +1,6 @@
 {
   "title": "AIML WIP Gradio with Tensorflow & Transformers",
-  "description": "Using the python package Gradio (v0.9.9)",
+  "description": "Using Transformers, with Gradio (v0.9.10)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
