@@ -32,6 +32,7 @@ Before working in this repo, read the grounded source-of-truth files at the repo
   - `assets/` files wired in via `details.assets` in `index.json` (chmod/x targets where needed)
   
 - Validate every `index.json` you produce or edit is valid JSON.
+- When the user needs to link to a open a local http port, use the code ```{{TRAFFIC_HOST1_xxxx}}``` were xxxx is the port number (eg 80, 8088)
 
 ## Planning checklist (MANDATORY when planning new content)
 
