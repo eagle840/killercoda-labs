@@ -1,75 +1,100 @@
-# Gradio Components
+# Choose a Model and Improve the Interface
 
-## The Interface class
+## Concept: the `model=` argument
 
+The task name tells `transformers` what kind of pipeline to create. The `model=` argument tells it **which checkpoint** to download and run.
 
+That distinction matters:
 
-READ and follow the **Guide** from https://www.gradio.app/guides/the-interface-class
+- `"sentiment-analysis"` describes the job.
+- `distilbert-base-uncased-finetuned-sst-2-english` is one particular model for that job.
+- Other sentiment models may use different training data, languages, or label sets.
 
-For more details items, see the **Docs** at https://www.gradio.app/docs
+A checkpoint name usually contains a model family and the task it was fine-tuned for. In the next step we will use a model whose checkpoint name does not obviously say “zero-shot”, so the explicit `model=` argument will keep the lab predictable.
 
-Try the Gradio Playground to experiment:  https://www.gradio.app/playground
+For this step, keep the current default model but store it in a `MODEL` variable. That makes swapping models a one-line change.
 
+## Gradio: descriptions, labels, and examples
 
+`gr.Interface` also supports small UX improvements:
 
-update the function
+- `title` gives the page a heading.
+- `description` explains what the app does.
+- Component `label=` text tells the learner what to enter.
+- `examples` provides clickable sample inputs.
 
-```
-def greet(name, intensity):
-    return "Hello, " + name + "!" * int(intensity)
-```
+If the previous Gradio server is still running, press `Ctrl-C` first. Replace the whole contents of `app.py` with this version:
 
-And update the interface class
-
-```
-demo = gr.Interface(
-    fn=greet,
-    inputs=["text", "slider"],
-    outputs=["text"],
-)
-```
-
-
-you can customise the fields eg, `gr.Textbox(lines=2, placeholder="name here")` for the inputs parameter. [API Docs](https://www.gradio.app/docs/gradio/textbox)
-
----
-
-
-To share your app anywhere, and the following to the launch method
-
-WIP
-`demo.launch(share=True)  # Share your demo with just 1 extra parameter`{{exec}}
-
-
-API details for the launch method. https://www.gradio.app/docs/gradio/interface#interface-launch
-
-More on the python client: https://www.gradio.app/docs/python-client/introduction
-
-## Blocks
-
-Used in the layout.
-
-https://www.gradio.app/guides/blocks-and-event-listeners
-
-```
+```python
+from transformers import pipeline
 import gradio as gr
 
 
-def greet(name):
-    return "Hello " + name + "!"
+MODEL = "distilbert-base-uncased-finetuned-sst-2-english"
+
+classifier = pipeline("sentiment-analysis", model=MODEL)
 
 
-with gr.Blocks() as demo:
-    name = gr.Textbox(label="Name")
-    output = gr.Textbox(label="Output Box")
-    greet_btn = gr.Button("Greet")
-    greet_btn.click(fn=greet, inputs=name, outputs=output, api_name="greet")
+def classify_sentiment(text):
+    result = classifier(text)[0]
+    label = result["label"]
+    confidence = result["score"]
+    return f"{label} ({confidence:.3f})"
+
+
+demo = gr.Interface(
+    fn=classify_sentiment,
+    inputs=gr.Textbox(
+        label="Text to analyze",
+        lines=3,
+        placeholder="Type a short review or opinion...",
+    ),
+    outputs=gr.Textbox(label="Predicted sentiment"),
+    title="Sentiment Explorer",
+    description=(
+        "Enter English text and compare the label and confidence returned by "
+        "a pinned sentiment model."
+    ),
+    examples=[
+        ["I love how easy this model is to use."],
+        ["This update made the app much worse."],
+        ["The delivery arrived on time and the packaging was fine."],
+    ],
+)
 
 demo.launch(server_name="0.0.0.0", server_port=8080)
 ```{{copy}}
 
-and run the app:
+Run it:
 
-`python app.py`{{exec}}
+`python app.py`{{execute}}
+
+Open the app:
 
 {{TRAFFIC_HOST1_8080}}
+
+Click an example, or type your own sentence. Notice that the app now tells the learner what to do and offers useful starting inputs.
+
+## Swap the model and compare
+
+Now change only this line in `app.py`:
+
+```python
+MODEL = "distilbert-base-uncased-finetuned-sst-2-english"
+```
+
+to:
+
+```python
+MODEL = "nlptown/bert-base-multilingual-uncased-sentiment"
+```
+
+Stop the server with `Ctrl-C`, run `python app.py` again, and open {{TRAFFIC_HOST1_8080}}. Try the same examples.
+
+The alternative model uses a star-rating label set such as `1 star` through `5 stars`, so the output format will look different. This is a useful reminder that changing the checkpoint can change both the behavior and the labels, not just the accuracy.
+
+You do not need to keep the alternative model. The following steps will replace `app.py` with newer full versions.
+
+## What you learned
+
+You made the model choice explicit, added user-facing descriptions and examples, and observed how changing a checkpoint can change the output labels and style.

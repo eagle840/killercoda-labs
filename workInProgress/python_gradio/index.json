@@ -1,45 +1,33 @@
 {
-  "title": "AIML WIP Gradio with Tensorflow & Transformers",
-  "description": "Using Transformers, with Gradio (v0.9.10)",
+  "title": "Build NLP Web Apps with Gradio",
+  "description": "Hands-on Hugging Face transformers pipelines wrapped in Gradio interfaces: sentiment, zero-shot, summarization and NER on CPU PyTorch. (v0.9.11)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
   "details": {
-    "assets":{
-      "host01": [
-        {
-          "file": "send.py",
-          "target": "~/"
-        },
-        {
-          "file": "new_task.py",
-          "target": "~/"
-        },
-        {
-          "file": "worker.py",
-          "target": "~/"
-        },
-        {
-          "file": "receive.py",
-          "target": "~/"
-        }
-      ]
-    },
     "steps": [
       {
-        "title": "Step 1",
+        "title": "Set Up and Build Your First Pipeline",
         "text": "step1.md"
       },
       {
-        "title": "Step 2",
+        "title": "Look Inside a Pipeline",
         "text": "step2.md"
       },
       {
-        "title": "Step 3",
+        "title": "Choose and Compare Models",
         "text": "step3.md"
       },
       {
-        "title": "Step 4",
+        "title": "Zero-Shot Classification and Tabs",
         "text": "step4.md"
+      },
+      {
+        "title": "Add a Summarization Tab",
+        "text": "step5.md"
+      },
+      {
+        "title": "Add Named-Entity Recognition",
+        "text": "step6.md"
       }
     ],
     "intro": {

@@ -1,74 +1,107 @@
-# Tensorflow & Transformers
+# Look Inside a Pipeline and Show Confidence
 
-WIP? turn this into Jyptuer?
+## Concept: tokenizer, model, scores
 
-https://www.tensorflow.org/tutorials/quickstart/beginner
+A text pipeline has three useful moving parts:
 
+1. **Tokenizer** — converts text into integer token IDs and attention masks.
+2. **Model** — turns those IDs into raw scores called logits.
+3. **Post-processing** — converts the scores into labels and probabilities.
 
-`python`{{exec}}
+For sentiment analysis, the raw logits are mapped to labels such as `POSITIVE` and `NEGATIVE`. The pipeline returns the highest-scoring label and its probability as `score`.
 
-`import tensorflow as tf`{{exec}}
+You do not need to understand the neural network architecture. The important practical idea is that a pipeline object exposes its tokenizer and its model, so you can inspect them when needed.
 
-`print("TensorFlow version:", tf.__version__)`{{exec}}
+Make sure the virtual environment is active:
 
-`mnist = tf.keras.datasets.mnist`{{exec}}
+`source ~/gradio-nlp/.venv/bin/activate`{{execute}}
 
+`cd ~/gradio-nlp`{{execute}}
 
-`(x_train, y_train), (x_test, y_test) = mnist.load_data()`{{exec}}
+Open a Python REPL:
 
+`python`{{execute}}
 
-`x_train, x_test = x_train / 255.0, x_test / 255.0`{{exec}}
+Load the same pinned pipeline:
 
+`from transformers import pipeline`{{execute}}
 
-Build a machine learning model
-```
-model = tf.keras.models.Sequential([
-  tf.keras.layers.Flatten(input_shape=(28, 28)),
-  tf.keras.layers.Dense(128, activation='relu'),
-  tf.keras.layers.Dropout(0.2),
-  tf.keras.layers.Dense(10)
-])
-```{{exec}}
+`pipe = pipeline("sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english")`{{execute}}
 
-`predictions = model(x_train[:1]).numpy()`{{exec}}
+Inspect the token IDs for a short sentence:
 
+`print(pipe.tokenizer("I love this lab.")["input_ids"])`{{execute}}
 
-`predictions`{{exec}}
+Inspect how numeric positions map back to labels:
 
+`print(pipe.model.config.id2label)`{{execute}}
 
-SHOULD RETURN
- ```
-array([[ 0.7376794 ,  0.49447078,  0.10823108,  0.02784834, -0.03891648,
-        -0.36803806, -0.00216345, -0.04204601, -0.67150915, -1.0418724 ]],
-      dtype=float32)
+Now see the final formatted result:
 
- ```
+`print(pipe("I love this lab."))`{{execute}}
 
-`tf.nn.softmax(predictions).numpy()`{{exec}}
+You should see a list with one dictionary, similar to:
 
-
-`quit()`{{exec}}
-
-# Transformers
-
-
-run 'quick tour' in https://pypi.org/project/transformers/
-
-
-`python`{{exec}}
-
-
-`from transformers import pipeline`{{exec}}
-
-`classifier = pipeline('sentiment-analysis')`{{exec}}
-
-`classifier('We are very happy to introduce pipeline to the transformers repository.')`{{exec}}
-
-SHOULD RETURN
-
-```
-[{'label': 'POSITIVE', 'score': 0.9996980428695679}]
-
+```python
+[{'label': 'POSITIVE', 'score': 0.9998}]
 ```
 
-`quit()`{{exec}}
+The exact score may vary slightly. Leave the REPL:
+
+`quit()`{{execute}}
+
+## Gradio: return label and confidence
+
+The pipeline already gives us a `score`. We only need to format it as readable text in the interface.
+
+If the previous Gradio server is still running, press `Ctrl-C` in that terminal first. Then replace the whole contents of `app.py` with this version:
+
+```python
+from transformers import pipeline
+import gradio as gr
+
+
+SENTIMENT_MODEL = "distilbert-base-uncased-finetuned-sst-2-english"
+
+classifier = pipeline("sentiment-analysis", model=SENTIMENT_MODEL)
+
+
+def classify_sentiment(text):
+    result = classifier(text)[0]
+    label = result["label"]
+    confidence = result["score"]
+    return f"{label} ({confidence:.3f})"
+
+
+demo = gr.Interface(
+    fn=classify_sentiment,
+    inputs=gr.Textbox(label="Movie review"),
+    outputs=gr.Textbox(label="Sentiment and confidence"),
+    title="Sentiment Lab",
+    description="Enter text to see the predicted label and confidence score.",
+)
+
+demo.launch(server_name="0.0.0.0", server_port=8080)
+```{{copy}}
+
+Run the updated app:
+
+`python app.py`{{execute}}
+
+Open the app:
+
+{{TRAFFIC_HOST1_8080}}
+
+Try:
+
+```text
+The service was slow, but the food was excellent.
+```
+
+The result now includes a probability in parentheses, for example `POSITIVE (0.999)`.
+
+Knowledge check: which object turned the input string into token IDs, and which part of the result is the probability?
+
+## What you learned
+
+You inspected the tokenizer, label mapping, and final pipeline result. You also changed the Gradio function’s return value so the UI shows both the predicted label and the model’s confidence.
