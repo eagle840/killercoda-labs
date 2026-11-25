@@ -1,8 +1,8 @@
 # Ollama Lab — Notes and Older Code
 
-## Model selection (Step 6)
+## Model selection (Step 7)
 
-Step 6 uses **`bonsai-2:4b`** from https://ollama.com/library/bonsai-2.
+Step 7 uses **`bonsai-2:4b`** from https://ollama.com/library/bonsai-2.
 
 Rationale:
 
@@ -39,7 +39,7 @@ Setting `think=False` disables the trace, which is useful for latency comparison
 
 ## Older code — `gemma3:1b` with a fake thinking loop
 
-This was the original Step 6 script. `gemma3:1b` does not reason natively, so the script forced it
+This was the original thinking-model script. `gemma3:1b` does not reason natively, so the script forced it
 to emit `<think>` tags via a system prompt and then stripped the tags while streaming. It is kept
 here for reference; it produces text that *looks* like a reasoning trace but is not a separate
 reasoning phase.

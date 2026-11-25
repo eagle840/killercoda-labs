@@ -1,6 +1,6 @@
 {
   "title": "Getting Started with Ollama",
-  "description": "Assess your system resources, search for models, and run lightweight, thinking and decision models with Ollama. (v0.0.6)",
+  "description": "Assess your system resources, search for models, and run lightweight, thinking and decision models with Ollama. (v0.9.0)",
   "difficulty": "Beginner",
   "time": "15 minutes",
   "details": {
@@ -29,8 +29,12 @@
         "text": "step5.md"
       },
       {
-        "title": "Explore a Thinking Model",
+        "title": "Run a Decision Model",
         "text": "step6.md"
+      },
+      {
+        "title": "Explore a Thinking Model",
+        "text": "step7.md"
       }
     ],
     "finish": {

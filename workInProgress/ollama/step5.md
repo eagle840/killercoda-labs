@@ -3,13 +3,7 @@
 Now that you have your models running, it is helpful to understand how to interact with the Ollama service directly.
 
 ### Prerequisites: Ollama Server
-Ensure your local Ollama server is running in the background:
-
-```bash
-ollama serve &
-```{{exec}}
-
-Verify the server is responding:
+The Linux installer sets up Ollama as a background service. Verify it is responding:
 ```bash
 curl http://localhost:11434/
 ```{{exec}}
