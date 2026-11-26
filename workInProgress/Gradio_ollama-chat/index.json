@@ -1,5 +1,5 @@
 {
-  "title": "Introduction to Gradio",
+  "title": "Introduction to Gradio with Ollama",
   "description": "Build interactive Python apps with Gradio and connect them to a local TinyLlama model through Ollama's OpenAI-compatible API using uv (v0.2.0)",
   "difficulty": "Intermediate",
   "time": "60 minutes",

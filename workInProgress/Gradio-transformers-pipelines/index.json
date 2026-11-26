@@ -1,5 +1,5 @@
 {
-  "title": "Build NLP Web Apps with Gradio",
+  "title": "Build NLP Web Apps with Gradio and HF Pipelines",
   "description": "Hands-on Hugging Face transformers pipelines wrapped in Gradio interfaces: sentiment, zero-shot, summarization and NER on CPU PyTorch. (v0.9.11)",
   "difficulty": "Intermediate",
   "time": "60 minutes",
